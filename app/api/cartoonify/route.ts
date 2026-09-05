@@ -37,7 +37,7 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   FILE_TOO_LARGE: 'Görsel çok büyük. Lütfen daha küçük bir dosya seçin.',
   INVALID_STYLE: 'Seçtiğiniz karikatür stili geçersiz. Lütfen listeden bir stil seçin.',
   MISSING_API_KEY: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
-  UPSTREAM_ERROR: 'Karikatür oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.',
+  UPSTREAM_ERROR: 'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.',
   UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
 }
 
