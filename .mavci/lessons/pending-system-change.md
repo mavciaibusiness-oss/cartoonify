@@ -1229,6 +1229,115 @@ No superseded text quoted: this amendment ADDS to the finding rather than correc
 
 ---
 
+### Addendum to finding 7 - The criteria path: the agent qualified to judge is the one denied the tool to record - the plumbing half shipped and the agent half did not
+
+Amended 2026-09-05T14:31:35Z, plugin 0.1.33. Amended by: **main-session** (agent). Provenance enforced at the risk guard, not self-declared. It attests to who RAN this command, and to nothing about who directed it.
+
+Observed: 2026-09-05, plugin 0.1.33, cartoonify task 0002, attempt 1, during /mavci-core:ship.
+
+THE SAME SHAPE AS FINDING 7, ONE LAYER ALONG: THE AGENT THAT MUST PRODUCE THE EVIDENCE IS
+THE ONE DENIED THE TOOL TO RECORD IT.
+
+Finding 7 is about the verifier's write scope being enforced against Edit, Write and
+NotebookEdit - the three tools it does not have - and not against Bash, the one it uses. This
+is the same asymmetry arriving somewhere it costs a stop rather than a wall that is not there.
+
+WHAT WAS OBSERVED, NOT CONCLUDED.
+
+mavci-verifier was dispatched on task 0002, ran verify.mjs --record --task 0002, and worked
+all fifteen acceptance criteria including the five that need a fault-injection dev-server
+harness. It reported fifteen passes with per-criterion evidence: exact HTTP statuses
+(502 in 0.303s refused, 502 in 0.345s degraded, 502 in 51.02s hang against a 44-57s window),
+exact log markers (result=unreachable, result=reached status=200, and result= absent on the
+refusing path), exact file:line for every structural grep.
+
+The verdict it recorded has no criteria key at all. Its top-level keys are attempt, checks,
+plugin_version, project_id, run_at, schema_version, scope, summary, task_id, verdict.
+
+The router then returned action incomplete, dispatch null, operator true, with: "attempt 1 of
+task 0002 has a verdict that does not say whether the acceptance criteria were met: it
+records no criteria at all."
+
+So the fifteen judgements exist. They were made by the only component qualified to make them.
+They are in a subagent transcript and nowhere else.
+
+THE REASON IS NARROWER THAN "NOTHING WRITES THE CRITERIA FILE", AND THE DIFFERENCE IS THE
+FINDING.
+
+verify.mjs:413-421 already states it exactly, in the comment above the --criteria parser:
+
+    THIS IS THE PLUMBING HALF OF FINDING 6 FIX 3, AND NOT THE AGENT HALF. It
+    makes criteria populable at all - without some writer the fail-closed
+    router is a deadlock with no key. What it does NOT do is give the verifier
+    a way to produce this file: mavci-verifier holds no Write and no Edit, so
+    today only the main session can supply it. The agent that is qualified to
+    judge the task still cannot record its judgement.
+
+"There is no criteria writer" would be a missing feature, and it is not what is happening.
+The writer is specified, is dispatched, is the single component the system trusts to
+interpret a failing build, and is denied the two tools that would let it write a JSON file.
+The half that shipped is the half that reads the file. The half that did not is the half that
+could produce one.
+
+WHY THIS IS FINDING 7 AND NOT ONLY FINDING 6. Finding 6 is about the verdict schema being
+unable to express criteria results. That was fixed - the schema takes them now. What remains
+is a tool-scope fact: the agent's capability set and the agent's job do not intersect at the
+point where the job produces a record. Finding 7 named that mismatch for writes to the
+repository; this is the same mismatch for the agent's own verdict.
+
+THE WORKAROUND THAT MUST NOT BECOME THE FIX. The main session can write the file, and the
+comment says so. Doing it means the record would assert that fifteen criteria were examined
+and passed, on the strength of a subagent's prose summary transcribed by a component that ran
+none of the probes. That is not a record of the verification; it is a record of the
+orchestrator's confidence in a report, wearing the verification's name. It was not done here
+and the stop was left standing.
+
+Note also that mavci-verifier holds Bash, so it CAN write this file - that is precisely
+finding 7's original observation, and it is not a solution. A boundary honoured by tool
+roster and bypassable by heredoc is not a boundary; it is an instruction that the careful
+agent follows and the careless one does not.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 7 - The assertion for the criteria path, and the broken build it must catch
+
+Amended 2026-09-05T14:31:42Z, plugin 0.1.33. Amended by: **main-session** (agent). Provenance enforced at the risk guard, not self-declared. It attests to who RAN this command, and to nothing about who directed it.
+
+NAME THE BROKEN BUILD FIRST, WHICH IS THIS ONE.
+
+The broken build is the build shipping today: mavci-verifier.md declares
+tools: Read, Grep, Glob, Skill, Bash and disallowedTools: Edit, Write, NotebookEdit, while
+verify.mjs offers a --criteria path whose only legitimate producer is that agent. Nothing in
+the plugin fails when those two facts sit side by side. The gap surfaces one layer downstream
+as a router stop on a task whose code is correct.
+
+ASSERT THE INTERSECTION, NOT EITHER SIDE OF IT.
+
+check-agents.mjs (or check-route.mjs, wherever the agent roster is already parsed) asserts:
+for every agent the router can dispatch, if that agent is instructed to run a command whose
+recording flag consumes a file path, the agent's tool roster must contain a tool that can
+create a file at that path.
+
+Concretely, for mavci-verifier: it is told to run verify.mjs --record, verify.mjs accepts
+--criteria <path>, therefore mavci-verifier must hold Write, or the assertion fails naming
+both the flag and the missing tool.
+
+WOULD IT CATCH TODAY'S BUILD? Yes, and it fails on the first run against 0.1.33 without any
+change - which is the point of writing it before the fix rather than after. An assertion that
+passes on its first run against the broken build is matching the wrong thing.
+
+WHAT IT MUST NOT ACCEPT AS SATISFACTION. Bash must not count as the tool that can create the
+file. If it does, the assertion passes today, the finding is recorded as closed, and the
+system is asserting exactly the shape finding 7 filed: a write path that is unscoped, and a
+scope enforced only against the tools the agent does not hold.
+
+THE ADJACENT ASSERTION THAT WOULD NOT HAVE CAUGHT IT, recorded so the next reader does not
+write it by mistake: asserting that verify.mjs rejects a malformed --criteria file. That is
+input validation on the reading half. It passes on this build, it has always passed, and the
+half that is missing is never exercised by it.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 8 - Release gate is a plugin-release gate wearing the name of a project-release gate
 
 Filed: 2026-09-05T10:49:02Z, plugin 0.1.32.
@@ -1876,3 +1985,192 @@ finding itself stays pending on consequences 1-3 until they are applied in the s
 
 DO NOT re-open this as a task, and do not count it against finding 12 when finding 12 is
 cleared.
+
+---
+
+# Finding 13 - Router gained the incomplete action at 0.1.33 and the ship skill's action table did not
+
+Filed: 2026-09-05T14:27:11Z, plugin 0.1.33.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `skills/ship/SKILL.md`
+
+Observed on cartoonify task 0002, plugin 0.1.33, 2026-09-05. The attempt-1 verdict for task 0002 recorded verdict pass with five legal.pages_present warnings and NO criteria array. route.mjs returned: action incomplete, dispatch null, operator true, exit code 1, why 'attempt 1 of task 0002 has a verdict that does not say whether the acceptance criteria were met: it records no criteria at all.' The fail-closed arm worked exactly as designed - running the orphaned 0.1.32 route.mjs against the SAME project state returned action document, dispatch mavci-scribe, operator false, exit 0, why 'task 0002 passed attempt 1', with steps that would have advanced 0002 to release and marked it done. That counterfactual is the fix demonstrated. THE DEFECT IS ONE LEVEL UP. skills/ship/SKILL.md is the document that tells the orchestrator what to do with each action, and its table at lines 111-123 has rows for plan, build, rework, verify, document, awaiting_approval, blocked, release_gate, unverified, idle and not_connected. There is no row for incomplete. The prose above the table still reads 'One of those six stopping actions is new' and means awaiting_approval, and the 'Do not continue past' line names only blocked, release_gate, unverified and idle. So 0.1.33 added an action to route.mjs ACTIONS and did not add it to the only skill that consumes ACTIONS. I stopped correctly, but I stopped by INFERRING it from dispatch null plus operator true, not because the table told me to. An orchestrator that follows the table literally - which is what the table is for - finds no instruction and falls through. SECOND OBSERVATION, same run. The verdict had no criteria array because nothing could write one. 0.1.33 shipped the plumbing half of finding 6 fix 3 as verify.mjs with a criteria flag taking a path, and its own comment at verify.mjs lines 413-421 states the agent half is absent: mavci-verifier holds no Write and no Edit, so only the main session can supply that file, and ship/SKILL.md separately forbids the main session from running verify.mjs at all. The result is that no permitted actor in the chain can populate criteria today. That is the intended fail-closed state and it is also a closed loop: the only named exit is the operator override that closes the task on evidence the control plane does not hold.
+
+### The assertion, and the broken build it must catch
+
+Enumerate ACTIONS from scripts/lib/route.mjs and assert every member has a row in the action table of skills/ship/SKILL.md, and that every action which route.mjs can return with operator true and dispatch null also appears by name in that skill's 'Do not continue past' list. Against the 0.1.33 tree as shipped this assertion MUST FAIL on incomplete, which is present in ACTIONS and absent from both places - that is the broken build it has to catch. check-route.mjs already asserts route.mjs's own behaviour, so the gap is specifically between the router's action set and the skill that dispatches on it, and nothing today reads both files.
+
+---
+
+# Finding 14 - Risk guard refuses retro --record when the finding PROSE quotes a control-plane path, contradicting its own refusal message
+
+Filed: 2026-09-05T14:27:33Z, plugin 0.1.33.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/risk-guard.mjs`
+
+Observed on cartoonify, plugin 0.1.33, 2026-09-05, immediately before filing finding 13. I ran retro.mjs --record with a --finding string that mentioned the attempt-1 verdict file for task 0002 by its full repository-relative path. The guard refused with: 'mavci risk policy: the write target of this command could not be determined, and it names a path inside DOT-mavci slash control slash (node ... retro.mjs --record "Router gained the incomplete action at 0.1.33 and the ship). This is not a claim that it writes there - it is that the guard cannot tell, so it refuses rather than guess. Run it as a plain command whose target is visible (cat, jq, cp ...), or use state.mjs if it really does need to write. Quoting a control-plane path inside a message or a string operand is fine and is not what this is about.' THE LAST SENTENCE DESCRIBES EXACTLY WHAT I DID, AND THE GUARD REFUSED IT ANYWAY. The path appeared only inside the --finding operand. retro.mjs --record writes to the lessons directory, which is agent-writable by design, and the retro skill states that filing is within an agent's authority. Note also that the quoted echo of my command in the refusal is truncated mid-string at 'and the ship', which suggests the scanner is matching against a raw substring of the argv join rather than against a parsed operand. THE CONSEQUENCE IS THE ONE THAT MATTERS: this is the reporting channel seven other places in the plugin send a blocked agent to, and it refuses precisely the findings that are ABOUT the control plane - which, given that the control plane is what most findings are about, is the class of report most likely to need filing. I worked around it by paraphrasing the path out of the prose. A less stubborn caller files a vaguer finding, or none.
+
+### The assertion, and the broken build it must catch
+
+Assert that retro.mjs --record succeeds when a control-plane path appears ONLY inside the --record, --finding, --target or --assertion operand and nowhere as a redirect or write target. The broken build to catch is the 0.1.33 guard as shipped: run retro.mjs --record with a finding string containing a verdicts path under the control directory and confirm the guard currently DENIES it. The assertion must distinguish an operand from a write target, so it also needs the negative case - a genuine redirect into the control directory must still be refused, or the fix has simply disabled the rule.
+
+---
+
+# Finding 15 - Doctor demands a guardian corpus result on projects where the worklist emitter refuses to produce one, and the only reachable remedy is falsifying the manifest
+
+Filed: 2026-09-05T14:34:32Z, plugin 0.1.33.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/doctor.mjs`
+
+C:/Users/MEHMET~1/AppData/Local/Temp/claude/C--Projelerim-cartoonify/551fe325-9565-4fc7-bf07-9d289b42678b/scratchpad/corpus-finding.txt
+
+### The assertion, and the broken build it must catch
+
+C:/Users/MEHMET~1/AppData/Local/Temp/claude/C--Projelerim-cartoonify/551fe325-9565-4fc7-bf07-9d289b42678b/scratchpad/corpus-assert.txt
+
+### Addendum to finding 15 - The finding text, supplied - the body as filed was a path, not the observation
+
+Amended 2026-09-05T14:35:01Z, plugin 0.1.33. Amended by: **main-session** (agent). Provenance enforced at the risk guard, not self-declared. It attests to who RAN this command, and to nothing about who directed it.
+
+THE BODY OF THIS FINDING WAS FILED AS A FILE PATH INSTEAD OF ITS TEXT, AND THIS AMENDMENT
+SUPPLIES WHAT SHOULD HAVE BEEN THERE.
+
+The cause is a defect in retro.mjs itself and is filed separately: --record --finding and
+--record --assertion take PROSE, while --amend --text and --was take a PATH. Passing a path
+to --record is accepted silently and stored verbatim as the body. Nothing refused, and the
+queue held a finding whose entire content was an absolute path into a session-scoped
+scratchpad directory that will not exist tomorrow.
+
+The text below is the observation as it should have been recorded. Nothing in it has been
+changed to suit the correction.
+
+---
+
+Observed: 2026-09-05, plugin 0.1.33, project cartoonify, project phase verify.
+
+DOCTOR OPENS WITH A FAIL THIS PROJECT CANNOT CLEAR BY ANY LEGITIMATE ACTION, BECAUSE THE
+EVIDENCE IT DEMANDS CANNOT BE PRODUCED HERE AT ALL.
+
+WHAT WAS RUN, IN THE ORDER THE CORPUS README GIVES.
+
+  corpus-stage.mjs --list
+    q3v7k, m8f2r, t5w9d
+
+  corpus-stage.mjs --case q3v7k
+    staged case q3v7k -> corpus-run/ (3 file(s))
+
+  worklist.mjs --emit
+    exit 2
+    ::error::tenancy.isolation is "none", not "application-filters". Guardian answers a
+    question about application-code filters; on any other isolation it would be asking
+    about a mechanism this project does not use.
+
+That refusal is CORRECT. The manifest is not wrong and must not be edited: cartoonify
+declares tenancy.model single-tenant, tenancy.isolation none, and stack.db none, stack.auth
+none, stack.payments none. It has no Supabase, no tenants and no tenancy filters. There is
+no query site for guardian to ask its one question about, and the emitter says so precisely.
+
+The staging was cleared afterwards and the tree left as found.
+
+THE DEADLOCK, STATED AS THE TWO STATEMENTS THAT CANNOT BOTH BE SATISFIED.
+
+  doctor, on every run, first line, FAIL:
+    "no guardian acceptance corpus result for plugin 0.1.33 ... an absent result is a FAIL,
+     never a silence. The operator runs the guardian acceptance corpus and records the
+     outcome at the guardian corpus path. Until then, a passing guardian verdict on this
+     project rests on nothing."
+
+  worklist.mjs --emit, on this project, always:
+    exit 2, because tenancy.isolation is "none".
+
+Recording a corpus result requires scoring every case in one invocation; scoring a case
+requires a worklist; emitting a worklist requires an isolation this project does not have
+and should not claim. The FAIL is therefore not a task anybody can complete. It is a
+permanent red line on a health report, produced by a project being accurately described.
+
+THE THIRD FACT, WHICH SETTLES WHAT THE FIX IS. This project does not enable guardian.
+.mavci/project.json agents.enabled is mavci-architect, mavci-builder, mavci-verifier,
+mavci-scribe. Guardian is absent from it.
+
+So doctor is failing this project for missing evidence about the judgement of an agent the
+project does not run, cannot run, and has correctly declared it has no work for. The final
+clause of doctor's own message - "a passing guardian verdict on this project rests on
+nothing" - is true and empty here: there is no guardian verdict on this project and there
+never will be one.
+
+WHY THIS MATTERS MORE THAN ONE NOISY LINE. It is the top line of every doctor run on this
+project, marked FAIL where everything else is WARN, and it will never go away. The cheapest
+relief available to whoever gets tired of it is a one-word edit - tenancy.isolation from
+"none" to "application-filters" - which clears the line by making the manifest describe a
+mechanism the project does not use. That edit would then feed every rule that reads
+tenancy. A health check whose only reachable remedy is falsifying the manifest is worse
+than an absent check, and this one is reachable in a single word.
+
+Recorded so the next reader does not have to rediscover it: the corpus was NOT run and NOT
+recorded on this project, and that is not an omission by whoever last looked at it.
+
+RELATED, AND NOT THE SAME. Finding 1 (product type is not declarable) is about
+architectural fields being REQUIRED of projects they do not describe. This is the
+consequence one layer on: the field is declared correctly, and a health check keyed to a
+different value of it fails forever. Finding 3 (router deadlock) is the same shape in the
+router. This one is in doctor, and unlike those two it cannot be cleared by any command in
+the plugin.
+
+---
+
+### The assertion, and the broken build it must catch — supplied here for the same reason
+
+THE BROKEN BUILD IS 0.1.33 AS INSTALLED, AND IT IS OBSERVABLE WITHOUT A MODEL.
+
+Broken build: a project manifest with tenancy.isolation "none" and guardian absent from
+agents.enabled. doctor emits the corpus FAIL. worklist.mjs --emit exits 2. Both are current
+behaviour and they contradict each other.
+
+ASSERTION. doctor's corpus check must be conditioned on guardian being runnable on the
+project, by the same predicate worklist.mjs --emit uses to refuse - not by a second, parallel
+reading of the manifest, which is how the two got out of step. Concretely: if
+worklist.mjs would refuse to emit on this manifest, doctor must not FAIL for an absent
+corpus result. It should report that guardian does not apply to this project and say why,
+which is a different line and a different colour from "the operator has not run it yet".
+
+check-doctor.mjs (or wherever doctor's branches are already exercised) asserts, on a fixture
+manifest with tenancy.isolation "none": doctor's output contains no corpus FAIL, and
+contains the not-applicable line.
+
+WOULD IT CATCH TODAY'S BUILD? Yes. It fails on first run against 0.1.33 with no other
+change, which is the point of writing it now rather than after the fix.
+
+THE ADJACENT ASSERTION THAT WOULD NOT CATCH IT, recorded so it is not written by mistake:
+asserting that doctor FAILs when the corpus result is absent. That is the check that exists,
+it passes today, and it is the half that is wrong here - it is right about every project
+where guardian runs and wrong about every project where it cannot.
+
+WHAT THE ASSERTION MUST NOT ACCEPT AS SATISFACTION. Downgrading the corpus FAIL to a WARN
+everywhere. The FAIL is correct on a project that does use application filters, and it is
+the only thing standing behind guardian's judgement there. The condition is
+applicability, not severity. A fix that makes the line quieter on the projects where it is
+load-bearing has traded the finding for its opposite.
+
+**Superseded, quoted verbatim from the body above:** C:/Users/MEHMET~1/AppData/Local/Temp/claude/C--Projelerim-cartoonify/551fe325-9565-4fc7-bf07-9d289b42678b/scratchpad/corpus-finding.txt
+
+---
+
+# Finding 16 - retro.mjs --record silently stores a file path as the finding body, while --amend refuses prose and demands a path - the same input in opposite forms, one of them unchecked
+
+Filed: 2026-09-05T14:35:21Z, plugin 0.1.33.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/retro.mjs`
+
+Observed: 2026-09-05, plugin 0.1.33, project cartoonify, filing finding 15 from the main session. The two halves of this command take the same conceptual input in opposite forms. --amend takes --text and --was as a PATH or -, never prose, and the skill states the reason: an argument goes through the shell, and on 2026-09-04 a finding reached a queue having lost four backticked words to command substitution, one of them the exact word the finding was about. --record takes --finding and --assertion as PROSE. A caller who has just read the --amend rule, or who reaches --record after using --amend, passes a path. THE PATH IS ACCEPTED AND STORED VERBATIM AS THE BODY. Nothing warned and nothing refused. Finding 15 was queued with a body reading in its entirety: an absolute path into a session-scoped scratchpad that will not exist tomorrow, and a second one under the assertion heading. It was repaired by amendment, which is the only route available since the finding text is deliberately immutable - so the queue now permanently carries a finding whose body is a dead path and whose real content is in an addendum below it. THE ASYMMETRY IS THE DEFECT, NOT THE CALLER. Both halves write the same file. One of them was hardened against shell mangling by taking a path, and the hardening was not carried across, so the safe form is refused where it is unsafe and the unsafe form is unchecked where it is safe. Note also what makes this worse than a usage error: --record is the channel seven blocked paths in the plugin send an agent to, and its failure mode is silent corruption of the record rather than a refusal the agent could act on.
+
+### The assertion, and the broken build it must catch
+
+THE BROKEN BUILD IS 0.1.33 AS INSTALLED. Assertion: retro.mjs --record refuses a --finding or --assertion argument that resolves to an existing file on disk, with a message naming the flag and saying that --record takes prose while --amend takes a path. check-retro.mjs asserts it by calling --record with a --finding argument that is a real path and requiring a non-zero exit and an empty queue. WOULD IT CATCH TODAY'S BUILD? Yes - it fails on first run against 0.1.33 with no other change. Stronger and better: make --record accept a path the way --amend does, and then the assertion is that both halves accept the same form, exercised by filing the same finding through each and comparing the stored bodies. THE ADJACENT ASSERTION THAT WOULD NOT CATCH IT: asserting that --record stores the --finding argument verbatim. That passes today and is exactly the behaviour that caused this. WHAT IT MUST NOT ACCEPT AS SATISFACTION: documenting the difference in the skill. The skill already documents the --amend rule clearly, and that is what led the caller to pass a path to the other half.
