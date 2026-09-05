@@ -1,15 +1,23 @@
 {
-  "attempts": 0,
-  "attempts_total": 0,
+  "attempts": 1,
+  "attempts_total": 1,
   "blocked_by": null,
   "created": "2026-09-05T08:59:48Z",
   "id": "0001",
   "max_attempts": 3,
-  "owner_agent": null,
-  "phase": "plan",
+  "owner_agent": "mavci-builder",
+  "phase": "verify",
   "project_id": "cartoonify",
   "schema_version": 1,
-  "status": "pending",
-  "updated": "2026-09-05T08:59:48Z",
-  "verdicts": []
+  "spec_approved": {
+    "at": "2026-09-05T09:26:38Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0001.md",
+    "spec_sha256": "d3ad40f0971c178f4f6ccc7f8bd6dcda84e0bb5e6ca974055be7f4cdaa2487b6"
+  },
+  "status": "in_progress",
+  "updated": "2026-09-05T09:40:25Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0001-attempt-01.json"
+  ]
 }

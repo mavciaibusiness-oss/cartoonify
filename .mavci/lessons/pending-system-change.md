@@ -388,3 +388,477 @@ workaround, it makes the spec read worse, and it is recorded in the spec itself 
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 4 - Spec review surfaces what criteria assert and is silent about what they require
+
+Filed: 2026-09-05T09:37:53Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `.mavci/tasks/0001.md`
+
+Check: `state.approve-spec`
+
+THE SPEC REVIEW SURFACES WHAT CRITERIA ASSERT AND IS SILENT ABOUT WHAT THEY REQUIRE.
+
+The approval gate is the one place the chain deliberately stops for a human. ship/SKILL.md
+argues for it at length: "the question is not whether the mistake is recoverable - it is
+whether the orchestrator is DECIDING WHAT TO BUILD." That reasoning is right and is not
+what this finding disputes.
+
+What the gate presents to the operator is the criteria's CLAIMS. What it never states is
+their PRECONDITIONS. Those are different, and only one of them is a thing a human reading
+prose can evaluate.
+
+OBSERVED. Task 0001, cartoonify. 32 acceptance criteria, approved by the operator after
+reading them. Of those 32:
+
+  - criteria 11, 12, 13, 14, 15, 18 require a RUNNING HTTP SERVER and four FIXTURE FILES
+    created OUTSIDE THE REPOSITORY ($TMPDIR)
+  - criteria 20, 25, 29 require a BROWSER with a real viewport, not a shell
+  - criterion 32 requires a LIVE API KEY (this one is marked - it is the only precondition
+    the spec makes visible, and it is visible only because the operator had already raised
+    the missing key as a constraint)
+
+So 9 of 32 criteria need capabilities beyond "run a shell command in the repo", and the
+spec's text says so for exactly one of them.
+
+WHY THIS IS NOT THE ARCHITECT'S MISTAKE. The architect wrote checkable criteria and
+audited them for FAILABILITY - it re-derived two (30 and 22) after checking them against a
+hypothetical violating repo, which is more rigour than the format asks for. It had no
+field in which to declare a precondition, and no convention telling it to. The one it did
+declare (criterion 32) it invented ad hoc, in prose, in capital letters, because the
+operator had made the missing key salient. Nothing would have made it do the same for
+"needs a running server" or "needs to write outside the tree".
+
+THE OPERATOR'S OWN WORDS, which are the finding: "I read 32 criteria and could not have
+told you that six of them needed something the verifier cannot do."
+
+WHY IT MATTERS, IN BOTH DIRECTIONS. This was noticed because mavci-verifier is scoped
+`allow: [], deny: ["**"]` and the criteria need files created before they can run. Both
+outcomes are bad and they are bad differently:
+
+  IF THE $TMPDIR WRITE SUCCEEDS - the containment has a documented bypass that nobody
+  decided to grant. Worse than an undiscovered one: it entered the system inside a spec
+  the operator READ AND APPROVED, so the hole now carries an operator signature on a
+  question that was never put to them. Ratified without being decided.
+
+  IF IT FAILS - the criteria were unexecutable from the moment they were written, the
+  architect could not tell, and the approval gate could not tell either. The one gate the
+  chain stops at passed something it STRUCTURALLY CANNOT EVALUATE. A gate that reads what
+  a human can judge and is silent about what only the machine knows.
+
+Either way the same fix follows, which is why this is worth fixing before knowing which
+way it lands.
+
+THE FIX. The spec review has to surface what the criteria REQUIRE, not only what they
+assert. Concretely: give each criterion a declared precondition set, and have the approval
+surface print the aggregate before the operator decides. A small closed vocabulary is
+enough to carry the whole weight -
+
+  shell        a command in the repo working tree (the default; needs no declaration)
+  server       a running application server
+  browser      a real viewport / DOM
+  network      an outbound call to a third party
+  live-key     a credential the project does not have in CI
+  write-outside-tree   creates state outside the repository
+
+Then `--approve-spec` prints, e.g.:
+
+  task 0001: 32 criteria
+    22 shell
+     6 server + write-outside-tree
+     3 browser
+     1 live-key   (declared non-blocking)
+  6 criteria require writes outside the repository. The verifier's scope is
+  allow: [], deny: ["**"]. Confirm that these are intended to run.
+
+That is a sentence an operator can act on. "Read the acceptance criteria before approving"
+is not, when the thing that matters is not in them.
+
+SECOND-ORDER POINT, and the reason to treat this as structural rather than cosmetic: a
+precondition the spec does not declare becomes a precondition the VERIFIER silently
+substitutes around. It cannot create the fixture, so it reads the handler instead and
+records "passing". The verdict is then a claim about inspection wearing the word the
+system reserves for execution - and nothing downstream can tell the two apart. That is the
+gate6 task 0002 failure ("execution evidence exists only from the builder agent"), and it
+recurs here for the same reason: nothing in the pipeline ever states what executing a
+criterion would have taken.
+
+RELATED: finding 1 (product type is not declarable) and finding 3 (router deadlock) are
+both instances of the same larger pattern - the system's declarations describe the SaaS
+shape it was built for, and everything outside that shape is expressed by working around a
+field rather than by declaring a fact.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 5 - Scaffold ships an npm run lint script with no eslint dependency, so it has never run
+
+Filed: 2026-09-05T09:40:49Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `package.json`
+
+THE SCAFFOLD SHIPS AN `npm run lint` SCRIPT WITH NO ESLINT DEPENDENCY, SO IT HAS NEVER RUN.
+
+templates/scaffold/package.json:9
+
+    "lint": "next lint",
+
+and eslint is in neither `dependencies` nor `devDependencies`, and therefore not in the
+generated lockfile either. Verified on a freshly rendered cartoonify:
+
+    grep -c eslint package.json        -> 0
+    grep -c eslint package-lock.json   -> 0
+    ls node_modules/.bin/eslint        -> does not exist
+
+    $ npm run lint
+    > next lint
+    ? How would you like to configure ESLint? https://nextjs.org/docs/basic-features/eslint
+    > Strict (recommended)
+      Base
+      Cancel
+    exit 1
+
+IT DOES NOT FAIL CLEANLY - IT PROMPTS. `next lint` with no eslint config drops into an
+INTERACTIVE WIZARD. On a terminal it exits 1 after drawing a menu. Given a stdin that stays
+open it waits. An agent or a script that runs it without redirecting stdin can hang rather
+than fail, and a hang is the worse failure because nothing reports it.
+
+WHY IT SURVIVED THIS LONG. `.github/workflows/mavci-verify.yml` runs `npm ci` and
+`npm run build`. It does not run `npm run lint`. So CI is green, the scaffold is described
+as "green from commit one" (ARCHITECTURE 6.8), and the one script that cannot run is the
+one nothing runs. The claim and the gap do not intersect until somebody writes an acceptance
+criterion against the script the scaffold advertises - which is exactly what happened here.
+
+THE COLLISION IT PRODUCED, which is the reason this is not cosmetic. On cartoonify task 0001
+the architect wrote, in good faith, from the scripts the scaffold declares:
+
+    criterion  4: `npm run lint` exits 0
+    criterion 31: `git diff --exit-code -- package.json` exits 0 (no new dependencies)
+
+THESE TWO CRITERIA CANNOT BOTH BE SATISFIED in a scaffolded project. Making lint run
+requires adding eslint + eslint-config-next to devDependencies, which dirties package.json
+and fails 31. Leaving package.json alone fails 4. The builder hit this on attempt 1 of 3,
+correctly refused to resolve it by breaking the other criterion, and escalated. It was right
+to. But note the cost: one of three attempts was consumed discovering a defect that predates
+the task, and a rework cycle cannot fix it - there is no edit to application code that makes
+both criteria pass.
+
+An architect has no way to know this. It reads package.json, sees a `lint` script, and
+writes a criterion asserting it exits 0 - which is the correct inference from a declared
+script. The scaffold lies about its own capabilities and nothing in the system contradicts it.
+
+FIX, and the first is the whole fix:
+
+  1. Add eslint and eslint-config-next to templates/scaffold/package.json devDependencies,
+     and ship a `.eslintrc.json` with `{ "extends": "next/core-web-vitals" }`. Then the
+     declared script works and no criterion has to choose between two of them.
+
+  2. Or remove the `lint` script from the scaffold. A script that cannot run is worse than
+     an absent one: absent, nobody writes a criterion against it.
+
+  3. Either way, add `npm run lint` to mavci-verify.yml, or the next script that stops
+     working will survive exactly as long as this one did. A declared script that CI never
+     invokes is an untested claim in the file every downstream project inherits.
+
+  4. Consider a scaffold self-test that runs every script in package.json's `scripts` block
+     on a freshly rendered project and asserts each exits 0. Three of the five (`build`,
+     `typecheck`, `lint`) are checkable in seconds and one of them has been broken since the
+     template was written. `dev` and `start` need a server and can be probed with a timeout.
+
+RELATION TO OTHER FINDINGS. Same family as finding 1: the scaffold asserts things about a
+project that are true for the shape it was built for and unverified for anything else. Here
+it is not even shape-specific - `npm run lint` has never worked for ANY Mavci project, SaaS
+or otherwise. The scaffold's correctness has been assumed rather than measured, and the one
+place it is measured (CI) checks a strict subset of what it claims.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 6 - Recorded verdict cannot express acceptance-criteria results, so the router closes tasks whose spec is not satisfied
+
+Filed: 2026-09-05T09:47:26Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Check: `verify.record`
+
+THE RECORDED VERDICT CANNOT EXPRESS ACCEPTANCE-CRITERIA RESULTS, SO THE ROUTER CLOSES TASKS
+WHOSE SPEC IS NOT SATISFIED.
+
+This is the most serious finding of the cartoonify run. It is not a false positive or a
+blocked command - it is the control plane recording, and then acting on, a statement that is
+not true.
+
+WHAT HAPPENED. Task 0001. The verifier ran, executed 29 of 32 acceptance criteria, and found
+criterion 4 (`npm run lint` exits 0) genuinely and reproducibly FAILING. Its own overall
+judgement, in its report, was:
+
+    "my overall verdict on task 0001 is FAIL, with the single root cause being the
+     criterion 4 / criterion 31 conflict"
+
+The verdict it recorded says the opposite:
+
+    .mavci/control/verdicts/0001-attempt-01.json
+      verdict: "pass"
+      checks:  5 entries, ALL check_id "legal.pages_present"
+      acceptance-criterion entries: NONE
+
+And the router, reading that:
+
+    action: "document"
+    why:    "task 0001 passed attempt 1."
+
+Next steps would have been: dispatch the scribe, `--advance-phase 0001 --from verify --to
+release`, `--task-status 0001 --status done`. A task with a failing acceptance criterion
+would have been closed as done and handed to the release gate, and NOTHING DOWNSTREAM WOULD
+HAVE KNOWN. I stopped the chain manually instead of running those steps.
+
+THE MECHANISM. `verify.mjs --record` writes a verdict whose `checks[]` are STANDARDS-CHECKER
+findings - the 11-15 rules in scripts/rules/index.mjs. The verdict schema has no field for
+acceptance criteria at all. So:
+
+  - the SPEC defines what "done" means for this task (32 criteria, operator-approved,
+    content-hashed, and the hash is enforced by --advance-phase)
+  - the VERDICT defines what the router and the release gate believe
+  - and the two have NO CONNECTION
+
+The spec's criteria are the thing the operator read and approved. They are also the only
+thing in the system with no machine representation after approval. The approval hash proves
+the operator approved THOSE criteria; nothing then checks that those criteria were met.
+
+WHY THE VERIFIER IS NOT AT FAULT. It did its job well: it executed nearly everything,
+distinguished executed from inspected without being asked twice, refused to fabricate a
+browser observation it could not make, correctly skipped the operator-verified criterion,
+independently confirmed the 4/31 conflict, and stated a FAIL verdict in plain words. It had
+NO WAY to record that verdict. `verify.mjs --record` is the only writer it is permitted to
+invoke, that writer emits gate findings, and the verifier is scoped `allow: [], deny: ["**"]`
+so it cannot write a verdict file itself. IT REPORTED FAIL AND THE SYSTEM RECORDED PASS,
+and the gap between those is not visible to anything except a human reading the prose.
+
+THE SHAPE. A verdict that is a strict subset of the acceptance criteria will always be
+MORE OPTIMISTIC than the truth, never less. Every criterion the gate does not cover is a
+criterion that cannot fail the verdict. So the error is not random - IT IS BIASED TOWARDS
+PASS, on exactly the criteria that are project-specific rather than standard, which are the
+ones the operator spent their review on.
+
+Note also that `verdict: "pass"` was recorded despite `checks[]` containing five entries each
+with `"status": "fail"`. They are warnings, and warnings do not fail a verdict - which is
+correct. But it means the artefact's own top-level word does not summarise its contents, and
+a reader (human or router) who trusts `verdict` learns nothing about what was and was not
+examined.
+
+FIX.
+
+  1. THE VERDICT MUST CARRY THE ACCEPTANCE CRITERIA. Give the verdict schema a
+     `criteria[]` alongside `checks[]`: one entry per numbered criterion, with
+     `{ id, status: pass|fail|skipped|not_run, mode: executed|inspected, evidence }`.
+     `verdict: "pass"` requires every criterion `pass` or explicitly `skipped`, AND
+     no blocking check. A criterion that is `not_run` must make the verdict
+     `incomplete`, never `pass` - the unverified.schema.json precedent already exists
+     for "enforcement did not run"; this is the same idea one level down.
+
+  2. THE `mode` FIELD IS NOT DECORATION. It is what makes finding 4's problem visible:
+     a criterion recorded as `inspected` is a criterion nobody executed, and the release
+     gate should be able to say "3 of 32 criteria were never executed" instead of leaving
+     that in prose. On this run criteria 20 and 29 were inspected-only (no browser tool)
+     and criterion 32 was skipped by design - three facts that currently survive only in a
+     subagent's message to its coordinator.
+
+  3. THE VERIFIER NEEDS A WAY TO WRITE ITS VERDICT. Either `verify.mjs --record` grows
+     arguments for per-criterion results, or the verifier gets a single narrowly-scoped
+     write path for `.mavci/control/verdicts/<task>-attempt-NN.json` and nothing else.
+     Today the only agent qualified to judge the task is the only one that cannot record
+     its judgement.
+
+  4. THE ROUTER MUST NOT SAY "passed attempt 1" ON A VERDICT THAT DID NOT EXAMINE THE
+     ACCEPTANCE CRITERIA. Until (1) exists, `route.mjs` should treat a verdict with no
+     `criteria[]` as `incomplete` rather than `pass`, which fails closed instead of open.
+
+RELATION TO OTHER FINDINGS. This is finding 4's second half arriving at the other end of the
+chain. Finding 4: the approval gate shows what criteria ASSERT and not what they REQUIRE, so
+the operator cannot tell which are executable. Finding 6: the verdict does not record what
+criteria RETURNED, so nobody can tell which were executed or whether they passed. Between
+them, the acceptance criteria - the artefact the whole ceremony is built around, the one the
+operator is asked to read carefully and approve by hash - are invisible to the machine on
+BOTH sides of the work. They are checked by a human at the start, checked by an agent in
+prose in the middle, and represented nowhere the system can read.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+### Addendum to finding 6 - Widest statement, finding 4 linkage, and a third face: an acceptance criterion cannot be waived
+
+Amended 2026-09-05T09:50:16Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+STATE IT AT ITS WIDEST, AND ADD THE THIRD FACE DISCOVERED WHILE ACTING ON IT.
+
+THE FINDING, AT FULL WIDTH:
+
+  A TASK WITH A FAILING ACCEPTANCE CRITERION CLOSES AS DONE AND REACHES THE RELEASE GATE
+  WITH NOTHING DOWNSTREAM AWARE. The bias is ONE-DIRECTIONAL: a verdict that covers a
+  strict subset of the criteria is always more optimistic than the truth and never less.
+  Every criterion the standards gate does not cover is a criterion that cannot fail the
+  verdict - and those are exactly the project-specific criteria the operator spent their
+  review on. The system is blind in the direction that lets work through, on the criteria
+  that were written because the standard checks do not cover them.
+
+THIS IS FINDING 4'S OTHER HALF, and the pair should be read together rather than as two
+issues that happen to be adjacent:
+
+  BEFORE the work: nothing tells the operator what the criteria REQUIRE. They read 32
+  assertions and cannot tell that six need a running server, three need a browser, six need
+  a write outside the repository, one needs a live key. (finding 4)
+
+  AFTER the work: nothing records what the criteria RETURNED. The verdict carries standards
+  findings only; whether a criterion passed, failed, was executed, was merely inspected, or
+  was never run at all is absent from every artefact the machine reads. (finding 6)
+
+  SO: THE ONE THING THE OPERATOR IS ASKED TO JUDGE IS THE ONE THING THE MACHINE CANNOT SEE,
+  ON BOTH SIDES OF THE GATE. The acceptance criteria are content-hashed at approval - the
+  system takes exact cryptographic care that the operator approved THOSE WORDS - and then
+  never reads them again. The hash protects the document's integrity and nothing protects
+  its meaning.
+
+THIRD FACE, FOUND WHILE CARRYING OUT THE OPERATOR'S DECISION ON THIS VERY TASK:
+
+AN ACCEPTANCE CRITERION CANNOT BE WAIVED. The operator decided to waive criterion 4. The
+attempt:
+
+    state.mjs --waive spec.acceptance_criterion_4 --path package.json --reason "..."
+    -> unknown check "spec.acceptance_criterion_4". A waiver for a check that does not
+       exist would do nothing.
+       Known checks: secrets.no_committed_secrets, next.supabase_client_in_function,
+       next.route_force_dynamic, ... (15 standards checks)
+
+The refusal is CORRECT and well-built: a waiver that silently does nothing is worse than a
+refused one, and this fails closed. But the consequence is that the waiver vocabulary, like
+the verdict schema, speaks only the standards checker's language. So acceptance criteria
+can be:
+
+    declared, with no way to state what they require       (finding 4)
+    approved, with a cryptographic hash                    (works)
+    executed, by an agent that cannot record the result    (finding 6)
+    recorded, only as prose in a subagent's message        (finding 6)
+    waived - NOT AT ALL                                    (this amendment)
+
+Every operation the lifecycle performs on an acceptance criterion is unsupported except the
+one that proves the operator read it. The system is rigorous about consent and silent about
+outcome.
+
+CONSEQUENCE ON THIS PROJECT: the operator's waiver decision - deliberate, reasoned, and
+naming its own expiry condition - had to be recorded as a project ADR
+(docs/adr/0003-criterion-4-waived.md) because the control plane has nowhere to put it. That
+ADR is not enforced by anything. Nothing will notice if it is deleted, nothing checks it at
+release, and nothing will remind anyone to remove it when the scaffold is fixed. The
+operator asked for the waiver's removal to be the signal that finding 5 was applied; the
+system cannot carry that signal, so a human must remember it.
+
+ADDITION TO THE FIX. Alongside `criteria[]` with `status` and `mode`, and `not_run` forcing
+`incomplete`, and the router failing closed on a verdict with no `criteria[]`:
+
+  5. `--waive` must accept an acceptance-criterion id (e.g. `0001#4`) as well as a check id,
+     record it against the task rather than the project, and require a reason. A criterion
+     waiver should surface at the release gate in the same breath as the criteria summary,
+     so "31 of 32 passing, 1 waived, reason: ..." is a sentence the gate can say rather than
+     something a human reconstructs from an ADR nobody is required to read.
+
+  6. A criterion waiver should support a CONDITIONAL expiry, not only `--days N`. The
+     decision here expires when the scaffold stops shipping an orphan lint script - an event,
+     not a date. A dated waiver on a condition-triggered fact either expires while still
+     needed or outlives the defect silently.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 6 - Rigorous about consent and silent about outcome - and a criterion failed by the artefact recording its own waiver
+
+Amended 2026-09-05T10:14:51Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE SENTENCE FOR THE WHOLE FINDING, WHICH BELONGS AT THE TOP RATHER THAN IN THE BODY:
+
+    THE SYSTEM IS RIGOROUS ABOUT CONSENT AND SILENT ABOUT OUTCOME.
+
+An acceptance criterion passes through five stages in this lifecycle. Consent is the only
+one that is instrumented:
+
+    1. DECLARED    with no way to state what it requires        - not instrumented (finding 4)
+    2. APPROVED    cryptographically, content-hashed, and the
+                   hash re-checked on every phase transition    - INSTRUMENTED
+    3. EXECUTED    by an agent that cannot record the result    - not instrumented (finding 6)
+    4. RECORDED    as prose in a subagent's message, nowhere
+                   the machine reads                            - not instrumented (finding 6)
+    5. WAIVED      not at all; --waive knows only the 15
+                   standards check ids                          - not possible
+
+Stage 2 is built with real care: `approvalCurrent()` compares a SHA-256 of the spec on disk
+against the recorded approval, `--advance-phase` refuses when the spec changed after
+approval, and the whole `awaiting_approval` gate exists to guarantee a human decided. That
+care is correct and should not be reduced. THE POINT IS THAT IT IS THE ONLY PLACE THE CARE
+IS SPENT. The system proves beyond doubt that the operator approved THOSE EXACT WORDS, and
+then never checks whether the words came true.
+
+SIXTH FACE, AND IT IS THE SAME BLINDNESS FROM THE OTHER DIRECTION:
+
+A CRITERION CAN PASS AT VERIFICATION AND THEN BE FAILED BY THE ARTEFACT THAT RECORDS ITS OWN
+WAIVER.
+
+Criterion 30 (scope containment) asserts that `git status --porcelain --untracked-files=all`
+lists no path outside an enumerated set: the six feature files, `package-lock.json`, and
+paths under `.mavci/`. The verifier EXECUTED it and it PASSED.
+
+The operator then waived criterion 4. Because an acceptance criterion cannot be waived
+(stage 5 above), the decision had to be written as `docs/adr/0003-criterion-4-waived.md`.
+`docs/` is not in criterion 30's allowed set. So:
+
+    - criterion 30 passed at verification
+    - recording the operator's decision about criterion 4 made criterion 30 fail
+    - and nothing detected that, because the verdict does not carry criteria at all
+
+The waiver of one criterion silently broke another, and the only reason it is known is that
+a human happened to run `git status` afterwards and read the output. Had the chain continued
+to `document` -> `release` as the router directed, the release gate would have seen
+`verdict: "pass"` and known nothing about either criterion.
+
+This closes the loop on the finding. The gaps are not at one end of the pipeline:
+
+    BEFORE the work - the operator cannot see what the criteria REQUIRE       (finding 4)
+    AFTER the work  - the machine cannot see what the criteria RETURNED       (finding 6)
+    ACROSS the work - a decision recorded about one criterion can invalidate
+                      another, and nothing correlates them                    (this addendum)
+
+The acceptance criteria are treated as a document to be consented to rather than as state to
+be tracked. Every mechanism the system has - the hash, the phase refusal, the approval
+record - protects the DOCUMENT'S INTEGRITY. Nothing protects its MEANING, and nothing knows
+the relationship between one criterion and another.
+
+ADDITION TO THE FIX. Alongside `criteria[]` with `status` and `mode`, `not_run` forcing
+`incomplete`, the router failing closed on a verdict with no `criteria[]`, `--waive`
+accepting a criterion id, and conditional expiry:
+
+  7. A criterion waiver must trigger RE-EVALUATION of the criteria set, not just suppression
+     of one entry. Recording a waiver is a change to the working tree in the general case
+     (it writes a decision record somewhere), and any criterion asserting facts about the
+     working tree - scope containment, file counts, diff cleanliness - can be invalidated by
+     it. The cheap version: re-run the criteria after a waiver is recorded and before the
+     release gate reads the verdict. The system currently records a waiver and re-checks
+     nothing.
+
+  8. Criterion 30's allowed-path set should be able to name a class ("decision records and
+     control-plane artefacts") rather than an explicit file list, or every operator action
+     that leaves a trace becomes a scope violation. The criterion is right to be strict about
+     FEATURE scope; it has no vocabulary for artefacts the LIFECYCLE itself produces.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
