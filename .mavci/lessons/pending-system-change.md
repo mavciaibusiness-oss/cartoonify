@@ -864,6 +864,70 @@ No superseded text quoted: this amendment ADDS to the finding rather than correc
 
 ---
 
+### Addendum to finding 6 - Third face: every criterion decays, 30 is only the one that was about paths
+
+Amended 2026-09-05T11:54:01Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+GENERALISATION: A CRITERION CHECKED ONCE AT VERIFICATION SAYS NOTHING ABOUT THE TREE AT
+COMMIT TIME. EVERY CRITERION HAS THIS PROPERTY. CRITERION 30 IS ONLY THE ONE THAT HAPPENED
+TO BE ABOUT PATHS.
+
+The `body.json` incident made this visible, and reading it as a scope problem would be
+reading it too narrowly. A probe payload was written at the repo root during diagnosis,
+`git add -A` staged it, and criterion 30 - which asserts that `git status --porcelain
+--untracked-files=all` lists nothing outside an enumerated set - did not fire. It could not:
+it was executed at verification, hours before the file existed. It passed, correctly, about a
+tree that no longer exists.
+
+THAT IS NOT A PROPERTY OF CRITERION 30. IT IS A PROPERTY OF EVERY CRITERION IN THE SPEC.
+Each of the 32 was executed once, against one state of one working tree, and nothing
+re-executes any of them. Several are invariants that a later commit can silently violate:
+
+   5  only `lib/env.ts` reads `process.env`     - one added `process.env` anywhere breaks it
+   6  key absent from `.next/static`            - one client-side import of lib/env breaks it
+   7  `lib/env` imported by at most one route   - same
+  10  no module-scope OpenAI client or getEnv() - one refactor breaks it
+  16  no `err.message` / stack in the route     - one debugging line breaks it
+  17  no fs / localStorage / indexedDB          - one convenience import breaks it
+  22  limits live only in image-constraints.ts  - one inlined literal breaks it
+  24  UTF-8, no mojibake                        - one Windows-encoded edit breaks it
+  31  package.json unchanged                    - any dependency added breaks it
+
+Every one of those would break silently. The verdict already says `pass`; nothing recomputes
+it; and per this finding's main text the verdict could not record the result even if
+something did. THE ACCEPTANCE CRITERIA DESCRIBE A MOMENT AND ARE READ AS IF THEY DESCRIBED A
+STATE.
+
+WHY THIS IS THE SAME FINDING RATHER THAN A NEW ONE. The main text said the verdict cannot
+express what the criteria returned. The first addendum said a decision recorded about one
+criterion can invalidate another, with nothing correlating them. This is the third face: even
+a criterion that was correctly executed and correctly recorded decays the moment the tree
+changes, and nothing anywhere notices. All three are the same absence - THE CRITERIA ARE
+TREATED AS A DOCUMENT CONSENTED TO AT A POINT IN TIME, NOT AS STATE THAT IS TRACKED.
+
+The standards checker does not have this problem, and the contrast is instructive: `gate.mjs`
+re-runs on every hook, every commit, every CI job, so a regression in one of its 15 rules is
+caught within one action. The acceptance criteria - the project-SPECIFIC assertions, the ones
+written precisely because the standard rules do not cover them - run exactly once, by hand,
+by one agent, and never again.
+
+ADDITION TO THE FIX. Alongside `criteria[]` with `status` and `mode`:
+
+  9. CRITERIA THAT ARE MECHANICALLY RE-RUNNABLE SHOULD DECLARE THEMSELVES SO AND BE RE-RUN.
+     Most of the list above is a grep or a git command - the same shape as a standards rule.
+     A criterion carrying its own command and a `rerunnable: true` flag can be executed by
+     the gate on every run, and a task's criteria then become part of the project's standing
+     checks rather than a one-time interview. The ones that cannot - `server`, `browser`,
+     `live-key` from finding 4's precondition vocabulary - stay one-time, and the verdict
+     should say which kind each was, so "verified" carries a shelf life.
+
+ 10. AT MINIMUM, RE-RUN THE RE-RUNNABLE CRITERIA AT THE RELEASE GATE. The gate already
+     refuses on stale guardian records - it has the concept of evidence going out of date. It
+     applies that concept to guardian and not to the acceptance criteria of the work being
+     released.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 7 - Verifier write scope is enforced against the tools it does not have and unenforced against the one it uses
 
 Filed: 2026-09-05T10:23:15Z, plugin 0.1.32.
