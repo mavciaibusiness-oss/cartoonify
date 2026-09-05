@@ -1,0 +1,22 @@
+{
+  "artifacts": [
+    "app/api/cartoonify/route.ts"
+  ],
+  "id": "0003",
+  "notes": [
+    "One string literal changes: ERROR_MESSAGES.UPSTREAM_ERROR in app/api/cartoonify/route.ts. No new error code, no new dependency, no UI change, no lib/env.ts change, no test runner.",
+    "Proposed wording: 'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.' The operator approves it at the plan gate; criterion 5 quotes it exactly, so wording and criterion cannot drift apart.",
+    "The §3 argument reaches this path more strongly than the unreachable path it was written about: UPSTREAM_ERROR means the provider answered and refused, so re-sending an identical request invites the same refusal. UPSTREAM_UNREACHABLE keeps its hedged retry because transience is genuinely possible there.",
+    "SUPERSESSION: this task falsifies task 0002 criterion 12's final `keep` assertion, which pinned the old UPSTREAM_ERROR string. Re-running 0002 criterion 12 against the post-0003 tree will fail by design and is no longer a valid check of that tree. The rest of criterion 12 (the UPSTREAM_UNREACHABLE wording and the bans on 'Bağlantınızı' and 'kontrol') survives and is carried forward by criterion 5.",
+    "Task 0001 is NOT superseded. Contrary to the brief's premise, no 0001 criterion pins the UPSTREAM_ERROR string; criterion 20 pins the MISSING_API_KEY text instead. 0001 §5.2 is a contract, not a criterion, and the new wording satisfies it. Criteria 16, 18 and 24 constrain the string only indirectly and all survive.",
+    "Criteria 4 and 5 are DISCRIMINATING - both demonstrated failing against HEAD 0ffea3f before any build, with transcripts in §7.2. Criterion 5 was additionally proven to pass against a corrected copy (§7.3), so it discriminates rather than merely being red. Criteria 1, 2, 3, 6, 7, 8, 9 and 10 are regression pins, all passing today.",
+    "Every command in the mavci-criteria block was executed as written through a JSON parse and a shell before submission, per finding 17. That found three defects in the criteria themselves: invalid JSON in a nested node -e, a BRE '*' that stopped a grep matching (fixed with -F), and a '\\n' escape that collapsed into a JS syntax error (fixed with String.fromCharCode(10)).",
+    "No criterion contacts the real provider or spends credit; all ten need only the repository, node, git and npm.",
+    "No criterion depends on npm run lint, which cannot pass in this project (system finding 5; task 0001 criterion 4 waived under docs/adr/0003-criterion-4-waived.md).",
+    "MISSING_API_KEY keeps its imperative deliberately. The argument only partly reaches it - there the cause is known and persistent until a human acts - and it is governed by .mavci/decisions/0002-missing-api-key-is-a-product-state.md. Recommended as a separate task."
+  ],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0003-upstream-error-stops-instructing-a-retry.md",
+  "title": "UPSTREAM_ERROR message stops instructing a retry"
+}

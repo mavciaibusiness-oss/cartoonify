@@ -1,11 +1,13 @@
 {
-  "control_hash": "c8ca159117fd690c8b52f4a1b44289078a82698a2297a07c656a429b784a6dc0",
+  "control_hash": "c9578ad5f2ed355f8b651cdd34c588013cda72158fdddb7d7cf15f337992010d",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
     ".mavci/control/tasks/0002.json",
+    ".mavci/control/tasks/0003.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
+    ".mavci/control/verdicts/0003-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -53,17 +55,31 @@
     ".mavci/control/verdicts/adhoc-1788618140396.json",
     ".mavci/control/verdicts/adhoc-1788618171566.json",
     ".mavci/control/verdicts/adhoc-1788618182179.json",
+    ".mavci/control/verdicts/adhoc-1788630825322.json",
+    ".mavci/control/verdicts/adhoc-1788633425945.json",
+    ".mavci/control/verdicts/adhoc-1788633818901.json",
+    ".mavci/control/verdicts/adhoc-1788633835914.json",
+    ".mavci/control/verdicts/adhoc-1788633837820.json",
+    ".mavci/control/verdicts/adhoc-1788633850428.json",
+    ".mavci/control/verdicts/adhoc-1788633881851.json",
+    ".mavci/control/verdicts/adhoc-1788633912651.json",
+    ".mavci/control/verdicts/adhoc-1788634064694.json",
+    ".mavci/control/verdicts/adhoc-1788634066583.json",
+    ".mavci/control/verdicts/adhoc-1788634078494.json",
+    ".mavci/control/verdicts/adhoc-1788634110149.json",
+    ".mavci/control/verdicts/adhoc-1788634129301.json",
+    ".mavci/control/verdicts/adhoc-1788634479529.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-09-05T14:23:02Z",
+    "at": "2026-09-05T18:54:39Z",
     "continues": 0,
-    "plugin_version": "0.1.33",
-    "prompt_id": "6313569e-0984-4aa7-8a52-7405ea3559ff",
-    "session_id": "551fe325-9565-4fc7-bf07-9d289b42678b",
+    "plugin_version": "0.1.34",
+    "prompt_id": "0656ecb4-1cce-4614-969f-cb2775e8cd52",
+    "session_id": "702b18c1-037c-43d2-8a3d-478836fa160a",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-09-05T14:40:01Z",
-  "sealed_by_plugin_version": "0.1.33"
+  "sealed_at": "2026-09-05T18:54:58Z",
+  "sealed_by_plugin_version": "0.1.34"
 }

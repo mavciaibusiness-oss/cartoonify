@@ -1,0 +1,128 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 194 ms: node \"$(ls -d \"$HOME\"/.claude/plugins/cache/mavci/mavci-core/*/scripts/gate.mjs | sort -V | tail -1)\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 974 ms: npm run typecheck",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 7261 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 122 ms: git diff --exit-code -- package.json package-lock.json && [ \"$(git status --porcelain --untracked-files=all -- ':!.mavci' | wc -l)\" -eq 1 ] && git status --porcelain --untracked-files=all -- ':!.mavci' | grep -qxF \" M app/api/cartoonify/route.ts\"",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 87 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0003\"; mkdir -p \"$T\"; cat > \"$T/c5.js\" <<'JS' const fs = require('fs') const src = fs.readFileSync(process.argv[2] || 'app/api/cartoonify/route.ts', 'utf8') const want = 'Karikat\\u00fcr servisi bu iste\\u011fi i\\u015fleyemedi. ' + 'Sorunun nedeni bilinmiyor; ayn\\u0131 iste\\u011fi tekrar denemek sonucu de\\u011fi\\u015ftirmeyebilir.' const superseded = 'Karikat\\u00fcr olu\\u015fturulurken bir sorun olu\\u015ftu. L\\u00fctfen tekrar deneyin.' const unrea...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 104 ms: grep -q \"export const dynamic = 'force-dynamic'\" app/api/cartoonify/route.ts && grep -q \"export const runtime = 'nodejs'\" app/api/cartoonify/route.ts && grep -q \"export const maxDuration = 60\" app/api/cartoonify/route.ts && ! grep -qE \"^(export )?(const|let|var) .*(new OpenAI|getEnv)\" app/api/cartoonify/route.ts && [ \"$(grep -c 'new OpenAI(' app/api/cartoonify/route.ts)\" -eq 2 ] && [ \"$(grep -rl 'process[.]env' app components lib)\" = 'lib/env.ts' ]",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 74 ms: grep -qF 'const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)' app/api/cartoonify/route.ts && grep -qF 'const PROBE_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.1)' app/api/cartoonify/route.ts && grep -qF 'const UPSTREAM_MAX_RETRIES = 0' app/api/cartoonify/route.ts && ! grep -qE 'timeout:[[:space:]]*[0-9]' app/api/cartoonify/route.ts",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 82 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0003\"; mkdir -p \"$T\"; cat > \"$T/c8.js\" <<'JS' const fs = require('fs') const src = fs.readFileSync('app/api/cartoonify/route.ts', 'utf8') const want = ['NO_FILE','INVALID_TYPE','FILE_TOO_LARGE','INVALID_STYLE','MISSING_API_KEY','UPSTREAM_ERROR','UPSTREAM_UNREACHABLE'] const block = src.slice(src.indexOf('const ERROR_MESSAGES'), src.indexOf('function errorResponse')) if (block.length < 10) throw new Error('could not locate the ERROR_MESSAGES block...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 86 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0003\"; mkdir -p \"$T\"; cat > \"$T/c9.js\" <<'JS' const fs = require('fs') const buf = fs.readFileSync('app/api/cartoonify/route.ts') if (buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === 0xBF) throw new Error('file has a UTF-8 BOM') const text = buf.toString('utf8') if (Buffer.compare(Buffer.from(text, 'utf8'), buf) !== 0) throw new Error('file is not valid UTF-8') if (text.indexOf('\\ufffd') !== -1) throw new Error('replacement character present') fo...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 85 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0003\"; mkdir -p \"$T\"; cat > \"$T/c10.js\" <<'JS' const fs = require('fs') const s = fs.readFileSync('components/cartoonify-form.tsx', 'utf8') const w = 'Ba\\u011flant\\u0131 s\\u0131ras\\u0131nda bir sorun olu\\u015ftu. L\\u00fctfen tekrar deneyin.' if (s.indexOf(w) === -1) throw new Error('the client network message changed; it is out of scope for 0003') console.log('ok: client-side copy untouched') JS node \"$T/c10.js\"",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.34",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-05T18:50:20Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0003",
+  "verdict": "pass"
+}
