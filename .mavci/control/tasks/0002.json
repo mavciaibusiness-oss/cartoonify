@@ -6,7 +6,7 @@
   "id": "0002",
   "max_attempts": 3,
   "owner_agent": "mavci-builder",
-  "phase": "build",
+  "phase": "verify",
   "project_id": "cartoonify",
   "schema_version": 1,
   "spec_approved": {
@@ -16,6 +16,8 @@
     "spec_sha256": "b95741af13c819d3904a21a82b264b5858bf161cf19de757f1acc610eadc26d9"
   },
   "status": "in_progress",
-  "updated": "2026-09-05T14:21:30Z",
-  "verdicts": []
+  "updated": "2026-09-05T14:23:57Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0002-attempt-01.json"
+  ]
 }

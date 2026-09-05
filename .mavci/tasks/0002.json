@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    "app/api/cartoonify/route.ts"
+  ],
+  "id": "0002",
+  "notes": [
+    "One file changes: app/api/cartoonify/route.ts. No new dependency, no change to maxDuration, no change to lib/env.ts.",
+    "The measured success path is 35.06s against maxDuration=60, so the derived timeout is pinned at Math.floor(maxDuration * 1000 * 0.75) = 45000ms. Any smaller budget aborts requests that work today; criterion 7 enforces the arithmetic.",
+    "maxRetries is 0 and is forced, not chosen: one retry gives a 96s worst case against a 60s ceiling.",
+    "No criterion contacts the real provider. Every fault path is provoked by pointing OPENAI_BASE_URL at a local sink, so a full verification run spends zero upstream credit and does not depend on the provider misbehaving on cue.",
+    "Criteria 8-11 and 15 require the dev server to be restarted with fault-injection environment; run order is section 6.3 of the spec. Criteria 2 and 3 require no dev server running at all, since next build and next dev share .next.",
+    "No criterion depends on npm run lint, which cannot pass in this project (system finding 5; task 0001 criterion 4 waived under docs/adr/0003-criterion-4-waived.md).",
+    "UPSTREAM_ERROR's message still ends 'Lutfen tekrar deneyin' and is deliberately left unchanged; criterion 12 pins it so the question stays open rather than being quietly closed."
+  ],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0002.md",
+  "title": "Bound the cartoonify route timeout to maxDuration, discriminate unreachable from size-degraded rejection, and stop the error message claiming a cause"
+}
