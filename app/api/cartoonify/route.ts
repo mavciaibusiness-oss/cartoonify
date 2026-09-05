@@ -8,7 +8,19 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
-type ErrorCode = 'NO_FILE' | 'INVALID_TYPE' | 'FILE_TOO_LARGE' | 'MISSING_API_KEY' | 'UPSTREAM_ERROR'
+// Derived from maxDuration so the transport budget cannot drift from the
+// route's own ceiling again — see task 0002 finding 11. Never a literal.
+const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)
+const PROBE_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.1)
+const UPSTREAM_MAX_RETRIES = 0
+
+type ErrorCode =
+  | 'NO_FILE'
+  | 'INVALID_TYPE'
+  | 'FILE_TOO_LARGE'
+  | 'MISSING_API_KEY'
+  | 'UPSTREAM_ERROR'
+  | 'UPSTREAM_UNREACHABLE'
 
 // Fixed Turkish constants, one per code. Never the upstream error text, never
 // a caught exception's detail, never the key name — see §5.2 of the spec on
@@ -19,6 +31,7 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   FILE_TOO_LARGE: 'Görsel çok büyük. Lütfen daha küçük bir dosya seçin.',
   MISSING_API_KEY: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
   UPSTREAM_ERROR: 'Karikatür oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.',
+  UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
 }
 
 function errorResponse(code: ErrorCode, status: number): Response {
@@ -79,7 +92,11 @@ export async function POST(request: Request): Promise<Response> {
   try {
     // 7. Client and key are constructed here, inside the handler, never at
     //    module scope (criteria 3 and 10).
-    const client = new OpenAI({ apiKey: getEnv().OPENAI_API_KEY })
+    const client = new OpenAI({
+      apiKey: getEnv().OPENAI_API_KEY,
+      timeout: UPSTREAM_TIMEOUT_MS,
+      maxRetries: UPSTREAM_MAX_RETRIES,
+    })
     const uploadable = await toFile(bytes, 'upload', { type: sniffed })
 
     const result = await client.images.edit({
@@ -105,6 +122,38 @@ export async function POST(request: Request): Promise<Response> {
   } catch (unknownError) {
     // Logged server-side for operators; never forwarded to the response body.
     console.error('cartoonify: upstream call failed', unknownError)
+
+    if (unknownError instanceof OpenAI.APIConnectionError) {
+      await logSmallBodyProbe()
+      return errorResponse('UPSTREAM_UNREACHABLE', 502)
+    }
+
     return errorResponse('UPSTREAM_ERROR', 502)
+  }
+}
+
+// A large multipart upload can be cut mid-request by a provider that has
+// already computed a rejection, so a transport error alone is not evidence of
+// a transport problem (finding 12). This probe asks a small request what the
+// large one structurally cannot: did any HTTP response arrive at all? It is
+// diagnostics only — logged server-side, never surfaced to the caller — and
+// it must never throw, since a probe failure must not replace the designed
+// 502 with an unhandled error.
+async function logSmallBodyProbe(): Promise<void> {
+  try {
+    const probeClient = new OpenAI({
+      apiKey: getEnv().OPENAI_API_KEY,
+      timeout: PROBE_TIMEOUT_MS,
+      maxRetries: 0,
+    })
+    await probeClient.models.list()
+    console.error('cartoonify: upstream probe result=reached status=200')
+  } catch (probeError) {
+    if (probeError instanceof OpenAI.APIConnectionError) {
+      console.error('cartoonify: upstream probe result=unreachable', probeError)
+    } else {
+      const status = probeError instanceof OpenAI.APIError ? probeError.status : 'unknown'
+      console.error('cartoonify: upstream probe result=reached status=' + String(status), probeError)
+    }
   }
 }
