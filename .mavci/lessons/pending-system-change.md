@@ -2420,6 +2420,68 @@ TWO ASSERTIONS, AND THE SECOND EXISTS TO STOP THE FIRST BEING FIXED CARELESSLY. 
 
 ---
 
+### Addendum to finding 20 - The cost paid a third time, and asymmetrically: the guard scans the argument and never the file, so precision depends on the verb
+
+Amended 2026-09-05T19:27:21Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE COST HAS NOW BEEN PAID A THIRD TIME, AND THE THIRD PAYMENT EXPOSES SOMETHING THE FIRST TWO
+DID NOT: THE REFUSAL IS ASYMMETRIC BY VERB, AND THE ASYMMETRY IS DEMONSTRABLE INSIDE A FOUR
+MINUTE WINDOW ON ONE BUILD.
+
+The main text recorded two findings - 19 and 20 - rewritten to describe control-plane paths in
+words. Tonight there are four. Finding 22, filed 2026-09-05T19:09:48Z on plugin 0.1.34, opens
+with "PATHS BELOW ARE WRITTEN DESCRIPTIVELY RATHER THAN LITERALLY" and states in terms that it
+is "the third finding in two days whose evidence is deliberately imprecise for that reason".
+Finding 23, filed 19:11:09Z on the same build, carries the same disclaimer. Both went through
+`--record`.
+
+THE ASYMMETRY, WITH THE TWO ARTEFACTS THAT PROVE IT. Two minutes BEFORE finding 22 was filed,
+the addendum to finding 6 was amended into this same queue file at 2026-09-05T19:07:08Z, on the
+same plugin 0.1.34, in the same session. It names
+
+    .mavci/control/verdicts/0003-attempt-01.json, run_at 2026-09-05T18:50:20Z:
+
+LITERALLY, and quotes the file's contents. Finding 22, two minutes later, is ABOUT THAT EXACT
+FILE - the attempt-1 verdict for task 0003 - and cannot name it, calling it "the attempt-1
+verdict for task 0003" and disclaiming the imprecision in its first sentence. Same guard, same
+build, same session, same subject, four minutes apart. THE ONLY VARIABLE IS WHICH SUBCOMMAND WAS
+USED.
+
+THE MECHANISM IS THE ASYMMETRY ALREADY IN THE MAIN TEXT, NOW WITH ITS SECOND CONSEQUENCE
+MEASURED. `--record` takes its body as prose on the command line, which is the one place the
+interpreter rule can see it. `--amend` takes `--text` as a PATH or stdin, and the guard never
+opens the file. So THE GUARD'S COVERAGE TRACKS THE TRANSPORT AND NOT THE CONTENT: identical
+bytes are refused as an argument and admitted as a file.
+
+WHAT THIS CHANGES ABOUT THE FINDING. The main text filed the missing file route as a lost escape
+hatch. The sharper statement is that THE QUEUE'S EVIDENTIAL PRECISION NOW DEPENDS ON WHICH VERB
+HAPPENED TO BE AVAILABLE FOR THE THING BEING WRITTEN. An observation that fits an existing
+finding is amendable, so it gets a literal path. The same observation, if it is new, must be
+recorded, so it does not. THAT SELECTION IS THE WRONG WAY ROUND, in the same shape as finding
+23's: a new finding is the one whose evidence has never been written down anywhere, and it is
+the one forced to be vague, while an amendment restating a subject the queue already holds is
+allowed to be exact.
+
+AND IT MAKES THE DEFECT INVISIBLE TO ANYONE WHO TRIES TO MEASURE IT. Grepping this queue for
+`.mavci/control/` returns nine hits, one of them written tonight, and a reader would reasonably
+conclude the channel carries control-plane paths fine. Every one of the nine arrived by
+hand-edit, by amendment, or on a build before this defect existed. NOTHING IN THE FILE
+DISTINGUISHES A PATH THAT IS ABSENT BECAUSE IT WAS IRRELEVANT FROM A PATH THAT IS ABSENT BECAUSE
+IT WAS REFUSED, except the disclaimer sentences that findings 19, 20, 22 and 23 each had to
+write by hand - four hand-written apologies standing in for a fact the tool should have
+recorded.
+
+THE FIX IS UNCHANGED, AND THIS ADDENDUM ADDS ONE GUARD AGAINST A CARELESS ONE. Authorising
+`retro.mjs` BY CALLER for `--record` and `--list` only, as the main text says, still fixes this.
+A FILE ROUTE INTO `--record` WOULD ALSO MAKE THE SYMPTOM GO AWAY AND IS NOT THE FIX. It would
+launder the body past the guard exactly as `--amend` does today, leaving the refusal standing for
+anyone who passes prose, and promoting an accident of transport into the designed behaviour of
+the control-plane rule. Add a file route if the shell-mangling half of finding 15 warrants one,
+but do not let it be scored as closing this finding: assert the caller authorisation on the
+PROSE path specifically, with the body still passed as an argument.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 21 - Plan half-move: begin-plan makes phase and allocation atomic, and the delegation that follows is outside that guarantee
 
 Filed: 2026-09-05T18:24:05Z, plugin 0.1.34.
