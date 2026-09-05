@@ -1,0 +1,15 @@
+{
+  "attempts": 0,
+  "attempts_total": 0,
+  "blocked_by": null,
+  "created": "2026-09-05T08:59:48Z",
+  "id": "0001",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "plan",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "status": "pending",
+  "updated": "2026-09-05T08:59:48Z",
+  "verdicts": []
+}

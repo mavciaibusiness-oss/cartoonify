@@ -1,0 +1,24 @@
+{
+  "control_hash": "02826c6eebe1d1d5bd39cc31ae42227e21634f84a1365059a7b9104541e3a29a",
+  "files": [
+    ".mavci/control/state.json",
+    ".mavci/control/tasks/0001.json",
+    ".mavci/control/verdicts/adhoc-1788598840191.json",
+    ".mavci/control/verdicts/adhoc-1788599209546.json",
+    ".mavci/control/verdicts/adhoc-1788599240886.json",
+    ".mavci/control/verdicts/adhoc-1788599513169.json",
+    ".mavci/control/verdicts/adhoc-1788600039229.json",
+    ".mavci/control/waivers.json"
+  ],
+  "last_gate": {
+    "at": "2026-09-05T09:20:39Z",
+    "continues": 0,
+    "plugin_version": "0.1.32",
+    "prompt_id": "5be2cdac-4048-4cf7-84ea-ce925786adb4",
+    "session_id": "ccc3d53f-7951-4786-9b6a-bab95ac6a520",
+    "verdict": "pass"
+  },
+  "schema_version": 1,
+  "sealed_at": "2026-09-05T09:20:39Z",
+  "sealed_by_plugin_version": "0.1.32"
+}

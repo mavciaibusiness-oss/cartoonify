@@ -1,0 +1,84 @@
+{
+  "agents": {
+    "enabled": [
+      "mavci-architect",
+      "mavci-builder",
+      "mavci-verifier",
+      "mavci-scribe"
+    ]
+  },
+  "ci": {
+    "token_scope": "repository",
+    "token_secret": "MAVCI_TOKEN"
+  },
+  "compliance": {
+    "entity": {
+      "address": "DRAFT — REVIEW REQUIRED",
+      "email": "mavcimavci1983@gmail.com",
+      "kep": "DRAFT — NO KEP — REVIEW REQUIRED",
+      "legal_name": "DRAFT — NOT A REGISTERED ENTITY — REVIEW REQUIRED",
+      "mersis": "DRAFT — NO MERSIS — REVIEW REQUIRED"
+    },
+    "jurisdictions": [
+      "TR",
+      "EU"
+    ],
+    "locales": [
+      "tr",
+      "en"
+    ],
+    "required_pages": [
+      "privacy",
+      "terms",
+      "kvkk",
+      "cookies",
+      "contact"
+    ]
+  },
+  "created": "2026-09-05T08:45:35Z",
+  "deploy": {
+    "prod_branch": "main",
+    "site_url": "https://cartoonify.vercel.app",
+    "target": "vercel"
+  },
+  "display_name": "Cartoonify",
+  "env_sources": {
+    "local_file": ".env.local",
+    "never_read_by_agents": true,
+    "required_keys": [
+      "OPENAI_API_KEY"
+    ],
+    "runtime": "vercel-project-env"
+  },
+  "environments": {
+    "local": {
+      "protected": false
+    },
+    "prod": {
+      "protected": true,
+      "vercel_project": "cartoonify"
+    }
+  },
+  "project_id": "cartoonify",
+  "risk_tier": "standard",
+  "schema_version": 2,
+  "stack": {
+    "auth": "none",
+    "db": "none",
+    "email": "none",
+    "framework": "nextjs-14-app-router",
+    "language": "typescript",
+    "package_manager": "npm",
+    "payments": "none"
+  },
+  "standards": {
+    "packs": [
+      "nextjs-app-router",
+      "legal-tr-kvkk"
+    ]
+  },
+  "tenancy": {
+    "isolation": "none",
+    "model": "single-tenant"
+  }
+}

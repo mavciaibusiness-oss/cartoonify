@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    "lib/image-constraints.ts",
+    "app/api/cartoonify/route.ts",
+    "components/cartoonify-form.tsx",
+    "app/globals.css",
+    "app/layout.tsx",
+    "app/page.tsx"
+  ],
+  "id": "0001",
+  "notes": [
+    "OPENAI_API_KEY is not set in this environment by design; the operator supplies it later.",
+    "31 of 32 acceptance criteria are checkable without a key. Criterion 32 is marked OPERATOR-VERIFIED-AFTER-KEY and must not block the verifier.",
+    "No database, no auth, no storage, no payments. supabase-multitenant-rls is deliberately absent from standards.packs per docs/adr/0001-manifest-cannot-describe-this-product.md.",
+    "The five scaffolded-legal-page draft markers must stay; warning count must remain exactly 5. The marker literal is derived, never quoted, in .mavci/tasks/0001.md - see system finding 3 and section 4 of the spec."
+  ],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0001.md",
+  "title": "Cartoonify image-to-cartoon utility"
+}
