@@ -1115,3 +1115,180 @@ it as debt with the rename still owed, not as the matter settled.
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+---
+
+# Finding 8 - Release gate is a plugin-release gate wearing the name of a project-release gate
+
+Filed: 2026-09-05T10:49:02Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Check: `release-check.closing_text`
+
+THE RELEASE GATE IS A PLUGIN-RELEASE GATE WEARING THE NAME OF A PROJECT-RELEASE GATE.
+
+Run from a project, it prints instructions for a repository the operator is not in.
+
+OBSERVED. cartoonify, phase `release`, all preconditions holding. `release-check.mjs` exits 0
+and prints:
+
+    release preconditions: all hold.
+
+    That means the preconditions hold, NOT that the release is done. The version in
+    plugin.json IS the release action; nothing propagates until it changes:
+
+      edit -> build-agents.mjs if a def changed -> bump plugin.json -> commit ->
+      push -> tag vX.Y.Z -> push tag
+
+Every line after the first is about the MAVCI PLUGIN's release. Cartoonify has no
+`plugin.json` in that sense, no `build-agents.mjs`, no agent definitions, and nothing
+propagates from it to anywhere. Its release is a Vercel deploy. An operator who followed
+these steps literally would go looking for files that do not exist in the repository they
+are standing in.
+
+WHAT IS ACTUALLY CORRECT HERE. The first sentence - "the preconditions hold, NOT that the
+release is done" - is exactly right and is the sentence that matters. The refusal machinery
+is right. `skills/release/SKILL.md` is right that the bump, commit, tag and push stay with
+the operator. THE DEFECT IS ONLY THAT THE CLOSING TEXT NAMES THE PLUGIN'S ARTEFACTS
+UNCONDITIONALLY, in a command that is documented as "Use before releasing a project" and is
+routed to by `route.mjs` for any project reaching the release phase.
+
+SAME CLASS AS THE FOUR CONSTRAINT SITES IN FINDING 7: TEXT THAT IS TRUE WHERE IT WAS WRITTEN
+AND FALSE WHERE IT IS READ. It was written by someone releasing the plugin, for whom every
+line is correct. It is read by an operator releasing a project, for whom only the first line
+is. Nothing about it reads as an error, which is what makes this class expensive: a plainly
+wrong instruction gets questioned, a locally-correct one gets followed.
+
+A SECOND, QUIETER CONSEQUENCE. Because the closing text describes the plugin's release, the
+gate never says what a PROJECT's release actually requires. For cartoonify that is: the
+Vercel deploy, and `OPENAI_API_KEY` present in the deployment environment - without which the
+one thing the product does returns 503. The gate checked guardian provenance and verdict
+freshness and said nothing about the environment variable the application cannot run without.
+The gate is thorough about the concerns of the repository it was written in and silent about
+the concerns of the repository it is run in.
+
+FIX.
+
+  1. Branch the closing text on what is being released. If the project IS the mavci system
+     repo (detectable the same way `retro.mjs systemRepo()` does it - a
+     `.claude-plugin/marketplace.json` marker), print the plugin sequence. Otherwise print
+     the project's own, derived from `deploy.target` in the manifest: for
+     `target: "vercel"` that is the deploy and the environment variables in
+     `env_sources.required_keys`; for `railway` the equivalent; for `none`, say that no
+     deploy target is declared.
+
+  2. At minimum, if branching is too much, say WHOSE release the sequence describes. One
+     clause - "if you are releasing the mavci plugin itself:" - removes the whole defect,
+     because the operator can then see the instruction does not apply to them.
+
+  3. Have the gate check `env_sources.required_keys` against the declared deployment
+     environment, or state plainly that it does not. cartoonify passed a release gate while
+     its only required key was unset. That is not a failure of this run - the key is
+     deliberately absent and criterion 32 records it - but the gate did not know, did not
+     ask, and would have said the same thing if nobody had noticed.
+
+RELATION. Finding 1 (product type not declarable), finding 5 (scaffold ships a lint script it
+cannot run), and this one are the same shape from three angles: the system's artefacts are
+correct for the multi-tenant-SaaS-plus-plugin shape they were written in, and quietly wrong
+for anything else, with no mechanism that notices the difference.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 9 - retro --apply cannot reach the system repo from a normal install - third consecutive session
+
+Filed: 2026-09-05T10:49:35Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Check: `retro.apply`
+
+`retro --apply` CANNOT REACH THE SYSTEM REPO FROM A NORMAL INSTALL. THIRD CONSECUTIVE SESSION.
+
+THE COUNT IS THE FINDING. Three sessions in a row, the command whose entire purpose is
+carrying findings out of a disposable project could not do it, and the findings reached
+durability because THE OPERATOR REMEMBERED TO COPY THEM BY HAND. On this run that is seven
+findings - now nine - from a project directory that exists to be thrown away.
+
+REPRODUCED THIS SESSION, verbatim:
+
+    $ retro.mjs --apply
+    retro: could not locate the system repository. Looked for
+    .claude-plugin/marketplace.json in:
+      C:\Users\Mehmet AVCI\.claude\plugins\cache\mavci
+    It is NOT written to the marketplace clone, which propagation resets:
+      C:\Users\Mehmet AVCI\.claude\plugins\marketplaces\mavci
+    Copy .mavci/lessons/pending-system-change.md into the system repo's docs/lessons/ by
+    hand instead.
+
+THE MECHANISM. `systemRepo()` has exactly one candidate:
+
+    const candidates = [path.resolve(here, '..', '..', '..')];
+    for (const c of candidates)
+      if (exists(path.join(c, '.claude-plugin', 'marketplace.json'))) return c;
+    return null;
+
+From a cache install `here` is `.../plugins/cache/mavci/mavci-core/0.1.32/scripts`, so the
+candidate is `.../plugins/cache/mavci` - which holds no marketplace.json. The marketplace
+clone is DELIBERATELY excluded, and that exclusion is correct: gate5 2026-09-03 records that
+writing there looked like success and was erased by the next propagation, and the documented
+apply-then-clear workflow would then destroy the only durable copy. REFUSING IS THE RIGHT
+BEHAVIOUR.
+
+SO THE COMMAND IS NOT BROKEN IN ITS LOGIC. IT IS UNREACHABLE IN ITS TOPOLOGY. The source
+comment says "A normal install makes those the same directory - the plugin runs from inside
+the clone - so the order is invisible there." THAT IS NOT TRUE OF A CACHE INSTALL, which is
+what a normal install actually is here: Claude Code caches `plugins/mavci-core/` under
+`plugins/cache/<marketplace>/<plugin>/<version>/`, three levels deep with no marker anywhere
+above it. The design accounted for two topologies - development checkout, and clone-as-install
+- and the one that ships is a third.
+
+WHY THIS MATTERS MORE THAN A BROKEN COMMAND. The retro loop is the system's mechanism for
+improving itself: findings are filed against a project, the project is disposable, and
+`--apply` is the only thing that moves them somewhere permanent. With `--apply` unreachable,
+THE SELF-IMPROVEMENT LOOP IS CLOSED BY HUMAN MEMORY. That is the single dependency the whole
+apparatus exists to remove. Every other control here is built so a tired operator cannot lose
+something: the hash on the spec, the phase refusals, the fail-closed schema check, the
+insistence that a waiver name its own expiry. And the artefact carrying the lessons from all
+of it survives only if someone remembers, three sessions running.
+
+The failure is also SILENT IN THE DIRECTION THAT LOSES WORK. `doctor` reports queued findings
+every run, so the queue is visible - but only from inside the project. Delete the project
+directory and the queue goes with it, with no warning, and nothing anywhere else ever knew
+those findings existed.
+
+FIX, cheapest first.
+
+  1. LET THE OPERATOR DECLARE THE SYSTEM REPO PATH, once, in `~/.claude/settings.json` or a
+     `mavci` config key. Path shape cannot be inferred from a cache install, so stop trying
+     to infer it. `--apply` then has a target on every machine, and the marker-file check
+     still confirms it before writing. This is the same pattern the manifest already uses for
+     everything else that cannot be derived.
+
+  2. ADD THE CACHE TOPOLOGY AS A RECOGNISED CASE, and when the candidate is under
+     `plugins/cache/`, say so specifically: "this is a cache install; the source checkout
+     cannot be located from here - declare it with <setting>". The current message names two
+     paths and neither is where the operator should look.
+
+  3. FAIL DURABLY RATHER THAN REFUSING. If no system repo can be found, write the queue to a
+     path OUTSIDE the project - e.g. `~/.claude/mavci-lessons/<project>-<date>.md` - and say
+     so. The operator is currently told to copy a file by hand, which works only while they
+     are paying attention; a durable write outside the disposable directory removes the
+     memory dependency even when the repo is genuinely unavailable. THIS IS THE ONE THAT
+     ACTUALLY FIXES THE THREE-SESSION PROBLEM, because it does not depend on the operator
+     doing anything.
+
+  4. Have `doctor` warn when queued findings exist AND `--apply` cannot resolve a target, so
+     the unreachability is reported at the start of a session rather than discovered at the
+     end of one, when the project is about to be discarded.
+
+NOTE ON THIS SESSION: the operator copied the queue into the system repo by hand as
+`cartoonify-2026-09-05.md`. The findings survived. They survived because a person remembered,
+for the third time.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
