@@ -862,3 +862,122 @@ accepting a criterion id, and conditional expiry:
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+---
+
+# Finding 7 - Verifier write scope is enforced against the tools it does not have and unenforced against the one it uses
+
+Filed: 2026-09-05T10:23:15Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agents/agent-scopes.json`
+
+Check: `risk-guard.edit_scope`
+
+THE VERIFIER'S WRITE SCOPE IS ENFORCED AGAINST THE TOOLS IT DOES NOT HAVE AND UNENFORCED
+AGAINST THE ONE IT USES.
+
+Not a bypass. A bypass implies a boundary that was gone around. THE CONSTRAINT NEVER FIRES
+ON THE PATH THE AGENT ACTUALLY WORKS ON.
+
+THE TWO FACTS, BOTH VERIFIED.
+
+  agents/agent-scopes.json
+    "mavci-verifier": { "phase": "verify", "allow": [], "deny": ["**"],
+                        "native_constraint": true }
+
+  agents/mavci-verifier.md
+    tools: Read, Grep, Glob, Skill, Bash
+    disallowedTools: Edit, Write, NotebookEdit
+
+  scripts/risk-guard.mjs:674
+    if (tool === 'Edit' || tool === 'Write' || tool === 'NotebookEdit') {
+      ...
+      :774   if (scope.deny?.length && matchesAny(rel, scope.deny)) deny(...)
+      :783   if (scope.allow && !matchesAny(rel, scope.allow)) deny(...)
+    }
+
+The per-agent scope check at 774-784 is INSIDE the Edit/Write/NotebookEdit branch. Bash does
+not enter that branch. It is not scope-checked at all.
+
+So `allow: [], deny: ["**"]` is enforced exclusively against Edit, Write and NotebookEdit -
+the exact three tools `disallowedTools` already denies the verifier at the agent-definition
+layer, before the guard is consulted. THE SCOPE CONSTRAINS NOTHING THE AGENT CAN DO. Its
+only effect on this agent is to be present.
+
+OBSERVED, NOT INFERRED. cartoonify task 0001. mavci-verifier ran the spec's fixture setup
+verbatim - `mkdir -p "$T"`, two `node -e` writers, two `printf >` writers - and reported:
+
+    "Fixture creation: SUCCEEDED, not denied. All exit 0, no prompt, no denial.
+     A Bash write outside the repo is not blocked by deny: ['**']."
+
+It also bound a TCP port, ran `npm run build` (which writes .next/), and terminated a
+process with `taskkill /F /IM node.exe`. None of that is edit-scoped.
+
+WHAT ACTUALLY CONSTRAINS BASH WRITES, which is a much shorter list:
+  - the `.mavci/control/` heuristic: if the write target cannot be determined AND the
+    command names a control-plane path, refuse (observed firing twice this run)
+  - the `.env` command patterns (risk-guard.mjs:1065-1067)
+  - the tier-3 command rules (MCP calls, deploys, protected refs)
+Everything else in the repository is writable by any agent holding Bash. The verifier could
+have written application code - in the verify phase, whose entire purpose is that it cannot.
+
+WHY THIS IS WORSE THAN A BYPASS. A bypass is a hole in a wall; you can measure it, and its
+existence confirms the wall. Here there is no wall on that path, and the roster, the scopes
+file and the agent contract all read as though there is. The architect of task 0001 wrote
+its fixtures to `$TMPDIR` and annotated them "written outside the repository" - CAUTION
+EXERCISED AGAINST A CONSTRAINT THAT DOES NOT EXIST ON THAT PATH. An agent reasoned carefully
+about a boundary that was never going to stop it. That is the cost: the documentation
+produces behaviour, the mechanism produces none, and nobody can tell from the inside.
+
+Note the corollary for the OTHER agents. The same structure applies to every scoped agent
+that holds Bash. mavci-architect is denied `app/**`, `lib/**`, `components/**`; mavci-builder
+is denied `.mavci/control/**`. Those denials hold for Edit and Write and do not hold for
+Bash beyond the control-plane heuristic. The builder's control-plane denial is partially
+backstopped because the heuristic names that directory specifically; the architect's
+application-code denial is not backstopped at all.
+
+THE FIX, AND ITS HONEST COST. There are two, and only one is cheap.
+
+  A. SCOPE-CHECK BASH WRITES. This is real work and it is harder than it looks. Determining
+     the write targets of an arbitrary shell command is undecidable in general: redirects,
+     heredocs, `tee`, `cp`, `mv`, `install`, `sed -i`, `node -e`, `python -c`, subshells,
+     command substitution, and anything that writes a path it computed at runtime. The guard
+     ALREADY CONCEDES THIS - the message "the write target of this command could not be
+     determined" exists precisely because the analysis fails, and it fails open everywhere
+     except the one directory it names. Doing this properly means either
+       (i) deny-by-default for any Bash command whose write target cannot be proven, which
+           would refuse most legitimate agent commands and is a large behavioural change; or
+       (ii) enforcement below the shell - a sandbox, an overlay filesystem, a container with
+           a read-only bind mount per agent scope - which is infrastructure work, not a
+           regex, and is the only version that is actually sound.
+     Either way this is weeks, not an afternoon, and (i) is not obviously an improvement.
+
+  B. STOP CLAIMING CONTAINMENT THE MECHANISM DOES NOT PROVIDE. Change the roster, the scopes
+     file comment, and the agent contract to say what is true: per-agent path scope applies
+     to file-editing tools only; an agent holding Bash can write anywhere except the
+     control plane and .env. Add it to agent-scopes.json as a comment beside
+     `native_constraint`, since that field's name currently implies more than it delivers.
+
+  B IS CHEAPER AND IT IS NOT THE LESSER FIX. A document that overstates containment is how
+  gate6's verifier row read for eleven versions: the claim was load-bearing for reasoning
+  that was never true, and every reader who trusted it reasoned wrongly for eleven releases.
+  An accurate doc with a weaker guarantee lets the next person decide whether to build A. An
+  inaccurate doc with a strong guarantee stops them ever asking. Fixing the claim is the
+  prerequisite for fixing the mechanism, not a substitute for it.
+
+  C. A PARTIAL MIDDLE, offered only because it is consistent with what already exists:
+     extend the control-plane heuristic to the agent's declared deny globs - if the write
+     target cannot be determined AND the command names a path inside the agent's deny scope,
+     refuse. It is incomplete by construction (a command that never names the path literally
+     still passes) and it must NOT be described as scope enforcement. It raises the cost of
+     an accident without preventing an intent.
+
+RELATION TO OTHER FINDINGS. Same family as 1, 4 and 6: the system's DECLARATIONS are richer
+than its ENFORCEMENT, and the gap is invisible from inside. Finding 6 said the machine cannot
+see what the criteria returned. This one says the machine does not check what the scopes
+claim. In both cases a human reading the artefacts would conclude the opposite.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
