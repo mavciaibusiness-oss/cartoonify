@@ -1395,3 +1395,150 @@ SEPARATE, SMALLER, AND WORTH FIXING REGARDLESS OF TODAY'S CAUSE:
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+### Addendum to finding 10 - The ranked candidates were all wrong: sound reasoning, wrong layer
+
+Amended 2026-09-05T11:30:06Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE RANKED CANDIDATES WERE ALL WRONG, AND THE WAY THEY WERE WRONG IS WORTH RECORDING.
+
+Before the terminal output arrived, four causes were ranked for the observed failure:
+
+  1. gpt-image-1 organisation verification (403)
+  2. extensionless filename in toFile() (400 invalid_request_error)
+  3. quota / billing (429)
+  4. bad or wrong-project key (401)
+
+The actual cause:
+
+  APIConnectionError: Connection error.
+  cause: FetchError: ... reason: read ECONNRESET
+  status: undefined, request_id: undefined
+  POST /api/cartoonify 502 in 34248ms
+
+A TCP reset. No HTTP response at all. Not one of the four, and not adjacent to them.
+
+THE REASONING WAS SOUND AND THE LAYER WAS WRONG. Every candidate was derived from reading the
+route and the endpoint's documented behaviour - which is the correct method for the layers
+that code and documentation describe, and reaches nothing below them. All four presuppose
+that a request arrived at OpenAI and was answered. None of them can be true when nothing was
+answered. The method had no term for the transport, so the transport was not in the ranking,
+and its absence was not visible from inside the ranking.
+
+THE DISCRIMINATOR WAS IN THE OUTPUT AND SHOULD HAVE BEEN THE FIRST THING ASKED FOR:
+
+  status: undefined, request_id: undefined
+
+An HTTP status means the provider answered; the cause is then at the application layer and
+the four candidates are the right shortlist. NO STATUS AND NO REQUEST ID MEANS NO ROUND TRIP
+COMPLETED, WHICH RULES OUT EVERY APPLICATION-LAYER CAUSE AT ONCE. That single check partitions
+the search space before any hypothesis is worth forming, and it costs nothing.
+
+GENERALISABLE RULE: for any upstream failure, establish WHETHER A RESPONSE WAS RECEIVED
+before reasoning about WHAT THE RESPONSE MEANT. Ranking causes without that partition
+produces a confident, well-argued shortlist drawn entirely from one layer, with no signal
+that the layer itself might be the wrong one.
+
+WHY THIS SITS BESIDE FINDING 10 RATHER THAN ON ITS OWN. Finding 10 is about a coupling
+nothing tests - the allow-list and the endpoint agreeing by coincidence. The JPG hypothesis
+that prompted it was ALSO wrong (gpt-image-1 accepts JPEG; the PNG-only rule is dall-e-2's),
+and finding 10 remains correct anyway, because it was never contingent on being today's
+cause. That is the useful contrast: a finding about a structural gap survives a wrong
+diagnosis, while a ranked list of causes does not. THE FINDING WAS RIGHT FOR REASONS
+INDEPENDENT OF THE INCIDENT THAT SURFACED IT; THE CANDIDATE LIST WAS WRONG FOR REASONS
+INTERNAL TO HOW IT WAS BUILT.
+
+The extensionless filename (finding 10, final section) is now known NOT to be today's cause.
+It remains worth fixing on its own merits, and it is now unambiguously attributable: with
+the transport failure identified, a filename fix can be made without confusing what it did.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 11 - No transport timeout, and could-not-reach is indistinguishable from refused
+
+Filed: 2026-09-05T11:29:29Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `app/api/cartoonify/route.ts`
+
+NO TRANSPORT TIMEOUT, AND "COULD NOT REACH" IS INDISTINGUISHABLE FROM "REFUSED".
+
+Project-level finding against cartoonify, belongs to task 0002.
+
+OBSERVED, 2026-09-05, operator running criterion 32 by hand with a live key:
+
+  cartoonify: upstream call failed APIConnectionError: Connection error.
+  cause: FetchError: request to https://api.openai.com/v1/images/edits
+         failed, reason: read ECONNRESET
+  type: 'system', errno: 'ECONNRESET'
+  status: undefined, request_id: undefined
+  POST /api/cartoonify 502 in 34248ms
+
+A user waited 34 seconds and received a generic message. No HTTP response was ever
+received - `status: undefined`, `request_id: undefined`. The request did not complete a
+round trip.
+
+PART 1: NO TIMEOUT IS CONFIGURED, AND THE ONE THAT APPLIES CONTRADICTS THE ROUTE.
+
+  route.ts:9    export const maxDuration = 60
+  route.ts:88   new OpenAI({ apiKey: ... })          // no timeout, no maxRetries
+
+  openai@4.104.0 core.js:138   maxRetries = 2, timeout = 600000   // 10 minutes
+
+So the SDK is willing to wait TEN MINUTES per attempt and will retry TWICE - up to roughly
+thirty minutes - inside a route that declares a sixty-second ceiling. These two numbers were
+written by different concerns and never reconciled.
+
+THE CONSEQUENCE IS WORSE IN PRODUCTION THAN IT WAS LOCALLY. Today the connection died on its
+own after 34s and the catch at route.ts:104 ran, returning a clean 502 with the fixed Turkish
+message. On Vercel, a slow-but-alive upstream would hit `maxDuration` first: the platform
+kills the function at 60s, the catch block NEVER RUNS, and the user gets a platform error
+page instead of the designed error state. THE ENTIRE ERROR-HANDLING PATH THIS TASK WAS BUILT
+AROUND IS BYPASSED IN THE ONE ENVIRONMENT THAT MATTERS. Criterion 14 asserts the server "does
+not hang and does not return a platform 413" for oversize uploads; nothing asserts the
+equivalent for a slow upstream, and that is the case that will actually occur.
+
+  FIX: set an explicit client timeout well inside maxDuration - e.g. `timeout: 45_000` with
+  `maxRetries: 1`, or `timeout: 25_000, maxRetries: 2` - so the SDK always gives up before
+  the platform does and the designed catch block is what the user meets. Derive it from
+  maxDuration rather than writing a second literal, so the two cannot drift apart again.
+
+PART 2: TWO DIFFERENT FAILURES WEAR ONE FACE.
+
+`UPSTREAM_ERROR` currently covers, indistinguishably:
+  - the provider could not be REACHED (ECONNRESET, DNS, TLS, timeout - no HTTP response)
+  - the provider REFUSED (400 bad format, 401 bad key, 403 unverified org, 429 quota)
+  - the provider FAILED (5xx)
+
+To the user that is one message, and CRITERION 16'S NO-LEAKAGE RULE DOES NOT REQUIRE THAT.
+Criterion 16 forbids forwarding `err.message`, stack traces and upstream text. It says
+nothing about distinguishing CLASSES of failure with our own fixed constants. Two additional
+codes with their own Turkish messages leak nothing:
+
+  UPSTREAM_UNREACHABLE  - "Servise şu anda ulaşılamıyor. Bağlantınızı kontrol edip tekrar
+                          deneyin."   (retryable, possibly the user's own network)
+  UPSTREAM_ERROR        - existing generic, for a provider that answered and refused/failed
+
+The distinction matters in both directions. The USER is told whether retrying is worth it -
+a reset is often transient, a rejected format never is. THE OPERATOR gets a code that says
+which layer failed, instead of one bucket covering everything from a bad API key to a dropped
+TCP connection. `APIConnectionError` is already a distinct SDK class, so this is an
+instanceof check, not a heuristic.
+
+  Note the server-side log is already correct: route.ts:104 logs the full error, which is how
+  today's cause was identified at all. The gap is only in the classification returned.
+
+PART 3: WHAT THIS DOES NOT ESTABLISH. The underlying network cause is NOT diagnosed. An
+ECONNRESET with no HTTP response is consistent with a local network path, a proxy or
+inspection appliance, an ISP-level block, or an upstream edge problem. The operator is
+testing key and connectivity independently before anything is changed. NOTHING ABOVE DEPENDS
+ON THAT ANSWER - a route that calls a paid remote API needs a timeout inside its own ceiling
+and needs to distinguish unreachable from refused, whatever today's packet-level cause turns
+out to be.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
