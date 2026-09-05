@@ -1849,3 +1849,30 @@ size.
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+### Operator disposition of finding 12 consequence 4 - permanently out of scope, not pending
+
+Recorded: 2026-09-05, by the operator, during task 0002.
+
+CONSEQUENCE 4 ("worth reporting upstream") IS CLOSED AS OUT OF SCOPE FOR THIS PROJECT, AND
+IT IS CLOSED PERMANENTLY RATHER THAN LEFT UNACTIONED.
+
+The distinction matters and is the whole of this note. Consequences 1, 2 and 3 are code in
+this repository and are being built now as task 0002. Consequence 4 is an action against a
+third-party account - opening a report with the provider, from a person with standing to
+open it - and NO TASK IN THIS SYSTEM CAN CARRY IT. There is no file to edit, no criterion
+that could be checked, and no agent that could perform it. A backlog entry that no possible
+task can discharge is not a backlog entry; it is a line that reads as pending forever and
+teaches the reader to discount everything next to it.
+
+So it is not "unactioned". It is dispositioned: this project will not carry it, and its
+absence from every future task list is the recorded decision rather than an oversight.
+
+WHAT IS NOT BEING CLAIMED. Consequence 4 is not withdrawn as an observation - cutting a
+connection mid-upload instead of draining and returning the 429 the check already computed
+is still a server-side choice that discards information it holds. Whether anyone reports it
+upstream is the operator's, outside this repository, and unrecorded here either way. The
+finding itself stays pending on consequences 1-3 until they are applied in the system repo.
+
+DO NOT re-open this as a task, and do not count it against finding 12 when finding 12 is
+cleared.
