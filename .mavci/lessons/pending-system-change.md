@@ -115,6 +115,36 @@ NOT SUPPLIED. Whoever applies this must write one before building the fix: name 
 
 ---
 
+### Addendum to finding 1 - Finding 15 is this finding from the other direction - the entry gap and the exit gap
+
+Amended 2026-09-05T14:41:49Z, plugin 0.1.33. Amended by: **main-session** (agent). Provenance enforced at the risk guard, not self-declared. It attests to who RAN this command, and to nothing about who directed it.
+
+CROSS-REFERENCE, added 2026-09-05 on plugin 0.1.33 from project cartoonify.
+
+FINDING 15 IS THIS FINDING FROM THE OTHER DIRECTION, AND THE PAIR IS THE WORK.
+
+This finding is the entry gap: architectural fields are required of projects they do not
+describe, so a project outside the multi-tenant SaaS shape cannot be declared accurately on
+the way in.
+
+Finding 15 is the exit gap. cartoonify DID declare accurately - tenancy.model single-tenant,
+tenancy.isolation none, stack.db none, stack.auth none - using the one value the mould
+permits for a project with no tenants. The consequence is that doctor's guardian corpus
+check FAILs permanently and unclearably, because the corpus needs a worklist, the worklist
+emitter refuses on any isolation other than "application-filters", and the refusal is
+correct. The only remedy reachable from inside the project is to edit that field to a value
+that is false.
+
+So the two findings close a loop: misdescribe on entry, or carry a permanent FAIL whose
+cheapest cure is to misdescribe after the fact. A fix to declarability alone leaves the FAIL
+standing on every legitimately "none" project. A fix to doctor's branch alone leaves this
+finding untouched. Whoever applies either should read both.
+
+Recorded here rather than only on 15 because a reader who arrives at this finding first
+would otherwise fix half of it and see nothing to suggest the other half exists.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 2 - .env.example is unmaintainable by an agent though it holds no secrets
 
 Filed: 2026-09-05T08:57:41Z, plugin 0.1.32.
@@ -2161,6 +2191,60 @@ load-bearing has traded the finding for its opposite.
 
 ---
 
+### Addendum to finding 15 - Stated at full width: a check that cannot pass honestly creates pressure to pass it dishonestly, and finding 1 is this finding from the other direction
+
+Amended 2026-09-05T14:41:35Z, plugin 0.1.33. Amended by: **main-session** (agent). Provenance enforced at the risk guard, not self-declared. It attests to who RAN this command, and to nothing about who directed it.
+
+STATED AT ITS FULL WIDTH BY THE OPERATOR, 2026-09-05, AND RECORDED HERE BECAUSE THE FILING
+ABOVE UNDERSTATES IT AS A DOCTOR BUG.
+
+A CHECK THAT CANNOT PASS HONESTLY CREATES PRESSURE TO PASS IT DISHONESTLY, AND HERE THE
+DISHONEST PASS IS ONE WORD.
+
+That is the finding. Not that doctor prints a red line it should not print - that doctor
+prints, on every run, permanently, a FAIL whose only reachable remedy from inside the
+project is to change tenancy.isolation from "none" to "application-filters" in the manifest.
+That edit takes seconds, requires no argument with anybody, produces a green health report,
+and makes the manifest assert that this project isolates tenants with application-code
+filters. It has no tenants. It has no database. The edit is a lie that looks like
+maintenance, and the system asks for it every time the operator runs doctor.
+
+Everything else in this queue is a system that fails to enforce what it declares. This is a
+system applying steady pressure toward a false declaration, and being the party that will
+then read that declaration and act on it. The manifest is an input to the standards packs
+and to the rules; a project that has claimed application-filters to clear a health check has
+also changed what every subsequent check believes about it.
+
+THE SEVERITY IS IN THE ASYMMETRY. Honest state: a permanent FAIL, forever, on a project
+where nothing is wrong. Dishonest state: green, instantly, with no warning and no reviewer.
+The system offers no third option and no way to record "guardian does not apply here" -
+which is the true statement, and the one thing that cannot currently be said.
+
+FINDING 1 AND FINDING 15 ARE THE SAME DEFECT FROM TWO DIRECTIONS, AND NEITHER IS COMPLETE
+WITHOUT THE OTHER.
+
+Finding 1 is the entry gap: architectural fields are REQUIRED of projects they do not
+describe, so a project that does not fit the mould cannot be declared accurately in the
+first place. Finding 15 is the exit gap: a project that IS declared accurately, in the one
+field the mould permits it to say "none" in, then fails a health check permanently and can
+only clear it by retracting the accurate declaration.
+
+Read together they say: the system has a product shape, projects that differ from it must
+either misdescribe themselves on the way in or carry a permanent FAIL afterwards, and the
+cheapest exit from the second is the first. Fixing doctor's branch alone leaves finding 1
+standing. Fixing declarability alone leaves this FAIL wherever a legitimately "none" project
+lands. The pair is the work.
+
+HOW THIS SURFACED, WHICH IS THE ONLY REASON IT SURFACED AT ALL. cartoonify is the first
+project connected to this system that genuinely does not fit: single-tenant, no database, no
+auth, no payments, one image route and five legal pages. Every earlier project matched the
+multi-tenant SaaS shape the plugin was built around, so the corpus requirement and the
+tenancy fields agreed with reality by coincidence rather than by design. The defect is not
+new; today is the first time anything stood in a position to observe it. Expect the same for
+the other architectural fields the moment a project declines the next assumption.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 16 - retro.mjs --record silently stores a file path as the finding body, while --amend refuses prose and demands a path - the same input in opposite forms, one of them unchecked
 
 Filed: 2026-09-05T14:35:21Z, plugin 0.1.33.
@@ -2174,3 +2258,19 @@ Observed: 2026-09-05, plugin 0.1.33, project cartoonify, filing finding 15 from 
 ### The assertion, and the broken build it must catch
 
 THE BROKEN BUILD IS 0.1.33 AS INSTALLED. Assertion: retro.mjs --record refuses a --finding or --assertion argument that resolves to an existing file on disk, with a message naming the flag and saying that --record takes prose while --amend takes a path. check-retro.mjs asserts it by calling --record with a --finding argument that is a real path and requiring a non-zero exit and an empty queue. WOULD IT CATCH TODAY'S BUILD? Yes - it fails on first run against 0.1.33 with no other change. Stronger and better: make --record accept a path the way --amend does, and then the assertion is that both halves accept the same form, exercised by filing the same finding through each and comparing the stored bodies. THE ADJACENT ASSERTION THAT WOULD NOT CATCH IT: asserting that --record stores the --finding argument verbatim. That passes today and is exactly the behaviour that caused this. WHAT IT MUST NOT ACCEPT AS SATISFACTION: documenting the difference in the skill. The skill already documents the --amend rule clearly, and that is what led the caller to pass a path to the other half.
+
+---
+
+# Finding 17 - Acceptance criteria written as inline node -e one-liners cannot run as written: the shell strips the escaping before node sees it, so the criterion that passes is never the criterion the spec states
+
+Filed: 2026-09-05T14:41:07Z, plugin 0.1.33.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agents/mavci-architect.md`
+
+Observed: 2026-09-05, plugin 0.1.33, project cartoonify, task 0002, during verification of criteria 7, 12 and 14. THE SPEC'S STATED COMMANDS WERE NOT THE COMMANDS RUN, THE CRITERIA WERE MET ANYWAY, AND NOTHING IN EITHER ARTEFACT RECORDS THE DIFFERENCE. Task 0002's architect wrote several acceptance criteria as inline node -e one-liners carrying regex escaping - double-backslash sequences such as backslash-backslash-dot and backslash-backslash-open-paren. mavci-verifier reported that these could not be run verbatim: the Bash tool collapses the double-backslash sequences before they reach node -e's inline argument, which breaks the regex construction regardless of what the file being checked contains. It reproduced the mechanism independently rather than inferring it: node -e printing JSON.stringify of a two-character escaped string returned the collapsed single-character form, not the escaped one. THE VERIFIER HANDLED IT CORRECTLY, AND THAT IS PART OF THE PROBLEM. It wrote equivalent checks to a file, avoiding the argument-passing path entirely, used string search in place of regex escaping, and ran them with node against the file. Criteria 7, 12 and 14 passed on those equivalents: the derived budget arithmetic came out at 45000, 6000 and 0 retries; the message text was exact and the banned phrasing absent; the probe was confirmed to contain no response-returning call. The judgements are sound. WHAT IS LOST IS THE CORRESPONDENCE BETWEEN THE APPROVED SPEC AND THE EXECUTED CHECK. The operator approved a spec by content hash. Three of its criteria name commands that cannot execute as written on this platform. A different verifier writing a different equivalent could check something adjacent to what was specified and report the same pass, and no artefact would show it: the spec still states the one-liner, and the recorded verdict carries no per-criterion detail at all, so neither end holds the substitution. It survived here because the verifier volunteered the methodology note in prose. THIS IS ARCHITECT-SIDE, NOT VERIFIER-SIDE, AND IT WILL RECUR. Nothing in the plan step stops a criterion being written this way, and inline node -e is the natural form for an assertion about file contents - it is how a person tests an idea at a prompt. Every spec written that way carries the same trap, and the trap fires at verify time on a different agent, one approval later, where the cheapest response is a silent workaround.
+
+### The assertion, and the broken build it must catch
+
+THE BROKEN BUILD IS TASK 0002'S SPEC AS APPROVED, WHICH IS ON DISK AND UNMODIFIED. Assertion: a spec check rejects any acceptance criterion whose command is an inline node -e (or python -c) invocation carrying a backslash in its argument, naming the criterion number and saying that the escaping will not survive the shell and the check must be written to a file and run as node <file>. It runs at plan time, before the operator is asked to approve, because approval by content hash is exactly the moment the spec's commands become the thing being agreed to. WOULD IT CATCH TODAY'S BUILD? Yes. Run against task 0002's spec it fails immediately on criteria 7, 12 and 14, with no other change to the plugin - which is the point of writing it against the spec that already exists rather than a fixture invented afterwards. THE ADJACENT ASSERTIONS THAT WOULD NOT CATCH IT, recorded so they are not written by mistake. First: asserting that every acceptance criterion is executable, by executing it. That is what verification already does, and it passed - because the verifier substituted a working equivalent, which is the behaviour being described rather than a defect it would surface. Second: asserting the spec's criteria are syntactically well-formed shell. They are well-formed shell; they are well-formed shell that means something other than what was written. WHAT IT MUST NOT ACCEPT AS SATISFACTION: instructing the verifier to write equivalents to files when a one-liner fails. It already does that, it did it correctly here, and the result is a passing verdict whose relationship to the approved spec is recorded nowhere. Pushing the handling further down makes the substitution more routine and no more visible. The criterion has to be executable as written, or the spec has to say what file to run.

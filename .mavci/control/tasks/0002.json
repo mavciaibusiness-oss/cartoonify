@@ -15,8 +15,8 @@
     "spec_path": ".mavci/tasks/0002.md",
     "spec_sha256": "b95741af13c819d3904a21a82b264b5858bf161cf19de757f1acc610eadc26d9"
   },
-  "status": "in_progress",
-  "updated": "2026-09-05T14:23:57Z",
+  "status": "done",
+  "updated": "2026-09-05T14:40:01Z",
   "verdicts": [
     ".mavci/control/verdicts/0002-attempt-01.json"
   ]
