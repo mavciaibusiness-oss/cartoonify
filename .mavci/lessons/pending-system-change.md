@@ -1456,6 +1456,70 @@ the transport failure identified, a filename fix can be made without confusing w
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 10 - Full width: eight candidates, two rounds, none correct - change the request, do not reason harder
+
+Amended 2026-09-05T11:47:31Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE CANDIDATE-RANKING LESSON AT FULL WIDTH: TWO ROUNDS, BOTH WRONG, THE SAME WAY.
+
+ROUND ONE. Four candidates ranked from the route source and the endpoint's documented
+behaviour: organisation verification (403), extensionless filename (400), quota (429), bad
+key (401). All four presuppose a request that ARRIVED AND WAS ANSWERED. The actual error had
+`status: undefined, request_id: undefined` - no round trip completed - which excluded all
+four at once. The frame was "what did the API answer"; nothing had answered.
+
+ROUND TWO. Given the ECONNRESET, the frame moved to the transport, and finding 11 named four
+more possibilities: a local network path, a proxy or inspection appliance, an ISP-level block,
+an upstream edge problem. ALL FOUR WRONG AGAIN. The cause was billing - no credits - and the
+reset was a SYMPTOM of the rejection, not a network fault at all. The frame was "what broke
+the connection"; nothing had broken it, it was cut deliberately.
+
+EIGHT CANDIDATES ACROSS TWO ROUNDS, NONE CORRECT. Each round's reasoning was sound inside its
+frame, and each round's frame was too narrow. Worse, ROUND TWO'S FRAME WAS ADOPTED FROM ROUND
+ONE'S EVIDENCE: the ECONNRESET was treated as identifying the layer, when it only identified
+that no response arrived. A transport error is not evidence of a transport problem
+(finding 12).
+
+BOTH TIMES THE DISCRIMINATOR WAS CHEAP AND AVAILABLE BEFORE ANY HYPOTHESIS.
+
+  Round one: `status` and `request_id` were in the output already. Present means the provider
+  answered and the application-layer shortlist is right; absent means it did not and the
+  entire shortlist is void. Reading two fields partitions the search space.
+
+  Round two: a small-body request to a different endpoint. `/v1/images/generations` returned
+  `429 insufficient_quota` with the cause named, IN 0.58 SECONDS. That probe was available
+  from the first minute, costs nothing, and would have skipped both rounds.
+
+THE RULE, STATED SO IT IS USABLE NEXT TIME:
+
+  WHEN AN ERROR NAMES NO CAUSE, DO NOT REASON HARDER ABOUT THE ERROR. CHANGE THE REQUEST
+  UNTIL ONE NAMES A CAUSE.
+
+  Vary the cheapest dimension - a smaller body, a different endpoint, an unauthenticated
+  call - and find a variant whose failure is diagnosable. An error that carries no
+  information cannot be interpreted, only replaced. Ranking hypotheses against a silent error
+  produces a confident, well-argued list drawn entirely from whichever layer the analyst
+  happened to be looking at, with no signal from inside the list that the layer is wrong -
+  which is exactly what happened twice.
+
+WHAT SURVIVED AND WHAT DID NOT, which is the part worth carrying:
+
+  The FINDINGS survived both wrong diagnoses. Finding 10 was prompted by a JPG hypothesis
+  that was wrong; it is still correct, because the coupling it describes was never contingent
+  on being the cause. Finding 11 was prompted by a transport diagnosis that was wrong; its
+  timeout defect is still real, because a route calling a paid remote API needs a timeout
+  inside its own ceiling whatever the failure was. Both were written to be independent of the
+  incident that surfaced them, and that is why they held.
+
+  The CANDIDATE LISTS did not survive, either time, and nothing about them could have. A
+  ranked list of causes is a claim about one specific incident and is worth nothing the
+  moment the frame moves.
+
+  So: file findings about structure, which outlive the diagnosis. Hold hypotheses about
+  causes loosely, and buy a discriminator before buying a ranking.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 11 - No transport timeout, and could-not-reach is indistinguishable from refused
 
 Filed: 2026-09-05T11:29:29Z, plugin 0.1.32.
@@ -1538,6 +1602,137 @@ testing key and connectivity independently before anything is changed. NOTHING A
 ON THAT ANSWER - a route that calls a paid remote API needs a timeout inside its own ceiling
 and needs to distinguish unreachable from refused, whatever today's packet-level cause turns
 out to be.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+### Addendum to finding 11 - Correction: unreachable does not mean transient, and the message must not invite a retry
+
+Amended 2026-09-05T11:47:31Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+CORRECTION TO PART 2: THE `UPSTREAM_UNREACHABLE` MESSAGE MUST NOT INVITE A RETRY.
+
+The original draft proposed:
+
+  UPSTREAM_UNREACHABLE - "Servise şu anda ulaşılamıyor. Bağlantınızı kontrol edip tekrar
+                          deneyin."   (retryable, possibly the user's own network)
+
+BOTH PARENTHETICAL CLAIMS ARE WRONG, and today's incident is the counterexample. The
+ECONNRESET was NOT transient and was NOT the user's network: the account had no credits, and
+`/v1/images/edits` cut the connection mid-upload rather than returning the 429 it had already
+computed. See finding 12. Retrying would have failed identically for as long as the balance
+stayed at zero, at 34 seconds per attempt, and "check your connection" would have sent the
+user to debug a network that was working.
+
+A transport error from a large-body endpoint IS NOT EVIDENCE OF A TRANSPORT PROBLEM. It is
+evidence that no response arrived, and the reason may be permanent, account-level, and
+entirely outside anything the user can act on.
+
+REVISED. The message should describe what is known and claim nothing about cause or
+remedy:
+
+  UPSTREAM_UNREACHABLE - "Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre
+                          sonra tekrar deneyebilirsiniz."
+
+  ("The service could not be reached. The problem may be temporary; you can try again
+   later.") - "may be" rather than "is", no instruction to check anything, and no implication
+  that a retry will work.
+
+The distinction from `UPSTREAM_ERROR` is still worth keeping - it tells the operator which
+layer failed, which is the half of the value that survives. What does not survive is the
+inference that unreachable means transient.
+
+CONSEQUENT CHANGE TO THE TIMEOUT FIX IN PART 1. `maxRetries` should be set to 0 or 1, not
+left at the SDK default of 2, on this endpoint specifically. Retrying a multipart upload that
+was reset costs the full timeout again and, in the case actually observed, could never
+succeed. The retry budget should be bounded by wall clock inside `maxDuration`, not by
+attempt count.
+
+AND A DIAGNOSTIC ADDITION, worth more than either: BEFORE the multipart call, or on the
+`APIConnectionError` path, issue a minimal small-body request to a cheap endpoint and log its
+result server-side. A JSON request that returns `429 insufficient_quota` in half a second
+answers the question the multipart request structurally cannot. This is not a fallback for
+the user - it is server-side evidence so that the next occurrence is diagnosable from the log
+alone rather than from two rounds of hypotheses.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 12 - Provider error surface degrades with request size: same rejection, clean 429 small-body, TCP reset large-body
+
+Filed: 2026-09-05T11:46:50Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `app/api/cartoonify/route.ts`
+
+THE PROVIDER'S ERROR SURFACE DEGRADES WITH REQUEST SIZE: THE SAME REJECTION IS DIAGNOSABLE
+WITH A SMALL BODY AND A TCP RESET WITH A LARGE ONE.
+
+The sharpest thing observed on 2026-09-05, and the one with consequences beyond this project.
+
+TWO REQUESTS, ONE ACCOUNT STATE, TWO INCOMPATIBLE ERROR SURFACES.
+
+  POST /v1/images/generations   (small JSON body)
+    HTTP 429 in 0.58s
+    {"error":{"message":"You have no credits remaining...",
+              "type":"insufficient_quota",
+              "code":"credit_balance_exhausted"}}
+
+  POST /v1/images/edits         (multipart body, a real photograph)
+    APIConnectionError: FetchError: read ECONNRESET
+    status: undefined, request_id: undefined
+    34 seconds, no HTTP response at all
+
+THE ACCOUNT WAS OUT OF CREDIT IN BOTH CASES. The key was valid, the network was fine, the
+format was fine, the filename was irrelevant, organisation verification was never involved.
+
+THE MECHANISM. `/v1/images/edits` begins receiving a multipart upload, the quota check fails
+partway through, and the connection is cut MID-UPLOAD rather than draining the body and
+returning a clean 429. `/v1/images/generations` has a JSON body small enough to arrive
+completely before the check runs, so the check can answer properly. Same rejection, same
+cause, and whether the client learns the reason depends on how many bytes it was sending.
+
+WHY THIS IS THE INTERESTING ONE. Everything else found today is a gap between what a system
+declares and what it enforces. This is a gap between what a REJECTION IS and what it can be
+OBSERVED TO BE, and it is not in our code at all. An application cannot distinguish
+"we are out of credit" from "the network broke" for any request large enough to trigger it -
+the information does not reach the process. No amount of care on this side recovers it,
+because it was never sent.
+
+AND IT IS INVISIBLE IN THE DIRECTION THAT MISLEADS. The failure presents as the most
+transient-looking error class there is. Every instinct - and the SDK's own default
+`maxRetries: 2` - says retry a connection reset. Retrying was guaranteed to fail here, for
+as long as the balance stayed at zero, at 34 seconds per attempt.
+
+CONSEQUENCES FOR ANY CLIENT OF THIS API, NOT ONLY THIS PROJECT:
+
+  1. AN `APIConnectionError` ON A LARGE-BODY ENDPOINT MUST NOT BE TREATED AS TRANSIENT. It
+     may be a permanent, account-level refusal wearing a transport error's clothes. This
+     directly corrects the fix drafted in finding 11, where `UPSTREAM_UNREACHABLE` was
+     described as "retryable, possibly the user's own network". See the amendment there.
+
+  2. A HEALTH OR PREFLIGHT PROBE SHOULD USE THE SMALLEST-BODY ENDPOINT AVAILABLE, not the one
+     the feature uses. A one-line JSON request to a cheap endpoint answers the question that
+     the real request structurally cannot. That is what identified today's cause after two
+     rounds of wrong hypotheses, in 0.58 seconds.
+
+  3. RETRY BUDGETS SHOULD BE BOUNDED BY WALL CLOCK, not attempt count, on multipart uploads.
+     Two retries of a 34-second reset is 100 seconds spent learning nothing, inside a route
+     that declares a 60-second ceiling (finding 11).
+
+  4. WORTH REPORTING UPSTREAM. Cutting a connection mid-upload instead of draining and
+     returning the 429 the check already computed is a server-side choice, and the 429 exists
+     - `/v1/images/generations` returns it. The information is available at the moment the
+     connection is cut and is discarded.
+
+WHAT THIS DOES NOT CLAIM. It is not established whether the cut happens at the API edge, a
+load balancer, or somewhere else in the path, nor whether it is deliberate (shedding a body
+that will be discarded anyway) or incidental. The observable fact is sufficient for every
+consequence above: same account state, same rejection, and diagnosability depends on body
+size.
 
 ### The assertion, and the broken build it must catch
 
