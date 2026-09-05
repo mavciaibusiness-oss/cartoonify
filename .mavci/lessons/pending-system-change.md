@@ -928,6 +928,54 @@ ADDITION TO THE FIX. Alongside `criteria[]` with `status` and `mode`:
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 6 - Not a gap in the verdict schema: the wrong thing is being continuous
+
+Amended 2026-09-05T11:56:35Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+RESTATEMENT: THIS IS NOT A GAP IN THE VERDICT SCHEMA. IT IS THE WRONG THING BEING CONTINUOUS.
+
+The previous addendum ended with fixes - declare re-runnable criteria, re-run them at the
+release gate. Those are worth doing and they are not the point, and framing them as the point
+understates what was found. Stated as the contrast instead:
+
+  THE GATE RE-RUNS 15 GENERIC RULES ON EVERY HOOK, EVERY COMMIT, EVERY CI JOB.
+  THE PROJECT-SPECIFIC ASSERTIONS - WRITTEN PRECISELY BECAUSE THE GENERIC RULES DO NOT
+  COVER THEM - RUN ONCE, BY HAND, BY ONE AGENT, AND NEVER AGAIN.
+  THE SYSTEM RE-VERIFIES THE GENERIC THING CONTINUOUSLY AND THE SPECIFIC THING NEVER.
+
+Read that way, the earlier framing was too small. A missing `criteria[]` array is a schema
+defect and could be fixed by adding a field. THE CONTINUITY BEING POINTED AT THE WRONG LAYER
+IS AN ARCHITECTURAL CHOICE, and no field addition changes it.
+
+The 15 standards rules are, by construction, THE THINGS THAT ARE TRUE OF EVERY MAVCI PROJECT.
+They are the least project-specific assertions in the system. They get a hook, a gate, a CI
+job, a baseline, a waiver mechanism with expiry, and a release-gate refusal on staleness -
+five separate mechanisms keeping them current.
+
+The 32 acceptance criteria are, by construction, THE THINGS THAT ARE TRUE OF THIS PROJECT AND
+NOTHING ELSE. They are the entire reason the task was specified rather than assumed. They get
+a content hash proving someone read them, one execution, and a verdict that cannot hold the
+result.
+
+SO THE EFFORT IS INVERTED RELATIVE TO THE INFORMATION. The rules that could be checked once
+per release of the plugin - because they change only when the plugin changes - are checked
+continuously. The assertions that describe work in flight, in a tree that changes hourly, are
+checked at a single instant and then trusted indefinitely. Whichever way round is correct, it
+is not this one.
+
+AND IT EXPLAINS THE SHAPE OF THE DAY. Findings 4, 6, 7, 8 and 9 all sit on the specific side
+of that line: what these criteria require, what they returned, what these scopes constrain,
+what this project's release needs, where this project's lessons go. Every one of them is a
+place where the system has a strong continuous mechanism for the general case and nothing at
+all for the particular one. The system is well built for the part of the problem that is the
+same everywhere, and the part that differs per project is carried by prose, by one-time
+execution, and by the operator's memory.
+
+That is the finding. The `criteria[]` array is a step toward fixing it, not a description
+of it.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 7 - Verifier write scope is enforced against the tools it does not have and unenforced against the one it uses
 
 Filed: 2026-09-05T10:23:15Z, plugin 0.1.32.
