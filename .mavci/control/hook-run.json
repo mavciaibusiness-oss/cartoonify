@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-05T14:21:00Z",
+  "env_session_id": "551fe325-9565-4fc7-bf07-9d289b42678b",
+  "event": "SessionStart",
+  "parent_pid": 31460,
+  "plugin_version": "0.1.33",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "session_id": "551fe325-9565-4fc7-bf07-9d289b42678b"
+}
