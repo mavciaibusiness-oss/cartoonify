@@ -1077,3 +1077,41 @@ substitute for it, and not an interim measure pending it.
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 7 - The rename is the fix; the _note sibling is the fallback, not the reverse
+
+Amended 2026-09-05T10:38:54Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+ON POINT 3, THE RENAME: THE RENAME IS THE FIX. THE `_note` SIBLING IS THE FALLBACK.
+
+The previous amendment listed these as alternatives of roughly equal standing, with the
+`_note` offered "if a rename is too invasive". That ordering is wrong and is corrected here.
+
+  RENAME `native_constraint` -> `file_tools_absent`.  THIS IS THE FIX.
+  Add a `_note` sibling only if the rename genuinely cannot be done.  THIS IS A FALLBACK.
+
+THE FIELD NAME IS THE CLAIM. Every reader of agent-scopes.json sees the key before they see
+anything else, and most see only the key. `native_constraint: true` asserts that the agent is
+natively constrained; what it actually records is that three tools are absent from a tool
+list. A NAME THAT DESCRIBES THE MECHANISM CANNOT OVERSTATE IT - `file_tools_absent` says
+exactly what is true and leaves no room for a reader to infer containment that is not there.
+
+A NAME THAT LIES WITH A COMMENT EXPLAINING THE LIE IS WORSE THAN A PLAIN NAME. The `_note`
+fallback leaves the false claim in the position of authority and adds a correction beside it.
+That configuration is strictly worse than either a true name or an unannotated false one:
+
+  - the reader who skims sees only the key, and is misled exactly as before;
+  - the reader who reads both now has to decide which to believe, and the field name carries
+    more weight than a sibling string because it is what every other tool keys on;
+  - and the presence of a note makes the file LOOK annotated and careful, which lowers the
+    chance anyone re-examines it.
+
+This is the same failure as gate.mjs:50 in point 4, one level up: a statement that is locally
+qualified and globally misleading is harder to find than a plain error, because nothing about
+it reads as wrong.
+
+So: rename. Take the fallback only under a real constraint - a downstream consumer keying on
+the old name that cannot be updated in the same change - and if the fallback is taken, treat
+it as debt with the rename still owed, not as the matter settled.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
