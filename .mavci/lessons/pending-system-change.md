@@ -1292,3 +1292,106 @@ for the third time.
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 10 - Upload allow-list and upstream model are independent constants that align by coincidence
+
+Filed: 2026-09-05T11:14:43Z, plugin 0.1.32.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `lib/image-constraints.ts`
+
+THE UPLOAD CONTRACT AND THE UPSTREAM ENDPOINT ARE TWO INDEPENDENT CONSTANTS THAT ALIGN BY
+COINCIDENCE.
+
+This is a PROJECT-level finding about cartoonify, filed with the system findings because the
+gap it exposes is the same shape as findings 4, 6, 7, 8 and 9: a declaration that nothing
+tests against the thing it is supposed to describe.
+
+THE TWO CONSTANTS.
+
+  lib/image-constraints.ts:11
+    export const ALLOWED_MIME_TYPES = ['image/png', 'image/jpeg', 'image/webp'] as const
+
+  app/api/cartoonify/route.ts:91
+    model: 'gpt-image-1'      // on client.images.edit -> POST /v1/images/edits
+
+NOTHING CONNECTS THEM. `ALLOWED_MIME_TYPES` governs what the client offers, what the server
+accepts, and what `sniffImageType()` will confirm. The model string governs what the upstream
+endpoint will actually take. They are declared in different files, by different concerns, and
+no code, test, type or acceptance criterion asserts that the first is a subset of what the
+second accepts.
+
+THEY AGREE TODAY BY COINCIDENCE. `gpt-image-1` on `/v1/images/edits` accepts PNG, JPEG and
+WEBP, which happens to be exactly the allow-list. That is luck, not design.
+
+CHANGE ONE STRING AND THE PRODUCT BREAKS SILENTLY. `dall-e-2` on the same endpoint accepts
+PNG ONLY. Swapping the model - a plausible edit for cost, availability, or an access problem
+with `gpt-image-1` - leaves validation cheerfully accepting JPEG and WEBP uploads that the
+endpoint will reject every single time.
+
+AND THE FAILURE MODE IS THE WORST AVAILABLE ONE. route.ts:104 catches everything and returns
+the generic `UPSTREAM_ERROR` with a fixed Turkish message. That is CORRECT behaviour per
+criterion 16 and §5.2 - no upstream text, no exception detail, nothing leaked. But it means a
+deterministic validation bug presents to the operator as an intermittent-looking outage:
+every JPEG upload fails, every PNG upload works, and the user-facing message is identical to
+the one shown for a genuine upstream incident. Nobody would think to look at the allow-list.
+
+WHY THE SPEC COULD NOT HAVE CAUGHT THIS, WHICH IS THE SHARPER HALF. The spec has 32 criteria
+and none of them assert this coupling. It could not have: THE CRITERION NEEDS A LIVE KEY TO
+FAIL. With no key the route returns 503 at step 6 and never reaches the upstream call at step
+7, so no key-free test can distinguish an allow-list that matches the endpoint from one that
+does not. This is exactly what finding 4 says the approval gate cannot surface - the operator
+reads 32 assertions and cannot see that the one criterion which would have caught this is
+unwritable without a credential the project does not have. The gap was structurally invisible
+at every point where it could have been noticed.
+
+FIX.
+
+  1. DERIVE ONE FROM THE OTHER, or at minimum make the dependency explicit and checked. A
+     per-model capability map in lib/image-constraints.ts:
+
+       const MODEL_ACCEPTS: Record<string, readonly AllowedMimeType[]> = {
+         'gpt-image-1': ['image/png', 'image/jpeg', 'image/webp'],
+         'dall-e-2':    ['image/png'],
+       }
+
+     with the model name exported from the same module and ALLOWED_MIME_TYPES computed from
+     it. Then changing the model changes the allow-list, the client hint and the server check
+     together, and the failure becomes impossible rather than merely unlikely.
+
+  2. ADD THE ACCEPTANCE CRITERION TO TASK 0002, marked with the precondition finding 4 asks
+     for: `live-key`. Something checkable: for each type in ALLOWED_MIME_TYPES, a real upload
+     of that type returns 200. It cannot run in CI without a credential, and saying so in the
+     criterion is the point - an unrunnable criterion that DECLARES itself unrunnable is
+     honest, where an absent one is invisible.
+
+  3. Distinguish the upstream failure codes. `UPSTREAM_ERROR` currently covers a rejected
+     format, an unverified organisation, an exhausted quota and a genuine outage. The
+     user-facing message should stay generic - that is criterion 12's reasoning and it is
+     right - but the SERVER-SIDE log and the `code` field could separate "the request was
+     invalid" from "the upstream is unavailable". A 400 from the API is our bug; a 5xx is
+     theirs, and today they are indistinguishable to whoever is on call.
+
+SEPARATE, SMALLER, AND WORTH FIXING REGARDLESS OF TODAY'S CAUSE:
+
+  route.ts:89   const uploadable = await toFile(bytes, 'upload', { type: sniffed })
+
+  The filename `'upload'` carries NO EXTENSION. The MIME type is passed correctly via
+  `type`, but an extensionless filename in an OpenAI multipart upload is a known trigger for
+  `400 invalid_request_error` responses about file format, independent of the declared type.
+  Deriving the extension from `sniffed` is a one-line change that removes a whole class of
+  upstream 400s, and it is worth making whether or not it is the cause of the failure
+  observed on 2026-09-05.
+
+  IT HAS DELIBERATELY NOT BEEN CHANGED YET. The operator is retrieving the terminal output.
+  If the actual error turns out to be a 403 (organisation verification) or a 429 (quota),
+  changing the filename first would leave a fix that cannot be attributed to anything - a
+  change that may have fixed nothing, sitting in the tree, indistinguishable from one that
+  mattered. Establish the cause, then fix both, and record which one did what.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
