@@ -981,3 +981,99 @@ claim. In both cases a human reading the artefacts would conclude the opposite.
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+### Addendum to finding 7 - Corollary first: the architect is the case that costs something. Fix B, with exact wording. C rejected.
+
+Amended 2026-09-05T10:34:02Z, plugin 0.1.32. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+REORDERED: THE COROLLARY IS THE FINDING. THE VERIFIER IS THE ILLUSTRATION.
+
+The original text led with mavci-verifier because that is where the defect was noticed. That
+is the wrong order. THE VERIFIER IS THE CASE WHERE THE DEFECT COSTS NOTHING - the agent has
+no reason to write, so an unenforced write scope changes no outcome. THE ARCHITECT IS THE
+CASE WHERE IT COSTS SOMETHING, and it is the version that matters.
+
+  mavci-architect is DENIED `app/**`, `src/**`, `lib/**`, `components/**`, `supabase/**` -
+  the application code it must never write, because "it never writes application code" is the
+  entire premise of separating planning from building. It holds Edit, Write AND Bash.
+  risk-guard.mjs:674 runs the scope check only for Edit/Write/NotebookEdit, so THE DENIAL
+  THAT DEFINES THE ROLE IS UNENFORCED ON BASH. An architect that wrote `app/page.tsx` with a
+  heredoc would not be refused. Nothing in the system would notice, and the phase freeze does
+  not help: the freeze is inside the same Edit/Write branch.
+
+  mavci-builder is denied `.mavci/control/**`. That one is PARTIALLY backstopped, and only by
+  accident of a different mechanism - the "write target could not be determined AND the
+  command names a control-plane path" heuristic names that directory literally. It is the one
+  denial with a Bash-side check, and it exists because someone hardened the control plane
+  specifically, not because scopes are enforced.
+
+  mavci-verifier is denied everything and needs to write nothing. Its scope is enforced only
+  against Edit/Write/NotebookEdit, which its own `disallowedTools` already removes. The scope
+  is dead code for this agent - which is why it was safe to discover here.
+
+SO THE FINDING IS: PER-AGENT WRITE SCOPE IS ENFORCED ON THE TOOLS AND UNENFORCED ON THE
+SHELL, FOR EVERY SCOPED AGENT. The verifier merely made it visible at zero cost. The
+architect is where an unenforced denial would actually breach a role boundary the system is
+built around.
+
+DECISION: FIX B. NOT C. NOT AS AN INTERIM.
+
+C - extending the control-plane heuristic to declared deny globs - IS REJECTED, and the
+warning attached to it is the argument against it. A partial mechanism under a name that
+implies completeness is how this class of defect starts; C would be found later by whoever
+attempts A and mistaken for a foundation to build on. It would make the next fix harder while
+appearing to make it easier.
+
+B IS THE FIX. Correct the documentation to what the mechanism provides. The exact edits:
+
+1. scripts/build-agents.mjs, constraintNote(), the `native_constraint: true` branch.
+
+   NOW (false):
+     'These limits are **natively enforced**: the `Edit`, `Write` and `NotebookEdit` tools
+      are absent from your context entirely. There is nothing to resist - you could not edit
+      a file if you decided to.'
+
+   The last clause is untrue for any agent holding Bash. Proposed:
+     'The `Edit`, `Write` and `NotebookEdit` tools are absent from your context entirely, so
+      these limits cannot be reached with a file tool. THEY ARE NOT ENFORCED ON `Bash`: the
+      per-agent scope check runs only for the file tools, so a shell command can write
+      anywhere except `.mavci/control/` and `.env*`. Treat the scope as a rule you follow,
+      not a wall that stops you.'
+
+2. scripts/build-agents.mjs, HOOK_NOTE (rendered into mavci-architect and mavci-builder).
+
+   NOW (false):
+     'A write outside that list is refused with a reason.'
+
+   Proposed:
+     'A write outside that list THROUGH `Edit` OR `Write` is refused with a reason. THE HOOK
+      DOES NOT SEE `Bash`: a shell command that writes outside your allow list is not
+      refused, except under `.mavci/control/` and `.env*`. The allow list is the boundary and
+      you are the thing enforcing it on the shell.'
+
+   This is the important one. The current sentence tells the architect its application-code
+   denial is enforced. It is not.
+
+3. agents/agent-scopes.json - the field name `native_constraint` PROMISES WHAT IT DOES NOT
+   DELIVER. It reads as "this agent is natively contained"; it means only "the file tools are
+   absent from its tool list". Rename it to `file_tools_absent`, which is exactly what it
+   asserts and cannot be misread as containment. If a rename is too invasive, add a sibling
+   `"_note": "file tools only; Bash writes are not scope-checked"` to each entry - the file is
+   JSON and cannot carry comments, which is itself why the overstatement went unannotated.
+
+4. scripts/gate.mjs:50 repeats the claim in a design note - "`Edit` is absent from its context
+   entirely. It could not fix one of those files if it decided to." True of Edit, false as
+   stated: guardian holds no Bash, so the sentence happens to be correct FOR GUARDIAN, but it
+   is written as though absence of Edit implies inability to write. Add the qualifier so the
+   next reader does not generalise it, because generalising it is precisely what produced this
+   finding's wrong first framing.
+
+WHY B IS NOT THE LESSER FIX. An accurate doc with a weak guarantee lets someone choose to
+build A. An inaccurate doc with a strong guarantee stops them asking. gate6's verifier row
+read wrong for eleven versions for exactly that reason: the claim was load-bearing for
+reasoning that was never true, and every reader who trusted it reasoned wrongly for eleven
+releases. Correcting the claim is the PREREQUISITE for anyone sanely scoping A - not a
+substitute for it, and not an interim measure pending it.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
