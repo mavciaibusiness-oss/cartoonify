@@ -1,4 +1,9 @@
 import OpenAI, { toFile } from 'openai'
+import {
+  DEFAULT_CARTOON_STYLE_ID,
+  getCartoonStyle,
+  isCartoonStyleId,
+} from '@/lib/cartoon-styles'
 import { getEnv, hasOpenAIKey } from '@/lib/env'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES, sniffImageType } from '@/lib/image-constraints'
 
@@ -18,6 +23,7 @@ type ErrorCode =
   | 'NO_FILE'
   | 'INVALID_TYPE'
   | 'FILE_TOO_LARGE'
+  | 'INVALID_STYLE'
   | 'MISSING_API_KEY'
   | 'UPSTREAM_ERROR'
   | 'UPSTREAM_UNREACHABLE'
@@ -29,6 +35,7 @@ const ERROR_MESSAGES: Record<ErrorCode, string> = {
   NO_FILE: 'Bir görsel seçmediniz. Lütfen bir dosya yükleyin.',
   INVALID_TYPE: 'Bu dosya türü desteklenmiyor. Lütfen PNG, JPEG veya WEBP formatında bir görsel yükleyin.',
   FILE_TOO_LARGE: 'Görsel çok büyük. Lütfen daha küçük bir dosya seçin.',
+  INVALID_STYLE: 'Seçtiğiniz karikatür stili geçersiz. Lütfen listeden bir stil seçin.',
   MISSING_API_KEY: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
   UPSTREAM_ERROR: 'Karikatür oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.',
   UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
@@ -83,14 +90,27 @@ export async function POST(request: Request): Promise<Response> {
     return errorResponse('INVALID_TYPE', 400)
   }
 
-  // 6. Only now does the key check happen — every validation failure above
+  // 6. The style is an id, never prompt text. An absent field is the
+  //    pre-styles contract and gets the default; a present one must be in the
+  //    allow-list, so no caller can steer the upstream prompt.
+  const styleField = form.get('style')
+  let styleId = DEFAULT_CARTOON_STYLE_ID
+  if (styleField !== null) {
+    if (!isCartoonStyleId(styleField)) {
+      return errorResponse('INVALID_STYLE', 400)
+    }
+    styleId = styleField
+  }
+  const style = getCartoonStyle(styleId)
+
+  // 7. Only now does the key check happen — every validation failure above
   //    is observable with no key configured at all.
   if (!hasOpenAIKey()) {
     return errorResponse('MISSING_API_KEY', 503)
   }
 
   try {
-    // 7. Client and key are constructed here, inside the handler, never at
+    // 8. Client and key are constructed here, inside the handler, never at
     //    module scope (criteria 3 and 10).
     const client = new OpenAI({
       apiKey: getEnv().OPENAI_API_KEY,
@@ -102,19 +122,18 @@ export async function POST(request: Request): Promise<Response> {
     const result = await client.images.edit({
       image: uploadable,
       model: 'gpt-image-1',
-      prompt:
-        'Bu fotoğrafı canlı renkli, temiz hatlı bir karikatür/çizgi film çizimine dönüştür. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.',
+      prompt: style.prompt,
       size: '1024x1024',
     })
 
     const b64 = result.data?.[0]?.b64_json
 
-    // 8. Any thrown error or empty result becomes a generic upstream failure.
+    // 9. Any thrown error or empty result becomes a generic upstream failure.
     if (!b64) {
       return errorResponse('UPSTREAM_ERROR', 502)
     }
 
-    // 9. Success.
+    // 10. Success.
     return Response.json(
       { ok: true, image: `data:image/png;base64,${b64}` },
       { status: 200, headers: { 'Cache-Control': 'no-store' } },

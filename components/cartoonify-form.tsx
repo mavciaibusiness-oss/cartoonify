@@ -1,6 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import {
+  CARTOON_STYLES,
+  DEFAULT_CARTOON_STYLE_ID,
+  isCartoonStyleId,
+  type CartoonStyleId,
+} from '@/lib/cartoon-styles'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
 
 type Status = 'idle' | 'loading' | 'error' | 'success'
@@ -32,6 +38,7 @@ export default function CartoonifyForm() {
   const [message, setMessage] = useState<string | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
+  const [styleId, setStyleId] = useState<CartoonStyleId>(DEFAULT_CARTOON_STYLE_ID)
   const objectUrlRef = useRef<string | null>(null)
 
   function releasePreview() {
@@ -75,6 +82,16 @@ export default function CartoonifyForm() {
     setMessage(null)
   }
 
+  // The select can only offer allow-listed ids, so this guard is about a
+  // stale or tampered DOM value, never about trusting the client: the server
+  // re-checks the id against the same list on every request.
+  function handleStyleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    const value = event.target.value
+    if (isCartoonStyleId(value)) {
+      setStyleId(value)
+    }
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -100,6 +117,7 @@ export default function CartoonifyForm() {
     try {
       const body = new FormData()
       body.append('image', file)
+      body.append('style', styleId)
 
       const response = await fetch('/api/cartoonify', { method: 'POST', body })
       const data = (await response.json()) as ApiResponse
@@ -119,6 +137,8 @@ export default function CartoonifyForm() {
   }
 
   const canSubmit = status !== 'loading' && previewUrl !== null
+  const selectedStyle =
+    CARTOON_STYLES.find((style) => style.id === styleId) ?? CARTOON_STYLES[0]
 
   return (
     <div data-state={status} className="cartoonify">
@@ -131,6 +151,25 @@ export default function CartoonifyForm() {
           accept={ALLOWED_MIME_TYPES.join(',')}
           onChange={handleFileChange}
         />
+
+        <div className="style-picker">
+          <label htmlFor="cartoonify-style-select">Karikatür stili</label>
+          <select
+            id="cartoonify-style-select"
+            name="style"
+            value={styleId}
+            onChange={handleStyleChange}
+            disabled={status === 'loading'}
+            aria-describedby="cartoonify-style-description"
+          >
+            {CARTOON_STYLES.map((style) => (
+              <option key={style.id} value={style.id}>
+                {style.name}
+              </option>
+            ))}
+          </select>
+          <p id="cartoonify-style-description">{selectedStyle.description}</p>
+        </div>
 
         <p className="kvkk-notice">
           Yüklediğiniz görsel, karikatüre dönüştürülmek üzere <strong>OpenAI</strong> sunucularına

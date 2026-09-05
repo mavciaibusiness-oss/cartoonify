@@ -35,6 +35,34 @@ main {
   display: block;
 }
 
+/*
+ * The style picker stacks label, select and description in one column at every
+ * width, so it cannot contribute to horizontal overflow at 375px either.
+ */
+.style-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 1rem 0;
+  max-width: 100%;
+}
+
+.style-picker select {
+  max-width: 100%;
+  padding: 0.5rem;
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.style-picker p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #555;
+}
+
 .kvkk-notice {
   font-size: 0.875rem;
   color: #444;
