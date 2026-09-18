@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Style picker with grouped radio buttons and card grid** (task 0004, Sept 9–18 2026)
+  - Replaced flat 31-option dropdown with grouped radio interface: `classic` outside groups, then four fieldsets for `Çizgi ve Mürekkep`, `Boya ve Fırça`, `Baskı`, `Kesme ve Kolaj` (Line, Paint, Print, Cut/Collage)
+  - Style grid using `repeat(auto-fill, minmax(150px, 1fr))` for responsive layout: one column at 375px, two columns from 768px
+  - Each style card displays a preview image if rendered, or a CSS swatch colored by group
+  - New file `lib/style-previews.ts` exports `STYLE_PREVIEW_IDS` (list of styles with committed preview assets)
+  - New file `components/style-card.tsx` renders individual cards with radio button, preview/swatch, name and description
+  - Group ordering and labels exported from `lib/cartoon-styles.ts` as `STYLE_GROUP_ORDER` and `GROUP_LABELS`
+  - Accessibility: fieldset/legend/radio combination is navigable by keyboard and announced as four groups by screen readers
+  - Responsive images use plain `<img>` with `loading="lazy"`, not `next/image` (static local files, no per-image optimization benefit)
+  - Verified attempt 02: 18 of 18 criteria executed and passing; attempt 01 failed on scope containment, re-approved spec corrected the issue
+  - Two new design decisions recorded: ADR 0006 (what bounds a caller) and ADR 0007 (one image per request and deferred timeout fix)
+
+### Changed
+
+- **Per-request style count enforced at one** (task 0004)
+  - New constant `MAX_STYLES_PER_REQUEST = 1` exported from `lib/cartoon-styles.ts`
+  - Route now reads `form.getAll('style')` instead of `form.get('style')` to catch repeated style fields
+  - Request with two or more style fields rejected with existing `INVALID_STYLE` 400 error (no new error code)
+  - This separates amplification (upstream generations per request) from rate (requests per caller), both recorded in ADR 0006
+  - Rate limiting is unbounded in code because there is no auth, store or session; it requires edge controls (Vercel WAF) and provider controls (spend cap), both operator actions
+  - Criteria 12 and 13 verify the cap is enforced and that no fake in-process rate limiter was added
+  
+- **Classic style provenance corrected** (task 0004)
+  - `lib/cartoon-styles.ts` line 96 changed from citing "task 0001 (criterion 12)" to "task 0004 criterion 4"
+  - The cited criterion in 0001 does not exist; criterion 4 of this task pins the classic prompt with an ASCII-escaped literal inside this spec
+  - The false citation was a defect preventing any future citation from being trusted; criterion 4 requires it to be corrected
+
 ### Changed
 
 - **`UPSTREAM_ERROR` no longer instructs the user to retry** (task 0003, Sept 5 2026)

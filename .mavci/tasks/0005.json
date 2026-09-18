@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0005",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/pending.md",
+  "title": "Upload-first layout: style panel beside the image, gallery below"
+}

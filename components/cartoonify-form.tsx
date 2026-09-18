@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import {
-  CARTOON_STYLES,
   DEFAULT_CARTOON_STYLE_ID,
+  getCartoonStyle,
   isCartoonStyleId,
+  STYLE_GROUPS,
   type CartoonStyleId,
 } from '@/lib/cartoon-styles'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import StyleCard from './style-card'
 
 type Status = 'idle' | 'loading' | 'error' | 'success'
 
@@ -37,6 +39,7 @@ export default function CartoonifyForm() {
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [fileName, setFileName] = useState<string | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
   const [styleId, setStyleId] = useState<CartoonStyleId>(DEFAULT_CARTOON_STYLE_ID)
   const objectUrlRef = useRef<string | null>(null)
@@ -59,6 +62,9 @@ export default function CartoonifyForm() {
 
     releasePreview()
     setResultUrl(null)
+    // The native input is visually hidden, so the chosen name is echoed here
+    // whether or not the file then passes validation — as the browser would.
+    setFileName(file ? file.name : null)
 
     if (!file) {
       setPreviewUrl(null)
@@ -82,11 +88,10 @@ export default function CartoonifyForm() {
     setMessage(null)
   }
 
-  // The select can only offer allow-listed ids, so this guard is about a
+  // The cards can only offer allow-listed ids, so this guard is about a
   // stale or tampered DOM value, never about trusting the client: the server
   // re-checks the id against the same list on every request.
-  function handleStyleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    const value = event.target.value
+  function handleStyleSelect(value: string) {
     if (isCartoonStyleId(value)) {
       setStyleId(value)
     }
@@ -137,37 +142,65 @@ export default function CartoonifyForm() {
   }
 
   const canSubmit = status !== 'loading' && previewUrl !== null
-  const selectedStyle =
-    CARTOON_STYLES.find((style) => style.id === styleId) ?? CARTOON_STYLES[0]
+  const defaultStyle = getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)
+  const selectedStyle = getCartoonStyle(styleId)
 
   return (
     <div data-state={status} className="cartoonify">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="cartoonify-image-input">Bir fotoğraf seçin</label>
-        <input
-          id="cartoonify-image-input"
-          name="image"
-          type="file"
-          accept={ALLOWED_MIME_TYPES.join(',')}
-          onChange={handleFileChange}
-        />
+        {/*
+          A real file input, visually hidden but still focusable: Tab reaches it,
+          Space or Enter opens the picker, and the label is its accessible name.
+          It sits before the label so CSS can show its focus ring on the label.
+        */}
+        <div className="file-picker">
+          <input
+            id="cartoonify-image-input"
+            className="visually-hidden"
+            name="image"
+            type="file"
+            accept={ALLOWED_MIME_TYPES.join(',')}
+            aria-describedby="cartoonify-image-name"
+            onChange={handleFileChange}
+          />
+          <label htmlFor="cartoonify-image-input" className="file-picker-button">
+            Fotoğraf yükle
+          </label>
+          <span id="cartoonify-image-name" className="file-picker-name" aria-live="polite">
+            {fileName ?? 'Henüz dosya seçilmedi'}
+          </span>
+        </div>
 
-        <div className="style-picker">
-          <label htmlFor="cartoonify-style-select">Karikatür stili</label>
-          <select
-            id="cartoonify-style-select"
-            name="style"
-            value={styleId}
-            onChange={handleStyleChange}
-            disabled={status === 'loading'}
-            aria-describedby="cartoonify-style-description"
-          >
-            {CARTOON_STYLES.map((style) => (
-              <option key={style.id} value={style.id}>
-                {style.name}
-              </option>
-            ))}
-          </select>
+        <div className="style-picker" aria-describedby="cartoonify-style-description">
+          <fieldset className="style-group">
+            <legend>Varsayılan</legend>
+            <div className="style-grid">
+              <StyleCard
+                style={defaultStyle}
+                checked={styleId === defaultStyle.id}
+                disabled={status === 'loading'}
+                onSelect={handleStyleSelect}
+              />
+            </div>
+          </fieldset>
+
+          {STYLE_GROUPS.map((group) => (
+            <fieldset key={group.id} className="style-group">
+              <legend>{group.label}</legend>
+              <div className="style-grid">
+                {group.styles.map((style) => (
+                  <StyleCard
+                    key={style.id}
+                    style={style}
+                    checked={styleId === style.id}
+                    disabled={status === 'loading'}
+                    onSelect={handleStyleSelect}
+                  />
+                ))}
+              </div>
+            </fieldset>
+          ))}
+
           <p id="cartoonify-style-description">{selectedStyle.description}</p>
         </div>
 

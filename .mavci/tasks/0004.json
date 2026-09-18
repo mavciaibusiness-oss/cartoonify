@@ -1,0 +1,14 @@
+{
+  "artifacts": [],
+  "id": "0004",
+  "notes": [
+    "Spec written against work that already exists uncommitted in the working tree (finding 28 shape); it describes that state rather than authorising it retroactively.",
+    "Section 4 corrects the record: task 0001 criterion 12 does not pin the classic prompt, it is the MISSING_API_KEY test. No approved spec has ever pinned that string. Criterion 4 of this task is the first that does.",
+    "Decisions 0006 and 0007 are Proposed and become Accepted on approval of this spec.",
+    "18 criteria, all needs=[shell]. Eight proven in both directions, nine are pins proven green only, criterion 18 proven red only. See section 9.1."
+  ],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0004-style-library-groups-and-the-picker.md",
+  "title": "Style library: thirty styles in four derived groups, a grouped card picker, and a stated bound on a caller"
+}

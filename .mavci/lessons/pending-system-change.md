@@ -145,6 +145,46 @@ would otherwise fix half of it and see nothing to suggest the other half exists.
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 1 - The stamp on this finding's addendum is false: main-session is not an agent and nothing enforced it
+
+Amended 2026-09-06T13:28:56Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+ONE FALSELY STAMPED ADDENDUM IN THIS FINDING. It is:
+
+  "Finding 15 is this finding from the other direction - the entry gap and the
+   exit gap", Amended 2026-09-05T14:41:49Z, plugin 0.1.33,
+   stamped: Amended by: **main-session** (agent).
+
+WHY THE STAMP IS FALSE. It reads "Provenance enforced at the risk guard, not
+self-declared." Nothing enforced it. The guard's comparison lives in
+risk-guard.mjs and is gated on `agent_type`, which is present for a subagent and
+ABSENT for the main session; a main-session caller therefore passes any value it
+likes and the comparison never runs. Worse, `main-session` IS NOT AN AGENT:
+agents/agent-scopes.json declares exactly five - mavci-architect, mavci-builder,
+mavci-guardian, mavci-scribe, mavci-verifier. Had a subagent declared
+`--agent main-session`, the guard would have DENIED it as "not itself". It was
+not denied because there was no caller identity to compare against.
+
+HOW TO READ THESE BLOCKS. Treat them exactly as if they said "Amended by: not
+recorded ... Treat it as unattributed", which is what the other thirteen addenda
+in this queue say and what these should have said. Specifically, the stamp is
+NOT evidence that an agent authored the block, and NOT evidence that anything
+verified who did. It is a string that was typed and echoed.
+
+THE STAMPS ARE NOT EDITED, AND MUST NOT BE. This queue is append-only -
+"no path here edits a filed byte" - and rewriting a stamp would erase the fact
+that it was ever wrong, which is the same objection the queue raises against
+replacing a filed sentence. This addendum is the correction; the bytes stay.
+
+IDENTIFIED BY TITLE AND TIMESTAMP, NOT BY LINE NUMBER. Finding 24's addendum
+cited line numbers, and they are already stale: amending finding 9 inserted text
+inside an earlier block and shifted every line after it. In a file that appends
+inside blocks, a line number is not an identifier.
+
+Full analysis, both holes and the driven reproductions: finding 24.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 2 - .env.example is unmaintainable by an agent though it holds no secrets
 
 Filed: 2026-09-05T08:57:41Z, plugin 0.1.32.
@@ -421,6 +461,139 @@ NOT SUPPLIED. Whoever applies this must write one before building the fix: name 
 
 ---
 
+### Addendum to finding 3 - Second instance: a correct spec that pins the gate warning count cannot be seen by the router
+
+Amended 2026-09-09T17:05:16Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+SECOND INSTANCE, AND IT BLOCKED A REAL CHAIN. Observed 2026-09-09, project
+cartoonify, plugin 0.1.34, task 0004.
+
+WHAT HAPPENED. The operator ran the ship chain with a style-library request. The
+router returned `plan`, the architect wrote a complete spec to
+`.mavci/tasks/0004-style-library-groups-and-the-picker.md` - 754 lines, 18
+executable criteria, two ADRs - and the next router consultation returned:
+
+    "action": "plan", "dispatch": "mavci-architect",
+    "why": "task 0004 has no spec at .mavci/tasks/0004-style-library-groups-and-the-picker.md"
+
+The file exists, is 56575 bytes, and was written eleven minutes earlier. The
+mechanism is unchanged from the original filing and is `route.mjs:197`:
+
+    if (String(specText).includes(REVIEW_MARKER)) return false;  // watermarked, not written
+
+The spec contains the string once, at line 488.
+
+WHAT IS NEW, AND IT IS NOT THAT IT HAPPENED TWICE. The original filing was
+against task 0001, where the marker appeared incidentally. Here it appeared
+NECESSARILY, and that changes the severity.
+
+The spec's criterion 1 pins the standards gate at "0 blocking, 5 warning(s)". A
+spec that pins a warning COUNT has to say what the warnings ARE, or the number
+is a magic constant nobody can check. Saying what they are means naming the
+scaffolded-legal-page marker. So:
+
+  A CORRECT SPEC, DOING A NECESSARY THING, CANNOT BE SEEN BY THE ROUTER.
+
+That is a different claim from the original filing. It is not that an author
+might unluckily choose a phrase; it is that pinning the gate's own output makes
+the spec unwritable. Every project this plugin governs that carries scaffolded
+legal pages has five such warnings, so every one of them has a spec it cannot
+write.
+
+THE FAILURE IS SILENT AND READS AS SOMEONE ELSE'S FAULT. The router does not
+report that it cannot see the spec; it reports that the spec does not exist, and
+names the architect as the fix. An orchestrator following the ship skill as
+written redispatches the architect, gets another spec, and consults again -
+forever, or until the twelve-consultation ceiling ends it by exhaustion rather
+than by diagnosis. Nothing in the output points at the marker. The only reason
+this instance was diagnosed in one step is that finding 3 was already in the
+queue and its title matched the symptom.
+
+COST HERE. Two full architect turn-budgets, roughly 268k subagent tokens, and a
+spec that cannot be approved. The chain stopped at the operator rather than
+looping, but only because the queue was read.
+
+WHAT THE FIX HAS TO SURVIVE, since the obvious one does not. Making the check
+smarter about WHERE the marker appears - only in a heading, only at the top,
+only outside a fenced block - fails on this instance: line 488 is ordinary prose
+in an acceptance-criteria section, which is exactly where a spec would legitimately
+explain what it is pinning. The marker means "this document is a watermarked
+draft", and a spec MENTIONING the marker is not a watermarked draft. Those are
+different facts and the current check cannot tell them apart because it looks for
+a substring rather than for the watermark's own position and form.
+
+A spec that IS a draft carries the marker the way the legal pages do - as its own
+banner. A spec that DISCUSSES the marker carries it as a quoted token. Any fix
+that does not distinguish those two will either keep this deadlock or stop
+catching real drafts.
+
+REPRODUCED BY: writing any spec that pins the standards gate's warning count and
+explains what the warnings are. No unusual input required.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 3 - Fixed in 0.1.35 - banner versus mention, and the message that makes a prose heuristic affordable
+
+Amended 2026-09-09T18:36:08Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+FIXED IN 0.1.35, ALONG THE LINE THE SECOND-INSTANCE ADDENDUM DREW.
+
+hasSpec no longer asks whether the marker OCCURS. It asks whether the document
+carries it as a BANNER: the marker must open the line, after banner punctuation
+only - heading, bold, blockquote, bullet, rule, HTML or JSX comment opener -
+outside a fenced block and outside a four-space indent, which are markdown's own
+two ways of quoting one. A QUOTE CHARACTER IS DELIBERATELY ABSENT FROM THAT
+PUNCTUATION SET, and that single omission is the whole discrimination: a line
+reading `REVIEW REQUIRED` markers stay does not start with the marker, it starts
+with the backtick. The line this project died on twice - the criterion pinning the
+gate at five warnings - fails both tests, on position and on form, and is now
+read as what it is.
+
+THE FINDING'S OWN FIRST PREFERENCE WAS DECLINED, and the reason is recorded beside
+the code so it is not tried again as an improvement. A second machine-only
+sentinel would be a marker nothing writes: createTask does not stamp a spec stub
+- that is the system's carried-forward item 6, still unbuilt - and the convention
+item 6 settles on is explicitly this one, "a watermark first line in the REVIEW
+REQUIRED shape the legal pages already use, one convention rather than two". A
+sentinel with no writer is a mechanism present, correct-looking and never reached.
+
+Position alone was declined for the reason the addendum gives: line 488 is
+ordinary prose in an acceptance-criteria section, which is exactly where a spec
+legitimately explains what it is pinning.
+
+THE OTHER HALF, WHICH MATTERS MORE THAN THE HEURISTIC. The addendum's sharpest
+observation is that the failure was silent and read as someone else's fault - the
+router reported the spec as ABSENT and named the architect as the fix, so nothing
+in the answer pointed at the marker. A rejection for the watermark now names the
+marker, the line number, the line itself, and the one edit that clears it: quote
+it, indent it, or fence it, and nothing else in the spec changes. That is what
+makes a prose heuristic affordable at all.
+
+THE RESIDUAL, STATED RATHER THAN CLOSED. An unquoted marker opening a bullet -
+"- REVIEW REQUIRED markers must survive" - still reads as a banner. The author's
+fix is to quote it, which is what they would write anyway. That trade is
+acceptable only because of the message above; if the message is ever weakened the
+heuristic has to be revisited with it.
+
+THE ASSERTION THIS FINDING WAS FILED WITHOUT, supplied: check-route.mjs section W,
+thirteen cases. W1 reproduces the live defect at the router - a spec quoting the
+marker must route PAST plan - and W2-W5 and W13 are the mentions, W6-W9 the
+banners. The two halves are each other's control and the mutation sets are
+disjoint: restoring the shipped includes() reddens every mention and no banner;
+deleting the marker test outright reddens every banner and no mention. Asserting
+one half would have passed a build that had gone the other way entirely.
+
+W13 exists because a mutation went green. Every case written before it answered
+position and form the same way - a mention was mid-line AND quoted, a banner
+line-leading AND bare - so making a quote count as banner punctuation reddened
+nothing, and the form half was load-bearing in the code and asserted nowhere. A
+marker quoted at the head of a bullet is where the two come apart.
+
+The smaller note at the end of the body - two task records, surface and control,
+and an agent reading one sees half the task - is untouched by this release.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 4 - Spec review surfaces what criteria assert and is silent about what they require
 
 Filed: 2026-09-05T09:37:53Z, plugin 0.1.32.
@@ -527,6 +700,208 @@ field rather than by declaring a fact.
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
 
 ---
+
+### Addendum to finding 4 - Third gap in the same seam: what the prose describes versus what the command executes - and two defects in one criterion, only one blocking
+
+Amended 2026-09-13T10:04:16Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Finding 4 filed the gap between what a criterion ASSERTS and what it REQUIRES.
+Finding 36 filed the gap between what a criterion asserts and what its own proof
+table CONCEDES. Task 0004 criterion 18 is a third gap in the same seam, and it is
+the one that actually stopped a task: what the criterion's prose DESCRIBES versus
+what its command EXECUTES.
+
+WHAT WAS OBSERVED
+
+Project cartoonify, task 0004, verify attempt 1. Criterion 18 ("scope
+containment", labelled discriminating) failed with:
+
+    out of scope for task 0004: public/styles/.gitkeep
+
+The criterion's command, in the executable block of the spec, runs:
+
+    git status --porcelain --untracked-files=all -- ':!.mavci'
+
+and filters its output against two hard-coded lists, both of which contain the
+literal string 'public/':
+
+    const allowed  = [..., 'public/', ...]
+    const required = [..., 'public/']
+
+Twenty lines above it, in the same criterion, the spec states its own limitation
+in prose, under the heading "Known weakness, stated rather than hidden":
+
+    git collapses untracked directories, so `public/` appears as one line and
+    this criterion cannot see inside it.
+
+That sentence is true of --untracked-files=normal. The command invokes
+--untracked-files=all, which is the mode whose entire purpose is to DISABLE that
+collapsing and list every file individually. The prose and the command, inside one
+criterion, describe opposite git modes. The prose is the half a reviewer reads.
+
+MEASURED, BOTH MODES, SAME TREE
+
+    --untracked-files=all     ->  ?? public/styles/.gitkeep
+    --untracked-files=normal  ->  ?? public/    and    ?? scripts/
+
+Instrumenting the criterion's own script verbatim against the built tree:
+
+    OUT-OF-SCOPE  -> ["public/styles/.gitkeep"]   (allowed check throws first)
+    MISSING REQ.  -> ["public/"]                  (required check throws next)
+
+TWO INDEPENDENT THROWS, ONE ROOT. Correcting the `allowed` list alone does not
+turn the criterion green: `required` still demands a bare `public/` line that
+--untracked-files=all cannot emit under any circumstances.
+
+THE CRITERION IS UNSATISFIABLE, NOT MERELY WRONG ABOUT THIS BUILD
+
+Under =all there is no builder output that passes:
+
+  - public/styles/ holding .gitkeep      -> out-of-scope throw
+  - public/styles/ holding .webp files   -> out-of-scope throw on each
+  - public/ empty                        -> git tracks no empty directory, so
+                                            the required check throws instead
+
+A perfect implementation of the section the criterion exists to police fails it.
+The failure is independent of the code under test, which is the property that
+makes it a spec defect rather than a builder defect.
+
+(=normal would not rescue it either: it emits `?? scripts/`, and `allowed`
+contains only `scripts/check-styles.mjs`.)
+
+THE SEPARATION THAT IS THE FINDING
+
+This criterion carries TWO defects, and only one of them blocks:
+
+  1. NON-BLOCKING, prose only. The criterion's narrative states "four of the seven
+     required paths are absent from the status output", and the proof table
+     repeats the count. The count appears nowhere in the command. A wrong number
+     there cannot change what the criterion asserts. An earlier reading of this
+     criterion found that count to be off by one and stopped there.
+
+  2. BLOCKING, command and data. The unsatisfiable `public/` literal above.
+
+Both are true. The first reading was accurate and incomplete. Stopping at "the
+criterion is wrong" was never a sufficient answer, because the two defects imply
+different remedies: a wrong count is corrected in prose at no cost, while an
+unsatisfiable assertion has to be waived or the spec reopened for re-approval. A
+waiver reason naming the count would have silenced the wrong thing and left the
+record asserting that a countable, transient fact blocked the task.
+
+The two defects touch at exactly one point, and that point is the mechanism:
+whatever the total was, `public/` was counted among the paths that were
+TEMPORARILY absent, pending the builder creating the directory. It is
+PERMANENTLY absent under the flag the command uses. The prose misclassified one
+entry, and the command encodes that same misclassification as an assertion. One
+misreading of git's behaviour, surfacing once as a wrong number nobody need act
+on and once as a criterion nothing can satisfy.
+
+WHY THIS IS FINDING 4's SEAM AND NOT A NEW ONE
+
+Finding 4 says spec review reads assertions and is silent about requirements.
+This is the same silence one layer down. Review reads the criterion's PROSE -
+its heading, its rationale, its stated weaknesses - because that is what is
+written to be read. The command is a JSON-encoded shell string containing an
+embedded heredoc containing a node script; it is written to be RUN. Nothing
+compares the two, and here they disagreed about a flag while sitting eighteen
+lines apart in one numbered item.
+
+The spec was approved. The proof table had already recorded this criterion as
+"red only - the green direction was not proven" (finding 36's subject), so the
+one criterion whose passing direction rested on reading rather than execution
+was also the one whose prose described the wrong git mode. The concession and the
+contradiction were in the same item, and the gate read neither.
+
+WHAT MUST BE ASSERTED
+
+State it as a check over the spec's own executable block, not over the project:
+
+  For every criterion, extract the command actually executed, and compare the
+  flags and modes it names against the flags and modes named in that criterion's
+  prose. Where the prose names a behaviour that a flag in the command disables,
+  refuse the spec.
+
+The narrow, cheap form that would have caught this exact case: if a criterion's
+command passes --untracked-files=all, its prose must not claim directory
+collapsing; if it passes =normal, its literals must not be individual file paths.
+
+The broken build it must catch, stated concretely so the assertion can be tested
+against it: a spec in which one criterion's rationale describes
+--untracked-files=normal semantics while its command passes --untracked-files=all,
+and whose allowed/required literals are therefore unmatchable - sealed, approved,
+and failing on attempt 1 against a correct implementation. That is this document.
+
+A stronger and more general form, if it is affordable: a criterion declared
+DISCRIMINATING whose green direction was never demonstrated should be refused, or
+at minimum stamped, at the approval gate rather than at verify. That overlaps
+finding 36 and is recorded here only to note that the two checks would have
+caught this from opposite ends - one by reading the flag, one by demanding the
+proof.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 4 - Correction: the count IS verifiable, it is five not four, and section 2 quotes the evidence section 8 miscounts
+
+Amended 2026-09-13T13:23:08Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+The previous addendum recorded the non-blocking half of criterion 18's defect -
+the absent-path count in prose - as unverifiable, on the grounds that the
+pre-build tree was not recoverable from git. That was wrong: it was recorded in
+the spec itself, in a section the earlier reading did not consult.
+
+Section 2 of the task file, "The state on disk when this spec was written",
+quotes the exact command and its exact output at HEAD bc44bd7:
+
+     M app/api/cartoonify/route.ts
+     M lib/cartoon-styles.ts
+     M lib/image-constraints.ts
+     M package.json
+    ?? docs/adr/README.md
+    ?? scripts/check-styles.mjs
+
+Criterion 18's `required` list holds seven paths. Counted against that recorded
+output:
+
+    components/cartoonify-form.tsx   ABSENT
+    app/globals.css                  ABSENT
+    lib/cartoon-styles.ts            present
+    app/api/cartoonify/route.ts      present
+    components/style-card.tsx        ABSENT
+    lib/style-previews.ts            ABSENT
+    public/                          ABSENT
+
+FIVE absent. Section 8 states four, and section 9.1 row 18 repeats four. The
+earlier reading was correct and the count is off by one, now established from
+the spec's own recorded evidence rather than from inference.
+
+This does not change which defect blocks - the unsatisfiable `public/` literal
+still does, and the count still appears nowhere in the command. It changes the
+standing of the two claims. Both halves of the finding are now verified facts
+rather than one verified and one asserted, and the prose defect is confirmed to
+be a genuine second defect rather than a possible misreading.
+
+It also sharpens the mechanism. Section 2 records a real git status, and section
+8 miscounts against it - two prose sections of one spec, disagreeing about
+evidence one of them quotes verbatim. The count was checkable at approval time
+by reading section 2 against section 8, with no execution required at all. The
+approval gate did not, and neither did the first reading of the failure.
+
+WHAT THIS ADDS TO THE ASSERTION
+
+The previously stated assertion - compare a criterion's prose against the flags
+its command actually passes - stands. Add the cheaper sibling it implies:
+
+  Where a spec states a count of paths, files, or criteria, and elsewhere quotes
+  the evidence that count is drawn from, recompute the count from the quoted
+  evidence and refuse the spec on a mismatch.
+
+The broken build it must catch: a spec whose section 2 quotes a six-line git
+status, and whose section 8 says four of seven required paths are absent from
+it, when five are. That is this document, and no execution is needed to catch
+it - only reading two sections against each other, which is exactly the thing a
+human reviewer is worst at and a checker is best at.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
 # Finding 5 - Scaffold ships an npm run lint script with no eslint dependency, so it has never run
 
@@ -1463,6 +1838,57 @@ half that is missing is never exercised by it.
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 7 - Two addenda here carry a false provenance stamp; read both as unattributed
+
+Amended 2026-09-06T13:28:56Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+TWO FALSELY STAMPED ADDENDA IN THIS FINDING. They are:
+
+  1. "The criteria path: the agent qualified to judge is the one denied the tool
+     to record - the plumbing half shipped and the agent half did not",
+     Amended 2026-09-05T14:31:35Z, plugin 0.1.33.
+  2. "The assertion for the criteria path, and the broken build it must catch",
+     Amended 2026-09-05T14:31:42Z, plugin 0.1.33.
+
+Both stamped: Amended by: **main-session** (agent). The finding's other two
+addenda (2026-09-05T10:34:02Z and 10:38:54Z) are correctly unattributed and are
+not affected.
+
+NOTE THE SECOND ONE PARTICULARLY. It supplies an ASSERTION - the thing an
+applier acts on - and it is the block whose apparent provenance most invites
+trust. Its content stands or falls on its own; the attribution beneath it
+attests to nothing.
+
+WHY THE STAMP IS FALSE. It reads "Provenance enforced at the risk guard, not
+self-declared." Nothing enforced it. The guard's comparison lives in
+risk-guard.mjs and is gated on `agent_type`, which is present for a subagent and
+ABSENT for the main session; a main-session caller therefore passes any value it
+likes and the comparison never runs. Worse, `main-session` IS NOT AN AGENT:
+agents/agent-scopes.json declares exactly five - mavci-architect, mavci-builder,
+mavci-guardian, mavci-scribe, mavci-verifier. Had a subagent declared
+`--agent main-session`, the guard would have DENIED it as "not itself". It was
+not denied because there was no caller identity to compare against.
+
+HOW TO READ THESE BLOCKS. Treat them exactly as if they said "Amended by: not
+recorded ... Treat it as unattributed", which is what the other thirteen addenda
+in this queue say and what these should have said. Specifically, the stamp is
+NOT evidence that an agent authored the block, and NOT evidence that anything
+verified who did. It is a string that was typed and echoed.
+
+THE STAMPS ARE NOT EDITED, AND MUST NOT BE. This queue is append-only -
+"no path here edits a filed byte" - and rewriting a stamp would erase the fact
+that it was ever wrong, which is the same objection the queue raises against
+replacing a filed sentence. This addendum is the correction; the bytes stay.
+
+IDENTIFIED BY TITLE AND TIMESTAMP, NOT BY LINE NUMBER. Finding 24's addendum
+cited line numbers, and they are already stale: amending finding 9 inserted text
+inside an earlier block and shifted every line after it. In a file that appends
+inside blocks, a line number is not an identifier.
+
+Full analysis, both holes and the driven reproductions: finding 24.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 8 - Release gate is a plugin-release gate wearing the name of a project-release gate
 
 Filed: 2026-09-05T10:49:02Z, plugin 0.1.32.
@@ -1640,6 +2066,165 @@ for the third time.
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
 
 ---
+
+### Addendum to finding 9 - Fix 3 shipped as escrow and the loss half is closed on evidence; the resolution half is untouched and is now quieter, not gone
+
+Amended 2026-09-06T12:28:27Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+FOURTH CONSECUTIVE SESSION, AND THE COUNT IS STILL THE FINDING - BUT IT NOW COUNTS
+A DIFFERENT THING. Fix 3 has shipped. Fixes 1 and 2 have not. The half that was
+losing work is closed on evidence; the half the command is named after is
+untouched.
+
+WHAT SHIPPED, AND IT IS EXACTLY FIX 3. The main text ranked four fixes and said of
+the third - write the queue somewhere outside the disposable project when no repo
+can be found - "THIS IS THE ONE THAT ACTUALLY FIXES THE THREE-SESSION PROBLEM,
+because it does not depend on the operator doing anything." That is the escrow,
+and it behaved to specification on 2026-09-06:
+  - the file was written BEFORE the message, so the copy exists whether or not
+    anyone reads the output;
+  - the refusal reads as a NOTIFICATION rather than a failure;
+  - `--clear` is explicitly forbidden in that state, so the documented
+    apply-then-clear workflow cannot destroy the only durable copy;
+  - 219 KB, 27 findings, intact.
+THE LOSS HALF OF THIS FINDING IS CLOSED ON EVIDENCE, and closed in the manner fix
+3 required: it did not depend on the operator doing anything.
+
+WHAT DID NOT SHIP. Re-verified 2026-09-06 against plugin 0.1.34, unchanged from
+the 0.1.32 reproduction in the main text. `systemRepo()` still has one candidate,
+`path.resolve(here,'..','..','..')`. From this cache install that resolves to
+`~/.claude/plugins/cache/mavci`, which holds no `.claude-plugin/marketplace.json`,
+so it returns null and refuses. The only tree on this machine carrying that marker
+is the marketplace clone, which remains deliberately and CORRECTLY excluded (gate5
+2026-09-03). Nothing about the topology changed. Neither fix 1 (an operator-declared
+path) nor fix 2 (naming the cache case in the message) is present.
+
+THE RESULTING STATE, STATED PRECISELY BECAUSE IT IS EASY TO MISREAD AS DONE. The
+command whose entire purpose is carrying findings into the system repository still
+cannot reach it, and now says so honestly instead of failing silently. That is
+strictly better and is NOT the intended end state. Escrow made the failure SAFE.
+It did not make it ABSENT.
+
+THE NEW RISK, AND IT IS THE REASON THIS ADDENDUM EXISTS: SAFETY RETIRES URGENCY.
+The main text's central claim was that the self-improvement loop is closed by
+human memory - "the single dependency the whole apparatus exists to remove". Escrow
+removes the LOSS. It does not remove the MEMORY. On 2026-09-06 the operator again
+carried the queue into the system repo by hand and pushed; that is the fourth time.
+The dependency has changed shape rather than gone:
+  before - remember to copy it, or the findings are DESTROYED
+  after  - remember to copy it, or the findings never ARRIVE
+The second is quieter. A destroyed queue is a visible catastrophe that forces a
+fix; a queue sitting safely in escrow on one machine, arriving in the system repo
+only when a person carries it, produces no pressure at all. THIS FINDING IS MORE
+LIKELY TO BE FORGOTTEN NOW THAN IT WAS WHEN IT WAS DANGEROUS.
+
+THREE COPIES, ONE DURABLE. The queue currently exists in the project, in the
+escrow, and in the source repository. Only the last survives all three failure
+modes - the project is disposable by design, and the escrow is on this machine.
+The escrow's existence must not be read as the queue being safe in general; it is
+safe against ONE failure mode, the one that was destroying work.
+
+STATUS: this finding is NOT closed. Its loss half is discharged and should be
+recorded as such when it is applied; its resolution half - fixes 1, 2 and 4 - is
+open, and the assertion below is supplied against that half, the main text's
+assertion section having been left NOT SUPPLIED.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 9 - The assertion finding 9 was filed without, supplied against the resolution half
+
+Amended 2026-09-06T12:28:55Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+The main text's assertion section reads NOT SUPPLIED. It is supplied here, against
+the RESOLUTION half, because no sanctioned route writes into a finding's own body
+(finding 25). A reader who stops at the assertion section will see the placeholder
+and not this. That is the defect finding 25 records, and this block is an instance
+of it rather than a workaround for it.
+
+FOUR ASSERTIONS. The first is the fix; the rest exist so it cannot be satisfied
+carelessly, and one of them protects what already works.
+
+FIRST, AND RED TODAY: `--apply` must resolve a target from a CACHE INSTALL. Drive
+`systemRepo()` with `here` set to a path of the shipping shape -
+`<...>/plugins/cache/<marketplace>/<plugin>/<version>/scripts` - and require a
+non-null result once an operator has declared the repo path (fix 1).
+  THE BROKEN BUILD: 0.1.34 as it stands. Run it there FIRST and require null.
+  An implementation that returns non-null on 0.1.34 is resolving something else.
+
+SECOND, SO THE OBVIOUS WRONG FIX IS EXCLUDED: it must NOT resolve to the
+marketplace clone. Assert that a build which restores the clone as a candidate
+FAILS. That build makes assertion one pass and re-creates the gate5 2026-09-03
+regression exactly - a write that reports success and is erased by the next
+propagation, under a documented apply-then-clear workflow that would then destroy
+the only durable copy. Demonstrate that failure before accepting any fix. If
+assertions one and two cannot both hold, KEEP REFUSING: a refusal plus escrow is
+recoverable, and a silent write into a tree that gets reset is not.
+
+THIRD, SO THE FIX DOES NOT REGRESS WHAT NOW WORKS: the escrow write must survive
+the resolution change. Assert that the escrow copy is written BEFORE the queue is
+read for transfer, on BOTH paths - when a repo resolves and when it does not - so
+an apply that dies midway cannot leave the queue neither escrowed nor applied.
+  THE BROKEN BUILD THIS CATCHES: the natural refactor that treats escrow as the
+  else-branch of resolution and writes it only when no repo is found. That build
+  passes assertions one and two and silently removes the guarantee that closed
+  this finding's loss half.
+
+FOURTH, FIX 4, AND IT IS THE ONE THAT KEEPS THE FINDING VISIBLE: `doctor` must
+report, at session start, that queued findings exist AND that no apply target
+resolves - as one statement, not two. Red today: doctor reports the queued file
+and says nothing about reachability, so the unreachability is discovered at the
+end of a session rather than the start.
+
+GREEN DIRECTION, so these are proven both ways rather than merely shown capable of
+failing: on a corrected copy carrying a declared repo path, assertion one passes,
+two still refuses the clone, three still writes escrow first, and four reports
+nothing because a target resolves. A check only ever demonstrated red proves it
+can fail, not that it discriminates.
+
+WHAT NO ASSERTION HERE COVERS, stated so it is not mistaken for covered: none of
+these detects whether a queue that reached escrow ever reached the system
+repository. That transfer is currently a person, and a check cannot assert a
+person remembered. It is the residue of this finding and the reason it stays open.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 9 - First real use: what one clean exercise proves about the mechanism, and what it does not
+
+Amended 2026-09-06T13:46:40Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+FIRST USE, AND THE DISTINCTION IS THE POINT. The escrow write on 2026-09-06 was
+its FIRST REAL EXERCISE. That is evidence about the MECHANISM rather than about
+the incident, and it supports a narrower claim than a track record does: a
+mechanism that worked on its first real use is not a mechanism that has worked.
+
+WHAT IS ACTUALLY PROVEN. One path, once: no system repository resolved, the
+escrow file was written BEFORE the message, the message read as a notification
+rather than a failure, `--clear` was refused in the same breath, and 219 KB of
+queue with 27 findings came through intact. For a mechanism whose entire purpose
+is to hold when nobody is watching, a clean first exercise is strong evidence -
+the failure mode it replaces used to require the operator to notice, and this one
+did not.
+
+WHAT IS NOT PROVEN, LISTED SO A LATER READER DOES NOT READ ONE SUCCESS AS A
+GUARANTEE:
+  - the path where a repository DOES resolve. The escrow-write-first ordering has
+    never been exercised on the success path, and that ordering is exactly what
+    assertion three in this finding's supplied assertion protects. The natural
+    refactor - escrow as the else-branch of resolution - would pass every other
+    check and silently remove the guarantee, and nothing has yet demonstrated it
+    holds when a target exists.
+  - repeat runs against an existing escrow file: overwrite, append, or refuse is
+    unobserved.
+  - a queue materially larger than 219 KB, a full or read-only destination, and
+    an interrupted write.
+
+SO THE HONEST STATEMENT FOR AN APPLIER: fix 3 worked on the one path that has
+ever been taken, on its first real use, and that is the basis for calling this
+finding's loss half discharged. It is a first data point, not a history. The
+resolution half remains untouched, and the operator carried the queue into the
+system repository by hand again on 2026-09-06 - the fourth time.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
 # Finding 10 - Upload allow-list and upstream model are independent constants that align by coincidence
 
@@ -1866,6 +2451,75 @@ WHAT SURVIVED AND WHAT DID NOT, which is the part worth carrying:
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 10 - Outcome: fix parts 1 and 4 shipped and were verified both directions; part 2 is blocked by a sealed spec and part 3 is a contract decision
+
+Amended 2026-09-06T13:48:28Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+FIX PARTS 1 AND 4 SHIPPED IN THIS PROJECT, 2026-09-06. Parts 2 and 3 did not, for
+reasons that are not "not yet".
+
+PART 1, DONE. `lib/image-constraints.ts` now exports `IMAGE_MODEL` and holds a
+per-model capability map:
+
+    const MODEL_ACCEPTS = {
+      'gpt-image-1': ['image/png', 'image/jpeg', 'image/webp'],
+      'dall-e-2':    ['image/png'],
+    } as const
+    export const ALLOWED_MIME_TYPES = MODEL_ACCEPTS[IMAGE_MODEL]
+
+`route.ts` imports `IMAGE_MODEL` instead of carrying the literal `'gpt-image-1'`
+at the call site. The sniffer's return type was widened to a separate
+`DetectableMimeType`, because what magic bytes can RECOGNISE is a property of the
+sniffer and not of the model: under a narrower model a JPEG is still identified
+as a JPEG and then refused by the allow-list, rather than becoming unrecognisable.
+
+VERIFIED IN BOTH DIRECTIONS, not merely typechecked. Setting `IMAGE_MODEL` to
+`'dall-e-2'` narrows `ALLOWED_MIME_TYPES` to `['image/png']` automatically - the
+client's `accept` attribute, the server's allow-list check and the upstream call
+all move together - and the tree still typechecks. Restored to `'gpt-image-1'`,
+allow-list confirmed back to all three. Under the previous code the allow-list
+would have stayed at three types and every JPEG upload would have been accepted
+and then rejected upstream, presenting as an intermittent outage. The drift this
+finding describes can no longer be expressed.
+
+PART 4, DONE. The multipart filename is now derived from the sniffed type -
+`upload.png`, `upload.jpg`, `upload.webp` - replacing the extensionless
+`'upload'`. This finding deliberately withheld that change pending the cause of
+the 2026-09-05 failure; finding 12 established it (the account had no credits and
+the connection was cut mid-upload), so the condition this finding set is met.
+
+`npm run typecheck` and `npm run build` exit 0; the standards checker reports
+0 blockers. The five reported failures are the pre-existing legal REVIEW REQUIRED
+warnings, untouched.
+
+PART 2, BLOCKED, NOT DEFERRED. It asks for a `live-key` acceptance criterion on
+task 0002. All three task specs are approved by content hash and are immutable to
+an agent, and task 0002 is closed - so the criterion has nowhere to go. It also
+depends on the `live-key` precondition finding 4 asks for, which does not exist.
+This part cannot be discharged from the project at all.
+
+PART 3, NOT DONE BY CHOICE. Splitting a 400 from a 5xx in the `code` field
+changes the response contract, and task 0002 §5.2 settled the neighbouring
+question deliberately - "502 for both, deliberately. The status is not the
+discriminator; `code` is." Reopening it is a decision with its own approval, not
+a drive-by edit while nearby.
+
+WHY THIS FINDING STAYS QUEUED: part 2 needs a system capability that does not
+exist, and the general shape - a declaration nothing tests against the thing it
+describes - is the system lesson.
+
+NO TASK, NO CRITERION, NO VERDICT. This work was directed by the operator and
+done outside the task pipeline, so nothing states what it was meant to achieve
+and no recorded verdict covers it. That absence is deliberate - manufacturing a
+spec afterwards would be a reconstruction reading as contemporaneous - and it is
+itself filed as finding 28. This addendum is the durable statement that exists
+instead, which is exactly the substitute finding 28 says the system should not
+have to rely on prose for.
+
+THIS FINDING IS NOT CLOSED.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 11 - No transport timeout, and could-not-reach is indistinguishable from refused
 
 Filed: 2026-09-05T11:29:29Z, plugin 0.1.32.
@@ -2006,6 +2660,64 @@ alone rather than from two rounds of hypotheses.
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 11 - Outcome: discharged in this project by task 0002, including the addendum's revised message and all three consequent changes
+
+Amended 2026-09-06T13:49:05Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+DISCHARGED IN THIS PROJECT, INCLUDING THIS FINDING'S OWN CORRECTION. Confirmed
+2026-09-06 against `app/api/cartoonify/route.ts` at plugin 0.1.34. Task 0002
+built it.
+
+PART 1 - THE TIMEOUT. Present and derived, not a second literal:
+
+    export const maxDuration = 60
+    const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)   // 45 s
+    const UPSTREAM_MAX_RETRIES = 0
+
+and the client is constructed with both. The SDK now gives up at 45 s, inside the
+60 s platform ceiling, so the designed catch block is what a user meets rather
+than a platform error page - which was this finding's sharpest point, that the
+entire error path was bypassed in the one environment that matters. The comment
+in the source names this finding as the reason.
+
+PART 2 - THE DISCRIMINATION. `UPSTREAM_UNREACHABLE` exists as its own code with
+its own fixed Turkish constant, selected in the catch block by
+`unknownError instanceof OpenAI.APIConnectionError`, with `UPSTREAM_ERROR`
+retained for a provider that answered and refused or failed.
+
+THE ADDENDUM'S CORRECTION WAS HONOURED, AND THIS IS THE PART WORTH CHECKING
+RATHER THAN ASSUMING. The shipped message is the REVISED wording from this
+finding's amendment - "Karikatur servisine ulasilamadi. Sorun gecici olabilir;
+bir sure sonra tekrar deneyebilirsiniz." (accents stripped here only to keep this
+block encoding-safe) - and NOT the original draft, which said "Baglantinizi
+kontrol edip tekrar deneyin." and which the amendment retracted for claiming both
+that the failure was transient and that it was the user's network. The shipped
+text says "may be" rather than "is" and instructs the user to check nothing,
+which is exactly what the amendment asked for.
+
+The amendment's two other consequent changes also shipped: `maxRetries` is 0
+rather than the SDK default of 2, and the retry budget is bounded by wall clock
+through `UPSTREAM_TIMEOUT_MS` rather than by attempt count. The diagnostic
+addition it called "worth more than either" shipped as well - see finding 12.
+
+WHAT REMAINS, AND IT IS THE SYSTEM HALF: nothing in the standards requires a
+transport budget bounded by the route's own ceiling on any other project. This
+was found by a live incident, fixed here, and the next project starts with the
+same SDK defaults - ten minutes per attempt, two retries - inside whatever
+ceiling it declares.
+
+HOW THIS WAS ESTABLISHED, STATED SO IT IS NOT MISTAKEN FOR A VERDICT. By reading
+the tree on 2026-09-06, not by running a criterion. No acceptance criterion
+asserts any of the above, and no recorded verdict covers it - this is an
+inspection result written down, which is the substitute finding 28 says the
+system should not have to rely on.
+
+THIS FINDING IS NOT CLOSED. Its project half is discharged; the system half is
+not, and that half is the reason it was filed with the system findings rather
+than fixed and forgotten.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 12 - Provider error surface degrades with request size: same rejection, clean 429 small-body, TCP reset large-body
 
 Filed: 2026-09-05T11:46:50Z, plugin 0.1.32.
@@ -2112,6 +2824,59 @@ DO NOT re-open this as a task, and do not count it against finding 12 when findi
 cleared.
 
 ---
+
+### Addendum to finding 12 - Outcome: consequences 1-3 discharged in this project; consequence 4 stays dispositioned; the client-facing lessons remain unheld by the standards
+
+Amended 2026-09-06T13:49:05Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+CONSEQUENCES 1-3 DISCHARGED IN THIS PROJECT; CONSEQUENCE 4 WAS DISPOSITIONED BY
+THE OPERATOR. Confirmed 2026-09-06 against `app/api/cartoonify/route.ts`.
+
+CONSEQUENCE 1 - an `APIConnectionError` on a large-body endpoint must not be
+treated as transient. Honoured: the `UPSTREAM_UNREACHABLE` message claims only
+that the problem "may be" temporary, instructs the user to check nothing, and the
+same branch fires the probe rather than a retry. See the outcome addendum on
+finding 11 for the exact wording and why it is the revised one.
+
+CONSEQUENCE 2 - a probe should use the smallest-body endpoint available, not the
+one the feature uses. Shipped as `logSmallBodyProbe()`, and it matches this
+consequence precisely: its own client, `models.list()` (GET /v1/models, not the
+edits endpoint the feature calls), `PROBE_TIMEOUT_MS` of 6 s derived from
+`maxDuration`, `maxRetries: 0`. It treats ANY HTTP response - including 401,
+429 and 400 - as `result=reached`, which is the whole diagnostic point: the
+question it answers is whether a response arrived at all, which the large request
+structurally cannot answer. It swallows every error and returns void, so a probe
+failure can never replace the designed 502, and it writes only to the server-side
+log; nothing about it reaches the response body.
+
+CONSEQUENCE 3 - retry budgets bounded by wall clock, not attempt count, on
+multipart uploads. Shipped: `UPSTREAM_TIMEOUT_MS` is 0.75 of `maxDuration` and
+`UPSTREAM_MAX_RETRIES` is 0, so the two-retries-of-a-34-second-reset case this
+consequence describes cannot occur.
+
+CONSEQUENCE 4 - report upstream. Closed permanently as out of scope for this
+project by operator disposition, recorded 2026-09-05 in this finding's own block.
+Not unactioned; dispositioned. It is not to be re-opened as a task and not to be
+counted against this finding.
+
+WHAT REMAINS, AND IT IS THE SYSTEM HALF: the header of these four says
+"CONSEQUENCES FOR ANY CLIENT OF THIS API, NOT ONLY THIS PROJECT". They are
+standards guidance and the standards do not carry them. Consequence 2 in
+particular - diagnose with the smallest-body endpoint, never the feature's -
+identified the real cause in 0.58 seconds after two rounds of wrong hypotheses,
+and there is nowhere in the system that a future project would learn it.
+
+HOW THIS WAS ESTABLISHED, STATED SO IT IS NOT MISTAKEN FOR A VERDICT. By reading
+the tree on 2026-09-06, not by running a criterion. No acceptance criterion
+asserts any of the above, and no recorded verdict covers it - this is an
+inspection result written down, which is the substitute finding 28 says the
+system should not have to rely on.
+
+THIS FINDING IS NOT CLOSED. Its project half is discharged; the system half is
+not, and that half is the reason it was filed with the system findings rather
+than fixed and forgotten.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
 # Finding 13 - Router gained the incomplete action at 0.1.33 and the ship skill's action table did not
 
@@ -2340,6 +3105,55 @@ the other architectural fields the moment a project declines the next assumption
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+### Addendum to finding 15 - Two addenda here carry a false provenance stamp, including the one that supplies this finding's body
+
+Amended 2026-09-06T13:28:56Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+TWO FALSELY STAMPED ADDENDA IN THIS FINDING. They are:
+
+  1. "The finding text, supplied - the body as filed was a path, not the
+     observation", Amended 2026-09-05T14:35:01Z, plugin 0.1.33.
+  2. "Stated at full width: a check that cannot pass honestly creates pressure to
+     pass it dishonestly, and finding 1 is this finding's entry gap",
+     Amended 2026-09-05T14:41:35Z, plugin 0.1.33.
+
+Both stamped: Amended by: **main-session** (agent).
+
+NOTE THE FIRST ONE PARTICULARLY. It exists to SUPPLY THE FINDING'S BODY, which
+had been filed as a path rather than the observation (finding 16). So the block
+carrying this finding's actual evidence is one of the blocks whose attribution is
+false. The evidence is unaffected; only the claim about who recorded it is wrong.
+
+WHY THE STAMP IS FALSE. It reads "Provenance enforced at the risk guard, not
+self-declared." Nothing enforced it. The guard's comparison lives in
+risk-guard.mjs and is gated on `agent_type`, which is present for a subagent and
+ABSENT for the main session; a main-session caller therefore passes any value it
+likes and the comparison never runs. Worse, `main-session` IS NOT AN AGENT:
+agents/agent-scopes.json declares exactly five - mavci-architect, mavci-builder,
+mavci-guardian, mavci-scribe, mavci-verifier. Had a subagent declared
+`--agent main-session`, the guard would have DENIED it as "not itself". It was
+not denied because there was no caller identity to compare against.
+
+HOW TO READ THESE BLOCKS. Treat them exactly as if they said "Amended by: not
+recorded ... Treat it as unattributed", which is what the other thirteen addenda
+in this queue say and what these should have said. Specifically, the stamp is
+NOT evidence that an agent authored the block, and NOT evidence that anything
+verified who did. It is a string that was typed and echoed.
+
+THE STAMPS ARE NOT EDITED, AND MUST NOT BE. This queue is append-only -
+"no path here edits a filed byte" - and rewriting a stamp would erase the fact
+that it was ever wrong, which is the same objection the queue raises against
+replacing a filed sentence. This addendum is the correction; the bytes stay.
+
+IDENTIFIED BY TITLE AND TIMESTAMP, NOT BY LINE NUMBER. Finding 24's addendum
+cited line numbers, and they are already stale: amending finding 9 inserted text
+inside an earlier block and shifted every line after it. In a file that appends
+inside blocks, a line number is not an identifier.
+
+Full analysis, both holes and the driven reproductions: finding 24.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 16 - retro.mjs --record silently stores a file path as the finding body, while --amend refuses prose and demands a path - the same input in opposite forms, one of them unchecked
 
 Filed: 2026-09-05T14:35:21Z, plugin 0.1.33.
@@ -2529,3 +3343,2579 @@ Observed 2026-09-05, plugin 0.1.34, project cartoonify, main session. Where this
 ### The assertion, and the broken build it must catch
 
 TWO ASSERTIONS, AND THE SECOND IS THE ONE THAT IS EASY TO GET WRONG. FIRST: assert that closing a task without a summary is reported. Concretely - close a task with --task-status done while its phase is verify and no summary file exists for it, then require doctor to name that task and that missing file in its output. THE BROKEN BUILD IT MUST CATCH IS ON THIS MACHINE RIGHT NOW and needs no reconstruction: cartoonify, task 0002, phase verify, status done, no summary file, no changelog entry, and a health check that reports one failure and six warnings, not one of which is about it. Run the assertion against that state FIRST and require it to FAIL. Use it before the state is cleared - the moment somebody writes 0002's summary by hand, the broken build is gone and only the prose above remains. SECOND, AND IT DECIDES WHETHER THE FIX IS WORTH SHIPPING: the warning must fire on the OVERRIDE path specifically, not merely wherever a summary is absent. A check that fires whenever a done task has no summary will also fire in the window between a passed verify and the document step - the window in which a summary is legitimately absent on EVERY task, including every task travelling the normal route. That check is noisy on the common path, gets silenced within a week, and is then silent on the override, which is the only case it was written for. It is the Gate 4 adjacent-assertion failure exactly: an assertion next to the one that matters, passing for releases while the thing it was meant to catch goes through. So assert both directions - QUIET on a task moving normally through document, LOUD on a task closed from verify without one - and require the naive absence-only check to FAIL the quiet half before accepting it.
+
+---
+
+# Finding 24 - The --agent provenance stamp asserts guard enforcement on paths the guard never checks
+
+Filed: 2026-09-06T11:53:25Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/retro.mjs, scripts/risk-guard.mjs`
+
+retro.mjs stamps every declared --agent with "Provenance enforced at the risk
+guard, not self-declared." (record: retro.mjs:344; amend: retro.mjs:567). The
+claim is categorical; the enforcement behind it is not.
+
+Real enforcement exists at risk-guard.mjs:1008-1031 - it reads agent_type from
+the hook payload, compares it to the declared value, and denies a mismatch.
+Verified: a payload with agent_type mavci-core:mavci-builder and a command
+declaring --agent mavci-scribe is DENIED ("which is not itself"). So the value
+is not merely echoed, and the check is genuine on the path it covers.
+
+It covers one path. Two holes, both driven end to end:
+
+HOLE 1 - the main session is never checked. The block is gated
+`if (agent && (flags.includes('--record') || flags.includes('--amend')))`, and
+agent = bareAgentName(input.agent_type), which is absent for the main session
+(stated at risk-guard.mjs:855 and :974). A main-session caller may declare any
+value. Driven: CLAUDE_PROJECT_DIR=<throwaway> retro.mjs --record ... --agent
+mavci-architect, run from the main session, wrote:
+  Filed by: **mavci-architect** (agent). Provenance enforced at the risk guard,
+  not self-declared. Weigh it accordingly before applying.
+Nothing validated that value. The omission NOTICE does not fire either - it is
+inside the same `if (agent)`.
+
+HOLE 2 - a quoted value defeats the check for a real subagent. The guard reads
+the declared value off the raw command string with
+  /--agent[= ]+([A-Za-z0-9:_-]+)/
+which cannot match a quoted value. A subagent writing --agent "mavci-scribe" or
+--agent='mavci-scribe' yields declared=null, is classified as an OMISSION, and
+is allowed with the notice "This block is going in unattributed, which is
+allowed". That notice is false as it is printed: retro.mjs receives argv after
+the shell has stripped the quotes, and writes
+  Filed by: **mavci-scribe** (agent). Provenance enforced at the risk guard...
+Both halves driven separately. The guard reports unattributed while the queue
+records attributed-and-enforced.
+
+Duplicate flags are NOT a gap: arg() (retro.mjs:280) uses indexOf and takes the
+first occurrence, as does the regex.
+
+CONSEQUENCE. The stamp is the field an operator uses to decide how much scrutiny
+a finding needs before it changes how every downstream project is built. On most
+callable paths it asserts an enforcement that did not occur. A self-declared
+value wearing a guard-enforced stamp is worse than no stamp, because the absent
+stamp is honest about being unknown and this one is not.
+
+NOT A DOCUMENTATION DEFECT. The sentence is not imprecise, it is wrong on the
+main-session path always and on any subagent path where two quote characters are
+present. A prose tidy that keeps the claim does not fix it.
+
+OPERATOR DECISION (recorded 2026-09-06): narrow the CLAIM, not widen the CHECK.
+Recommended fix is to the stamp text - emit the enforcement sentence only where
+the guard actually performed the comparison, and otherwise say only what is
+known. Widening the enforcement was considered and not chosen: covering the main
+session and unquoting the value both add ways for the escalation channel to
+refuse a report, and PROVENANCE MUST NEVER COST THE CHANNEL (risk-guard.mjs:1019)
+is the older and more important rule. Hole 2's notice text needs the same
+treatment: it must not assert "unattributed" about a call it did not parse.
+
+The twenty-one existing unstamped addenda are the HONEST state and must not be
+retro-stamped. Their "Filed by: not recorded ... treat it as unattributed" is
+accurate. The fix does not create a reason to start passing the flag.
+
+### The assertion, and the broken build it must catch
+
+A class-B check in the system repo (check-retro.mjs / check-risk-guard.mjs) that
+drives both layers and fails on the current code:
+1. record() with a declared --agent, invoked with NO agent_type in the payload,
+   must NOT produce a stamp containing "enforced at the risk guard". Red today.
+2. risk-guard, given agent_type=mavci-builder and a command containing
+   --agent "mavci-scribe" (quoted), must not emit the "going in unattributed"
+   notice, because the value IS attributed downstream. Red today.
+3. The existing mismatch-deny case must stay green, proving the check was
+   narrowed and not removed.
+Each must be shown red on current code and green on a corrected copy; 1 and 2
+green-only would pass on a build that simply deleted the stamp, which is why 3
+is in the list.
+
+### Addendum to finding 24 - Not latent: hole 1 has already produced five false stamps in this file, naming a principal that does not exist
+
+Amended 2026-09-06T11:54:57Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+The finding was filed on driven probes in throwaway roots. It did not need to be:
+hole 1 has ALREADY FIRED FIVE TIMES in this file, and the false stamps are in the
+queue that `--apply` will carry into the system repo.
+
+Counted in pending-system-change.md at the time of this addendum:
+  18 addenda total
+  13 carry "Amended by: not recorded ... Treat it as unattributed"  - HONEST
+   5 carry "Amended by: **main-session** (agent). Provenance enforced at the
+     risk guard, not self-declared."                                - FALSE
+  (lines 120, 1359, 1429, 2164, 2291; all plugin 0.1.33, all 2026-09-05)
+
+`main-session` IS NOT AN AGENT. agents/agent-scopes.json declares exactly five:
+mavci-architect, mavci-builder, mavci-guardian, mavci-scribe, mavci-verifier.
+Had a subagent declared `--agent main-session`, the guard would have denied it as
+"not itself". It was not denied, because the caller WAS the main session and the
+comparison is gated behind `if (agent && ...)` on an agent_type the main session
+does not have. The declaration named a caller that does not exist in the system's
+own registry, and the queue recorded it as guard-enforced.
+
+This raises the severity and narrows the fix.
+
+SEVERITY. The defect is not latent. Five blocks of applier-facing evidence in the
+queue assert an enforcement that never ran, and they assert it about a principal
+the system does not define. An operator triaging this file sees five entries that
+look more accountable than the thirteen beside them, and the relationship is
+inverted: the thirteen unattributed ones are the trustworthy records.
+
+FIX. The recommended direction - narrow the claim, do not widen the check - now
+has a second obligation. Changing the text going forward leaves these five
+in place, and they will be applied. Whoever fixes this must also decide what
+happens to already-written false stamps. The queue's own append-only rule
+(retro.mjs:380-397, "no path here edits a filed byte") forbids rewriting them,
+which is correct and should not be relaxed for this. The consistent remedy is an
+addendum on each, not an edit - the same instrument this block is using.
+
+WHAT THIS DOES NOT LICENSE. It is not a reason to start passing --agent, and not
+a reason to retro-stamp the thirteen. Their absent stamp is accurate.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+### Addendum to finding 24 - Line numbers are not identifiers in this file: the first addendum's citations were stale within hours, and title-plus-timestamp is the only stable reference
+
+Amended 2026-09-06T13:46:39Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+CORRECTION TO THIS FINDING'S FIRST ADDENDUM, AND IT IS A CORRECTION AN APPLIER
+NEEDS BEFORE THEY GO LOOKING. That addendum located the five false stamps by LINE
+NUMBER - "lines 120, 1359, 1429, 2164, 2291". Two of those were wrong within
+hours. The stamps are now at 2285 and 2412.
+
+WHAT MOVED THEM. Nothing was edited. `--amend` inserts an addendum AT THE END OF
+ITS TARGET'S BLOCK, not at the end of the file - a deliberate design choice, and
+the right one, since tail-appending is what left the addenda to findings 17, 20
+and 22 buried hundreds of lines from what they amend. But it means every
+amendment to finding N displaces every line in findings N+1 onward. Two addenda
+were added to finding 9 later the same session, and everything after finding 9
+shifted by about 121 lines.
+
+SO IN THIS FILE A LINE NUMBER IS NOT AN IDENTIFIER. It is a coordinate valid only
+until the next amendment to any EARLIER finding, and it decays silently - the
+number still resolves, it just resolves to different text. Note the asymmetry
+that makes this easy to get wrong: filing a NEW finding appends at the end of the
+file and shifts nothing, so line numbers can appear stable across several
+operations and then move all at once.
+
+THE STABLE REFERENCE IS TITLE AND TIMESTAMP. Every addendum carries a
+`### Addendum to finding N - <title>` heading and an `Amended <ISO 8601>, plugin
+<version>.` line. Both are written once, never rewritten, and travel with the
+content they name. The corrections filed on findings 1, 7 and 15 use exactly that
+form, and an applier should read those rather than the line numbers above.
+
+The five stamps, addressed properly:
+  finding 1  - "Finding 15 is this finding from the other direction - the entry
+                gap and the exit gap", Amended 2026-09-05T14:41:49Z
+  finding 7  - "The criteria path: the agent qualified to judge is the one denied
+                the tool to record - the plumbing half shipped and the agent half
+                did not", Amended 2026-09-05T14:31:35Z
+  finding 7  - "The assertion for the criteria path, and the broken build it must
+                catch", Amended 2026-09-05T14:31:42Z
+  finding 15 - "The finding text, supplied - the body as filed was a path, not
+                the observation", Amended 2026-09-05T14:35:01Z
+  finding 15 - "Stated at full width: a check that cannot pass honestly creates
+                pressure to pass it dishonestly, and finding 1 is this finding's
+                entry gap", Amended 2026-09-05T14:41:35Z
+
+GENERAL, NOT SPECIFIC TO THIS FINDING: any block anywhere in this queue that
+cites a line number into this queue has the same defect, and so does any tooling
+that would. If the applier-facing surface of finding 25 is ever built, whatever
+it emits must address blocks by finding number plus timestamp, never by offset.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 25 - The queue has a place for what was observed and none for what the applier must read first; the missing surface has already been hand-carved once
+
+Filed: 2026-09-06T11:56:43Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/retro.mjs - the emitted section vocabulary in record() and amend(), and --list`
+
+THE QUEUE HAS NO APPLIER-FACING SURFACE. Every route into a finding is
+chronological and evidential; content whose whole purpose is "read this before
+you apply it" has nowhere structural to go, so it is carried by hand-written
+convention instead - and the reader it is written for is the one reader the
+format does not serve.
+
+WHAT THE TOOL CAN EMIT. Exactly two heading kinds:
+  ### The assertion, and the broken build it must catch     (retro.mjs:364)
+  ### Addendum to finding N - <title>                        (retro.mjs:203)
+Both are records of what was seen or later realised. Neither is an instruction
+to whoever acts on it. There is no third.
+
+WHAT THE FILE ACTUALLY CONTAINS. Counted by heading kind in the queue:
+  25  ### The assertion...
+  19  ### Addendum to finding...
+   1  ### Operator disposition of finding 12 consequence 4 - permanently out of
+       scope, not pending
+The third is emitted by NO code path in the plugin - grep the whole 0.1.34 tree
+for "Operator disposition" and it appears only in the queue file. It was carved
+by hand, into an append-only artefact whose own stated rule is that "no path here
+edits a filed byte" (retro.mjs:380-397). The surface was needed badly enough that
+the rule was set aside to get it. That block is purely applier-facing: it records
+a decision rather than an observation, and it closes with "DO NOT re-open this as
+a task, and do not count it against finding 12 when finding 12 is cleared."
+
+THE THREE HOMES THIS CONTENT HAS TODAY, ALL WRONG:
+
+1. SMUGGLED INTO THE ASSERTION SECTION. Finding 20 carries a SECOND assertion
+   whose stated job is not to check anything but to stop a careless fix: "THE
+   GUARD ON THE FIX ... Require this assertion to FAIL against that
+   wholesale-whitelist build before accepting any fix." That is an instruction to
+   the applier, filed under a heading that announces itself as being about a
+   check. A reader scanning for constraints does not look inside an assertion.
+
+2. SHOUTED IN CAPS MID-PROSE. "A FILE ROUTE INTO --record WOULD ALSO MAKE THE
+   SYMPTOM GO AWAY AND IS NOT THE FIX" (finding 20 addendum). "WHAT THIS DOES NOT
+   LICENSE" (finding 24 addendum). "THE GUARD RULE ITSELF IS NOT WRONG ... the fix
+   is emphatically NOT to start parsing node arguments" (finding 20 body). Caps is
+   a convention, not a structure: it cannot be counted, cannot be surfaced by
+   --list, and cannot be required of a filer who does not know the convention.
+
+3. HAND-CARVED HEADINGS, as above - which means editing the queue.
+
+CHRONOLOGY IS THE SECOND HALF OF THE DEFECT. --record fixes the body at filing
+time; --amend appends inside the target's block in time order. So the applier
+reads in the order things were WRITTEN, never in the order they must be READ. The
+warning that most changes what an applier should do may be the sixth addendum,
+hundreds of lines below the body - finding 6 carries five, finding 7 four. The
+code already concedes the reader-side cost in terms: "a reader who reads the body
+and stops acts on the uncorrected claim ... Nothing writes into a body to announce
+a correction" (retro.mjs:394-397). That cost was accepted for CORRECTIONS. It was
+never argued for INSTRUCTIONS, and it is not the same trade: a stale claim read
+too early is a wrong belief, an unread "do not fix it this way" is a wrong action.
+
+THIS IS FINDING 20'S SHAPE ONE LEVEL ALONG. Finding 20: the channel cannot carry
+evidence about one subsystem, and the loss is invisible in the artefact except
+through disclaimer sentences four findings had to write by hand. Here: the channel
+cannot carry applier-facing instruction, and the need is invisible except through
+caps and one hand-carved heading. Both are a fact the tool should have recorded
+being carried by hand instead; both are diagnosed only by noticing the workaround.
+Finding 20's addendum says it exactly - "four hand-written apologies standing in
+for a fact the tool should have recorded". This is the fifth, and it is a heading.
+
+WHY IT MATTERS MOST HERE. --apply copies this file verbatim into the system
+repository. The applier is the entire reason the queue exists. Twenty-four
+findings are about to be acted on by someone reading a document that has a
+sanctioned place for what was observed, a sanctioned place for how to check the
+fix, and no sanctioned place for what not to do while fixing it.
+
+NOT A REQUEST TO MAKE FINDINGS EDITABLE. The append-only rule is right and this
+must not be the reason it is relaxed. A caveat surface must append like everything
+else; what it must NOT do is sort by filing time.
+
+### The assertion, and the broken build it must catch
+
+THREE ASSERTIONS. The first is the discriminating one; the second and third exist
+so it cannot be satisfied by deletion or by a second assertion section.
+
+FIRST: every "### " heading in a queued lessons file must be one retro.mjs can
+emit. Enumerate the headings in the queue, enumerate the heading forms the code
+produces, and require the first set to be a subset of the second.
+  RED TODAY, and the specific reason it is red: "### Operator disposition of
+  finding 12 consequence 4" is present and unproducible. Run this against 0.1.34
+  first and require FAILURE. An implementation that passes on 0.1.34 is comparing
+  the wrong things.
+
+SECOND, SO THE FIX IS NOT DELETION. The hand-carved block's CONTENT must still be
+present and reachable after the fix, carried by a tool-emitted heading rather than
+removed. Assert that a queued finding can hold an applier-facing block, that it
+round-trips through --record/--amend, and that the finding-12 disposition text
+survives verbatim. A build that deletes the offending heading passes assertion one
+and must fail this.
+
+THIRD, SO IT IS NOT A SECOND ASSERTION SECTION. --list must report applier-facing
+blocks the way it already reports amendment counts - a reader must learn a finding
+carries a caveat WITHOUT reading the finding. Assert --list output names the count
+for a finding that has one.
+  THE BROKEN BUILD ALL THREE MUST CATCH: the obvious wrong fix, which adds a
+  --caveat flag that appends one more chronological block at the end of the target
+  block and surfaces nowhere. That build satisfies assertions one and two and must
+  FAIL assertion three; require that failure to be demonstrated before the fix is
+  accepted. If three cannot be met, the surface is not worth adding - an
+  instruction that is merely filed in a new shape is the defect with a new name.
+
+---
+
+# Finding 26 - A spec deferred work citing a criterion that does not exist; the citation was the reason for the deferral and nothing checks that a spec's cross-references resolve
+
+Filed: 2026-09-06T11:59:56Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `the standards checker rule set, and lib/criteria.mjs`
+
+A SPEC DEFERRED WORK ON THE AUTHORITY OF A CRITERION THAT DOES NOT EXIST, THE
+CITATION WAS THE STATED REASON FOR THE DEFERRAL, AND IT PASSED VERIFICATION.
+(The verdict path is described rather than named; naming it literally is finding
+20's defect, which fired twice while gathering this evidence.)
+
+THE CITATION. Task 0002 section 8 ("Out of scope, deliberately"), first bullet,
+defers rewriting UPSTREAM_ERROR's user-facing message. Its stated authority,
+verbatim:
+
+  "But it is asserted by task 0001's criteria, the addendum's revision is
+   explicitly about UPSTREAM_UNREACHABLE, and changing a message task 0001
+   verified is a separate decision with a separate approval."
+
+Two assertions of fact about task 0001: that its CRITERIA assert this message,
+and that task 0001 VERIFIED it. Both are false.
+
+WHAT TASK 0001 ACTUALLY CONTAINS. Section 6 is its acceptance criteria: 32 of
+them, enumerated. None asserts the UPSTREAM_ERROR message. Stronger, and this is
+the decisive measurement: the message string
+"Karikatur olusturulurken bir sorun olustu. Lutfen tekrar deneyin." (accents
+stripped here only to keep this report encoding-safe) appears ZERO times in the
+whole of task 0001 - not in a criterion, not in a contract, not in prose. Task
+0001 never states the message, so it cannot have verified it.
+
+What task 0001 does say is in section 5.2, its CONTRACTS: `message` is "a fixed
+Turkish constant per code", and no upstream error text, err.message, stack or key
+name reaches the body - cross-referenced to its criterion 16. That constrains the
+message's SHAPE and forbids what must not be in it. It never fixes its WORDING.
+Any Turkish constant satisfies it.
+
+SO THE DISTINCTION THE DEFERRAL TURNED ON IS EXACTLY THE ONE THAT WAS COLLAPSED:
+a CONTRACT stated in a spec is not a CRITERION, and only criteria are executed.
+Section 5.2 is prose the operator approved; section 6 is what gets run. "Asserted
+by task 0001's criteria" silently upgraded the former into the latter, and the
+upgrade is what made the deferral sound like deference to a prior verification
+rather than a fresh scope choice needing its own justification.
+
+IT PASSED. Task 0002 attempt 1 recorded verdict `pass`, 2026-09-05T14:23:57Z. The
+recorded verdict carries no criteria field at all - finding 6 - so nothing in the
+pipeline could have surfaced this even in principle.
+
+IT THEN PROPAGATED. Task 0003 quotes task 0002 section 8 verbatim as the
+statement of intent ("Task 0002 section 8, first bullet, states the intent
+plainly...") and builds its own scope decision on top of it: "0003 is the answer
+to that open question, by operator decision." A false citation became the
+recorded reason for scope in two consecutive tasks, and the second one cites the
+first rather than the source, so re-reading task 0003 cannot detect it.
+
+NOTHING CHECKS THAT A SPEC'S CROSS-REFERENCES RESOLVE. The plugin defines fifteen
+checks: config.fixture_scope, legal.kvkk_structure, legal.pages_present,
+next.env_centralised, next.no_service_role_client, next.no_static_export,
+next.regex_no_template_literal, next.route_force_dynamic,
+next.supabase_client_in_function, secrets.no_committed_secrets,
+settings.marketplace_form, state.schema_valid, stripe.webhook_signature,
+supabase.rls_enabled, supabase.service_role_query_scoped. Every one reads code,
+config, legal pages or the state schema. NONE READS SPEC PROSE. lib/criteria.mjs
+executes criteria; it does not validate references. A spec may cite any section,
+any criterion, in any task, existing or not, and nothing looks.
+
+WHY THIS IS DURABLE AND NOT SELF-CORRECTING. Task 0002 pinned the message itself,
+in its OWN criterion 12 (the `keep` clause asserting the UPSTREAM_ERROR string is
+unchanged). So the outcome was correct - the message stayed put, the question
+stayed open, task 0003 later answered it deliberately. THE DEFECT IS INVISIBLE
+PRECISELY BECAUSE THE DEFERRAL WAS HARMLESS IN EFFECT. What failed is the
+AUTHORITY, not the outcome, and at verification time a deferral justified by a
+nonexistent prior verification is indistinguishable from one justified by a real
+one. Every artefact downstream reads as though a prior task had already settled
+the question.
+
+THE GENERAL SHAPE. A citation is the one construct in a spec that makes a claim
+about a document the reader is not reading. The system approves specs by content
+hash, which fixes WHAT a spec says and says nothing about whether what it says is
+true of anything else. Out-of-scope bullets are where citations concentrate,
+because deferring work is exactly when a spec needs to point at authority it does
+not itself carry - so the least-checked construct sits in the section that
+decides what does not get built.
+
+### The assertion, and the broken build it must catch
+
+A check - proposed id `spec.references_resolve` - that extracts references from
+an approved spec's prose and requires each to resolve. Two reference classes, and
+the second is the one that matters:
+  (a) intra-document: "section N" / "§N" must name a section the same spec has.
+  (b) cross-document: "task NNNN's criteria", "task NNNN criterion N", "task NNNN
+      section N" must resolve to a section or an enumerated criterion that exists
+      in that task's spec.
+
+FIRST, AND IT MUST BE RED TODAY. Run it against task 0002 and require FAILURE,
+naming section 8's "asserted by task 0001's criteria" as the unresolved
+reference. Confirm the failure reproduces before building the fix. An
+implementation that passes on the current tree is matching the wrong thing.
+
+SECOND, SO IT IS NOT SATISFIED BY THE INTRA-DOCUMENT HALF ALONE. Task 0002's
+section 8 EXISTS, and every "see §8" in the tree resolves fine. A check that
+validates only class (a) passes this case while the defect stands. Require a
+build implementing (a) only to FAIL this assertion, and demonstrate that failure.
+
+THIRD, SO IT IS NOT LAUNDERED THROUGH A MODEL. The resolver must be a PROGRAM:
+extract the reference, look up the target, report present or absent. It must not
+ask an agent whether a citation looks right. lib/criteria.mjs settles this in its
+own words - "The agent interprets; the program records" - and a model asked to
+judge whether task 0001 "asserts" a message would very plausibly answer yes on
+the strength of section 5.2, which is the exact collapse that produced the
+defect. Assert the check reaches its verdict with no model in the path.
+
+GREEN DIRECTION, so this is proven both ways and not merely capable of failing:
+on a corrected copy where the bullet cites task 0001's section 5.2 contract, or
+cites task 0002's own criterion 12, the check must PASS. A check only ever shown
+red proves it can fail, not that it discriminates.
+
+SCOPE GUARD. Resolving a reference is not judging whether the cited text supports
+the claim. This check answers "does the target exist", nothing more. Do not widen
+it into a semantic reviewer; that is a different and much weaker instrument, and
+the narrow version would have caught this one.
+
+---
+
+# Finding 27 - One ADR sequence split across two authorised directories, no allocator and no index; the only note explaining it is inside the fifth document
+
+Filed: 2026-09-06T12:02:24Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/config.mjs PATHS.decisions, agents/mavci-scribe.md write scope, and the absence of a decision-number allocator`
+
+ONE NUMBER SEQUENCE, TWO DIRECTORIES, AND THE ONLY NOTE ABOUT IT IS REACHABLE
+ONLY BY A READER WHO NO LONGER NEEDS IT.
+
+THE STATE. The ADR sequence 0001-0005 is one series interleaved across two
+locations:
+  docs/adr/           0001, 0003          titled "ADR NNNN"
+  .mavci/decisions/   0002, 0004, 0005    titled "Decision NNNN"
+Neither directory holds a contiguous run, and neither contains an index, a README
+or a stub for the numbers it does not have. A reader who opens docs/adr/ sees
+0001 and 0003 and a hole where 0002 should be, with nothing to distinguish
+"0002 was never written" from "0002 is in a directory you have not been told
+about". Two artefact names for one series compounds it: searching the tree for
+"ADR 0002" finds nothing, because that document calls itself "Decision 0002".
+
+THE NOTE, AND WHY IT DOES NOT HELP. Exactly one document explains the split.
+`.mavci/decisions/0005-...` carries a section headed "Where this document lives":
+"The ADR sequence is one series across two directories: docs/adr/ holds 0001 and
+0003, .mavci/decisions/ holds 0002, 0004 and this one. A reader looking for an
+ADR by number must check both." That is correct, well written, and in the wrong
+place. It is the FIFTH document of the series, inside ONE of the two directories,
+under a heading a reader scanning for the sequence has no reason to open. To find
+it you must already have found the directory whose existence it exists to tell
+you about. The reader it is written for - someone in docs/adr/ looking for 0002 -
+cannot reach it by any path.
+
+THE MECHANISM, AND IT IS THE SYSTEM'S, NOT THE OPERATOR'S:
+
+1. TWO HOMES ARE AUTHORISED FOR ONE ARTEFACT CLASS. The scribe's write scope is
+   `docs/**`, `README.md`, `CHANGELOG.md`, `.mavci/decisions/**`, ... - so an ADR
+   may be written to either, and nothing chooses between them. The split is not a
+   mistake anyone made; it is the scope working as declared.
+
+2. THE CANONICAL PATH IS DECLARED AND NEVER USED. config.mjs defines
+   `decisions: ${MAVCI_DIR}/decisions`. It is referenced in exactly ONE place in
+   the whole plugin - state.mjs:991, inside init(), which mkdirs it during
+   connect. Nothing else reads it. No check asserts a decision lives there, no
+   command writes there by default, nothing enumerates it. The system creates a
+   home for decisions at connect time and then never mentions it again, which is
+   how it ends up holding three of five.
+
+3. NOTHING ALLOCATES THE NUMBER. There is no next-ADR-number function anywhere in
+   the plugin. Compare retro.mjs, which HAS one - nextFindingNumber() scans the
+   queue and returns max+1, which is why the 26 findings are contiguous and the 5
+   ADRs are not. The sequence is maintained by whoever remembers what the last
+   number was, across two directories, by reading.
+
+WHY IT MATTERS MORE THAN A TIDINESS COMPLAINT. An ADR's entire function is to be
+found LATER, by someone deciding whether to reverse a choice - the scribe's own
+brief says exactly this: "read months later as evidence of what someone thought,
+by someone deciding whether to reverse it, and it will be believed." A decision
+record that cannot be located by its number has failed at the one thing it is
+for, and it fails SILENTLY: the reader who checks docs/adr/ for 0002, finds a
+gap, and concludes no such decision was recorded gets a wrong answer with no
+indication anything is missing. That reader then makes the choice afresh, unaware
+it was already settled and why.
+
+AND THE FAILURE IS SELF-CONCEALING IN THE SAME SHAPE AS FINDING 20. Nothing in
+either directory distinguishes a number that is absent because it was never
+allocated from a number that is absent because it is in the other directory,
+except a hand-written note in one file - the same "hand-written apology standing
+in for a fact the tool should have recorded". Here the tool could record it
+trivially: it already knows the canonical path, it just never reads it.
+
+NOT AN ARGUMENT FOR MOVING THE FILES. Relocating 0001 and 0003 into
+.mavci/decisions/ would break every reference to them - task 0001 section 8,
+0001.summary.md, 0002.json, 0002.md and Decision 0005 all cite `docs/adr/...`
+paths literally - and would rewrite history to look tidier than it was, which is
+the queue's own append-only objection one scale up. The defect is that the
+sequence is UNNAVIGABLE, not that it is untidy.
+
+### The assertion, and the broken build it must catch
+
+TWO ASSERTIONS. The first makes the sequence navigable; the second stops the
+first being satisfied by moving files.
+
+FIRST: a decision record must be locatable by its number without knowing which
+directory it is in. Concretely - a check (proposed `decisions.sequence_navigable`)
+that enumerates decision records across every authorised location, and requires
+that for every number in the range 1..max, exactly one record exists and is
+reachable from a single index the check can name.
+  RED TODAY, and name the reason: enumerating docs/adr/ alone yields {1,3} with a
+  hole at 2; enumerating .mavci/decisions/ alone yields {2,4,5} with a hole at 1;
+  no index exists in either. Run this against the current tree FIRST and require
+  FAILURE. An implementation that passes here is enumerating only one directory
+  and calling a gap-free subset a gap-free sequence.
+
+SECOND, SO THE FIX IS NOT A MASS RENAME. Every existing reference must still
+resolve after the change. Assert that each literal `docs/adr/...` path cited in
+the task specs, in 0001.summary.md, in 0002.json and in Decision 0005 still
+points at a file that exists.
+  THE BROKEN BUILD THIS MUST CATCH: the obvious wrong fix, which relocates 0001
+  and 0003 into the canonical directory. That build satisfies assertion one - one
+  directory, contiguous 1..5 - and must FAIL this one. Demonstrate that failure
+  before accepting any fix.
+
+GREEN DIRECTION, so the check is proven both ways and not merely shown capable of
+failing: on a corrected copy carrying an index that lists all five numbers with
+their actual locations, both assertions must PASS with the files left where they
+are.
+
+AND THE ALLOCATION HALF, which is what stops it recurring: whatever writes a
+decision must allocate its number by scanning ALL authorised locations, the way
+retro.mjs's nextFindingNumber() scans the queue. Assert that allocating a number
+while a record exists only in the non-canonical directory returns max+1 across
+both, not max+1 of the canonical one - the broken build being one that scans
+`PATHS.decisions` only and reissues a number already used in docs/adr/.
+
+---
+
+### Addendum to finding 27 - Outcome: an index shipped in both directories; the allocator, the dual authorisation and the unread canonical path are untouched
+
+Amended 2026-09-06T13:48:28Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+AN INDEX SHIPPED IN THIS PROJECT, 2026-09-06. It is the navigability half only.
+
+WHAT WAS WRITTEN. Identical `README.md` files in BOTH authorised directories -
+`docs/adr/` and `.mavci/decisions/` - each carrying the full table of 0001
+through 0005 with real titles and actual locations, both naming conventions
+("ADR NNNN" and "Decision NNNN") called out, and an explicit warning that a gap
+in one directory does NOT mean the number was never allocated. A reader who lands
+in either directory now learns the other exists without having to already know.
+
+NO FILES WERE MOVED, which was this finding's own stipulation. Every literal
+`docs/adr/...` citation in the tree still resolves; all ten paths named by the
+index were checked to exist after writing it.
+
+WHAT THIS DOES NOT FIX, AND IT IS MOST OF THE FINDING. The index is a DOCUMENT,
+not a check. Nothing enumerates the sequence, so this finding's first assertion
+would still be RED against the tooling: no code reads the canonical path
+(`PATHS.decisions` is still referenced exactly once, an `mkdir` at connect, and
+never read), two locations are still authorised for one artefact class, and there
+is still no allocator - the next number is still whatever a person remembers.
+
+THE DUPLICATION IS ITSELF A SYMPTOM. Two hand-maintained copies of one table can
+drift, and nothing detects it if they do. That is a worse property than the
+system half would have, and it is accepted only because the alternative - a
+single index in one directory - leaves the reader in the other exactly as
+stranded as before. Both copies say so in the file.
+
+NO TASK, NO CRITERION, NO VERDICT. This work was directed by the operator and
+done outside the task pipeline, so nothing states what it was meant to achieve
+and no recorded verdict covers it. That absence is deliberate - manufacturing a
+spec afterwards would be a reconstruction reading as contemporaneous - and it is
+itself filed as finding 28. This addendum is the durable statement that exists
+instead, which is exactly the substitute finding 28 says the system should not
+have to rely on prose for.
+
+THIS FINDING IS NOT CLOSED.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 28 - Work that never becomes a task carries no statement of what it was for, and a bare standards pass is the only artefact it leaves
+
+Filed: 2026-09-06T13:47:39Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs --changed and the verdict it writes; the absence of any non-task route for recording intent`
+
+WORK THAT NEVER BECOMES A TASK HAS NO DURABLE STATEMENT OF WHAT IT WAS FOR, AND
+NOTHING ANYWHERE NOTICES. The checker passing the tree is not that statement and
+does not claim to be, but it is the only artefact produced, so it becomes the
+record by default.
+
+OBSERVED 2026-09-06, project cartoonify, plugin 0.1.34. Two substantive changes
+landed in the working tree:
+  - `lib/image-constraints.ts` and `app/api/cartoonify/route.ts` - the upload
+    allow-list is now derived from an exported model constant through a
+    per-model capability map, and the multipart filename now carries an
+    extension (system finding 10, fix parts 1 and 4).
+  - `docs/adr/README.md` and `.mavci/decisions/README.md` - a decision-record
+    index in both authorised locations (system finding 27).
+Both were deliberate, both were directed by the operator, both discharge parts
+of queued findings. NEITHER IS A TASK. There is no spec, no acceptance criterion,
+and no recorded verdict about them.
+
+WHAT THE SYSTEM SAID ABOUT THEM. `verify.mjs --changed` returned:
+
+    "scope": "changed", "task_id": null, "verdict": "pass",
+    "summary": { "blockers": 0, "pass": 11, "fail": 5, ... }
+
+That verdict is TRUE and it is about standards compliance in the changed files.
+It says nothing about whether the changes achieved anything, because nothing ever
+stated what they were meant to achieve. A reader six months from now sees `pass`
+against a diff and CANNOT DISTINGUISH "nothing was being attempted here" from
+"something specific was attempted and nobody wrote down what". Those are very
+different states and the artefact renders them identically.
+
+THIS IS NOT FINDING 6, AND NOT FINDING 22. Both describe this gap one step
+later, and both PRESUPPOSE A TASK EXISTS. Finding 6: the recorded verdict cannot
+express acceptance-criteria results, so the router closes tasks whose spec is not
+satisfied. Finding 22: a criterion result with no tree sha and no superseded_by
+is a claim with no subject. Each is about a criterion that exists and is
+mis-recorded. HERE THERE IS NO CRITERION TO MIS-RECORD. The pipeline has no entry
+point at all for "a change was made on purpose, to achieve X, and here is what
+would show it did" unless that change is first promoted to a task.
+
+AND THE QUEUE IS WHERE THIS CONCENTRATES, STRUCTURALLY. A finding's fix is small,
+well understood, and already justified in writing by the finding itself - which
+is precisely the profile of work nobody opens a task for. Opening one feels like
+ceremony when the finding already explains the problem and names the remedy. So
+THE SYSTEM'S OWN IMPROVEMENT LOOP IS THE WORK LEAST LIKELY TO BE SPECIFIED, and
+the more disciplined the queue gets, the more true that becomes: a well-written
+finding makes its fix feel too obvious to spec.
+
+THE ASYMMETRY THAT MAKES THIS SHARP. `retro.mjs` will not let a finding be filed
+quietly without an assertion. It does not refuse - it writes the absence into the
+document in the words the next reader needs: "NOT SUPPLIED. Whoever applies this
+must write one before building the fix: name the broken build the assertion
+catches, and confirm the assertion FAILS against it first." The queue therefore
+has a DESIGNED SLOT for "the check this needs", and marks it when empty. THE FIX
+HAS NO SLOT AT ALL. The report is held to a standard the remedy is not, and it is
+the remedy that changes how the software behaves.
+
+CONSEQUENCES, BOTH DIRECTIONS.
+  1. A fix that shipped and does not say so gets implemented twice. The queue is
+     carried into the system repository and applied by someone who was not
+     present when the fix landed; nothing in the finding records that its project
+     half is already done.
+  2. WORSE, AND LESS OBVIOUS: a fix that did NOT achieve its aim leaves no
+     statement to check it against. Reimplementation is recoverable. A change
+     that was supposed to close a gap, did not, and passed the checker anyway is
+     recorded as a success with no way back to the intent it failed.
+
+NOT AN ARGUMENT FOR RETRO-SPECCING, AND THIS MATTERS. Writing a spec after the
+change is manufacturing a record that reads as contemporaneous when it is a
+reconstruction from the diff - the same laundering that was refused on 2026-09-06
+for task 0002's missing summary, and refusing it there while doing it here would
+be incoherent. What is missing is not a task. It is a LIGHTWEIGHT STATEMENT OF
+INTENT, recorded AT THE TIME the change is made, naming what the change is for
+and what would show it worked. A task is one way to carry that. It should not be
+the only way, because the cost of the only way is that most of this work carries
+nothing.
+
+### The assertion, and the broken build it must catch
+
+FOUR ASSERTIONS. The first is the defect; the next two stop it being "fixed" by
+closing the escape hatch or by laundering; the fourth is the green direction.
+
+FIRST, AND RED TODAY: a standards run over changed files with no task in scope
+must not report an UNQUALIFIED `"verdict": "pass"`. It must be distinguishable -
+a distinct verdict value, or an explicit field - meaning "standards pass; no
+statement of intent exists for these changes".
+  THE BROKEN BUILD: 0.1.34 as it stands. Reproduce today's run - a working tree
+  with substantive source changes and no task - and require the output to be
+  bare `"verdict": "pass", "task_id": null`. Confirm that FIRST. An
+  implementation that already reports something else is reading a different tree.
+
+SECOND, SO THE FIX IS NOT "REFUSE UNTASKED WORK": an untasked change must still
+be ALLOWED. Assert that the run completes and does not block. The ability to make
+a small fix without opening a task is the same escape hatch the reporting channel
+depends on, and closing it would reproduce finding 20's shape - a control that
+protects the record by making the work unreachable. If the two cannot both hold,
+KEEP ALLOWING and report the gap loudly; an unrecorded change is recoverable and
+a blocked fix is not.
+
+THIRD, SO THE FIX IS NOT RETRO-SPECCING: the statement of intent must be
+recordable WITHOUT creating a task or a spec, and no code path may DERIVE its
+text from the diff.
+  THE BROKEN BUILD THIS MUST CATCH: a command that generates the intent note by
+  summarising the change. That build satisfies assertions one and two, produces a
+  document that reads as a contemporaneous statement of purpose, and is a
+  reconstruction - exactly the artefact refused for task 0002's summary. Assert
+  the intent text originates from the author at change time and is never
+  synthesised from the tree.
+
+FOURTH, GREEN DIRECTION, so this is proven both ways rather than merely shown
+capable of failing: on a corrected copy where the change carries a statement of
+intent, the run must report a clean qualified pass, name the statement, and not
+warn. A check only ever demonstrated red proves it can fail, not that it
+discriminates.
+
+SCOPE NOTE: none of these asserts the intent statement is TRUE, or that the
+change achieved it. That is the same boundary finding 26's reference check draws
+- existence, not sufficiency. The narrow version is what was missing today.
+
+---
+
+# Finding 29 - Durable copies of the queue are correct only at the instant they are written, nothing detects the drift, and the refresh is refused by a message that opens exactly like the one meaning success
+
+Filed: 2026-09-06T14:00:43Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/retro.mjs - escrowQueue() collision branch, applyPlan() destination naming, and the escrow provenance header`
+
+THE DURABLE COPIES ARE CORRECT AT A MOMENT AND DRIFT FROM THEN ON, NOTHING
+DETECTS IT, AND THE REFRESH PATH REFUSES IN A MESSAGE THAT READS LIKE THE ONE
+MEANING SUCCESS.
+
+Finding 9 made the queue SURVIVABLE. Survivable and current are different
+properties, and only the first was delivered.
+
+THE RATES DO NOT MATCH, WHICH IS THE WHOLE DEFECT. The project queue moves
+continuously - every --record and every --amend. The escrow is written once per
+--apply. The system-repository copy is written once per hand carry. Two snapshots
+against a continuously moving source, with no comparison between them.
+
+MEASURED 2026-09-06, AND THE MEASUREMENT ITSELF WILL BE STALE, WHICH IS THE POINT:
+  project queue                          28 findings, 30 addenda
+  escrow copy cartoonify-2026-09-06.md   27 findings, 19 addenda, no finding 28
+  escrow provenance header stamped       2026-09-06T12:25:50Z
+Eleven addenda and one finding behind, roughly ninety minutes after it was
+written. Nothing in either artefact reports the difference.
+
+IT RECURRED INSIDE THE HOUR, AND THE SECOND TIME IS THE INSTRUCTIVE ONE. After the
+divergence was noticed, the escrow was re-run to refresh it. IT DID NOT REFRESH.
+applyPlan() names the destination <project_id>-<YYYY-MM-DD>.md, so a second run on
+the same day targets the file the first run created, and escrowQueue() takes its
+clash branch: "Nothing was written and nothing in the project was touched." The
+escrow on disk is still the 12:25:50Z copy.
+
+AND THE REFUSAL IS MISREADABLE AS THE SUCCESS. Compare the two messages the same
+command produces, at their openings:
+
+  fresh:  "could not locate the system repository. Looked for ... THE FINDINGS
+           ARE SAFE. They were written, before this message, to: ..."
+  clash:  "could not locate the system repository, and the durable copy already
+           exists: ... Nothing was written and nothing in the project was
+           touched."
+
+Both open with the identical clause. The operator has by now been trained -
+correctly, by finding 9's fix - that this clause introduces a NOTIFICATION and
+that the findings are safe. In the clash case the same opening introduces a
+refusal, and the load-bearing words are "Nothing was written", unemphasised, after
+a subordinate clause that reads as reassurance ("the durable copy already
+exists"). One means your work is preserved and the other means your newest work is
+not, and they are distinguished by a clause arriving after the part that looks
+like the answer.
+
+THE COLLISION RULE IS NOT WRONG AND MUST NOT BE WEAKENED. Its reason is stated in
+the source: "a lesson is evidence, so a second run on the same day must not
+replace the first." That is correct. Overwriting an escrow would destroy evidence,
+which is the failure mode this whole mechanism exists to prevent. The defect is
+that PRESERVING THE OLD COPY AND TRACKING A GROWING QUEUE were treated as one
+operation, so choosing the first silently forfeited the second.
+
+THE PROVENANCE HEADER IS THE NATURAL HOME FOR THE MISSING FACT AND DOES NOT CARRY
+IT. Each escrow copy is written with a header naming the command, the ISO
+timestamp, the project, the plugin version and the source path. It records WHEN it
+was taken and WHERE it came from. It records nothing about WHAT it contains - no
+digest of the source, no finding count, no addendum count. A reader who opens
+cartoonify-2026-09-06.md in the system repository can see the date and cannot
+determine that eleven addenda were added to the source after it. The header
+already tells that reader the copy is "NOT APPLIED" and that carrying it is "still
+owed"; it cannot tell them it is also not current.
+
+THIS IS FINDING 2'S SHAPE ON THE SYSTEM'S OWN RECORD. Finding 2's addendum states
+it: "Write-once generation is the defect." An artefact generated once from a
+source that keeps moving is correct at creation and wrong forever after, with
+nothing to notice. The difference is what is drifting. .env.example describes one
+project's configuration; THIS FILE IS THE RECORD OF THE SYSTEM'S OWN DEFECTS, and
+it is the artefact carried into the repository that governs how every downstream
+project is built. A stale .env.example misconfigures one project. A stale lessons
+copy means the fixes applied to the system are chosen from a list missing its
+newest entries - and the missing entries are systematically the CORRECTIONS,
+because amendments are how this queue records that an earlier claim was wrong.
+Finding 24's five stamp corrections and finding 9's own first-use qualification
+are both among the eleven that did not travel.
+
+WHAT THE FIX IS NOT. Re-running --apply after every amendment is a PROCEDURE, and
+finding 9 is four consecutive sessions of evidence that procedures do not hold -
+the whole argument for fix 3 was that it "does not depend on the operator doing
+anything". A currency requirement that depends on the operator remembering
+reintroduces exactly the dependency fix 3 removed. It is worse than that here: the
+procedure does not merely go unperformed, it is REFUSED by the collision rule, on
+the same-day timescale amendments actually happen.
+
+THE TWO SHAPES THAT WOULD WORK. Either the durable write is TRIGGERED BY THE
+AMENDMENT rather than by --apply, so the copy cannot lag by construction; or the
+copies CARRY A DIGEST OF THEIR SOURCE and something compares them and reports the
+divergence - --list, doctor, or the header itself. The first removes the gap; the
+second makes it visible and dated. Either satisfies the constraint a procedure
+cannot.
+
+### The assertion, and the broken build it must catch
+
+FIVE ASSERTIONS. The first is the defect, three are guards on the obvious wrong
+fixes, and the last is the green direction.
+
+FIRST, AND RED TODAY: the staleness of a durable copy must be DETECTABLE without
+opening both files and counting. Something - --list, doctor, or the copy's own
+header - must report that the escrow does not match the queue it was taken from.
+  THE BROKEN BUILD: the current tree. Reproduce it exactly - an escrow written,
+  then any --amend - and require that NOTHING anywhere reports a divergence.
+  Confirm that FIRST. Today's instance: escrow at 27 findings / 19 addenda,
+  project at 28 / 30, and no command reports it.
+
+SECOND, SO IT IS NOT FIXED BY OVERWRITING: a refresh must not destroy the earlier
+copy. Assert that after a refresh the previous escrow content is still
+retrievable. The collision rule's reason - "a lesson is evidence, so a second run
+on the same day must not replace the first" - is correct, and must not be traded
+away to buy currency. The broken build here is the one-line change that drops the
+clash check.
+
+THIRD, SO IT IS NOT A PROCEDURE: the currency signal must not depend on anyone
+running a command after an amendment. Assert that --amend ALONE is sufficient to
+make the divergence detectable - either it updates the durable copy or it marks it
+stale. A build in which the operator must run --apply to learn that --apply is
+owed satisfies assertion one and fails this, and it is the fix most likely to be
+written.
+
+FOURTH, THE MESSAGE, AND IT IS SEPARABLE FROM THE REST: an operator reading only
+the first line must be able to tell a completed escrow from a refused one.
+  RED TODAY: both messages open with the identical clause "could not locate the
+  system repository". Assert the clash path LEADS with what did not happen.
+
+FIFTH, GREEN DIRECTION, so this is proven both ways rather than merely shown
+capable of failing: on a corrected copy, escrow then amend, and require the
+divergence to be REPORTED, the earlier copy to still exist, and no command to have
+been run in between. Then refresh, and require the report to clear. A check only
+ever demonstrated red proves it can fail, not that it discriminates.
+
+SCOPE NOTE: none of this asserts the system-repository copy is current - that one
+is written by a person on another machine and no check here can see it. What a
+digest in the header WOULD give that reader is the ability to compare it against a
+queue when they next hold both, which is the most available across a manual carry.
+
+### Addendum to finding 29 - The refresh worked, and every part of how it worked is the defect: four manual steps, a preserved copy nothing names, and a carry that failed at the remote
+
+Amended 2026-09-06T14:18:08Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE REFRESH SUCCEEDED, AND HOW IT SUCCEEDED IS THE FINDING RESTATED AT FULL SIZE.
+
+VERIFIED 2026-09-06T14:15:57Z. The new escrow matches the project queue exactly -
+29 findings, 30 addenda, and the body below the provenance header is byte-for-byte
+identical, sha256 7c539999f5db9fbd9dc929171e6be6fd072fc0dd749385a96a0c86737c846182
+on both. The stale copy is preserved at 27 findings / 19 addenda, stamped
+12:25:50Z. The system-repository copy was carried and committed, 842 lines added.
+
+NOTE WHAT ESTABLISHING THAT REQUIRED: opening both files, stripping a header of
+known length, and computing a digest by hand. That digest is precisely the fact
+assertion one says the header should carry. The check was possible only because
+someone already suspected the answer.
+
+1. THE MANUAL DANCE IS THE FIX'S SHAPE IN MINIATURE. Keeping the record current
+took FOUR OPERATOR STEPS: rename the stale copy, re-run --apply, carry the result,
+commit it. Every one is exactly the kind of procedure finding 9 spent four
+sessions establishing does not hold. The fix for a procedure that fails is not a
+longer procedure.
+
+AND THE CONDITIONS IT SUCCEEDED UNDER CANNOT BE RELIED ON. It worked today because
+the divergence was detected by someone else and reported in the same minute it was
+learned - the tightest feedback loop available, and one that exists only while a
+second party happens to be reading the same file. Next time the drift will be
+noticed, if at all, by whoever opens the copy in the system repository weeks later
+and has no way to know what is missing. TODAY IS NOT EVIDENCE THE PROCEDURE HOLDS.
+It is evidence that a procedure holds when someone is standing next to it.
+
+2. THE PRESERVED COPY IS AN ARTEFACT NOTHING NAMES. The collision rule protects
+the old copy and gives no way to tell the two apart. What is on disk now:
+
+    cartoonify-2026-09-06.md     269832 bytes   29 findings   14:15:57Z  CURRENT
+    cartoonify-2026-09-06-a.md   219162 bytes   27 findings   12:25:50Z  STALE
+
+The -a suffix is the OPERATOR'S convention. No code produced it, no code will
+recognise it, and nothing in either file points at the other. A reader arriving at
+that directory sees two files with the same date and can order them only by size,
+or by opening each and reading a timestamp out of a comment.
+
+AND THE SUFFIX READS BACKWARDS. An alphabetical or sequence suffix normally
+implies EITHER the first in a series OR a later revision; here it means the
+superseded one. The current copy holds the unsuffixed canonical name only because
+the operator chose to rename the old file rather than name the new one -b. Had
+they done the reverse - the more natural reading of "add a suffix to the new
+thing" - the STALE copy would now hold the name any tool would regenerate and any
+reader would treat as canonical.
+
+So the collision rule's protection is real and its bookkeeping is entirely
+manual: it refuses to destroy evidence, and then leaves the operator to invent a
+naming scheme, apply it under time pressure, and get the direction right. That is
+a second procedure hanging off the first.
+
+THE CONSTRAINT THIS ADDS TO THE FIX: whatever preserves the old copy must also
+ORDER the copies without a human convention - a sequence the tool assigns, or
+content addressing, or a pointer in each header naming its predecessor and
+successor. Assertion two requires the earlier copy to survive a refresh; this
+requires that surviving it be identifiable afterwards. Preserved and
+indistinguishable is only marginally better than overwritten.
+
+3. THE CARRY HAS ITS OWN FAILURE MODE, AND IT IS THE ONE THAT MATTERS MOST.
+The push failed on the wrong active account - the tenth time this week. So
+durability is not one property, it is three hops, and only two are held:
+
+    survives the project directory being deleted    HELD, by the escrow
+    survives the next propagation                   HELD, by the escrow's location
+    reaches a remote                                NOT HELD
+
+The escrow's own header claims exactly the first two and no more: it says the copy
+"survives both the project being deleted and the next propagation". That is true,
+and it is NARROWER THAN DURABLE. Both the escrow and the local commit live on ONE
+MACHINE. If that machine is lost, twenty-nine findings go with it, and the escrow
+mechanism will have performed perfectly throughout.
+
+THE THIRD HOP IS THE ONLY ONE THAT MAKES THE RECORD AVAILABLE TO ANYONE ELSE, and
+it is the only one with no mechanism at all - it fails for a reason unrelated to
+this queue, silently as far as the queue is concerned, and repeatedly. Ten times
+in a week is not an incident.
+
+THE FAILURE MODES ALSO COMPOSE IN THE WORST ORDER. The refresh defect makes the
+copy stale; the carry defect stops the copy moving. A stale copy that pushes
+cleanly is wrong and visible to others. A current copy that does not push is right
+and visible to nobody. Today produced the second, and the second is the one that
+looks like success from inside the machine it is trapped on.
+
+WHAT THIS DOES NOT CLAIM. The account failure is not established to be the
+system's defect - it may be entirely environmental. It is recorded here because it
+sets the ceiling on what this finding's fix can deliver: a mechanism that makes
+the durable copy perfectly current still leaves the record on one machine. If the
+recurrence has a cause in the tooling rather than the environment, that is a
+separate finding and should be filed as one rather than folded in here.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+### Addendum to finding 29 - Third same-day instance: the escrow and the filing channel cannot both be satisfied inside one day, and the entry that could not travel is the plugin-registration finding
+
+Amended 2026-09-10T11:55:58Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THIRD SAME-DAY INSTANCE, AND IT IS THE ONE THAT SHOWS THE TWO OPERATIONS ARE
+MUTUALLY EXCLUSIVE WITHIN A DAY.
+
+Observed 2026-09-10, plugin 0.1.35, project cartoonify, main session, in the
+course of carrying out an operator instruction that asked for both operations in
+one session.
+
+WHAT HAPPENED, IN ORDER.
+
+  10:44:57Z  escrow written, fresh path, no collision
+             32 findings, 37 addenda, 325,643 bytes
+  ~14:50Z    finding 33 filed - an unrecognised plugin registration found while
+             propagating 0.1.35
+  ~14:52Z    refresh attempted so the copy would carry finding 33
+             REFUSED by the collision branch. Escrow on disk still 32/37.
+             Live queue 33/37. Nothing written.
+
+The refusal is verbatim: "could not locate the system repository, and the durable
+copy already exists ... Nothing was written and nothing in the project was
+touched. A lesson is evidence, so the escrow is not overwritten. Merge or rename
+the copy above if this run is different."
+
+WHAT IS NEW HERE, AND IT IS NOT THAT IT HAPPENED A THIRD TIME. The original
+filing states the defect as a RATE mismatch - the queue moves continuously, the
+escrow is written once per --apply. That is true and it understates the problem.
+On any day when a finding is filed AND an escrow is taken, THERE IS NO ORDER OF
+THE TWO THAT LEAVES A CURRENT DURABLE COPY:
+
+  escrow, then file   -> the copy is behind by the filing, silently, and a
+                         refresh the same day is refused
+  file, then escrow   -> correct, but only if no escrow was taken earlier that
+                         day; if one was, the refresh is refused identically
+
+So the operator is not choosing badly or forgetting a procedure. The two
+documented operations cannot both be satisfied inside one calendar day, and the
+day on which both happen is precisely the day the queue changed - which is the
+only day currency matters. The original filing's remedy note says a procedure
+cannot carry this requirement. This instance says something narrower and harder:
+there is no procedure available to carry it, because the collision rule and the
+filing channel disagree at the granularity of the destination filename.
+
+THE SELECTION IS AGAINST THE NEWEST ENTRY, AND THIS TIME AGAINST THE MOST
+URGENT ONE. The finding that cannot travel is finding 33, which records that a
+plugin nobody installed was registered on this machine with a marketplace entry
+and an MCP server, and that nothing in this system enumerates the surface it was
+registered on. The durable copy an operator would carry to the repository that
+governs every project is behind by exactly that.
+
+ASSERTION 4 IS STILL RED AT 0.1.35, MEASURED RATHER THAN ASSUMED. The two
+messages still open with the identical clause. Fresh: "could not locate the
+system repository. Looked for ..." Clash: "could not locate the system
+repository, and the durable copy already exists ...". The load-bearing words -
+"Nothing was written" - are still the second sentence, still unemphasised, still
+arriving after a subordinate clause that reads as reassurance. 0.1.35 was
+findings 3 and 32; nothing in this finding was built.
+
+AND THE MESSAGE PRESCRIBES THE HAND-CARVE. "Merge or rename the copy above if
+this run is different" is advice to do by hand the thing the mechanism refuses to
+do, and the escrow directory already carries the result of somebody taking it:
+cartoonify-2026-09-06-a.md sits beside cartoonify-2026-09-06.md, 219,162 bytes
+against 269,832, two copies of the same day distinguished by a suffix a person
+chose. That file is not a second queue; it is this defect's scar tissue.
+
+WHAT WAS NOT DONE, AND WHY IT IS NAMED. The stale escrow was NOT deleted to force
+a clean write. Deleting it is the one-line change the finding's second assertion
+exists to forbid - "a lesson is evidence, so a second run on the same day must not
+replace the first" - and the fact that the stale copy is four hours old and was
+written by this same session does not make it less of a durable copy. The
+collision rule was obeyed. The cost of obeying it is this addendum.
+
+CARRY PATH FOR TODAY, so the instruction is not left half-done. The system
+repository is checked out on this machine, so the current bytes can be carried
+directly from the project queue rather than from the escrow. The escrow at 32/37
+should be carried too, or left, but it should not be mistaken for current.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 29 - Fourth same-day instance, and the first that did not happen: the finding was read, the command was not run, and the rename carries a count instead of a letter
+
+Amended 2026-09-10T14:32:38Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE FOURTH INSTANCE IS THE ONE THAT DID NOT OCCUR, AND THE REASON IT DID NOT IS
+THE PROPERTY THIS FINDING SAYS CANNOT BE RELIED ON.
+
+Two hours after the third addendum was written, the operator instruction arrived
+asking for exactly the operation the third addendum had just recorded being
+refused: refresh the durable copy so it carries finding 33. Running it would have
+produced the silent no-op a fourth time, on the same day, against the same
+destination filename, in the same session that had documented it.
+
+It did not run. The collision branch was READ - in this finding, in this file -
+and the rename was done first. The escrow at 32 findings was moved to
+cartoonify-2026-09-10-32.md, which frees the destination the fresh write needs,
+so the write is a fresh path rather than a clash and no evidence is overwritten.
+
+A FINDING THAT STOPS ITS OWN NEXT INSTANCE IS THE QUEUE WORKING. That is worth
+recording plainly, because most of what is in this file is the queue failing to
+prevent anything. This entry predicted the operation, named the destination
+collision, quoted the two messages that share an opening clause, and the
+prediction was correct in every particular.
+
+AND IT WORKED BY THE MECHANISM THIS FINDING ALREADY SAYS IS NOT AVAILABLE. It
+worked because somebody read a 4,000-line queue before running a one-line
+command. The original filing states it: "Re-running --apply after every amendment
+is a PROCEDURE, and finding 9 is four consecutive sessions of evidence that
+procedures do not hold." Reading the queue first is a procedure with a worse
+success rate than that one, because it requires not just remembering to act but
+remembering to go and look for a reason not to. This instance is a success and it
+is not evidence of a fix; it is one operator, on one day, who happened to have the
+finding in front of them. Assertion 1 is still red. Nothing reported the
+divergence - a person went and counted.
+
+THE SUFFIX SHOULD CARRY THE COUNT, NOT A LETTER, AND THIS IS THE CHEAP HALF OF
+THE FIX. The third addendum names cartoonify-2026-09-06-a.md as this defect's
+scar tissue - two copies of one day distinguished by a letter a person chose. A
+letter is arbitrary: -a sorts before the unsuffixed name in some listings and
+after it in others, and a reader holding both files cannot tell from the names
+which one is current. They have to open both and count, or compare byte sizes and
+guess.
+
+  today       cartoonify-2026-09-10-32.md   32 findings, 325,643 bytes
+              cartoonify-2026-09-10.md      the fresh write, 33 findings
+  2026-09-06  cartoonify-2026-09-06-a.md    219,162 bytes, contents unstated
+              cartoonify-2026-09-06.md      269,832 bytes, contents unstated
+
+A COUNT IN THE FILENAME COSTS NOTHING AND MAKES THE COPIES ORDERABLE WITHOUT A
+HUMAN CONVENTION. applyPlan() already knows the finding count at the moment it
+writes - it is reading the queue. Naming the destination with it, or renaming the
+incumbent with it on collision, means a reader with two copies can rank them from
+the names alone and knows which is behind and by how much. That is not the fix
+this finding asks for: the fix is that staleness is DETECTED, and a filename is
+not a detector. It is the part of the fix that requires no new mechanism, no
+digest, no comparison step and no operator, and it removes the specific hand-carve
+the refusal message currently prescribes.
+
+SO THE ASSERTION GAINS A SIXTH, AND IT IS SMALL. Two durable copies of the same
+project must be orderable by their filenames alone. The broken build is the
+2026-09-06 pair: give a reader those two names and require that they cannot say
+which is current. The green direction is today's pair, where -32 against an
+unsuffixed 33 answers it without opening either file.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 29 - Fifth same-day instance, and the first that destroyed evidence: the collision rule is inside escrowQueue, so a plain mv walks around it - and the count suffix was wrong for five minutes
+
+Amended 2026-09-10T14:43:38Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE FIFTH INSTANCE IS THE FIRST IN WHICH THE EVIDENCE WAS ACTUALLY DESTROYED,
+AND IT WAS DESTROYED BY THE STEP THE FOURTH ADDENDUM ADDED TO PREVENT IT.
+
+Sequence, all on 2026-09-10, all timestamps from the files themselves:
+
+  10:44Z  --apply escrows the queue at 32 findings, 325,643 bytes, as
+          cartoonify-2026-09-10.md
+  14:32Z  the fourth addendum is written. The 32-finding escrow is renamed to
+          cartoonify-2026-09-10-32.md, freeing the destination, and the addendum
+          records that "the write is a fresh path rather than a clash and no
+          evidence is overwritten"
+  14:33Z  --apply writes cartoonify-2026-09-10.md fresh, 33 findings, 341,675
+          bytes. Both copies now exist. This is the finding working
+  14:38Z  the main session, acting on an operator instruction that restated the
+          fourth addendum's own plan, runs
+            mv cartoonify-2026-09-10.md cartoonify-2026-09-10-32.md
+          without listing the directory first. The destination held the 32-finding
+          escrow. mv clobbers. The 10:44Z artifact ceases to exist, silently
+
+THE PROTECTION IS INSIDE THE WRITER, SO IT PROTECTS ONLY THE WRITER'S PATH.
+escrowQueue refuses when any destination exists, and that refusal is the entire
+reason the fourth instance was safe. It has no purchase on any other route into
+that directory. A rename typed at a shell is not a clash the escrow can see. The
+rule is written as "a lesson is evidence, so the escrow is not overwritten"; what
+it enforces is "escrowQueue does not overwrite". The gap between those two
+sentences is this instance, and the queue has now recorded both halves of it on
+one day: the guarded path holding, and the unguarded path beside it losing the
+exact artifact the guarded path had just preserved.
+
+WHAT IS RECOVERABLE: NOTHING, AND THE REASON IS WORTH STATING. The escrow lives
+outside every git tree by design. HEAD's copy of the queue carries 23 findings and
+189,800 bytes, so version control has no 32-finding state to return. No unique
+CONTENT was lost - --amend appends a stamped addendum and never edits, so findings
+1 to 32 as they stood at 10:44Z survive inside the 33-finding copy - but that is an
+argument available only after the fact, and it is the same argument that would
+excuse the next overwrite. What was lost is a dated artifact: the byte-exact record
+of what this queue looked like at 10:44Z, which is the only thing an escrow is for.
+
+THE COUNT SUFFIX INHERITED THE DEFECT IT WAS PROPOSED TO FIX. For five minutes the
+directory held a file named -32 containing 33 findings. A letter suffix is
+arbitrary; a count suffix is a CLAIM, and a claim maintained by hand is wrong the
+moment a hand is wrong - which is the shape this file records under other headings
+as a stamp asserting something nothing computed. The proposal in the fourth
+addendum stands and needs one addition:
+
+  THE COUNT MUST BE WRITTEN BY THE ESCROW WRITER, FROM THE FILE IT IS WRITING,
+  never by an operator or an agent at a shell. escrowQueue already reads the bytes
+  it copies; counting findings in them is one line, and it makes the name a
+  derived fact instead of an assertion.
+
+And a second limit the fourth addendum did not reach: two copies made on the same
+day with the SAME count are not ordered by the count either. Today's directory
+would have held -32 and -33 and been legible; tomorrow's may hold two 33s. The
+escrow's own ISO timestamp is already inside the file, in the provenance comment,
+and is absent from the name. If the writer names the file it should carry both.
+
+THE ASSERTION, AND THE BROKEN BUILD IT MUST CATCH. The fourth addendum's fix is
+testable and this instance supplies the test that would have gone red:
+
+  1. escrowQueue names each file <project>-<date>-<n>.md where n is counted from
+     the bytes being written, and the count is never accepted from a caller.
+  2. A check over escrowDir(): for every file whose name carries -<n>, the number
+     of `^# Finding ` headings in it equals n. Any mismatch is a FAIL naming both
+     numbers.
+
+BROKEN BUILD, AND IT WAS THIS DIRECTORY FOR FIVE MINUTES ON 2026-09-10: a file
+named cartoonify-2026-09-10-32.md containing 33 findings, with nothing anywhere
+reporting the discrepancy, and the operator holding a name that said 32. Reproduce
+it exactly - write a 33-finding file under a -32 name - and require the check to
+fail before writing the fix. Note what assertion 2 does NOT do: it cannot see the
+copy that is gone. Nothing can. A check on names catches a false name; only the
+writer owning the destination catches a clobber, and no check over a directory can
+distinguish a file that was never made from one that was overwritten.
+
+THE INSTRUCTION WAS CORRECT AND WAS FOLLOWED, WHICH IS THE PART THAT MATTERS. The
+operator asked for a rename to a count-carrying name and then an --apply, in that
+order, for exactly the right reason. The step that lost the artifact was the
+mechanical one underneath: mv with no look at the target. This finding's subject is
+that durable copies are protected by procedure rather than by mechanism; the fifth
+instance narrows it to a sharper claim. The procedure held at every level where a
+person was thinking about it and failed at the level where nobody was, which is
+where procedures always fail and is why the count belongs in the writer.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 30 - The active gh account is one global per-machine setting governing fourteen repositories under eight owners, and doctor's account check is parameterised for the project's own origin but only ever asked about the system repo
+
+Filed: 2026-09-06T14:25:42Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/doctor.mjs - checkGhAccount() and the unused owner parameter of ghAccountFinding()`
+
+ONE GLOBAL SETTING SELECTS THE IDENTITY FOR EVERY REPOSITORY ON THE MACHINE, AND
+THE CHECK THAT WOULD CATCH A MISMATCH IS ALREADY PARAMETERISED FOR IT AND IS ONLY
+EVER ASKED ABOUT ONE REPOSITORY.
+
+Filed after ten push failures in a week on the carry step of finding 29, with no
+established cause. The cause is now established, and it is not carelessness.
+
+THE MECHANISM, CONFIRMED ON THIS MACHINE. The active GitHub account is stored once
+per HOST in a single file - one `user:` key under `github.com:`. There is no
+per-directory and no per-repository binding; nothing in a project directory
+carries an account, and the only override is an environment variable set per
+invocation. So `gh auth switch` is a MACHINE MODE, and it persists across
+projects, across sessions, and across reboots until it is changed again.
+
+THE SCALE, WHICH IS WHY THIS IS NOT AN OPERATOR ERROR. Counted on this machine:
+
+  14 local repositories with an origin, under 8 DISTINCT OWNERS
+     mavcimavci1983-create  5     mavcuusa-png        2   (not authenticated)
+     mavci-ai-devsystem     2     xoxonew-sys         1   (not authenticated)
+     tarihsahnesimilat-gif  1     mavciaibusiness-oss 1   (not authenticated)
+     globalmvpllc-oss       1     avcticaret-ai       1   (not authenticated)
+  4 accounts authenticated, covering 9 of those 14 repositories.
+  1 global key selecting which of the 4 is active.
+
+A one-of-N global mode selector over an N-owner workspace is wrong most of the
+time BY CONSTRUCTION. And the drift has a direction: the account owning the most
+repositories (mavcimavci1983-create, 5) is the one most often left active, and the
+system repository's owner (mavci-ai-devsystem, 2) is not it. The most-recently-used
+account is systematically the wrong one for the repository that matters most,
+because that repository is touched least.
+
+FIVE OF THE FOURTEEN CANNOT BE PUSHED FROM ANY AUTHENTICATED ACCOUNT AT ALL -
+their owners have no token on this machine. For those the remedy is not "switch",
+it is "log in", and nothing distinguishes the two situations until a push fails.
+
+WHAT THE TOOLING ALREADY DOES, AND IT IS ALMOST THIS. doctor.mjs has the check.
+`readGhAccounts()` reads the active login and the full list. `ghAccountFinding()`
+compares them and renders a FAIL naming the exact remedy, and it already
+distinguishes the two cases - `gh auth switch --user X` when that owner is
+authenticated, `gh auth login` when it is not. Its own text already explains that
+the resulting error is "a permission error worded as absence".
+
+AND ITS SIGNATURE ALREADY TAKES THE QUESTION THIS FINDING IS ABOUT:
+
+    export function ghAccountFinding(accounts, owner = SYSTEM_REPO.split('/')[0])
+
+The `owner` parameter exists. There is exactly one caller in the installed tree:
+
+    function checkGhAccount(out, { network = true } = {}) {
+      if (!network) return;
+      out.push(ghAccountFinding(readGhAccounts()));
+    }
+
+It passes no owner, so the parameter is dead except for its default, and the
+question asked is permanently "is the active account the SYSTEM repository's
+owner?" It is never "is the active account the owner of the origin of the project
+you are standing in?" - although doctor runs inside a project, the project has an
+origin, and the comparison is a string equality the function already performs.
+
+SO THE GAP IS NARROW AND EXACT: a per-machine global setting governs a
+per-repository operation, and the one tool positioned to notice checks it against
+a constant instead of against the repository at hand. The capability is built. It
+is aimed at one repository out of fourteen.
+
+WHY IT SURFACES AS SOMETHING ELSE ENTIRELY. A push or API call against a private
+repository from the wrong account returns "Repository not found". Nothing in that
+string mentions accounts or permissions; it reads as the repository having been
+deleted or renamed. doctor.mjs states this in terms for the system repository. The
+same wording is what the operator meets for a project repository, with no check
+anywhere having warned them and no line in the output connecting it to identity.
+Ten occurrences in a week produced no diagnosis, which is the expected result when
+the error names the wrong thing and the one check that knows better is looking
+elsewhere.
+
+WHAT IS NOT ESTABLISHED, AND MUST NOT BE READ AS ESTABLISHED.
+  - The ten failures were not individually diagnosed. What is established is the
+    mechanism, the scale and the missing check; that this mechanism caused all ten
+    is inference, not observation. Any one of them could have been something else.
+  - LOGIN EQUALITY IS NOT ACCESS. ghAccountFinding says so itself: "Only logins
+    were compared. If the active account is a collaborator with access to the
+    repository, this line is wrong." A mismatch is a warning that identity is
+    probably wrong, never proof a push would fail. The fix must keep that
+    hedge - it is what makes the check honest on a machine with collaborators.
+  - `gh` is not this system's to change. The global-per-host storage is gh's
+    design and the fix is emphatically NOT to work around it, shell out a switch,
+    or write to that file. The fix is to READ the project's origin owner and
+    COMPARE, which is a report, not an intervention.
+  - This project has no origin at all, so the check proposed here would not have
+    fired here. cartoonify's carry is a hand copy into a different repository.
+    The finding is about every governed project that does have one.
+
+FIX, and it is small because the parts exist.
+  1. Pass the project's origin owner to `ghAccountFinding`. Derive it from
+     `git remote get-url origin`; the function already renders the finding, picks
+     the right remedy, and carries the collaborator hedge.
+  2. Report BOTH when they differ - the project's origin owner and the system
+     repository's owner are different questions and both matter, one for the work
+     and one for the carry. Today only the second is asked.
+  3. Say it at session start, not at push time. The existing preflight already
+     runs; a mismatch is knowable before any work is done, and the whole cost of
+     this defect is that it is discovered at the moment of pushing, which is the
+     end of the work rather than the beginning.
+
+SCOPE NOTE ON WHY THIS IS FILED HERE. It reached this queue through finding 29's
+third hop - a record that survives the project and survives propagation and then
+does not reach a remote. That framing still holds and this is its cause, but the
+defect is not specific to the lessons queue: it applies to every push from every
+governed project on a machine with more than one owner, which is this one.
+
+### The assertion, and the broken build it must catch
+
+FOUR ASSERTIONS. The first is the defect; two guard the obvious wrong fixes; the
+last is the green direction, and this machine can exercise both of its branches.
+
+FIRST, AND RED TODAY: doctor, run inside a governed project whose origin owner is
+NOT the active gh account, must report that mismatch. Construct it exactly -
+active account A, project whose origin is owned by B - and require the current
+tree to report NOTHING about the project's own origin. It will report only about
+mavci-ai-devsystem/mavci-ai-devsystem, and it will report OK whenever the active
+account happens to be that owner, which is precisely when a push to a project
+owned by someone else is about to fail. Confirm that FIRST.
+
+SECOND, SO IT DOES NOT BECOME AN ASSERTION OF ACCESS: the report must state that
+only logins were compared and that a collaborator with access makes the line
+wrong. ghAccountFinding already carries that sentence; assert it survives into the
+project-origin path. A build that drops the hedge turns a useful warning into a
+false claim about permissions, and on a machine with collaborators it would be
+wrong routinely.
+
+THIRD, SO IT DOES NOT FIRE WHERE THERE IS NOTHING TO COMPARE: a project with no
+origin must produce the existing "no git remote" warning and NOT a spurious
+account mismatch. cartoonify is that case and is the fixture. A build that treats
+a missing origin as a mismatch passes assertion one and must fail this.
+
+FOURTH, GREEN DIRECTION, BOTH BRANCHES, so this is proven both ways rather than
+merely shown capable of failing. The remedy differs by whether the required owner
+is authenticated at all, and both cases exist on this machine:
+  - a project owned by an AUTHENTICATED account that is not active must yield
+    `gh auth switch --user <owner>`;
+  - a project owned by an owner with NO token here - mavcuusa-png, xoxonew-sys,
+    mavciaibusiness-oss or avcticaret-ai - must yield `gh auth login`, because
+    switching to an account that does not exist locally is not a remedy.
+  And a project whose origin owner IS the active account must report OK, so the
+  check is shown to discriminate rather than merely to fire.
+
+NOT ASSERTED, DELIBERATELY: that a mismatch predicts a failed push, and that the
+ten observed failures had this cause. The check answers "is the active identity
+the one this repository expects", which is the narrow question that was going
+unasked. Whether the push then succeeds is not its claim.
+
+### Addendum to finding 30 - Confirmed live on the cartoonify push, and the error's diagnosability is a property of the repository, not of the mistake
+
+Amended 2026-09-06T17:59:41Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+CONFIRMED LIVE, ON A REAL PUSH, AND ONE HALF OF THE MECHANISM TURNS OUT NOT TO BE
+A PROPERTY OF THE MISTAKE AT ALL.
+
+cartoonify was pushed to github.com/mavciaibusiness-oss/cartoonify. At the moment
+of the push the active account was mavcimavci1983-create and the origin owner,
+mavciaibusiness-oss, had NO token on this machine. That is the branch the body
+predicted but had not seen: five of the fourteen where the remedy is `gh auth
+login` and not `gh auth switch`. It is now observed rather than counted. No
+amount of switching between the accounts present would have reached that
+repository.
+
+THE SAME ACCOUNT ERROR PRODUCES TWO DIFFERENT MESSAGES, AND WHICH ONE YOU GET IS
+DECIDED BY THE VISIBILITY OF THE REPOSITORY YOU ARE PUSHING TO.
+
+  private:  "Repository not found"
+  public:   "Permission to mavciaibusiness-oss/cartoonify.git denied to
+             mavcimavci1983-create"
+
+One error. One cause. The private wording names nothing - not the account, not
+the permission, not even that permission is the subject; it reads as the
+repository having been deleted, renamed, or never created. The public wording
+names the operation, the repository, AND BOTH PRINCIPALS: the one required and
+the one active. The second message contains the whole diagnosis. The first
+contains no diagnosis at all.
+
+THIS IS NOT A DEFECT AND NO FIX HERE CAN TOUCH IT. It is GitHub's wording, and
+the reason for it is sound: a private repository must not confirm its own
+existence to a principal without access, so "not found" is the only thing it is
+allowed to say. Nothing in this system gets to change that, and nothing should
+try.
+
+WHAT IT CHANGES IS THE ARGUMENT FOR WHERE THE CHECK RUNS. Diagnosability is a
+property of the repository being pushed to, not of the operator and not of the
+mistake. And the worse message attaches to the more common case: the private
+repositories are the ones under governance here, the system repository is
+private, and it is the one that produced every confusing failure this week. The
+better message arrived only because cartoonify happens to be public.
+
+So fix step 3 - say it at session start, not at push time - is not a convenience
+argument any more. An error that names its cause makes a pre-check OPTIONAL: the
+operator loses the time between starting the push and reading the message, and
+then knows. An error that reads as absence makes a pre-check NECESSARY: there is
+nothing in the message to diagnose from, so without a check beforehand the cause
+is not available at any price. The ten failures cost what they cost because the
+private wording is the one the common case gets.
+
+OBSERVED AGAIN WHILE WRITING THIS, ON THIS MACHINE, ONE MINUTE APART:
+  `gh repo view mavci-ai-devsystem/mavci-ai-devsystem` from the active account
+  returns "Could not resolve to a Repository with the name
+  'mavci-ai-devsystem/mavci-ai-devsystem'."
+  `gh repo view mavciaibusiness-oss/cartoonify` from the same active account
+  returns the repository.
+The second is public; the first, per the operator, is private and exists. From
+this account those two facts are indistinguishable from "it was deleted" and
+"the name is wrong", which is the complaint stated in one command.
+
+NOT ESTABLISHED, AND UNCHANGED FROM THE BODY: that the ten failures each carried
+this message, and that a mismatch predicts a failed push. What the push
+establishes is narrower and enough - the login-not-switch branch is real, and
+the message the private case produces has nothing in it to reason from.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+### Addendum to finding 30 - Every fixture in this finding named a machine state, and the push that confirmed it changed all of them
+
+Amended 2026-09-06T17:59:45Z, plugin 0.1.34. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+EVERY FIXTURE IN THIS FINDING NAMED A MACHINE STATE, AND THE PUSH THAT CONFIRMED
+THE FINDING CHANGED ALL OF THEM. The act of acting on this finding invalidated
+its own test material - which is the general hazard, not an accident of this
+push.
+
+RE-MEASURED 2026-09-06, after the push, same scan scope as the body
+(repositories with an origin directly under the projects root):
+
+  15 repositories with an origin, under 8 owners
+     mavcimavci1983-create  5     tarihsahnesimilat-gif  1
+     mavciaibusiness-oss    2     globalmvpllc-oss       1
+     mavci-ai-devsystem     2     xoxonew-sys            1  (no token here)
+     mavcuusa-png           2  (no token here)
+     avcticaret-ai          1  (no token here)
+  5 accounts authenticated, covering 11 of those 15 repositories.
+  1 global key selecting which of the 5 is active. Active: mavcimavci1983-create.
+  4 repositories under 3 owners cannot be pushed from any authenticated account.
+
+WHAT THIS DOES NOT WEAKEN: one global key still selects one identity for 15
+repositories under 8 owners, and the drift still has the same direction - the
+account owning the most repositories is the one left active, and the system
+repository's owner is not it. The ratio moved from 4-of-14 to 5-of-15. The
+argument is unchanged; only the numbers are.
+
+SUPERSEDED, AND MACHINE-VERIFIED BY --was BELOW: the claim that this project has
+no origin. cartoonify's origin is
+https://github.com/mavciaibusiness-oss/cartoonify.git. The check this finding
+proposes WOULD fire here, and would have been RED here before the push: active
+mavcimavci1983-create, origin owner mavciaibusiness-oss, no token for that owner
+on this machine - the `gh auth login` branch. cartoonify has stopped being the
+project the check does not apply to and become the project that demonstrates it.
+
+THREE MORE PASSAGES ARE SUPERSEDED BY THE SAME PUSH. They are quoted verbatim
+here and NOT machine-verified: `--amend --was` takes one quote, and one event
+superseded four passages. A reader can resolve each by searching the body for
+the quoted string; none of them is a line number, deliberately.
+
+  1. Assertion three: "cartoonify is that case and is the fixture."
+     RESTATED, naming no project: a project with no origin must produce the
+     existing "no git remote" warning and NOT a spurious account mismatch. The
+     assertion itself is untouched and still required - a build that treats a
+     missing origin as a mismatch passes assertion one and must fail this one.
+     Only the fixture is gone. Whoever builds it needs a different project with
+     no origin, or a constructed one, and must derive it at test time rather
+     than name it.
+
+  2. Assertion four, the `gh auth login` branch: "a project owned by an owner
+     with NO token here - mavcuusa-png, xoxonew-sys, mavciaibusiness-oss or
+     avcticaret-ai - must yield `gh auth login`". mavciaibusiness-oss now HAS a
+     token on this machine - it was logged in to complete the push that
+     confirmed this finding. Using it as the login-branch fixture would now
+     assert the wrong branch and pass for the wrong reason. Owners with no token
+     here as of this amendment: mavcuusa-png, xoxonew-sys, avcticaret-ai. Both
+     branches of assertion four still exist on this machine, so the assertion
+     stands; its inventory does not.
+
+  3. The scale block: "4 accounts authenticated, covering 9 of those 14
+     repositories." and "FIVE OF THE FOURTEEN CANNOT BE PUSHED FROM ANY
+     AUTHENTICATED ACCOUNT AT ALL". Superseded by the re-measurement above.
+
+THE LESSON FOR WHOEVER APPLIES THIS, AND IT OUTLIVES THIS FINDING: a fixture that
+names a repository or an account is a snapshot of the machine on the day it was
+written, and for this finding in particular the remedy - logging in, switching -
+is itself a machine change. Fixing what the finding is about breaks the fixture
+that proves it. State fixtures as SHAPES ("a project with no origin", "an owner
+with no token on this machine") and derive the instance at test time from `git
+remote get-url origin` and `gh auth status`. Both are already read by the code
+this finding is about.
+
+**Superseded, quoted verbatim from the body above:** - This project has no origin at all, so the check proposed here would not have
+    fired here. cartoonify's carry is a hand copy into a different repository.
+
+---
+
+### Addendum to finding 30 - The release path is guarded at the tag and unguarded at the branch push the tag gate itself requires first
+
+Amended 2026-09-10T10:39:41Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+ELEVENTH INSTANCE, AND THE FIRST AGAINST THE SYSTEM REPOSITORY'S OWN RELEASE PATH
+RATHER THAN A PROJECT. It caught a release, not a push from a governed project,
+and that is what makes it worth an addendum rather than a tally mark: the release
+path is guarded at its LAST step and unguarded at the step immediately before it.
+
+WHO RAN THIS AND WHAT WAS OBSERVED BY WHOM. Filed from the main session in the
+system repository at the operator's direction, on 2026-09-10, immediately after
+pushing 0.1.35's commit. No `--agent` stamp is claimed: the risk guard's
+provenance arm does not run for a main session (finding 24 in this queue), and a
+stamp asserting enforcement that did not happen is worse than an unattributed
+one. This paragraph is a claim in the body, visibly somebody's account, which is
+what the tool's own refusal message advises.
+
+  Reported by the operator, not observed here: a git or gh call against
+  mavci-ai-devsystem/mavci-ai-devsystem from the wrong active account returned
+  "Repository not found" roughly a minute before the push, which is the private
+  wording the first addendum established has nothing in it to reason from.
+  Observed here, after `gh auth switch`: active account mavci-ai-devsystem,
+  `git ls-remote origin refs/heads/main` answered c88db8c, and
+  `git push origin refs/heads/main:refs/heads/main` moved c88db8c..73671c3.
+
+THE ASYMMETRY, AND IT IS STRUCTURAL RATHER THAN AN OMISSION.
+
+  the TAG step      `check-pretag.mjs --cut` probes origin with `git ls-remote`
+                    BEFORE the suite, refuses when it is silent and names which
+                    of the two causes it is, pushes by explicit refspec INSIDE
+                    the gate, and reads the tag back off origin. That arm is
+                    `identityVerdict` at scripts/ci/check-pretag.mjs:339, and it
+                    has exactly one definition and one call site, both in that
+                    file.
+  the BRANCH push   nothing. No probe, no comparison, no refusal, no read-back.
+                    `git push origin main` consults nothing at all.
+
+AND THE GUARDED GATE REQUIRES THE UNGUARDED STEP FIRST. scripts/ci/check-pretag.mjs:1777
+refuses when HEAD is not origin/main, with the remedy "Push the commit BEFORE
+tagging it." So the branch push is a PRECONDITION of entering the gate. The
+ordering is not incidental: the unguarded step always runs first, it is the step
+at which the wrong account is still possible, and the gate that would have caught
+the wrong account is the one telling you to go and do it. That is adjacent to,
+but not the same as, the pattern already on record in this system - a check that
+detects a condition prescribing the tool that produced it. Here the gate
+prescribes a step it does not guard.
+
+WHY IT IS INVISIBLE, WHICH IS THE PART THAT GENERALISES. `--cut` is called "the
+only door" in its own header and in the governing document, and that sentence is
+true of TAGS and reads as true of RELEASING. A branch push is not thought of as a
+release step at all, although nothing reaches any project without one: a project's
+committed CI clones a tag, and a tag not on the mainline is refused by this same
+gate. The guarded step is the one everybody thinks about, so the unguarded one is
+not experienced as a gap - it is not experienced as a step.
+
+WHAT THIS CORRECTS FOR A READER OF THE BODY, WITHOUT SUPERSEDING IT. The body says
+there is "exactly one caller in the installed tree" and that the `owner` parameter
+is "dead except for its default". That is true as written and correctly scoped -
+scripts/ci/ is not the installed tree. A reader who takes it as "the parameter has
+one caller" will be wrong, so the measurement is recorded here rather than left to
+be rediscovered. Three callers across this repository:
+
+  plugins/mavci-core/scripts/doctor.mjs:678   passes no owner
+  scripts/ci/check-pretag.mjs:340             passes owner, defaulted to OWNER
+  scripts/ci/check-doctor.mjs:552             a test, passes OWNER
+
+ALL THREE RESOLVE TO THE SAME CONSTANT, `SYSTEM_REPO.split('/')[0]`. The parameter
+is therefore not dead; it is exercised and never varied. Same consequence,
+different defect, and it changes what fix 1 looks like at one of the sites: the
+call to fix already passes an argument, so whoever goes looking for a missing one
+will not find it.
+
+AND THE GAP THIS INSTANCE ACTUALLY EXPOSES IS NOT PARAMETERISATION. For the system
+repository, doctor's hardcoded owner is the RIGHT question - this session was
+rooted in that repository, and `checkGhAccount` would have compared the correct
+two names. It did not fire because nothing ran doctor. The probe that did happen
+before the push happened because the governing document tells a reader to run one,
+not because any check required it. That is check-pretag's own header argument one
+layer out: a check nobody is required to run is the same failure one layer up. So
+there are two gaps here, not one - the check asks the wrong question in a governed
+project (the body), and nothing is required to ask it at all before a push (this
+instance) - and fix 3, "say it at session start", is the one that answers both.
+
+NOT RE-COUNTED, DELIBERATELY. The second addendum's lesson is that a fixture
+naming a repository or an account is a snapshot, and that acting on this finding
+changes the machine. The account inventory has moved again since that
+re-measurement. It is not restated here: whoever builds the check derives it at
+test time from `git remote get-url origin` and `gh auth status`, which is what
+that addendum already requires.
+
+NOT ESTABLISHED. That a mismatch predicts a failed push - unchanged, and still the
+hedge that keeps the check honest. That the operator's "Repository not found"
+today had this cause: that is their report, and what was observed here is only the
+post-switch state, which is consistent with it and does not demonstrate it. And no
+fix is designed here - this records that the asymmetry exists and where it is. In
+particular it does NOT propose that a branch push acquire a gate shaped like
+`--cut`. The negative control from 0.1.17 governs whatever is built: origin
+answering must never be turned into a failure, because the release path is the
+worst place in this system to refuse wrongly.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 31 - An amendment can correct a claim and cannot correct what advertises it: the title is written once, --was verifies one quote, and the queue's index is systematically its least-corrected surface
+
+Filed: 2026-09-06T18:07:24Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/retro.mjs - amend() and its single --was, findingHeading() written once at --record, and the --list index that reads it`
+
+AN AMENDMENT CAN CORRECT A CLAIM AND CANNOT CORRECT WHAT ADVERTISES IT.
+
+Observed 2026-09-06 while filing two addenda on finding 30 of this queue -
+"Confirmed live on the cartoonify push, and the error's diagnosability is a
+property of the repository, not of the mistake" and "Every fixture in this
+finding named a machine state, and the push that confirmed it changed all of
+them". Cited by title and date rather than by line, per finding 24's second
+addendum. Both limits below were hit in the act of using the tool correctly;
+neither is a bug in what it does, and both are gaps in what it can express.
+
+LIMIT ONE: ONE QUOTE PER AMENDMENT. `--was` takes a single string, checks it
+against the finding's body, and refuses if it does not resolve. That check is the
+best thing in the verb - it closes finding 17's shape, where a citation that does
+not resolve is stored exactly like one that does. But one event superseded FOUR
+passages of finding 30: the no-origin scope claim, assertion three's fixture,
+assertion four's authenticated-owner list, and the scale counts. One of them got
+the machine-verified citation. The other three are prose, in the same addendum,
+in the same voice, in the same typeface.
+
+So the record now holds one verified correction and three assertions of
+correction, INDISTINGUISHABLE BY SHAPE. A reader cannot tell which the tool
+checked. Finding 17's shape, one level over: there an unresolvable citation was
+stored like a resolvable one; here a VERIFIED citation is stored like an
+unverified one, and the verification silently stops applying after the first
+quote with nothing marking the boundary.
+
+The escape - file four amendments, one per quote - makes every citation resolve
+and destroys the other fact: one event, four consequences, becomes four stamps,
+four headings, four times in the index, with nothing saying they are the same
+push. Neither shape can carry both truths.
+
+LIMIT TWO: THE TITLE IS WRITTEN ONCE AND IS THE ONLY THING THE INDEX READS.
+`--amend` appends inside a finding's block and never rewrites the body, which is
+the reason the verb exists: a queue entry that reads as though it was filed at
+the right width is worse than one that shows where it was wrong. But the heading
+is part of the body it must not rewrite, and `--list` renders exactly the
+heading. The title is therefore the one sentence in a finding that cannot be
+corrected, and the one sentence every reader reads.
+
+THE CORRECTION RATE AND THE VISIBILITY RATE RUN OPPOSITE. The more a finding is
+amended, the further its title drifts from its content - and the title is what
+anyone scanning the queue reads first, and what most readers read only. The
+queue's INDEX is systematically its LEAST-CORRECTED SURFACE, which is the
+opposite of what an index is for.
+
+LIVE INSTANCE, IN THIS SAME QUEUE, SAME DAY. Finding 30's title says the active
+gh account governs "fourteen repositories under eight owners". It is fifteen,
+corrected in an addendum filed hours after the finding. `--list` prints the stale
+count and prints "2 addendum(a), 0 unstamped" underneath it: the index KNOWS
+corrections exist, reports how many, and still advertises the uncorrected
+sentence without saying that any of them touched it.
+
+And the title is not simply wrong. Its second half - that doctor's account check
+is parameterised for the project's own origin and only ever asked about the
+system repo - is exactly as true as the day it was filed. A partly-wrong title
+with no way to mark which part is worse for a scanner than a wrong one: nothing
+about it looks broken.
+
+WHERE THIS SITS RELATIVE TO FINDING 24. Its second addendum, "Line numbers are
+not identifiers in this file", established that citations by line went stale
+within hours and that title-plus-timestamp is the stable reference. This is that
+problem one level out. THERE THE IDENTIFIER WAS UNSTABLE; HERE THE IDENTIFIER IS
+STABLE AND WRONG. Both make a reference unreliable, and the second is harder to
+catch, because a stable reference that resolves cleanly to a stale sentence
+gives a reader no signal at all.
+
+THE OBVIOUS FIX IS NOT FREE, AND MUST NOT BE PROPOSED WITHOUT ITS COST. Making
+titles amendable in place is the first thing anyone will reach for. A TITLE IS
+HOW THIS QUEUE IS REFERENCED ACROSS DOCUMENTS - finding 24's addendum settled
+title-plus-timestamp as the stable reference precisely because line numbers were
+not, and the cartoonify carry names findings by number AND title. Rewriting a
+heading breaks every external reference the same way mutable line numbers did,
+and worse in one respect: a citation to a rewritten title still LOOKS like a
+citation, and resolves to nothing or to a different sentence. Any fix here must
+leave the title as filed resolvable.
+
+DIRECTIONS THAT DO NOT PAY THAT COST. Not a decision - the applier's - and none
+of them requires rewriting a byte of a filed body:
+  - The number and the filed title stay the identifier, and `--list` renders a
+    SUPERSEDED-BY line beneath any amended finding, from a short phrase supplied
+    at amend time. The filed title still resolves; the index stops presenting it
+    alone.
+  - `--was` accepts repetition, each quote verified independently and each
+    rendered as its own "Superseded" line. Unverified prose corrections stay
+    possible and become visibly a different kind of statement.
+  - The amendment stamp counts them. "4 superseded quotes, all verified" and
+    "1 verified, 3 in prose" are facts `--list` can carry today, and they need no
+    change to the body format at all.
+
+WHAT IS NOT ESTABLISHED. That anyone has yet acted on a stale title or been
+misled by an unverified prose correction. What is established is structural - the
+index reads a field that cannot be corrected, and the verification stops after
+the first quote - plus one live instance where a title's count is wrong while its
+finding carries two addenda. The cost of this defect is unmeasured, and this
+finding does not claim otherwise.
+
+SCOPE. It applies to every finding in every queue, not to finding 30, and it gets
+worse the better the queue is maintained: a finding nobody corrects has an
+accurate title forever.
+
+### The assertion, and the broken build it must catch
+
+THREE ASSERTIONS. Two are the defect, one guards the fix that would trade this
+problem for finding 24's.
+
+FIRST, RED TODAY, THE INDEX HALF: file a finding, amend it with a correction that
+supersedes a claim its title makes, then run `--list`. Require the index to show
+that the title has been superseded. Today it prints the filed title verbatim and
+an addendum COUNT, which says corrections exist and nothing about what they
+touched. Confirm red against this queue as it stands: finding 30's title says
+"fourteen repositories", its body has been corrected to fifteen, and `--list`
+prints fourteen with "2 addendum(a), 0 unstamped" beneath it. That exact output
+is the broken build.
+
+SECOND, RED TODAY, THE CITATION HALF: file one amendment that supersedes two
+passages. Require the record to distinguish a verified citation from an
+unverified prose one. Today `--was` renders "Superseded, quoted verbatim from the
+body above:" for the single quote it checked, and any further superseded passage
+lives in the amendment text, rendered identically to every other sentence in it.
+A build that merely ACCEPTS a second quote and renders it the same way asserts
+nothing: the assertion is about the reader being able to tell them apart, not
+about the flag being repeatable.
+
+THIRD, THE COST GUARD - it must fail any fix that makes titles mutable in place.
+Quote a finding's title in a document OUTSIDE the queue, which the cartoonify
+carry does today, then amend that finding, then search the queue for the quoted
+title. It must still be found. A build that rewrites the heading to fix
+assertion one passes assertion one and MUST fail this. This is the assertion that
+keeps the fix from being the thing finding 24's addendum ruled out.
+
+GREEN DIRECTION, so this discriminates rather than merely fires: an UNAMENDED
+finding must show no superseded-by line and no verification tally - a decoration
+printed under every entry proves nothing. And an amendment carrying exactly one
+`--was` and no other superseded passage must read exactly as it reads today, so
+the common case is unchanged by the fix.
+
+NOT ASSERTED, DELIBERATELY: that a stale title has misled anyone, and that an
+unverified prose correction has ever been wrong. The check answers "does the
+surface a reader meets first say that what it advertises has been corrected",
+which is the question nothing in the queue asks today.
+
+---
+
+# Finding 32 - ship interpolates the operator request into a shell command unquoted, so a request describing code truncates it - and it takes the skill's own preflight with it
+
+Filed: 2026-09-09T17:19:29Z, plugin 0.1.34.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `skills/ship/SKILL.md and the route.mjs invocation it prints`
+
+THE SHIP SKILL INTERPOLATES THE OPERATOR REQUEST INTO A SHELL COMMAND WITHOUT
+ESCAPING IT, SO ANY REQUEST CONTAINING A BACKTICK OR A QUOTE TRUNCATES THE
+COMMAND. Observed 2026-09-09, project cartoonify, plugin 0.1.34. Two failures in
+one session, on the same path, from the same cause.
+
+FAILURE 1 - the invocation. /mavci-core:ship was called with a request describing
+a code change. The request named files and identifiers in backticks, the way
+prose about code normally does. The skill places the request inside a
+double-quoted shell argument:
+
+    node ".../scripts/route.mjs" --request "<request text>"
+
+and the shell died before the router ran:
+
+    Shell command failed for pattern
+    /usr/bin/bash: eval: line 2: unexpected EOF while looking for matching '"'
+
+FAILURE 2 - the skill's own preflight. The same interpolation appears in the
+status block the skill prints at the top. That block also failed, so the skill
+loaded with its routing decision replaced by an error string. The chain's first
+instruction is to obey that block; it was not there.
+
+MECHANISM. The request is operator prose. A backtick opens command substitution
+and a quote unbalances the argument. Both are ordinary in a sentence about code:
+you write a filename in backticks, and an English possessive supplies an
+apostrophe without anyone deciding to.
+
+WHY THIS IS WORSE THAN THE DEADLOCK IT WAS FOUND ALONGSIDE. Finding 3 returns a
+WRONG ANSWER, loudly and repeatedly - the router says the spec does not exist and
+you can read that and disbelieve it. This one TRUNCATES. The command dies, and
+what survives is an error string sitting where a routing decision should be.
+
+The skill does anticipate its preflight being absent, and says to treat it as
+absent rather than as a pass. But it attributes absence to three causes - a
+disableSkillShellExecution policy, a Cowork session, a read-only skill load - and
+none of them is the request text. So the documented diagnosis points AWAY from
+the actual cause, and the reader is told to run the router manually with the same
+request that just broke it.
+
+CONSEQUENCE, STATED PLAINLY: A REQUEST DESCRIBING CODE CANNOT BE SHIPPED. That is
+most requests this plugin exists to serve.
+
+THE LESSON IS ALREADY LEARNED ELSEWHERE IN THE SAME PLUGIN, WHICH IS WHY THIS IS
+A DEFECT RATHER THAN A GAP. retro.mjs --amend documents its own interface as:
+
+    --text and --was take a PATH or -, never prose - an argument goes through
+    the shell
+
+That is this exact hazard, named, in a sibling script, with the remedy applied.
+The filing tool takes a path because prose through a shell is unsafe; the
+orchestration entry point takes prose through a shell.
+
+WORKAROUND USED TO GET PAST IT, so the next person is not stuck: the request was
+rewritten to remove every backtick and apostrophe, and the router was then run by
+hand. The chain proceeded. Rewriting the request to suit the shell is not a fix -
+it silently narrows what an operator is allowed to ask for, and nothing tells
+them that is happening.
+
+FIX DIRECTIONS, in the order the plugin itself already prefers them: pass the
+request on stdin, or write it to a file and pass the path (the retro.mjs remedy),
+or single-quote with embedded-quote escaping. Any of the three removes the class.
+A fix that escapes only backticks leaves the quote half of the bug.
+
+### The assertion, and the broken build it must catch
+
+A request containing a backtick, an apostrophe and a double quote reaches route.mjs byte-intact: the preflight block prints a routing decision rather than an error string, and the same request run through the documented manual fallback returns the same decision.
+
+### Addendum to finding 32 - Fixed in 0.1.35 - and this finding's own diagnosis is one layer off: the block is cut before the shell sees it
+
+Amended 2026-09-09T18:36:14Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+FIXED IN 0.1.35, AND THE DIAGNOSIS IN THE BODY ABOVE IS ONE LAYER OFF. The body
+reads this as shell quoting - "a backtick opens command substitution and a quote
+unbalances the argument" - and names three fix directions: stdin via a heredoc, a
+path passed as an argument, single-quoting with embedded-quote escaping. ALL
+THREE WOULD HAVE FAILED, and it is worth knowing why before anyone builds one of
+them for the next skill.
+
+NATIVE-CAPABILITIES 2.10 records the loader's assembly order, read out of the
+binary: $ARGUMENTS is substituted FIRST, and Y4 - the inline shell executor -
+extracts the blocks LAST. So the operator's text is already sitting in the
+document when the block boundaries are found, and a backtick in it ENDS THE BLOCK
+EARLY. What bash received was not a backtick; it was half a command with a
+dangling double quote. That is why the error was "unexpected EOF while looking
+for matching" rather than a command-substitution failure - and reading the exact
+error is what separates the two, because a backtick reaching bash intact does
+something else entirely.
+
+Each of the three named fixes keeps the text INSIDE the block, and the block is
+cut in half before any shell runs. The fix that works is the fourth thing: the
+text leaves the block. route.mjs gained --request-file <path>; skills/ship/ writes
+the request verbatim with the Write tool - not with echo or printf, which put it
+back through a shell - and passes the path. That is this project's own
+retro.mjs --amend rule, quoted in the body above, arrived at from the other side.
+
+REPRODUCED AS A MECHANISM RATHER THAN ASSERTED AS A STYLE RULE.
+check-skill-arguments.mjs PART 2 substitutes a hostile value the way k4 does,
+extracts afterwards, and prints the truncation next to the block it came from -
+--request "fix - which is the observed failure, from the source, with no shell
+involved. Its third control passes a backtick-free request through the same block
+and requires it to survive, so the check is reporting the loader and not merely
+the presence of a placeholder.
+
+THE PART THAT DID NOT GET FIXED, because it cannot be. The substitution reaches
+the whole document, not only the blocks, so a request that literally contains an
+inline-block opener creates one. No skill can prevent that. Removing $ARGUMENTS
+from the plugin's own blocks removes the failure that HAPPENS - an ordinary
+sentence about code - and not the one that would have to be typed on purpose. It
+is recorded unasserted in 2.10 and in the check's header, because there is nothing
+to assert against.
+
+AND IT WAS NOT HYPOTHETICAL FOR THE LENGTH OF ONE EDIT. The paragraph written into
+skills/ship/SKILL.md to explain this defect contained the words "the inline !
+block" with the exclamation mark against a code span, and the check reported ship
+as carrying a second inline block whose text was the middle of that sentence. The
+prose describing the hazard had created one, in the file the hazard is about.
+
+THE ASSERTION FINDING 32 ASKED FOR, and where it lives: check-ship-contract.mjs
+C10, C11 and C12. C11 is the direct one - no inline block of ship interpolates
+$ARGUMENTS. C10 and C12 are what stop the fix from re-opening 0.1.24: the request
+must still reach the router by a named shell-free route, and ship's idle row must
+send the orchestrator back with it rather than stopping, because the preflight now
+routes on the control plane alone and idle is not an answer about a request nobody
+passed.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+# Finding 33 - The one rule whose job is to establish that enforcement is on verifies only its own row: nothing enumerates the other plugins or marketplaces, and the user-scope registration that supplies every project on the machine is read for a single boolean
+
+Filed: 2026-09-10T11:54:58Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/rules/index.mjs settings.marketplace_form, and doctor.mjs's user-scope settings read`
+
+Check: `settings.marketplace_form`
+
+Observed 2026-09-10, plugin 0.1.35, project cartoonify, main session, while propagating 0.1.35.
+
+WHAT WAS FOUND ON THE MACHINE, AND IT IS NOT THE FINDING. A plugin the operator did not install was registered: notfair@nowork-studio, recorded 2026-09-07, with a user-scope marketplace entry pointing at nowork-studio/notfair-plugin and an MCP server at notfair.co. Its skills were loaded into this session's skill list. The operator has removed the plugin, the marketplace entry and both directories, and that removal is verified here: absent from the install database, from enabledPlugins, from extraKnownMarketplaces, and from both the marketplace and cache directories. HOW IT ARRIVED IS NOT KNOWN AND THIS FINDING DOES NOT GUESS.
+
+WHAT IS FOR THIS QUEUE IS THAT MAVCI COULD NOT HAVE TOLD ANYONE. The registration surface is a file the operator owns, and the checking Mavci does over it is keyed to Mavci's own name.
+
+THE CHECK'S SCOPE IS ITS OWN ROW. settings.marketplace_form opens the PROJECT's settings file and asks two questions: does extraKnownMarketplaces.mavci carry the git source form, and is enabledPlugins mavci-core@mavci true. Both are keyed to one marketplace name and one plugin id. The rule never enumerates the other entries in the same object. A second marketplace, or a second enabled plugin, sitting in the very file it has already parsed, is not read.
+
+AND THE SEVERITY MAKES THIS SHARPER RATHER THAN SOFTER. The rule is critical and always:true, and its own comment says why - the other twelve ask whether a standard is met, this one asks whether checking happens at all, and suppressing it "is not a debt - it is the end of the system". So the single rule whose stated job is to establish that enforcement is on verifies that its own row is well-formed and is blind to every other row beside it.
+
+THE USER SCOPE IS READ FOR ONE BOOLEAN. doctor does open the user-scope settings file, and takes exactly one value out of it: whether Mavci itself is enabled. It never looks at extraKnownMarketplaces there at all. That is the scope that matters most. A user-scope marketplace supplies plugins to EVERY project on this machine, including projects that carry no Mavci, no committed settings file and no gate.
+
+SO THE COVERAGE IS THE WRONG WAY ROUND. The scope with the smallest blast radius - one project, one committed file - is checked by a critical rule that can be neither baselined nor waived. The scope with the largest blast radius is not enumerated at any severity.
+
+WHAT IT WOULD HAVE COST TO CATCH THIS IS ONE ENUMERATION. doctor already opens both files and already holds the names it expects. Reporting the marketplaces and enabled plugins it did NOT expect, at both scopes, is a WARN with a list. No new mechanism, no new file, no new permission.
+
+THE CROSS-REFERENCE, CHECKED RATHER THAN ASSERTED. This was put to me as finding 23's shape, the propagation procedure touching a file the check reads. Finding 23 is not that: it is the operator-override path closing a task without dispatching the scribe. The propagation-shaped one is FINDING 18 - the fetch fails, the checkout reports up to date, and the check that would have caught it lives in a tool nobody is required to run. This finding is a third shape and worth naming as its own: not a check in the wrong tool and not a step that skips a record, but a check whose QUESTION is narrower than its name. It asks "is my row correct", is titled and severity-rated as though it asked "is checking happening", and the gap between those two is where an unrecognised plugin sits unreported. Finding 23's closing observation still applies word for word: nothing notices.
+
+RESIDUE FOUND WHILE CHECKING, RECORDED BECAUSE IT IS THE SAME BLIND SPOT AND NOT THE SAME EVENT. The plugin cache also holds probemkt/probeplug/0.0.1, described in its own manifest as an "inert probe plugin", dated 2026-09-02 and carrying an .orphaned_at marker. It is NOT in the install database, NOT in either settings file, and NOT in the marketplace directory - dead cache residue rather than a live registration, and on the evidence it belongs to the operator's own probing of plugin internals that day rather than to the 09-07 event. It is named here so the next reader does not have to re-derive that. Mavci reports it no more than it reported the other.
+
+WHAT THIS FINDING DOES NOT CLAIM. It does not claim the plugin was hostile. It does not claim Mavci was the vector. It does not claim any check here would have PREVENTED an installation - the install path is Claude Code's, not this plugin's. It claims only that a registration which supplies code to every project on the machine was invisible to the health check that runs on every one of them, and that making it visible is a list doctor is already holding the inputs for.
+
+### The assertion, and the broken build it must catch
+
+doctor must enumerate, at BOTH the user scope and the project scope, the marketplaces and enabled plugins that Mavci did not put there, and NAME them. Not judge them - name them.
+
+BROKEN BUILD, AND IT WAS THIS MACHINE FROM 2026-09-07 TO 2026-09-10: a user-scope marketplace entry and an enabled plugin, neither installed nor recognised by this system, with doctor reporting 17 ok, 6 warnings and 3 failures and not one line about either. Reproduce it exactly - add an unrelated marketplace and an unrelated enabled plugin to the user-scope settings file - and require doctor to stay SILENT about them. Confirm that FIRST, before writing the fix.
+
+GREEN DIRECTION, so this is proven both ways rather than merely shown capable of failing: on a corrected build the same tree must NAME the unexpected entry, and a tree carrying only Mavci's own entries must say nothing at all. The second half is the one most likely to be got wrong, and it decides whether the fix survives contact: a check that lists Mavci's own marketplace among the unexpected is noise on every run, gets silenced inside a week, and is then silent on the case it was written for. That is the adjacent-assertion failure this queue has now recorded at six scales.
+
+AND IT MUST NOT BE KEYED TO KNOWN-BAD NAMES. The question is "what is registered here that this system did not expect", never "is this particular plugin present". A deny-list answers a question nobody can ask in advance and would have been empty on 2026-09-07.
+
+---
+
+# Finding 34 - doctor fails every project for missing corpus evidence about an agent the manifest need not enable and the tenancy model may make unrunnable, so the FAIL is structurally unclearable where it fires
+
+Filed: 2026-09-10T15:20:38Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/doctor.mjs`
+
+Observed 2026-09-10, plugin 0.1.35, project cartoonify, main session.
+
+doctor's checkGuardianCorpus (doctor.mjs:189) emits FAIL whenever
+.mavci/control/guardian-corpus.json is absent. It is gated on nothing: not on
+the project's tenancy model, not on whether the project enables mavci-guardian,
+not on whether guardian could ever run there.
+
+Cartoonify's manifest declares tenancy.isolation "none", tenancy.model
+"single-tenant", stack.db "none", stack.auth "none", and agents.enabled as
+[mavci-architect, mavci-builder, mavci-verifier, mavci-scribe] - no
+mavci-guardian.
+
+worklist.mjs:75 refuses to emit a worklist unless tenancy.isolation ===
+'application-filters'. That check runs BEFORE stageIsActive at line 81, so the
+corpus staging path cannot reach it. Demonstrated in both directions today:
+the same refusal, byte for byte, on the bare tree and with case q3v7k staged
+into corpus-run/ (3 files). Staging changes nothing because the refusal is
+upstream of scope entirely.
+
+SO THE ONLY ARTEFACT THAT CLEARS THE FAIL CANNOT BE PRODUCED IN THIS PROJECT.
+Not by any sequence of commands that does not falsify the manifest.
+state.mjs --migrate-manifest is privileged precisely because tenancy.isolation
+decides which tenant-isolation rules run at all; editing it so the corpus
+becomes runnable would be manufacturing the premise, and a green corpus
+obtained that way is evidence about nothing. The correct move today was to
+leave the manifest alone and let the FAIL stand, which is what happened - and
+that is the state this finding is about.
+
+A PERMANENT FAIL IS WORSE THAN NO CHECK. doctor's report on this project now
+carries one line that can never go green. The operator learns to read past it,
+and the next line to be read past is one that matters. This system has already
+refused to ship a check on exactly this reasoning: checkInstallScope explicitly
+does NOT fail on the presence of an auto-recorded project pin, because "failing
+on that would fail on every correctly bootstrapped machine, in every project,
+immediately." The corpus check fails every correctly configured single-tenant
+project, in the same way, for the same reason, and was not held to it.
+
+AND THE SCOPE IS WRONG ONE LEVEL UP. The corpus is evidence about the PLUGIN's
+guardian - the agent definition, the worklist, the rule that feeds it and the
+prompt, all of which ship in the plugin and none of which belong to a project.
+But recordCorpus writes to the project root's control plane and stamps
+project_id, and doctor reads the local copy. So every project must independently
+obtain evidence about a component no project owns, and a project that cannot
+exercise that component at all is nonetheless required to produce it.
+
+TWO WAYS OUT, AND THIS FINDING DOES NOT CHOOSE BETWEEN THEM.
+
+  1. Gate checkGuardianCorpus on the same predicate worklist.mjs already uses -
+     tenancy.isolation === 'application-filters' AND mavci-guardian present in
+     agents.enabled - and report not_applicable, with the reason, rather than
+     FAIL. One predicate, stated once, read by both.
+
+  2. Make the corpus result machine-scoped rather than project-scoped, since it
+     is evidence about a plugin version. Then one run on one suitable host
+     answers for every project on the machine, and a project that cannot host it
+     is not asked to.
+
+They are not equivalent: (1) leaves single-tenant projects with no guardian
+evidence and correctly says so; (2) gives them evidence obtained elsewhere. (2)
+is the larger change and is the one that matches what the artefact actually is.
+
+### The assertion, and the broken build it must catch
+
+checkGuardianCorpus must not emit FAIL on a project whose manifest does not enable mavci-guardian, or whose tenancy.isolation is not 'application-filters'. It reports the check as not applicable and names which of the two conditions excused it. The predicate is the one worklist.mjs:75 already enforces, read from one place by both.
+
+Broken build: It is this project today: cartoonify, tenancy.isolation 'none', agents.enabled without mavci-guardian, doctor reporting FAIL 'no guardian acceptance corpus result for plugin 0.1.35' with no command that can clear it short of falsifying the manifest. Reproduce exactly - a single-tenant manifest with guardian absent - and require the corpus FAIL to be ABSENT before writing the fix.
+
+### Addendum to finding 34 - The machine-scoped remedy is the larger claim, and it cuts both ways: one run would vouch for a version on behalf of projects that never exercised it
+
+Amended 2026-09-10T15:45:55Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+THE SECOND REMEDY IS THE LARGER CLAIM, NOT THE CHEAPER ONE, AND THE ORIGINAL
+FILING UNDERSOLD IT BY LISTING IT SECOND.
+
+Machine-scoping the corpus result says something the first remedy does not: that
+the artefact was never about a project. If that is right, two consequences follow
+and only one of them is comfortable.
+
+THE COMFORTABLE ONE. Every project on this machine is failing for the same
+absent file. Five .mavci projects are installed here; four of them - cartoonify,
+gate4c, gate5, AI-Chatbot-Widget-SaaS - would each be told by doctor to produce
+corpus evidence for plugin 0.1.35, and the artefact each is asked for is
+identical in everything that decides its content: the same three fixtures, the
+same three expectations, the same scorer, the same agent definition, the same
+prompt, all shipped in the plugin and byte-identical across every project. Under
+per-project scope, four operators run the same three cases against the same
+library to obtain the same answer four times. Clearing it once would clear it
+everywhere, and that is not a shortcut - it is the recognition that there was
+only ever one question.
+
+THE UNCOMFORTABLE ONE, AND IT IS THE REASON THIS ENTRY EXISTS. One project's
+corpus run would then vouch for a plugin version on behalf of projects that never
+exercised it. Cartoonify would carry a passing corpus obtained on gate6: against
+gate6's manifest, gate6's isolation model, gate6's code, gate6's worklist. The
+sentence "guardian 0.1.35 answers correctly" would be true of the run that
+produced it and asserted of a project where guardian is not enabled and cannot be.
+That is a transfer of evidence across a boundary, which is the move this system
+refuses everywhere else it appears.
+
+WHICH READING IS RIGHT DEPENDS ENTIRELY ON WHAT THE CORPUS GRADES, AND THAT HAS
+NEVER BEEN STATED.
+
+  If it grades THE PLUGIN'S GUARDIAN - the agent definition, the prompt, the rule
+  that feeds it, the worklist shape, the scorer - then all of that ships in the
+  plugin, none of it varies by project, and the machine scope is the honest one.
+  Per-project scope is then theatre: N operators obtaining one fact N times.
+
+  If it grades GUARDIAN AS DEPLOYED - against this manifest, this isolation
+  model, this project's enabled agents and this project's code - then the result
+  is not transferable, per-project scope is correct, and the consequence is that
+  some projects can never obtain it. That consequence is the body of this
+  finding, and it is a cost of the correct answer rather than evidence against it.
+
+THE RECORD ALREADY CONTAINS BOTH ANSWERS AND RECONCILES NEITHER. recordCorpus
+stamps `project_id` - a project-scoped label - and `library_fingerprint`, which is
+a hash of the plugin's own case library and is a machine-scoped fact. It also
+stamps `recorded_for: pluginVersion()`, which is machine-scoped too. So two of the
+three identifying fields describe the plugin and one describes the project, and
+nothing in the schema says which of them the result is evidence about. doctor then
+reads it as project evidence because of where the file sits, not because of
+anything the file says.
+
+THE ASSERTION THIS ADDS, AND IT HOLDS UNDER EITHER REMEDY: the corpus artefact
+must name what it is evidence about, and doctor must refuse to read a result whose
+declared scope disagrees with the claim doctor makes from it. A machine-scoped
+result read as a project verdict is the same defect as a project-scoped result
+copied between projects, and neither is currently detectable.
+
+This entry does not choose. It records that the choice exists, that it is not a
+choice between a strict and a lenient option, and that only one of the two makes
+the FAIL go away - which is the worst possible reason to prefer it.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+# Finding 35 - A spec's file table allocates paths to an agent whose write scope forbids them, and nothing compares the two: the criterion asserting the result names the one role barred from producing it
+
+Filed: 2026-09-10T16:25:09Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/criteria.mjs`
+
+Observed 2026-09-10, plugin 0.1.35, project cartoonify, task 0004 build attempt 1.
+
+Task 0004's §7 file table allocates two files to the builder that
+agents/agent-scopes.json forbids the builder to write:
+
+  docs/adr/README.md        docs/** is not in mavci-builder's allow list
+  scripts/check-styles.mjs  scripts/** is not in it either
+
+mavci-builder's allow list is: app/**, src/**, lib/**, components/**,
+supabase/**, public/**, tests/**, *.ts, *.tsx, *.json, *.md,
+.mavci/tasks/**, .mavci/lessons/**. The *.md entry does not cross a path
+separator, so no phrasing of a nested markdown write succeeds. The builder
+attempted the docs/adr/README.md edit and the PreToolUse hook denied it before
+any bytes changed, which is the guard working exactly as designed.
+
+THE SPEC NAMED THE ROLE THAT CANNOT DO IT, IN THE CRITERION THAT ASSERTS THE
+RESULT. Criterion 15 requires `| 0006 |` and `| 0007 |` rows in BOTH indexes and
+its own §8 commentary explains why: "the architect may not write outside
+.mavci/tasks/** and .mavci/decisions/**, so the second copy of the index is the
+builder's to update, and finding 27's dual-index cost is paid visibly rather
+than silently." The same sentence is in .mavci/decisions/README.md, in the file
+the builder DID write. The reasoning about the architect's boundary is correct.
+The conclusion drawn from it - that the builder therefore can - was never
+checked against the builder's own scope, and is false.
+
+So docs/adr/README.md is writable by NEITHER of the two agents in the workflow.
+It was resolved by the main session making the edit on the operator's
+instruction, deliberately rather than by widening docs/adr/** for the builder: a
+permanent permission is the wrong price for a one-time edit, and the question
+finding 27 raises is who OWNS that file, not who may write it once.
+
+WHY THIS IS NOT JUST TASK 0004'S MISTAKE. Nothing connects the two documents.
+The architect writes a §7 file table naming paths; agent-scopes.json declares
+what each agent may write; and no check compares them. The architect cannot read
+the scope file - it is in the plugin, not the project - and the operator
+approving the spec is reading a file table, not an allow list. The mismatch is
+therefore invisible until a builder attempt burns on it, and it is only luck
+that this one escalated instead of failing: had the builder retried, the same
+denial would have consumed all three attempts against a wall no attempt can move.
+
+A SECOND INSTANCE IN THE SAME SPEC, WHICH IS WHY IT IS STRUCTURAL AND NOT A
+TYPO. scripts/check-styles.mjs is also in §7 and also outside scope. It did not
+block only because no criterion asserts the additions §7 asked for there, so the
+builder correctly left the file alone rather than forcing a denied write. One
+spec, two paths, one cause.
+
+### The assertion, and the broken build it must catch
+
+A spec's §7 file table must be checkable against agents/agent-scopes.json before approval seals it. Every path the table assigns to a role is matched against that role's allow and deny lists, and a path no workflow agent may write is reported at the plan gate - named, with the role and the list that excludes it - rather than discovered by a builder attempt. The check is a glob match over two lists that already exist.
+
+Broken build: It is task 0004 today: §7 assigns docs/adr/README.md and scripts/check-styles.mjs to the builder, mavci-builder's allow list contains neither docs/** nor scripts/**, the spec was approved, and the builder's Edit on docs/adr/README.md was denied by the PreToolUse hook on attempt 1. Reproduce exactly - a spec table naming a path outside the assigned role's scope - and require the plan gate to refuse or flag it BEFORE approval.
+
+---
+
+# Finding 36 - The approval gate reads what a spec asserts and cannot read what it admits: a criterion whose own proof table concedes its passing direction was never demonstrated is sealed unremarked, and the verdict has no field to record it as a known red
+
+Filed: 2026-09-10T16:26:10Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/criteria.mjs`
+
+Check: `next.criteria_proof_status`
+
+Observed 2026-09-10, plugin 0.1.35, project cartoonify, task 0004.
+
+THE APPROVAL GATE READS WHAT A SPEC ASSERTS AND CANNOT READ WHAT IT ADMITS.
+
+Task 0004 carried eighteen acceptance criteria and a §9.1 table stating, per
+criterion, whether it had been proven in both directions or only one. Criterion
+18 was labelled "red only", and the spec said this about it in plain words:
+
+  "THE GREEN DIRECTION WAS NOT PROVEN. The corrected copy is not a git checkout,
+   so the criterion cannot run there, and proving it would have meant committing
+   stub application code into this repository. It is the one criterion in this
+   spec whose passing direction rests on reading rather than on execution."
+
+Criterion 18 is now proven unsatisfiable. Its script runs
+`git status --porcelain --untracked-files=all`, which EXPANDS untracked
+directories, while its allow list contains the collapsed string 'public/' and
+its required list demands that same string. Under -uall the string 'public/'
+never appears. Demonstrated in a throwaway repository, all three arrangements:
+
+  public/styles/ empty          -> 0 lines            -> fails `required`
+  public/styles/.gitkeep        -> ?? public/styles/.gitkeep -> fails `allowed`
+  public/styles/classic.webp    -> ?? public/styles/classic.webp -> fails `allowed`
+
+and criterion 10 in the same spec explicitly tolerates .gitkeep
+(`if (e === '.gitkeep') continue`), so criteria 10 and 18 contradict each other
+inside one approved document. No tree satisfies both. The spec's own §8
+commentary asserts the opposite of the observed behaviour - "git collapses
+untracked directories, so public/ appears as one line" - which is true of the
+DEFAULT flag and false of the flag the criterion uses. The allow list mixes both
+mental models in one array: 'public/' collapsed, 'scripts/check-styles.mjs'
+expanded. That mixture is why scripts/ does not also fail.
+
+THE SPEC IDENTIFIED THE EXACT CRITERION THAT WOULD FAIL, SAID SO PLAINLY, AND
+THE APPROVAL PROCEEDED. The operator read that sentence before approving and has
+said so. This finding is not about that reading. It is about the fact that
+nothing else read it, and nothing could have.
+
+THE STRUCTURAL CAUSE: THE REQUIREMENTS ARE MACHINE-READABLE AND THE CONCESSIONS
+ARE PROSE. A spec's criteria live in a fenced ```mavci-criteria block that
+parseCriteriaBlock reads as JSON. Each entry may carry id, needs, run,
+expect_exit and timeout_ms. There is NO field in which a criterion can declare
+that its passing direction has never been observed. §9.1's proof table - the
+place where this spec was scrupulously honest - is markdown, adjacent to the
+block and invisible to every reader but a person.
+
+So approvalPreconditions(), which exists precisely to tell an operator what they
+are authorising, reports this for task 0004:
+
+  "18 criteria - 18 shell. All of them run as ordinary commands in this
+   repository. Approving this authorises a program to EXECUTE those commands,
+   so read them as a script."
+
+Eighteen, all shell. Correct, and it is everything the machine can say. It cannot
+say "three of these have never been observed passing" because no criterion can
+declare it, and it cannot say "one of them contradicts another" because nothing
+compares them. The gate reads the requirements and is structurally blind to the
+admissions printed beside them.
+
+A CRITERION THAT ANNOUNCES IT CANNOT PASS IS THE EASIEST POSSIBLE THING TO CATCH.
+This is the part worth stating at full width. The general problem - deciding
+whether an arbitrary set of shell predicates is jointly satisfiable - is
+undecidable and nobody should attempt it. But that is not what was needed here.
+What was needed was to read back a fact the author had already written down, in
+the same document, one heading away. The spec did the hard part. The gate could
+not receive it.
+
+THIS IS FINDING 4 FROM THE OTHER SIDE. Finding 4 says an approval cannot see what
+the criteria REQUIRE - which of them touch the network, spend money, write files.
+This says it cannot see what they CONCEDE. The two are the same defect about the
+same surface: an approval is a decision about a program, and the only channel
+into that decision carries the program's declarations and none of its
+self-assessment. Finding 4's fix - classify effects from the command strings -
+and this one's fix - carry the proof status as data - are the same shape and
+should land together, because both are answers to "what does the operator not
+know at the moment they say yes".
+
+AND THE CONCESSION IS UNRECORDABLE AFTERWARDS, WHICH CLOSES THE LOOP. Having
+approved a criterion that cannot pass, the operator asked for the verdict to
+record it as a KNOWN red, with §9.1's sentence beside it, so that 17/18 reads as
+a documented state rather than as a defect. The verdict cannot carry that. A
+criterion result is { id, status, mode, evidence }; status is the closed enum
+pass | fail | not_run; and `evidence` is composed inside runCriteria from the
+exit code and the command string. There is no operator field, no annotation, no
+known_red. The only way to make criterion 18 record anything but `fail` is
+expect_exit: 1 in the spec, which would record a false pass and requires editing
+sealed bytes to do it.
+
+So the same fact - "this criterion is red for a reason the spec predicted" - is
+unreadable at the approval gate and unwritable in the verdict. It exists only in
+prose in the spec and in this queue. A reader of the verdict six months from now
+sees one failing criterion and no way to learn it was expected.
+
+THE ASSERTIONS, AND THE BROKEN BUILD EACH MUST CATCH.
+
+  1. A criterion entry may declare its proof status as data - proven: "both" |
+     "green_only" | "red_only" - and approvalPreconditions() reports the counts
+     in the approval prompt: "3 of 18 have never been observed passing; 1 has
+     never been observed failing." No judgement, no satisfiability analysis:
+     read back what the author already wrote.
+  2. A criterion declared red_only must carry a stated reason, as data, for why
+     the green direction was not demonstrated - the spec's §9.1 prose for
+     criterion 18 is exactly the right content in exactly the wrong place.
+  3. A verdict must be able to record a criterion as failing-and-expected, with
+     the reason, WITHOUT recording it as passing. status stays `fail`; a
+     separate field carries the operator's note and the spec's declaration. A
+     system that cannot distinguish "red and known" from "red and surprising"
+     teaches its operators to skim red.
+
+BROKEN BUILD, AND IT IS TASK 0004 TODAY: eighteen criteria, one of them
+unsatisfiable in principle, its §9.1 entry saying in plain English that its
+passing direction was never demonstrated, approvalPreconditions() reporting
+"18 criteria - 18 shell" and nothing else, and the resulting verdict able to say
+only `fail`. Reproduce it exactly - a spec whose own proof table concedes an
+unproven direction - and require the approval surface to SAY SO before the
+approval is recorded. Confirm that first, before writing the fix.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+### Addendum to finding 36 - The assertion section reads NOT SUPPLIED and is wrong: the assertions are in the body, and the placeholder cannot be removed
+
+Amended 2026-09-10T16:27:02Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+CORRECTION TO THIS ENTRY'S OWN STRUCTURE, NOT TO ITS CLAIM.
+
+The "### The assertion, and the broken build it must catch" section of this
+finding reads NOT SUPPLIED. That is false and it is a filing error: three
+assertions and a named broken build are written in the body above, under the
+heading "THE ASSERTIONS, AND THE BROKEN BUILD EACH MUST CATCH". They were
+written as prose in --finding instead of being passed as --assertion and
+--broken-build, so the structured field never received them and printed its
+placeholder. --record offers no way to fill that field afterwards and --amend
+appends rather than edits, so the stale placeholder stands above this note and
+cannot be removed. Read the body, not the placeholder.
+
+The three assertions, restated here so they sit under the right heading:
+
+  1. A criterion entry may declare proof status as data - proven: "both" |
+     "green_only" | "red_only" - and approvalPreconditions() reports the counts
+     at the approval prompt.
+  2. A criterion declared red_only must carry a stated reason, as data, for why
+     the green direction was never demonstrated.
+  3. A verdict must be able to record a criterion as failing-and-expected
+     without recording it as passing: status stays `fail`, a separate field
+     carries the note.
+
+BROKEN BUILD: task 0004 as approved on 2026-09-10 - eighteen criteria, criterion
+18 unsatisfiable in principle, §9.1 conceding in plain English that its passing
+direction was never demonstrated, approvalPreconditions() reporting "18 criteria
+- 18 shell" and nothing else, and the verdict able to say only `fail`.
+
+AND NOTE WHAT JUST HAPPENED, BECAUSE IT IS THE SAME SHAPE ONE LEVEL DOWN. This
+finding argues that a structured surface which cannot carry a fact forces that
+fact into prose, where nothing reads it. Filing it produced exactly that: the
+content went into prose, the structured field said NOT SUPPLIED, and an applier
+trusting the field would conclude no assertion exists. The defect reproduced
+itself inside the report about it, within one minute, by hand.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+# Finding 37 - probe-a-delete-me
+
+Filed: 2026-09-18T09:22:40Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+names control/verdicts/x.json only
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+### Addendum to finding 37 - Not a finding - an accidental live probe, and what it established
+
+Amended 2026-09-18T09:23:14Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+This finding is not a finding. It was filed by the main session on 2026-09-18 as a
+live probe, to determine why `retro.mjs --record` had just been refused by the risk
+guard, and it should have been run against a scratch project instead of this queue.
+
+What it established, recorded here because the block cannot be deleted by an agent:
+the risk guard refuses a `retro.mjs --record` call whose --finding prose contains the
+literal string for the control-plane directory, and accepts the same call when the
+prose names the same file without that prefix. The refusal text is:
+
+  "the write target of this command could not be determined, and it names a path
+  inside [the control-plane directory] ... Quoting a control-plane path inside a
+  message or a string operand is fine and is not what this is about."
+
+The last sentence describes the case that was in fact refused: --finding takes prose
+as a command-line argument, never a path, so a finding about the control plane cannot
+be filed in the words of the thing it is about.
+
+Findings 39 onward in this file write control-plane paths relative to the .mavci
+directory for this reason, not because the paths are uncertain.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+# Finding 38 - probe-b-delete-me
+
+Filed: 2026-09-18T09:22:40Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+names no control plane path at all
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+### Addendum to finding 38 - Not a finding - an accidental live probe, and what it established
+
+Amended 2026-09-18T09:23:15Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+This finding is not a finding. It was filed by the main session on 2026-09-18 as a
+live probe, to determine why `retro.mjs --record` had just been refused by the risk
+guard, and it should have been run against a scratch project instead of this queue.
+
+What it established, recorded here because the block cannot be deleted by an agent:
+the risk guard refuses a `retro.mjs --record` call whose --finding prose contains the
+literal string for the control-plane directory, and accepts the same call when the
+prose names the same file without that prefix. The refusal text is:
+
+  "the write target of this command could not be determined, and it names a path
+  inside [the control-plane directory] ... Quoting a control-plane path inside a
+  message or a string operand is fine and is not what this is about."
+
+The last sentence describes the case that was in fact refused: --finding takes prose
+as a command-line argument, never a path, so a finding about the control plane cannot
+be filed in the words of the thing it is about.
+
+Findings 39 onward in this file write control-plane paths relative to the .mavci
+directory for this reason, not because the paths are uncertain.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
+---
+
+# Finding 39 - A verdict records no spec identity, so the verdict-to-spec link exists only through the task record
+
+Filed: 2026-09-18T09:23:33Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs`
+
+Paths below are written relative to the .mavci directory: the risk guard refuses a --record whose prose contains the full control-plane prefix. See the amendments on findings 37 and 38.
+
+The recorded verdict control/verdicts/0004-attempt-02.json has these top-level keys, and only these: attempt, checks, criteria, plugin_version, project_id, run_at, schema_version, scope, summary, task_id, verdict. There is no spec_sha256 field and no spec_path field. Grepping that verdict for the approved spec hash 8b348449e8b1 returns 0 occurrences.
+
+Two spec seals are present for task 0004: control/specs/0004-24cf669ad5e2.md and control/specs/0004-8b348449e8b1.md. Only the second matches spec_approved.spec_sha256 in control/tasks/0004.json.
+
+The verdict carries no record of which of those two seals its 18 criteria were read from. The verdict-to-spec link exists only through control/tasks/0004.json spec_approved, one indirection away, in a file that is written after and independently of the verdict.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 40 - A criterion stored in a spec seal had its newline escapes collapsed to spaces, and executed anyway against the wrong delimiter
+
+Filed: 2026-09-18T09:23:44Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs`
+
+Criterion 18 of task 0004, as stored in the approved spec at 24cf669ad5e2, had its \n and \r collapsed to single spaces somewhere before it was sealed.
+
+The damaged criterion still ran. It was recorded with mode: executed, not as an error and not as not_run. Having lost its delimiters, it split git status --porcelain output on spaces instead of on line endings, and reported fail. It never reached the comparison it exists to make, so scope containment was never tested, in either direction: the criterion could not have passed on a correct tree and could not have failed for the reason it names.
+
+It was fixed at seal 8b348449e8b1 by building the delimiters with String.fromCharCode(10) and String.fromCharCode(13), which expresses them without a backslash anywhere in the criterion text.
+
+The two facts that make this a system finding rather than a project one: a criterion damaged in transit is indistinguishable, in the recorded verdict, from one that ran as written; and the repair was to stop using the escape rather than to fix the transport.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 41 - A criterion whose guard clause only skips an assignment reports the exit code of the interpreter, not of the check
+
+Filed: 2026-09-18T09:24:05Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs`
+
+Criterion 14 of task 0004: when package-lock.json is dirty, the dirty state only causes the T assignment to be skipped. The criterion then exits with whatever code node returns, not with a code produced by the lock check itself.
+
+The criterion is green today only because the lock file happens to be clean. A dirty lock file does not make it report fail; it makes it report the interpreter exit code, which on a run that does not otherwise throw is 0 - a pass produced by the check having been skipped rather than by the condition it asserts being true.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 42 - A parse-time death and a failed assertion are the same exit code, and nothing outside the run tells them apart
+
+Filed: 2026-09-18T09:24:05Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs`
+
+A criterion that dies at parse time and a criterion whose assertion legitimately failed produce the same exit code. Nothing recorded outside the run distinguishes the two.
+
+Consequence for the record: a criterion that never executed a single statement is indistinguishable, in the verdict, from one that ran to completion and found the condition false. mode: executed does not separate them, because the process did start.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 43 - attempts and attempts_total diverge after --reset-attempts, and a ceiling read off the wrong field is off by one
+
+Filed: 2026-09-18T09:24:49Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs`
+
+Paths relative to the .mavci directory. In control/tasks/0004.json, after --reset-attempts, attempts reads 1 and attempts_total reads 2. The two fields diverge and both remain in the record.
+
+A retry ceiling evaluated against attempts_total rather than attempts, or the reverse, is off by one. The file gives no indication which field the ceiling is meant to be read from, and max_attempts (3) sits beside both without naming its operand.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 44 - Finding 27 sharpened: the decisions directory is declared canonical, created once, and never read
+
+Filed: 2026-09-18T09:24:49Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `.mavci/decisions`
+
+Sharpening of finding 27 with what is now established.
+
+The .mavci/decisions directory is declared canonical in the plugin configuration. It is referenced exactly once in the code, by an mkdir at connect time. Nothing reads it afterwards. No code path allocates a decision number.
+
+So the directory is created, declared authoritative, and has no writer that can produce a correctly numbered entry and no reader that would notice if it were empty.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 45 - The two decision index README files diverge at line 28, and nothing explains which is current
+
+Filed: 2026-09-18T09:24:58Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `.mavci/decisions`
+
+There are two decision index README files. Their contents diverge at line 28.
+
+The divergence is unexplained: nothing in either file, and nothing in the surrounding code, records which of the two is current, which is a copy, or when they parted.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 46 - No guardian acceptance corpus result exists for plugin 0.1.35
+
+Filed: 2026-09-18T09:24:58Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Check: `guardian`
+
+No guardian acceptance corpus result exists for plugin 0.1.35. Doctor reports this as a FAIL, not a warning.
+
+The guardian judgement is the one component of the chain that no deterministic check verifies, so the acceptance corpus is the only evidence it works. With no recorded result for the version actually installed and pinned here (0.1.35 in installed_plugins.json, and ci_pinned_plugin_version 0.1.35), a passing guardian verdict on this project rests on nothing recorded.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 47 - baseline_debt 0 on a connected repo is reported identically whether the baseline is paid or absent
+
+Filed: 2026-09-18T09:25:05Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/doctor.mjs`
+
+state.mjs --show reports baseline_debt 0 and connected true for this project. Doctor, in the same session, reports "no baseline" and states that a greenfield project has an empty baseline while a connected repo should have one.
+
+So the zero is most likely absence, not a debt that was paid down. The two surfaces disagree, and the numeric one - the one a caller is most likely to read programmatically - renders an absent baseline and a fully retired baseline as the same value, with nothing beside it to separate them.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 48 - The reporting channel for system findings cannot name control-plane paths in its own words
+
+Filed: 2026-09-18T09:37:53Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/risk-guard.mjs`
+
+Notation: control-plane paths are written here relative to the .mavci directory, and the full prefix is elided from the quoted refusal below, for the reason this finding records.
+
+Mechanism. retro.mjs --record takes its finding text as a command-line argument: --finding has no path operand and no stdin form. (--amend --text differs: it takes a PATH or -, and refuses prose.) The risk guard, looking for the write target of the command, therefore scans the finding prose itself.
+
+A quoted control-plane path in that prose leaves the target indeterminate and the command is refused, with:
+
+  "the write target of this command could not be determined, and it names a path inside [control-plane dir] ... This is not a claim that it writes there - it is that the guard cannot tell, so it refuses rather than guess. Run it as a plain command whose target is visible (cat, jq, cp ... ), or use state.mjs if it really does need to write. Quoting a control-plane path inside a message or a string operand is fine and is not what this is about."
+
+Dropping the .mavci prefix passes. The same --record naming control/verdicts/0004-attempt-02.json files normally.
+
+Observed 2026-09-18, while attempting to file findings about verdict and seal contents during task 0004 verification. Findings 39, 43 and 44 write control-plane paths relative to .mavci for this reason, and say so in their first line.
+
+The workaround appears in no usage text. The remedies the refusal names - cat, jq, cp, state.mjs - are not ways to file a finding.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.

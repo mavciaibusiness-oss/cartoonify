@@ -1,0 +1,176 @@
+{
+  "attempt": 2,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 265 ms: node \"$(ls -d \"$HOME\"/.claude/plugins/cache/mavci/mavci-core/*/scripts/gate.mjs | sort -V | tail -1)\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 2187 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 11899 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 135 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c4.mjs\" <<'JS' import fs from 'node:fs' import path from 'node:path' import { pathToFileURL } from 'node:url' const m = await import(pathToFileURL(path.resolve('lib/cartoon-styles.ts')).href) const BODY = 'Bu fotoğrafı canlı renkli, temiz hatlı bir karikatür/çizgi film çizimine dönüştür.' const CLOSE = 'Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.' const FROZEN = BODY + ' ' + CLOSE const c = m.CA...",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 114 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c5.mjs\" <<'JS' import path from 'node:path' import { pathToFileURL } from 'node:url' const m = await import(pathToFileURL(path.resolve('lib/cartoon-styles.ts')).href) const all = m.CARTOON_STYLES if (all.length !== 31) throw new Error('expected 31 styles, found ' + all.length) const grid = all.filter(s => s.coords !== null) if (grid.length !== 30) throw new Error('expected 30 grid styles, found ' + grid.length) co...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 96 ms: grep -qF 'DO NOT MOVE coords/asserts OUT OF THIS FILE' lib/cartoon-styles.ts && [ \"$(grep -rlF 'asserts:' lib app components | sort | tr ' ' ' ')\" = 'lib/cartoon-styles.ts ' ]",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 192 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c7.mjs\" <<'JS' import fs from 'node:fs' import path from 'node:path' import { pathToFileURL } from 'node:url' const m = await import(pathToFileURL(path.resolve('lib/cartoon-styles.ts')).href) const ids = m.CARTOON_STYLES.map(s => s.id) const labels = ['Çizgi ve Mürekkep', 'Boya ve Fırça', 'Baskı', 'Kesme ve Kolaj'] const files = [] const walk = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) {...",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 156 ms: ! grep -qF '<select' components/cartoonify-form.tsx && ! grep -qF 'CARTOON_STYLES.map(' components/cartoonify-form.tsx && grep -qF 'STYLE_GROUPS' components/cartoonify-form.tsx && grep -rqF '<fieldset' components && grep -rqF '<legend' components && grep -rqF 'type=\"radio\"' components && grep -rqF 'name=\"style\"' components",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 146 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c9.mjs\" <<'JS' import path from 'node:path' import { pathToFileURL } from 'node:url' const m = await import(pathToFileURL(path.resolve('lib/cartoon-styles.ts')).href) const order = ['cizgi', 'boya', 'baski', 'kesme'] const labels = { cizgi: 'Çizgi ve Mürekkep', boya: 'Boya ve Fırça', baski: 'Baskı', kesme: 'Kesme ve Kolaj' } if (!Array.isArray(m.STYLE_GROUP_ORDER) || m.STYLE_GROUP_ORDER.join(',') !== order.join(',...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 126 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c10.mjs\" <<'JS' import fs from 'node:fs' import path from 'node:path' import { pathToFileURL } from 'node:url' const m = await import(pathToFileURL(path.resolve('lib/cartoon-styles.ts')).href) const dir = 'public/styles' if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) throw new Error('public/styles does not exist') const p = await import(pathToFileURL(path.resolve('lib/style-previews.ts')).href) const ...",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 221 ms: grep -qF 'STYLE_PREVIEW_IDS' components/style-card.tsx && grep -qF 'data-style-group' components/style-card.tsx && ! grep -qE '#[0-9a-fA-F]{3}' components/style-card.tsx && grep -qF '.style-grid' app/globals.css && grep -qF 'auto-fill' app/globals.css && V=$(grep -oE 'minmax[(][0-9]+px' app/globals.css | head -1 | tr -dc '0-9') && [ -n \"$V\" ] && [ \"$V\" -le 160 ] && for g in cizgi boya baski kesme; do grep -qF \"[data-style-group=\\\"$g\\\"]\" app/globals.css || exit 1; done",
+      "id": "11",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 112 ms: grep -qE 'export const MAX_STYLES_PER_REQUEST(: *[A-Za-z]+)? = 1( |;|$)' lib/cartoon-styles.ts && grep -qF \"form.getAll('style')\" app/api/cartoonify/route.ts && grep -qF 'MAX_STYLES_PER_REQUEST' app/api/cartoonify/route.ts && grep -qF 'not a rate limit' app/api/cartoonify/route.ts && [ \"$(grep -cF 'images.edit(' app/api/cartoonify/route.ts)\" -eq 1 ] && ! grep -qE 'Promise[.](all|allSettled)' app/api/cartoonify/route.ts",
+      "id": "12",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 64 ms: ! grep -rnE '^(export )?(const|let|var) [A-Za-z_$]+ *= *new (Map|Set|WeakMap|WeakSet)[(]' app lib && ! grep -rnE 'rateLimit|ratelimit|RATE_LIMIT|rate_limit' app lib components",
+      "id": "13",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 122 ms: git diff --exit-code -- package-lock.json && T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c14.mjs\" <<'JS' import fs from 'node:fs' const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')) const deps = Object.keys(pkg.dependencies || {}).sort().join(',') const dev = Object.keys(pkg.devDependencies || {}).sort().join(',') if (deps !== 'next,openai,react,react-dom,zod') throw new Error('dependencies changed: ' + deps) if (dev !== '@types/node,@types/reac...",
+      "id": "14",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 378 ms: D='.mavci/decisions/0006-what-bounds-a-caller.md'; [ -f \"$D\" ] && grep -qF 'Vercel WAF' \"$D\" && grep -qF 'BotID' \"$D\" && grep -qF 'MAX_STYLES_PER_REQUEST' \"$D\" && grep -qF 'spend cap' \"$D\" && [ \"$(grep -cF '**Disposition:**' \"$D\")\" -eq 4 ] && grep -qF 'request rate is unbounded' \"$D\" && grep -qF '| 0006 |' .mavci/decisions/README.md && grep -qF '| 0007 |' .mavci/decisions/README.md && grep -qF '| 0006 |' docs/adr/README.md && grep -qF '| 0007 |' docs/adr/README.md",
+      "id": "15",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 317 ms: D='.mavci/decisions/0007-one-image-per-request-and-the-deferred-timeout.md'; [ -f \"$D\" ] && grep -qF '45297' \"$D\" && grep -qF '45230' \"$D\" && grep -qF '41392' \"$D\" && grep -qF 'APIConnectionTimeoutError' \"$D\" && grep -qF '4.5 MB' \"$D\" && grep -qF '2.7' \"$D\" && grep -qF 'export const maxDuration = 60' app/api/cartoonify/route.ts && grep -qF 'const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)' app/api/cartoonify/route.ts && grep -qF 'const PROBE_TIMEOUT_MS = Mat...",
+      "id": "16",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 170 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c17.mjs\" <<'JS' import fs from 'node:fs' const files = ['lib/cartoon-styles.ts', 'lib/style-previews.ts', 'components/cartoonify-form.tsx', 'components/style-card.tsx', 'app/globals.css', 'app/api/cartoonify/route.ts', 'scripts/check-styles.mjs'] for (const f of files) { if (!fs.existsSync(f)) throw new Error('missing file: ' + f) const buf = fs.readFileSync(f) if (buf[0] === 0xEF && buf[1] === 0xBB && buf[2] === ...",
+      "id": "17",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 193 ms: T=\"${TMPDIR:-/tmp}/cartoonify-0004\"; mkdir -p \"$T\"; cat > \"$T/c18.mjs\" <<'JS' import { execFileSync } from 'node:child_process' const LF = String.fromCharCode(10) const CR = String.fromCharCode(13) const out = execFileSync('git', ['status', '--porcelain', '--untracked-files=all', '--', ':!.mavci'], { encoding: 'utf8' }) const lines = out.split(LF).map(l => (l.endsWith(CR) ? l.slice(0, -1) : l)).filter(l => l.length > 3) const allowed = ['app/api/cartoonify/route.ts', 'lib/ca...",
+      "id": "18",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-18T09:18:03Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0004",
+  "verdict": "pass"
+}

@@ -3,9 +3,17 @@ import {
   DEFAULT_CARTOON_STYLE_ID,
   getCartoonStyle,
   isCartoonStyleId,
+  MAX_STYLES_PER_REQUEST,
 } from '@/lib/cartoon-styles'
 import { getEnv, hasOpenAIKey } from '@/lib/env'
-import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES, sniffImageType } from '@/lib/image-constraints'
+import {
+  ALLOWED_MIME_TYPES,
+  IMAGE_MODEL,
+  IMAGE_QUALITY,
+  MAX_FILE_BYTES,
+  sniffImageType,
+  uploadFilename,
+} from '@/lib/image-constraints'
 
 // Rendered per request, never cached — this route calls a paid upstream API
 // with visitor-supplied bytes. next.route_force_dynamic.
@@ -93,7 +101,18 @@ export async function POST(request: Request): Promise<Response> {
   // 6. The style is an id, never prompt text. An absent field is the
   //    pre-styles contract and gets the default; a present one must be in the
   //    allow-list, so no caller can steer the upstream prompt.
-  const styleField = form.get('style')
+  //
+  //    form.getAll, not form.get: FormData.get silently returns the first of
+  //    N repeated fields, which would leave MAX_STYLES_PER_REQUEST an
+  //    accident of an API's behaviour rather than an enforced decision. This
+  //    cap bounds amplification — how many upstream generations one accepted
+  //    request can cause — and is not a rate limit: it says nothing about how
+  //    many requests one caller may send. See ADR 0006.
+  const styleFields = form.getAll('style')
+  if (styleFields.length > MAX_STYLES_PER_REQUEST) {
+    return errorResponse('INVALID_STYLE', 400)
+  }
+  const styleField = styleFields.length > 0 ? styleFields[0] : null
   let styleId = DEFAULT_CARTOON_STYLE_ID
   if (styleField !== null) {
     if (!isCartoonStyleId(styleField)) {
@@ -117,13 +136,14 @@ export async function POST(request: Request): Promise<Response> {
       timeout: UPSTREAM_TIMEOUT_MS,
       maxRetries: UPSTREAM_MAX_RETRIES,
     })
-    const uploadable = await toFile(bytes, 'upload', { type: sniffed })
+    const uploadable = await toFile(bytes, uploadFilename(sniffed), { type: sniffed })
 
     const result = await client.images.edit({
       image: uploadable,
-      model: 'gpt-image-1',
+      model: IMAGE_MODEL,
       prompt: style.prompt,
       size: '1024x1024',
+      quality: IMAGE_QUALITY,
     })
 
     const b64 = result.data?.[0]?.b64_json

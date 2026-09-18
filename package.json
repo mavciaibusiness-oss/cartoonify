@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check:styles": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-styles.mjs",
+    "check": "npm run typecheck && npm run check:styles"
   },
   "dependencies": {
     "next": "^14.2.0",

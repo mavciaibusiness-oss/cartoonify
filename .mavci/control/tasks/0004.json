@@ -1,0 +1,24 @@
+{
+  "attempts": 1,
+  "attempts_total": 2,
+  "blocked_by": null,
+  "created": "2026-09-09T16:22:23Z",
+  "id": "0004",
+  "max_attempts": 3,
+  "owner_agent": "mavci-builder",
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-09-17T17:16:19Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0004-style-library-groups-and-the-picker.md",
+    "spec_sha256": "8b348449e8b1aac57c9c6d18ccfb738d2e7ccd821479bb59eacf206b6d448465"
+  },
+  "status": "done",
+  "updated": "2026-09-18T12:21:14Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0004-attempt-01.json",
+    ".mavci/control/verdicts/0004-attempt-02.json"
+  ]
+}
