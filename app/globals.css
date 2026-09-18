@@ -28,6 +28,7 @@ body {
 :root {
   --page-max-width: 960px;
   --page-gutter: 1.5rem;
+  --style-col-min: 180px;
 }
 
 /*
@@ -103,6 +104,50 @@ main {
 }
 
 /*
+ * The workbench: the two panels that exist only once an image is chosen.
+ * Single column by default, so a narrow viewport stacks them beneath the
+ * upload control, which sits outside and above this container. The left
+ * column never narrows past --style-col-min, and that is what holds
+ * .style-grid's floor off the overflow threshold once the grid's container
+ * stops being the page column.
+ */
+.workbench {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+  max-width: 100%;
+}
+
+[data-stage="empty"] .workbench {
+  display: none;
+}
+
+.workbench-styles {
+  min-width: 0;
+}
+
+.workbench-image {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.workbench-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .workbench {
+    grid-template-columns: minmax(var(--style-col-min), 20rem) 1fr;
+  }
+}
+
+/*
  * The style picker stacks its fieldsets in one column at every width, so it
  * cannot contribute to horizontal overflow at 375px either. Each fieldset's
  * own grid wraps via auto-fill rather than growing wider than its container.
@@ -135,10 +180,12 @@ main {
 }
 
 /*
- * Two columns at 375px, never a horizontal scrollbar: the 150px floor is
- * below half of a 375px viewport once the container's own padding and gap
- * are subtracted. Task 0004 criterion 11 checks the floor stays at or under
- * 160px, the source-level form of task 0001 criterion 29.
+ * The 150px floor, and what now contains it. Task 0004 criterion 11 pins this
+ * floor at or under 160px and pins auto-fill; task 0005 does not revise either.
+ * What changed is the container: from 768px up this grid sits in the left
+ * column of .workbench, not in the full page column, so the floor is held off
+ * the overflow threshold by --style-col-min rather than by the viewport.
+ * Below 768px the workbench is one column and the original reading holds.
  */
 .style-grid {
   display: grid;

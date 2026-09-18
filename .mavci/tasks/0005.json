@@ -1,9 +1,14 @@
 {
   "artifacts": [],
   "id": "0005",
-  "notes": [],
+  "notes": [
+    "Section 5 moves the KVKK notice above the upload control: a disclosure that appears after the control it describes has been used is not a disclosure. The text is relocated, not altered, and the five REVIEW REQUIRED legal pages are untouched. Criterion 7 asserts the new position; criterion 8's lower anchor is the gallery rather than the notice, which is the contradiction the first draft carried.",
+    "Section 4 reads task 0004 criterion 11 rather than revising it. Below 768px it still expresses what it was written to express; at and above 768px it goes silent, because the grid's container becomes the left column instead of the page column, and a 140px column would overflow while every clause the criterion tests still passed. Criterion 10 restates it verbatim so a builder cannot tidy it away; criterion 9 adds the clause it cannot see, that --style-col-min is at or above the grid's own floor.",
+    "Criterion 1 runs the gate of plugin 0.1.35 by literal path, with a guard clause that fails saying so if that version is not installed. Reading ci_pinned_plugin_version from the control plane is refused by the risk guard in every form that also uses the value; see section 8.1 item 5. A plugin upgrade will fail this criterion and force a new spec, which is the intended cost of not silently changing which checker judged the task.",
+    "14 criteria, all needs=[shell]. Eleven proven in both directions (4 through 14), criterion 1 proven both ways for its version guard only, criteria 2 and 3 green only. No criterion writes a temporary script: the line endings are built with String.fromCharCode, which is what task 0004 criterion 18 had to become. See section 8.1."
+  ],
   "project_id": "cartoonify",
   "schema_version": 1,
-  "spec": ".mavci/tasks/pending.md",
+  "spec": ".mavci/tasks/0005-upload-first-layout-and-the-workbench.md",
   "title": "Upload-first layout: style panel beside the image, gallery below"
 }

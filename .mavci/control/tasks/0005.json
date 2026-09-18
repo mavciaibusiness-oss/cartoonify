@@ -1,15 +1,23 @@
 {
-  "attempts": 0,
-  "attempts_total": 0,
+  "attempts": 1,
+  "attempts_total": 1,
   "blocked_by": null,
   "created": "2026-09-18T13:29:05Z",
   "id": "0005",
   "max_attempts": 3,
   "owner_agent": null,
-  "phase": "plan",
+  "phase": "release",
   "project_id": "cartoonify",
   "schema_version": 1,
-  "status": "pending",
-  "updated": "2026-09-18T13:29:05Z",
-  "verdicts": []
+  "spec_approved": {
+    "at": "2026-09-18T14:09:32Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0005-upload-first-layout-and-the-workbench.md",
+    "spec_sha256": "1b5dde8ae5135aa369de4617b5dfa80e384e578d686c147fd198db6e9651dc1a"
+  },
+  "status": "done",
+  "updated": "2026-09-18T14:52:56Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0005-attempt-01.json"
+  ]
 }

@@ -146,8 +146,24 @@ export default function CartoonifyForm() {
   const selectedStyle = getCartoonStyle(styleId)
 
   return (
-    <div data-state={status} className="cartoonify">
+    <div
+      data-state={status}
+      data-stage={previewUrl ? 'chosen' : 'empty'}
+      className="cartoonify"
+    >
       <form onSubmit={handleSubmit}>
+        {/*
+          The disclosure comes before the control it describes. A visitor reads
+          where their photograph is going before they choose one, not after.
+        */}
+        <p className="kvkk-notice">
+          Yüklediğiniz görsel, karikatüre dönüştürülmek üzere <strong>OpenAI</strong> sunucularına
+          gönderilir. Bu sunucular <strong>ABD</strong>&apos;de (Amerika Birleşik Devletleri)
+          bulunur; bu bir <strong>yurt dışına aktarımdır</strong>. Görsel, işlemden önce veya
+          sonra bu sitede saklanmaz. Ayrıntılı bilgi için{' '}
+          <a href="/kvkk">KVKK Aydınlatma Metni</a>&apos;ni inceleyebilirsiniz.
+        </p>
+
         {/*
           A real file input, visually hidden but still focusable: Tab reaches it,
           Space or Enter opens the picker, and the label is its accessible name.
@@ -171,46 +187,55 @@ export default function CartoonifyForm() {
           </span>
         </div>
 
-        <div className="style-picker" aria-describedby="cartoonify-style-description">
-          <fieldset className="style-group">
-            <legend>Varsayılan</legend>
-            <div className="style-grid">
-              <StyleCard
-                style={defaultStyle}
-                checked={styleId === defaultStyle.id}
-                disabled={status === 'loading'}
-                onSelect={handleStyleSelect}
-              />
-            </div>
-          </fieldset>
-
-          {STYLE_GROUPS.map((group) => (
-            <fieldset key={group.id} className="style-group">
-              <legend>{group.label}</legend>
-              <div className="style-grid">
-                {group.styles.map((style) => (
+        {/*
+          The workbench. It is hidden by CSS until data-stage is "chosen", so
+          before an image is picked the upload control above stands alone.
+        */}
+        <div className="workbench">
+          <div className="workbench-styles">
+            <div className="style-picker" aria-describedby="cartoonify-style-description">
+              <fieldset className="style-group">
+                <legend>Varsayılan</legend>
+                <div className="style-grid">
                   <StyleCard
-                    key={style.id}
-                    style={style}
-                    checked={styleId === style.id}
+                    style={defaultStyle}
+                    checked={styleId === defaultStyle.id}
                     disabled={status === 'loading'}
                     onSelect={handleStyleSelect}
                   />
-                ))}
-              </div>
-            </fieldset>
-          ))}
+                </div>
+              </fieldset>
 
-          <p id="cartoonify-style-description">{selectedStyle.description}</p>
+              {STYLE_GROUPS.map((group) => (
+                <fieldset key={group.id} className="style-group">
+                  <legend>{group.label}</legend>
+                  <div className="style-grid">
+                    {group.styles.map((style) => (
+                      <StyleCard
+                        key={style.id}
+                        style={style}
+                        checked={styleId === style.id}
+                        disabled={status === 'loading'}
+                        onSelect={handleStyleSelect}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+
+              <p id="cartoonify-style-description">{selectedStyle.description}</p>
+            </div>
+          </div>
+
+          <div className="workbench-image">
+            {previewUrl ? (
+              <img src={previewUrl} alt="Yüklenen orijinal görsel" />
+            ) : null}
+            <button type="submit" disabled={!canSubmit}>
+              Karikatüre Çevir
+            </button>
+          </div>
         </div>
-
-        <p className="kvkk-notice">
-          Yüklediğiniz görsel, karikatüre dönüştürülmek üzere <strong>OpenAI</strong> sunucularına
-          gönderilir. Bu sunucular <strong>ABD</strong>&apos;de (Amerika Birleşik Devletleri)
-          bulunur; bu bir <strong>yurt dışına aktarımdır</strong>. Görsel, işlemden önce veya
-          sonra bu sitede saklanmaz. Ayrıntılı bilgi için{' '}
-          <a href="/kvkk">KVKK Aydınlatma Metni</a>&apos;ni inceleyebilirsiniz.
-        </p>
 
         {previewUrl ? (
           <div className="comparison">
@@ -232,10 +257,6 @@ export default function CartoonifyForm() {
 
         {status === 'loading' ? <p role="status">Karikatüre çevriliyor…</p> : null}
         {status === 'error' && message ? <p role="alert">{message}</p> : null}
-
-        <button type="submit" disabled={!canSubmit}>
-          Karikatüre Çevir
-        </button>
       </form>
     </div>
   )

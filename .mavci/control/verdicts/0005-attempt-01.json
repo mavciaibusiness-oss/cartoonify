@@ -1,0 +1,152 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 270 ms: G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed; see spec 0005 section 8.1'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 2280 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 13174 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 62 ms: grep -qE 'data-stage=[{]previewUrl' components/cartoonify-form.tsx && grep -qF \"'chosen'\" components/cartoonify-form.tsx && grep -qF \"'empty'\" components/cartoonify-form.tsx",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 47 ms: grep -A3 -F '[data-stage=\"empty\"] .workbench' app/globals.css | grep -qF 'display: none'",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 55 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const i=c.indexOf('.workbench {'); if(i<0) throw new Error('no .workbench rule'); const body=c.slice(i, c.indexOf('}', i)); if(!body.includes('display: grid')) throw new Error('.workbench is not a grid'); if(!body.includes('grid-template-columns: 1fr;')) throw new Error('.workbench does not default to one column'); const m=c.indexOf('@media (min-width: 768px)'); if(m<0) throw new Error('no 768px media quer...",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 54 ms: node -e \"const s=require('fs').readFileSync('components/cartoonify-form.tsx','utf8'); const i=t=>{const n=s.indexOf(t); if(n<0) throw new Error('missing '+t); return n}; const kv=i('kvkk-notice'), up=i('file-picker'), wb=i('workbench'), st=i('workbench-styles'), im=i('workbench-image'), cm=i('comparison'); if(!(kv<up)) throw new Error('the KVKK notice is not above the upload control'); if(!(up<wb)) throw new Error('the upload control is not first of the working area'); if(!(s...",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 53 ms: node -e \"const s=require('fs').readFileSync('components/cartoonify-form.tsx','utf8'); const Q=String.fromCharCode(34); const tok='type='+Q+'submit'+Q; const im=s.indexOf('workbench-image'), b=s.indexOf(tok), cm=s.indexOf('comparison'), f=s.indexOf('</form>'); if(im<0||b<0||cm<0||f<0) throw new Error('missing anchor'); if(!(im<b)) throw new Error('the convert button is not inside the image panel'); if(!(b<cm)) throw new Error('the convert button is below the gallery, not besid...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 55 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const t='--style-col-min: '; const ci=c.indexOf(t); if(ci<0) throw new Error('missing --style-col-min'); const col=parseInt(c.slice(ci+t.length),10); if(isNaN(col)) throw new Error('--style-col-min is not a px number'); let fl=-1, p=c.indexOf('minmax('); while(p>=0){ const n=parseInt(c.slice(p+7),10); if(!isNaN(n)){ fl=n; break; } p=c.indexOf('minmax(', p+1); } if(fl<0) throw new Error('no numeric minmax f...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 103 ms: grep -qF '.style-grid' app/globals.css && grep -qF 'auto-fill' app/globals.css && V=$(grep -oE 'minmax[(][0-9]+px' app/globals.css | head -1 | tr -dc '0-9') && [ -n \"$V\" ] && [ \"$V\" -le 160 ]",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 140 ms: for g in cizgi boya baski kesme; do grep -qF \"[data-style-group=\\\"$g\\\"]\" app/globals.css || exit 1; done; for h in '#cbd5e1' '#fbcfe8' '#fed7aa' '#bbf7d0'; do grep -qF \"$h\" app/globals.css || exit 1; done",
+      "id": "11",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 103 ms: git diff --quiet HEAD -- lib/image-constraints.ts && grep -qF 'const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)' app/api/cartoonify/route.ts && [ \"$(ls -A public/styles | tr -d '[:space:]')\" = '.gitkeep' ]",
+      "id": "12",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 62 ms: node -e \"const fs=require('fs'); for(const f of ['app/globals.css','components/cartoonify-form.tsx']){ const b=fs.readFileSync(f); if(b[0]===239&&b[1]===187&&b[2]===191) throw new Error(f+' has a BOM'); if(b.toString('utf8').indexOf(String.fromCharCode(65533))>=0) throw new Error(f+' has a replacement character'); } console.log('ok')\"",
+      "id": "13",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 81 ms: node -e \"const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['app/globals.css','components/cartoonify-form.tsx','CHANGELOG.md']; const bad=[]; for(const l of lines){ const p=l.slice(3).trim(); if(allo...",
+      "id": "14",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-18T14:24:53Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0005",
+  "verdict": "pass"
+}

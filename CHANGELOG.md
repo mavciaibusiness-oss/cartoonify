@@ -23,6 +23,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Upload-first layout and workbench sidebar** (task 0005, Sept 18 2026)
+  - Page restructured with `data-stage` attribute: `'empty'` before image upload, `'chosen'` after
+  - Empty stage shows only the upload control and KVKK transfer disclosure; style panel and image display hidden with `display: none`
+  - After image selection: `.workbench` grid layout with style picker on left (180–320px), chosen image and button on right
+  - At 768px breakpoint and above: two-column layout with `minmax(var(--style-col-min), 20rem)` left column
+  - Below 768px: single-column workbench stacking below upload control, preserving document order
+  - KVKK transfer notice relocated above upload control (disclosure before action, not after)
+  - Style panel design, picker cards, four groups, swatch colours, and all task 0004 artifacts unchanged
+  - Verified attempt 1: 14 of 14 criteria executed and passing, no second attempt required
+  - Spec pointer `.mavci/tasks/0005.json` was repointed by architect before approval from stub to final spec file
+
 - **Per-request style count enforced at one** (task 0004)
   - New constant `MAX_STYLES_PER_REQUEST = 1` exported from `lib/cartoon-styles.ts`
   - Route now reads `form.getAll('style')` instead of `form.get('style')` to catch repeated style fields
