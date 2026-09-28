@@ -1,15 +1,8 @@
 'use client'
 
+import { useMemo, useState } from 'react'
 import type { CartoonStyle } from '@/lib/cartoon-styles'
-import { STYLE_PREVIEW_IDS } from '@/lib/style-previews'
 
-/**
- * One card in the style grid: a radio input, a preview image or a CSS
- * swatch fallback, the name and the description. No style id and no colour
- * is hard-coded here — the id comes from `style`, which is always sourced
- * from lib/cartoon-styles.ts, and colour is app/globals.css's job via the
- * `data-style-group` attribute (see task 0004 criterion 11).
- */
 export default function StyleCard({
   style,
   checked,
@@ -21,7 +14,12 @@ export default function StyleCard({
   disabled: boolean
   onSelect: (id: string) => void
 }) {
-  const hasPreview = STYLE_PREVIEW_IDS.includes(style.id)
+  const previewSources = useMemo(
+    () => ['/style-samples/' + style.id + '.webp', '/styles/' + style.id + '.webp'],
+    [style.id]
+  )
+  const [sourceIndex, setSourceIndex] = useState(0)
+  const currentPreviewSource = previewSources[sourceIndex]
 
   return (
     <label className="style-card" data-style-group={style.group ?? undefined}>
@@ -33,18 +31,17 @@ export default function StyleCard({
         disabled={disabled}
         onChange={() => onSelect(style.id)}
       />
-      {hasPreview ? (
+      {currentPreviewSource ? (
         <img
           className="style-card-preview"
-          src={'/styles/' + style.id + '.webp'}
-          alt={style.name}
-          width={150}
-          height={150}
+          src={currentPreviewSource}
+          alt={style.name + ' style preview'}
+          width={320}
+          height={320}
           loading="lazy"
+          onError={() => setSourceIndex((prev) => prev + 1)}
         />
-      ) : (
-        <span className="style-card-swatch" aria-hidden="true" />
-      )}
+      ) : null}
       <span className="style-card-name">{style.name}</span>
       <span className="style-card-description">{style.description}</span>
     </label>

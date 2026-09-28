@@ -5919,3 +5919,58 @@ The workaround appears in no usage text. The remedies the refusal names - cat, j
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 49 - mavci-scribe overstates its own output size in its hand-back, twice in a row and in the same direction
+
+Filed: 2026-09-18T15:07:50Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agents/mavci-scribe.md`
+
+Two consecutive dispatches of mavci-scribe reported a line count for the task summary it had just written that was larger than the file on disk.
+
+Task 0004: the hand-back stated 321 lines. `wc -l .mavci/tasks/0004.summary.md` reports 153.
+Task 0005: the hand-back stated 503 lines. `wc -l .mavci/tasks/0005.summary.md` reports 111.
+
+In both cases the file content verified against its named sources: the attempt history, the criteria counts, the verdict value and the timings all matched the recorded verdict. The defect is confined to the figure the agent reports about its own output.
+
+Same direction both times, and by different factors, roughly 2.1x and 4.5x.
+
+Nothing checks the figure. It appears only in the hand-back, which is model output; it is not written into the summary, not written into any control-plane record, and no check compares it to the file. An orchestrator that relayed the number without running wc would publish it unverified, and the second occurrence was caught only because the first had already been caught by hand.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 50 - The risk guard refuses a control-plane read once it is joined to the command that consumes the value, so a criterion cannot resolve the pinned plugin version
+
+Filed: 2026-09-18T15:08:04Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/risk-guard.mjs`
+
+Paths below are relative to the .mavci directory, for the reason finding 48 records.
+
+Observed while writing task 0005 criterion 1, which needed the gate of the version recorded in control/state.json as ci_pinned_plugin_version.
+
+The mechanism, in three measurements:
+
+1. A bare read is allowed. `grep -o (the ci_pinned_plugin_version pattern) control/state.json` runs and returns "ci_pinned_plugin_version": "0.1.35".
+2. The same read joined to its consumer is refused as one line. `P=$(grep ... control/state.json | cut -d(quote) -f4); G="$HOME/.claude/plugins/cache/mavci/mavci-core/$P/scripts/gate.mjs"; node "$G" --ci` is refused with: "the write target of this command could not be determined, and it names a path inside [control-plane dir]".
+3. A node read of the same file is refused for the same reason, before it runs: `node -e "...readFileSync((control/state.json))..."` never executes.
+
+So the value can be read, and cannot be used in the command that reads it. The guard scans the whole command line; a plain grep alone is visible enough to allow, and the same grep with a consumer attached is not.
+
+Consequence recorded in that spec, section 8.1 item 5: criterion 1 carries 0.1.35 as a literal path with a guard clause, because the dynamic form cannot be written. A criterion that wants to run the version the control plane pins cannot ask the control plane which version that is.
+
+Same family as finding 48: there the refused command was a finding about the control plane, here it is a command that reads one value out of it.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.

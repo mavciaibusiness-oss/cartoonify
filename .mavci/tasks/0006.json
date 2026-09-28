@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0006",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0006-the-landing-page-and-the-workshop-route.md",
+  "title": "Landing page and workshop: a full landing, /workshop after upload, result on top"
+}

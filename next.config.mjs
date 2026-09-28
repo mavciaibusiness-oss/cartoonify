@@ -4,4 +4,6 @@
 // Enforced by next.no_static_export.
 export default {
   reactStrictMode: true,
+  // Allow the Abacus preview host to reach the dev server (dev-only host check)
+  allowedDevOrigins: ['*'],
 }

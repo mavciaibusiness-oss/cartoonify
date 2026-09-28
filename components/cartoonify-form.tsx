@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   DEFAULT_CARTOON_STYLE_ID,
   getCartoonStyle,
@@ -9,20 +9,18 @@ import {
   type CartoonStyleId,
 } from '@/lib/cartoon-styles'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import { useUpload } from './upload-state'
 import StyleCard from './style-card'
 
 type Status = 'idle' | 'loading' | 'error' | 'success'
 
 type ApiResponse = { ok: true; image: string } | { ok: false; code: string; message: string }
 
-// Client-side validation produces the same Turkish copy as the server codes.
-// It is a courtesy for the visitor, never the control — the server
-// re-validates every upload regardless (see app/api/cartoonify/route.ts).
 const CLIENT_MESSAGES = {
-  invalidType: 'Bu dosya türü desteklenmiyor. Lütfen PNG, JPEG veya WEBP formatında bir görsel yükleyin.',
-  tooLarge: 'Görsel çok büyük. Lütfen daha küçük bir dosya seçin.',
-  noFile: 'Bir görsel seçmediniz. Lütfen bir dosya yükleyin.',
-  network: 'Bağlantı sırasında bir sorun oluştu. Lütfen tekrar deneyin.',
+  invalidType: 'This file type is not supported. Please upload a PNG, JPEG, or WEBP image.',
+  tooLarge: 'Image is too large. Please choose a smaller file.',
+  noFile: 'No image selected. Please upload a file to continue.',
+  network: 'A network issue occurred. Please try again.',
 }
 
 function validateFile(file: File): string | null {
@@ -36,72 +34,75 @@ function validateFile(file: File): string | null {
 }
 
 export default function CartoonifyForm() {
+  const { file, previewUrl, setUpload } = useUpload()
+
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null)
-  const [fileName, setFileName] = useState<string | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
   const [styleId, setStyleId] = useState<CartoonStyleId>(DEFAULT_CARTOON_STYLE_ID)
-  const objectUrlRef = useRef<string | null>(null)
+  const [progress, setProgress] = useState(0)
 
-  function releasePreview() {
-    if (objectUrlRef.current) {
-      URL.revokeObjectURL(objectUrlRef.current)
-      objectUrlRef.current = null
-    }
-  }
-
-  // Release the current object URL on unmount, in addition to every
-  // replacement handled inline in handleFileChange.
   useEffect(() => {
-    return releasePreview
-  }, [])
-
-  function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0] ?? null
-
-    releasePreview()
-    setResultUrl(null)
-    // The native input is visually hidden, so the chosen name is echoed here
-    // whether or not the file then passes validation — as the browser would.
-    setFileName(file ? file.name : null)
-
-    if (!file) {
-      setPreviewUrl(null)
-      setStatus('idle')
-      setMessage(null)
+    if (status !== 'loading') {
+      setProgress(0)
       return
     }
 
-    const validationError = validateFile(file)
-    if (validationError) {
-      setPreviewUrl(null)
-      setStatus('error')
-      setMessage(validationError)
-      return
-    }
+    setProgress(8)
+    const timer = window.setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 92) return prev
+        const jump = prev < 35 ? 8 : prev < 70 ? 5 : 2
+        return Math.min(92, prev + jump)
+      })
+    }, 320)
 
-    const url = URL.createObjectURL(file)
-    objectUrlRef.current = url
-    setPreviewUrl(url)
-    setStatus('idle')
-    setMessage(null)
-  }
+    return () => window.clearInterval(timer)
+  }, [status])
 
-  // The cards can only offer allow-listed ids, so this guard is about a
-  // stale or tampered DOM value, never about trusting the client: the server
-  // re-checks the id against the same list on every request.
   function handleStyleSelect(value: string) {
     if (isCartoonStyleId(value)) {
       setStyleId(value)
     }
   }
 
+  function handleReplaceFile(event: React.ChangeEvent<HTMLInputElement>) {
+    const nextFile = event.target.files?.[0] ?? null
+
+    if (!nextFile) {
+      return
+    }
+
+    const validationError = validateFile(nextFile)
+    if (validationError) {
+      setMessage(validationError)
+      setStatus('error')
+      return
+    }
+
+    setUpload(nextFile)
+    setStatus('idle')
+    setResultUrl(null)
+    setMessage(null)
+  }
+
+  function handleRemoveFile() {
+    setUpload(null)
+    setStyleId(DEFAULT_CARTOON_STYLE_ID)
+    setResultUrl(null)
+    setMessage(null)
+    setStatus('idle')
+  }
+
+  function handleCreateAnother() {
+    setResultUrl(null)
+    setMessage(null)
+    setStatus('idle')
+    setProgress(0)
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-
-    const input = event.currentTarget.elements.namedItem('image')
-    const file = input instanceof HTMLInputElement ? input.files?.[0] ?? null : null
 
     if (!file) {
       setStatus('error')
@@ -135,6 +136,7 @@ export default function CartoonifyForm() {
 
       setResultUrl(data.image)
       setStatus('success')
+      setProgress(100)
     } catch {
       setStatus('error')
       setMessage(CLIENT_MESSAGES.network)
@@ -142,71 +144,108 @@ export default function CartoonifyForm() {
   }
 
   const canSubmit = status !== 'loading' && previewUrl !== null
-  const defaultStyle = getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)
   const selectedStyle = getCartoonStyle(styleId)
+  const allStyles = useMemo(
+    () => [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID), ...STYLE_GROUPS.flatMap((group) => group.styles)],
+    []
+  )
+
+  const canvasImageUrl = resultUrl ?? previewUrl
+  const isResultVisible = Boolean(resultUrl)
 
   return (
-    <div
-      data-state={status}
-      data-stage={previewUrl ? 'chosen' : 'empty'}
-      className="cartoonify"
-    >
-      <form onSubmit={handleSubmit}>
-        {/*
-          The disclosure comes before the control it describes. A visitor reads
-          where their photograph is going before they choose one, not after.
-        */}
-        <p className="kvkk-notice">
-          Yüklediğiniz görsel, karikatüre dönüştürülmek üzere <strong>OpenAI</strong> sunucularına
-          gönderilir. Bu sunucular <strong>ABD</strong>&apos;de (Amerika Birleşik Devletleri)
-          bulunur; bu bir <strong>yurt dışına aktarımdır</strong>. Görsel, işlemden önce veya
-          sonra bu sitede saklanmaz. Ayrıntılı bilgi için{' '}
-          <a href="/kvkk">KVKK Aydınlatma Metni</a>&apos;ni inceleyebilirsiniz.
+    <div data-state={status} className="cartoonify-workshop">
+      <header className="workshop-header">
+        <p className="workshop-badge">AI Cartoon Workshop</p>
+        <h1>Turn your photo into premium cartoon art</h1>
+        <p>
+          Upload once, pick any style from the full visual gallery, generate, and download in seconds.
         </p>
+      </header>
 
-        {/*
-          A real file input, visually hidden but still focusable: Tab reaches it,
-          Space or Enter opens the picker, and the label is its accessible name.
-          It sits before the label so CSS can show its focus ring on the label.
-        */}
-        <div className="file-picker">
+      <form onSubmit={handleSubmit} className="workshop-shell">
+        <section className="workspace-stage" aria-label="Generation workspace">
+          <div className="workspace-stage-head">
+            <h2>{isResultVisible ? 'Step 4 • Final image' : 'Step 2 • Preview'}</h2>
+            <div className="workspace-stage-head-right">
+              {status === 'loading' ? <span className="status-chip">Processing</span> : null}
+              {status === 'success' ? <span className="status-chip success">Ready</span> : null}
+              {status === 'error' ? <span className="status-chip error">Issue detected</span> : null}
+              <div className="workspace-stage-controls">
+                <label htmlFor="replace-image-input" className="ghost-button">
+                  Replace image
+                </label>
+                <button type="button" className="ghost-button" onClick={handleRemoveFile}>
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+
           <input
-            id="cartoonify-image-input"
+            id="replace-image-input"
             className="visually-hidden"
-            name="image"
             type="file"
             accept={ALLOWED_MIME_TYPES.join(',')}
-            aria-describedby="cartoonify-image-name"
-            onChange={handleFileChange}
+            onChange={handleReplaceFile}
           />
-          <label htmlFor="cartoonify-image-input" className="file-picker-button">
-            Fotoğraf yükle
-          </label>
-          <span id="cartoonify-image-name" className="file-picker-name" aria-live="polite">
-            {fileName ?? 'Henüz dosya seçilmedi'}
-          </span>
-        </div>
 
-        {/*
-          The workbench. It is hidden by CSS until data-stage is "chosen", so
-          before an image is picked the upload control above stands alone.
-        */}
-        <div className="workbench">
-          <div className="workbench-styles">
-            <div className="style-picker" aria-describedby="cartoonify-style-description">
-              <fieldset className="style-group">
-                <legend>Varsayılan</legend>
-                <div className="style-grid">
-                  <StyleCard
-                    style={defaultStyle}
-                    checked={styleId === defaultStyle.id}
-                    disabled={status === 'loading'}
-                    onSelect={handleStyleSelect}
-                  />
+          <div className="workspace-stage-image-wrap" data-canvas-state={status}>
+            {status === 'loading' ? (
+              <div className="processing-canvas" role="status" aria-live="polite">
+                <p>Applying style and rendering your cartoon…</p>
+                <div className="progress-track" aria-hidden="true">
+                  <span className="progress-fill" style={{ width: `${progress}%` }} />
                 </div>
-              </fieldset>
+                <small>{progress}%</small>
+              </div>
+            ) : canvasImageUrl ? (
+              <img
+                src={canvasImageUrl}
+                alt={isResultVisible ? 'Generated cartoon image' : 'Uploaded original image'}
+                className="workspace-stage-image"
+              />
+            ) : (
+              <p className="result-empty">Upload an image to start your workshop.</p>
+            )}
+          </div>
 
-              {STYLE_GROUPS.map((group) => (
+          <div className="workspace-cta-block">
+            {!isResultVisible ? (
+              <button type="submit" className="generate-button" disabled={!canSubmit}>
+                {status === 'loading' ? 'Generating…' : 'Generate cartoon'}
+              </button>
+            ) : (
+              <div className="result-actions workspace-result-actions">
+                <a className="primary-download" download="karikatur.png" href={resultUrl ?? undefined}>
+                  Download
+                </a>
+                <button type="button" className="ghost-button" onClick={handleCreateAnother}>
+                  Create another
+                </button>
+              </div>
+            )}
+            <p className="workspace-style-hint">
+              Selected style: <strong>{selectedStyle.name}</strong>
+            </p>
+          </div>
+
+          {status === 'error' && message ? (
+            <p className="error-text" role="alert">
+              {message}
+            </p>
+          ) : null}
+        </section>
+
+        <aside className="style-sidebar" aria-label="Style gallery">
+          <div className="style-sidebar-head">
+            <h2>Step 3 • Choose style</h2>
+            <p>{allStyles.length} styles available</p>
+          </div>
+
+          <div className="style-gallery" aria-describedby="cartoonify-style-description">
+            {[{ id: 'default', label: 'Default', styles: [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)] }, ...STYLE_GROUPS].map(
+              (group) => (
                 <fieldset key={group.id} className="style-group">
                   <legend>{group.label}</legend>
                   <div className="style-grid">
@@ -221,42 +260,14 @@ export default function CartoonifyForm() {
                     ))}
                   </div>
                 </fieldset>
-              ))}
+              )
+            )}
 
-              <p id="cartoonify-style-description">{selectedStyle.description}</p>
-            </div>
+            <p id="cartoonify-style-description" className="style-description-live">
+              {selectedStyle.description}
+            </p>
           </div>
-
-          <div className="workbench-image">
-            {previewUrl ? (
-              <img src={previewUrl} alt="Yüklenen orijinal görsel" />
-            ) : null}
-            <button type="submit" disabled={!canSubmit}>
-              Karikatüre Çevir
-            </button>
-          </div>
-        </div>
-
-        {previewUrl ? (
-          <div className="comparison">
-            <figure>
-              <figcaption>Orijinal</figcaption>
-              <img src={previewUrl} alt="Yüklenen orijinal görsel" />
-            </figure>
-            {status === 'success' && resultUrl ? (
-              <figure>
-                <figcaption>Karikatür</figcaption>
-                <img src={resultUrl} alt="Oluşturulan karikatür görseli" />
-                <a download="karikatur.png" href={resultUrl}>
-                  Karikatürü indir
-                </a>
-              </figure>
-            ) : null}
-          </div>
-        ) : null}
-
-        {status === 'loading' ? <p role="status">Karikatüre çevriliyor…</p> : null}
-        {status === 'error' && message ? <p role="alert">{message}</p> : null}
+        </aside>
       </form>
     </div>
   )

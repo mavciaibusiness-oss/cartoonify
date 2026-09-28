@@ -1,16 +1,39 @@
 /**
- * The committed list of style ids that have a rendered preview asset under
- * public/styles/. May be legitimately empty — see task 0004 §5.3: rendering
- * costs a paid upstream generation per style, so this is the operator's list
- * to grow, one id at a time, after the picker exists.
+ * List of style ids that have a preview asset under public/styles/.
  *
- * The filename IS the binding: an id listed here must have a matching
- * public/styles/<id>.webp file, and every .webp file under public/styles/
- * must be listed here. There is no separate manifest. `scripts/check-styles.mjs`
- * keeps the two in exact agreement, in both directions.
- *
- * A style with no entry here falls back to a CSS swatch derived from its
- * group — see components/style-card.tsx and the `[data-style-group=...]`
- * rules in app/globals.css.
+ * Every listed id maps to public/styles/<id>.webp and is validated by
+ * scripts/check-styles.mjs.
  */
-export const STYLE_PREVIEW_IDS: readonly string[] = []
+export const STYLE_PREVIEW_IDS: readonly string[] = [
+  'classic',
+  'bold-ink',
+  'cel-frame',
+  'hatched-line',
+  'line-wash',
+  'two-ink',
+  'mass-caricature',
+  'feature-caricature',
+  'reduced-caricature',
+  'soft-pastel',
+  'flat-colour',
+  'opaque-paint',
+  'thick-paint',
+  'stretched-caricature',
+  'combed-paint',
+  'wet-paper',
+  'single-ink',
+  'retro-print',
+  'carved-block',
+  'wood-block',
+  'screen-print',
+  'newsprint-caricature',
+  'engraved-plate',
+  'double-pass',
+  'paper-cutout',
+  'torn-paper',
+  'three-tone-panel',
+  'wood-inlay',
+  'fabric-applique',
+  'modelled-caricature',
+  'thread-work',
+]
