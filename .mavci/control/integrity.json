@@ -1,5 +1,5 @@
 {
-  "control_hash": "c89b22b999c6adf79ab205b6c76e7a57103d4afc774f7a07fe784193c7e9dcff",
+  "control_hash": "dd69364b6d95f06c1eafe27432d66fa4f88492cc76c5a488a7ff63c09b796a3d",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -150,6 +150,6 @@
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-09-29T14:12:42Z",
+  "sealed_at": "2026-09-29T14:18:16Z",
   "sealed_by_plugin_version": "0.1.35"
 }

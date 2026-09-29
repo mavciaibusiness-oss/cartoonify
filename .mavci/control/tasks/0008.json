@@ -16,7 +16,7 @@
     "spec_sha256": "426a3846981d53f472b87092e20cbabd609ad0eb476a72681b637d46512e9b6e"
   },
   "status": "done",
-  "updated": "2026-09-29T14:12:42Z",
+  "updated": "2026-09-29T14:18:16Z",
   "verdicts": [
     ".mavci/control/verdicts/0008-attempt-01.json"
   ]
