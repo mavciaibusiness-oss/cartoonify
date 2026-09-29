@@ -12,3 +12,6 @@ out/
 
 # Ad-hoc API probe bodies - diagnostic scratch, never part of the app
 body.json
+
+.vercel
+.env*
