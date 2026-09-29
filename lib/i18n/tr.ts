@@ -43,6 +43,10 @@ export const tr = {
     title: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi',
     lede:
       'Bir portre yükleyin, tüm Cartoonify stilleri arasından görsel bir galeriden seçim yapın, tek tıkla oluşturun ve hemen indirin.',
+    heroBeforeCaption: 'Özgün fotoğraf',
+    heroAfterCaption: 'Klasik Karikatür sonucu',
+    heroBeforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan bir yetişkinin portresi',
+    heroAfterAlt: 'Aynı portre, Klasik Karikatür stiliyle',
     groupsTitle: 'Dört yaratıcı grupta eksiksiz stil sistemi',
     groupsLede:
       'Her oluşturma, desteklenen aynı Cartoonify stil kimliklerini ve aynı arka uç akışını kullanır.',

@@ -1,0 +1,13 @@
+{
+  "artifacts": [],
+  "id": "0008",
+  "notes": [
+    "Operator accepted the 31 rendered previews, and judged some styles weak, for a later prompt-tuning task. Prompts stay frozen in task 0008: lib/cartoon-styles.ts is untouched and criterion 16 freezes it. This is the operator's visual judgement on one render per style from one source; no criterion measured it.",
+    "Weak, no exaggeration: stretched-caricature, modelled-caricature. Close to each other and to the source: opaque-paint, thick-paint, combed-paint.",
+    "Texture barely shows: fabric-applique, thread-work, torn-paper, paper-cutout. Look alike: classic, cel-frame, bold-ink."
+  ],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0008-migrate-to-sunburst-then-render-previews-once.md",
+  "title": "Migrate to gpt-image-2 before 23 October, then render the 31 previews once"
+}

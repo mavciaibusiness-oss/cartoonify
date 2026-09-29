@@ -4,6 +4,10 @@
  * (server). Neither of those files may restate a MIME string or a byte
  * number of its own — see criterion 22.
  *
+ * scripts/render-previews.mjs imports the model, the quality and the size from
+ * here too, so the previews are rendered at exactly what a visitor's request
+ * uses. None of the three is restated anywhere else (task 0008 criteria 5 and 7).
+ *
  * Pure constants and pure functions only. No secrets. Safe to bundle
  * client-side.
  */
@@ -18,8 +22,13 @@
  * accepting uploads the endpoint rejects every time — presenting as an
  * intermittent outage, because the catch block returns the same generic
  * message it returns for a genuine one.
+ *
+ * gpt-image-2.5-sunburst since task 0008. The provider shuts gpt-image-1 down
+ * on 23 October 2026 and names gpt-image-2.5-sunburst or gpt-image-2.5-flare as
+ * its replacement; the operator chose Sunburst, which the provider describes as
+ * the one for workflows where editing precision matters most.
  */
-export const IMAGE_MODEL = 'gpt-image-1'
+export const IMAGE_MODEL = 'gpt-image-2.5-sunburst'
 
 /**
  * The rendering quality requested on /v1/images/edits.
@@ -29,14 +38,24 @@ export const IMAGE_MODEL = 'gpt-image-1'
  * per-image cost — is decided by the provider, silently and per call. An
  * unstated default is not a choice; this is.
  *
- * The union is narrower than the SDK's own `ImageEditParams['quality']`, which
- * also admits 'standard', 'auto' and null. Those are excluded deliberately:
- * 'standard' belongs to dall-e-2, and 'auto' is the unpinned behaviour this
- * constant exists to remove.
+ * The union is narrower than what the provider accepts. Sunburst also takes
+ * xhigh, max and auto; the SDK's type also admits 'standard' and null. Those are
+ * excluded deliberately: 'standard' belonged to dall-e-2, 'auto' is the unpinned
+ * behaviour this constant exists to remove, and the two top tiers are a cost
+ * decision nobody has made.
  */
 export type ImageQuality = 'low' | 'medium' | 'high'
 
 export const IMAGE_QUALITY: ImageQuality = 'medium'
+
+/**
+ * The output size requested on /v1/images/edits.
+ *
+ * Pinned here, not written at the call site, so the route and the preview
+ * render script send the same value by importing it rather than by agreeing on
+ * a literal. Until task 0008 the route restated it.
+ */
+export const IMAGE_SIZE = '1024x1024' as const
 
 /**
  * What each upstream model actually accepts on /v1/images/edits.
@@ -44,10 +63,18 @@ export const IMAGE_QUALITY: ImageQuality = 'medium'
  * Changing IMAGE_MODEL now changes the allow-list, the client's `accept`
  * attribute and the server's check together, so the drift finding 10
  * describes is not merely unlikely — it cannot be expressed.
+ *
+ * Only the live model is listed. gpt-image-1 shuts down on 23 October 2026 and
+ * dall-e-2 shut down on 12 May 2026; an entry for a model that no longer
+ * answers is a way to switch back to an outage.
+ *
+ * The provider's guide does not state Sunburst's accepted edit inputs in plain
+ * text. WebP is confirmed by the task 0008 probe and JPEG by its renders; PNG is
+ * kept on the provider's general image-input guidance and is not yet confirmed
+ * by a call (task 0008 §4.3).
  */
 const MODEL_ACCEPTS = {
-  'gpt-image-1': ['image/png', 'image/jpeg', 'image/webp'],
-  'dall-e-2': ['image/png'],
+  'gpt-image-2.5-sunburst': ['image/png', 'image/jpeg', 'image/webp'],
 } as const
 
 /** The only MIME types this feature accepts, in either direction. */

@@ -447,6 +447,40 @@ footer a:hover {
   font-size: 0.85rem;
 }
 
+/*
+ * The landing hero pair: the source portrait and its classic render. Below the
+ * picker grid, like the group list, and with no track floor of its own, so the
+ * first numeric floor in this file stays the picker grid's (task 0008 §6.6).
+ */
+.hero-pair {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr;
+}
+
+.hero-pair figure {
+  margin: 0;
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+}
+
+.hero-pair img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.72rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.hero-pair figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.45rem;
+}
+
 .style-card {
   border-radius: 0.8rem;
   border: 1px solid var(--stroke);
@@ -612,6 +646,10 @@ footer a:hover {
 @media (min-width: 900px) {
   main {
     padding: 2rem 1.35rem 2.4rem;
+  }
+
+  .hero-pair {
+    grid-template-columns: 1fr 1fr;
   }
 
   .workshop-shell {

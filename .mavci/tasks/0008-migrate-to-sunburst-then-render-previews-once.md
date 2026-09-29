@@ -1,0 +1,664 @@
+# Task 0008 — Migrate off gpt-image-1 before 23 October, then render the 31 previews once
+
+- **Task id:** 0008
+- **Project:** cartoonify
+- **Phase at writing:** plan
+- **Depends on:** `d6d40fb`, task 0007 closed
+- **Carries forward:** task 0007 §10.1
+- **Deadline:** **23 October 2026**, 24 days from this spec. `gpt-image-1` shuts
+  down that day, and the live convert button fails for every visitor until this
+  task ships.
+- **Supersedes, on approval:** ADR 0004 (task 0007 §4.3)
+
+---
+
+## 1. What this task is, and what it is careful not to be
+
+Four steps, in this order. **The order is enforced, not requested** (§5):
+
+1. **Migrate.** `IMAGE_MODEL` becomes **`gpt-image-2.5-sunburst`** (§1.1). Before
+   anything is rendered, one probe call confirms that the model accepts
+   `images.edit` with exactly the parameters the route sends (model, prompt,
+   size, quality) and records what the provider returns.
+2. **Source.** One AI-generated, photorealistic portrait of a **fictional
+   adult**, not a child and not a real person, generated with the migrated model
+   and written to `public/hero/before.jpg`. **The operator looks at it before
+   anything else is rendered**, and approves it by typing its hash.
+3. **Render once.** The 31 previews from that source, at the route's model, size
+   and quality, all imported and never restated. A manifest records the hashes
+   and the quality the provider reports. The card reads `/styles/<id>.webp` only,
+   and `public/style-samples/` is removed.
+4. **The hero pair returns:** `before.jpg` and its `classic` render.
+
+**What it is careful not to be.**
+
+- **It does not upgrade the SDK.** `openai` 4.104.0 is installed and sufficient
+  (§4.4). `package.json` is frozen by criterion 16. An upgrade to 7.x is a
+  separate decision, not a side effect of a deadline.
+- **It does not fix the timeout misclassification.** It measures the new model's
+  latency against the route's 45-second budget and stops if the probe exceeds it
+  (§6.2). It does not move the budget.
+- **It does not change prompts, styles, dictionaries' existing keys, the KVKK
+  notice or the legal pages.**
+- It does not choose the model on its own authority. The operator chose Sunburst
+  after the provider's pages contradicted the original target (§1.1).
+
+### 1.1 Why Sunburst and not gpt-image-2
+
+The task was opened as a migration to `gpt-image-2`. OpenAI's deprecations page,
+read raw on 2026-09-29 rather than through a summary, says otherwise:
+
+| Shutdown | Model | Recommended replacement (verbatim) |
+|---|---|---|
+| October 23, 2026 | `gpt-image-1` | `gpt-image-2.5-sunburst or gpt-image-2.5-flare` |
+| Dec 1, 2026 | `gpt-image-1-mini` | `gpt-image-2.5-sunburst or gpt-image-2.5-flare` |
+| Dec 1, 2026 | `gpt-image-1.5` | `gpt-image-2.5-sunburst or gpt-image-2.5-flare` |
+| Dec 1, 2026 | `chatgpt-image-latest` | `gpt-image-2.5-sunburst or gpt-image-2.5-flare` |
+
+`gpt-image-2` is not scheduled for shutdown. But the image-generation guide lists
+it under *"Earlier GPT Image models"* and says *"For new integrations, use one of
+the GPT Image 2.5 models."* It also says *"Choose Sunburst for workflows where
+editing precision matters most."* This product is an edit endpoint. **The operator
+chose `gpt-image-2.5-sunburst`.** The 23 October date is confirmed by the same page.
+
+`.mavci/tasks/0008.json` still carries the title *"Migrate to gpt-image-2 …"*.
+This spec does not edit it; the title is the operator's.
+
+---
+
+## 2. The state on disk when this spec was written
+
+`HEAD` is `d6d40fb`, *"Task 0007: summary and changelog"*. Outside `.mavci/`, one
+path is dirty: **`CHANGELOG.md`**, carrying task 0007's entry, which `d6d40fb` did
+not include. It is allowed by criterion 20 for the scribe's reason, and this task
+does not own it.
+
+| What | Where | State |
+|---|---|---|
+| Model | `lib/image-constraints.ts:22` | `IMAGE_MODEL = 'gpt-image-1'` |
+| Quality | `lib/image-constraints.ts:39` | `IMAGE_QUALITY: ImageQuality = 'medium'` |
+| Accepted types | `lib/image-constraints.ts` | `MODEL_ACCEPTS` keyed `gpt-image-1` and `dall-e-2`. `dall-e-2` shut down on 2026-05-12 |
+| Size | `app/api/cartoonify/route.ts:145` | the literal `size: '1024x1024'`. **Restated, not imported** |
+| Time budget | `route.ts` | `maxDuration = 60`; `UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)` = 45 000 ms |
+| SDK | `node_modules/openai` | **4.104.0** installed (`^4.67.0` in `package.json`); latest published is 7.23.0 |
+| Previews | `public/styles/` | 31 synthetic 320×320 placeholders (task 0007 §2) |
+| Samples | `public/style-samples/` | 31 renders from a cartoon source that reads as a child; the card's first choice |
+| Card | `components/style-card.tsx` | tries `style-samples/`, falls back to `styles/` on error |
+| Hero | `components/landing.tsx` | no image pair (task 0007 §6.3) |
+
+Standards gate: `11 passing, 0 blocking, 5 warning(s), 0 baselined, 0 waived`.
+
+---
+
+## 3. Three decisions this spec makes explicitly
+
+### 3.1 Tenancy
+
+None. No auth, no store, no session. The manifest is a build artefact about 33
+provider calls, not user data.
+
+### 3.2 Trust boundary
+
+**Where a visitor's photograph goes does not change:** OpenAI, in the United
+States, exactly as the KVKK notice says. The model id changes; the processor
+does not. The notice needs no edit.
+
+**The key.** The render script reads `OPENAI_API_KEY` through `lib/env.ts` only
+(criterion 7). The manifest records hashes, usage, cost, latency and the source
+prompt. It records no secret and no request id that would identify an account.
+
+**Spend is a control, not a hope.** The script carries `SPEND_CEILING_USD`. It
+refuses to start the source step if the probe's measured cost × 33 exceeds the
+ceiling, and it stops mid-render before any call that would cross it. Criterion
+10 checks the record.
+
+### 3.3 Reversibility
+
+**The code is reversible, and the deadline is not.** Reverting the commit restores
+`gpt-image-1`, which stops working on 23 October. Reverting after that date
+restores a broken site. **The spend is not reversible:** 33 paid calls (§7).
+`public/style-samples/` stays in git history.
+
+---
+
+## 4. The provider contract, as read on 2026-09-29
+
+Everything here was read from `developers.openai.com` on the date above. The
+model's behaviour is **not assumed from it**. §6.2's probe is the confirmation,
+and this section is what the probe is checking.
+
+### 4.1 Parameters the route sends
+
+| Parameter | Route value | What the guide says for Sunburst |
+|---|---|---|
+| `model` | `IMAGE_MODEL` | `gpt-image-2.5-sunburst` is named for `images.edit` in the guide's own examples |
+| `prompt` | the style prompt | no change |
+| `size` | `1024x1024` | listed as a recommended size |
+| `quality` | `IMAGE_QUALITY` = `medium` | `low, medium, high, xhigh, max, auto`. **`medium` is listed.** `IMAGE_QUALITY`'s union stays `low \| medium \| high` |
+| `image` | the upload, PNG, JPEG or WebP | the guide's edit rules for Sunburst's accepted input types were not found in static text (§4.3) |
+
+`input_fidelity` is not sent by the route, and the guide says to omit it for
+`gpt-image-2`; nothing here sends it.
+
+### 4.2 Price
+
+Standard rates per million tokens, identical for `gpt-image-2.5-sunburst`,
+`gpt-image-2.5-flare` and `gpt-image-2`:
+
+| Modality | Input | Cached input | Output |
+|---|---|---|---|
+| Image | $8.00 | $2.00 | $30.00 |
+| Text | $5.00 | $1.25 | — |
+
+**The per-image price for Sunburst at `medium`, `1024x1024` is not published in
+static text.** The guide computes it in a browser calculator whose data is loaded
+at runtime, and this spec could not read it. The only published per-image figure
+at these settings is **`gpt-image-2`'s: $0.053 at medium 1024×1024, output tokens
+only.** The guide says the 2.5 models *"can use different token counts for the
+same quality setting and share the same price per image output token."* Edit
+requests also pay for input image tokens, which the guide says can be higher for
+edits. §7 turns this into a ceiling and a measurement, not a guess.
+
+### 4.3 What the guide does not settle
+
+- **Accepted input MIME types for Sunburst edits.** Not found in static text.
+  `MODEL_ACCEPTS` keeps PNG, JPEG and WebP. **WebP** is confirmed by the probe,
+  whose input is WebP. **JPEG** is confirmed by the source and every render, since
+  the source is JPEG. **PNG is unconfirmed** by anything in this task (§12 item 8).
+- **Which fields the response carries.** The SDK's type has `created`, `data` and
+  `usage`. Whether the provider also returns `quality` and `size` for Sunburst is
+  what the probe records. If it does not, criterion 6 fails, which is
+  deliberate: *a traceable false failure beats a true statement nothing can
+  verify.*
+- **Latency.** The guide warns that *"Complex prompts may take up to 2 minutes"*.
+  The route gives the provider 45 seconds.
+
+### 4.4 The SDK: no upgrade needed, and why
+
+Read from `node_modules/openai` 4.104.0:
+
+- `ImageEditParams.model` is typed `(string & {}) | ImageModel | null`, so
+  `'gpt-image-2.5-sunburst'` compiles in the route without an upgrade.
+- `images.edit(body)` is `this._client.post('/images/edits',
+  Core.multipartFormRequestOptions({ body, ...options }))`. Every key in `body` is
+  sent. So the script's `output_format` and `output_compression`, which 4.104.0's
+  **edit** type does not declare, still reach the API. The script is `.mjs` and is
+  not typechecked.
+- The route sends none of those extra keys, so its types are unaffected.
+
+**Conclusion: no upgrade is needed for this task.** 7.23.0 is three majors ahead.
+The upgrade is its own task, with its own risk, and criterion 16 freezes
+`package.json` so it cannot ride along with a deadline.
+
+---
+
+## 5. The order, and what enforces each step
+
+| Step | Command (operator runs it; it is paid) | Refuses to run unless | Recorded as | Checked by |
+|---|---|---|---|---|
+| 0. Migrate | builder edits `lib/image-constraints.ts` and the route | — | the code | 4, 5 |
+| 1. Probe | `render-previews.mjs --probe` | the constants import cleanly | `manifest.probe` | 6, 10 |
+| 2. Source | `render-previews.mjs --source` | a probe exists with `ok: true`, latency under the route budget, and `probe.cost_usd × 33 ≤ SPEND_CEILING_USD` | `manifest.source` | 8, 10 |
+| — | **the operator looks at `public/hero/before.jpg`** | — | — | — (§10.1 item 5) |
+| 3. Render | `render-previews.mjs --previews --approved-source <first 12+ hex of its sha256>` | the typed prefix matches the source's hash, and the source still hashes to the manifest | `manifest.source.approved`, `manifest.previews` | 8, 9, 10 |
+| 4. Remove samples | **operator:** `git rm -r public/style-samples` | — | git | 11 |
+| 5. Hero | builder edits `components/landing.tsx` and the dictionaries | — | the code | 12, 13, 14 |
+
+**Why the approval is a typed hash.** "The operator looks at it first" is
+otherwise a sentence nobody can check. Requiring the hash prefix on the command
+line means the render cannot start from a source nobody has opened: the person
+running it has to read the source's hash. Criterion 8 checks that the recorded
+approval matches the source and falls between the source and the first preview.
+The timestamps are written by the script, and §10.1 says what that proves and
+what it does not.
+
+**Why the operator runs the paid steps and the delete.** Paid calls are spend,
+which the operator authorises. The recursive delete is refused to agents by the
+risk guard; task 0007 hit exactly that with `style-hints/`. The builder writes
+the script, stops, and hands over the commands in §5.
+
+**If the probe fails, the build stops, and the route follows the provider.** A
+refused parameter, a renamed one, a missing `quality` in the response, or a
+latency over 45 s is not something the builder works around. The builder records
+the provider's error verbatim in the manifest, stops, and this spec is revised
+with the operator: the route changes to match what the provider accepts. The
+provider's contract is not bent to fit the route, and no preview is rendered on a
+contract that failed.
+
+---
+
+## 6. The design
+
+### 6.1 Migration
+
+`lib/image-constraints.ts`:
+
+- `IMAGE_MODEL = 'gpt-image-2.5-sunburst'`.
+- **New:** `export const IMAGE_SIZE = '1024x1024' as const`. The route and the
+  script both import it, so the size is no longer restated anywhere.
+- `IMAGE_QUALITY` stays `'medium'`, and its union stays `low | medium | high`.
+- `MODEL_ACCEPTS` holds the one live model: `'gpt-image-2.5-sunburst': ['image/png',
+  'image/jpeg', 'image/webp']`. The `gpt-image-1` and `dall-e-2` entries go,
+  because both are shut down or shutting down. The comments that name
+  `gpt-image-1` are updated to say what is true.
+
+`app/api/cartoonify/route.ts`: imports `IMAGE_SIZE` and sends `size: IMAGE_SIZE`.
+**Nothing else in the route changes**, including `UPSTREAM_TIMEOUT_MS`
+(criterion 5).
+
+### 6.2 The probe (`--probe`)
+
+One `images.edit` call, built exactly as the route builds it: `toFile(bytes,
+uploadFilename(type), { type })`, `model: IMAGE_MODEL`, `prompt:
+getCartoonStyle('classic').prompt`, `size: IMAGE_SIZE`, `quality: IMAGE_QUALITY`,
+no other keys. The input is `public/styles/classic.webp`, the committed 320×320
+placeholder that already exists before any render. The output is discarded.
+
+It records `manifest.probe`: `ok`, `endpoint: 'images.edit'`, `model`, `request`
+(`size`, `quality`), `response` (the provider's `quality`, `size`,
+`output_format`, and the list of top-level response keys), `usage`, `cost_usd`,
+`latency_ms` and `at`. On failure it records the provider's status and error
+message verbatim, sets `ok: false`, and exits non-zero.
+
+**Latency gate:** `latency_ms` must be under the route's own budget, read from
+`maxDuration` in the route, not restated. One sample is thin evidence (§10.1),
+but it is the difference between knowing and hoping.
+
+A 320×320 input may be rejected for being small. If it is, the probe records
+that error, and it is a finding to bring back to the operator, not a reason to
+use the source out of order.
+
+### 6.3 The source (`--source`)
+
+`images.generate` with `model: IMAGE_MODEL`, `size: IMAGE_SIZE`, `quality:
+IMAGE_QUALITY`, `output_format: 'jpeg'`, and this prompt, carried verbatim as
+`SOURCE_PROMPT` in the script:
+
+> Photorealistic lifestyle portrait photograph of a fictional adult woman,
+> about 28 years old, head and upper body, body turned slightly to the side
+> with the face toward the camera, natural warm smile, shoulder-length wavy
+> dark brown hair with visible volume. Casual modest outfit: a mustard-yellow
+> knit sweater. Outdoors in soft late-afternoon light, with a softly blurred
+> green park background. Natural skin texture, sharp focus on the face, no
+> hands in frame, no jewellery, no text, no logos. The person is invented and
+> must not resemble any real or famous person.
+
+It is written to `public/hero/before.jpg`. It is generated from text alone, with
+no reference image, so no real person's photograph enters the process. The step
+records `manifest.source`: `path`, `sha256`, `generator`, `prompt`, `request`,
+`response_quality`, `usage`, `cost_usd` and `at`. It then prints the file path and
+its sha256, and stops.
+
+**The first source was generated and rejected by the operator.** It was
+generated during the build from this section's original prompt: a
+head-and-shoulders studio portrait of a fictional adult of about 35, with a
+neutral expression, a plain light-grey background and a dark crew-neck top. The
+manifest records it as `65ad87208d7f…`, generated at
+`2026-09-29T13:23:34.294Z`, costing $0.013575, and never approved. The operator
+rejected it because it reads as an ID photo, and a flat grey background with a
+dark top gives the 31 styles little to transform. The prompt above replaced it.
+Regenerating with `--source --force` moves the rejected record into
+`manifest.discarded`, where its cost **stays counted against
+`SPEND_CEILING_USD`**. Criterion 10's total covers only the 33 current calls, so
+the discarded source is visible in the manifest, but criterion 10 does not count
+it.
+
+### 6.4 The render (`--previews --approved-source <prefix>`)
+
+For each of the 31 styles: `images.edit` with `image` from `before.jpg` (via
+`toFile` and `uploadFilename`), `model: IMAGE_MODEL`, `prompt:
+getCartoonStyle(id).prompt`, `size: IMAGE_SIZE`, `quality: IMAGE_QUALITY`,
+**plus** `output_format: 'webp'` and `output_compression: 80`.
+
+**Those last two are the only difference from a visitor's call, and they are
+encodings, not generation parameters.** PNG at 1024² × 31 would add tens of
+megabytes to the repository and to every picker load.
+
+Each result goes to `public/styles/<id>.webp`, with a manifest entry: `file`,
+`sha256`, `input_sha256` (the source's hash), `response_quality`,
+`response_size`, `usage`, `cost_usd` and `at`. The script rewrites the manifest
+after every call, skips ids already rendered from this source unless `--force`,
+re-runs one id with `--only <id>`, and uses `maxRetries: 0`, so a failure costs
+one call, not three.
+
+**Before every call** the script adds the probe's per-call cost to the running
+total. If the sum would pass `SPEND_CEILING_USD`, it stops and says so.
+
+### 6.5 The card and `style-samples/`
+
+`components/style-card.tsx` loads `'/styles/' + style.id + '.webp'` and nothing
+else. The `onError` fallback chain goes, because every preview now exists and
+criterion 9 proves it. `public/style-samples/` is removed by the operator (§5
+step 4).
+
+### 6.6 The hero pair
+
+In `components/landing.tsx`, after the lede and **before** the KVKK notice and
+the upload control:
+
+- **before:** `src="/hero/before.jpg"`, the source itself, the exact bytes sent
+  to the provider;
+- **after:** `src="/styles/classic.webp"`, its `classic` render.
+
+The pair is therefore true: the right-hand image was produced from the left-hand
+one, at the model a visitor's request now uses. Captions and alt text come from
+four new keys in `lib/i18n/tr.ts` (the source) and `lib/i18n/en.ts`:
+`heroBeforeCaption`, `heroAfterCaption`, `heroBeforeAlt` and `heroAfterAlt`. The
+`.hero-pair` rules return to `app/globals.css` **with no `minmax`** and **below
+`.style-grid`**, so task 0004's closed criterion 11 keeps reading the right floor
+(criterion 17).
+
+---
+
+## 7. Cost, which the operator approves along with the design
+
+| | Calls | Basis |
+|---|---|---|
+| Probe | 1 | edit, at route parameters |
+| Source | 1 | generate |
+| Previews | 31 | edit |
+| **Total** | **33** | one more than the 32 in task 0007 §10.1. The probe is the extra, and §5 requires it before the source |
+
+**Per-call price at Sunburst, medium, 1024×1024: not publishable from the
+provider's static documents** (§4.2). What can be stated:
+
+- **Reference:** `gpt-image-2` at the same settings is **$0.053 per image in
+  output tokens**. 33 × $0.053 = **$1.75 in output**, before input tokens.
+- **Input tokens are extra** for 32 of the 33 calls, which are edits with an
+  image input. The guide warns these can be higher for edits.
+
+**So the spend is controlled by a ceiling, not by a quoted price:**
+
+- **Proposed `SPEND_CEILING_USD = 5.00`** for the whole task. That is an average
+  of $0.15 per call, about 2.8× the output-only reference.
+- **The probe measures the real per-call cost** from the provider's `usage` at
+  the §4.2 rates. `--source` refuses to run if **probe cost × 33 exceeds the
+  ceiling.** You see the measured figure before anything but the probe has been
+  spent.
+- **The worst case, if you approve the ceiling, is $5.00.** The probe alone costs
+  one call before that check.
+
+**What the operator approves:** the ceiling, not a price. If you want a different
+ceiling, it is one constant, and criterion 10 checks the manifest against it.
+
+---
+
+## 8. Files
+
+| File | Change |
+|---|---|
+| `lib/image-constraints.ts` | `IMAGE_MODEL`, new `IMAGE_SIZE`, `MODEL_ACCEPTS`, comments (§6.1) |
+| `app/api/cartoonify/route.ts` | imports and sends `IMAGE_SIZE`; nothing else |
+| `scripts/render-previews.mjs` | **new**, §6.2–6.4 |
+| `lib/preview-manifest.json` | **new**, written by the script |
+| `public/hero/before.jpg` | **new**, written by `--source` |
+| `public/styles/*.webp` | **replaced**, written by `--previews` |
+| `public/style-samples/` | **deleted by the operator** |
+| `components/style-card.tsx` | one image source, no fallback (§6.5) |
+| `components/landing.tsx` | the hero pair (§6.6) |
+| `lib/i18n/tr.ts`, `lib/i18n/en.ts` | four hero keys each |
+| `app/globals.css` | `.hero-pair` rules, no `minmax`, below `.style-grid` |
+
+**Do not touch:** `lib/cartoon-styles.ts`, `lib/env.ts`, `lib/style-previews.ts`
+(it already lists all 31), `lib/i18n/paths.ts`, `lib/i18n/styles.en.ts`,
+`components/upload-state.tsx`, `components/kvkk-notice.tsx`,
+`scripts/check-styles.mjs`, `next.config.mjs`, **`package.json`,
+`package-lock.json`**, the legal pages, the ADR files, `.mavci/control/`.
+
+Every text file stays **UTF-8 without a BOM** (criterion 19).
+
+---
+
+## 9. Acceptance criteria
+
+Each criterion is **discriminating** (red on today's tree, green on a corrected
+copy) or a **pin** (green today, there to catch a widening). Criteria 13, 14, 15,
+17 and 18 are **task 0007's commands, copied by id from its sealed spec**, and
+re-run here because this task edits the files they guard.
+
+Commands are Git Bash at the repository root. `needs` is `["shell"]` for all
+twenty. **No criterion contacts the provider or spends credit.** They check the
+record the paid steps leave behind. Criteria 12 and 15 read the prerendered HTML
+from criterion 3.
+
+1. **[gate]** *pin.* The gate of plugin **0.1.35**: 0 blocking, exactly 5 warnings.
+2. **[command]** *pin.* `npm run check` exits 0.
+3. **[command]** *pin.* `npm run build` exits 0.
+4. **[node]** *discriminating, the migration.* Imported from the module:
+   `IMAGE_MODEL === 'gpt-image-2.5-sunburst'`, `IMAGE_QUALITY === 'medium'`
+   (unchanged), `IMAGE_SIZE === '1024x1024'`, and `ALLOWED_MIME_TYPES` holds PNG,
+   JPEG and WebP.
+5. **[node]** *discriminating.* The route sends `model: IMAGE_MODEL`,
+   `size: IMAGE_SIZE` and `quality: IMAGE_QUALITY`, imports `IMAGE_SIZE`, restates
+   no size, no quality and no model id, and `UPSTREAM_TIMEOUT_MS` is unchanged.
+6. **[node]** *discriminating, the operator's step 1.* `manifest.probe` exists,
+   `ok`, on `images.edit`, with the imported model, size and quality. The
+   **provider-reported** quality and size equal the imports. Usage is recorded.
+   `latency_ms` is under the route's budget, derived from `maxDuration`. The
+   probe's timestamp precedes the source's.
+7. **[node]** *discriminating.* The script exists; uses `IMAGE_MODEL`,
+   `IMAGE_QUALITY`, `IMAGE_SIZE`, `uploadFilename`, `getCartoonStyle`, `getEnv`,
+   the three module paths, `SPEND_CEILING_USD`, `--probe`, `--source`,
+   `--previews`, `--approved-source` and `maxRetries: 0`. It never reads
+   `process.env`, and restates no quality value, no `1024x1024` and no
+   `gpt-image` model id.
+8. **[node]** *discriminating, the operator's step 2.* `public/hero/before.jpg`
+   is a JPEG that hashes to `manifest.source`. It was generated by `IMAGE_MODEL`
+   at the imported size and quality, with a provider-reported quality equal to
+   `IMAGE_QUALITY`, and a recorded prompt that appears verbatim in the script.
+   An approval with a hash prefix of at least 12 characters matches the source,
+   and its timestamp falls after the source and at or before the first preview.
+9. **[node]** *discriminating, the operator's step 3.* The manifest's model,
+   quality and size equal the imports. `STYLE_PREVIEW_IDS` and the manifest's
+   previews are each exactly the 31 style ids. Every `public/styles/<id>.webp`
+   hashes to the manifest, is distinct, is a WebP of exactly `size`, has
+   `response_quality === IMAGE_QUALITY`, and has `input_sha256` equal to the
+   source's. Nothing else is in `public/styles/`.
+10. **[node]** *discriminating, the spend.* `manifest.ceiling_usd` equals the
+    script's `SPEND_CEILING_USD`. Exactly 33 calls are recorded, each with usage
+    and cost. The probe's cost × 33 and the total are both at or under the ceiling.
+11. **[grep]** *discriminating.* `public/style-samples` does not exist, nothing
+    under `app components lib scripts` names it, the card names `'/styles/'`, and
+    the card has no `onError`.
+12. **[node]** *discriminating, the operator's step 4.* The landing source carries
+    `src="/hero/before.jpg"` and `src="/styles/classic.webp"`, the rendered `/` and
+    `/en` both show both, and **then** task 0007 criterion 12 in full: every
+    literal and rendered `src` resolves under `public/`.
+13. **[node]** *pin, task 0007 criterion 5.* `tr`/`en` key trees agree, and the
+    errors are byte-identical to the route. The hero keys must exist in both.
+14. **[node]** *pin, task 0007 criterion 11.* No visible string outside the
+    dictionaries. Same measured holes (§10.1).
+15. **[node]** *pin, task 0007 criterion 9.* The KVKK notice precedes every file
+    input, on all four rendered pages and in the workbench. The hero pair goes
+    above the notice, and this proves it did not push the notice below the upload.
+16. **[git]** *pin, the out-of-scope guard.* `git diff --quiet HEAD --` on
+    `lib/cartoon-styles.ts`, `lib/env.ts`, `lib/style-previews.ts`,
+    `lib/i18n/paths.ts`, `lib/i18n/styles.en.ts`, `components/upload-state.tsx`,
+    `components/kvkk-notice.tsx`, `scripts/check-styles.mjs`, `next.config.mjs`,
+    **`package.json`, `package-lock.json`**.
+17. **[node]** *pin, task 0007 criterion 15.* The first numeric `minmax(` lies in
+    `.style-grid`.
+18. **[node]** *pin, task 0007 criterion 16.* The `.style-grid` floor is ≤ 160px.
+19. **[node]** *discriminating by presence.* The task's text files and every
+    `components/*.tsx` are UTF-8, with no BOM and no U+FFFD.
+20. **[node]** *discriminating.* Scope: every changed path is a §8 file, under
+    `public/hero/`, `public/styles/` or the deleted `public/style-samples/`, or is
+    `CHANGELOG.md` or `docs/adr/README.md` (ADR 0004's supersession).
+
+---
+
+## 10. The criteria, executable
+
+```mavci-criteria
+[
+  {"id":"1","run":"G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed; see spec 0008 section 9.1'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\""},
+  {"id":"2","run":"npm run check","timeout_ms":300000},
+  {"id":"3","run":"npm run build","timeout_ms":300000},
+  {"id":"4","run":"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"import('./lib/image-constraints.ts').then(m=>{ const bad=[]; if(m.IMAGE_MODEL!=='gpt-image-2.5-sunburst') bad.push('IMAGE_MODEL is '+m.IMAGE_MODEL); if(m.IMAGE_QUALITY!=='medium') bad.push('IMAGE_QUALITY is '+m.IMAGE_QUALITY); if(m.IMAGE_SIZE!=='1024x1024') bad.push('IMAGE_SIZE is '+m.IMAGE_SIZE); for(const t of ['image/png','image/jpeg','image/webp']) if(!(m.ALLOWED_MIME_TYPES||[]).includes(t)) bad.push('ALLOWED_MIME_TYPES lacks '+t); if(bad.length) throw new Error(bad.join('; ')); console.log('ok: '+m.IMAGE_MODEL+', '+m.IMAGE_QUALITY+', '+m.IMAGE_SIZE); })\""},
+  {"id":"5","run":"node -e \"const r=require('fs').readFileSync('app/api/cartoonify/route.ts','utf8'); const A=String.fromCharCode(39); for(const n of ['model: IMAGE_MODEL','size: IMAGE_SIZE','quality: IMAGE_QUALITY','IMAGE_SIZE,']) if(r.indexOf(n)<0) throw new Error('the route does not send '+n); if(r.indexOf(A+'1024x1024'+A)>=0) throw new Error('the route restates the size'); for(const q of ['low','medium','high','auto','xhigh','max']) if(r.indexOf(A+q+A)>=0) throw new Error('the route restates a quality: '+q); if(r.indexOf(A+'gpt-image')>=0) throw new Error('the route restates a model'); if(r.indexOf('const UPSTREAM_TIMEOUT_MS = Math.floor(maxDuration * 1000 * 0.75)')<0) throw new Error('UPSTREAM_TIMEOUT_MS changed'); console.log('ok')\""},
+  {"id":"6","run":"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const mf='lib/preview-manifest.json'; if(!fs.existsSync(mf)) throw new Error(mf+' does not exist'); const m=JSON.parse(fs.readFileSync(mf,'utf8')); import('./lib/image-constraints.ts').then(ic=>{ const p=m.probe; if(!p) throw new Error('no probe recorded'); const bad=[]; if(p.ok!==true) bad.push('the probe did not succeed'); if(p.endpoint!=='images.edit') bad.push('the probe endpoint is '+p.endpoint); if(p.model!==ic.IMAGE_MODEL) bad.push('probe model '+p.model); const q=p.request||{}; if(q.size!==ic.IMAGE_SIZE||q.quality!==ic.IMAGE_QUALITY) bad.push('the probe did not send the route parameters'); const s=p.response||{}; if(s.quality!==ic.IMAGE_QUALITY) bad.push('the provider reported quality '+s.quality); if(s.size!==ic.IMAGE_SIZE) bad.push('the provider reported size '+s.size); const u=p.usage||{}; if(typeof u.input_tokens!=='number'||typeof u.output_tokens!=='number') bad.push('the probe recorded no usage'); const r=fs.readFileSync('app/api/cartoonify/route.ts','utf8'); const i=r.indexOf('maxDuration = '); const budget=Math.floor(parseInt(r.slice(i+14),10)*1000*0.75); if(typeof p.latency_ms!=='number') bad.push('no probe latency'); else if(!(p.latency_ms<budget)) bad.push('the probe took '+p.latency_ms+' ms, over the route budget of '+budget+' ms'); if(!(Date.parse(p.at)<Date.parse((m.source||{}).at))) bad.push('the probe is not before the source'); if(bad.length) throw new Error(bad.join('; ')); console.log('ok: '+p.latency_ms+' ms of '+budget); })\""},
+  {"id":"7","run":"node -e \"const fs=require('fs'); const f='scripts/render-previews.mjs'; if(!fs.existsSync(f)) throw new Error(f+' does not exist'); const s=fs.readFileSync(f,'utf8'); for(const n of ['IMAGE_MODEL','IMAGE_QUALITY','IMAGE_SIZE','uploadFilename','getCartoonStyle','getEnv','lib/image-constraints.ts','lib/cartoon-styles.ts','lib/env.ts','SPEND_CEILING_USD','--approved-source','--probe','--source','--previews','maxRetries: 0']) if(s.indexOf(n)<0) throw new Error('the render script lacks '+n); if(s.indexOf('process.env')>=0) throw new Error('the render script reads process.env'); const A=String.fromCharCode(39), Q=String.fromCharCode(34); for(const q of ['low','medium','high','auto','xhigh','max','1024x1024']) if(s.indexOf(A+q+A)>=0||s.indexOf(Q+q+Q)>=0) throw new Error('the render script restates '+q); if(s.indexOf(A+'gpt-image')>=0||s.indexOf(Q+'gpt-image')>=0) throw new Error('the render script restates a model'); console.log('ok')\""},
+  {"id":"8","run":"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const mf='lib/preview-manifest.json'; if(!fs.existsSync(mf)) throw new Error(mf+' does not exist'); const m=JSON.parse(fs.readFileSync(mf,'utf8')); import('./lib/image-constraints.ts').then(ic=>{ const s=m.source||{}; const bad=[]; if(s.path!=='public/hero/before.jpg') bad.push('the source path is '+s.path); else if(!fs.existsSync(s.path)) bad.push('the source file is missing'); else { const b=fs.readFileSync(s.path); if(!(b[0]===255&&b[1]===216&&b[2]===255)) bad.push('the source is not a JPEG'); if(sha(s.path)!==s.sha256) bad.push('the source does not hash to the manifest'); } if(s.generator!==ic.IMAGE_MODEL) bad.push('the source was generated by '+s.generator); const q=s.request||{}; if(q.size!==ic.IMAGE_SIZE||q.quality!==ic.IMAGE_QUALITY) bad.push('the source was not generated at the route size and quality'); if(s.response_quality!==ic.IMAGE_QUALITY) bad.push('the provider reported source quality '+s.response_quality); const sc=fs.readFileSync('scripts/render-previews.mjs','utf8'); if(!s.prompt||sc.indexOf(s.prompt)<0) bad.push('the recorded prompt is not the script prompt'); const ap=s.approved||{}; if(!ap.sha256_prefix||ap.sha256_prefix.length<12||String(s.sha256||'').indexOf(ap.sha256_prefix)!==0) bad.push('no operator approval of this source by hash'); const first=Math.min.apply(null, Object.values(m.previews||{}).map(e=>Date.parse(e.at))); if(!(Date.parse(s.at)<Date.parse(ap.at) && Date.parse(ap.at)<=first)) bad.push('the approval is not between the source and the first preview'); if(bad.length) throw new Error(bad.join('; ')); console.log('ok: source '+String(s.sha256).slice(0,12)+' approved'); })\""},
+  {"id":"9","run":"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const dims=b=>{ if(b.toString('latin1',0,4)!=='RIFF'||b.toString('latin1',8,12)!=='WEBP') return null; const c=b.toString('latin1',12,16); if(c==='VP8X') return (1+b.readUIntLE(24,3))+'x'+(1+b.readUIntLE(27,3)); if(c==='VP8 ') return (b.readUInt16LE(26)&16383)+'x'+(b.readUInt16LE(28)&16383); if(c==='VP8L'){ const v=b.readUInt32LE(21); return (1+(v&16383))+'x'+(1+((v>>14)&16383)); } return null; }; const mf='lib/preview-manifest.json'; if(!fs.existsSync(mf)) throw new Error(mf+' does not exist'); const m=JSON.parse(fs.readFileSync(mf,'utf8')); Promise.all([import('./lib/image-constraints.ts'),import('./lib/cartoon-styles.ts'),import('./lib/style-previews.ts')]).then(([ic,cs,sp])=>{ const bad=[]; if(m.model!==ic.IMAGE_MODEL) bad.push('model '+m.model); if(m.quality!==ic.IMAGE_QUALITY) bad.push('quality '+m.quality); if(m.size!==ic.IMAGE_SIZE) bad.push('size '+m.size); const src=(m.source||{}).sha256; const ids=cs.CARTOON_STYLES.map(x=>x.id).sort(); if(ids.join()!==sp.STYLE_PREVIEW_IDS.slice().sort().join()) bad.push('STYLE_PREVIEW_IDS is not every style id'); const pv=m.previews||{}; if(Object.keys(pv).sort().join()!==ids.join()) bad.push('the manifest does not hold exactly the '+ids.length+' style ids'); const seen=new Set(); for(const id of ids){ const e=pv[id]; if(!e) continue; const f='public/styles/'+id+'.webp'; if(e.file!==f) bad.push(id+': file is '+e.file); if(!fs.existsSync(f)){ bad.push(f+' is missing'); continue; } if(sha(f)!==e.sha256) bad.push(f+' does not hash to the manifest'); if(seen.has(e.sha256)) bad.push(f+' duplicates another preview'); seen.add(e.sha256); const d=dims(fs.readFileSync(f)); if(d!==m.size) bad.push(f+' is '+d+', not '+m.size); if(e.response_quality!==ic.IMAGE_QUALITY) bad.push(id+': the provider reported quality '+e.response_quality); if(e.input_sha256!==src) bad.push(id+': not rendered from the source'); } for(const x of fs.readdirSync('public/styles')) if(x!=='.gitkeep'&&!(x.endsWith('.webp')&&pv[x.slice(0,-5)])) bad.push('public/styles/'+x+' is not in the manifest'); if(bad.length) throw new Error(bad.length+' problem(s): '+bad.slice(0,8).join('; ')); console.log('ok: '+ids.length+' previews from '+String(src).slice(0,12)); })\""},
+  {"id":"10","run":"node -e \"const fs=require('fs'); const m=JSON.parse(fs.readFileSync('lib/preview-manifest.json','utf8')); const s=fs.readFileSync('scripts/render-previews.mjs','utf8'); const i=s.indexOf('SPEND_CEILING_USD = '); if(i<0) throw new Error('no SPEND_CEILING_USD in the script'); const ceil=parseFloat(s.slice(i+20)); if(!(ceil>0)) throw new Error('the ceiling is not a positive number'); if(m.ceiling_usd!==ceil) throw new Error('the manifest ceiling '+m.ceiling_usd+' is not the script ceiling '+ceil); const calls=[m.probe,m.source].concat(Object.values(m.previews||{})); let total=0; for(const c of calls){ if(!c||typeof c.cost_usd!=='number'||!c.usage) throw new Error('a call has no recorded usage and cost'); total+=c.cost_usd; } if(calls.length!==33) throw new Error(calls.length+' calls recorded, expected 33'); if(!(m.probe.cost_usd*33<=ceil)) throw new Error('the probe projected '+(m.probe.cost_usd*33).toFixed(2)+' USD, over the ceiling'); if(!(total<=ceil)) throw new Error('spent '+total.toFixed(2)+' USD, over the ceiling of '+ceil); console.log('ok: '+total.toFixed(4)+' of '+ceil+' USD over 33 calls')\""},
+  {"id":"11","run":"[ ! -e public/style-samples ] && ! grep -rqF 'style-samples' app components lib scripts && grep -qF \"'/styles/'\" components/style-card.tsx && ! grep -qF 'onError' components/style-card.tsx"},
+  {"id":"12","run":"node -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const l=fs.readFileSync('components/landing.tsx','utf8'); for(const p of ['/hero/before.jpg','/styles/classic.webp']){ if(l.indexOf('src='+Q+p+Q)<0) throw new Error('the landing hero does not show '+p); for(const h of ['index','en']){ const t=fs.readFileSync('.next/server/app/'+h+'.html','utf8'); if(t.indexOf(p)<0) throw new Error(h+': the rendered hero does not show '+p); } } console.log('ok')\" && node -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const tok='src='+Q+'/'; const bad=[]; const scan=(s,where,html)=>{ let i=s.indexOf(tok); while(i>=0){ let p=s.slice(i+tok.length-1, s.indexOf(Q, i+tok.length)); if(html && p.indexOf('/_next/image?url=')===0) p=decodeURIComponent(p.slice(17).split('&')[0]); if(!(html && p.indexOf('/_next/')===0) && p.indexOf('//')!==0 && !fs.existsSync('public'+p.split('?')[0])) bad.push(where+' -> '+p); i=s.indexOf(tok, i+1); } }; const dirs=['app','components']; for(const d of dirs) for(const f of fs.readdirSync(d,{recursive:true})){ if(String(f).endsWith('.tsx')) scan(fs.readFileSync(d+'/'+f,'utf8'), d+'/'+f, false); } for(const p of ['index','workshop','en','en/workshop']){ const f='.next/server/app/'+p+'.html'; if(!fs.existsSync(f)){ bad.push(f+' does not exist'); continue; } scan(fs.readFileSync(f,'utf8'), f, true); } if(bad.length) throw new Error('image paths with no file under public/: '+bad.join(', ')); console.log('ok')\""},
+  {"id":"13","run":"node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); Promise.all([import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([a,b])=>{ const tr=a.tr, en=b.en; if(!tr||!en) throw new Error('tr or en is not exported'); const bad=[]; const walk=(x,y,p)=>{ for(const k of Object.keys(x)){ const q=p?p+'.'+k:k; if(!y||!(k in y)){ bad.push('en lacks '+q); continue; } if(typeof x[k]==='string'){ if(typeof y[k]!=='string') bad.push(q+' is not a string in en'); else if(!x[k].trim()||!y[k].trim()) bad.push(q+' is empty'); } else walk(x[k],y[k],q); } for(const k of Object.keys(y||{})) if(!(k in x)) bad.push('en has '+(p?p+'.':'')+k+' which tr does not'); }; walk(tr,en,''); const r=fs.readFileSync('app/api/cartoonify/route.ts','utf8'); const s0=r.indexOf('type ErrorCode ='), s1=r.indexOf('const ERROR_MESSAGES'); if(s0<0||s1<0) throw new Error('cannot find ErrorCode in the route'); const codes=r.slice(s0,s1).split(String.fromCharCode(10)).map(l=>l.trim()).filter(l=>l.indexOf('|')===0).map(l=>l.split(String.fromCharCode(39))[1]); if(!tr.errors) bad.push('tr has no errors'); else { const have=Object.keys(tr.errors).sort().join(','); if(have!==codes.slice().sort().join(',')) bad.push('tr.errors keys '+have+' are not the route codes '+codes.join(',')); const A=String.fromCharCode(39); const mb=r.slice(s1); for(const c of codes){ const i=mb.indexOf(c+': '+A); if(i<0){ bad.push('no route message for '+c); continue; } const msg=mb.slice(i+c.length+3, mb.indexOf(A, i+c.length+3)); if(tr.errors[c]!==msg) bad.push('tr.errors.'+c+' is not the route text'); } } if(bad.length) throw new Error(bad.join('; ')); console.log('ok: tr and en agree, '+codes.length+' error codes'); })\""},
+  {"id":"14","run":"node -e \"const fs=require('fs'); const path=require('path'); const Q=String.fromCharCode(34), A=String.fromCharCode(39); const files=['app/layout.tsx','app/page.tsx','app/workshop/page.tsx','app/en/layout.tsx','app/en/page.tsx','app/en/workshop/page.tsx'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); const letter=/[A-Za-z]/; const css=fs.readFileSync('app/globals.css','utf8'); const cls=t=>{ let p=css.indexOf('.'+t); while(p>=0){ if(!/[a-z0-9-]/.test(css.charAt(p+1+t.length))) return true; p=css.indexOf('.'+t, p+1); } return false; }; const bad=[]; for(const f of files){ if(!fs.existsSync(f)){ bad.push(f+' is missing'); continue; } const LF=String.fromCharCode(10); const s=fs.readFileSync(f,'utf8').replace(/[/][*][^]*?[*][/]/g,'').split(LF).map(l=>{ const c=l.search(/(^|[ ])[/][/]/); return c<0?l:l.slice(0,c); }).join(LF); let i=s.indexOf('>'); while(i>=0){ const j=s.indexOf('<', i+1); if(j<0) break; const seg=s.slice(i+1,j).replace(/[{][^{}]*[}]/g,''); if(letter.test(seg) && !/[(){}=;]/.test(seg)) bad.push(f+': text '+JSON.stringify(seg.trim().slice(0,40))); i=s.indexOf('>', j); } for(const at of ['alt','aria-label','title','placeholder']){ let p=s.indexOf(at+'='+Q); while(p>=0){ const v=s.slice(p+at.length+2, s.indexOf(Q, p+at.length+2)); if(letter.test(v)) bad.push(f+': '+at+' '+JSON.stringify(v.slice(0,40))); p=s.indexOf(at+'='+Q, p+1); } } const parts=s.split(A); for(let k=1;k<parts.length;k+=2){ const v=parts[k]; if(v.indexOf(' ')>=0 && letter.test(v) && v!=='use client' && !/Error[(]$/.test(parts[k-1]) && !v.trim().split(/ +/).every(cls)) bad.push(f+': string '+JSON.stringify(v.slice(0,40))); } } if(bad.length) throw new Error(bad.length+' visible string(s) outside the dictionaries: '+bad.slice(0,12).join(' | ')); console.log('ok: '+files.length+' files')\""},
+  {"id":"15","run":"! grep -qE '(^|[^a-z-])order *:' app/globals.css && node -e \"const fs=require('fs'); const s=fs.readFileSync('components/cartoonify-form.tsx','utf8'); const kn=s.indexOf('<KvkkNotice'), ri=s.indexOf('replace-image-input'); if(kn<0) throw new Error('the workbench does not render KvkkNotice'); if(ri<0) throw new Error('the workbench has no replace-image input'); if(!(kn<ri)) throw new Error('the workbench notice comes after its replace-image input'); for(const p of ['index','workshop','en','en/workshop']){ const f='.next/server/app/'+p+'.html'; if(!fs.existsSync(f)) throw new Error(f+' does not exist; criterion 3 builds it'); const h=fs.readFileSync(f,'utf8'); const k=h.indexOf('kvkk-notice'), u=h.indexOf('cartoonify-image-input'); if(k<0) throw new Error(p+': the page has no KVKK notice'); if(u<0) throw new Error(p+': the page has no upload control'); if(!(k<u)) throw new Error(p+': the KVKK notice comes after the upload control'); } console.log('ok: 4 pages, notice first')\""},
+  {"id":"16","run":"git diff --quiet HEAD -- lib/cartoon-styles.ts lib/env.ts lib/style-previews.ts lib/i18n/paths.ts lib/i18n/styles.en.ts components/upload-state.tsx components/kvkk-notice.tsx scripts/check-styles.mjs next.config.mjs package.json package-lock.json"},
+  {"id":"17","run":"node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let g=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ g=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(g<0) throw new Error('no line begins the .style-grid rule'); const end=c.indexOf('}', g); let first=-1,p=c.indexOf('minmax('); while(p>=0){ if(!isNaN(parseInt(c.slice(p+7),10))){ first=p; break; } p=c.indexOf('minmax(', p+1); } if(first<0) throw new Error('no numeric minmax in the file'); if(!(first>g&&first<end)) throw new Error('the first numeric minmax in the file is not .style-grid, so task 0004 criterion 11 reads '+parseInt(c.slice(first+7),10)+'px'); console.log('ok')\""},
+  {"id":"18","run":"node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let off=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ off=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(off<0) throw new Error('no line begins the .style-grid rule'); const body=c.slice(off, c.indexOf('}', off)); if(body.indexOf('auto-fill')<0) throw new Error('.style-grid does not use auto-fill'); const m=body.indexOf('minmax('); if(m<0) throw new Error('.style-grid has no minmax'); const fl=parseInt(body.slice(m+7),10); if(isNaN(fl)) throw new Error('.style-grid floor is not a px number'); if(!(fl<=160)) throw new Error('.style-grid floor is '+fl+'px, over 160px'); console.log('ok floor '+fl)\""},
+  {"id":"19","run":"node -e \"const fs=require('fs'); const files=['lib/image-constraints.ts','app/api/cartoonify/route.ts','scripts/render-previews.mjs','lib/preview-manifest.json','lib/i18n/tr.ts','lib/i18n/en.ts','app/globals.css'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); for(const f of files){ if(!fs.existsSync(f)) throw new Error(f+' is missing'); const b=fs.readFileSync(f); if(b[0]===239&&b[1]===187&&b[2]===191) throw new Error(f+' has a BOM'); if(b.toString('utf8').indexOf(String.fromCharCode(65533))>=0) throw new Error(f+' has a replacement character'); } console.log('ok: '+files.length+' files')\""},
+  {"id":"20","run":"node -e \"const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['lib/image-constraints.ts','app/api/cartoonify/route.ts','scripts/render-previews.mjs','lib/preview-manifest.json','public/hero/','public/styles/','public/style-samples/','components/style-card.tsx','components/landing.tsx','lib/i18n/tr.ts','lib/i18n/en.ts','app/globals.css','CHANGELOG.md','docs/adr/README.md']; const bad=[]; for(const l of lines){ let p=l.slice(3).trim(); if(p.indexOf(' -> ')>=0) p=p.split(' -> ')[1]; if(p.charAt(0)===String.fromCharCode(34)) p=JSON.parse(p); if(!allowed.some(a=>p===a||(a.slice(-1)==='/'&&p.indexOf(a)===0))) bad.push(p); } if(bad.length) throw new Error('outside task 0008 scope: '+bad.join(', ')); console.log('ok: '+lines.length+' changed path(s), all in scope')\""}
+]
+```
+
+### 10.1 What was proven, and what was not
+
+**The block above was generated from task 0007's sealed spec (criteria 1, 12, 13,
+14, 15, 17, 18 and 20 copied by id and adjusted only where named) and the new
+commands.** It was parsed with `JSON.parse`, and every command was executed
+through `bash -c` from the parsed strings, against today's tree (`d6d40fb`) and
+against a corrected copy.
+
+**The corrected copy is stronger than task 0007's, and weaker where it has to
+be.**
+
+- **Real:** a `git archive` of `d6d40fb`, with `node_modules` joined through a
+  junction, the design applied **to the real files** (`lib/image-constraints.ts`,
+  the route, the card, the landing, both dictionaries, the stylesheet), and every
+  edit left uncommitted as a build would leave it. **Criteria 2 and 3 ran for
+  real on it:** `tsc` and `next build` both passed. **Criteria 12 and 15 read
+  genuine Next prerender output**, not hand-written HTML.
+- **Synthetic, because producing it costs money:** `public/hero/before.jpg` (a
+  JPEG header and filler), the 31 previews (30-byte VP8X WebP headers at
+  1024×1024), the manifest (fabricated usage, costs, latency and timestamps
+  shaped as §6 specifies), and a script stub carrying the tokens criteria 7, 8
+  and 10 read.
+
+Then **40 mutations** were applied to the corrected copy, one at a time, each
+restored byte for byte afterwards. **40 were caught and 0 were missed**, and
+every criterion was green again after the last restore.
+
+Items worth recording:
+
+1. **Criteria 6 to 10 check a record, not an event.** They prove that the
+   manifest, the files, the constants, the route and the script agree, and that
+   the recorded order, spend and approval are what §5 requires. **They cannot
+   prove the manifest was written by the script from real responses.** A
+   hand-written manifest with correct hashes and plausible timestamps passes all
+   five. That is the limit task 0007 §9.1 recorded for its manifest criterion,
+   and it is unchanged. The defence is that the operator runs the paid steps
+   personally.
+2. **The latency gate is one sample.** Criterion 6 fails a probe slower than 45 s.
+   It cannot say that most calls will be faster, and the guide warns of up to 2
+   minutes. The route's timeout misclassification (decision 0007) may get better
+   or worse with this model; nothing here measures it at scale.
+3. **Nothing here proves Sunburst accepts PNG uploads** (§4.3). The probe sends
+   WebP, and the source and renders send JPEG. §12 item 8 asks for one PNG upload
+   on a preview deployment before release.
+4. **Timestamps are the script's.** The order criteria 6 and 8 enforce is the
+   order the script *recorded*. A clock that is wrong, or a manifest edited by
+   hand, defeats it. It is still a real check against a script run out of order.
+5. **Criterion 10 ties the ceiling to the script by text.** It reads
+   `SPEND_CEILING_USD = <number>` from the script. A ceiling computed at runtime
+   would not be seen. The spec requires it to be a literal.
+6. **Criterion 18 was not re-mutated here.** It is task 0007 criterion 16,
+   unchanged, and it was proven both ways there. Every other criterion from 4 to
+   20 has at least one mutation in this run.
+7. **The probe's input is a 320×320 WebP.** If Sunburst rejects small inputs, the
+   probe fails for a reason that is not a parameter. §6.2 says that is a finding
+   to bring to the operator, not permission to reorder the steps.
+8. **Criterion 20 is green today on one path** (`CHANGELOG.md`, task 0007's
+   uncommitted entry), which is allowed. On the corrected copy it reports
+   `ok: 72 changed path(s), all in scope`.
+9. **Criterion 15 is red today only because `.next/` is empty.** It is task
+   0007's criterion, which passed at 0007's verification. It reads the build that
+   criterion 3 makes.
+
+**What has no criterion at all, and why.** *The source is an adult, is not a
+child, is not a real person, and is realistic.* *The 31 previews visibly differ
+from each other.* *The hero pair looks right.* Each is a judgement about an
+image. The typed-hash approval (§5) proves someone read the hash, not that they
+looked. These are §12 items 6 and 7, and they are the operator's.
+
+**The honest per-criterion status.**
+
+| # | Label | Proven | Evidence |
+|---|---|---|---|
+| 1 | pin | green, today and on the copy | `11 passing, 0 blocking, 5 warning(s)` |
+| 2 | pin | **green on the copy, for real** | `tsc` over the migrated constants and the new card |
+| 3 | pin | **green on the copy, for real** | `next build` with the hero pair |
+| 4 | discriminating | **both, 2 mutations** | red today: *"IMAGE_MODEL is gpt-image-1; IMAGE_SIZE is undefined"*. Caught: model not migrated; quality drifted to `high` |
+| 5 | discriminating | **both, 3 mutations** | red today: *"the route does not send size: IMAGE_SIZE"*. Caught: size restated; model restated; the timeout expression changed |
+| 6 | discriminating | **both, 5 mutations** | red today: no manifest. Caught: no probe; probe failed; provider reported `low`; *"the probe took 52000 ms, over the route budget of 45000 ms"*; probe after the source |
+| 7 | discriminating | **both, 4 mutations** | red today: no script. Caught: quality restated; model restated; no `--approved-source`; `process.env` |
+| 8 | discriminating | **both, 5 mutations** | red today: no manifest. Caught: not a JPEG; wrong generator; the prompt is not the script's; no approval; approval after the first preview |
+| 9 | discriminating | **both, 4 mutations** | red today: no manifest. Caught: not from the source; a byte changed; provider reported `low`; an unlisted file |
+| 10 | discriminating | **both, 4 mutations** | red today: no manifest. Caught: *"spent 6.04 USD, over the ceiling of 5"*; ceiling mismatch; *"the probe projected 6.60 USD"*; a call without usage |
+| 11 | discriminating | **both, 2 mutations** | red today: `style-samples/` exists. Caught: it coming back; an `onError` fallback left in |
+| 12 | discriminating | **both, 2 mutations** | red today: *"the landing hero does not show /hero/before.jpg"*. Caught: the after image pointed at a missing file; rendered `/en` without the source |
+| 13 | pin | **both, 1 mutation** | green today. Caught: *"en lacks landing.heroAfterAlt"* |
+| 14 | pin | **both, 1 mutation** | green today. Caught: a literal caption `Original photo` |
+| 15 | pin | **both, 1 mutation** | red today on an empty `.next/` (item 9); green on the copy's real build. Caught: notice after upload |
+| 16 | pin | **both, 2 mutations** | green today. Caught: the SDK bumped to `^7.23.0` in `package.json`; `upload-state.tsx` touched |
+| 17 | pin | **both, 1 mutation** | green today. Caught: a hero rule with `minmax(240px` above `.style-grid` |
+| 18 | pin | green; red proven in task 0007 | `ok floor 145` |
+| 19 | discriminating by presence | **both, 1 mutation** | red today: the script is missing. Caught: a BOM on the manifest |
+| 20 | discriminating | **both, 2 mutations** | green today on `CHANGELOG.md` alone. Caught: `lib/env.ts`; an ADR file edited |
+
+**Nineteen of twenty are proven in both directions in this run.** Criterion 18
+was proven both ways in task 0007. **Criteria 2 and 3 went green against a real
+typecheck and a real build of the corrected copy**, the first time in this
+project's specs that either has been exercised on the proposed design rather than
+only on the tree as it stood. Six of today's reds (6, 7, 8, 9, 10, 19) are **reds
+of absence**, and their mutations are what show they discriminate.
+
+---
+
+## 11. Out of scope, and what comes next
+
+- **The SDK upgrade to 7.x** (§4.4). Its own task, when there is no deadline on it.
+- **The `UPSTREAM_TIMEOUT_MS` misclassification.** Criterion 5 freezes the
+  expression. After this task, re-measure it on Sunburst with real uploads.
+- **`gpt-image-2.5-flare`** as a cheaper or faster alternative. Not evaluated.
+- **The KVKK page does not name OpenAI** (task 0007 §10.2). Still true, and still
+  the lawyer's.
+- **Task 0004 criterion 11's two remaining failed clauses** (task 0007 §5). This
+  task removes the `onError` fallback but does not add `STYLE_PREVIEW_IDS` to the
+  card, so the first clause stays red.
+- Anything under `.mavci/control/`.
+
+**If the deadline is at risk,** steps 0 and 1 (migrate and probe) are what keep
+the site converting. They could ship alone while steps 2 to 5 wait. **This spec
+does not split them**, because the operator asked for one task. If the render
+has not started by **16 October**, one week before shutdown, the operator should
+consider splitting it.
+
+---
+
+## 12. What the operator is being asked to approve
+
+1. **The target model, `gpt-image-2.5-sunburst`**, chosen by the operator on the
+   provider's deprecation table (§1.1).
+2. **No SDK upgrade**, on the reading in §4.4, with `package.json` frozen.
+3. **The order in §5 and its enforcement**: probe before source, and a typed hash
+   before render.
+4. **The spend: a ceiling of `SPEND_CEILING_USD = 5.00` for 33 calls** (§7), with
+   the source step refusing to start if the probe projects past it. No per-call
+   price is quoted, because the provider does not publish one statically for
+   Sunburst. The reference is `gpt-image-2`'s $0.053 per image in output tokens.
+5. **Running the paid steps and `git rm -r public/style-samples` yourself** (§5).
+6. **Looking at `public/hero/before.jpg` before typing its hash.** Adult, not a
+   child, not a recognisable person, realistic. No criterion decides this.
+7. **Looking at the 31 previews and the hero pair** before accepting.
+8. **One PNG upload on a preview deployment before release** (§4.3). Nothing in
+   this task sends a PNG to Sunburst.
+9. **The WebP encoding difference** between previews and visitor results (§6.4).
+10. **ADR 0004 is superseded on approval.**
+11. **The 16 October checkpoint** in §11.
+12. **Criterion 1 pins plugin 0.1.35 by literal**, as in tasks 0005 to 0007.
+
+Approval hashes this file. The `mavci-criteria` block is inside it, so the
+commands a program will execute are the commands the operator read.

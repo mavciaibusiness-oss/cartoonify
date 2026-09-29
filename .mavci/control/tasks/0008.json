@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-09-29T12:44:36Z",
+  "id": "0008",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "verify",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-09-29T13:35:05Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0008-migrate-to-sunburst-then-render-previews-once.md",
+    "spec_sha256": "426a3846981d53f472b87092e20cbabd609ad0eb476a72681b637d46512e9b6e"
+  },
+  "status": "done",
+  "updated": "2026-09-29T14:12:42Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0008-attempt-01.json"
+  ]
+}

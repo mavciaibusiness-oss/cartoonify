@@ -10,6 +10,7 @@ import {
   ALLOWED_MIME_TYPES,
   IMAGE_MODEL,
   IMAGE_QUALITY,
+  IMAGE_SIZE,
   MAX_FILE_BYTES,
   sniffImageType,
   uploadFilename,
@@ -142,7 +143,7 @@ export async function POST(request: Request): Promise<Response> {
       image: uploadable,
       model: IMAGE_MODEL,
       prompt: style.prompt,
-      size: '1024x1024',
+      size: IMAGE_SIZE,
       quality: IMAGE_QUALITY,
     })
 

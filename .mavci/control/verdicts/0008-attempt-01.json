@@ -1,0 +1,188 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 192 ms: G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed; see spec 0008 section 9.1'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1788 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 8888 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 91 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"import('./lib/image-constraints.ts').then(m=>{ const bad=[]; if(m.IMAGE_MODEL!=='gpt-image-2.5-sunburst') bad.push('IMAGE_MODEL is '+m.IMAGE_MODEL); if(m.IMAGE_QUALITY!=='medium') bad.push('IMAGE_QUALITY is '+m.IMAGE_QUALITY); if(m.IMAGE_SIZE!=='1024x1024') bad.push('IMAGE_SIZE is '+m.IMAGE_SIZE); for(const t of ['image/png','image/jpeg','image/webp']) if(!(m.ALLOWED_MIME_TYPES||[]).includes(t)) bad.push('ALLOWED_MIME_TY...",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 85 ms: node -e \"const r=require('fs').readFileSync('app/api/cartoonify/route.ts','utf8'); const A=String.fromCharCode(39); for(const n of ['model: IMAGE_MODEL','size: IMAGE_SIZE','quality: IMAGE_QUALITY','IMAGE_SIZE,']) if(r.indexOf(n)<0) throw new Error('the route does not send '+n); if(r.indexOf(A+'1024x1024'+A)>=0) throw new Error('the route restates the size'); for(const q of ['low','medium','high','auto','xhigh','max']) if(r.indexOf(A+q+A)>=0) throw new Error('the route restate...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 106 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const mf='lib/preview-manifest.json'; if(!fs.existsSync(mf)) throw new Error(mf+' does not exist'); const m=JSON.parse(fs.readFileSync(mf,'utf8')); import('./lib/image-constraints.ts').then(ic=>{ const p=m.probe; if(!p) throw new Error('no probe recorded'); const bad=[]; if(p.ok!==true) bad.push('the probe did not succeed'); if(p.endpoint!=='images.edit') bad.push('the probe endpoint is '+p.endpo...",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const f='scripts/render-previews.mjs'; if(!fs.existsSync(f)) throw new Error(f+' does not exist'); const s=fs.readFileSync(f,'utf8'); for(const n of ['IMAGE_MODEL','IMAGE_QUALITY','IMAGE_SIZE','uploadFilename','getCartoonStyle','getEnv','lib/image-constraints.ts','lib/cartoon-styles.ts','lib/env.ts','SPEND_CEILING_USD','--approved-source','--probe','--source','--previews','maxRetries: 0']) if(s.indexOf(n)<0) throw new Error('the render script ...",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 82 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const mf='lib/preview-manifest.json'; if(!fs.existsSync(mf)) throw new Error(mf+' does not exist'); const m=JSON.parse(fs.readFileSync(mf,'utf8')); import('./lib/image-constraints.ts').then(ic=>{ const s=m.source||{}; const bad=[]; if(s.path!=='public/hero/before.jpg') bad.push('the s...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 106 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const dims=b=>{ if(b.toString('latin1',0,4)!=='RIFF'||b.toString('latin1',8,12)!=='WEBP') return null; const c=b.toString('latin1',12,16); if(c==='VP8X') return (1+b.readUIntLE(24,3))+'x'+(1+b.readUIntLE(27,3)); if(c==='VP8 ') return (b.readUInt16LE(26)&16383)+'x'+(b.readUInt16LE(28)...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 53 ms: node -e \"const fs=require('fs'); const m=JSON.parse(fs.readFileSync('lib/preview-manifest.json','utf8')); const s=fs.readFileSync('scripts/render-previews.mjs','utf8'); const i=s.indexOf('SPEND_CEILING_USD = '); if(i<0) throw new Error('no SPEND_CEILING_USD in the script'); const ceil=parseFloat(s.slice(i+20)); if(!(ceil>0)) throw new Error('the ceiling is not a positive number'); if(m.ceiling_usd!==ceil) throw new Error('the manifest ceiling '+m.ceiling_usd+' is not the scri...",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 67 ms: [ ! -e public/style-samples ] && ! grep -rqF 'style-samples' app components lib scripts && grep -qF \"'/styles/'\" components/style-card.tsx && ! grep -qF 'onError' components/style-card.tsx",
+      "id": "11",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 95 ms: node -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const l=fs.readFileSync('components/landing.tsx','utf8'); for(const p of ['/hero/before.jpg','/styles/classic.webp']){ if(l.indexOf('src='+Q+p+Q)<0) throw new Error('the landing hero does not show '+p); for(const h of ['index','en']){ const t=fs.readFileSync('.next/server/app/'+h+'.html','utf8'); if(t.indexOf(p)<0) throw new Error(h+': the rendered hero does not show '+p); } } console.log('ok')\" && node -e \"con...",
+      "id": "12",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 85 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); Promise.all([import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([a,b])=>{ const tr=a.tr, en=b.en; if(!tr||!en) throw new Error('tr or en is not exported'); const bad=[]; const walk=(x,y,p)=>{ for(const k of Object.keys(x)){ const q=p?p+'.'+k:k; if(!y||!(k in y)){ bad.push('en lacks '+q); continue; } if(typeof x[k]==='string'){ if(typeof y[k]!=='string') bad.push(q+' is not a string in e...",
+      "id": "13",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 58 ms: node -e \"const fs=require('fs'); const path=require('path'); const Q=String.fromCharCode(34), A=String.fromCharCode(39); const files=['app/layout.tsx','app/page.tsx','app/workshop/page.tsx','app/en/layout.tsx','app/en/page.tsx','app/en/workshop/page.tsx'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); const letter=/[A-Za-z]/; const css=fs.readFileSync('app/globals.css','utf8'); const cls=t=>{ let p=css.indexOf('.'+t); while(p>=0){ ...",
+      "id": "14",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 71 ms: ! grep -qE '(^|[^a-z-])order *:' app/globals.css && node -e \"const fs=require('fs'); const s=fs.readFileSync('components/cartoonify-form.tsx','utf8'); const kn=s.indexOf('<KvkkNotice'), ri=s.indexOf('replace-image-input'); if(kn<0) throw new Error('the workbench does not render KvkkNotice'); if(ri<0) throw new Error('the workbench has no replace-image input'); if(!(kn<ri)) throw new Error('the workbench notice comes after its replace-image input'); for(const p of ['index','wo...",
+      "id": "15",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 37 ms: git diff --quiet HEAD -- lib/cartoon-styles.ts lib/env.ts lib/style-previews.ts lib/i18n/paths.ts lib/i18n/styles.en.ts components/upload-state.tsx components/kvkk-notice.tsx scripts/check-styles.mjs next.config.mjs package.json package-lock.json",
+      "id": "16",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 53 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let g=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ g=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(g<0) throw new Error('no line begins the .style-grid rule'); const end=c.indexOf('}', g); let first=-1,p=c.indexOf('minmax('); while(p>=0){ if(!isNaN(parseInt(c.slice(p+7),...",
+      "id": "17",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 53 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let off=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ off=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(off<0) throw new Error('no line begins the .style-grid rule'); const body=c.slice(off, c.indexOf('}', off)); if(body.indexOf('auto-fill')<0) throw new Error('.style-gri...",
+      "id": "18",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 53 ms: node -e \"const fs=require('fs'); const files=['lib/image-constraints.ts','app/api/cartoonify/route.ts','scripts/render-previews.mjs','lib/preview-manifest.json','lib/i18n/tr.ts','lib/i18n/en.ts','app/globals.css'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); for(const f of files){ if(!fs.existsSync(f)) throw new Error(f+' is missing'); const b=fs.readFileSync(f); if(b[0]===239&&b[1]===187&&b[2]===191) throw new Error(f+' has a BO...",
+      "id": "19",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 71 ms: node -e \"const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['lib/image-constraints.ts','app/api/cartoonify/route.ts','scripts/render-previews.mjs','lib/preview-manifest.json','public/hero/','public/s...",
+      "id": "20",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-29T14:01:27Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0008",
+  "verdict": "pass"
+}

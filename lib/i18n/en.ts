@@ -37,6 +37,10 @@ export const en: Dictionary = {
     title: 'AI Photo to Cartoon Workshop',
     lede:
       'Upload a portrait, choose from every Cartoonify style in a visual gallery, generate in one click, and download right away.',
+    heroBeforeCaption: 'Original photo',
+    heroAfterCaption: 'Classic Cartoon result',
+    heroBeforeAlt: 'AI-generated portrait of a fictional adult',
+    heroAfterAlt: 'The same portrait in the Classic Cartoon style',
     groupsTitle: 'A complete style system in four creative groups',
     groupsLede: 'Every generation uses the same supported Cartoonify style identifiers and the same backend flow.',
     groupCount: '{n} styles',

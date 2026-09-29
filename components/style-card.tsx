@@ -1,13 +1,13 @@
 'use client'
 
-import { useMemo, useState } from 'react'
 import type { CartoonStyle } from '@/lib/cartoon-styles'
 import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
 
 /**
- * One style in the picker. Its text is in the visitor's language. Its image
- * sources are unchanged by task 0007: the rendered sample first, the preview
- * directory second. Replacing both is the next task's, after the model moves.
+ * One style in the picker. Its text is in the visitor's language. Its preview
+ * is the one image rendered for it by task 0008: the same source portrait, at
+ * the model, size and quality a visitor's request uses. There is one directory
+ * and no fallback; task 0008 criterion 9 proves all 31 exist.
  */
 export default function StyleCard({
   style,
@@ -22,12 +22,6 @@ export default function StyleCard({
   disabled: boolean
   onSelect: (id: string) => void
 }) {
-  const previewSources = useMemo(
-    () => ['/style-samples/' + style.id + '.webp', '/styles/' + style.id + '.webp'],
-    [style.id]
-  )
-  const [sourceIndex, setSourceIndex] = useState(0)
-  const currentPreviewSource = previewSources[sourceIndex]
   const text = styleText(style, locale)
   const t = getDictionary(locale)
 
@@ -41,17 +35,14 @@ export default function StyleCard({
         disabled={disabled}
         onChange={() => onSelect(style.id)}
       />
-      {currentPreviewSource ? (
-        <img
-          className="style-card-preview"
-          src={currentPreviewSource}
-          alt={format(t.styleCard.previewAlt, { name: text.name })}
-          width={320}
-          height={320}
-          loading="lazy"
-          onError={() => setSourceIndex((prev) => prev + 1)}
-        />
-      ) : null}
+      <img
+        className="style-card-preview"
+        src={'/styles/' + style.id + '.webp'}
+        alt={format(t.styleCard.previewAlt, { name: text.name })}
+        width={320}
+        height={320}
+        loading="lazy"
+      />
       <span className="style-card-name">{text.name}</span>
       <span className="style-card-description">{text.description}</span>
     </label>

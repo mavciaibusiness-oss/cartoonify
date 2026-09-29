@@ -1,5 +1,5 @@
 {
-  "control_hash": "61d0b081e01c382af73689b70e08728cdea315ddaf8ac10a4cb4fb5b70583ac8",
+  "control_hash": "c89b22b999c6adf79ab205b6c76e7a57103d4afc774f7a07fe784193c7e9dcff",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -9,6 +9,7 @@
     ".mavci/control/tasks/0005.json",
     ".mavci/control/tasks/0006.json",
     ".mavci/control/tasks/0007.json",
+    ".mavci/control/tasks/0008.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -17,6 +18,7 @@
     ".mavci/control/verdicts/0005-attempt-01.json",
     ".mavci/control/verdicts/0006-attempt-01.json",
     ".mavci/control/verdicts/0007-attempt-01.json",
+    ".mavci/control/verdicts/0008-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -128,17 +130,26 @@
     ".mavci/control/verdicts/adhoc-1790681273050.json",
     ".mavci/control/verdicts/adhoc-1790681887064.json",
     ".mavci/control/verdicts/adhoc-1790682070518.json",
+    ".mavci/control/verdicts/adhoc-1790685936517.json",
+    ".mavci/control/verdicts/adhoc-1790686845356.json",
+    ".mavci/control/verdicts/adhoc-1790686955817.json",
+    ".mavci/control/verdicts/adhoc-1790688010171.json",
+    ".mavci/control/verdicts/adhoc-1790688193753.json",
+    ".mavci/control/verdicts/adhoc-1790688555931.json",
+    ".mavci/control/verdicts/adhoc-1790688739462.json",
+    ".mavci/control/verdicts/adhoc-1790690244137.json",
+    ".mavci/control/verdicts/adhoc-1790690259980.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-09-29T11:41:10Z",
+    "at": "2026-09-29T13:57:40Z",
     "continues": 0,
     "plugin_version": "0.1.35",
-    "prompt_id": "132889c5-b0d8-4b4a-93a1-01556749360c",
+    "prompt_id": "97ccc252-b8ca-4017-8301-41e8f0d7a657",
     "session_id": "64f9b919-cf2b-42a6-82d3-fb44ee40f936",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-09-29T12:31:18Z",
+  "sealed_at": "2026-09-29T14:12:42Z",
   "sealed_by_plugin_version": "0.1.35"
 }

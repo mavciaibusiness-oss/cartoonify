@@ -1,0 +1,1484 @@
+{
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "1024x1024",
+  "output_format": "webp",
+  "ceiling_usd": 5,
+  "rates": {
+    "text_input_per_m": 5,
+    "image_input_per_m": 8,
+    "image_output_per_m": 30,
+    "source": "https://developers.openai.com/api/docs/pricing",
+    "retrieved": "2026-09-29"
+  },
+  "probe": {
+    "ok": true,
+    "endpoint": "images.edit",
+    "model": "gpt-image-2.5-sunburst",
+    "input": "public/styles/classic.webp",
+    "input_sha256": "574a553de21be3d51c926a2e7c3450e966671f2eb9cfae5bdcec16236091718f",
+    "request": {
+      "size": "1024x1024",
+      "quality": "medium"
+    },
+    "at": "2026-09-29T13:22:28.344Z",
+    "latency_ms": 20043,
+    "response": {
+      "quality": "medium",
+      "size": "1024x1024",
+      "output_format": "png",
+      "keys": [
+        "background",
+        "created",
+        "data",
+        "output_format",
+        "quality",
+        "size",
+        "usage"
+      ]
+    },
+    "usage": {
+      "input_tokens": 463,
+      "input_tokens_details": {
+        "image_tokens": 400,
+        "text_tokens": 63
+      },
+      "output_tokens": 439,
+      "output_tokens_details": {
+        "image_tokens": 439,
+        "text_tokens": 0
+      },
+      "total_tokens": 902
+    },
+    "cost_usd": 0.016685
+  },
+  "source": {
+    "path": "public/hero/before.jpg",
+    "sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+    "generator": "gpt-image-2.5-sunburst",
+    "prompt": "Photorealistic lifestyle portrait photograph of a fictional adult woman, about 28 years old, head and upper body, body turned slightly to the side with the face toward the camera, natural warm smile, shoulder-length wavy dark brown hair with visible volume. Casual modest outfit: a mustard-yellow knit sweater. Outdoors in soft late-afternoon light, with a softly blurred green park background. Natural skin texture, sharp focus on the face, no hands in frame, no jewellery, no text, no logos. The person is invented and must not resemble any real or famous person.",
+    "request": {
+      "size": "1024x1024",
+      "quality": "medium",
+      "output_format": "jpeg"
+    },
+    "response_quality": "medium",
+    "response": {
+      "quality": "medium",
+      "size": "1024x1024",
+      "output_format": "jpeg",
+      "keys": [
+        "background",
+        "created",
+        "data",
+        "output_format",
+        "quality",
+        "size",
+        "usage"
+      ]
+    },
+    "usage": {
+      "input_tokens": 122,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 122
+      },
+      "output_tokens": 439,
+      "output_tokens_details": {
+        "image_tokens": 439,
+        "text_tokens": 0
+      },
+      "total_tokens": 561
+    },
+    "cost_usd": 0.01378,
+    "latency_ms": 17150,
+    "at": "2026-09-29T13:35:05.905Z",
+    "approved": {
+      "sha256_prefix": "1ff634d7f764",
+      "at": "2026-09-29T13:36:08.954Z"
+    }
+  },
+  "previews": {
+    "classic": {
+      "file": "public/styles/classic.webp",
+      "sha256": "ec85c12f7cb521c3dbd2354fda75159359a74dee1c39f10b058bf6d1d29ccc07",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1087,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 63
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1526
+      },
+      "cost_usd": 0.021677,
+      "latency_ms": 19627,
+      "at": "2026-09-29T13:36:08.955Z"
+    },
+    "bold-ink": {
+      "file": "public/styles/bold-ink.webp",
+      "sha256": "e003c64ddb0346b452d1d181b9326b1a9de473d7e4f62e20949085702636172c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1121,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 97
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1560
+      },
+      "cost_usd": 0.021847,
+      "latency_ms": 21829,
+      "at": "2026-09-29T13:36:28.583Z"
+    },
+    "cel-frame": {
+      "file": "public/styles/cel-frame.webp",
+      "sha256": "3810a1bcdeb7681ceb94058b6245fb719450825a037fe0fac984687b94643b84",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 26758,
+      "at": "2026-09-29T13:36:50.413Z"
+    },
+    "hatched-line": {
+      "file": "public/styles/hatched-line.webp",
+      "sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19531,
+      "at": "2026-09-29T13:37:17.172Z"
+    },
+    "line-wash": {
+      "file": "public/styles/line-wash.webp",
+      "sha256": "10c1925baba59b95ff9f892d780ef44e210bda0a9f7bf3dd655a3d10ab21fa6d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20701,
+      "at": "2026-09-29T13:37:36.705Z"
+    },
+    "two-ink": {
+      "file": "public/styles/two-ink.webp",
+      "sha256": "62e6b3b2959a2c61b7d9b9e377bdc0a5b5ba15870cf12792483ec354766ef3c3",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20960,
+      "at": "2026-09-29T13:37:57.409Z"
+    },
+    "mass-caricature": {
+      "file": "public/styles/mass-caricature.webp",
+      "sha256": "91f28d546b4cdf0ec126dda784e334c151b7f28bdda84ce6fedc806cbc73e1bc",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1143,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 119
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1582
+      },
+      "cost_usd": 0.021957,
+      "latency_ms": 22912,
+      "at": "2026-09-29T13:38:18.373Z"
+    },
+    "feature-caricature": {
+      "file": "public/styles/feature-caricature.webp",
+      "sha256": "11f5febfb01e5660b6ed93b73b293c8e857aee5084938db172d574a1fd75836c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1145,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 121
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1584
+      },
+      "cost_usd": 0.021967,
+      "latency_ms": 19385,
+      "at": "2026-09-29T13:38:41.287Z"
+    },
+    "reduced-caricature": {
+      "file": "public/styles/reduced-caricature.webp",
+      "sha256": "f5560112467193449ba9a332a5f36261930447f6126b5da6b6719008d5af5387",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 19388,
+      "at": "2026-09-29T13:39:00.676Z"
+    },
+    "soft-pastel": {
+      "file": "public/styles/soft-pastel.webp",
+      "sha256": "fb82e5056e91014a0dd0286b913cca2cea6648ad1f1c95012e25452fb9888c23",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19389,
+      "at": "2026-09-29T13:39:20.065Z"
+    },
+    "flat-colour": {
+      "file": "public/styles/flat-colour.webp",
+      "sha256": "645f36caa28d6a45a214e721df36684218c33a5ec8bd74d6548c660d42e81d8c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 99
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1562
+      },
+      "cost_usd": 0.021857,
+      "latency_ms": 20033,
+      "at": "2026-09-29T13:39:39.456Z"
+    },
+    "opaque-paint": {
+      "file": "public/styles/opaque-paint.webp",
+      "sha256": "84535833fca7f4206802322314d4cd727fc37efc5378754c1a6addc3eb7b7462",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 21506,
+      "at": "2026-09-29T13:39:59.492Z"
+    },
+    "thick-paint": {
+      "file": "public/styles/thick-paint.webp",
+      "sha256": "967646e3592c2aa9040a5740842e4b6a2d402b1ba07f7f8d44ff75b02831070f",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20368,
+      "at": "2026-09-29T13:40:20.999Z"
+    },
+    "stretched-caricature": {
+      "file": "public/styles/stretched-caricature.webp",
+      "sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1141,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 117
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1580
+      },
+      "cost_usd": 0.021947,
+      "latency_ms": 19756,
+      "at": "2026-09-29T13:40:41.369Z"
+    },
+    "combed-paint": {
+      "file": "public/styles/combed-paint.webp",
+      "sha256": "8e09b3aa10299ecb10c434cbf97233b96a021c1a6b24a3ff0ffb884dd7882f5a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21487,
+      "at": "2026-09-29T13:41:01.126Z"
+    },
+    "wet-paper": {
+      "file": "public/styles/wet-paper.webp",
+      "sha256": "103d40c791919c1442ecd4951c2ce78f850f4c6046964c26f810449cfdce2ad2",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 19852,
+      "at": "2026-09-29T13:41:22.614Z"
+    },
+    "single-ink": {
+      "file": "public/styles/single-ink.webp",
+      "sha256": "06e6623bf209d83a5b001dfb1cb564bf2e8b005c2f5bfc7f6428a5fc72222234",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22806,
+      "at": "2026-09-29T13:41:42.468Z"
+    },
+    "retro-print": {
+      "file": "public/styles/retro-print.webp",
+      "sha256": "8e187cc2f84194bd8fe09117ccef1c0965609a58fea2a08f8bf413ab2a729dae",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19962,
+      "at": "2026-09-29T13:42:05.276Z"
+    },
+    "carved-block": {
+      "file": "public/styles/carved-block.webp",
+      "sha256": "463c275c9182ec7d02ec8ad8a69496df45ed903ddf98b877aa9d8b7ed4733456",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22572,
+      "at": "2026-09-29T13:42:25.239Z"
+    },
+    "wood-block": {
+      "file": "public/styles/wood-block.webp",
+      "sha256": "a7615809b56df69d0fea8b722bf88e86a4527d74cf96f59018e2c9503255b18a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20471,
+      "at": "2026-09-29T13:42:47.814Z"
+    },
+    "screen-print": {
+      "file": "public/styles/screen-print.webp",
+      "sha256": "a477bdcd3759cf011d8e47e16a8b4fdcf4c14cdb9541511630a19d9a84969780",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 20330,
+      "at": "2026-09-29T13:43:08.289Z"
+    },
+    "newsprint-caricature": {
+      "file": "public/styles/newsprint-caricature.webp",
+      "sha256": "de3462109fdf2108ba3c5876536f5210d2a4a10c9d93ba2da94d1b8c2efaba5c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1139,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 115
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1578
+      },
+      "cost_usd": 0.021937,
+      "latency_ms": 19763,
+      "at": "2026-09-29T13:43:28.621Z"
+    },
+    "engraved-plate": {
+      "file": "public/styles/engraved-plate.webp",
+      "sha256": "9168ce549970383082ee84901b249a05dd142ce6f18f818742c84951f65dc993",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 20897,
+      "at": "2026-09-29T13:43:48.388Z"
+    },
+    "double-pass": {
+      "file": "public/styles/double-pass.webp",
+      "sha256": "c213814a66379b4d3b1f9ff5ce8fdbf40ec8c41c17eaa9288713987b1786b6bd",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 20855,
+      "at": "2026-09-29T13:44:09.288Z"
+    },
+    "paper-cutout": {
+      "file": "public/styles/paper-cutout.webp",
+      "sha256": "335087feca6eba5bbf2bfaf5423e6323adc6a7ea3e5c94846fb3f9a82e633117",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 22906,
+      "at": "2026-09-29T13:44:30.144Z"
+    },
+    "torn-paper": {
+      "file": "public/styles/torn-paper.webp",
+      "sha256": "6caf6fd8d2b47ab2ec55cda5a8b77a476358e713399f49fcf983099a00871623",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1135,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 111
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1574
+      },
+      "cost_usd": 0.021917,
+      "latency_ms": 21100,
+      "at": "2026-09-29T13:44:53.051Z"
+    },
+    "three-tone-panel": {
+      "file": "public/styles/three-tone-panel.webp",
+      "sha256": "3e4512141b1034521797dd5a726e1baae01ef83c7173e42016337d473207b0c3",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 26560,
+      "at": "2026-09-29T13:45:14.153Z"
+    },
+    "wood-inlay": {
+      "file": "public/styles/wood-inlay.webp",
+      "sha256": "4b00b4f54982fc18873a943a4899cffd51add72d71985879674d99e3226de412",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 24521,
+      "at": "2026-09-29T13:45:40.717Z"
+    },
+    "fabric-applique": {
+      "file": "public/styles/fabric-applique.webp",
+      "sha256": "59b5bd03025dd2c2121b8e52fa1f8eb92d87e79ab86d07c2b811f39dbbddf3f3",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 22297,
+      "at": "2026-09-29T13:46:05.241Z"
+    },
+    "modelled-caricature": {
+      "file": "public/styles/modelled-caricature.webp",
+      "sha256": "12c08b8b263fc4655416ef276b9744a7b2d32730b49b61de41a7c1e315359bac",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1135,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 111
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1574
+      },
+      "cost_usd": 0.021917,
+      "latency_ms": 21190,
+      "at": "2026-09-29T13:46:27.541Z"
+    },
+    "thread-work": {
+      "file": "public/styles/thread-work.webp",
+      "sha256": "108aa211cb27e73d445395420279209dc10f462e72914bedeff6d07dfe29e82a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 23726,
+      "at": "2026-09-29T13:46:48.733Z"
+    }
+  },
+  "discarded": [
+    {
+      "role": "source",
+      "replaced_at": "2026-09-29T13:35:05.905Z",
+      "path": "public/hero/before.jpg",
+      "sha256": "65ad87208d7fe23184b216af67574fe8e0ca65bd862b71e6a3f18ea7c26308a5",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic head-and-shoulders studio portrait photograph of a fictional adult, about 35 years old, facing the camera with a relaxed, neutral expression. Plain light-grey background, soft even lighting, natural skin texture, simple dark crew-neck top, no jewellery, no text, no logos. The person is invented and must not resemble any real or famous person.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 81,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 81
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 520
+      },
+      "cost_usd": 0.013575,
+      "latency_ms": 13510,
+      "at": "2026-09-29T13:23:34.294Z",
+      "approved": null
+    }
+  ],
+  "last_error": null
+}
