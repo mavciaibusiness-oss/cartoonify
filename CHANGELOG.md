@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Turkish and English language support** (task 0007, Sept 29 2026)
+  - Root layout at `/` serves Turkish with `<html lang="tr">`; `/en` and `/en/workshop` routes added serving English with `lang="en"` on subtree
+  - Single root layout keeps language switch (toggle in header) as client-side transition; chosen file survives switching language
+  - Turkish dictionary in `lib/i18n/tr.ts` is the source of truth, exported with `type Dictionary`; English dictionary in `lib/i18n/en.ts` is type-checked against Turkish at build time, preventing missing or extra keys
+  - Every visible string localized: page titles and descriptions, form labels, error messages, status text, all 31 style names and descriptions with their group labels
+  - Error codes in route response still Turkish; client shows localized version via `dictionary.errors[code]`
+  - All 18 acceptance criteria executed and passing; single attempt required; standards gate 11 passing, 0 blocking, 5 warnings (legal pages)
+- **KVKK transfer notice positioned above every file input** (task 0007)
+  - Notice appears above `<UploadControl />` on landing pages (`/` and `/en`) and workshop empty states
+  - Notice appears above replace-image input in workbench when re-uploading an image
+  - Turkish notice (from commit `f70fb94`, verbatim) with OpenAI, ABD, and transfer terms in bold
+  - English notice is a translation of the Turkish text, not the English from the `cee3bea` commit
+  - No CSS `order:` property used anywhere in stylesheet (criterion 9 enforces order is DOM order, not CSS-driven)
+- **Language switch in header** (task 0007)
+  - `components/language-switch.tsx` shows `TR | EN` toggle with `aria-current` on active language and `hrefLang` on each link
+  - `counterpartPath()` in `lib/i18n/paths.ts` routes: `/` ↔ `/en`, `/workshop` ↔ `/en/workshop`, legal pages and `/contact` → `/en`
+  - All four rendered pages carry hreflang links to their counterpart language
 - **Style picker with grouped radio buttons and card grid** (task 0004, Sept 9–18 2026)
   - Replaced flat 31-option dropdown with grouped radio interface: `classic` outside groups, then four fieldsets for `Çizgi ve Mürekkep`, `Boya ve Fırça`, `Baskı`, `Kesme ve Kolaj` (Line, Paint, Print, Cut/Collage)
   - Style grid using `repeat(auto-fill, minmax(150px, 1fr))` for responsive layout: one column at 375px, two columns from 768px
@@ -22,6 +39,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Two new design decisions recorded: ADR 0006 (what bounds a caller) and ADR 0007 (one image per request and deferred timeout fix)
 
 ### Changed
+
+- **Hero section: before/after image pair removed** (task 0007)
+  - Images referenced non-existent files (`/hero/before.webp`, `/hero/after.webp`); both removed from markup
+  - Hero retains badge, heading, lede, KVKK notice, and upload control
+  - Criterion 12 confirms every remaining `src` in app and components points to a file that exists under `public/`
+  - Before/after pair to be restored in task 0007 §10.1 with a real source portrait and its render at migrated model
+- **`.group-preview` CSS rule moved below `.style-grid`** (task 0007)
+  - First numeric `minmax(` in stylesheet is now inside `.style-grid` rule (145px floor), not `.group-preview` above it
+  - Fixes misdirection in task 0004 criterion 11, which reads the first `minmax()` and was incorrectly measuring 190px instead of 145px
+  - Task 0004 criterion 11 has two other failing clauses (style-card no longer consults `STYLE_PREVIEW_IDS`; four `[data-style-group]` rules gone); operator approved leaving them as written for future remedy
+  - Criteria 15 and 16 confirm the reordering and the floor measurement
+- **Legal pages remain Turkish-only** (task 0007)
+  - Not translated to `/en/` routes; links on English pages labeled `*(in Turkish)*`
+  - Language switch on legal pages and `/contact` goes to `/en` (the other application route)
+  - Translating legal text is a legal act, so this task does not do it
+  - `app/sitemap.ts` updated to include `/workshop`, `/en`, `/en/workshop`
 
 - **Upload-first layout and workbench sidebar** (task 0005, Sept 18 2026)
   - Page restructured with `data-stage` attribute: `'empty'` before image upload, `'chosen'` after
@@ -47,8 +80,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - The cited criterion in 0001 does not exist; criterion 4 of this task pins the classic prompt with an ASCII-escaped literal inside this spec
   - The false citation was a defect preventing any future citation from being trusted; criterion 4 requires it to be corrected
 
-### Changed
-
 - **`UPSTREAM_ERROR` no longer instructs the user to retry** (task 0003, Sept 5 2026)
   - One string literal in `app/api/cartoonify/route.ts:40`. Was: `'Karikatür oluşturulurken bir sorun oluştu. Lütfen tekrar deneyin.'` Now: `'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.'` ("The cartoon service could not process this request. The cause of the problem is unknown; trying the same request again may not change the result.")
   - Reason, per task 0003 §3 and the addendum to finding 11 in `.mavci/lessons/pending-system-change.md`: `UPSTREAM_ERROR` is the path where the provider **answered and refused**, so an identical request invites the same decision. The message now states what is known and claims nothing about cause or remedy
@@ -57,6 +88,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `MISSING_API_KEY` and the client-side `network` message are unchanged and out of scope; each needs its own decision
   - No behaviour change beyond the prose: same `UPSTREAM_ERROR` code, same 502 status, same machine-readable contract, no new error code, no new dependency
   - Verified attempt 1: 10 of 10 criteria executed and passing, 0 blocking findings. Both discriminating criteria (scope containment, and the wording binding) were shown failing against the pre-change tree and passing after; the eight regression pins stayed green throughout
+
+### Removed
+
+- **`public/style-hints/` directory** (task 0007)
+  - Unreferenced directory removed; no code or criteria depend on it
+  - Nothing else references the path (criterion 13 confirms absence)
 
 ### Added
 
