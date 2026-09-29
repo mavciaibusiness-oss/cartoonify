@@ -6,9 +6,20 @@ import {
   getCartoonStyle,
   isCartoonStyleId,
   STYLE_GROUPS,
+  type CartoonStyle,
   type CartoonStyleId,
 } from '@/lib/cartoon-styles'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import {
+  errorMessage,
+  format,
+  getDictionary,
+  groupLabel,
+  styleText,
+  type Dictionary,
+  type Locale,
+} from '@/lib/i18n'
+import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
 
@@ -16,25 +27,21 @@ type Status = 'idle' | 'loading' | 'error' | 'success'
 
 type ApiResponse = { ok: true; image: string } | { ok: false; code: string; message: string }
 
-const CLIENT_MESSAGES = {
-  invalidType: 'This file type is not supported. Please upload a PNG, JPEG, or WEBP image.',
-  tooLarge: 'Image is too large. Please choose a smaller file.',
-  noFile: 'No image selected. Please upload a file to continue.',
-  network: 'A network issue occurred. Please try again.',
-}
+type GalleryGroup = { id: string; label: string; styles: readonly CartoonStyle[] }
 
-function validateFile(file: File): string | null {
+function validateFile(file: File, t: Dictionary): string | null {
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(file.type)) {
-    return CLIENT_MESSAGES.invalidType
+    return t.errors.INVALID_TYPE
   }
   if (file.size > MAX_FILE_BYTES) {
-    return CLIENT_MESSAGES.tooLarge
+    return t.errors.FILE_TOO_LARGE
   }
   return null
 }
 
-export default function CartoonifyForm() {
+export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const { file, previewUrl, setUpload } = useUpload()
+  const t = getDictionary(locale)
 
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
@@ -73,7 +80,7 @@ export default function CartoonifyForm() {
       return
     }
 
-    const validationError = validateFile(nextFile)
+    const validationError = validateFile(nextFile, t)
     if (validationError) {
       setMessage(validationError)
       setStatus('error')
@@ -106,11 +113,11 @@ export default function CartoonifyForm() {
 
     if (!file) {
       setStatus('error')
-      setMessage(CLIENT_MESSAGES.noFile)
+      setMessage(t.errors.NO_FILE)
       return
     }
 
-    const validationError = validateFile(file)
+    const validationError = validateFile(file, t)
     if (validationError) {
       setStatus('error')
       setMessage(validationError)
@@ -130,7 +137,7 @@ export default function CartoonifyForm() {
 
       if (!data.ok) {
         setStatus('error')
-        setMessage(data.message)
+        setMessage(errorMessage(t, data.code, data.message))
         return
       }
 
@@ -139,16 +146,20 @@ export default function CartoonifyForm() {
       setProgress(100)
     } catch {
       setStatus('error')
-      setMessage(CLIENT_MESSAGES.network)
+      setMessage(t.client.network)
     }
   }
 
   const canSubmit = status !== 'loading' && previewUrl !== null
-  const selectedStyle = getCartoonStyle(styleId)
-  const allStyles = useMemo(
-    () => [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID), ...STYLE_GROUPS.flatMap((group) => group.styles)],
-    []
+  const selectedText = styleText(getCartoonStyle(styleId), locale)
+  const galleryGroups = useMemo<readonly GalleryGroup[]>(
+    () => [
+      { id: 'default', label: t.form.defaultGroup, styles: [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)] },
+      ...STYLE_GROUPS.map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
+    ],
+    [t, locale]
   )
+  const styleCount = galleryGroups.reduce((sum, group) => sum + group.styles.length, 0)
 
   const canvasImageUrl = resultUrl ?? previewUrl
   const isResultVisible = Boolean(resultUrl)
@@ -156,27 +167,27 @@ export default function CartoonifyForm() {
   return (
     <div data-state={status} className="cartoonify-workshop">
       <header className="workshop-header">
-        <p className="workshop-badge">AI Cartoon Workshop</p>
-        <h1>Turn your photo into premium cartoon art</h1>
-        <p>
-          Upload once, pick any style from the full visual gallery, generate, and download in seconds.
-        </p>
+        <p className="workshop-badge">{t.form.badge}</p>
+        <h1>{t.form.title}</h1>
+        <p>{t.form.lede}</p>
       </header>
 
       <form onSubmit={handleSubmit} className="workshop-shell">
-        <section className="workspace-stage" aria-label="Generation workspace">
+        <KvkkNotice locale={locale} />
+
+        <section className="workspace-stage" aria-label={t.form.workspaceLabel}>
           <div className="workspace-stage-head">
-            <h2>{isResultVisible ? 'Step 4 • Final image' : 'Step 2 • Preview'}</h2>
+            <h2>{isResultVisible ? t.form.stepResult : t.form.stepPreview}</h2>
             <div className="workspace-stage-head-right">
-              {status === 'loading' ? <span className="status-chip">Processing</span> : null}
-              {status === 'success' ? <span className="status-chip success">Ready</span> : null}
-              {status === 'error' ? <span className="status-chip error">Issue detected</span> : null}
+              {status === 'loading' ? <span className="status-chip">{t.form.chipProcessing}</span> : null}
+              {status === 'success' ? <span className="status-chip success">{t.form.chipReady}</span> : null}
+              {status === 'error' ? <span className="status-chip error">{t.form.chipError}</span> : null}
               <div className="workspace-stage-controls">
                 <label htmlFor="replace-image-input" className="ghost-button">
-                  Replace image
+                  {t.form.replace}
                 </label>
                 <button type="button" className="ghost-button" onClick={handleRemoveFile}>
-                  Remove
+                  {t.form.remove}
                 </button>
               </div>
             </div>
@@ -193,7 +204,7 @@ export default function CartoonifyForm() {
           <div className="workspace-stage-image-wrap" data-canvas-state={status}>
             {status === 'loading' ? (
               <div className="processing-canvas" role="status" aria-live="polite">
-                <p>Applying style and rendering your cartoon…</p>
+                <p>{t.form.processing}</p>
                 <div className="progress-track" aria-hidden="true">
                   <span className="progress-fill" style={{ width: `${progress}%` }} />
                 </div>
@@ -202,31 +213,31 @@ export default function CartoonifyForm() {
             ) : canvasImageUrl ? (
               <img
                 src={canvasImageUrl}
-                alt={isResultVisible ? 'Generated cartoon image' : 'Uploaded original image'}
+                alt={isResultVisible ? t.form.resultAlt : t.form.originalAlt}
                 className="workspace-stage-image"
               />
             ) : (
-              <p className="result-empty">Upload an image to start your workshop.</p>
+              <p className="result-empty">{t.form.emptyCanvas}</p>
             )}
           </div>
 
           <div className="workspace-cta-block">
             {!isResultVisible ? (
               <button type="submit" className="generate-button" disabled={!canSubmit}>
-                {status === 'loading' ? 'Generating…' : 'Generate cartoon'}
+                {status === 'loading' ? t.form.generating : t.form.generate}
               </button>
             ) : (
               <div className="result-actions workspace-result-actions">
                 <a className="primary-download" download="karikatur.png" href={resultUrl ?? undefined}>
-                  Download
+                  {t.form.download}
                 </a>
                 <button type="button" className="ghost-button" onClick={handleCreateAnother}>
-                  Create another
+                  {t.form.createAnother}
                 </button>
               </div>
             )}
             <p className="workspace-style-hint">
-              Selected style: <strong>{selectedStyle.name}</strong>
+              {t.form.selectedStyle} <strong>{selectedText.name}</strong>
             </p>
           </div>
 
@@ -237,34 +248,33 @@ export default function CartoonifyForm() {
           ) : null}
         </section>
 
-        <aside className="style-sidebar" aria-label="Style gallery">
+        <aside className="style-sidebar" aria-label={t.form.galleryLabel}>
           <div className="style-sidebar-head">
-            <h2>Step 3 • Choose style</h2>
-            <p>{allStyles.length} styles available</p>
+            <h2>{t.form.stepStyle}</h2>
+            <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
           </div>
 
           <div className="style-gallery" aria-describedby="cartoonify-style-description">
-            {[{ id: 'default', label: 'Default', styles: [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)] }, ...STYLE_GROUPS].map(
-              (group) => (
-                <fieldset key={group.id} className="style-group">
-                  <legend>{group.label}</legend>
-                  <div className="style-grid">
-                    {group.styles.map((style) => (
-                      <StyleCard
-                        key={style.id}
-                        style={style}
-                        checked={styleId === style.id}
-                        disabled={status === 'loading'}
-                        onSelect={handleStyleSelect}
-                      />
-                    ))}
-                  </div>
-                </fieldset>
-              )
-            )}
+            {galleryGroups.map((group) => (
+              <fieldset key={group.id} className="style-group">
+                <legend>{group.label}</legend>
+                <div className="style-grid">
+                  {group.styles.map((style) => (
+                    <StyleCard
+                      key={style.id}
+                      style={style}
+                      locale={locale}
+                      checked={styleId === style.id}
+                      disabled={status === 'loading'}
+                      onSelect={handleStyleSelect}
+                    />
+                  ))}
+                </div>
+              </fieldset>
+            ))}
 
             <p id="cartoonify-style-description" className="style-description-live">
-              {selectedStyle.description}
+              {selectedText.description}
             </p>
           </div>
         </aside>

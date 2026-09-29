@@ -80,6 +80,44 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* header and language switch */
+.site-header {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0.75rem 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.lang-switch a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.2rem 0.35rem;
+  border-radius: 0.4rem;
+}
+
+.lang-switch a:hover {
+  color: var(--text);
+}
+
+.lang-switch a[aria-current='page'] {
+  color: var(--text);
+  background: rgba(88, 115, 255, 0.22);
+}
+
+.lang-switch-sep {
+  color: var(--stroke);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -139,34 +177,6 @@ footer a:hover {
   color: var(--muted);
 }
 
-.hero-pair {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: 1fr;
-}
-
-.hero-pair figure {
-  margin: 0;
-  border: 1px solid var(--stroke);
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  padding: 0.5rem;
-}
-
-.hero-pair img {
-  width: 100%;
-  display: block;
-  border-radius: 0.72rem;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-}
-
-.hero-pair figcaption {
-  color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 0.45rem;
-}
-
 .kvkk-notice {
   color: var(--muted);
   font-size: 0.92rem;
@@ -187,33 +197,6 @@ footer a:hover {
 .how-it-works p,
 .how-it-works li {
   color: var(--muted);
-}
-
-.group-preview {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.75rem;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-}
-
-.group-preview li {
-  border-radius: 0.8rem;
-  border: 1px solid var(--stroke);
-  background: var(--surface);
-  padding: 0.8rem;
-  display: grid;
-  gap: 0.2rem;
-}
-
-.group-preview-name {
-  font-weight: 600;
-}
-
-.group-preview-count {
-  color: var(--muted);
-  font-size: 0.85rem;
 }
 
 .how-steps {
@@ -431,6 +414,39 @@ footer a:hover {
   grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
 }
 
+/*
+ * The landing page's group list. It sits below the picker grid on purpose:
+ * task 0004 criterion 11 is closed and reads the first numeric track floor in
+ * this file by position, so the picker grid's rule has to come first. Task 0007
+ * moved this block here; do not move it back above the picker grid.
+ */
+.group-preview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.group-preview li {
+  border-radius: 0.8rem;
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.group-preview-name {
+  font-weight: 600;
+}
+
+.group-preview-count {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .style-card {
   border-radius: 0.8rem;
   border: 1px solid var(--stroke);
@@ -598,13 +614,14 @@ footer a:hover {
     padding: 2rem 1.35rem 2.4rem;
   }
 
-  .hero-pair {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .workshop-shell {
     grid-template-columns: minmax(300px, 1.12fr) minmax(320px, 1fr);
     align-items: start;
+  }
+
+  /* The disclosure spans the first row, above the image and the gallery. */
+  .workshop-shell > .kvkk-notice {
+    grid-column: 1 / -1;
   }
 
   .workspace-stage {
@@ -613,7 +630,7 @@ footer a:hover {
 
   .style-sidebar {
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
     position: sticky;
     top: 1rem;
   }

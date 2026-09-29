@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-09-29T10:42:09Z",
+  "id": "0007",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "verify",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-09-29T11:31:12Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0007-two-languages-kvkk-first-and-previews-from-one-source.md",
+    "spec_sha256": "506f62b594485eefce1b817b91eb5f9095580e9117c42ad9399f5275ff35dd5d"
+  },
+  "status": "done",
+  "updated": "2026-09-29T12:31:18Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0007-attempt-01.json"
+  ]
+}

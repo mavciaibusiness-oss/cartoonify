@@ -1,0 +1,176 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 185 ms: G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed; see spec 0007 section 9.1'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1830 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 8972 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 81 ms: grep -qF 'export type Dictionary' lib/i18n/tr.ts && grep -qF 'typeof tr' lib/i18n/tr.ts && grep -qE 'import type [{] *Dictionary *[}] from' lib/i18n/en.ts && grep -qF 'export const en: Dictionary' lib/i18n/en.ts",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 82 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); Promise.all([import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([a,b])=>{ const tr=a.tr, en=b.en; if(!tr||!en) throw new Error('tr or en is not exported'); const bad=[]; const walk=(x,y,p)=>{ for(const k of Object.keys(x)){ const q=p?p+'.'+k:k; if(!y||!(k in y)){ bad.push('en lacks '+q); continue; } if(typeof x[k]==='string'){ if(typeof y[k]!=='string') bad.push(q+' is not a string in e...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 87 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"Promise.all([import('./lib/cartoon-styles.ts'),import('./lib/i18n/styles.en.ts')]).then(([s,e])=>{ const T=e.STYLE_TEXT_EN, G=e.GROUP_LABELS_EN; if(!T||!G) throw new Error('STYLE_TEXT_EN or GROUP_LABELS_EN is not exported'); const ids=s.CARTOON_STYLES.map(x=>x.id); const bad=[]; for(const id of ids){ const v=T[id]; if(!v||!String(v.name||'').trim()||!String(v.description||'').trim()) bad.push(id); } for(const k of Object...",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 102 ms: [ -f app/en/page.tsx ] && [ -f app/en/workshop/page.tsx ] && [ -f app/en/layout.tsx ] && grep -qF '<html lang=\"tr\"' app/layout.tsx && grep -qF 'lang=\"en\"' app/en/layout.tsx && grep -qF \"'/en'\" app/sitemap.ts && grep -qF '<html lang=\"tr\"' .next/server/app/index.html && grep -qF 'lang=\"en\"' .next/server/app/en.html && grep -qF 'lang=\"en\"' .next/server/app/en/workshop.html",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 124 ms: grep -qF 'LanguageSwitch' app/layout.tsx && grep -qF 'counterpartPath' components/language-switch.tsx && grep -qF 'aria-current' components/language-switch.tsx && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); import('./lib/i18n/paths.ts').then(m=>{ const f=m.counterpartPath; if(typeof f!=='function') throw new Error('counterpartPath is not exported'); const cases=[['/','/en'],['/workshop','/en/workshop'],['/en','/'],['/en/workshop','/worksho...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 69 ms: ! grep -qE '(^|[^a-z-])order *:' app/globals.css && node -e \"const fs=require('fs'); const s=fs.readFileSync('components/cartoonify-form.tsx','utf8'); const kn=s.indexOf('<KvkkNotice'), ri=s.indexOf('replace-image-input'); if(kn<0) throw new Error('the workbench does not render KvkkNotice'); if(ri<0) throw new Error('the workbench has no replace-image input'); if(!(kn<ri)) throw new Error('the workbench notice comes after its replace-image input'); for(const p of ['index','wo...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 96 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); Promise.all([import('./lib/cartoon-styles.ts'),import('./lib/i18n/styles.en.ts')]).then(([s,e])=>{ const note=h=>{ const k=h.indexOf('kvkk-notice'); if(k<0) return ''; return h.slice(k, h.indexOf('</p>', k)); }; for(const p of ['index','workshop','en','en/workshop']){ const h=fs.readFileSync('.next/server/app/'+p+'.html','utf8'); const n=note(h); const isEn=p.indexOf('en')===0; if(isEn){ if(n.inde...",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 58 ms: node -e \"const fs=require('fs'); const path=require('path'); const Q=String.fromCharCode(34), A=String.fromCharCode(39); const files=['app/layout.tsx','app/page.tsx','app/workshop/page.tsx','app/en/layout.tsx','app/en/page.tsx','app/en/workshop/page.tsx'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); const letter=/[A-Za-z]/; const css=fs.readFileSync('app/globals.css','utf8'); const cls=t=>{ let p=css.indexOf('.'+t); while(p>=0){ ...",
+      "id": "11",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 58 ms: node -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const tok='src='+Q+'/'; const bad=[]; const scan=(s,where,html)=>{ let i=s.indexOf(tok); while(i>=0){ let p=s.slice(i+tok.length-1, s.indexOf(Q, i+tok.length)); if(html && p.indexOf('/_next/image?url=')===0) p=decodeURIComponent(p.slice(17).split('&')[0]); if(!(html && p.indexOf('/_next/')===0) && p.indexOf('//')!==0 && !fs.existsSync('public'+p.split('?')[0])) bad.push(where+' -> '+p); i=s.indexOf(tok, i+1); }...",
+      "id": "12",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 40 ms: [ ! -e public/style-hints ] && ! grep -rqF 'style-hints' app components lib scripts",
+      "id": "13",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 36 ms: git diff --quiet HEAD -- lib/image-constraints.ts app/api/cartoonify/route.ts lib/cartoon-styles.ts lib/env.ts lib/style-previews.ts components/upload-state.tsx scripts/check-styles.mjs next.config.mjs package.json package-lock.json public/styles public/style-samples",
+      "id": "14",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 52 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let g=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ g=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(g<0) throw new Error('no line begins the .style-grid rule'); const end=c.indexOf('}', g); let first=-1,p=c.indexOf('minmax('); while(p>=0){ if(!isNaN(parseInt(c.slice(p+7),...",
+      "id": "15",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 54 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let off=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ off=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(off<0) throw new Error('no line begins the .style-grid rule'); const body=c.slice(off, c.indexOf('}', off)); if(body.indexOf('auto-fill')<0) throw new Error('.style-gri...",
+      "id": "16",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 55 ms: node -e \"const fs=require('fs'); const files=['app/globals.css','app/layout.tsx','app/page.tsx','app/sitemap.ts','app/workshop/page.tsx','app/en/layout.tsx','app/en/page.tsx','app/en/workshop/page.tsx','lib/i18n/tr.ts','lib/i18n/en.ts','lib/i18n/styles.en.ts','lib/i18n/paths.ts'].concat(fs.readdirSync('components').filter(f=>f.endsWith('.tsx')).map(f=>'components/'+f)); for(const f of files){ if(!fs.existsSync(f)) throw new Error(f+' is missing'); const b=fs.readFileSync(f); ...",
+      "id": "17",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 77 ms: node -e \"const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['app/globals.css','app/layout.tsx','app/page.tsx','app/sitemap.ts','app/workshop/page.tsx','app/en/','components/','lib/i18n/','public/styl...",
+      "id": "18",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-29T11:43:49Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0007",
+  "verdict": "pass"
+}

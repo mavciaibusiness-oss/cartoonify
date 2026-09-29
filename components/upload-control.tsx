@@ -3,38 +3,30 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import { format, getDictionary, localizedPath, type Dictionary, type Locale } from '@/lib/i18n'
 import { useUpload } from './upload-state'
 
 type UploadControlProps = {
+  locale: Locale
   redirectOnSelect?: boolean
-  title?: string
-  description?: string
 }
 
-const CLIENT_MESSAGES = {
-  invalidType: 'This file type is not supported. Please upload a PNG, JPEG, or WEBP image.',
-  tooLarge: 'Image is too large. Please choose a smaller file.',
-}
-
-function validateFile(file: File): string | null {
+function validateFile(file: File, t: Dictionary): string | null {
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(file.type)) {
-    return CLIENT_MESSAGES.invalidType
+    return t.errors.INVALID_TYPE
   }
   if (file.size > MAX_FILE_BYTES) {
-    return CLIENT_MESSAGES.tooLarge
+    return t.errors.FILE_TOO_LARGE
   }
   return null
 }
 
-export default function UploadControl({
-  redirectOnSelect = true,
-  title = 'Drop an image to start',
-  description = 'Drag & drop your photo here, or click to browse from your device.',
-}: UploadControlProps) {
+export default function UploadControl({ locale, redirectOnSelect = true }: UploadControlProps) {
   const router = useRouter()
   const { setUpload } = useUpload()
   const [message, setMessage] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const t = getDictionary(locale)
 
   function handleSelectedFile(file: File | null) {
     if (!file) {
@@ -43,7 +35,7 @@ export default function UploadControl({
       return
     }
 
-    const validationError = validateFile(file)
+    const validationError = validateFile(file, t)
     if (validationError) {
       setUpload(null)
       setMessage(validationError)
@@ -54,7 +46,7 @@ export default function UploadControl({
     setUpload(file)
 
     if (redirectOnSelect) {
-      router.push('/workshop')
+      router.push(localizedPath(locale, '/workshop'))
     }
   }
 
@@ -101,14 +93,14 @@ export default function UploadControl({
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
       >
-        <span className="upload-dropzone-eyebrow">Step 1 • Upload</span>
-        <h2 id="upload-control-title">{title}</h2>
-        <p>{description}</p>
-        <span className="upload-dropzone-button">Browse files</span>
+        <span className="upload-dropzone-eyebrow">{t.upload.eyebrow}</span>
+        <h2 id="upload-control-title">{t.upload.title}</h2>
+        <p>{t.upload.description}</p>
+        <span className="upload-dropzone-button">{t.upload.browse}</span>
       </label>
 
       <p id="cartoonify-upload-help" className="upload-help">
-        Supported: PNG, JPEG, WEBP • Max size: {Math.floor(MAX_FILE_BYTES / (1024 * 1024))}MB
+        {format(t.upload.help, { n: Math.floor(MAX_FILE_BYTES / (1024 * 1024)) })}
       </p>
 
       <p id="cartoonify-upload-message" className="upload-message" aria-live="polite" role="status">
