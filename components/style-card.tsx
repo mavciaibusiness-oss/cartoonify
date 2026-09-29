@@ -5,8 +5,8 @@ import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
 
 /**
  * One style in the picker. Its text is in the visitor's language. Its preview
- * is the one image rendered for it by task 0008: the same source portrait, at
- * the model, size and quality a visitor's request uses. There is one directory
+ * is the 480 px copy (public/styles-web/, task 0010) of the image rendered for
+ * it by task 0008. There is one directory
  * and no fallback; task 0008 criterion 9 proves all 31 exist.
  */
 export default function StyleCard({
@@ -37,10 +37,10 @@ export default function StyleCard({
       />
       <img
         className="style-card-preview"
-        src={'/styles/' + style.id + '.webp'}
+        src={'/styles-web/' + style.id + '.webp'}
         alt={format(t.styleCard.previewAlt, { name: text.name })}
-        width={320}
-        height={320}
+        width={480}
+        height={480}
         loading="lazy"
       />
       <span className="style-card-name">{text.name}</span>

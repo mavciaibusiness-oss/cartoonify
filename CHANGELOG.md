@@ -9,6 +9,70 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Light theme with white grounds and dark text** (task 0010, Sept 29 2026)
+  - All page backgrounds moved to light colours; text moved to dark colours; accent kept at `#7c8dff` and `#33d2ff`
+  - All colour tokens declared once in `:root` of `app/globals.css`; no colour literals in component files
+  - Every text colour on every background colour verified at WCAG AA contrast ratio (4.5:1 minimum) by source-level criteria
+  - Theme applied to `/`, `/en`, `/workshop`, `/en/workshop`, all legal pages, and `/contact`
+  - No dark mode (criteria enforce one theme only)
+
+- **Page-long style picker in left sidebar** (task 0010)
+  - Style cards moved from grid to left-hand panel, scrolling with page content (not sticky)
+  - Cards larger on wide screens (base floor raised to 190 px minimum from 145 px)
+  - Picker no longer has `max-height` and `overflow` constraints; scrolling is page scrolling
+  - Group headings and legends preserved; fieldset/legend/radio navigation unchanged
+
+- **Showcase of all 31 styles on `/` and `/en`** (task 0010)
+  - Replaces `.group-intro` section with `.style-showcase` below the gallery
+  - All 31 style cards: preview image, name, description, each group with heading
+  - Displays "Default" label and four group headings in visitor's language (Turkish on `/`, English on `/en`)
+  - Images are 480×480 px WebP at quality 72, lazy-loaded, from `public/styles-web/`
+
+- **Web-optimized 480×480 px style preview copies** (task 0010)
+  - Generated once by `scripts/resize-style-previews.mjs` using `sharp` at quality 72, effort 6
+  - 31 files in `public/styles-web/`, each ≤ 100 000 bytes; total 1 204 102 bytes (measured from `lib/style-web-manifest.json`)
+  - `lib/style-web-manifest.json` records file paths, sizes, SHA256 hashes, and derivation from frozen previews in `lib/preview-manifest.json`
+  - Picker card references `'/styles-web/'` instead of `'/styles/'`, keeping lazy-loading at smaller file size
+
+- **Two root layouts for Turkish and English** (task 0010, reversing task 0007 §4)
+  - `app/(tr)/layout.tsx` renders `<html lang="tr">` for `/`, `/workshop`, legal pages, `/contact`
+  - `app/(en)/layout.tsx` renders `<html lang="en">` for `/en`, `/en/workshop`
+  - `components/site-shell.tsx` holds header, provider, footer; rendered by both layouts to prevent drift
+  - Switching language is now a full page load (crosses root layout boundary); chosen photo does not survive switch (but is not persisted anyway, per KVKK notice)
+  - Within one language, `/` → `/workshop` remains a client-side transition (keeps photo)
+
+### Changed
+
+- **Workbench restructured into four blocks** (task 0010)
+  - Order in both narrow and wide screens: KVKK notice, upload area (`.workshop-upload`), styles sidebar (`.style-sidebar`), result area (`.workshop-result`)
+  - On 900 px+: two-column grid, sidebar in column 1, upload and result in column 2
+  - Result area (`section.workshop-result`) is sticky from top on wide screens (`position: sticky; align-self: start`)
+  - No CSS `order:` property used; DOM order is layout order
+  - Group headings and legends stay in sidebar
+
+- **CSS reorganization for light theme** (task 0010)
+  - Tokens in `:root` (17): `--bg`, `--surface`, `--surface-2`, `--text`, `--muted`, `--accent-text`, `--danger-text`, `--success-text`, `--accent`, `--accent-2`, `--on-accent`, `--stroke`, `--stroke-strong`, `--ring`, `--shadow`, `--radius-lg`, `--radius-md`
+  - `color-scheme: light` declared in `:root`
+  - No `prefers-color-scheme` block (no dark mode)
+  - Every `color:` property uses a text token, `--on-accent`, `inherit`, `currentColor`, or `transparent`
+  - Every `background*` property uses a surface token or an accent
+  - Accent backgrounds carry `--on-accent` or `--text` for text
+  - No new rules for layout, class selectors or structure; only colour values changed
+
+- **Legal pages moved to route groups** (task 0010)
+  - `app/(legal)/{privacy,terms,kvkk,cookies}/page.tsx` → `app/(tr)/(legal)/{same}/page.tsx` (byte-identical)
+  - `app/contact/page.tsx` → `app/(tr)/contact/page.tsx` (byte-identical)
+  - Moved as part of two-root-layout structure; files unchanged
+  - Five pages remain marked `REVIEW REQUIRED`; no text changed
+
+- **Internationalization dictionary entries** (task 0010)
+  - Added `showcase.title` and `showcase.lede` to both `tr.ts` and `en.ts`
+  - Removed `landing.groupsTitle` and `landing.groupsLede` from both dictionaries
+  - Criterion 19 verifies parity between Turkish and English
+
+- **Language switch note** (task 0010)
+  - `components/language-switch.tsx` header comment documents the two-layout cost: "switching language crosses root layouts, which is a full page load, and a chosen photograph does not survive it"
+
 - **Static gallery of 15 cartoon renders from 5 AI-generated sources** (task 0009, Sept 29 2026)
   - Gallery section below the hero on `/` and `/en` pages, displaying five rows: each row shows one source image and three cartoon renders of that source in styles suited to its subject
   - All images pre-generated by the operator running `scripts/render-gallery.mjs` once; no API calls at request time

@@ -5,9 +5,12 @@ import { usePathname } from 'next/navigation'
 import { counterpartPath, getDictionary, LOCALE_LABELS, localeOfPath } from '@/lib/i18n'
 
 /**
- * TR | EN, in the header. The language comes from the path, so the root layout
- * stays one layout and a client transition keeps the chosen photograph alive
- * across the switch (components/upload-state.tsx).
+ * TR | EN, in the header. The language comes from the path. Turkish and English
+ * have separate root layouts, app/(tr)/layout.tsx and app/(en)/layout.tsx, so
+ * each page's <html lang> is right (task 0010 §3.4). The cost: switching
+ * language crosses root layouts, which is a full page load, and a chosen
+ * photograph does not survive it. Within one language, a client transition
+ * still keeps it (components/upload-state.tsx).
  */
 export default function LanguageSwitch() {
   const pathname = usePathname() ?? '/'

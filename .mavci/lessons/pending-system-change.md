@@ -5469,6 +5469,26 @@ Broken build: It is task 0004 today: §7 assigns docs/adr/README.md and scripts/
 
 ---
 
+### Addendum to finding 35 - Recurred in task 0010: a resize script allocated to the builder, refused by its scope
+
+Amended 2026-09-29T18:18:35Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Recurred 2026-09-29, plugin 0.1.35, project cartoonify, task 0010 build attempt 1 - the same shape as task 0004's scripts/check-styles.mjs, under the same scope file.
+
+Task 0010's spec §8 allocated `scripts/resize-style-previews.mjs` to the build, and its criterion 10 asserts the file exists (`Error: scripts/resize-style-previews.mjs does not exist` when it does not). The builder's write was refused by the PreToolUse hook: its hand-back says "`.mjs` and `scripts/` are outside the builder's edit scope". The builder did not route around the guard. It produced the 31 outputs with an inline `node -e` run instead, and returned status blocked with `blocked_by: "scope_conflict: spec §8 requires scripts/resize-style-previews.mjs, builder deny-by-default scope excludes scripts/*.mjs"`, escalate true. The build passed 22 of 23 criteria, and criterion 10 was the only red.
+
+The operator then explicitly authorised the main session to write the script. Run from the main session, it reproduced the builder's outputs exactly: `wrote 31 files, 1204102 bytes total`, the 31 file sha256s identical, and `lib/style-web-manifest.json` byte-identical.
+
+Two observations this instance adds:
+
+1. The spec was written by the main session acting as architect. It gave the file table no owner column, and nothing compared the table against agents/agent-scopes.json before the operator sealed it. The spec-writer did not check it, and the approval step did not either. The collision surfaced only after the builder had spent an attempt.
+
+2. The instance before this one, task 0009's scripts/render-gallery.mjs, did NOT collide, only because that build ran in the main session rather than through mavci-builder. So whether a spec's scripts/ allocation works depends on who happens to execute the build, not on anything the spec states. The same approved spec is buildable or not depending on the path taken to build it.
+
+The assertion this finding already asks for would have caught 0010 at approval: for each path in a spec's file table, the role the spec assigns it to must have it in its allow list in agents/agent-scopes.json. The broken build is 0.1.35, where a spec allocating scripts/*.mjs to the build is sealed and dispatched to mavci-builder.
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
 # Finding 36 - The approval gate reads what a spec asserts and cannot read what it admits: a criterion whose own proof table concedes its passing direction was never demonstrated is sealed unremarked, and the verdict has no field to record it as a known red
 
 Filed: 2026-09-10T16:26:10Z, plugin 0.1.35.
@@ -5974,3 +5994,89 @@ Same family as finding 48: there the refused command was a finding about the con
 ### The assertion, and the broken build it must catch
 
 NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
+
+---
+
+# Finding 51 - Router sends a verify-phase task with zero attempts to the verifier, and verify.mjs refuses zero attempts: the named step can never succeed
+
+Filed: 2026-09-29T16:13:49Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/route.mjs (verify branch, lines 794-800); scripts/verify.mjs:552`
+
+Project cartoonify, task 0009, plugin 0.1.35, 2026-09-29. The task reached the verify phase with attempts 0 (see the next finding for how).
+
+/mavci-core:verify 0009 printed the router block: "task 0009 is in the verify phase and no verdict names attempt 0. dispatch mavci-verifier - it runs verify.mjs --record --task 0009".
+
+The verifier ran exactly that and verify.mjs refused: "--task 0009: attempts is 0, so no attempt has been made and there is nothing for a verdict to be about. Run `state.mjs --attempt 0009` before building." (scripts/verify.mjs:552-553).
+
+Re-running route.mjs afterwards printed the same step with the same reason. The verifier cannot write the control plane, so it returned blocked; the loop was broken only by the operator running state.mjs --attempt by hand, which no router output had named.
+
+Cause, read in scripts/lib/route.mjs: the build branch handles attempts === 0 (line 620: "is in the build phase with no attempt consumed" -> state.mjs --attempt), but the verify branch (lines 794-800) has no such arm and unconditionally returns "dispatch mavci-verifier" with attempt ${attempts} interpolated as 0.
+
+### The assertion, and the broken build it must catch
+
+Fixture: a task with phase "verify", attempts 0, attempts_total 0, a valid spec_approved and no verdicts. route() must NOT return "dispatch mavci-verifier" as a step; it must name state.mjs --attempt <id> (or refuse with that as the remedy).
+
+Broken build it must catch: 0.1.35, which returns why "no verdict names attempt 0" with the single step dispatch mavci-verifier.
+
+Stronger, general form: for every router state, executing the named step against the fixture must either change the state or the step the router names next. A step whose own executor refuses it, followed by the router naming it again unchanged, is a deadlock the router is reporting as progress.
+
+---
+
+# Finding 52 - The normal path never opens an attempt: no skill but ship names --attempt, and advance-phase build->verify accepts a task with zero attempts
+
+Filed: 2026-09-29T16:13:50Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs advancePhase (line 580); skills/build/SKILL.md; skills/plan/SKILL.md step 5`
+
+Project cartoonify, task 0009, plugin 0.1.35, 2026-09-29.
+
+grep -rln -- "--attempt" over the installed plugin lists scripts (lib/route.mjs, risk-guard.mjs, state.mjs, verify.mjs) and exactly one skill: skills/ship/SKILL.md (line 104).
+
+skills/plan/SKILL.md step 5 names --approve-spec, then --advance-phase <id> --from plan --to build, then tells the operator to run /mavci-core:build. skills/build/SKILL.md steps 1-4 never name --attempt, yet step 4 says "status: failed -> the attempt counter has advanced", as if something advanced it.
+
+advancePhase (scripts/state.mjs:580) checks the current phase, that the step is legal, that spec_approved exists and that the spec hash matches. It does not look at attempts, so --from build --to verify succeeds on a task that never consumed one.
+
+What happened: the operator approved the spec, ran --advance-phase plan->build, and had the builder work directly in the main session rather than through /mavci-core:build. Nothing on that path opened an attempt or warned that none was open. The phase reached verify with attempts 0, and the first verify dispatch was blocked (previous finding). After the operator intervened the task read attempts 2 / attempts_total 2; how it reached 2 rather than 1 was not observed by this agent. That left one retry of three where the task had consumed one build.
+
+The router plan branch does list "state.mjs --attempt <id> --agent mavci-builder" after --advance-phase, and the build branch names it when attempts is 0, but only a caller who runs route.mjs sees that; the plan skill does not run it, and neither transition command enforces it.
+
+### The assertion, and the broken build it must catch
+
+State: advancePhase(root, id, "build", "verify") on a task with attempts 0 must throw, naming state.mjs --attempt <id> as the remedy. Broken build: 0.1.35, which advances.
+
+Docs: every skill whose steps end in a mavci-builder dispatch must contain the string --attempt (or run a command that consumes one). Broken build: skills/build/SKILL.md at 0.1.35.
+
+Either one alone would have stopped this session one step earlier; the state check is the one that cannot be bypassed by working outside the skill.
+
+---
+
+# Finding 53 - Agent hand-backs state counts about a file they cite without deriving them from it, and the numbers are wrong
+
+Filed: 2026-09-29T16:13:50Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agent-defs/verifier.json (agents/mavci-verifier.md); agent-defs/scribe.json`
+
+Project cartoonify, task 0009, plugin 0.1.35, 2026-09-29. The source file is lib/gallery-manifest.json, field web_files, 20 entries. Actual distribution, computed from the file: widths 16 at 640, 3 at 560, 1 at 480; qualities 14 at q72, 5 at q60, 1 at q48.
+
+mavci-verifier, first run: "lib/gallery-manifest.json web_files has 16 files at 640 px, 3 at 560 px and 1 at 480 px, all at quality 72." The quality clause is false.
+
+mavci-verifier, second run, after being told the qualities were mixed: "Qualities are 13 at q72, 3 at q60 at 640 px, 1 each at q60 for 480 and 560 px, and 1 at q48 for 560 px. That is 14 at q72 and 5 at q60." The closing totals are right, but the itemised breakdown lists 13 + 3 + 1 + 1 + 1 = 19 files: it omits engraved-plate, the one file at 560 px q72. Reading "13 at q72" as "13 at q72 at 640 px" is the only reading under which the totals hold, and the sentence does not say it.
+
+Same pattern, other agents, same task: mavci-scribe transcribed the size ladder as "640 at q72, then 560 at q60, then 480 at q48", which the manifest it cites contradicts (engraved-plate is 560/q72, retro-print 480/q60); and reported the summary as "1400 lines" when it is 143 (see finding 49). The main-session builder also first reported 14 files at 640 where there are 16.
+
+None of these affected a criterion: criterion 5 bounds width to 480..640 and never reads quality. The risk is in what they are used for: the verifier hand-back is the evidence the operator reads, and the scribe text is the permanent record.
+
+### The assertion, and the broken build it must catch
+
+No mechanical assertion was found that catches a wrong count in free prose without also flagging correct ones; this is stated rather than left as a gap.
+
+Closest checkable form: an agent eval fixture. Give the verifier a manifest whose web_files have a mixed, non-uniform quality distribution and ask for it. Pass only if the hand-back quotes the distribution together with the command that produced it and the numbers match. Broken build: 0.1.35 verifier, which reported "all at quality 72" for a file with three distinct qualities.
+
+Contract change the fixture would enforce: any count or distribution about a file must be produced by a command in checks_run and quoted from its output, not summarised from reading.

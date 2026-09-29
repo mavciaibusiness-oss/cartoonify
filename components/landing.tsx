@@ -1,7 +1,7 @@
-import { STYLE_GROUPS } from '@/lib/cartoon-styles'
-import { format, getDictionary, groupLabel, type Locale } from '@/lib/i18n'
+import { getDictionary, type Locale } from '@/lib/i18n'
 import Gallery from './gallery'
 import KvkkNotice from './kvkk-notice'
+import StyleShowcase from './style-showcase'
 import UploadControl from './upload-control'
 
 /**
@@ -48,18 +48,7 @@ export default function Landing({ locale }: { locale: Locale }) {
 
       <Gallery locale={locale} />
 
-      <section className="group-intro">
-        <h2>{t.landing.groupsTitle}</h2>
-        <p>{t.landing.groupsLede}</p>
-        <ul className="group-preview">
-          {STYLE_GROUPS.map((group) => (
-            <li key={group.id} data-style-group={group.id}>
-              <span className="group-preview-name">{groupLabel(group.id, locale)}</span>
-              <span className="group-preview-count">{format(t.landing.groupCount, { n: group.styles.length })}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <StyleShowcase locale={locale} />
 
       <section className="how-it-works">
         <h2>{t.landing.howTitle}</h2>

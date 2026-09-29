@@ -18,6 +18,7 @@ so searching for "ADR 0002" finds nothing.
 | 0006 | What bounds a caller, when there is no auth, no store and no session | `.mavci/decisions/0006-what-bounds-a-caller.md` |
 | 0007 | One image per request, and why the 45-second timeout defect is deferred rather than fixed | `.mavci/decisions/0007-one-image-per-request-and-the-deferred-timeout.md` |
 | 0008 | Task 0004 closes with criterion 18 never having executed | `docs/adr/0008-task-0004-closes-with-criterion-18-never-executed.md` |
+| 0009 | Two root layouts reverse task 0007 §4, at the cost that switching language drops a chosen photo | `.mavci/decisions/0009-two-root-layouts-reverses-0007-section-4.md` |
 
 The first five are **Accepted**, all dated 2026-09-05. **0006 and 0007 are
 Proposed**, dated 2026-09-09: they are written at the plan gate of task 0004 and
@@ -25,6 +26,8 @@ become Accepted when the operator approves that task's spec. Task 0004 criteria 
 and 16 assert their contents, and criterion 15 also requires this row to exist in
 **both** copies of this index — the architect may not write `docs/adr/`, so the
 other copy is the builder's to update. **0008 is Accepted**, dated 2026-09-17.
+**0009 is Accepted**, dated 2026-09-29: recorded when the operator approved task
+0010 spec, reversing task 0007 §4's language layout decision.
 
 ## Allocating the next number
 

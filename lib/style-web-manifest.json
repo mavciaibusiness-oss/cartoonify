@@ -1,0 +1,252 @@
+{
+  "files": {
+    "classic": {
+      "from": "public/styles/classic.webp",
+      "from_sha256": "ec85c12f7cb521c3dbd2354fda75159359a74dee1c39f10b058bf6d1d29ccc07",
+      "sha256": "34f12ed04cc7daecae5f156c1962cfdc84ad0b28a110c8d75902015eb94607be",
+      "bytes": 29666,
+      "width": 480,
+      "quality": 72
+    },
+    "bold-ink": {
+      "from": "public/styles/bold-ink.webp",
+      "from_sha256": "e003c64ddb0346b452d1d181b9326b1a9de473d7e4f62e20949085702636172c",
+      "sha256": "808fbc7a9f36098f8e8d8d8d5280d5bb56ca87fa38f97aa834a0b6e94a7894c2",
+      "bytes": 41604,
+      "width": 480,
+      "quality": 72
+    },
+    "cel-frame": {
+      "from": "public/styles/cel-frame.webp",
+      "from_sha256": "3810a1bcdeb7681ceb94058b6245fb719450825a037fe0fac984687b94643b84",
+      "sha256": "3d8788c9a8a6fb2358c849de28435676842c730764345b02da926040adef22dc",
+      "bytes": 28810,
+      "width": 480,
+      "quality": 72
+    },
+    "hatched-line": {
+      "from": "public/styles/hatched-line.webp",
+      "from_sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
+      "sha256": "f46d2ed99ca0f1b55a6f18d4e2919e1267a57971a3a0c215bfffb6cc05600976",
+      "bytes": 58884,
+      "width": 480,
+      "quality": 72
+    },
+    "line-wash": {
+      "from": "public/styles/line-wash.webp",
+      "from_sha256": "10c1925baba59b95ff9f892d780ef44e210bda0a9f7bf3dd655a3d10ab21fa6d",
+      "sha256": "513fbef7501290d9205847d86126d8f6b89eba16e2dfc4b0ee78417b6a13d4c4",
+      "bytes": 27324,
+      "width": 480,
+      "quality": 72
+    },
+    "two-ink": {
+      "from": "public/styles/two-ink.webp",
+      "from_sha256": "62e6b3b2959a2c61b7d9b9e377bdc0a5b5ba15870cf12792483ec354766ef3c3",
+      "sha256": "b71b9e65a9cac73a065d444ec7aae993488ac397d44572c3947812da691808f8",
+      "bytes": 28128,
+      "width": 480,
+      "quality": 72
+    },
+    "mass-caricature": {
+      "from": "public/styles/mass-caricature.webp",
+      "from_sha256": "91f28d546b4cdf0ec126dda784e334c151b7f28bdda84ce6fedc806cbc73e1bc",
+      "sha256": "f45d48f4af28aba527d5c522ba8c17e242d78758cd170bdc934b60b95a3233e0",
+      "bytes": 21946,
+      "width": 480,
+      "quality": 72
+    },
+    "feature-caricature": {
+      "from": "public/styles/feature-caricature.webp",
+      "from_sha256": "11f5febfb01e5660b6ed93b73b293c8e857aee5084938db172d574a1fd75836c",
+      "sha256": "7fb2d3f2f1a0809f615109b1e372c58c80206b1f88072e2fc7ea08b333d6257c",
+      "bytes": 44782,
+      "width": 480,
+      "quality": 72
+    },
+    "reduced-caricature": {
+      "from": "public/styles/reduced-caricature.webp",
+      "from_sha256": "f5560112467193449ba9a332a5f36261930447f6126b5da6b6719008d5af5387",
+      "sha256": "f377686c6e6000267329f62a540d833e488cb4cd19f46de7b04cb71a09454b7b",
+      "bytes": 27570,
+      "width": 480,
+      "quality": 72
+    },
+    "soft-pastel": {
+      "from": "public/styles/soft-pastel.webp",
+      "from_sha256": "fb82e5056e91014a0dd0286b913cca2cea6648ad1f1c95012e25452fb9888c23",
+      "sha256": "afd874e0f05b79b62a071451a4f3c0b69c0b696f3e21e26a71e5085ffa5a2581",
+      "bytes": 21528,
+      "width": 480,
+      "quality": 72
+    },
+    "flat-colour": {
+      "from": "public/styles/flat-colour.webp",
+      "from_sha256": "645f36caa28d6a45a214e721df36684218c33a5ec8bd74d6548c660d42e81d8c",
+      "sha256": "dc1083b99f9aa4caeb5a5749404c38f53432cc6062d05ecfe8dd3f282039100c",
+      "bytes": 10134,
+      "width": 480,
+      "quality": 72
+    },
+    "opaque-paint": {
+      "from": "public/styles/opaque-paint.webp",
+      "from_sha256": "84535833fca7f4206802322314d4cd727fc37efc5378754c1a6addc3eb7b7462",
+      "sha256": "70955d3398536d9ad92dae4f8a33f2c68599685dfe8ceb7c61a7a9c71b4c6b74",
+      "bytes": 29554,
+      "width": 480,
+      "quality": 72
+    },
+    "thick-paint": {
+      "from": "public/styles/thick-paint.webp",
+      "from_sha256": "967646e3592c2aa9040a5740842e4b6a2d402b1ba07f7f8d44ff75b02831070f",
+      "sha256": "7e7a266e0b1ca0d9cb66d0db0b69f6e492f9025aea829677cb03cf0a4ae3aee1",
+      "bytes": 26784,
+      "width": 480,
+      "quality": 72
+    },
+    "stretched-caricature": {
+      "from": "public/styles/stretched-caricature.webp",
+      "from_sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
+      "sha256": "e31a27e90579e39f7a1e45fc93787c0dec3e3838b2ea75c04acd4433c90413e5",
+      "bytes": 16160,
+      "width": 480,
+      "quality": 72
+    },
+    "combed-paint": {
+      "from": "public/styles/combed-paint.webp",
+      "from_sha256": "8e09b3aa10299ecb10c434cbf97233b96a021c1a6b24a3ff0ffb884dd7882f5a",
+      "sha256": "cdf35d1b24e00f78de42e22f284111fa48a17b9fd343ef22e730b8526b1cef58",
+      "bytes": 30944,
+      "width": 480,
+      "quality": 72
+    },
+    "wet-paper": {
+      "from": "public/styles/wet-paper.webp",
+      "from_sha256": "103d40c791919c1442ecd4951c2ce78f850f4c6046964c26f810449cfdce2ad2",
+      "sha256": "41974f7997f5571371745cdbaf04af1a48e41a319d809baeefc38c1bb42664b7",
+      "bytes": 28260,
+      "width": 480,
+      "quality": 72
+    },
+    "single-ink": {
+      "from": "public/styles/single-ink.webp",
+      "from_sha256": "06e6623bf209d83a5b001dfb1cb564bf2e8b005c2f5bfc7f6428a5fc72222234",
+      "sha256": "38e5a1ed52a2b9aa9c633131ec4d6f72015cf083f0406471f63f941a1dbeec8c",
+      "bytes": 20546,
+      "width": 480,
+      "quality": 72
+    },
+    "retro-print": {
+      "from": "public/styles/retro-print.webp",
+      "from_sha256": "8e187cc2f84194bd8fe09117ccef1c0965609a58fea2a08f8bf413ab2a729dae",
+      "sha256": "714f8a8d9588ec4a4f213bc2363c40b25c249382446c315589429ae335dae67a",
+      "bytes": 95946,
+      "width": 480,
+      "quality": 72
+    },
+    "carved-block": {
+      "from": "public/styles/carved-block.webp",
+      "from_sha256": "463c275c9182ec7d02ec8ad8a69496df45ed903ddf98b877aa9d8b7ed4733456",
+      "sha256": "411f59d2b1ab7d4f195bb36125138479cf303db7871dac4d21227fad523ef3fe",
+      "bytes": 58676,
+      "width": 480,
+      "quality": 72
+    },
+    "wood-block": {
+      "from": "public/styles/wood-block.webp",
+      "from_sha256": "a7615809b56df69d0fea8b722bf88e86a4527d74cf96f59018e2c9503255b18a",
+      "sha256": "417e795577b04c48b469dfe3a739eb7a43138425c5a36e256b41260d042076dc",
+      "bytes": 78816,
+      "width": 480,
+      "quality": 72
+    },
+    "screen-print": {
+      "from": "public/styles/screen-print.webp",
+      "from_sha256": "a477bdcd3759cf011d8e47e16a8b4fdcf4c14cdb9541511630a19d9a84969780",
+      "sha256": "71a48ca3a6daab4947a67151eabead6d7420f1f42268052590052e4986a94096",
+      "bytes": 49464,
+      "width": 480,
+      "quality": 72
+    },
+    "newsprint-caricature": {
+      "from": "public/styles/newsprint-caricature.webp",
+      "from_sha256": "de3462109fdf2108ba3c5876536f5210d2a4a10c9d93ba2da94d1b8c2efaba5c",
+      "sha256": "cb271a7830024eb1e4034369899467511d60fbe3fc8b8cc25b000f37d1ff88d1",
+      "bytes": 72636,
+      "width": 480,
+      "quality": 72
+    },
+    "engraved-plate": {
+      "from": "public/styles/engraved-plate.webp",
+      "from_sha256": "9168ce549970383082ee84901b249a05dd142ce6f18f818742c84951f65dc993",
+      "sha256": "427bde32c215fd64c5fecf25e02e6286874ac79a715630889e7b1bfcac093327",
+      "bytes": 71578,
+      "width": 480,
+      "quality": 72
+    },
+    "double-pass": {
+      "from": "public/styles/double-pass.webp",
+      "from_sha256": "c213814a66379b4d3b1f9ff5ce8fdbf40ec8c41c17eaa9288713987b1786b6bd",
+      "sha256": "4d51f3008b4abd3177067bb906c6e2f44a39b6d8bfbb5757226782c1881b1cc2",
+      "bytes": 62814,
+      "width": 480,
+      "quality": 72
+    },
+    "paper-cutout": {
+      "from": "public/styles/paper-cutout.webp",
+      "from_sha256": "335087feca6eba5bbf2bfaf5423e6323adc6a7ea3e5c94846fb3f9a82e633117",
+      "sha256": "bf9439cf614849a70a18e53ab9eca1633bda8ef6e1ee5c66f5493033df039b4c",
+      "bytes": 17404,
+      "width": 480,
+      "quality": 72
+    },
+    "torn-paper": {
+      "from": "public/styles/torn-paper.webp",
+      "from_sha256": "6caf6fd8d2b47ab2ec55cda5a8b77a476358e713399f49fcf983099a00871623",
+      "sha256": "1f5e1ee6d3d278f33c1e2f4b8751241c3c5a7acb9ac8a1847bca8aa4e5916032",
+      "bytes": 35608,
+      "width": 480,
+      "quality": 72
+    },
+    "three-tone-panel": {
+      "from": "public/styles/three-tone-panel.webp",
+      "from_sha256": "3e4512141b1034521797dd5a726e1baae01ef83c7173e42016337d473207b0c3",
+      "sha256": "50f14fccc063ef8b93d091b09b3cbf2929f00fcc5d395e804718f0fc2967e612",
+      "bytes": 15618,
+      "width": 480,
+      "quality": 72
+    },
+    "wood-inlay": {
+      "from": "public/styles/wood-inlay.webp",
+      "from_sha256": "4b00b4f54982fc18873a943a4899cffd51add72d71985879674d99e3226de412",
+      "sha256": "d9340edfe0bfe1dfe65aba761a81740fdc9b444dd498dd449bec12eea7f2c709",
+      "bytes": 27292,
+      "width": 480,
+      "quality": 72
+    },
+    "fabric-applique": {
+      "from": "public/styles/fabric-applique.webp",
+      "from_sha256": "59b5bd03025dd2c2121b8e52fa1f8eb92d87e79ab86d07c2b811f39dbbddf3f3",
+      "sha256": "2fd444f0a48e2732d580f7df88041212ff9b3fcc53afe0486715bafe5824d744",
+      "bytes": 35670,
+      "width": 480,
+      "quality": 72
+    },
+    "modelled-caricature": {
+      "from": "public/styles/modelled-caricature.webp",
+      "from_sha256": "12c08b8b263fc4655416ef276b9744a7b2d32730b49b61de41a7c1e315359bac",
+      "sha256": "77497cc6b949f10ed274516253f1918f365e679c9dbc73e80ba06e9284197885",
+      "bytes": 17902,
+      "width": 480,
+      "quality": 72
+    },
+    "thread-work": {
+      "from": "public/styles/thread-work.webp",
+      "from_sha256": "108aa211cb27e73d445395420279209dc10f462e72914bedeff6d07dfe29e82a",
+      "sha256": "9ce58049740c643b06ab68658a94b9e538b0e590f71826e05ef2622f8b53e482",
+      "bytes": 72054,
+      "width": 480,
+      "quality": 72
+    }
+  }
+}

@@ -1,14 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import './globals.css'
-import LanguageSwitch from '@/components/language-switch'
-import SiteFooter from '@/components/site-footer'
-import { UploadProvider } from '@/components/upload-state'
+import '../globals.css'
+import SiteShell from '@/components/site-shell'
 import { getDictionary } from '@/lib/i18n'
 
 const SITE_URL = 'https://cartoonify.vercel.app'
 
-// Turkish is the default at the root. The English pages override the title,
-// the description and the Open Graph locale in their own metadata.
 const t = getDictionary('tr')
 
 export const metadata: Metadata = {
@@ -29,15 +25,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+// One of two root layouts (task 0010 section 3.4): this one is Turkish.
+export default function TurkishRootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr">
       <body>
-        <header className="site-header">
-          <LanguageSwitch />
-        </header>
-        <UploadProvider>{children}</UploadProvider>
-        <SiteFooter />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )

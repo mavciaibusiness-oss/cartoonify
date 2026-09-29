@@ -41,13 +41,15 @@ export const en: Dictionary = {
     heroAfterCaption: 'Classic Cartoon result',
     heroBeforeAlt: 'AI-generated portrait of a fictional adult',
     heroAfterAlt: 'The same portrait in the Classic Cartoon style',
-    groupsTitle: 'A complete style system in four creative groups',
-    groupsLede: 'Every generation uses the same supported Cartoonify style identifiers and the same backend flow.',
     groupCount: '{n} styles',
     howTitle: 'Workshop flow',
     step1: 'Upload your image by drag and drop or by choosing a file.',
     step2: 'Preview your image and choose a style card.',
     step3: 'Generate, review and download your cartoon.',
+  },
+  showcase: {
+    title: 'Every style at a glance',
+    lede: 'Each style with its preview, name and a short description. Pick one you like and try it on your own photo.',
   },
   kvkk: {
     lead: 'The image you upload is sent to ',

@@ -47,14 +47,15 @@ export const tr = {
     heroAfterCaption: 'Klasik Karikatür sonucu',
     heroBeforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan bir yetişkinin portresi',
     heroAfterAlt: 'Aynı portre, Klasik Karikatür stiliyle',
-    groupsTitle: 'Dört yaratıcı grupta eksiksiz stil sistemi',
-    groupsLede:
-      'Her oluşturma, desteklenen aynı Cartoonify stil kimliklerini ve aynı arka uç akışını kullanır.',
     groupCount: '{n} stil',
     howTitle: 'Atölye akışı',
     step1: 'Görselinizi sürükleyip bırakarak ya da dosya seçerek yükleyin.',
     step2: 'Görselinizi önizleyin ve bir stil kartı seçin.',
     step3: 'Oluşturun, inceleyin ve karikatürünüzü indirin.',
+  },
+  showcase: {
+    title: 'Tüm stiller tek sayfada',
+    lede: 'Her stilin önizlemesi, adı ve kısa açıklamasıyla burada. Beğendiğinizi seçip kendi fotoğrafınızla deneyin.',
   },
   kvkk: {
     lead: 'Yüklediğiniz görsel, karikatüre dönüştürülmek üzere ',

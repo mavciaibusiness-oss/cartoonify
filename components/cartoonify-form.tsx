@@ -175,21 +175,16 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
       <form onSubmit={handleSubmit} className="workshop-shell">
         <KvkkNotice locale={locale} />
 
-        <section className="workspace-stage" aria-label={t.form.workspaceLabel}>
-          <div className="workspace-stage-head">
-            <h2>{isResultVisible ? t.form.stepResult : t.form.stepPreview}</h2>
-            <div className="workspace-stage-head-right">
-              {status === 'loading' ? <span className="status-chip">{t.form.chipProcessing}</span> : null}
-              {status === 'success' ? <span className="status-chip success">{t.form.chipReady}</span> : null}
-              {status === 'error' ? <span className="status-chip error">{t.form.chipError}</span> : null}
-              <div className="workspace-stage-controls">
-                <label htmlFor="replace-image-input" className="ghost-button">
-                  {t.form.replace}
-                </label>
-                <button type="button" className="ghost-button" onClick={handleRemoveFile}>
-                  {t.form.remove}
-                </button>
-              </div>
+        <section className="workshop-upload" aria-label={t.form.stepPreview}>
+          <div className="workshop-upload-head">
+            <h2>{t.form.stepPreview}</h2>
+            <div className="workspace-stage-controls">
+              <label htmlFor="replace-image-input" className="ghost-button">
+                {t.form.replace}
+              </label>
+              <button type="button" className="ghost-button" onClick={handleRemoveFile}>
+                {t.form.remove}
+              </button>
             </div>
           </div>
 
@@ -200,6 +195,53 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
             accept={ALLOWED_MIME_TYPES.join(',')}
             onChange={handleReplaceFile}
           />
+
+          <div className="workshop-upload-file">
+            {previewUrl ? <img src={previewUrl} alt={t.form.originalAlt} className="workshop-upload-thumb" /> : null}
+            <span className="workshop-upload-name">{file?.name}</span>
+          </div>
+        </section>
+
+        <aside className="style-sidebar" aria-label={t.form.galleryLabel}>
+          <div className="style-sidebar-head">
+            <h2>{t.form.stepStyle}</h2>
+            <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
+          </div>
+
+          <div className="style-gallery" aria-describedby="cartoonify-style-description">
+            {galleryGroups.map((group) => (
+              <fieldset key={group.id} className="style-group">
+                <legend>{group.label}</legend>
+                <div className="style-grid">
+                  {group.styles.map((style) => (
+                    <StyleCard
+                      key={style.id}
+                      style={style}
+                      locale={locale}
+                      checked={styleId === style.id}
+                      disabled={status === 'loading'}
+                      onSelect={handleStyleSelect}
+                    />
+                  ))}
+                </div>
+              </fieldset>
+            ))}
+
+            <p id="cartoonify-style-description" className="style-description-live">
+              {selectedText.description}
+            </p>
+          </div>
+        </aside>
+
+        <section className="workshop-result" aria-label={t.form.workspaceLabel}>
+          <div className="workspace-stage-head">
+            <h2>{t.form.stepResult}</h2>
+            <div className="workspace-stage-head-right">
+              {status === 'loading' ? <span className="status-chip">{t.form.chipProcessing}</span> : null}
+              {status === 'success' ? <span className="status-chip success">{t.form.chipReady}</span> : null}
+              {status === 'error' ? <span className="status-chip error">{t.form.chipError}</span> : null}
+            </div>
+          </div>
 
           <div className="workspace-stage-image-wrap" data-canvas-state={status}>
             {status === 'loading' ? (
@@ -247,37 +289,6 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
             </p>
           ) : null}
         </section>
-
-        <aside className="style-sidebar" aria-label={t.form.galleryLabel}>
-          <div className="style-sidebar-head">
-            <h2>{t.form.stepStyle}</h2>
-            <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
-          </div>
-
-          <div className="style-gallery" aria-describedby="cartoonify-style-description">
-            {galleryGroups.map((group) => (
-              <fieldset key={group.id} className="style-group">
-                <legend>{group.label}</legend>
-                <div className="style-grid">
-                  {group.styles.map((style) => (
-                    <StyleCard
-                      key={style.id}
-                      style={style}
-                      locale={locale}
-                      checked={styleId === style.id}
-                      disabled={status === 'loading'}
-                      onSelect={handleStyleSelect}
-                    />
-                  ))}
-                </div>
-              </fieldset>
-            ))}
-
-            <p id="cartoonify-style-description" className="style-description-live">
-              {selectedText.description}
-            </p>
-          </div>
-        </aside>
       </form>
     </div>
   )
