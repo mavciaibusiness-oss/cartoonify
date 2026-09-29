@@ -37,7 +37,7 @@ export const en: Dictionary = {
     title: 'AI Photo to Cartoon Workshop',
     lede:
       'Upload a portrait, choose from every Cartoonify style in a visual gallery, generate in one click, and download right away.',
-    heroBeforeCaption: 'Original photo',
+    heroBeforeCaption: 'Source image',
     heroAfterCaption: 'Classic Cartoon result',
     heroBeforeAlt: 'AI-generated portrait of a fictional adult',
     heroAfterAlt: 'The same portrait in the Classic Cartoon style',
@@ -103,6 +103,20 @@ export const en: Dictionary = {
   },
   styleCard: {
     previewAlt: '{name} style preview',
+  },
+  gallery: {
+    title: 'Three styles for every photo',
+    lede: 'Each row shows one source image and three Cartoonify styles that suit it.',
+    sourceNote: 'The source images in this gallery are AI-generated, not photos of real people.',
+    sourceCaption: 'Source',
+    renderAlt: '{source} in the {style} style',
+    alt: {
+      'pet': 'AI-generated photo of a cat and a dog sitting side by side on a sofa',
+      'maiden-tower': "AI-generated photo of the Maiden's Tower in Istanbul",
+      'paris-street': 'AI-generated photo of a Paris street',
+      'man-portrait': 'AI-generated portrait of a fictional adult man',
+      'still-life': 'AI-generated still life of fruit and a jug on a wooden table',
+    },
   },
   client: {
     network: 'A network problem occurred. Please try again.',

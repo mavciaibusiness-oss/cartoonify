@@ -43,7 +43,7 @@ export const tr = {
     title: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi',
     lede:
       'Bir portre yükleyin, tüm Cartoonify stilleri arasından görsel bir galeriden seçim yapın, tek tıkla oluşturun ve hemen indirin.',
-    heroBeforeCaption: 'Özgün fotoğraf',
+    heroBeforeCaption: 'Kaynak görsel',
     heroAfterCaption: 'Klasik Karikatür sonucu',
     heroBeforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan bir yetişkinin portresi',
     heroAfterAlt: 'Aynı portre, Klasik Karikatür stiliyle',
@@ -111,6 +111,20 @@ export const tr = {
   },
   styleCard: {
     previewAlt: '{name} stil önizlemesi',
+  },
+  gallery: {
+    title: 'Her fotoğrafa uyan üç stil',
+    lede: 'Her satırda bir kaynak görsel ve ona yakışan üç Cartoonify stili.',
+    sourceNote: 'Galerideki kaynak görseller yapay zekâ ile üretilmiştir; gerçek kişilerin fotoğrafı değildir.',
+    sourceCaption: 'Kaynak',
+    renderAlt: '{source}, {style} stiliyle',
+    alt: {
+      'pet': 'Kanepede yan yana oturan bir kedi ve bir köpeğin yapay zekâ ile üretilmiş fotoğrafı',
+      'maiden-tower': "Kız Kulesi'nin yapay zekâ ile üretilmiş fotoğrafı",
+      'paris-street': 'Parisli bir sokağın yapay zekâ ile üretilmiş fotoğrafı',
+      'man-portrait': 'Gerçek olmayan yetişkin bir erkeğin yapay zekâ ile üretilmiş portresi',
+      'still-life': 'Ahşap masada meyveler ve sürahiden oluşan, yapay zekâ ile üretilmiş bir natürmort',
+    },
   },
   client: {
     network: 'Bir ağ sorunu oluştu. Lütfen tekrar deneyin.',

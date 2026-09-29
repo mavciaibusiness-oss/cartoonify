@@ -153,6 +153,7 @@ footer a:hover {
 }
 
 .landing-hero,
+.landing-gallery,
 .group-intro,
 .how-it-works,
 .workshop-empty,
@@ -455,7 +456,8 @@ footer a:hover {
 .hero-pair {
   display: grid;
   gap: 0.9rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
 }
 
 .hero-pair figure {
@@ -479,6 +481,81 @@ footer a:hover {
   color: var(--muted);
   font-size: 0.85rem;
   margin-top: 0.45rem;
+}
+
+/*
+ * The landing stage (task 0009): the pair, then the upload column holding the
+ * disclosure and then the file input. Two columns from 900px, set in the media
+ * query below. Nothing here or there reorders a child: the notice's place
+ * before the input is the DOM's, at every width (criterion 11).
+ */
+.landing-stage {
+  display: grid;
+  gap: 1rem;
+}
+
+.landing-upload {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+/*
+ * The landing gallery: one row per source, the source then its three renders.
+ * Plain repeat() tracks and no numeric floor, so the first numeric floor in
+ * this file stays the picker grid's (task 0004 criterion 11).
+ */
+.landing-gallery {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.2rem;
+}
+
+.gallery-lede,
+.gallery-note {
+  color: var(--muted);
+}
+
+.gallery-note {
+  font-size: 0.85rem;
+}
+
+.gallery-rows {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.gallery-row {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gallery-row figure {
+  margin: 0;
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 0.4rem;
+}
+
+.gallery-row .gallery-source {
+  border-color: rgba(185, 204, 255, 0.45);
+}
+
+.gallery-row img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.6rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.gallery-row figcaption {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
 }
 
 .style-card {
@@ -650,6 +727,20 @@ footer a:hover {
 
   .hero-pair {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .landing-stage {
+    grid-template-columns: 1.25fr 1fr;
+    align-items: start;
+  }
+
+  .landing-upload {
+    position: sticky;
+    top: 1rem;
+  }
+
+  .gallery-row {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .workshop-shell {

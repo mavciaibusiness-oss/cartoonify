@@ -1,5 +1,5 @@
 {
-  "control_hash": "dd69364b6d95f06c1eafe27432d66fa4f88492cc76c5a488a7ff63c09b796a3d",
+  "control_hash": "cd348165aa9199ae40b19ad19f8761791fa6b4387616eb77279a4beb08596a6e",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -10,6 +10,7 @@
     ".mavci/control/tasks/0006.json",
     ".mavci/control/tasks/0007.json",
     ".mavci/control/tasks/0008.json",
+    ".mavci/control/tasks/0009.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -19,6 +20,7 @@
     ".mavci/control/verdicts/0006-attempt-01.json",
     ".mavci/control/verdicts/0007-attempt-01.json",
     ".mavci/control/verdicts/0008-attempt-01.json",
+    ".mavci/control/verdicts/0009-attempt-02.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -139,17 +141,24 @@
     ".mavci/control/verdicts/adhoc-1790688739462.json",
     ".mavci/control/verdicts/adhoc-1790690244137.json",
     ".mavci/control/verdicts/adhoc-1790690259980.json",
+    ".mavci/control/verdicts/adhoc-1790693174761.json",
+    ".mavci/control/verdicts/adhoc-1790693751030.json",
+    ".mavci/control/verdicts/adhoc-1790694830302.json",
+    ".mavci/control/verdicts/adhoc-1790695014227.json",
+    ".mavci/control/verdicts/adhoc-1790697417137.json",
+    ".mavci/control/verdicts/adhoc-1790697651477.json",
+    ".mavci/control/verdicts/adhoc-1790698017704.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-09-29T13:57:40Z",
+    "at": "2026-09-29T16:06:57Z",
     "continues": 0,
     "plugin_version": "0.1.35",
-    "prompt_id": "97ccc252-b8ca-4017-8301-41e8f0d7a657",
-    "session_id": "64f9b919-cf2b-42a6-82d3-fb44ee40f936",
+    "prompt_id": "f159ca01-42a9-40e2-be47-205e83916a06",
+    "session_id": "e708ab02-9c14-46e2-bc9c-8f7fda366cac",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-09-29T14:18:16Z",
+  "sealed_at": "2026-09-29T16:11:33Z",
   "sealed_by_plugin_version": "0.1.35"
 }

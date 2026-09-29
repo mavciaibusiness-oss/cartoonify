@@ -1,0 +1,23 @@
+{
+  "attempts": 2,
+  "attempts_total": 2,
+  "blocked_by": null,
+  "created": "2026-09-29T14:37:05Z",
+  "id": "0009",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-09-29T14:57:51Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0009-monica-style-landing-and-gallery.md",
+    "spec_sha256": "d204b43a5eb729048f3786ea5ed28e5622114790c20d7005e89835e320f2bc13"
+  },
+  "status": "done",
+  "updated": "2026-09-29T16:11:33Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0009-attempt-02.json"
+  ]
+}

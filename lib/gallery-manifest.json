@@ -1,0 +1,1066 @@
+{
+  "model": "gpt-image-2.5-sunburst",
+  "quality": "medium",
+  "size": "1024x1024",
+  "ceiling_usd": 1,
+  "rates": {
+    "text_input_per_m": 5,
+    "image_input_per_m": 8,
+    "image_output_per_m": 30,
+    "source": "https://developers.openai.com/api/docs/pricing",
+    "retrieved": "2026-09-29"
+  },
+  "sources": {
+    "pet": {
+      "path": "assets/gallery/pet/source.jpg",
+      "sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic photograph of a ginger tabby cat and a golden retriever dog sitting side by side on a light grey sofa, both looking toward the camera, soft window light from the left, shallow depth of field, cosy living room softly blurred behind them. No people, no collars with tags, no text, no logos.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 73,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 73
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 512
+      },
+      "cost_usd": 0.013535,
+      "latency_ms": 16668,
+      "at": "2026-09-29T15:31:39.356Z",
+      "approved": {
+        "sha256_prefix": "3bca2f594279",
+        "at": "2026-09-29T15:49:55.981Z"
+      }
+    },
+    "maiden-tower": {
+      "path": "assets/gallery/maiden-tower/source.jpg",
+      "sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic travel photograph of the Maiden's Tower (Kız Kulesi) on its small islet in the Bosphorus, Istanbul, seen from the Üsküdar shore at golden hour, calm blue water, a few seagulls, the European shore softly visible behind. No people in the foreground, no boats with visible names, no text, no logos, no watermark.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 87,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 87
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 526
+      },
+      "cost_usd": 0.013605,
+      "latency_ms": 18210,
+      "at": "2026-09-29T15:31:56.029Z",
+      "approved": {
+        "sha256_prefix": "e9cbb3dfc64e",
+        "at": "2026-09-29T15:49:56.169Z"
+      }
+    },
+    "paris-street": {
+      "path": "assets/gallery/paris-street/source.jpg",
+      "sha256": "747431082d45fc23379e52116b701b7238d4b0613a0d32d77543d2014473e5e1",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic photograph of a quiet cobblestone street in Paris in the morning, cream Haussmann-style buildings with wrought-iron balconies and flower boxes, a café terrace with empty bistro chairs, soft overcast light. No identifiable people, no readable signs or shop names, no text, no logos, no watermark.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 73,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 73
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 512
+      },
+      "cost_usd": 0.013535,
+      "latency_ms": 18144,
+      "at": "2026-09-29T15:32:14.243Z",
+      "approved": {
+        "sha256_prefix": "747431082d45",
+        "at": "2026-09-29T15:49:56.361Z"
+      }
+    },
+    "man-portrait": {
+      "path": "assets/gallery/man-portrait/source.jpg",
+      "sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic portrait photograph of a fictional adult man, about 40 years old, head and shoulders, facing the camera with a relaxed friendly expression, short dark hair greying at the temples, neatly trimmed beard, navy crew-neck sweater, plain warm grey studio background, soft even light. Natural skin texture, sharp focus on the face, no hands in frame, no glasses, no jewellery, no text, no logos. The person is invented and must not resemble any real or famous person.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 106,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 545
+      },
+      "cost_usd": 0.0137,
+      "latency_ms": 13826,
+      "at": "2026-09-29T15:32:32.390Z",
+      "approved": {
+        "sha256_prefix": "ebe1ce07b600",
+        "at": "2026-09-29T15:49:56.548Z"
+      }
+    },
+    "still-life": {
+      "path": "assets/gallery/still-life/source.jpg",
+      "sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "generator": "gpt-image-2.5-sunburst",
+      "prompt": "Photorealistic still-life photograph on a dark wooden table: a white ceramic jug, three pears, a bunch of red grapes, a halved pomegranate and a folded linen cloth, lit by soft side light from a window on the left against a plain dark background, in the manner of a classical painted still life. No text, no logos, no watermark.",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "jpeg",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 80,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 80
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 519
+      },
+      "cost_usd": 0.01357,
+      "latency_ms": 14991,
+      "at": "2026-09-29T15:32:46.248Z",
+      "approved": {
+        "sha256_prefix": "d0ea0b09259c",
+        "at": "2026-09-29T15:49:58.194Z"
+      }
+    }
+  },
+  "renders": {
+    "pet": {
+      "cel-frame": {
+        "file": "assets/gallery/pet/cel-frame.webp",
+        "sha256": "5d9577e749d28eb7210bed03973d9599508bf5daa7937b0bd641f74052d7259f",
+        "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1125,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 101
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1564
+        },
+        "cost_usd": 0.021867,
+        "latency_ms": 22647,
+        "at": "2026-09-29T15:50:04.859Z"
+      },
+      "soft-pastel": {
+        "file": "assets/gallery/pet/soft-pastel.webp",
+        "sha256": "66400698fbc56b8f8fb9458a3d2a6cdb2392a9863a02f2f84d249d3ac5d49925",
+        "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1126,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 102
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1565
+        },
+        "cost_usd": 0.021872,
+        "latency_ms": 21426,
+        "at": "2026-09-29T15:50:27.508Z"
+      },
+      "flat-colour": {
+        "file": "assets/gallery/pet/flat-colour.webp",
+        "sha256": "435bd7376333135307d98a3c5b0af9bd6bf70263c21ce5d6c9e8fac330d156f6",
+        "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1123,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 99
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1562
+        },
+        "cost_usd": 0.021857,
+        "latency_ms": 20209,
+        "at": "2026-09-29T15:50:48.936Z"
+      }
+    },
+    "maiden-tower": {
+      "line-wash": {
+        "file": "assets/gallery/maiden-tower/line-wash.webp",
+        "sha256": "26f7c3145932edfe243ce695c6f7b470eb1380108038495d7008f0724a6d3e13",
+        "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1129,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 105
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1568
+        },
+        "cost_usd": 0.021887,
+        "latency_ms": 20942,
+        "at": "2026-09-29T15:51:09.150Z"
+      },
+      "retro-print": {
+        "file": "assets/gallery/maiden-tower/retro-print.webp",
+        "sha256": "595ca2ae4a666207f4a1327cd7b9c4b83f1558b621579531ddac0574890955ae",
+        "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1129,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 105
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1568
+        },
+        "cost_usd": 0.021887,
+        "latency_ms": 19385,
+        "at": "2026-09-29T15:51:30.093Z"
+      },
+      "wood-block": {
+        "file": "assets/gallery/maiden-tower/wood-block.webp",
+        "sha256": "2423e66e01ee228bc47c7ef1c8a758665f479e794dce4ac3ed535ce286623b8f",
+        "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1129,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 105
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1568
+        },
+        "cost_usd": 0.021887,
+        "latency_ms": 21374,
+        "at": "2026-09-29T15:51:49.480Z"
+      }
+    },
+    "paris-street": {
+      "hatched-line": {
+        "file": "assets/gallery/paris-street/hatched-line.webp",
+        "sha256": "f5ccaec6e9521bda13dafd3cac1fb60b62aadf5e3b1e7b2707f3773deec39927",
+        "input_sha256": "747431082d45fc23379e52116b701b7238d4b0613a0d32d77543d2014473e5e1",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1127,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 103
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1566
+        },
+        "cost_usd": 0.021877,
+        "latency_ms": 22289,
+        "at": "2026-09-29T15:52:10.856Z"
+      },
+      "wet-paper": {
+        "file": "assets/gallery/paris-street/wet-paper.webp",
+        "sha256": "d16ce17881d6701ecaeb995025f89ea316ff44f10b7f41305df8b83279df7ca3",
+        "input_sha256": "747431082d45fc23379e52116b701b7238d4b0613a0d32d77543d2014473e5e1",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1133,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 109
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1572
+        },
+        "cost_usd": 0.021907,
+        "latency_ms": 22949,
+        "at": "2026-09-29T15:52:33.147Z"
+      },
+      "screen-print": {
+        "file": "assets/gallery/paris-street/screen-print.webp",
+        "sha256": "a1729258dddf485371261297454038a108c871ba86257e427cfe9d8206b48dd5",
+        "input_sha256": "747431082d45fc23379e52116b701b7238d4b0613a0d32d77543d2014473e5e1",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1124,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 100
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1563
+        },
+        "cost_usd": 0.021862,
+        "latency_ms": 22680,
+        "at": "2026-09-29T15:52:56.101Z"
+      }
+    },
+    "man-portrait": {
+      "feature-caricature": {
+        "file": "assets/gallery/man-portrait/feature-caricature.webp",
+        "sha256": "86ab85d7e3c0eff89182d8dc619ba16fca6fff7fc20c096871cf90ea84cad770",
+        "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1145,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 121
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1584
+        },
+        "cost_usd": 0.021967,
+        "latency_ms": 20802,
+        "at": "2026-09-29T15:53:18.782Z"
+      },
+      "engraved-plate": {
+        "file": "assets/gallery/man-portrait/engraved-plate.webp",
+        "sha256": "b91a343b8ab388c0a6550394e41574f888060cc932d0840a192e201fffc09081",
+        "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1133,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 109
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1572
+        },
+        "cost_usd": 0.021907,
+        "latency_ms": 20410,
+        "at": "2026-09-29T15:53:39.585Z"
+      },
+      "two-ink": {
+        "file": "assets/gallery/man-portrait/two-ink.webp",
+        "sha256": "6a1cf8e9985d89b584a5dfc87d512e241d2ea67e0acd878725dd625088aec356",
+        "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1128,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 104
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1567
+        },
+        "cost_usd": 0.021882,
+        "latency_ms": 18698,
+        "at": "2026-09-29T15:53:59.998Z"
+      }
+    },
+    "still-life": {
+      "three-tone-panel": {
+        "file": "assets/gallery/still-life/three-tone-panel.webp",
+        "sha256": "77277f8fe564911839606a0389fcfdb083db05b762da468dd222039a24f8a34b",
+        "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1126,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 102
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1565
+        },
+        "cost_usd": 0.021872,
+        "latency_ms": 21258,
+        "at": "2026-09-29T15:54:18.700Z"
+      },
+      "double-pass": {
+        "file": "assets/gallery/still-life/double-pass.webp",
+        "sha256": "11106391d5f4212c513887889b12da3b3abdc2fcd9ea01f16f1de2855b9c1597",
+        "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1132,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 108
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1571
+        },
+        "cost_usd": 0.021902,
+        "latency_ms": 20102,
+        "at": "2026-09-29T15:54:39.960Z"
+      },
+      "wood-inlay": {
+        "file": "assets/gallery/still-life/wood-inlay.webp",
+        "sha256": "b06c076efebab0d63c4314bf617b4fdbc1b60502573990d68f51622767173c7f",
+        "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+        "request": {
+          "size": "1024x1024",
+          "quality": "medium",
+          "output_format": "webp",
+          "output_compression": 80
+        },
+        "response_quality": "medium",
+        "response_size": "1024x1024",
+        "response": {
+          "quality": "medium",
+          "size": "1024x1024",
+          "output_format": "webp",
+          "keys": [
+            "background",
+            "created",
+            "data",
+            "output_format",
+            "quality",
+            "size",
+            "usage"
+          ]
+        },
+        "usage": {
+          "input_tokens": 1126,
+          "input_tokens_details": {
+            "image_tokens": 1024,
+            "text_tokens": 102
+          },
+          "output_tokens": 439,
+          "output_tokens_details": {
+            "image_tokens": 439,
+            "text_tokens": 0
+          },
+          "total_tokens": 1565
+        },
+        "cost_usd": 0.021872,
+        "latency_ms": 22315,
+        "at": "2026-09-29T15:55:00.065Z"
+      }
+    }
+  },
+  "web_files": {
+    "public/gallery/pet/source.webp": {
+      "from": "assets/gallery/pet/source.jpg",
+      "from_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "sha256": "45fc2dfbab2a8619c3590e3017ded491e6ca7d2415aff207a9102d265335b6a1",
+      "bytes": 34064,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/pet/cel-frame.webp": {
+      "from": "assets/gallery/pet/cel-frame.webp",
+      "from_sha256": "5d9577e749d28eb7210bed03973d9599508bf5daa7937b0bd641f74052d7259f",
+      "sha256": "e802ca741f34afcd1050b726e81cb5dd804937399bfc54a2ad853529f739c54f",
+      "bytes": 48098,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/pet/soft-pastel.webp": {
+      "from": "assets/gallery/pet/soft-pastel.webp",
+      "from_sha256": "66400698fbc56b8f8fb9458a3d2a6cdb2392a9863a02f2f84d249d3ac5d49925",
+      "sha256": "49835fd72ecb594c21e6178e13813533b6a6c2b2cd8671c2a243b24ece5e8367",
+      "bytes": 32040,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/pet/flat-colour.webp": {
+      "from": "assets/gallery/pet/flat-colour.webp",
+      "from_sha256": "435bd7376333135307d98a3c5b0af9bd6bf70263c21ce5d6c9e8fac330d156f6",
+      "sha256": "6f66c2b30d01aa7652623dca981db753b2c4ebf544c8fcfaabfca4937092671b",
+      "bytes": 16710,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/maiden-tower/source.webp": {
+      "from": "assets/gallery/maiden-tower/source.jpg",
+      "from_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "sha256": "45aec381c97852470c4c502a421612e34f4ae3f8579df277edcaf33198dfd36b",
+      "bytes": 43412,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/maiden-tower/line-wash.webp": {
+      "from": "assets/gallery/maiden-tower/line-wash.webp",
+      "from_sha256": "26f7c3145932edfe243ce695c6f7b470eb1380108038495d7008f0724a6d3e13",
+      "sha256": "96f529b39bc95be5e549d93c152d7659c6d92bbfcbe2ebdb065d577fc20e2c87",
+      "bytes": 48602,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/maiden-tower/retro-print.webp": {
+      "from": "assets/gallery/maiden-tower/retro-print.webp",
+      "from_sha256": "595ca2ae4a666207f4a1327cd7b9c4b83f1558b621579531ddac0574890955ae",
+      "sha256": "a05aaf4bf28ffb371f06c2e4f0ca785148a214628cb44a5678b92d149a0c6992",
+      "bytes": 75872,
+      "width": 480,
+      "quality": 60
+    },
+    "public/gallery/maiden-tower/wood-block.webp": {
+      "from": "assets/gallery/maiden-tower/wood-block.webp",
+      "from_sha256": "2423e66e01ee228bc47c7ef1c8a758665f479e794dce4ac3ed535ce286623b8f",
+      "sha256": "db1ee066ccd35eaea699f01a6ed6d92597452bba8fcd5291d9c97a0b8d031cb0",
+      "bytes": 75564,
+      "width": 560,
+      "quality": 60
+    },
+    "public/gallery/paris-street/source.webp": {
+      "from": "assets/gallery/paris-street/source.jpg",
+      "from_sha256": "747431082d45fc23379e52116b701b7238d4b0613a0d32d77543d2014473e5e1",
+      "sha256": "470136087ffd320d8660a05a281c0da4ac00cda55d8c10006cbda55f2a9e4342",
+      "bytes": 79836,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/paris-street/hatched-line.webp": {
+      "from": "assets/gallery/paris-street/hatched-line.webp",
+      "from_sha256": "f5ccaec6e9521bda13dafd3cac1fb60b62aadf5e3b1e7b2707f3773deec39927",
+      "sha256": "0930006fc7e67ee02aad1f5d48fa8473522c4206db57d77064259039aa77aba9",
+      "bytes": 72798,
+      "width": 560,
+      "quality": 48
+    },
+    "public/gallery/paris-street/wet-paper.webp": {
+      "from": "assets/gallery/paris-street/wet-paper.webp",
+      "from_sha256": "d16ce17881d6701ecaeb995025f89ea316ff44f10b7f41305df8b83279df7ca3",
+      "sha256": "7b61090079933addd17d5c26fcc5dab4509f59b9770cb1daaccb563fa43ca112",
+      "bytes": 70678,
+      "width": 640,
+      "quality": 60
+    },
+    "public/gallery/paris-street/screen-print.webp": {
+      "from": "assets/gallery/paris-street/screen-print.webp",
+      "from_sha256": "a1729258dddf485371261297454038a108c871ba86257e427cfe9d8206b48dd5",
+      "sha256": "37d84835f70186dbc9ae4b28c05abcb6615b421577fb5ec0fed1e867e01f918b",
+      "bytes": 73676,
+      "width": 640,
+      "quality": 60
+    },
+    "public/gallery/man-portrait/source.webp": {
+      "from": "assets/gallery/man-portrait/source.jpg",
+      "from_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "sha256": "3b783e927dcdf61b4c668545a815034b37b8f1858b2098e43cdfd5f1e11ec4b5",
+      "bytes": 14048,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/man-portrait/feature-caricature.webp": {
+      "from": "assets/gallery/man-portrait/feature-caricature.webp",
+      "from_sha256": "86ab85d7e3c0eff89182d8dc619ba16fca6fff7fc20c096871cf90ea84cad770",
+      "sha256": "78f10dc739e52f38288803a4f96e67e46125d479165bbce627bb3e4fa7527892",
+      "bytes": 54364,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/man-portrait/engraved-plate.webp": {
+      "from": "assets/gallery/man-portrait/engraved-plate.webp",
+      "from_sha256": "b91a343b8ab388c0a6550394e41574f888060cc932d0840a192e201fffc09081",
+      "sha256": "793e39e0655aa72aae039bdee69a600aed08e8a01b61655964dec33e0042c30b",
+      "bytes": 71192,
+      "width": 560,
+      "quality": 72
+    },
+    "public/gallery/man-portrait/two-ink.webp": {
+      "from": "assets/gallery/man-portrait/two-ink.webp",
+      "from_sha256": "6a1cf8e9985d89b584a5dfc87d512e241d2ea67e0acd878725dd625088aec356",
+      "sha256": "3e24ac091491d9e612f6cbe4d11749b75c5c4949059f24c3117a9f5993148cf5",
+      "bytes": 21126,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/still-life/source.webp": {
+      "from": "assets/gallery/still-life/source.jpg",
+      "from_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "sha256": "87ce7ff6b92fac14ebb52f5b4c4db21c5ae652ba8efb52281607257c81ffc325",
+      "bytes": 26140,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/still-life/three-tone-panel.webp": {
+      "from": "assets/gallery/still-life/three-tone-panel.webp",
+      "from_sha256": "77277f8fe564911839606a0389fcfdb083db05b762da468dd222039a24f8a34b",
+      "sha256": "4d3a23eb0c2ef1302bb606c6ba4ba81453c3dbfe4b1791d5b13fc62a48509875",
+      "bytes": 16298,
+      "width": 640,
+      "quality": 72
+    },
+    "public/gallery/still-life/double-pass.webp": {
+      "from": "assets/gallery/still-life/double-pass.webp",
+      "from_sha256": "11106391d5f4212c513887889b12da3b3abdc2fcd9ea01f16f1de2855b9c1597",
+      "sha256": "69a72853a9ad35383f0b617805e60c0de8c7c0ccff372ea46883b54b430fbe91",
+      "bytes": 76516,
+      "width": 640,
+      "quality": 60
+    },
+    "public/gallery/still-life/wood-inlay.webp": {
+      "from": "assets/gallery/still-life/wood-inlay.webp",
+      "from_sha256": "b06c076efebab0d63c4314bf617b4fdbc1b60502573990d68f51622767173c7f",
+      "sha256": "85237c201ae458e90473a217c3f46ac194b544bbbe1596e555f8214c6a8e777c",
+      "bytes": 38794,
+      "width": 640,
+      "quality": 72
+    }
+  },
+  "discarded": [],
+  "last_error": null
+}
