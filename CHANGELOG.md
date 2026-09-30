@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **ProToolHub brand, header strip, turquoise-to-pink palette, clickable cards, site URL from environment** (task 0015, Sept 30 2026)
+  - Brand: every visible "Cartoonify" becomes "ProToolHub"; the tool is named "AI Karikatür Atölyesi" / "AI Cartoon Studio" on badges and worksheets (legal pages unchanged)
+  - Header strip: ProToolHub icon and name with four-link menu (Home, Studio, Styles, Contact) and TR|EN on every page; sticky on wide screens, scrolls on mobile
+  - Colour palette: from violet-blue to logo's dark turquoise `#1f6f79`, light turquoise `#e3f4f5`, pink `#f48fb1`; WCAG AA 4.5:1 contrast maintained on all surfaces
+  - Gallery and showcase tiles become links: `/workshop?style=<id>` with merged styles resolving to targets; invalid values fall back to default silently
+  - Site address: moved from hardcoded `https://cartoonify.vercel.app` to `NEXT_PUBLIC_SITE_URL` environment variable (default `https://cartoonify-steel.vercel.app`), read in `lib/env.ts`
+  - Canonical links, Open Graph, sitemap and robots.txt all use the environment-configured address
+  - Workshop panel positioned under the header strip (60 px); scroll margins prevent content hiding behind the band
+  - Menu items: two-row layout on mobile (brand + language switch on row 1, menu with horizontal scroll on row 2); single row on wide screens
+
 - **Style data model: an explicit category field, two style merges reducing 31 active styles to 29** (task 0014, Sept 30 2026)
   - Every style in `lib/cartoon-styles.ts` carries a `category` field typed as `StyleCategory` (one of twelve: cartoon, line, drawing, paint, print, paper, textile, sculpt, caricature, graphic, era, surface), matching `data/style-catalog-draft.json` from the approved plan (task 0013)
   - Category names added to `lib/i18n/tr.ts` and `lib/i18n/en.ts` under `styleCategories`; not rendered in 0014

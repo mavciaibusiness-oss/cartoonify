@@ -9,4 +9,4 @@ Work outside any task's scope. The operator decides what becomes a task. One ite
 - Style catalogue 31 → ~100: first the catalogue plan, then generation, then the category filter (operator request)
 - The KVKK legal page does not mention OpenAI; for the lawyer (0007)
 - Retro: 54–60 are queued (60, filed: the scribe invents content and reverses claims); candidate 61: the criteria set carried from task to task keeps growing, and permanent criteria should move into a project-level regression set
-- `app/(tr)/(legal)/terms/page.tsx:12` still names the service Cartoonify; renaming it is a contract edit, for the lawyer with the legal review (0015 §2.2)
+- For the lawyer, with the legal review (REVIEW REQUIRED pages; 0015 §2.2): (1) the legal pages `terms`, `privacy`, `kvkk` and `cookies` under `app/(tr)/(legal)/` are written without Turkish characters, in ASCII (e.g. "sozlesme", "kisisel"); (2) `terms/page.tsx:17` has an "Abonelik ve odeme" section, although no subscription or payment is offered; (3) `terms/page.tsx:12` still names the service Cartoonify. All three are contract/legal-text edits, not code tasks

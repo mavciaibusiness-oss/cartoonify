@@ -31,6 +31,11 @@ checks) is in `.claude/CLAUDE.md`.
   scope, so plan around it.
 - **Always verify the scribe's output** against its sources before reporting
   or committing it (finding 60).
+- **`npm run dev` must be off before verify; check before verify starts.** Look
+  for any `node` process running `next dev` or `next start` in this project,
+  and confirm `.next/BUILD_ID` exists. A forgotten `next dev` wrote into
+  `.next` during 0015's first verify, and the environment fault was recorded
+  as a failed attempt (finding 62).
 
 ## Where things are
 

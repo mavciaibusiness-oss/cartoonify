@@ -6390,3 +6390,60 @@ The pattern holds across four tasks: given verbatim sources and explicit rules, 
 
 No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
 
+---
+
+# Finding 61 - A task whose only verdict is FAIL reaches release and done: advance-phase verify->release and task-status done never read the verdict
+
+Filed: 2026-09-30T14:29:18Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs advancePhase (verify -> release edge), closeTask via --task-status done, incrementAttempt`
+
+Observed on cartoonify task 0015, 2026-09-30. Attempt 1 was verified and the recorded verdict for that attempt is "fail" (criterion 50; the cause was environmental: a forgotten next dev process overwrote .next mid-run).
+
+The operator then ran, by mistake, state.mjs --advance-phase 0015 --from verify --to release and state.mjs --task-status 0015 --status done. Both succeeded. The task record then said phase release, status done, with a verdicts list holding only the failing attempt-1 verdict, and that state was committed and pushed as 8d78561.
+
+Source, plugin 0.1.35 scripts/state.mjs: advancePhase (lines 580-647) refuses on exactly four things, listed in its own header comment: the task phase is not --from; --to is not a legal step; no spec_approved; the spec hash changed. It never reads the task verdicts. PHASE_STEPS (lines 241-254) makes verify -> release a legal step, and the comment on the illegal-step refusal says skipping a phase "is how a task reaches release without being verified" - a verify that FAILED reaches release the same way and is not refused.
+
+--task-status <id> --status done (CLI lines 1329-1345) calls closeTask (lines 447-450), which sets status and clears the active-task pointer and also never reads the verdicts.
+
+Follow-on: state.mjs --attempt 0015 then ran incrementAttempt (lines 410-423). It has no phase check and no status check beyond the ceiling and assertSoleInProgress, so it reopened the done task as in_progress while the task and project phase stayed release. The project active-task pointer stayed null (closeTask cleared it; nothing sets it back), so the project state and the task record now disagree about whether a task is active.
+
+route.mjs had correctly named the next step after the FAIL as "rework -> mavci-builder". The gate did not enforce what the router said, so the quality gate is skippable by one operator command, with no record that it was skipped.
+
+### The assertion, and the broken build it must catch
+
+Build a fixture task in phase verify whose verdicts list holds one verdict for the current attempt with verdict "fail". Assert that --advance-phase <id> --from verify --to release exits non-zero and leaves both the task phase and the project phase at verify; assert the same for a task with no verdict naming its current attempt.
+
+Assert that --task-status <id> --status done exits non-zero on the same fixture, and exits zero only when the latest verdict names the current attempt and is "pass" (or when an explicit, recorded operator override flag is given, whose use is written into the task record).
+
+Assert that --attempt <id> on a task whose status is done, or whose phase is release, exits non-zero unless an explicit reopen is requested, and that a reopen also restores the project active-task pointer.
+
+The broken build these catch is 0.1.35 itself: on it all three commands succeed on the fixture.
+
+---
+
+# Finding 62 - verify has no guard against another process writing .next while criteria run, so an environment fault is recorded as a failed attempt
+
+Filed: 2026-09-30T14:34:56Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs --run-criteria (preflight before the first criterion; and the build that criterion 3 makes)`
+
+Observed on cartoonify task 0015, 2026-09-30. verify.mjs --run-criteria 0015 --have shell,server,browser --record ran attempt 1. Criterion 3 built .next with next build; later criteria start next start on that build.
+
+At 17:20:36 local (during the run; the verdict run_at is 2026-09-30T14:19:29Z) a next dev process started in the same repository, outside the verification, and wrote its development output into .next: afterwards .next held static/development and no BUILD_ID.
+
+Criterion 50 (a browser criterion on its own next start) then measured an unstyled page: .site-header at t=8, h=72, l=8 (the default body margin, so the stylesheet was not loaded) and not sticky, and the following navigation to /en timed out. The attempt was recorded as a failed attempt (verdict fail, 50 of 51 pass).
+
+Re-running criterion 50 alone afterwards failed with ".next has no build; criterion 3 builds it". The code was unchanged; after the next dev process was stopped and a clean next build was made, attempt 2 passed 51 of 51 with the same code, criterion 50 included.
+
+Nothing in verify.mjs checks, before or during the run, whether another next process is running in the project or whether .next still holds the production build criterion 3 made. The retry ceiling counts the environmental failure exactly like a code failure.
+
+### The assertion, and the broken build it must catch
+
+Proposal, either or both: (a) at the start of --run-criteria, refuse to record (exit non-zero with a named reason, not a fail verdict) when a node process whose command line runs next dev or next start is alive with the project as its working directory; after the build criterion, record .next/BUILD_ID and re-check it before each later criterion, refusing the run as "environment changed" if it differs or is missing. (b) run criteria against a separate distDir owned by the run, so an outside next dev cannot write into it.
+
+Assertion against the broken build (0.1.35): start next dev in a fixture project, then run verify.mjs --run-criteria --record on a task whose criteria include a next build and a next start criterion. On 0.1.35 the run records a verdict (fail or pass, depending on timing) and consumes an attempt. The fixed build must instead refuse before the first criterion, record no verdict, and leave the attempt count unchanged; and a BUILD_ID change injected between two criteria must end the run as an environment refusal, not as a criterion failure.

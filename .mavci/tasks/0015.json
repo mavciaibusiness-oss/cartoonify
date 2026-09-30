@@ -1,7 +1,9 @@
 {
   "artifacts": [],
   "id": "0015",
-  "notes": [],
+  "notes": [
+    "2026-09-30: phase restored release -> verify by the operator (--set-phase verify); attempt 1 FAIL was environmental (a forgotten next dev overwrote .next during criterion 50); verify -> release and --status done had been run by mistake; code unchanged for attempt 2; see Finding 61."
+  ],
   "project_id": "cartoonify",
   "schema_version": 1,
   "spec": ".mavci/tasks/0015-brand-header-clickable-cards.md",

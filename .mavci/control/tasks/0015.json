@@ -1,6 +1,6 @@
 {
-  "attempts": 1,
-  "attempts_total": 1,
+  "attempts": 2,
+  "attempts_total": 2,
   "blocked_by": null,
   "created": "2026-09-30T13:00:02Z",
   "id": "0015",
@@ -16,8 +16,9 @@
     "spec_sha256": "513bd51076a2335bce663720c5df93fe49c1e1469d15cfd11e21fc5769b7510a"
   },
   "status": "done",
-  "updated": "2026-09-30T14:23:17Z",
+  "updated": "2026-09-30T14:36:56Z",
   "verdicts": [
-    ".mavci/control/verdicts/0015-attempt-01.json"
+    ".mavci/control/verdicts/0015-attempt-01.json",
+    ".mavci/control/verdicts/0015-attempt-02.json"
   ]
 }
