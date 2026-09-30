@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import '../globals.css'
 import SiteShell from '@/components/site-shell'
+import { siteUrl } from '@/lib/env'
 import { getDictionary } from '@/lib/i18n'
 
-const SITE_URL = 'https://cartoonify.vercel.app'
+const SITE_URL = siteUrl()
 
 const t = getDictionary('tr')
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   DEFAULT_CARTOON_STYLE_ID,
@@ -20,6 +21,7 @@ import {
 } from '@/lib/i18n'
 import { REDUCED_MOTION_QUERY, resultPanel, scrollBehaviorFor } from '@/lib/workbench-state'
 import { displayGroups } from '@/lib/style-display'
+import { styleFromQuery } from '@/lib/style-query'
 import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
@@ -43,12 +45,13 @@ function validateFile(file: File, t: Dictionary): string | null {
 export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const { file, previewUrl, setUpload } = useUpload()
   const t = getDictionary(locale)
+  const searchParams = useSearchParams()
 
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
   const [resultStyleId, setResultStyleId] = useState<CartoonStyleId | null>(null)
-  const [styleId, setStyleId] = useState<CartoonStyleId>(DEFAULT_CARTOON_STYLE_ID)
+  const [styleId, setStyleId] = useState<CartoonStyleId>(() => styleFromQuery(searchParams.get('style')))
   const [progress, setProgress] = useState(0)
   const resultRef = useRef<HTMLElement | null>(null)
 

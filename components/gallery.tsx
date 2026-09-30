@@ -1,6 +1,7 @@
+import Link from 'next/link'
 import { getCartoonStyle, resolveCartoonStyleId } from '@/lib/cartoon-styles'
 import { GALLERY, GALLERY_WEB_SIZE, galleryImagePath } from '@/lib/gallery'
-import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
+import { format, getDictionary, localizedPath, styleText, type Locale } from '@/lib/i18n'
 
 /**
  * The landing gallery: each AI-generated source beside its three renders.
@@ -12,6 +13,7 @@ import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
  */
 export default function Gallery({ locale }: { locale: Locale }) {
   const t = getDictionary(locale).gallery
+  const workshop = localizedPath(locale, '/workshop')
 
   return (
     <section className="landing-gallery">
@@ -24,17 +26,19 @@ export default function Gallery({ locale }: { locale: Locale }) {
           const sourceAlt = t.alt[entry.id]
           return (
             <div key={entry.id} className="gallery-row" data-gallery-source={entry.id}>
-              <figure className="gallery-source">
-                <img
-                  src={galleryImagePath(entry.id)}
-                  alt={sourceAlt}
-                  width={GALLERY_WEB_SIZE}
-                  height={GALLERY_WEB_SIZE}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <figcaption>{t.sourceCaption}</figcaption>
-              </figure>
+              <Link href={workshop} aria-label={t.openSource}>
+                <figure className="gallery-source">
+                  <img
+                    src={galleryImagePath(entry.id)}
+                    alt={sourceAlt}
+                    width={GALLERY_WEB_SIZE}
+                    height={GALLERY_WEB_SIZE}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption>{t.sourceCaption}</figcaption>
+                </figure>
+              </Link>
               {entry.styles.map((id) => {
                 // A tile's file keeps its id; its caption names the style that id
                 // resolves to today (task 0014, G1).
@@ -42,17 +46,23 @@ export default function Gallery({ locale }: { locale: Locale }) {
                 if (resolvedId === null) throw new Error('Unknown gallery style id: ' + id)
                 const name = styleText(getCartoonStyle(resolvedId), locale).name
                 return (
-                  <figure key={id}>
-                    <img
-                      src={galleryImagePath(entry.id, id)}
-                      alt={format(t.renderAlt, { source: sourceAlt, style: name })}
-                      width={GALLERY_WEB_SIZE}
-                      height={GALLERY_WEB_SIZE}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <figcaption>{name}</figcaption>
-                  </figure>
+                  <Link
+                    key={id}
+                    href={workshop + '?style=' + resolvedId}
+                    aria-label={format(t.openStyle, { style: name })}
+                  >
+                    <figure>
+                      <img
+                        src={galleryImagePath(entry.id, id)}
+                        alt={format(t.renderAlt, { source: sourceAlt, style: name })}
+                        width={GALLERY_WEB_SIZE}
+                        height={GALLERY_WEB_SIZE}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <figcaption>{name}</figcaption>
+                    </figure>
+                  </Link>
                 )
               })}
             </div>

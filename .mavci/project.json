@@ -38,7 +38,7 @@
   "created": "2026-09-05T08:45:35Z",
   "deploy": {
     "prod_branch": "main",
-    "site_url": "https://cartoonify.vercel.app",
+    "site_url": "https://cartoonify-steel.vercel.app",
     "target": "vercel"
   },
   "display_name": "Cartoonify",

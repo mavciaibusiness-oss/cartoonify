@@ -12,16 +12,22 @@ import type { Dictionary } from './tr'
  */
 export const en: Dictionary = {
   meta: {
-    siteTitle: 'Cartoonify — AI Photo to Cartoon Workshop',
+    siteTitle: 'ProToolHub — AI Cartoon Studio',
     siteDescription:
       'Turn your photo into a cartoon in seconds. Upload, choose a style, generate and download right away.',
-    homeTitle: 'AI Photo to Cartoon Workshop — Cartoonify',
+    homeTitle: 'AI Photo to Cartoon Workshop — ProToolHub',
     homeDescription:
       'Upload a portrait, choose from the style gallery, turn it into a cartoon in one click and download it.',
-    workshopTitle: 'Cartoon Workshop — Cartoonify',
+    workshopTitle: 'AI Cartoon Studio — ProToolHub',
     workshopDescription: 'Upload your photo, choose from 29 styles and generate your cartoon.',
   },
   header: {
+    brand: 'ProToolHub',
+    navLabel: 'Main menu',
+    home: 'Home',
+    workshop: 'Studio',
+    styles: 'Styles',
+    contact: 'Contact',
     languageLabel: 'Language',
   },
   footer: {
@@ -33,10 +39,10 @@ export const en: Dictionary = {
     contact: 'Contact (in Turkish)',
   },
   landing: {
-    badge: 'Cartoonify Workshop',
+    badge: 'AI Cartoon Studio',
     title: 'AI Photo to Cartoon Workshop',
     lede:
-      'Upload a portrait, choose from every Cartoonify style in a visual gallery, generate in one click, and download right away.',
+      'Upload a portrait, choose from every ProToolHub style in a visual gallery, generate in one click, and download right away.',
     heroBeforeCaption: 'Source image',
     heroAfterCaption: 'Classic Cartoon result',
     heroBeforeAlt: 'AI-generated portrait of a fictional adult',
@@ -69,15 +75,15 @@ export const en: Dictionary = {
     help: 'Supported formats: PNG, JPEG, WEBP • Maximum size: {n} MB',
   },
   workshop: {
-    badge: 'AI Cartoon Workshop',
+    badge: 'AI Cartoon Studio',
     emptyTitle: 'Create a cartoon portrait in seconds',
     emptyLede:
-      'Upload a photo, explore every Cartoonify style in a visual gallery, and generate your result in one click.',
+      'Upload a photo, explore every ProToolHub style in a visual gallery, and generate your result in one click.',
     backPrompt: 'Would you like an overview of the product first?',
     backLink: 'Go to the home page',
   },
   form: {
-    badge: 'AI Cartoon Workshop',
+    badge: 'AI Cartoon Studio',
     title: 'Turn your photo into cartoon art',
     lede: 'Upload once, choose a style from the gallery, generate, and download in seconds.',
     workspaceLabel: 'Generation workspace',
@@ -109,7 +115,9 @@ export const en: Dictionary = {
   },
   gallery: {
     title: 'Three styles for every photo',
-    lede: 'Each row shows one source image and three Cartoonify styles that suit it.',
+    lede: 'Each row shows one source image and three ProToolHub styles that suit it.',
+    openSource: 'Open the studio',
+    openStyle: 'Open the studio with {style}',
     sourceNote: 'The source images in this gallery are AI-generated, not photos of real people.',
     sourceCaption: 'Source',
     renderAlt: '{source} in the {style} style',

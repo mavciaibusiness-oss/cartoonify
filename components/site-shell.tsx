@@ -1,4 +1,4 @@
-import LanguageSwitch from './language-switch'
+import SiteHeader from './site-header'
 import SiteFooter from './site-footer'
 import { UploadProvider } from './upload-state'
 
@@ -10,9 +10,7 @@ import { UploadProvider } from './upload-state'
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <header className="site-header">
-        <LanguageSwitch />
-      </header>
+      <SiteHeader />
       <UploadProvider>{children}</UploadProvider>
       <SiteFooter />
     </>

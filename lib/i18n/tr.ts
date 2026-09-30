@@ -19,18 +19,24 @@ import type { StyleCategory } from '../cartoon-styles'
 
 export const tr = {
   meta: {
-    siteTitle: 'Cartoonify — Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi',
+    siteTitle: 'ProToolHub — AI Karikatür Atölyesi',
     siteDescription:
       'Fotoğrafınızı saniyeler içinde karikatüre dönüştürün. Yükleyin, bir stil seçin, oluşturun ve hemen indirin.',
-    homeTitle: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi — Cartoonify',
+    homeTitle: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi — ProToolHub',
     homeDescription:
       'Bir portre yükleyin, stil galerisinden seçin, tek tıkla karikatüre dönüştürün ve indirin.',
-    workshopTitle: 'Karikatür Atölyesi — Cartoonify',
+    workshopTitle: 'AI Karikatür Atölyesi — ProToolHub',
     workshopDescription:
       'Fotoğrafınızı yükleyin, 29 stil arasından seçin ve karikatürünüzü oluşturun.',
   },
   header: {
     languageLabel: 'Dil seçimi',
+    brand: 'ProToolHub',
+    navLabel: 'Ana menü',
+    home: 'Ana sayfa',
+    workshop: 'Atölye',
+    styles: 'Stiller',
+    contact: 'İletişim',
   },
   footer: {
     label: 'Yasal bağlantılar',
@@ -41,10 +47,10 @@ export const tr = {
     contact: 'İletişim',
   },
   landing: {
-    badge: 'Cartoonify Atölyesi',
+    badge: 'AI Karikatür Atölyesi',
     title: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi',
     lede:
-      'Bir portre yükleyin, tüm Cartoonify stilleri arasından görsel bir galeriden seçim yapın, tek tıkla oluşturun ve hemen indirin.',
+      'Bir portre yükleyin, tüm ProToolHub stilleri arasından görsel bir galeriden seçim yapın, tek tıkla oluşturun ve hemen indirin.',
     heroBeforeCaption: 'Kaynak görsel',
     heroAfterCaption: 'Klasik Karikatür sonucu',
     heroBeforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan bir yetişkinin portresi',
@@ -78,15 +84,15 @@ export const tr = {
     help: 'Desteklenen biçimler: PNG, JPEG, WEBP • En büyük boyut: {n} MB',
   },
   workshop: {
-    badge: 'Yapay Zekâ Karikatür Atölyesi',
+    badge: 'AI Karikatür Atölyesi',
     emptyTitle: 'Saniyeler içinde karikatür portre oluşturun',
     emptyLede:
-      'Bir fotoğraf yükleyin, tüm Cartoonify stillerini görsel galeride inceleyin ve sonucu tek tıkla oluşturun.',
+      'Bir fotoğraf yükleyin, tüm ProToolHub stillerini görsel galeride inceleyin ve sonucu tek tıkla oluşturun.',
     backPrompt: 'Önce ürüne genel bir bakış mı atmak istersiniz?',
     backLink: 'Ana sayfaya gidin',
   },
   form: {
-    badge: 'Yapay Zekâ Karikatür Atölyesi',
+    badge: 'AI Karikatür Atölyesi',
     title: 'Fotoğrafınızı karikatür sanatına dönüştürün',
     lede: 'Bir kez yükleyin, galeriden bir stil seçin, oluşturun ve saniyeler içinde indirin.',
     workspaceLabel: 'Oluşturma alanı',
@@ -118,7 +124,9 @@ export const tr = {
   },
   gallery: {
     title: 'Her fotoğrafa uyan üç stil',
-    lede: 'Her satırda bir kaynak görsel ve ona yakışan üç Cartoonify stili.',
+    lede: 'Her satırda bir kaynak görsel ve ona yakışan üç ProToolHub stili.',
+    openSource: 'Atölyeyi aç',
+    openStyle: '{style} stiliyle atölyeyi aç',
     sourceNote: 'Galerideki kaynak görseller yapay zekâ ile üretilmiştir; gerçek kişilerin fotoğrafı değildir.',
     sourceCaption: 'Kaynak',
     renderAlt: '{source}, {style} stiliyle',

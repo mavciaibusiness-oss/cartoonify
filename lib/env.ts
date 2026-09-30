@@ -40,3 +40,16 @@ export function hasOpenAIKey(): boolean {
   const v = process.env.OPENAI_API_KEY
   return typeof v === 'string' && v.length > 0
 }
+
+/** The live site, used when NEXT_PUBLIC_SITE_URL is not set. */
+export const DEFAULT_SITE_URL = 'https://cartoonify-steel.vercel.app'
+
+/**
+ * The site's address, without a trailing slash. NEXT_PUBLIC_ so Next.js inlines
+ * it at build: static pages, the sitemap and robots.txt are built with it.
+ */
+export function siteUrl(): string {
+  const v = process.env.NEXT_PUBLIC_SITE_URL
+  const url = typeof v === 'string' && v.length > 0 ? v : DEFAULT_SITE_URL
+  return url.endsWith('/') ? url.slice(0, -1) : url
+}

@@ -13,27 +13,27 @@
   color-scheme: light;
 
   /* surfaces */
-  --bg: #f6f8fc;
+  --bg: #f3f9f9;
   --surface: #ffffff;
-  --surface-2: #eef1f8;
+  --surface-2: #e3f4f5;
 
   /* text */
-  --text: #141a2e;
-  --muted: #4f586d;
-  --accent-text: #4453c9;
+  --text: #12303a;
+  --muted: #465f66;
+  --accent-text: #1f6f79;
   --danger-text: #b3261e;
   --success-text: #0b6b3a;
 
-  /* the button gradient, unchanged, and the text on it */
-  --accent: #7c8dff;
-  --accent-2: #33d2ff;
-  --on-accent: #02142d;
+  /* the logo's turquoise into pink: the band and button gradient, and the text on it */
+  --accent: #6cc9d1;
+  --accent-2: #f48fb1;
+  --on-accent: #0b2a30;
 
   /* not text */
-  --stroke: #d3d9e8;
-  --stroke-strong: #9aa6c8;
-  --ring: rgba(68, 83, 201, 0.28);
-  --shadow: 0 10px 30px rgba(20, 26, 46, 0.08);
+  --stroke: #cfe3e5;
+  --stroke-strong: #8fb3b8;
+  --ring: rgba(31, 111, 121, 0.28);
+  --shadow: 0 10px 30px rgba(18, 48, 58, 0.08);
   --radius-lg: 1.25rem;
   --radius-md: 0.9rem;
 
@@ -41,6 +41,7 @@
   --page-max: 1440px;
   --panel-w: 360px;
   --action-bar-h: 76px;
+  --header-h: 60px;
 }
 
 html,
@@ -108,14 +109,99 @@ footer a:hover {
   text-decoration: underline;
 }
 
-/* header and language switch */
+/* the coloured band: full width, with the header inside it at page width */
+.site-strip {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+}
+
 .site-header {
   width: min(var(--page-max), 100%);
   margin: 0 auto;
-  padding: 0.75rem 1rem 0;
-  display: flex;
-  justify-content: flex-end;
+  padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'brand end'
+    'nav nav';
+  align-items: center;
+  gap: 0.25rem 1rem;
 }
+
+.site-brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  color: var(--on-accent);
+  font-weight: 800;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.site-brand img {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.site-nav {
+  grid-area: nav;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.site-nav a {
+  color: var(--on-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.5rem;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.site-header-end {
+  grid-area: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.site-brand:focus-visible,
+.site-nav a:focus-visible,
+.lang-switch a:focus-visible,
+.landing-gallery a:focus-visible,
+.showcase-link:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+/* the gallery and showcase tiles are links to the workshop */
+.gallery-row > a,
+.showcase-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+}
+
+.showcase-link {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+}
+
+/* header language switch */
 
 .lang-switch {
   display: inline-flex;
@@ -127,7 +213,7 @@ footer a:hover {
 }
 
 .lang-switch a {
-  color: var(--muted);
+  color: var(--on-accent);
   text-decoration: none;
   padding: 0.2rem 0.35rem;
   border-radius: 0.4rem;
@@ -143,7 +229,7 @@ footer a:hover {
 }
 
 .lang-switch-sep {
-  color: var(--muted);
+  color: var(--on-accent);
 }
 
 .visually-hidden {
@@ -394,7 +480,7 @@ footer a:hover {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 32vh;
+  max-height: 30vh;
   object-fit: contain;
   border-radius: 0.6rem;
   border: 1px solid var(--stroke);
@@ -858,9 +944,30 @@ footer a:hover {
     align-items: start;
   }
 
+  .site-strip {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .site-header {
+    height: var(--header-h);
+    padding-block: 0;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: 'brand nav end';
+  }
+
   .landing-upload {
     position: sticky;
-    top: 1rem;
+    top: calc(var(--header-h) + 1rem);
+  }
+
+  .workshop-result {
+    scroll-margin-top: var(--header-h);
+  }
+
+  .style-showcase {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
   }
 
   .gallery-row {
@@ -886,11 +993,11 @@ footer a:hover {
   .workshop-panel {
     grid-column: 1;
     position: sticky;
-    top: 0;
-    height: 100dvh;
+    top: var(--header-h);
+    height: calc(100dvh - var(--header-h));
     overflow-y: auto;
-    padding: 0.75rem 1rem;
-    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    gap: 0.25rem;
     border-right: 1px solid var(--stroke);
     background: var(--bg);
   }
@@ -917,6 +1024,11 @@ footer a:hover {
 }
 
 @media (max-width: 899px) {
+  .site-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
   body:has(.workshop-shell) {
     padding-bottom: var(--action-bar-h);
   }
