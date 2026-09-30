@@ -98,6 +98,8 @@ export const en: Dictionary = {
     download: 'Download',
     createAnother: 'Create another',
     selectedStyle: 'Selected style:',
+    resultStyle: 'Result style:',
+    regenerate: 'Regenerate in {style}',
     galleryLabel: 'Style gallery',
     stepStyle: 'Step 3 • Choose a style',
     stylesAvailable: '{n} styles available',

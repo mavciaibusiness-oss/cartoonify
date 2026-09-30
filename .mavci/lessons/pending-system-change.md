@@ -6080,3 +6080,198 @@ No mechanical assertion was found that catches a wrong count in free prose witho
 Closest checkable form: an agent eval fixture. Give the verifier a manifest whose web_files have a mixed, non-uniform quality distribution and ask for it. Pass only if the hand-back quotes the distribution together with the command that produced it and the numbers match. Broken build: 0.1.35 verifier, which reported "all at quality 72" for a file with three distinct qualities.
 
 Contract change the fixture would enforce: any count or distribution about a file must be produced by a command in checks_run and quoted from its output, not summarised from reading.
+
+---
+
+# Finding 54 - Router cannot see a scribe summary already on disk: it keeps naming "document -> mavci-scribe" until phase or status move
+
+Filed: 2026-09-29T20:10:18Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/route.mjs (document arm, lines 728-747)`
+
+Project cartoonify, task 0010, plugin 0.1.35, 2026-09-29.
+
+After the verdict for attempt 1 was recorded as pass, the router named "next: document -> mavci-scribe", then state.mjs --advance-phase 0010 --from verify --to release, then state.mjs --task-status 0010 --status done. The scribe was dispatched and wrote .mavci/tasks/0010.summary.md (on disk, 15 496 bytes, 21:22), a CHANGELOG.md entry and a decision record.
+
+The operator then ran /mavci-core:verify 0010 again. The router block printed, unchanged: "next: document -> mavci-scribe (task 0010). task 0010 passed attempt 1 - 23 of 23 criteria executed. What is left is the record: a changelog entry and a task summary ... dispatch mavci-scribe". The summary it asks for existed.
+
+Cause, read in scripts/lib/route.mjs:728-731, the comment on the document arm: "selectTask never returns a done task, so this branch is only ever reached while the task is still open - which is exactly when the record has not been written." That premise is false by the router's own ordering: the same arm tells the caller to dispatch the scribe FIRST and to advance the phase and close the task AFTER. Between the scribe finishing and the operator running the two state commands, the task is open and the record IS written, and the router says to write it again.
+
+Consequence observed: re-dispatching the scribe as named would have overwritten a summary in which the main session had just corrected twelve factual errors. The main session declined to follow the router and said so; nothing in the router would have stopped a less careful caller.
+
+### The assertion, and the broken build it must catch
+
+Fixture: a task in phase verify, status in_progress, with a pass verdict for its current attempt AND .mavci/tasks/<id>.summary.md present. route() must NOT name "dispatch mavci-scribe"; it must name only the remaining state steps (--advance-phase ... --to release, then --task-status ... done).
+
+Broken build it must catch: 0.1.35, which names dispatch mavci-scribe for that fixture.
+
+The same fixture without the summary file must still name the scribe, so the assertion discriminates on the file, not on the verdict.
+
+---
+
+# Finding 55 - Closed tasks' acceptance criteria are never re-run: task 0004 criterion 11 was red on HEAD from cee3bea until it was noticed by hand
+
+Filed: 2026-09-29T20:10:18Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/verify.mjs; scripts/gate.mjs (no current home for a regression run)`
+
+Project cartoonify, plugin 0.1.35, observed 2026-09-29 while writing task 0010's spec.
+
+Task 0004 criterion 11 requires, among other things, one [data-style-group="..."] rule per group in app/globals.css and the string STYLE_PREVIEW_IDS in components/style-card.tsx. On HEAD at the time (8be0200): grep -n "data-style-group" app/globals.css returned nothing, and components/style-card.tsx did not contain STYLE_PREVIEW_IDS (count 0). git log -S'data-style-group="cizgi"' -- app/globals.css shows the rules arrived in ce4b793 (task 0004) and left in cee3bea ("feat: migrate latest Cartoonify UX redesign"). The STYLE_PREVIEW_IDS reference left with task 0008.
+
+Nothing reported either removal. The gate runs the standards packs, not closed tasks' mavci-criteria blocks; verify.mjs runs one task's block; the router reads one task's verdict. A criterion is enforced exactly once, at the verify of the task that wrote it, and is silent afterwards however its subject changes.
+
+Second instance, same session: task 0010 criterion 18 compares the legal pages against their pre-move paths in HEAD. It passed at 0010's verify and fails on every later HEAD (fatal: path 'app/(legal)/kvkk/page.tsx' does not exist in 'HEAD'), so it could not be re-run even if something tried. Criteria written against "HEAD" are relative to a moment, not to a state, and nothing records which are which.
+
+What each task has done instead is carry chosen criteria forward by hand (0009 carried 0008's; 0010 carried 0009's; 0011 carries 0010's), which re-runs exactly the ones someone remembered.
+
+### The assertion, and the broken build it must catch
+
+A regression mode: run every closed task's mavci-criteria block that does not declare itself task-relative, against the current tree, and report each red one with its task and id. Criteria must be able to declare themselves task-relative (for example a field such as "relative_to": "HEAD-at-verify") so the ones that cannot be re-run are named rather than failing noisily.
+
+Broken build it must catch: 0.1.35 on this project at 8be0200, where task 0004 criterion 11 is red and nothing reports it. The mode must report it.
+
+Discrimination: on a tree where the [data-style-group] rules and the STYLE_PREVIEW_IDS reference are restored, the same run must report 0004 criterion 11 green.
+
+---
+
+# Finding 56 - state.mjs begin-plan points every new task's spec at the same .mavci/tasks/pending.md, so the next task can overwrite the previous task's approved spec
+
+Filed: 2026-09-29T20:10:41Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs (--begin-plan / --new-task default spec path, lines 1511 and 1518); skills/plan/SKILL.md step 2`
+
+Project cartoonify, plugin 0.1.35, 2026-09-29.
+
+scripts/state.mjs:1518: const id = beginPlan(root, { title, spec: arg('--spec', `${PATHS.tasks}/pending.md`) }); (the same default at 1511 for --new-task). skills/plan/SKILL.md step 2 invokes --begin-plan "<short title>" with no --spec.
+
+Observed: task 0010's sidecar .mavci/tasks/0010.json has "spec": ".mavci/tasks/pending.md", and that file IS 0010's approved spec (its control-task approval hash 8b378c595b2167e91583eae8d78512e0a0de8178d7cb938961fe989a0be0161d matches it, and commit c451dc0 added it under that name). Task 0011 was then begun, and its sidecar .mavci/tasks/0011.json was created with the identical "spec": ".mavci/tasks/pending.md".
+
+Nothing prevented the architect writing 0011's spec into that path, which would have overwritten task 0010's approved spec and silently broken the hash that ties 0010's verdict to what the operator approved. It was avoided only because the operator noticed and instructed the architect to write .mavci/tasks/0011-wide-layout-square-cards.md and repoint 0011.json by hand.
+
+The sidecars of 0007, 0008 and 0009 each name a unique <id>-<slug>.md; 0010 names pending.md. For 0009 this session saw how: --begin-plan created the sidecar pointing at .mavci/tasks/pending.md, and the spec was written under a slug name with the sidecar repointed by hand. Whether 0007 and 0008 went the same way is not in git history (only their final sidecars are committed). 0010 was left at pending.md, so 0011 was the first to collide.
+
+### The assertion, and the broken build it must catch
+
+State: --begin-plan without --spec must allocate a path unique to the new task (for example .mavci/tasks/<id>.md or <id>-<slug>.md), never a shared name. And it must refuse to point a new task at any spec path already named by another task's sidecar.
+
+Broken build it must catch: 0.1.35, where two consecutive --begin-plan calls produce two sidecars with the same "spec" value.
+
+Integrity: writing to a spec file whose hash is recorded in any task's spec_approved should be refused or at least reported by the guard, since that write invalidates an approval after the fact.
+
+---
+
+# Finding 57 - The criterion runner hands each criterion to Git Bash as one -c argument, and on Windows that argument is cut at 8 186 characters: a longer criterion runs a prefix of itself, and can exit 0
+
+Filed: 2026-09-30T07:22:10Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/criteria.mjs (runOne, line 314: execFileSync(bash.path, ['-c', criterion.run])); scripts/lib/shell.mjs (resolveBash); criteria parsing, where a length ceiling would be checked`
+
+Project cartoonify, plugin 0.1.35, Windows 11 Pro 10.0.26200, node v24.13.0, Git Bash at C:\Program Files\Git\bin\bash.exe. Observed 2026-09-29, measured again 2026-09-30.
+
+First instance (task 0010 spec, section 11.1): joining 0009 criteria 4, 5, 6, 9 and 10 into one shell line made bash report `unexpected EOF while looking for matching '"'`. Each part passed alone, and so did the first three joined. The spec records "The cause was not found" and carries them as four separate criteria (17, 21, 22, 23). The joined criterion was 11 207 characters (figure from the 0011 spec-writing session, not re-measured).
+
+Second instance, and the measurement (session e708ab02, 2026-09-29 21:04, while writing task 0011's spec): a single command for criteria 29 and 31 was 8 488 characters and failed the same way. The main session reported, verbatim (operator's copy): "Bu makinede Node'dan çağrılan bash -c, yaklaşık 8 183 karakterden uzun komutları kesiyor. Sınırı ikiye bölerek ölçtüm: 8 140 geçiyor, 8 149 kırılıyor. 0010'daki açıklanamayan 'unexpected EOF' hatasının sebebi buydu." The probe (scratchpad len-probe.mjs) printed: "payload limit between 8140 and 8149 (command length about 8183)". That probe called spawnSync('bash', ['-c', cmd]) with no shell option, i.e. argv, not cmd.exe.
+
+Call site. scripts/lib/criteria.mjs:314, runOne: execFileSync(bash.path, ['-c', criterion.run], { cwd, encoding, timeout, stdio }) - the criterion is ONE argv element, no shell option (so shell: false), no cmd.exe in the path. bash.path comes from scripts/lib/shell.mjs resolveBash(): on win32 the first candidate is %ProgramFiles%\Git\bin\bash.exe (the 46 992-byte launcher), then PATH bash. The only other child_process calls in scripts/ are execFileSync with argv arrays: shell.mjs:54 and :94 (bash -c "echo mavci-shell-probe"), gate.mjs:467 and :785 (node verify.mjs), verify.mjs:58 and doctor.mjs (git, gh, node risk-guard.mjs). None uses shell: true, exec or execSync.
+
+Operator's hypothesis tested: "8 191 is the cmd.exe command-line limit; child_process shell:true goes through cmd.exe on Windows; calling bash -c with argv avoids it (CreateProcess limit ~32 767)." Genel deneme (general probe - harmless echo / node -e commands written for this, NOT the criteria that failed), scratchpad probe57.mjs, probe57b.mjs, probe57c.mjs, 2026-09-30:
+
+1. ~8 300 characters, execSync(cmd, { shell: true }): echo, len 8 300 -> exit 1, stderr "The command line is too long." node -e, len 8 298 -> exit 1, same stderr.
+2. Same commands, spawnSync(Git\bin\bash.exe, ['-c', cmd], { shell: false }): echo, len 8 300 -> exit 0 but output WRONG: 8 181 characters printed, the END57 marker and the tail missing. node -e, len 8 298 -> exit 2, stderr "/usr/bin/bash: -c: line 1: unexpected EOF while looking for matching `"'".
+3. Original points (payload 8 140 / 8 149, node -e shape): shell:true -> len 8 183 exit 1 and len 8 192 exit 1, both "The command line is too long." bash argv -> len 8 183 exit 0 correct; len 8 192 exit 2 "unexpected EOF". Echo shape, payload 8 140 / 8 149 (len 8 151 / 8 160): shell:true exit 0 correct / exit 1 too long; bash argv both exit 0 correct.
+4. Bisection to the character, both shapes: shell:true last good command length 8 152, first bad 8 153 (8 152 + the 39 characters Node adds, C:\WINDOWS\system32\cmd.exe /d /s /c "...", = 8 191, the cmd.exe limit). bash argv last good 8 186, first bad 8 187, identical for echo and node -e.
+5. Launcher or bash? Same tests against C:\Program Files\Git\usr\bin\bash.exe (the real MSYS bash, 2 553 064 bytes): identical results at 8 151 / 8 160 / 8 183 / 8 192 / 8 311 / 20 011 / 30 011 characters. The cut is in MSYS bash / its runtime, not in the Git\bin launcher.
+6. Can truncation turn a failure into a pass? Same call shape as criteria.mjs:314. ": <pad> ; exit 7": len 8 011 -> exit 7; len 8 311 -> exit 0. "test -n \"<pad>\" && false": len 8 019 -> exit 1; len 8 319 -> exit 2 (parse error instead of the assertion).
+
+Result against the hypothesis: NOT supported for the path the plugin uses. cmd.exe's limit is real (8 191, loud: "The command line is too long.") but the plugin never goes through cmd.exe. The argv path does not reach the ~32 767 CreateProcess limit: Git Bash itself keeps only the first 8 186 characters of the -c argument, silently, with no error of its own. What happens next depends on where the cut lands: inside a quote -> "unexpected EOF" and exit 2 (both observed instances); between commands -> the prefix runs and its exit code is reported, which can be 0 for a criterion whose failing part was never executed (item 6).
+
+Consequence for the runner: runOne maps exit 2 to fail (a parse-time death, same exit code as a failed assertion - see finding 42), and exit 0 to pass. Neither outcome is not_run, and nothing checks criterion.run.length. The 0011 spec's generator now refuses criteria over 7 800 characters, as a hand-built workaround in one project.
+
+### The assertion, and the broken build it must catch
+
+Fixture: a spec whose mavci-criteria block holds one criterion of the form ": <8 300 x characters> ; exit 7" (8 311 characters). On Windows with Git Bash, the runner must NOT report it pass. Broken build it must catch: 0.1.35, which reports it pass (exit 0, item 6).
+
+Discrimination: the same criterion with 8 000 x characters (8 011 total) must report fail (exit 7), so the assertion bites on length, not on the command.
+
+Two acceptable fixes, either makes the fixture go red-then-green: (a) pass the criterion to bash on stdin or in a temp script file (bash <file>) instead of as a -c argument, so there is no argv limit to hit; or (b) refuse any criterion longer than a stated ceiling (below 8 186) at parse time with a message naming the ceiling and the length, reported as not_run, never fail/pass. (a) needs a second fixture: a criterion that reads stdin must still see what it saw before.
+
+Also: preflight (shell.mjs) proves bash starts, not that it receives its argument whole; a round trip of a long argument would have found this on the first run.
+
+### Addendum to finding 57 - Silent truncation can produce a false pass: fix order, 8 000 ceiling, preflight round trip, retroactive audit
+
+Amended 2026-09-30T07:29:51Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Operator's direction, 2026-09-30, transcribed by the main session. The title is written once and cannot be changed, so it is corrected here instead. The heading the operator wants: "Silent truncation: a criterion over 8 186 characters is cut without an error and can produce a false pass". That is the point of this finding. The "unexpected EOF" is the harmless case, because it fails loudly. The dangerous case is the one where the cut lands between commands and the run exits 0.
+
+Order of fixes, which replaces the "either" in the assertion section:
+
+(a) THE FIX. Hand the criterion to bash on stdin or in a temporary script file (bash <file>) instead of as a -c argument. Then there is no argv ceiling to hit. It needs the second fixture already named: a criterion that reads stdin must still see what it saw before.
+
+(b) STOP-GAP until (a) ships. At parse time, refuse any criterion whose run field is longer than 8 000 characters (not "below 8 186": the margin is deliberate). The refusal message names the ceiling and the actual length, and the criterion reports not_run, never pass or fail.
+
+(c) PREFLIGHT. shell.mjs preflight adds a round trip of a long argument: send an argument longer than the ceiling and check that it comes back whole. That turns this defect from silent into a preflight failure on any machine where it exists.
+
+Retroactive audit, read-only, 2026-09-30 (scratchpad audit57.mjs). Every mavci-criteria block under .mavci/tasks/ was parsed with the plugin's own parseCriteriaBlock (0.1.35), and each run field was measured. That covers 0001 to 0011, with pending.md = 0010's spec. 0001 and 0002 have no block. Result: 174 criteria, NONE over 8 000. The longest is 0011 #29 at 7 727 characters (7 727 UTF-8 bytes), then 0011 #31 at 5 725, then 0009 #6 / 0010 #21 / 0011 #19 at 4 319. So no recorded pass verdict of this project rests on a truncated criterion, and no criterion was re-run. The audit measured the spec text as it stands now. It did not check that a sealed or previously executed copy was byte-identical (see finding 40).
+
+A limit on what was proven: item 6 and the "Broken build it must catch" line were shown with the same call shape as criteria.mjs:314 (execFileSync(bash, ['-c', cmd])), not by running verify.mjs on a fixture spec. "0.1.35 reports it pass" is the expected result of that code path. It has not been observed through the runner.
+
+**Superseded, quoted verbatim from the body above:** (b) refuse any criterion longer than a stated ceiling (below 8 186) at parse time
+
+---
+
+# Finding 58 - A criterion's evidence is its own command cut at 500 characters: on a pass the output is never recorded, so a browser criterion's measurements are not in the verdict (0011 criteria 29 and 31)
+
+Filed: 2026-09-30T08:22:15Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/lib/criteria.mjs (runOne evidence, lines 338-344; clip, lines 293-296); scripts/config.mjs (EVIDENCE_MAX_CHARS 500, CLAMP_MARKER); verdict.schema.json (evidence maxLength)`
+
+Project cartoonify, task 0011, attempt 1, plugin 0.1.35, 2026-09-30.
+
+The recorded verdict .mavci/control/verdicts/0011-attempt-01.json (verdict pass, run_at 2026-09-30T08:20:43Z, made by mavci-verifier with verify.mjs --record --task 0011 --run-criteria 0011 --have shell,server,browser) holds 31 criteria, all pass/executed. 27 of the 31 evidence strings are exactly 500 characters. The evidence for criterion 29 (a 7 727-character criterion that starts next start and headless Chrome and measures the workbench at 1280x624 and 1920x984) reads in full: "exit 0 in 3086 ms: node -e \"const fs=require('fs'); const os=require('os'); ... const until=async(fn,ms,what)=>{ const end=Date....". Criterion 31 (375x667) is the same shape: "exit 0 in 1170 ms: node -e ..." ending "const end=Date....". Neither holds a single measured value.
+
+What the criteria actually printed, when the main session re-ran them from the same spec (bash <file>, exit 0 both): criterion 29 printed 17 lines, for example "1280x624 after generate: {\"sy\":306,\"res\":{\"t\":0,...},\"resImg\":{\"t\":66,\"b\":464,\"l\":614,\"w\":398,\"h\":398}}" and "generate requests answered locally, none sent upstream: 2". Criterion 31 printed "375x667 document end: {\"vh\":667,\"bar\":{\"t\":591,\"b\":667,...},\"pos\":\"fixed\",\"last\":{...\"b\":419...},\"foot\":{...\"b\":591...}}". None of that is in the record. The verdict proves that a command exited 0. It does not show what that command saw, and for a browser criterion what it saw is the whole point: the pass is only as good as the numbers, and a reader of the verdict cannot check them.
+
+Cause, read in scripts/lib/criteria.mjs:
+
+- Lines 338-344 (runOne): evidence is clip(passed ? `exit ${status} in ${ms} ms: ${criterion.run}` : `exit ${status}, expected ..., in ${ms} ms: ${criterion.run} -- ${out}`). On a pass, `out` (stdout+stderr) is discarded entirely. The criterion's own text, which the spec already holds and the spec seal already hashes, fills the field.
+- On a FAIL the output is appended AFTER the command. Any criterion longer than about 480 characters therefore loses its whole failure message to the cut, and the recorded evidence of a failure is the first 480 characters of the command that failed. In this project 111 of 174 criteria (0003-0011, counted from the 2026-09-30 length audit filed under finding 57) exceed 480 characters, so this is the common case and not an edge. The failure case was not observed in a recorded verdict here. It follows from the same line and has not been run.
+- Lines 293-296 (clip): cuts at EVIDENCE_MAX_CHARS (500, config.mjs:389) and appends "...". It does not use CLAMP_MARKER (" [...cut]", config.mjs:393), whose comment reads "Visible on purpose: a silent truncation is a lie." A "..." inside a JavaScript criterion reads as spread syntax or as a normal ellipsis, not as a cut.
+
+Consequences seen in this session: the verifier's hand-back said evidence is "truncated at about 300 characters" and that it "looked only at status and mode". To see what criteria 29 and 31 measured, the main session had to re-run both outside the verifier. The verdict, the artefact meant to be the audit record, carries no measurement.
+
+### The assertion, and the broken build it must catch
+
+Fixture 1 (pass keeps its output): a spec with one criterion "printf 'MEASURED-%s\n' 42; : <600 x characters>" (exit 0). The recorded verdict's evidence for it must contain "MEASURED-42". Broken build it must catch: 0.1.35, whose evidence is "exit 0 in N ms: printf ..." cut at 500 and contains no output.
+
+Fixture 2 (fail keeps its message): the same criterion ending in "; echo FAILED-BECAUSE-X >&2; exit 3". The recorded evidence must contain "FAILED-BECAUSE-X" and "exit 3". Broken build: 0.1.35, where the 600-character command fills the 500 characters and the message is cut away.
+
+Fixture 3 (a cut is visible): any evidence that is cut must end with CLAMP_MARKER, not "...". Broken build: 0.1.35 clip().
+
+Direction for the fix, for the applier to weigh: the command is already in the sealed spec, so the evidence should identify it (criterion id + spec sha) rather than repeat it, and spend its budget on the output (its tail for a failure, where the assertion message usually is). If 500 characters cannot hold a browser criterion's measurements, the full stdout should go to a file beside the verdict (for example verdicts/<id>-attempt-NN.criterion-<n>.log) and be named, with its hash, in the evidence.
+
+Discrimination: fixtures 1 and 2 with a criterion under 100 characters must pass on both builds, so the assertion bites on the ordering and the discard, not on length alone.
+
+### Addendum to finding 58 - Discrimination corrected: fixture 1 is red on 0.1.35 at any length
+
+Amended 2026-09-30T08:22:27Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Correction by the main session, minutes after filing: the Discrimination paragraph is wrong for fixture 1. 0.1.35 discards the output of every passing criterion, whatever its length (runOne builds pass evidence from the command alone). So a SHORT fixture 1 is also red on 0.1.35, and fixture 1 discriminates on the discard, not on length. Only fixture 2 is length-dependent.
+
+Corrected discrimination:
+- Fixture 1 is red on 0.1.35 at any length, and green on a fixed build at any length.
+- Fixture 2 with a criterion under 100 characters is green on both builds, because the message fits after the command. At 600 characters it is red on 0.1.35 and green on a fixed build. That pair shows the ordering defect, separately from the discard.
+- In fixture 2, "exit 3" alone does not discriminate: 0.1.35 already puts "exit 3, expected 0" at the front. The discriminating string is FAILED-BECAUSE-X.
+
+**Superseded, quoted verbatim from the body above:** Discrimination: fixtures 1 and 2 with a criterion under 100 characters must pass on both builds, so the assertion bites on the ordering and the discard, not on length alone.
+

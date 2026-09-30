@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   DEFAULT_CARTOON_STYLE_ID,
   getCartoonStyle,
@@ -19,6 +19,7 @@ import {
   type Dictionary,
   type Locale,
 } from '@/lib/i18n'
+import { REDUCED_MOTION_QUERY, resultPanel, scrollBehaviorFor } from '@/lib/workbench-state'
 import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
@@ -46,14 +47,19 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
   const [resultUrl, setResultUrl] = useState<string | null>(null)
+  const [resultStyleId, setResultStyleId] = useState<CartoonStyleId | null>(null)
   const [styleId, setStyleId] = useState<CartoonStyleId>(DEFAULT_CARTOON_STYLE_ID)
   const [progress, setProgress] = useState(0)
+  const resultRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     if (status !== 'loading') {
       setProgress(0)
       return
     }
+
+    const reduced = window.matchMedia(REDUCED_MOTION_QUERY).matches
+    resultRef.current?.scrollIntoView({ block: 'start', behavior: scrollBehaviorFor(reduced) })
 
     setProgress(8)
     const timer = window.setInterval(() => {
@@ -90,6 +96,7 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     setUpload(nextFile)
     setStatus('idle')
     setResultUrl(null)
+    setResultStyleId(null)
     setMessage(null)
   }
 
@@ -97,12 +104,14 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     setUpload(null)
     setStyleId(DEFAULT_CARTOON_STYLE_ID)
     setResultUrl(null)
+    setResultStyleId(null)
     setMessage(null)
     setStatus('idle')
   }
 
   function handleCreateAnother() {
     setResultUrl(null)
+    setResultStyleId(null)
     setMessage(null)
     setStatus('idle')
     setProgress(0)
@@ -124,13 +133,17 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
       return
     }
 
+    // The style that is sent is the style the result will be labelled with,
+    // even if the selection changes while the request is in flight.
+    const sentStyleId = styleId
+
     setStatus('loading')
     setMessage(null)
 
     try {
       const body = new FormData()
       body.append('image', file)
-      body.append('style', styleId)
+      body.append('style', sentStyleId)
 
       const response = await fetch('/api/cartoonify', { method: 'POST', body })
       const data = (await response.json()) as ApiResponse
@@ -142,6 +155,7 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
       }
 
       setResultUrl(data.image)
+      setResultStyleId(sentStyleId)
       setStatus('success')
       setProgress(100)
     } catch {
@@ -161,126 +175,75 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   )
   const styleCount = galleryGroups.reduce((sum, group) => sum + group.styles.length, 0)
 
-  const canvasImageUrl = resultUrl ?? previewUrl
   const isResultVisible = Boolean(resultUrl)
+  const panel = resultPanel({
+    selectedStyleId: styleId,
+    resultStyleId,
+    hasResult: isResultVisible,
+    loading: status === 'loading',
+  })
+  const resultText = styleText(getCartoonStyle(panel.labelStyleId as CartoonStyleId), locale)
+  const showResultRegion = status === 'loading' || isResultVisible
 
   return (
     <div data-state={status} className="cartoonify-workshop">
-      <header className="workshop-header">
-        <p className="workshop-badge">{t.form.badge}</p>
-        <h1>{t.form.title}</h1>
-        <p>{t.form.lede}</p>
-      </header>
-
       <form onSubmit={handleSubmit} className="workshop-shell">
-        <KvkkNotice locale={locale} />
+        <div className="workshop-panel">
+          <KvkkNotice locale={locale} />
 
-        <section className="workshop-upload" aria-label={t.form.stepPreview}>
-          <div className="workshop-upload-head">
-            <h2>{t.form.stepPreview}</h2>
-            <div className="workspace-stage-controls">
-              <label htmlFor="replace-image-input" className="ghost-button">
-                {t.form.replace}
-              </label>
-              <button type="button" className="ghost-button" onClick={handleRemoveFile}>
-                {t.form.remove}
-              </button>
-            </div>
-          </div>
-
-          <input
-            id="replace-image-input"
-            className="visually-hidden"
-            type="file"
-            accept={ALLOWED_MIME_TYPES.join(',')}
-            onChange={handleReplaceFile}
-          />
-
-          <div className="workshop-upload-file">
-            {previewUrl ? <img src={previewUrl} alt={t.form.originalAlt} className="workshop-upload-thumb" /> : null}
-            <span className="workshop-upload-name">{file?.name}</span>
-          </div>
-        </section>
-
-        <aside className="style-sidebar" aria-label={t.form.galleryLabel}>
-          <div className="style-sidebar-head">
-            <h2>{t.form.stepStyle}</h2>
-            <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
-          </div>
-
-          <div className="style-gallery" aria-describedby="cartoonify-style-description">
-            {galleryGroups.map((group) => (
-              <fieldset key={group.id} className="style-group">
-                <legend>{group.label}</legend>
-                <div className="style-grid">
-                  {group.styles.map((style) => (
-                    <StyleCard
-                      key={style.id}
-                      style={style}
-                      locale={locale}
-                      checked={styleId === style.id}
-                      disabled={status === 'loading'}
-                      onSelect={handleStyleSelect}
-                    />
-                  ))}
-                </div>
-              </fieldset>
-            ))}
-
-            <p id="cartoonify-style-description" className="style-description-live">
-              {selectedText.description}
-            </p>
-          </div>
-        </aside>
-
-        <section className="workshop-result" aria-label={t.form.workspaceLabel}>
-          <div className="workspace-stage-head">
-            <h2>{t.form.stepResult}</h2>
-            <div className="workspace-stage-head-right">
-              {status === 'loading' ? <span className="status-chip">{t.form.chipProcessing}</span> : null}
-              {status === 'success' ? <span className="status-chip success">{t.form.chipReady}</span> : null}
-              {status === 'error' ? <span className="status-chip error">{t.form.chipError}</span> : null}
-            </div>
-          </div>
-
-          <div className="workspace-stage-image-wrap" data-canvas-state={status}>
-            {status === 'loading' ? (
-              <div className="processing-canvas" role="status" aria-live="polite">
-                <p>{t.form.processing}</p>
-                <div className="progress-track" aria-hidden="true">
-                  <span className="progress-fill" style={{ width: `${progress}%` }} />
-                </div>
-                <small>{progress}%</small>
+          <section className="workshop-upload" aria-label={t.form.stepPreview}>
+            <div className="workshop-upload-head">
+              <h2>{t.form.stepPreview}</h2>
+              <div className="workspace-stage-controls">
+                <label htmlFor="replace-image-input" className="ghost-button">
+                  {t.form.replace}
+                </label>
+                <button type="button" className="ghost-button" onClick={handleRemoveFile}>
+                  {t.form.remove}
+                </button>
               </div>
-            ) : canvasImageUrl ? (
-              <img
-                src={canvasImageUrl}
-                alt={isResultVisible ? t.form.resultAlt : t.form.originalAlt}
-                className="workspace-stage-image"
-              />
-            ) : (
-              <p className="result-empty">{t.form.emptyCanvas}</p>
-            )}
-          </div>
+            </div>
 
-          <div className="workspace-cta-block">
-            {!isResultVisible ? (
+            <input
+              id="replace-image-input"
+              className="visually-hidden"
+              type="file"
+              accept={ALLOWED_MIME_TYPES.join(',')}
+              onChange={handleReplaceFile}
+            />
+
+            <div className="workshop-upload-file">
+              {previewUrl ? <img src={previewUrl} alt={t.form.originalAlt} className="workshop-upload-thumb" /> : null}
+              <span className="workshop-upload-name">{file?.name}</span>
+            </div>
+          </section>
+
+          <p className="workshop-selected">
+            {t.form.selectedStyle} <strong>{selectedText.name}</strong>
+          </p>
+
+          <div className="workshop-actions">
+            {panel.showGenerate ? (
               <button type="submit" className="generate-button" disabled={!canSubmit}>
                 {status === 'loading' ? t.form.generating : t.form.generate}
               </button>
             ) : (
-              <div className="result-actions workspace-result-actions">
-                <a className="primary-download" download="karikatur.png" href={resultUrl ?? undefined}>
-                  {t.form.download}
-                </a>
+              <>
+                {resultUrl ? (
+                  <a className="primary-download" download="karikatur.png" href={resultUrl}>
+                    {t.form.download}
+                  </a>
+                ) : null}
+                {panel.showRegenerate ? (
+                  <button type="submit" className="regenerate-button ghost-button">
+                    {format(t.form.regenerate, { style: selectedText.name })}
+                  </button>
+                ) : null}
                 <button type="button" className="ghost-button" onClick={handleCreateAnother}>
                   {t.form.createAnother}
                 </button>
-              </div>
+              </>
             )}
-            <p className="workspace-style-hint">
-              {t.form.selectedStyle} <strong>{selectedText.name}</strong>
-            </p>
           </div>
 
           {status === 'error' && message ? (
@@ -288,7 +251,79 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
               {message}
             </p>
           ) : null}
-        </section>
+        </div>
+
+        <div className="workshop-main">
+          <header className="workshop-header">
+            <p className="workshop-badge">{t.form.badge}</p>
+            <h1>{t.form.title}</h1>
+            <p>{t.form.lede}</p>
+          </header>
+
+          {showResultRegion ? (
+            <section ref={resultRef} className="workshop-result" aria-label={t.form.workspaceLabel}>
+              <div className="workspace-stage-head">
+                <h2>{t.form.stepResult}</h2>
+                <div className="workspace-stage-head-right">
+                  {status === 'loading' ? <span className="status-chip">{t.form.chipProcessing}</span> : null}
+                  {status === 'success' ? <span className="status-chip success">{t.form.chipReady}</span> : null}
+                  {status === 'error' ? <span className="status-chip error">{t.form.chipError}</span> : null}
+                </div>
+              </div>
+
+              <div className="workshop-result-frame" data-canvas-state={status}>
+                {status === 'loading' ? (
+                  <div className="processing-canvas" role="status" aria-live="polite">
+                    <p>{t.form.processing}</p>
+                    <div className="progress-track" aria-hidden="true">
+                      <span className="progress-fill" style={{ width: `${progress}%` }} />
+                    </div>
+                    <small>{progress}%</small>
+                  </div>
+                ) : resultUrl ? (
+                  <img src={resultUrl} alt={t.form.resultAlt} className="workspace-stage-image" />
+                ) : null}
+              </div>
+
+              {isResultVisible && panel.labelKind === 'result' ? (
+                <p className="workspace-style-hint">
+                  {t.form.resultStyle} <strong>{resultText.name}</strong>
+                </p>
+              ) : null}
+            </section>
+          ) : null}
+
+          <section className="style-picker" aria-label={t.form.galleryLabel}>
+            <div className="style-sidebar-head">
+              <h2>{t.form.stepStyle}</h2>
+              <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
+            </div>
+
+            <div className="style-gallery" aria-describedby="cartoonify-style-description">
+              {galleryGroups.map((group) => (
+                <fieldset key={group.id} className="style-group">
+                  <legend>{group.label}</legend>
+                  <div className="style-grid">
+                    {group.styles.map((style) => (
+                      <StyleCard
+                        key={style.id}
+                        style={style}
+                        locale={locale}
+                        checked={styleId === style.id}
+                        disabled={status === 'loading'}
+                        onSelect={handleStyleSelect}
+                      />
+                    ))}
+                  </div>
+                </fieldset>
+              ))}
+
+              <p id="cartoonify-style-description" className="style-description-live">
+                {selectedText.description}
+              </p>
+            </div>
+          </section>
+        </div>
       </form>
     </div>
   )

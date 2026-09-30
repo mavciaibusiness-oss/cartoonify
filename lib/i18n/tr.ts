@@ -105,6 +105,8 @@ export const tr = {
     download: 'İndir',
     createAnother: 'Yeni bir tane oluştur',
     selectedStyle: 'Seçilen stil:',
+    resultStyle: 'Sonucun stili:',
+    regenerate: '{style} stiliyle yeniden oluştur',
     galleryLabel: 'Stil galerisi',
     stepStyle: 'Adım 3 • Stil seçin',
     stylesAvailable: '{n} stil mevcut',

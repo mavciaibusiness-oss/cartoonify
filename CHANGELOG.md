@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Wide layout with 1 440 px container on landing pages** (task 0011, Sept 30 2026)
+  - Page container increased from 1 200 px to 1 440 px via `--page-max: 1440px` token, applied to `main`, `footer`, and `.site-header`
+  - Landing pages (`/` and `/en`) use the full 1 440 px width; workbench opt-out with `.workshop-page:has(.workshop-shell) { width: 100% }` becomes full-width after photo is chosen
+  - Legal pages and contact page remain readable at 72 characters per line via single `.prose { max-width: 72ch; }` rule (files unchanged)
+
+- **Application shell workbench design** (task 0011)
+  - Once a photo is chosen, the workbench becomes an application shell with fixed left panel and scrolling main area
+  - **Wide screens (900 px+):** 360 px sticky left panel (`--panel-w: 360px`, `height: 100dvh`, scrolls internally) holds KVKK notice, upload thumbnail, file replacement/removal, selected style display, action buttons, and status text; right area scrolls with page, showing result and style cards
+  - **Narrow screens:** Everything stacks in DOM order, action buttons fixed at bottom of screen in a bar (`--action-bar-h`), body padded to prevent content hiding under it
+  - Action buttons sticky at bottom of panel on wide screens, so they stay visible while panel scrolls
+  - Generate button scrolls the result into view on click; scroll is instant under reduced-motion preference, smooth otherwise
+  - Empty workshop (before photo chosen) remains unchanged
+
+- **Square cartoon style picker cards** (task 0011)
+  - Fixed aspect ratio for all picker cards by adding `height: auto` to `.style-card-preview` CSS rule (aspect-ratio was ignored because presentational `height="480"` attribute took precedence)
+  - The hero, gallery and showcase image rules already declared `height: auto`; every rule with `aspect-ratio` now does
+
+- **Result panel displays style it was generated with** (task 0011)
+  - Result now shows which cartoon style it was created in, independent of the current selection
+  - When selection differs from result's style, a "regenerate" button appears beside download, formatted as "{style} stiliyle yeniden oluştur" in Turkish or "Regenerate in {style}" in English
+  - New pure module `lib/workbench-state.ts` (no dependencies, no path aliases) exports `resultPanel()` function to determine panel state
+  - New state `resultStyleId` captured in form submission, cleared with the result
+  - Reduced-motion query `'(prefers-reduced-motion: reduce)'` moved to `lib/workbench-state.ts` to avoid string literal flagged by source-level criteria
+
 - **Light theme with white grounds and dark text** (task 0010, Sept 29 2026)
   - All page backgrounds moved to light colours; text moved to dark colours; accent kept at `#7c8dff` and `#33d2ff`
   - All colour tokens declared once in `:root` of `app/globals.css`; no colour literals in component files

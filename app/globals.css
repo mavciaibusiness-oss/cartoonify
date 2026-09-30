@@ -36,6 +36,11 @@
   --shadow: 0 10px 30px rgba(20, 26, 46, 0.08);
   --radius-lg: 1.25rem;
   --radius-md: 0.9rem;
+
+  /* layout */
+  --page-max: 1440px;
+  --panel-w: 360px;
+  --action-bar-h: 76px;
 }
 
 html,
@@ -59,9 +64,14 @@ a {
 }
 
 main {
-  width: min(1200px, 100%);
+  width: min(var(--page-max), 100%);
   margin: 0 auto;
   padding: 1.5rem 1rem 2rem;
+}
+
+/* legal and contact pages keep a readable measure */
+.prose {
+  max-width: 72ch;
 }
 
 h1,
@@ -82,7 +92,7 @@ h2 {
 }
 
 footer {
-  width: min(1200px, 100%);
+  width: min(var(--page-max), 100%);
   margin: 0 auto;
   padding: 0.75rem 1rem 2rem;
   color: var(--muted);
@@ -100,7 +110,7 @@ footer a:hover {
 
 /* header and language switch */
 .site-header {
-  width: min(1200px, 100%);
+  width: min(var(--page-max), 100%);
   margin: 0 auto;
   padding: 0.75rem 1rem 0;
   display: flex;
@@ -178,7 +188,7 @@ footer a:hover {
 .workshop-header,
 .workshop-upload,
 .workshop-result,
-.style-sidebar {
+.style-picker {
   background: var(--surface);
   border: 1px solid var(--stroke);
   border-radius: var(--radius-lg);
@@ -293,17 +303,48 @@ footer a:hover {
 }
 
 /*
- * The workbench. The DOM sequence is the narrow-screen sequence: notice, upload, styles,
- * result. Nothing here reorders a child; the wide layout only places them.
+ * The workbench, an application shell. The DOM sequence is the narrow-screen
+ * sequence: panel (notice, upload, selected style, actions), then the main area
+ * (header, result, styles). Nothing here reorders a child; the wide layout only
+ * places them.
  */
 .workshop-shell {
   display: grid;
   gap: 1rem;
 }
 
+.workshop-panel,
+.workshop-main {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.workshop-panel .kvkk-notice {
+  font-size: 0.82rem;
+}
+
+.workshop-selected {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.workshop-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  padding: 0.6rem 0;
+  background: var(--bg);
+}
+
+.workshop-actions > * {
+  flex: 1 1 140px;
+}
+
 .workshop-upload,
 .workshop-result,
-.style-sidebar {
+.style-picker {
   padding: 1rem;
   display: grid;
   gap: 0.85rem;
@@ -356,11 +397,14 @@ footer a:hover {
   overflow-wrap: anywhere;
 }
 
-.workspace-stage-image-wrap {
+.workshop-result-frame {
+  width: min(100%, calc(100dvh - 14rem));
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 auto;
   background: var(--surface-2);
   border: 1px solid var(--stroke);
   border-radius: 1rem;
-  min-height: 240px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -368,14 +412,9 @@ footer a:hover {
 
 .workspace-stage-image {
   width: 100%;
-  max-height: 520px;
+  height: 100%;
   display: block;
   object-fit: contain;
-}
-
-.workspace-cta-block {
-  display: grid;
-  gap: 0.5rem;
 }
 
 .workspace-style-hint {
@@ -650,6 +689,7 @@ footer a:hover {
 
 .style-card-preview {
   width: 100%;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 0.6rem;
@@ -708,7 +748,6 @@ footer a:hover {
 .processing-canvas {
   width: 100%;
   height: 100%;
-  min-height: 260px;
   place-content: center;
   text-align: center;
 }
@@ -777,15 +816,6 @@ footer a:hover {
   gap: 0.45rem;
 }
 
-.workspace-result-actions {
-  align-items: center;
-}
-
-.workspace-result-actions .primary-download,
-.workspace-result-actions .ghost-button {
-  flex: 1 1 180px;
-}
-
 @media (min-width: 900px) {
   main {
     padding: 2rem 1.35rem 2.4rem;
@@ -813,31 +843,37 @@ footer a:hover {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  /* Styles on the left, as long as the page; upload and result on the right. */
+  /* The workbench leaves the container and becomes a full-width shell. */
+  .workshop-page:has(.workshop-shell) {
+    width: 100%;
+    padding: 0;
+  }
+
   .workshop-shell {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    grid-template-rows: auto auto 1fr;
+    grid-template-columns: var(--panel-w) minmax(0, 1fr);
+    gap: 0;
     align-items: start;
   }
 
-  .workshop-shell > .kvkk-notice {
-    grid-column: 1 / -1;
-  }
-
-  .style-sidebar {
+  .workshop-panel {
     grid-column: 1;
-    grid-row: 2 / span 2;
-  }
-
-  .workshop-upload {
-    grid-column: 2;
-  }
-
-  .workshop-result {
-    grid-column: 2;
     position: sticky;
-    top: 1rem;
-    align-self: start;
+    top: 0;
+    height: 100dvh;
+    overflow-y: auto;
+    padding: 1rem;
+    border-right: 1px solid var(--stroke);
+    background: var(--bg);
+  }
+
+  .workshop-actions {
+    position: sticky;
+    bottom: 0;
+  }
+
+  .workshop-main {
+    grid-column: 2;
+    padding: 1.5rem;
   }
 
   .style-grid {
@@ -848,5 +884,23 @@ footer a:hover {
 @media (max-width: 420px) {
   .style-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  body:has(.workshop-shell) {
+    padding-bottom: var(--action-bar-h);
+  }
+
+  .workshop-actions {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--action-bar-h);
+    z-index: 10;
+    padding: 0.6rem 1rem;
+    align-items: center;
+    border-top: 1px solid var(--stroke);
   }
 }
