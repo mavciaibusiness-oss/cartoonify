@@ -1,0 +1,122 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/(tr)/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 229 ms: G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1481 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 72 ms: node -e \"const fs=require('fs'); const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10), CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['data/style-catalog-draft.json','CHANGELOG.md']; const bad=[]; for(const l of lines){ let p=l.slice(3).trim(); if(p.index...",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 60 ms: node -e \"const fs=require('fs'); const path=require('path'); const walk=d=>fs.existsSync(d)?fs.readdirSync(d,{recursive:true}).map(x=>path.join(d,String(x))).filter(p=>/[.](ts|tsx|js|mjs|cjs|json)$/.test(p)&&fs.statSync(p).isFile()):[]; const files=walk('app').concat(walk('components'),walk('lib'),walk('scripts'),['next.config.mjs','tsconfig.json','package.json'].filter(f=>fs.existsSync(f))); const bad=files.filter(f=>fs.readFileSync(f,'utf8').indexOf('style-catalog-draft')>=...",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 57 ms: node -e \"const fs=require('fs'); const F='data/style-catalog-draft.json'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const raw=fs.readFileSync(F); if(raw[0]===239&&raw[1]===187) throw new Error('BOM'); const C=JSON.parse(raw.toString('utf8')); if(!Array.isArray(C)) throw new Error('not an array'); const K='id,name_tr,name_en,category,status,differs_from,rationale_tr,prompt_sketch,portrait_only'; const bad=[]; const seen={id:{},name_tr:{},name_en:{}}; const on...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 95 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); import('./lib/cartoon-styles.ts').then(cs=>{ const F='data/style-catalog-draft.json'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const C=JSON.parse(fs.readFileSync(F,'utf8')); const by={}; for(const x of C) by[x.id]=x; const bad=[]; const act=s=>['keep','fix','new'].indexOf(s)>=0; for(const s of cs.CARTOON_STYLES){ const x=by[s.id]; if(!x) bad.push(s.id+' is missing'); else if(['k...",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 55 ms: node -e \"const fs=require('fs'); const F='data/style-catalog-draft.json'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const C=JSON.parse(fs.readFileSync(F,'utf8')); const CAT=['cartoon','line','drawing','paint','print','paper','textile','sculpt','caricature','graphic','era','surface']; const by={}; for(const x of C) by[x.id]=x; const bad=[]; const act=C.filter(x=>['keep','fix','new'].indexOf(x.status)>=0); const nw=C.filter(x=>x.status==='new').length; if(nw<6...",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const F='data/style-catalog-draft.json'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const C=JSON.parse(fs.readFileSync(F,'utf8')); const B=['pixar','disney','ghibli','simpsons','marvel','dc comics','dreamworks','nickelodeon','cartoon network','hanna-barbera','looney tunes','warner','toei','kyoto animation','madhouse','mappa','ufotable','studio trigger','aardman','laika','sanrio','hello kitty','lego','barbie','pokemon','naruto'...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 58 ms: node -e \"const fs=require('fs'); const F='data/style-catalog-draft.json'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const C=JSON.parse(fs.readFileSync(F,'utf8')); const s=fs.readFileSync('.mavci/tasks/0013-style-catalog-plan.md','utf8'); const a=s.indexOf('<!-- catalog:start -->'), b=s.indexOf('<!-- catalog:end -->'); if(a<0||b<a) throw new Error('the spec has no catalogue table'); const rows=s.slice(a,b).split(String.fromCharCode(10)).filter(l=>/^[|] *[0-9]...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-09-30T11:09:49Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0013",
+  "verdict": "pass"
+}

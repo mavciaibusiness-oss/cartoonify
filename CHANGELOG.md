@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Style catalogue plan: from 31 to 99 styles in twelve categories (a draft, not live)** (task 0013, Sept 30 2026)
+  - Catalogue approved and recorded: of the 31 existing styles, 20 are kept, 9 are to be fixed and 2 are to be merged into other styles. 70 new styles are each defined by one concrete visual difference from their nearest style (technique, texture, palette, line or proportion)
+  - Twelve categories by medium family (cartoon, line, drawing, paint, print, paper, textile, sculpt, caricature, graphic, period, decorative arts), with 8–9 active styles each, planned to replace the four coordinate-derived picker groups in a future filter
+  - Nine styles marked portrait-only: feature-caricature, reduced-caricature, street-caricature, stretched-caricature, modelled-caricature, marble-bust, bobblehead, editorial-cartoon, newsprint-caricature
+  - Nothing on the site changed: this task records the plan as data. Previews and site changes come in later tasks
+
 - **Larger upload preview in the workbench** (task 0012, Sept 30 2026)
   - Upload preview enlarged from a 64 px cropped square to the panel's content width, keeping the photo's aspect ratio with no crop via `object-fit: contain`
   - Preview capped at 32 vh of viewport height so action buttons stay visible in panel
