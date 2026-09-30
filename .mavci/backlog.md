@@ -9,4 +9,4 @@ Work outside any task's scope. The operator decides what becomes a task. One ite
 - Prompt improvements for the 11 weak styles (0008)
 - Style catalogue 31 → ~100: first the catalogue plan, then generation, then the category filter (operator request)
 - The KVKK legal page does not mention OpenAI; for the lawyer (0007)
-- Retro: 54–59 are queued; candidate 60: the criteria set carried from task to task keeps growing, and permanent criteria should move into a project-level regression set
+- Retro: 54–60 are queued (60, filed: the scribe invents content and reverses claims); candidate 61: the criteria set carried from task to task keeps growing, and permanent criteria should move into a project-level regression set

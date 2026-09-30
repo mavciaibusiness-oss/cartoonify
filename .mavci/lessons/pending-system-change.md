@@ -6332,3 +6332,41 @@ Not independently tested here: that git worktree remove follows a junction in ge
 
 **Superseded, quoted verbatim from the body above:** Who or what did is not recorded, and this finding does not assume.
 
+---
+
+# Finding 60 - mavci-scribe produced invented content and reversed claims in three consecutive task records (0010: 12, 0011: 12, 0012: 15 corrections), including inverting "criteria 32-34 proven red only"
+
+Filed: 2026-09-30T10:04:33Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agents/mavci-scribe.md; scripts/lib/route.mjs (document arm, which dispatches the scribe and then closes the task with no check of its output)`
+
+Project cartoonify, plugin 0.1.35, tasks 0010, 0011 and 0012, 2026-09-29/30. Related to finding 49 (scribe overstates its own output size) and finding 53 (agent hand-backs state counts not derived from their source). Filed separately because the failure here is not a miscount. It is content with no source, and claims turned into their opposite, in the document meant to be the task's record.
+
+Correction counts. The main session found each error by checking the written file against the sources named in the dispatch:
+- 0010: twelve factual errors corrected in .mavci/tasks/0010.summary.md before it was committed (recorded in finding 54: "a summary in which the main session had just corrected twelve factual errors").
+- 0011: 11 errors in .mavci/tasks/0011.summary.md and 1 in CHANGELOG.md.
+- 0012: 15 errors in .mavci/tasks/0012.summary.md and 3 in CHANGELOG.md.
+
+Kinds of error, with instances from 0012 (dispatch 2026-09-30):
+- A claim turned into its opposite. The spec (§11.1, §13 item 6) says criteria 32-34 were "proven red only", with their green direction first seen at the build. The scribe wrote "Criteria 32-34 are proven green only. Their red direction would be a future test, not in this verdict", twice. (In 0011, the corresponding error was a garbled prototype table, "27, 28 and 30 ... (29, 30, 31, 30 respectively)", not a reversal.)
+- Reasoning with no source. For TS5097 the scribe wrote a diagnostic text that exists nowhere in the sources ("File '...' is not listed within the rootDirs option ...") and a rationale ("the spec's decision (§3.3) to make the module pure means ..."). The file's own comment and the dispatch gave the real reason.
+- Queue state reversed. It wrote "finding 57 remains closed". 57 is queued and unapplied.
+- An account turned into a fact. The finding 59 addendum says the deletion was "most likely" the operator's command and that junction-following was "not independently tested". The summary stated both as facts, and added "Cleanup is the operator's responsibility during verification", which is in no source.
+- Numbers attached to the wrong thing. "22 of 105 top-level entries" joined a directory count to the lockfile's node_modules entry count. It put the prototype at c451dc0 when the transcript says HEAD f3a9faa. It placed the @ts-expect-error on line 3 when the grep given in the dispatch showed line 9. It called the recorded 1689 ms run "before the fix" when the verify ran after it.
+- Measurement flow garbled. It said 29 and 32 run at 375x667 and that all three browser criteria generate a result. Only 29 generates, and 29 runs at 1280x624 and 1920x984.
+
+The dispatch was already defensive. The 0012 prompt carried the command output verbatim, a list of hard rules (every number from the given output, the spec or the files; keep units; label re-runs; status "verified, not yet closed"; hand back the source line of every number), and the reason for the rules (findings 49 and 53). The hand-back then listed a source line for each number, including "verdict JSON line 271/258/220". The scribe was not given the verdict and has no Bash to read it. Those line citations cannot be checked, which makes them a second instance of finding 53 inside the hand-back that was meant to fix it.
+
+Consequence: the record that --apply and the operator treat as the account of what a task did is reliable only when the main session re-derives every claim, which is the scribe's whole job done twice. The router's step ("dispatch mavci-scribe ... it transcribes from named sources; it does not reconstruct") asserts a property that three consecutive runs did not have.
+
+### The assertion, and the broken build it must catch
+
+Operator's direction: every number and quotation in scribe output must be traceable to a source (command output, spec section, file:line) and verified by a mechanical check. Until that exists, the main session writes the summaries or verifies them.
+
+Checkable form: the scribe emits, beside the summary, a claims file. Each entry holds the exact substring as it appears in the summary, plus one source of type {command, spec, file}. A command source carries the command and the exact output line; a spec source carries a § id and a verbatim quote; a file source carries path:line and a verbatim quote. A checker, runnable by the router before the closing steps, confirms that (1) every digit-bearing token and every quoted span in the summary is covered by a claim, (2) every spec or file quote exists at the named place, and (3) every command claim's output line is present in the dispatch's supplied output (or, for a re-run, is reproduced).
+
+Broken build it must catch: 0.1.35 on the 0012 record as first written. For example, the summary's "proven green only" has no matching spec quote (the spec says "proven red only"), "rootDirs" appears in no source, and "line 3" for the suppression contradicts the supplied grep, which says line 9.
+
+Discrimination: the corrected .mavci/tasks/0012.summary.md, whose claims were each checked by hand against those sources, must pass the same checker once its claims file is written.
