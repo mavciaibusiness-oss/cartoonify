@@ -6,7 +6,7 @@
  *
  *   --probe
  *       One images.edit call built exactly as app/api/cartoonify/route.ts
- *       builds it, on the committed placeholder public/styles/classic.webp.
+ *       builds it, on the committed placeholder: classic's full-size preview.
  *       Confirms the model accepts the route's parameters, and records what
  *       the provider returns, the usage, the cost and the latency. The output
  *       image is discarded.
@@ -21,7 +21,7 @@
  *   --previews --approved-source <first 12 or more hex of the source sha256>
  *              [--only <style id>] [--force]
  *       Refuses unless the typed prefix matches the source on disk. Renders
- *       each style into public/styles/<id>.webp, skipping ones already
+ *       each style into its full-size preview file (stylePreviewPath), skipping ones already
  *       rendered from this source. Stops before any call that would cross the
  *       spend ceiling.
  *
@@ -33,6 +33,7 @@
  * (next.env_centralised). Everything is recorded in lib/preview-manifest.json,
  * which is rewritten after every call so an interrupted run loses nothing.
  */
+import { stylePreviewPath } from '../lib/style-previews.ts'
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -88,9 +89,9 @@ const CLIENT_TIMEOUT_MS = 300000
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const MANIFEST_PATH = path.join(ROOT, 'lib', 'preview-manifest.json')
 const ROUTE_PATH = path.join(ROOT, 'app', 'api', 'cartoonify', 'route.ts')
-const PROBE_INPUT = 'public/styles/classic.webp'
+const PROBE_INPUT = 'public' + stylePreviewPath('classic', 'full')
 const SOURCE_PATH = 'public/hero/before.jpg'
-const previewPath = (id) => 'public/styles/' + id + '.webp'
+const previewPath = (id) => 'public' + stylePreviewPath(id, 'full')
 const abs = (rel) => path.join(ROOT, ...rel.split('/'))
 
 // ----------------------------------------------------------------- helpers

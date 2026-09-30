@@ -35,3 +35,10 @@ export const STYLE_PREVIEW_IDS: readonly string[] = [
   'modelled-caricature',
   'thread-work',
 ]
+
+const PREVIEW_DIRS = { web: 'styles-web', full: 'styles' } as const
+export type PreviewSize = keyof typeof PREVIEW_DIRS
+/** The public URL of a style's preview; the file is 'public' + this. */
+export function stylePreviewPath(id: string, size: PreviewSize = 'web'): string {
+  return '/' + PREVIEW_DIRS[size] + '/' + id + '.webp'
+}

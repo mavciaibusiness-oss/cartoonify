@@ -1,4 +1,5 @@
 import { getDictionary, type Locale } from '@/lib/i18n'
+import { stylePreviewPath } from '@/lib/style-previews'
 import Gallery from './gallery'
 import KvkkNotice from './kvkk-notice'
 import StyleShowcase from './style-showcase'
@@ -33,7 +34,7 @@ export default function Landing({ locale }: { locale: Locale }) {
               <figcaption>{t.landing.heroBeforeCaption}</figcaption>
             </figure>
             <figure>
-              <img src="/styles/classic.webp" alt={t.landing.heroAfterAlt} width={1024} height={1024} />
+              <img src={stylePreviewPath('classic', 'full')} alt={t.landing.heroAfterAlt} width={1024} height={1024} />
               <figcaption>{t.landing.heroAfterCaption}</figcaption>
             </figure>
           </div>

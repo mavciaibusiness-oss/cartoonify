@@ -26,7 +26,7 @@ export default function Gallery({ locale }: { locale: Locale }) {
           const sourceAlt = t.alt[entry.id]
           return (
             <div key={entry.id} className="gallery-row" data-gallery-source={entry.id}>
-              <Link href={workshop} aria-label={t.openSource}>
+              <Link href={workshop} prefetch={false} aria-label={t.openSource}>
                 <figure className="gallery-source">
                   <img
                     src={galleryImagePath(entry.id)}
@@ -49,6 +49,7 @@ export default function Gallery({ locale }: { locale: Locale }) {
                   <Link
                     key={id}
                     href={workshop + '?style=' + resolvedId}
+                    prefetch={false}
                     aria-label={format(t.openStyle, { style: name })}
                   >
                     <figure>

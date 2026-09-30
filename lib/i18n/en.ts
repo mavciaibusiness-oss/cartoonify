@@ -53,8 +53,8 @@ export const en: Dictionary = {
     step3: 'Generate, review and download your cartoon.',
   },
   showcase: {
-    title: 'Every style at a glance',
-    lede: 'Each style with its preview, name and a short description. Pick one you like and try it on your own photo.',
+    title: 'Styles by category',
+    lede: "Samples from each category. Click a category's title to see all of its styles.",
   },
   kvkk: {
     lead: 'The image you upload is sent to ',
@@ -109,6 +109,12 @@ export const en: Dictionary = {
     stepStyle: 'Step 3 • Choose a style',
     stylesAvailable: '{n} styles available',
     defaultGroup: 'Default',
+    filterLabel: 'Category',
+    filterAll: 'All',
+    searchLabel: 'Search styles',
+    searchPlaceholder: 'Type a style name',
+    noResults: 'No style matches this filter.',
+    clearFilters: 'Clear filters',
   },
   styleCard: {
     previewAlt: '{name} style preview',

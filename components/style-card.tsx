@@ -3,12 +3,12 @@
 import type { CartoonStyle } from '@/lib/cartoon-styles'
 import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
 import { isDefaultStyle } from '@/lib/style-display'
+import { stylePreviewPath } from '@/lib/style-previews'
 
 /**
  * One style in the picker. Its text is in the visitor's language. Its preview
- * is the 480 px copy (public/styles-web/, task 0010) of the image rendered for
- * it by task 0008. There is one directory
- * and no fallback; task 0008 criterion 9 proves all 31 exist.
+ * is the 480 px copy of the image rendered for it by task 0008, found through
+ * stylePreviewPath. There is no fallback.
  */
 export default function StyleCard({
   style,
@@ -38,7 +38,7 @@ export default function StyleCard({
       />
       <img
         className="style-card-preview"
-        src={'/styles-web/' + style.id + '.webp'}
+        src={stylePreviewPath(style.id)}
         alt={format(t.styleCard.previewAlt, { name: text.name })}
         width={480}
         height={480}

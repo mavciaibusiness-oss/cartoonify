@@ -13,7 +13,7 @@ import {
   STYLE_SOURCE, CARTOON_STYLES, CLOSING, deriveGroup, closingFor,
   STYLE_CATEGORIES, MERGED_STYLE_IDS,
 } from '../lib/cartoon-styles.ts'
-import { STYLE_PREVIEW_IDS } from '../lib/style-previews.ts'
+import { STYLE_PREVIEW_IDS, stylePreviewPath } from '../lib/style-previews.ts'
 
 // Literal, never built from a template string (next.regex_no_template_literal).
 const SLUG = /^[a-z0-9-]+$/
@@ -117,7 +117,7 @@ for (const [from, to] of Object.entries(MERGED_STYLE_IDS)) {
 // still legal - previews are generated one at a time and cost a paid upstream
 // call each - but a listed id with no file, a file with no listed id, an id
 // that is not a style, a duplicate, or a zero-byte asset are all failures.
-const PREVIEW_DIR = 'public/styles'
+const PREVIEW_DIR = ('public' + stylePreviewPath('_', 'full')).split('/').slice(0, -1).join('/')
 const listed = STYLE_PREVIEW_IDS
 const styleIds = new Set(CARTOON_STYLES.map((s) => s.id))
 const seenPreview = new Set()
@@ -125,7 +125,7 @@ for (const id of listed) {
   if (!styleIds.has(id)) fail(`previews: ${id} is listed but is not a style id`)
   if (seenPreview.has(id)) fail(`previews: ${id} is listed twice`)
   seenPreview.add(id)
-  const f = `${PREVIEW_DIR}/${id}.webp`
+  const f = 'public' + stylePreviewPath(id, 'full')
   if (!fs.existsSync(f)) fail(`previews: ${id} is listed but ${f} does not exist`)
   else if (fs.statSync(f).size === 0) fail(`previews: ${f} is zero bytes`)
 }

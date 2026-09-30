@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   DEFAULT_CARTOON_STYLE_ID,
@@ -21,7 +21,15 @@ import {
 } from '@/lib/i18n'
 import { REDUCED_MOTION_QUERY, resultPanel, scrollBehaviorFor } from '@/lib/workbench-state'
 import { displayGroups } from '@/lib/style-display'
-import { styleFromQuery } from '@/lib/style-query'
+import { styleMatchesQuery } from '@/lib/style-search'
+import {
+  activeCategories,
+  categoryFromQuery,
+  searchFromQuery,
+  styleFromQuery,
+  withPickerQuery,
+  type CategoryFilter,
+} from '@/lib/style-query'
 import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
@@ -46,6 +54,8 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const { file, previewUrl, setUpload } = useUpload()
   const t = getDictionary(locale)
   const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
 
   const [status, setStatus] = useState<Status>('idle')
   const [message, setMessage] = useState<string | null>(null)
@@ -53,6 +63,8 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const [resultStyleId, setResultStyleId] = useState<CartoonStyleId | null>(null)
   const [styleId, setStyleId] = useState<CartoonStyleId>(() => styleFromQuery(searchParams.get('style')))
   const [progress, setProgress] = useState(0)
+  const [category, setCategory] = useState<CategoryFilter>(() => categoryFromQuery(searchParams.get('category')))
+  const [query, setQuery] = useState<string>(() => searchFromQuery(searchParams.get('q')))
   const resultRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
@@ -80,6 +92,14 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     if (isCartoonStyleId(value)) {
       setStyleId(value)
     }
+  }
+
+  // Writes the filter to the address, keeping every other parameter. The raw
+  // text stays in state so spaces can be typed; only the address is trimmed.
+  function applyFilter(nextCategory: CategoryFilter, nextQuery: string) {
+    setCategory(nextCategory)
+    setQuery(nextQuery)
+    router.replace(pathname + withPickerQuery(searchParams.toString(), nextCategory, nextQuery), { scroll: false })
   }
 
   function handleReplaceFile(event: React.ChangeEvent<HTMLInputElement>) {
@@ -173,7 +193,18 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     () => displayGroups().map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
     [locale]
   )
-  const styleCount = galleryGroups.reduce((sum, group) => sum + group.styles.length, 0)
+  const categories = useMemo(() => activeCategories(), [])
+  const visibleGroups = galleryGroups
+    .map((group) => ({
+      ...group,
+      styles: group.styles.filter(
+        (style) =>
+          (category === 'all' || style.category === category) &&
+          styleMatchesQuery({ id: style.id, name: style.name }, query)
+      ),
+    }))
+    .filter((group) => group.styles.length > 0)
+  const styleCount = visibleGroups.reduce((sum, group) => sum + group.styles.length, 0)
 
   const isResultVisible = Boolean(resultUrl)
   const panel = resultPanel({
@@ -298,8 +329,43 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
               <p>{format(t.form.stylesAvailable, { n: styleCount })}</p>
             </div>
 
+            <div className="style-tools">
+              <div className="style-filter" role="group" aria-label={t.form.filterLabel}>
+                <button
+                  type="button"
+                  data-category="all"
+                  aria-pressed={category === 'all'}
+                  onClick={() => applyFilter('all', query)}
+                >
+                  {t.form.filterAll}
+                </button>
+                {categories.map((id) => (
+                  <button
+                    key={id}
+                    type="button"
+                    data-category={id}
+                    aria-pressed={category === id}
+                    onClick={() => applyFilter(id, query)}
+                  >
+                    {t.styleCategories[id]}
+                  </button>
+                ))}
+              </div>
+              <label className="style-search-label">
+                {t.form.searchLabel}
+                <input
+                  type="search"
+                  className="style-search"
+                  maxLength={60}
+                  placeholder={t.form.searchPlaceholder}
+                  value={query}
+                  onChange={(event) => applyFilter(category, event.target.value)}
+                />
+              </label>
+            </div>
+
             <div className="style-gallery" aria-describedby="cartoonify-style-description">
-              {galleryGroups.map((group) => (
+              {visibleGroups.map((group) => (
                 <fieldset key={group.id} className="style-group">
                   <legend>{group.label}</legend>
                   <div className="style-grid">
@@ -316,6 +382,15 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
                   </div>
                 </fieldset>
               ))}
+
+              {styleCount === 0 ? (
+                <p className="style-empty">
+                  {t.form.noResults}
+                  <button type="button" className="ghost-button" onClick={() => applyFilter('all', '')}>
+                    {t.form.clearFilters}
+                  </button>
+                </p>
+              ) : null}
 
               <p id="cartoonify-style-description" className="style-description-live">
                 {selectedText.description}

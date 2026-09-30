@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Style picker category filter and search, showcase by category, homepage transfer at most 2.6 MB, one preview-path helper** (task 0016, Sept 30 2026)
+  - Picker category filter: buttons for all 10 non-empty categories (drawing and era empty today) plus "Tümü"/"All" default, above the four display groups; filters cards and updates address as `?category=<id>`
+  - Picker text search: case-insensitive, matches Turkish and English style names with Turkish letter folding (ı/i, ş/s, ğ/g, ü/u, ö/o, ç/c, and combining marks); empty state with clear-filters button when nothing matches
+  - Selected style stays visible in workbench even when filter hides it from the picker
+  - Homepage showcase refactored from 29 styles in four groups to at most 2 per category (17 cards today, projected 24 at 99 styles); category headings link to `/workshop?category=<id>`
+  - Showcase and gallery links carry `prefetch={false}` to reduce prefetch bytes
+  - Transfer budget: total page transfer measured on production build at `/` and `/en` after full scroll, at 1280×624, 1920×984 and 375×667, at most 2.6 MB; measured 2 077 704 B (before 2 639 530 B), passing all six viewports
+  - Preview-path template unified: `stylePreviewPath(id, size)` in `lib/style-previews.ts` returns `/styles-web/<id>.webp` (default, 480 px) or `/styles/<id>.webp` (`'full'`, 1024 px); used in landing, style-card, style-showcase components and three build scripts
+  - No file under app, components, lib or scripts contains `styles-web/` or `/styles/` literals (comments included) except the helper
+  - Showcase category grid: responsive 1 column mobile, 2 columns from 700 px, 3 columns from 1100 px
+  - New UI text keys: `form.filterLabel`, `form.filterAll`, `form.searchLabel`, `form.searchPlaceholder`, `form.noResults`, `form.clearFilters`, `showcase.title`, `showcase.lede` in both TR and EN
+
 - **ProToolHub brand, header strip, turquoise-to-pink palette, clickable cards, site URL from environment** (task 0015, Sept 30 2026)
   - Brand: every visible "Cartoonify" becomes "ProToolHub"; the tool is named "AI Karikatür Atölyesi" / "AI Cartoon Studio" on the landing, workshop and form badges (legal pages unchanged)
   - Header strip: ProToolHub icon and name with four-link menu (Home, Studio, Styles, Contact) and TR|EN on every page; sticky on wide screens, scrolls on mobile

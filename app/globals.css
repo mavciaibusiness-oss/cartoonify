@@ -781,6 +781,104 @@ footer a:hover {
   line-height: 1.4;
 }
 
+/* Sample cards by category: blocks in a responsive grid, two cards per block. */
+.showcase-categories {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.showcase-category {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+}
+
+.showcase-category h3 {
+  margin: 0;
+}
+
+.showcase-category .showcase-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 700px) {
+  .showcase-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .showcase-categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* The picker's category filter and search. */
+.style-tools {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.style-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.style-filter button {
+  appearance: none;
+  border: 1px solid var(--stroke-strong);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.style-filter button:hover {
+  background: var(--surface-2);
+}
+
+.style-filter button[aria-pressed='true'] {
+  background: var(--surface-2);
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+
+.style-filter button:focus-visible,
+.style-search:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.style-search-label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+.style-search {
+  border: 1px solid var(--stroke-strong);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.style-empty {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  color: var(--muted);
+  margin: 0;
+}
+
 .style-card {
   border-radius: 0.8rem;
   border: 1px solid var(--stroke);

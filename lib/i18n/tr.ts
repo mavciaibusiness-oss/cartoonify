@@ -61,8 +61,8 @@ export const tr = {
     step3: 'Oluşturun, inceleyin ve karikatürünüzü indirin.',
   },
   showcase: {
-    title: 'Tüm stiller tek sayfada',
-    lede: 'Her stilin önizlemesi, adı ve kısa açıklamasıyla burada. Beğendiğinizi seçip kendi fotoğrafınızla deneyin.',
+    title: 'Kategorilere göre stiller',
+    lede: 'Her kategoriden örnekler. Kategorinin tüm stilleri için başlığına tıklayın.',
   },
   kvkk: {
     lead: 'Yüklediğiniz görsel, karikatüre dönüştürülmek üzere ',
@@ -118,6 +118,12 @@ export const tr = {
     stepStyle: 'Adım 3 • Stil seçin',
     stylesAvailable: '{n} stil mevcut',
     defaultGroup: 'Varsayılan',
+    filterLabel: 'Kategori',
+    filterAll: 'Tümü',
+    searchLabel: 'Stil ara',
+    searchPlaceholder: 'Stil adı yazın',
+    noResults: 'Bu filtreyle eşleşen stil yok.',
+    clearFilters: 'Filtreyi temizle',
   },
   styleCard: {
     previewAlt: '{name} stil önizlemesi',

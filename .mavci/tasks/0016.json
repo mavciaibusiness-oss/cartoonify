@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0016",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0016-picker-filter-showcase-budget.md",
+  "title": "Picker category filter and search, showcase by category, homepage transfer budget, single preview-path helper"
+}
