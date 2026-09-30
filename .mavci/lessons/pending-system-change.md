@@ -6370,3 +6370,23 @@ Checkable form: the scribe emits, beside the summary, a claims file. Each entry 
 Broken build it must catch: 0.1.35 on the 0012 record as first written. For example, the summary's "proven green only" has no matching spec quote (the spec says "proven red only"), "rootDirs" appears in no source, and "line 3" for the suppression contradicts the supplied grep, which says line 9.
 
 Discrimination: the corrected .mavci/tasks/0012.summary.md, whose claims were each checked by hand against those sources, must pass the same checker once its claims file is written.
+
+### Addendum to finding 60 - Fourth instance: task 0013, 6 + 4 corrections, invented task number and count, draft presented as live
+
+Amended 2026-09-30T11:32:34Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Fourth consecutive instance: task 0013 (plan task, style catalogue), 2026-09-30, plugin 0.1.35. The dispatch carried the command output verbatim and the same hard rules as 0012, and added a ban on "verdict JSON line N" citations, since the scribe was not given the verdict.
+
+Corrections the main session made by checking the written files against the spec and the supplied output: 6 in .mavci/tasks/0013.summary.md and 4 in CHANGELOG.md, 10 in all.
+
+- An invented task number. "task 0014" was named as the task that will generate the previews: twice in the summary ("the data that task 0014 will use to generate new style previews"; §13 item 7 "This is planned; task 0014 carries it out") and once in the CHANGELOG ("the 70 new style previews will be generated in task 0014"). The spec numbers no generation task; it says only "0014+" (§7).
+- An invented count. The summary said "classic is the default and is kept; the other 10 are fix or merge". The spec says 12 ids were named, classic is kept, and 11 are decided: 9 fix and 2 merge (§2, §3.2). The supplied criterion 6 line also reads "the 11 weak ones".
+- A draft presented as live, twice in the CHANGELOG: "31 existing styles expanded to 99", and categories "replacing the four coordinate-derived picker groups". The spec is a plan: nothing on the site changed, and the categories are "for the future filter" (§1, §3.3).
+- Also invented: "9 fixed for visual clarity" (no source), and in the summary a link, "unchanged by route A, spec §8", that §8 does not make.
+
+Improvement on 0012: the hand-back contained no line citations it could not have checked. Every number it cited was traceable to the supplied output or a spec section. The errors were in claims and wording, not in the numbers themselves.
+
+The pattern holds across four tasks: given verbatim sources and explicit rules, the scribe still adds plausible, unsourced specifics (task numbers, counts, reasons) and loses the modality of the source (plan becomes done, "0014+" becomes "0014").
+
+No superseded text quoted: this amendment ADDS to the finding rather than correcting it.
+
