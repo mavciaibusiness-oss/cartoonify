@@ -6275,3 +6275,60 @@ Corrected discrimination:
 
 **Superseded, quoted verbatim from the body above:** Discrimination: fixtures 1 and 2 with a criterion under 100 characters must pass on both builds, so the assertion bites on the ordering and the discard, not on length alone.
 
+---
+
+# Finding 59 - The architect's prototype worktree reached the project's real node_modules through a junction, and deleting the worktree deleted the packages: every later criterion needing tsc or next went red
+
+Filed: 2026-09-30T09:09:36Z, plugin 0.1.35.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `agents/mavci-architect.md (no guidance on prototype worktrees); scripts/risk-guard.mjs (junction creation into the project tree is not examined)`
+
+Project cartoonify, task 0012 (phase plan), plugin 0.1.35, Windows 11, Git Bash, 2026-09-30. All times UTC, read from the mavci-architect transcript and from commands run by the main session.
+
+Practice being followed: task 0011 §11.1 proved its criteria on "a prototype of this spec written in a scratch git worktree of c451dc0, not in the project tree". The architect repeated that for 0012.
+
+Timeline:
+- 08:45:00 mavci-architect: git worktree add --detach <scratchpad>/wt HEAD && cmd //c mklink //J <scratchpad>\wt\node_modules C:\Projelerim\cartoonify\node_modules. Output: "Junction created for ...\wt\node_modules <<===>> C:\Projelerim\cartoonify\no[de_modules]". The worktree used the project's real packages through a junction.
+- 08:47-08:52 the architect built and probed the prototype in wt (npm run build, headless Chrome).
+- 08:52:22 last successful architect command in wt. 08:52:28 "cd: wt: No such file or directory". The worktree was gone. No command in the architect's transcript deleted it. Who or what did is not recorded, and this finding does not assume.
+- 08:52:58 architect: "ls: cannot access '/c/Projelerim/cartoonify/node_modules/.bin/': No such file or directory". The main session later counted 22 top-level entries left in the project's node_modules (next, node-domexception, node-fetch, openai, ... zod: everything alphabetically from "next" on). .bin and every package before "next" were gone. package-lock.json lists 105 node_modules entries.
+- 08:52:43 the architect made a second worktree, wt-arch0012, again with mklink /J to the project's node_modules. At 08:53:21 it ran cmd //c rmdir on that junction and then npm ci inside the worktree. The main session stopped the agent during that install.
+
+Consequence: the next run of the criteria on the project tree gave criterion 2 "'tsc' is not recognized as an internal or external command" and criterion 3 "'next' is not recognized...". Criteria 29, 31 and 32 failed with "Could not find node with given id" and "timed out waiting for next start". Those are tree-state failures that read like product failures. The main session restored the tree with npm ci (63 top-level entries, node_modules/.bin/tsc and next present), after which all 31 carried criteria were green.
+
+Mechanism, stated as far as it is evidenced: a recursive delete of the worktree directory followed the junction into the real node_modules and stopped partway. A partial, alphabetical loss that ends just before "next" fits a delete that hit a path error inside next's deep tree. On the same machine, the main session's own `git worktree remove --force` of wt-arch0012 failed with "Filename too long" (that junction had already been removed at 08:53:21, and the project's node_modules was unaffected: 63 entries before and after). Whether the 08:52 deletion was git worktree remove, rm -rf or a manual delete is not known.
+
+Correction recorded here, since it was said in the session: the main session first described the packages as "moved" into wt-arch0012, because that worktree held 63 entries. That was wrong. They were that worktree's own npm ci, interrupted.
+
+Nothing in the plugin mentions worktrees, junctions or node_modules for prototypes, and the risk guard does not look at mklink or New-Item -ItemType Junction. The practice that led here is a spec pattern (0011 §11.1), not a plugin feature, so there is no code path to fix. There is also no guidance.
+
+### The assertion, and the broken build it must catch
+
+Operator's direction: a prototype worktree runs its own npm ci. If a link is used anyway, the removal step removes the link first (cmd //c rmdir on the junction, which removes the link and not its target) and only then deletes the worktree.
+
+Checkable forms:
+
+(1) Guidance: agents/mavci-architect.md states both rules. An agent eval fixture gives the architect a spec needing a built prototype. It passes only if the transcript shows either no mklink/junction to the project tree, or an rmdir of the link before any worktree removal. Broken build: 0.1.35, where the 0012 transcript shows mklink /J to C:\Projelerim\cartoonify\node_modules and no guidance exists.
+
+(2) Guard, Windows: the risk guard refuses, or at least warns, a Bash/PowerShell command from an agent that creates a junction or symlink (mklink /J, mklink /D, New-Item -ItemType Junction|SymbolicLink) whose TARGET is inside the project root. Fixture: that exact 08:45:00 command must be refused. Discrimination: a junction between two scratch directories must pass.
+
+(3) Cleanup safety: if the plugin ever ships a worktree helper, its remove step is tested with a worktree whose node_modules is a junction to a temp directory holding a marker file. After removal the marker must still exist. Broken build: a helper that calls git worktree remove --force or rm -rf first.
+
+### Addendum to finding 59 - Deletion most likely the operator's git worktree remove --force, which followed the junction
+
+Amended 2026-09-30T09:13:24Z, plugin 0.1.35. Amended by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Operator's account, 2026-09-30, transcribed by the main session. It replaces "who or what did is not recorded" in the timeline, and "whether the 08:52 deletion was git worktree remove, rm -rf or a manual delete is not known" in the mechanism paragraph.
+
+The deletion of <scratchpad>/wt at about 08:52 was most likely triggered by the operator running `git worktree remove --force <wt>`, a command suggested by a chat assistant. The command stopped partway with "Filename too long". That matches what the project's node_modules showed afterwards: a delete that followed the junction into the real packages and stopped partway. The packages were removed alphabetically up to just before "next", and .bin was gone. The same error ended the main session's own `git worktree remove --force` of wt-arch0012 later that session. That one did no harm, because the architect had already removed that junction with rmdir at 08:53:21.
+
+So the hazard is not only an agent's rm -rf. The standard, documented git command for this job, run by a human, follows the junction on this machine.
+
+Addition to the direction in the assertion section: before a worktree is removed, every junction inside it must be removed with rmdir (cmd //c rmdir <link>, which deletes the link and not its target), because git worktree remove follows the junction. This applies to the operator's own cleanup as well as to agents'. Guidance that tells only the agent is not enough when the remover is a person with a suggested command.
+
+Not independently tested here: that git worktree remove follows a junction in general. The evidence is this one incident, the operator's account, and the matching partial loss.
+
+**Superseded, quoted verbatim from the body above:** Who or what did is not recorded, and this finding does not assume.
+

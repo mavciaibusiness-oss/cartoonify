@@ -157,6 +157,7 @@ footer a:hover {
   clip-path: inset(50%);
   border: 0;
   white-space: nowrap;
+  line-height: 1.2;
 }
 
 .workshop-badge {
@@ -323,6 +324,7 @@ footer a:hover {
 
 .workshop-panel .kvkk-notice {
   font-size: 0.82rem;
+  padding: 0.5rem 0.7rem;
 }
 
 .workshop-selected {
@@ -334,7 +336,7 @@ footer a:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  padding: 0.6rem 0;
+  padding: 0.2rem 0;
   background: var(--bg);
 }
 
@@ -374,27 +376,60 @@ footer a:hover {
   flex-wrap: wrap;
 }
 
-.workshop-upload-file {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-width: 0;
+.workshop-upload {
+  padding-inline: 0;
+  padding-block: 0.3rem;
+  gap: 0.4rem;
 }
 
-.workshop-upload-thumb {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
+.workshop-upload-head h2 {
+  margin: 0;
+}
+
+.workshop-upload > :not(.workshop-upload-preview) {
+  margin-inline: 1rem;
+}
+
+.workshop-upload-preview {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 32vh;
+  object-fit: contain;
   border-radius: 0.6rem;
   border: 1px solid var(--stroke);
-  flex: none;
 }
 
 .workshop-upload-name {
   color: var(--muted);
   font-size: 0.9rem;
   min-width: 0;
-  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workshop-upload-controls {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.workshop-upload-controls > * {
+  padding-block: 0.25rem;
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+
+.style-default-badge {
+  justify-self: start;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .workshop-result-frame {
@@ -618,13 +653,6 @@ footer a:hover {
 .showcase-group {
   display: grid;
   gap: 0.7rem;
-}
-
-.showcase-count {
-  margin-left: 0.6rem;
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 500;
 }
 
 .showcase-grid {
@@ -861,7 +889,8 @@ footer a:hover {
     top: 0;
     height: 100dvh;
     overflow-y: auto;
-    padding: 1rem;
+    padding: 0.75rem 1rem;
+    gap: 0.4rem;
     border-right: 1px solid var(--stroke);
     background: var(--bg);
   }

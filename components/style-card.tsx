@@ -2,6 +2,7 @@
 
 import type { CartoonStyle } from '@/lib/cartoon-styles'
 import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
+import { isDefaultStyle } from '@/lib/style-display'
 
 /**
  * One style in the picker. Its text is in the visitor's language. Its preview
@@ -43,6 +44,7 @@ export default function StyleCard({
         height={480}
         loading="lazy"
       />
+      {isDefaultStyle(style.id) ? <span className="style-default-badge">{t.form.defaultGroup}</span> : null}
       <span className="style-card-name">{text.name}</span>
       <span className="style-card-description">{text.description}</span>
     </label>

@@ -5,7 +5,6 @@ import {
   DEFAULT_CARTOON_STYLE_ID,
   getCartoonStyle,
   isCartoonStyleId,
-  STYLE_GROUPS,
   type CartoonStyle,
   type CartoonStyleId,
 } from '@/lib/cartoon-styles'
@@ -20,6 +19,7 @@ import {
   type Locale,
 } from '@/lib/i18n'
 import { REDUCED_MOTION_QUERY, resultPanel, scrollBehaviorFor } from '@/lib/workbench-state'
+import { displayGroups } from '@/lib/style-display'
 import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
@@ -167,11 +167,8 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const canSubmit = status !== 'loading' && previewUrl !== null
   const selectedText = styleText(getCartoonStyle(styleId), locale)
   const galleryGroups = useMemo<readonly GalleryGroup[]>(
-    () => [
-      { id: 'default', label: t.form.defaultGroup, styles: [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)] },
-      ...STYLE_GROUPS.map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
-    ],
-    [t, locale]
+    () => displayGroups().map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
+    [locale]
   )
   const styleCount = galleryGroups.reduce((sum, group) => sum + group.styles.length, 0)
 
@@ -194,14 +191,6 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
           <section className="workshop-upload" aria-label={t.form.stepPreview}>
             <div className="workshop-upload-head">
               <h2>{t.form.stepPreview}</h2>
-              <div className="workspace-stage-controls">
-                <label htmlFor="replace-image-input" className="ghost-button">
-                  {t.form.replace}
-                </label>
-                <button type="button" className="ghost-button" onClick={handleRemoveFile}>
-                  {t.form.remove}
-                </button>
-              </div>
             </div>
 
             <input
@@ -212,9 +201,16 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
               onChange={handleReplaceFile}
             />
 
-            <div className="workshop-upload-file">
-              {previewUrl ? <img src={previewUrl} alt={t.form.originalAlt} className="workshop-upload-thumb" /> : null}
-              <span className="workshop-upload-name">{file?.name}</span>
+            {previewUrl ? <img src={previewUrl} alt={t.form.originalAlt} className="workshop-upload-preview" /> : null}
+            <span className="workshop-upload-name">{file?.name}</span>
+
+            <div className="workshop-upload-controls">
+              <label htmlFor="replace-image-input" className="ghost-button">
+                {t.form.replace}
+              </label>
+              <button type="button" className="ghost-button" onClick={handleRemoveFile}>
+                {t.form.remove}
+              </button>
             </div>
           </section>
 

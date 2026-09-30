@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Larger upload preview in the workbench** (task 0012, Sept 30 2026)
+  - Upload preview enlarged from a 64 px cropped square to the panel's content width, keeping the photo's aspect ratio with no crop via `object-fit: contain`
+  - Preview capped at 32 vh of viewport height so action buttons stay visible in panel
+  - File name and replace/remove buttons positioned under the preview in panel's visible area
+  - Klasik Karikatür moved from synthetic "Varsayılan" group to first card of "Çizgi ve Mürekkep" group with "Varsayılan" badge showing it is the default style
+  - Showcase group headings no longer show a style count ("{n} stil" / "{n} styles"); only the group name remains
+  - One-card "Varsayılan" group removed from picker and showcase; four group headings now (down from five)
+
 - **Wide layout with 1 440 px container on landing pages** (task 0011, Sept 30 2026)
   - Page container increased from 1 200 px to 1 440 px via `--page-max: 1440px` token, applied to `main`, `footer`, and `.site-header`
   - Landing pages (`/` and `/en`) use the full 1 440 px width; workbench opt-out with `.workshop-page:has(.workshop-shell) { width: 100% }` becomes full-width after photo is chosen

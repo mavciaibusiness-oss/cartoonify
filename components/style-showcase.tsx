@@ -1,5 +1,5 @@
-import { DEFAULT_CARTOON_STYLE_ID, getCartoonStyle, STYLE_GROUPS } from '@/lib/cartoon-styles'
 import { format, getDictionary, groupLabel, styleText, type Locale } from '@/lib/i18n'
+import { displayGroups, isDefaultStyle } from '@/lib/style-display'
 
 /**
  * Every style on the landing, under its group heading: preview, name and
@@ -9,15 +9,7 @@ import { format, getDictionary, groupLabel, styleText, type Locale } from '@/lib
  */
 export default function StyleShowcase({ locale }: { locale: Locale }) {
   const t = getDictionary(locale)
-  const groups = [
-    { id: 'default', label: t.form.defaultGroup, count: null, styles: [getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)] },
-    ...STYLE_GROUPS.map((group) => ({
-      id: group.id,
-      label: groupLabel(group.id, locale),
-      count: group.styles.length,
-      styles: group.styles,
-    })),
-  ]
+  const groups = displayGroups()
 
   return (
     <section className="style-showcase">
@@ -26,12 +18,7 @@ export default function StyleShowcase({ locale }: { locale: Locale }) {
 
       {groups.map((group) => (
         <div key={group.id} className="showcase-group" data-style-group={group.id}>
-          <h3>
-            {group.label}
-            {group.count !== null ? (
-              <span className="showcase-count">{format(t.landing.groupCount, { n: group.count })}</span>
-            ) : null}
-          </h3>
+          <h3>{groupLabel(group.id, locale)}</h3>
           <ul className="showcase-grid">
             {group.styles.map((style) => {
               const text = styleText(style, locale)
@@ -45,6 +32,7 @@ export default function StyleShowcase({ locale }: { locale: Locale }) {
                     loading="lazy"
                     decoding="async"
                   />
+                  {isDefaultStyle(style.id) ? <span className="style-default-badge">{t.form.defaultGroup}</span> : null}
                   <span className="showcase-name">{text.name}</span>
                   <span className="showcase-description">{text.description}</span>
                 </li>

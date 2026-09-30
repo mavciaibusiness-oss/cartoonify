@@ -47,7 +47,6 @@ export const tr = {
     heroAfterCaption: 'Klasik Karikatür sonucu',
     heroBeforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan bir yetişkinin portresi',
     heroAfterAlt: 'Aynı portre, Klasik Karikatür stiliyle',
-    groupCount: '{n} stil',
     howTitle: 'Atölye akışı',
     step1: 'Görselinizi sürükleyip bırakarak ya da dosya seçerek yükleyin.',
     step2: 'Görselinizi önizleyin ve bir stil kartı seçin.',

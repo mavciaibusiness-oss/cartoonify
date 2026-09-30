@@ -41,7 +41,6 @@ export const en: Dictionary = {
     heroAfterCaption: 'Classic Cartoon result',
     heroBeforeAlt: 'AI-generated portrait of a fictional adult',
     heroAfterAlt: 'The same portrait in the Classic Cartoon style',
-    groupCount: '{n} styles',
     howTitle: 'Workshop flow',
     step1: 'Upload your image by drag and drop or by choosing a file.',
     step2: 'Preview your image and choose a style card.',
