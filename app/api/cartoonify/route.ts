@@ -2,8 +2,8 @@ import OpenAI, { toFile } from 'openai'
 import {
   DEFAULT_CARTOON_STYLE_ID,
   getCartoonStyle,
-  isCartoonStyleId,
   MAX_STYLES_PER_REQUEST,
+  resolveCartoonStyleId,
 } from '@/lib/cartoon-styles'
 import { getEnv, hasOpenAIKey } from '@/lib/env'
 import {
@@ -116,10 +116,12 @@ export async function POST(request: Request): Promise<Response> {
   const styleField = styleFields.length > 0 ? styleFields[0] : null
   let styleId = DEFAULT_CARTOON_STYLE_ID
   if (styleField !== null) {
-    if (!isCartoonStyleId(styleField)) {
+    // A style merged into another (task 0014) is redirected to its target.
+    const resolvedId = resolveCartoonStyleId(styleField)
+    if (resolvedId === null) {
       return errorResponse('INVALID_STYLE', 400)
     }
-    styleId = styleField
+    styleId = resolvedId
   }
   const style = getCartoonStyle(styleId)
 

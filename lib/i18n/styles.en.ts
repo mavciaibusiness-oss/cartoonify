@@ -1,7 +1,7 @@
 import type { CartoonGroup, CartoonStyleId } from '../cartoon-styles'
 
 /**
- * English names and descriptions for the 31 styles, translated from the
+ * English names and descriptions for the 29 styles, translated from the
  * Turkish in lib/cartoon-styles.ts. That file stays the source and is not
  * touched: its prompts are pinned, and translating beside them would put them
  * one careless edit away.
@@ -18,10 +18,6 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   'bold-ink': {
     name: 'Bold Ink',
     description: 'High contrast with thick black outlines and flat colour areas.',
-  },
-  'cel-frame': {
-    name: 'Animation Cel',
-    description: 'An animation frame with bold outlines and two-step shading.',
   },
   'hatched-line': {
     name: 'Hatched Line',
@@ -66,10 +62,6 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   'stretched-caricature': {
     name: 'Stretched Caricature',
     description: 'A soft caricature with no brush marks, its proportions stretched along one axis.',
-  },
-  'combed-paint': {
-    name: 'Combed Paint',
-    description: 'A simple paint surface built from combed, flowing lines.',
   },
   'wet-paper': {
     name: 'Wet Paper',

@@ -7,7 +7,6 @@
 export const STYLE_PREVIEW_IDS: readonly string[] = [
   'classic',
   'bold-ink',
-  'cel-frame',
   'hatched-line',
   'line-wash',
   'two-ink',
@@ -19,7 +18,6 @@ export const STYLE_PREVIEW_IDS: readonly string[] = [
   'opaque-paint',
   'thick-paint',
   'stretched-caricature',
-  'combed-paint',
   'wet-paper',
   'single-ink',
   'retro-print',

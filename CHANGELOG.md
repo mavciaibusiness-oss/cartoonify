@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Style data model: an explicit category field, two style merges reducing 31 active styles to 29** (task 0014, Sept 30 2026)
+  - Every style in `lib/cartoon-styles.ts` carries a `category` field typed as `StyleCategory` (one of twelve: cartoon, line, drawing, paint, print, paper, textile, sculpt, caricature, graphic, era, surface), matching `data/style-catalog-draft.json` from the approved plan (task 0013)
+  - Category names added to `lib/i18n/tr.ts` and `lib/i18n/en.ts` under `styleCategories`; not rendered in 0014
+  - `coords` field preserved on every style; still needed for group layout, prompt closings, and the style checker
+  - Two styles merged: `cel-frame` → `classic` and `combed-paint` → `thick-paint`; the merged ids are removed from the picker and showcase, leaving 29 active styles
+  - API route accepts legacy merged ids and redirects requests to the target style; no status codes or error messages change
+  - Gallery pet tile caption changes from the merged style's old name "Çizgi Film" / "Animation Cel" to the target style's name "Klasik Karikatür" / "Classic Cartoon"
+  - Workshop page meta description changes from "31 stil" / "31 styles" to "29 stil" / "29 styles"
+  - Four preview files deleted: `public/styles/cel-frame.webp`, `public/styles/combed-paint.webp`, `public/styles-web/cel-frame.webp`, `public/styles-web/combed-paint.webp`
+  - `lib/style-previews.ts` updated to list 29 styles; `lib/style-web-manifest.json` removes the two merged entries
+  - `scripts/check-styles.mjs` now also checks the category list, every style's category, and the merged-id map
+
 ### Added
 
 - **Style catalogue plan: from 31 to 99 styles in twelve categories (a draft, not live)** (task 0013, Sept 30 2026)

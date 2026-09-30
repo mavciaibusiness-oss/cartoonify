@@ -19,7 +19,7 @@ export const en: Dictionary = {
     homeDescription:
       'Upload a portrait, choose from the style gallery, turn it into a cartoon in one click and download it.',
     workshopTitle: 'Cartoon Workshop — Cartoonify',
-    workshopDescription: 'Upload your photo, choose from 31 styles and generate your cartoon.',
+    workshopDescription: 'Upload your photo, choose from 29 styles and generate your cartoon.',
   },
   header: {
     languageLabel: 'Language',
@@ -123,6 +123,20 @@ export const en: Dictionary = {
   },
   client: {
     network: 'A network problem occurred. Please try again.',
+  },
+  styleCategories: {
+    cartoon: 'Cartoon',
+    line: 'Line and Ink',
+    drawing: 'Dry Media',
+    paint: 'Paint',
+    print: 'Printmaking',
+    paper: 'Paper',
+    textile: 'Textile',
+    sculpt: 'Sculpted',
+    caricature: 'Caricature',
+    graphic: 'Graphic',
+    era: 'Period',
+    surface: 'Decorative Arts',
   },
   errors: {
     NO_FILE: 'You have not chosen an image. Please upload a file.',

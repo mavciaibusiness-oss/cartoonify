@@ -1,4 +1,7 @@
-import type { CartoonStyleId } from './cartoon-styles'
+import type { CartoonStyleId, MergedStyleId } from './cartoon-styles'
+
+/** A gallery tile may still carry an id that has since merged into another. */
+export type GalleryStyleId = CartoonStyleId | MergedStyleId
 
 /**
  * The landing gallery: five AI-generated sources, three styles each. Task 0009
@@ -14,7 +17,7 @@ export type GallerySourceId = 'pet' | 'maiden-tower' | 'paris-street' | 'man-por
 
 export type GalleryEntry = {
   readonly id: GallerySourceId
-  readonly styles: readonly [CartoonStyleId, CartoonStyleId, CartoonStyleId]
+  readonly styles: readonly [GalleryStyleId, GalleryStyleId, GalleryStyleId]
 }
 
 export const GALLERY: readonly GalleryEntry[] = [
@@ -29,6 +32,6 @@ export const GALLERY: readonly GalleryEntry[] = [
 export const GALLERY_WEB_SIZE = 640
 
 /** Public URL of a gallery image: the source when `style` is omitted. */
-export function galleryImagePath(id: GallerySourceId, style?: CartoonStyleId): string {
+export function galleryImagePath(id: GallerySourceId, style?: GalleryStyleId): string {
   return '/gallery/' + id + '/' + (style ?? 'source') + '.webp'
 }

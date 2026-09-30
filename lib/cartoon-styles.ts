@@ -77,10 +77,33 @@ export type Asserts = { readonly [K in keyof Coords]: AssertSource }
 
 export type CartoonGroup = 'cizgi' | 'boya' | 'baski' | 'kesme'
 
+/**
+ * The twelve medium families of the approved catalogue plan (task 0013 §4.1),
+ * in that order. Stored on each record, not derived: a category is a family of
+ * media, not a region of the coordinate grid. Data only until a filter uses it.
+ */
+export const STYLE_CATEGORIES = [
+  'cartoon',
+  'line',
+  'drawing',
+  'paint',
+  'print',
+  'paper',
+  'textile',
+  'sculpt',
+  'caricature',
+  'graphic',
+  'era',
+  'surface',
+] as const
+
+export type StyleCategory = (typeof STYLE_CATEGORIES)[number]
+
 type StyleSource = {
   readonly id: string
   readonly name: string
   readonly description: string
+  readonly category: StyleCategory
   readonly coords: Coords | null
   readonly asserts: Asserts | null
   readonly body: string
@@ -91,6 +114,7 @@ export const STYLE_SOURCE = [
     id: 'classic',
     name: 'Klasik Karikatür',
     description: 'Canlı renkler ve temiz hatlarla dengeli bir çizgi film görünümü.',
+    category: 'cartoon',
     // Outside the axis grid: this is the default, not one choice among many.
     // A request with no `style` field routes here, so this string is the
     // pre-styles contract: editing it changes the output every older client
@@ -106,24 +130,17 @@ export const STYLE_SOURCE = [
     id: 'bold-ink',
     name: 'Kalın Mürekkep',
     description: 'Kalın siyah konturlar ve düz renk alanlarıyla yüksek kontrast.',
+    category: 'cartoon',
     coords: { B: 'B1', T: 'T2', C: 'C1', S: 'S1', F: 'F1', D: 'D1' },
     asserts: { B: 'opening', T: 'opening', C: 'null', S: 'null', F: 'constant', D: 'null' },
     body:
       'Bu fotoğrafı kalın siyah mürekkep konturları ve düz, gölgesiz renk alanlarıyla yüksek kontrastlı bir çizime dönüştür. Ara tonlar yerine keskin ışık-gölge ayrımı kullan, çizgi kalınlığı belirgin olsun.',
   },
   {
-    id: 'cel-frame',
-    name: 'Çizgi Film',
-    description: 'Kalın kontur ve iki kademeli gölgeyle bir animasyon karesi.',
-    coords: { B: 'B1', T: 'T3', C: 'C1', S: 'S1', F: 'F1', D: 'D3' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'attr', F: 'constant', D: 'attr' },
-    body:
-      'Bu fotoğrafı kalın konturlu, canlı renkli bir çizgi film karesine dönüştür. Her renk alanı iki koyuluk kademesine ayrılsın, gölge sınırları sert olsun; gölge biçimleri hacmi kursun. Gren ve fırça izi kullanma.',
-  },
-  {
     id: 'hatched-line',
     name: 'Tarama Çizgi',
     description: 'Kâğıt üzerinde çapraz tarama ile kurulmuş tek renkli çizim.',
+    category: 'line',
     coords: { B: 'B2', T: 'T5', C: 'C5', S: 'S2', F: 'F1', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -133,6 +150,7 @@ export const STYLE_SOURCE = [
     id: 'line-wash',
     name: 'Sulu Çizgi',
     description: 'İnce çizgi ve sulandırılmış boyayla soluk, yumuşak bir çizim.',
+    category: 'line',
     coords: { B: 'B2', T: 'T1', C: 'C4', S: 'S2', F: 'F1', D: 'D1' },
     asserts: { B: 'opening', T: 'opening', C: 'attr', S: 'attr', F: 'constant', D: 'null' },
     body:
@@ -142,6 +160,7 @@ export const STYLE_SOURCE = [
     id: 'two-ink',
     name: 'İki Mürekkep',
     description: 'Kalın kontur ve iki renkle sınırlı, sadeleştirilmiş çizim.',
+    category: 'line',
     coords: { B: 'B1', T: 'T2', C: 'C2', S: 'S1', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'null' },
     body:
@@ -151,6 +170,7 @@ export const STYLE_SOURCE = [
     id: 'mass-caricature',
     name: 'Şişirilmiş Karikatür',
     description: 'Kütleleri şişirilmiş, yassı ve canlı renkli bir karikatür.',
+    category: 'caricature',
     coords: { B: 'B1', T: 'T3', C: 'C1', S: 'S1', F: 'F3', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'attr' },
     body:
@@ -160,6 +180,7 @@ export const STYLE_SOURCE = [
     id: 'feature-caricature',
     name: 'Portre Karikatür',
     description: 'Yalnızca en ayırt edici hatları abartan, taramalı portre.',
+    category: 'caricature',
     coords: { B: 'B2', T: 'T5', C: 'C4', S: 'S3', F: 'F3', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'attr', D: 'null' },
     body:
@@ -169,6 +190,7 @@ export const STYLE_SOURCE = [
     id: 'reduced-caricature',
     name: 'Keskin Karikatür',
     description: 'Her hattı en keskin biçimine indirgeyen iki renkli karikatür.',
+    category: 'caricature',
     coords: { B: 'B2', T: 'T2', C: 'C2', S: 'S1', F: 'F3', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'null' },
     body:
@@ -178,6 +200,7 @@ export const STYLE_SOURCE = [
     id: 'soft-pastel',
     name: 'Yumuşak Suluboya',
     description: 'Suluboya dokusunda, pastel tonlarda yumuşak bir illüstrasyon.',
+    category: 'paint',
     coords: { B: 'B5', T: 'T1', C: 'C4', S: 'S3', F: 'F1', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -187,6 +210,7 @@ export const STYLE_SOURCE = [
     id: 'flat-colour',
     name: 'Düz Renk',
     description: 'Kontursuz, düz renk alanlarından oluşan sade bir görsel.',
+    category: 'graphic',
     coords: { B: 'B3', T: 'T2', C: 'C1', S: 'S1', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'null', S: 'attr', F: 'opening', D: 'null' },
     body:
@@ -196,6 +220,7 @@ export const STYLE_SOURCE = [
     id: 'opaque-paint',
     name: 'Örtücü Boya',
     description: 'Örtücü mat boyayla, sıcak paletle yapılmış bir tablo.',
+    category: 'paint',
     coords: { B: 'B3', T: 'T2', C: 'C3', S: 'S3', F: 'F1', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -205,6 +230,7 @@ export const STYLE_SOURCE = [
     id: 'thick-paint',
     name: 'Kalın Boya',
     description: 'Kalın sürülmüş boya ve yumuşak geçişlerle hacimli bir çalışma.',
+    category: 'paint',
     coords: { B: 'B5', T: 'T1', C: 'C1', S: 'S3', F: 'F2', D: 'D4' },
     asserts: { B: 'attr', T: 'attr', C: 'null', S: 'opening', F: 'attr', D: 'attr' },
     body:
@@ -214,24 +240,17 @@ export const STYLE_SOURCE = [
     id: 'stretched-caricature',
     name: 'Uzun Karikatür',
     description: 'Oranları tek eksende uzatılmış, izsiz ve yumuşak bir karikatür.',
+    category: 'caricature',
     coords: { B: 'B5', T: 'T1', C: 'C1', S: 'S1', F: 'F3', D: 'D4' },
     asserts: { B: 'attr', T: 'opening', C: 'null', S: 'opening', F: 'attr', D: 'attr' },
     body:
       'Bu fotoğrafı yumuşak geçişli, kontursuz ve izsiz bir karikatüre dönüştür. Oranlar tek bir eksende gerdirilsin; şişirme değil uzatma olsun. Hacim sürekli tonla kurulsun. Fırça izi ve doku kullanma, yüzey temiz kalsın.',
   },
   {
-    id: 'combed-paint',
-    name: 'Akışkan Boya',
-    description: 'Taraklanmış akışkan çizgilerle kurulmuş sade bir boya yüzeyi.',
-    coords: { B: 'B5', T: 'T5', C: 'C3', S: 'S2', F: 'F2', D: 'D1' },
-    asserts: { B: 'attr', T: 'opening', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
-    body:
-      'Bu fotoğrafı taraklanmış akışkan çizgilerle kâğıda yapılmış sade bir boya yüzeyine dönüştür. Kontur kullanma, kenarlar boyanın akışıyla belirsin. Ton çizgilerin yönüyle kurulsun; renkler sıcak palete sınırlı kalsın.',
-  },
-  {
     id: 'wet-paper',
     name: 'Islak Kâğıt',
     description: 'Islak kâğıtta iki renkle yayılan yumuşak geçişler.',
+    category: 'paint',
     coords: { B: 'B3', T: 'T1', C: 'C2', S: 'S2', F: 'F1', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -241,6 +260,7 @@ export const STYLE_SOURCE = [
     id: 'single-ink',
     name: 'Tek Mürekkep',
     description: 'Tek mürekkeple, üç kademeli tonla kurulmuş bir çalışma.',
+    category: 'line',
     coords: { B: 'B5', T: 'T3', C: 'C5', S: 'S2', F: 'F1', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -250,6 +270,7 @@ export const STYLE_SOURCE = [
     id: 'retro-print',
     name: 'Retro Baskı',
     description: 'Eski matbaa baskısı gibi noktalı doku ve sınırlı sıcak palet.',
+    category: 'print',
     coords: { B: 'B3', T: 'T4', C: 'C2', S: 'S4', F: 'F1', D: 'D1' },
     asserts: { B: 'null', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -259,6 +280,7 @@ export const STYLE_SOURCE = [
     id: 'carved-block',
     name: 'Oyma Baskı',
     description: 'Elle oyulmuş kalıptan basılmış, kalın konturlu tek renkli baskı.',
+    category: 'print',
     coords: { B: 'B1', T: 'T2', C: 'C5', S: 'S4', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'opening', D: 'null' },
     body:
@@ -268,6 +290,7 @@ export const STYLE_SOURCE = [
     id: 'wood-block',
     name: 'Ahşap Baskı',
     description: 'Ahşap bloktan basılmış, oyulmuş tarama çizgileriyle kurulmuş baskı.',
+    category: 'print',
     coords: { B: 'B1', T: 'T5', C: 'C5', S: 'S4', F: 'F1', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
     body:
@@ -277,6 +300,7 @@ export const STYLE_SOURCE = [
     id: 'screen-print',
     name: 'Elek Baskı',
     description: 'Elekten geçirilmiş, birkaç düz biçime indirgenmiş üç renkli baskı.',
+    category: 'print',
     coords: { B: 'B3', T: 'T2', C: 'C2', S: 'S4', F: 'F2', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
     body:
@@ -286,6 +310,7 @@ export const STYLE_SOURCE = [
     id: 'newsprint-caricature',
     name: 'Gazete Karikatürü',
     description: 'Ucuz gazete kâğıdında iri tramlı, asimetrisi büyütülmüş karikatür.',
+    category: 'caricature',
     coords: { B: 'B2', T: 'T4', C: 'C5', S: 'S4', F: 'F3', D: 'D1' },
     asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'attr', D: 'null' },
     body:
@@ -295,6 +320,7 @@ export const STYLE_SOURCE = [
     id: 'engraved-plate',
     name: 'Kazıma Baskı',
     description: 'Metal plakaya kazınmış, şişip incelen çizgilerle hacim.',
+    category: 'print',
     coords: { B: 'B2', T: 'T5', C: 'C5', S: 'S4', F: 'F1', D: 'D4' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'attr' },
     body:
@@ -304,6 +330,7 @@ export const STYLE_SOURCE = [
     id: 'double-pass',
     name: 'Çift Geçiş',
     description: 'İki mürekkebin üst üste binmesinden doğan üçüncü koyuluk.',
+    category: 'print',
     coords: { B: 'B3', T: 'T3', C: 'C5', S: 'S4', F: 'F2', D: 'D1' },
     asserts: { B: 'null', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
     body:
@@ -313,6 +340,7 @@ export const STYLE_SOURCE = [
     id: 'paper-cutout',
     name: 'Kâğıt Kesme',
     description: 'Üst üste yerleştirilmiş renkli kâğıt parçalarından kolaj etkisi.',
+    category: 'paper',
     coords: { B: 'B4', T: 'T2', C: 'C1', S: 'S5', F: 'F2', D: 'D2' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'attr', D: 'attr' },
     body:
@@ -322,6 +350,7 @@ export const STYLE_SOURCE = [
     id: 'torn-paper',
     name: 'Yırtık Kâğıt',
     description: 'Elle yırtılmış, lifli kenarlı kâğıt katmanlarından bir yüzey.',
+    category: 'paper',
     coords: { B: 'B4', T: 'T2', C: 'C4', S: 'S2', F: 'F1', D: 'D2' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'attr' },
     body:
@@ -331,6 +360,7 @@ export const STYLE_SOURCE = [
     id: 'three-tone-panel',
     name: 'Üç Renk Pano',
     description: 'Üç renge indirgenmiş, kesilmiş kâğıtla kurulmuş yassı bir pano.',
+    category: 'paper',
     coords: { B: 'B4', T: 'T3', C: 'C2', S: 'S5', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'opening', D: 'attr' },
     body:
@@ -340,6 +370,7 @@ export const STYLE_SOURCE = [
     id: 'wood-inlay',
     name: 'Ahşap Kaplama',
     description: 'Kesilmiş ahşap parçalarında damarın verdiği ton geçişi.',
+    category: 'surface',
     coords: { B: 'B4', T: 'T1', C: 'C3', S: 'S5', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
     body:
@@ -349,6 +380,7 @@ export const STYLE_SOURCE = [
     id: 'fabric-applique',
     name: 'Kumaş Aplike',
     description: 'Kesilip dikilmiş kumaş parçalarıyla üç kademeli bir aplike.',
+    category: 'textile',
     coords: { B: 'B4', T: 'T3', C: 'C4', S: 'S5', F: 'F1', D: 'D2' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'attr' },
     body:
@@ -358,6 +390,7 @@ export const STYLE_SOURCE = [
     id: 'modelled-caricature',
     name: 'Yoğrulmuş Karikatür',
     description: 'Biçimi değil ifadeyi abartan, elde yoğrulmuş hacimli bir karikatür.',
+    category: 'sculpt',
     coords: { B: 'B4', T: 'T1', C: 'C4', S: 'S5', F: 'F3', D: 'D4' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'attr', D: 'attr' },
     body:
@@ -367,6 +400,7 @@ export const STYLE_SOURCE = [
     id: 'thread-work',
     name: 'İplik İşleme',
     description: 'Yönlü iplik çizgileriyle kurulmuş, canlı renkli bir işleme.',
+    category: 'textile',
     coords: { B: 'B4', T: 'T5', C: 'C1', S: 'S5', F: 'F2', D: 'D1' },
     asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'attr' },
     body:
@@ -436,6 +470,8 @@ export type CartoonStyle = {
   readonly name: string
   /** One line under the label, so the choice means something before the render. */
   readonly description: string
+  /** Stored medium family; see STYLE_CATEGORIES. */
+  readonly category: StyleCategory
   /** Derived from the coordinates; null for the default. */
   readonly group: CartoonGroup | null
   readonly coords: Coords | null
@@ -448,6 +484,7 @@ export const CARTOON_STYLES: readonly CartoonStyle[] = STYLE_SOURCE.map((s) => (
   id: s.id,
   name: s.name,
   description: s.description,
+  category: s.category,
   group: deriveGroup(s.coords),
   coords: s.coords,
   asserts: s.asserts,
@@ -502,6 +539,31 @@ export function isCartoonStyleId(value: unknown): value is CartoonStyleId {
     typeof value === 'string' &&
     CARTOON_STYLES.some((style) => style.id === value)
   )
+}
+
+/**
+ * Styles merged into another (task 0014): the old id no longer names a style,
+ * but an older client may still send it, so the API redirects it to the style
+ * it merged into. A fixed constant: it cannot widen what reaches the provider.
+ */
+export const MERGED_STYLE_IDS = {
+  'cel-frame': 'classic',
+  'combed-paint': 'thick-paint',
+} as const satisfies Record<string, CartoonStyleId>
+
+export type MergedStyleId = keyof typeof MERGED_STYLE_IDS
+
+/**
+ * An active id unchanged, a merged id's target, otherwise null. Own-property
+ * lookup, so Object.prototype names never resolve.
+ */
+export function resolveCartoonStyleId(value: unknown): CartoonStyleId | null {
+  if (typeof value !== 'string') return null
+  if (isCartoonStyleId(value)) return value
+  if (Object.prototype.hasOwnProperty.call(MERGED_STYLE_IDS, value)) {
+    return MERGED_STYLE_IDS[value as MergedStyleId]
+  }
+  return null
 }
 
 /** Resolves an id already known to be in the allow-list to its preset. */

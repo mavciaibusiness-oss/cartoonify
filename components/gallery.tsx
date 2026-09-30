@@ -1,4 +1,4 @@
-import { getCartoonStyle } from '@/lib/cartoon-styles'
+import { getCartoonStyle, resolveCartoonStyleId } from '@/lib/cartoon-styles'
 import { GALLERY, GALLERY_WEB_SIZE, galleryImagePath } from '@/lib/gallery'
 import { format, getDictionary, styleText, type Locale } from '@/lib/i18n'
 
@@ -36,7 +36,11 @@ export default function Gallery({ locale }: { locale: Locale }) {
                 <figcaption>{t.sourceCaption}</figcaption>
               </figure>
               {entry.styles.map((id) => {
-                const name = styleText(getCartoonStyle(id), locale).name
+                // A tile's file keeps its id; its caption names the style that id
+                // resolves to today (task 0014, G1).
+                const resolvedId = resolveCartoonStyleId(id)
+                if (resolvedId === null) throw new Error('Unknown gallery style id: ' + id)
+                const name = styleText(getCartoonStyle(resolvedId), locale).name
                 return (
                   <figure key={id}>
                     <img

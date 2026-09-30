@@ -9,8 +9,10 @@
  * Run: npm run check:styles
  */
 import fs from 'node:fs'
-import { STYLE_SOURCE, CARTOON_STYLES, CLOSING, deriveGroup, closingFor }
-  from '../lib/cartoon-styles.ts'
+import {
+  STYLE_SOURCE, CARTOON_STYLES, CLOSING, deriveGroup, closingFor,
+  STYLE_CATEGORIES, MERGED_STYLE_IDS,
+} from '../lib/cartoon-styles.ts'
 import { STYLE_PREVIEW_IDS } from '../lib/style-previews.ts'
 
 // Literal, never built from a template string (next.regex_no_template_literal).
@@ -83,6 +85,30 @@ for (const g of ['cizgi', 'boya', 'baski', 'kesme']) {
   }
 }
 
+// Categories (task 0014). Stored on each record, never derived; the list is
+// the twelve of the catalogue plan. Checked on STYLE_SOURCE, the stored form,
+// so a record that omits the field fails here rather than reading undefined.
+const categories = new Set()
+for (const c of STYLE_CATEGORIES) {
+  if (typeof c !== 'string' || !SLUG.test(c)) fail(`categories: ${JSON.stringify(c)} is not [a-z0-9-]`)
+  if (categories.has(c)) fail(`categories: ${c} is listed twice`)
+  categories.add(c)
+}
+if (STYLE_CATEGORIES.length !== 12) fail(`categories: ${STYLE_CATEGORIES.length} listed, expected 12`)
+for (const s of STYLE_SOURCE) {
+  if (!Object.prototype.hasOwnProperty.call(s, 'category')) fail(`${s.id}: no category`)
+  else if (!categories.has(s.category)) fail(`${s.id}: category ${JSON.stringify(s.category)} is not in STYLE_CATEGORIES`)
+}
+
+// Merged ids (task 0014): an old id is never an active one, and it always
+// lands on an active style, so the route's redirect can never reach nothing.
+const activeIds = new Set(CARTOON_STYLES.map((s) => s.id))
+for (const [from, to] of Object.entries(MERGED_STYLE_IDS)) {
+  if (!SLUG.test(from)) fail(`merged: ${JSON.stringify(from)} is not [a-z0-9-]`)
+  if (activeIds.has(from)) fail(`merged: ${from} is still an active style id`)
+  if (!activeIds.has(to)) fail(`merged: ${from} -> ${to}, which is not an active style id`)
+}
+
 // Preview list and preview directory must agree in BOTH directions.
 //
 // lib/style-previews.ts has always said this file keeps them in agreement. It
@@ -115,7 +141,11 @@ if (fs.existsSync(PREVIEW_DIR)) {
 const counts = ['cizgi', 'boya', 'baski', 'kesme']
   .map((g) => `${g}:${grid.filter((s) => s.group === g).length}`)
   .join(' ')
+const perCategory = STYLE_CATEGORIES
+  .map((c) => `${c}:${STYLE_SOURCE.filter((s) => s.category === c).length}`)
+  .join(' ')
 console.log(`styles ${CARTOON_STYLES.length} (grid ${grid.length}, default 1) | ${counts}`)
+console.log(`categories | ${perCategory}`)
 if (failures.length) {
   console.error(`\ncheck:styles FAILED (${failures.length})`)
   for (const f of failures) console.error('  ' + f)

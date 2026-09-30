@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0014",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0014-style-data-model.md",
+  "title": "Style data model: explicit category, two merges, legacy id redirect"
+}

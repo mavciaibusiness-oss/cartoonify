@@ -15,6 +15,8 @@
  * copies so the client can show them by code. Task 0007 criterion 5 compares
  * them byte for byte.
  */
+import type { StyleCategory } from '../cartoon-styles'
+
 export const tr = {
   meta: {
     siteTitle: 'Cartoonify — Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi',
@@ -25,7 +27,7 @@ export const tr = {
       'Bir portre yükleyin, stil galerisinden seçin, tek tıkla karikatüre dönüştürün ve indirin.',
     workshopTitle: 'Karikatür Atölyesi — Cartoonify',
     workshopDescription:
-      'Fotoğrafınızı yükleyin, 31 stil arasından seçin ve karikatürünüzü oluşturun.',
+      'Fotoğrafınızı yükleyin, 29 stil arasından seçin ve karikatürünüzü oluşturun.',
   },
   header: {
     languageLabel: 'Dil seçimi',
@@ -131,6 +133,20 @@ export const tr = {
   client: {
     network: 'Bir ağ sorunu oluştu. Lütfen tekrar deneyin.',
   },
+  styleCategories: {
+    cartoon: 'Çizgi Film',
+    line: 'Çizgi ve Mürekkep',
+    drawing: 'Kuru Çizim',
+    paint: 'Boya',
+    print: 'Baskı',
+    paper: 'Kâğıt',
+    textile: 'Tekstil',
+    sculpt: 'Figür ve Heykel',
+    caricature: 'Karikatür',
+    graphic: 'Grafik',
+    era: 'Dönem',
+    surface: 'Dekoratif Sanatlar',
+  } as const satisfies Record<StyleCategory, string>,
   errors: {
     NO_FILE: 'Bir görsel seçmediniz. Lütfen bir dosya yükleyin.',
     INVALID_TYPE: 'Bu dosya türü desteklenmiyor. Lütfen PNG, JPEG veya WEBP formatında bir görsel yükleyin.',

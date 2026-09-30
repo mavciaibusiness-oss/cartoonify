@@ -16,14 +16,6 @@
       "width": 480,
       "quality": 72
     },
-    "cel-frame": {
-      "from": "public/styles/cel-frame.webp",
-      "from_sha256": "3810a1bcdeb7681ceb94058b6245fb719450825a037fe0fac984687b94643b84",
-      "sha256": "3d8788c9a8a6fb2358c849de28435676842c730764345b02da926040adef22dc",
-      "bytes": 28810,
-      "width": 480,
-      "quality": 72
-    },
     "hatched-line": {
       "from": "public/styles/hatched-line.webp",
       "from_sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
@@ -109,14 +101,6 @@
       "from_sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
       "sha256": "e31a27e90579e39f7a1e45fc93787c0dec3e3838b2ea75c04acd4433c90413e5",
       "bytes": 16160,
-      "width": 480,
-      "quality": 72
-    },
-    "combed-paint": {
-      "from": "public/styles/combed-paint.webp",
-      "from_sha256": "8e09b3aa10299ecb10c434cbf97233b96a021c1a6b24a3ff0ffb884dd7882f5a",
-      "sha256": "cdf35d1b24e00f78de42e22f284111fa48a17b9fd343ef22e730b8526b1cef58",
-      "bytes": 30944,
       "width": 480,
       "quality": 72
     },
