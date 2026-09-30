@@ -10,8 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **ProToolHub brand, header strip, turquoise-to-pink palette, clickable cards, site URL from environment** (task 0015, Sept 30 2026)
-  - Brand: every visible "Cartoonify" becomes "ProToolHub"; the tool is named "AI Karikatür Atölyesi" / "AI Cartoon Studio" on badges and worksheets (legal pages unchanged)
+  - Brand: every visible "Cartoonify" becomes "ProToolHub"; the tool is named "AI Karikatür Atölyesi" / "AI Cartoon Studio" on the landing, workshop and form badges (legal pages unchanged)
   - Header strip: ProToolHub icon and name with four-link menu (Home, Studio, Styles, Contact) and TR|EN on every page; sticky on wide screens, scrolls on mobile
+  - Favicon: the ProToolHub badge icon (`app/icon.svg`)
   - Colour palette: from violet-blue to logo's dark turquoise `#1f6f79`, light turquoise `#e3f4f5`, pink `#f48fb1`; WCAG AA 4.5:1 contrast maintained on all surfaces
   - Gallery and showcase tiles become links: `/workshop?style=<id>` with merged styles resolving to targets; invalid values fall back to default silently
   - Site address: moved from hardcoded `https://cartoonify.vercel.app` to `NEXT_PUBLIC_SITE_URL` environment variable (default `https://cartoonify-steel.vercel.app`), read in `lib/env.ts`
