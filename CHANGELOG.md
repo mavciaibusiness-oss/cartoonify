@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Prompt refinement for 21 backlog candidates, A/B trial variants per style, three subject moves for picker comparison** (task 0018, Oct 1 2026)
+  - Twelve styles' prompts changed: newsprint-caricature, kawaii-pastel, chalk-pastel, airbrush, ebru, papercraft chosen variant A; stretched-caricature, mass-caricature, continuous-line, thread-work, ukiyo-e chosen variant B
+  - For each style, variant A tried first (free plan hash approval, paid render); if A rejected, variant B tried in batch 4; chosen trial file copies to preview (no second render)
+  - Three subject moves for better picker side-by-side comparison, prompt unchanged: oil-pastel M→E, woven-tapestry M→E, mid-century M→P
+  - Six styles kept unchanged after variants equally indistinguishable (saturday-cartoon, oil-glaze, storybook-gouache, papier-mache) or subject-move trials weaker on new subject (knitted P, sand-art M)
+  - 32 trials across four operator-gated batches (batch 1: 4, batch 2: 11, batch 3: 7, batch 4: 10), each requiring approval by plan hash and result hash; cost 0.700679 USD (within $1.50 ceiling)
+  - One batch 4 call returned 520 status; operator approved continuing and batch completed (the same approved plan rendered the remaining 9)
+  - **Live effect:** the 12 changed prompts are sent by `/api/cartoonify`, so users' results for those 12 styles change from this deploy; subject moves and kept styles do not change results
+  - Trial images recorded in `assets/trials/0018/` with their chosen hashes: 32 files (16 A, 10 B, 5 subject-move trials, 1 English experiment)
+  - English variant of mass-caricature rendered for comparison (A vs EN), not promoted; all prompts remain Turkish
+  - Homepage transfer measured at 2 323 949 B (largest of six measurements), below 2.6 MB limit
+  - 21 backlog items addressed; still open in `.mavci/backlog.md`: 4 kept styles linked to a separate task on the `preserve` closing, the fabric-applique/knitted and mosaic/sand-art similarities, and the retro-print web copy at 95 946 B near the 100 000 B cap
+
 - **Catalogue expansion to 99 active styles, image generation for 92 in twelve operator-gated batches, coordinate model retired, picker grouped by category** (task 0017, Oct 1 2026)
   - Catalogue grows from 29 active styles to 99: 20 kept (existing prompts byte for byte), 9 fixed (new prompts and descriptions), 70 new (each with subject assignment, closing value, and Turkish/English descriptions)
   - Every style carries an explicit `closing` field: `'preserve'` or `'exaggerate'`, replacing the retired coordinate model (`coords`, `asserts`, `deriveGroup`, `closingFor`)

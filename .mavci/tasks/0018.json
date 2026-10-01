@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0018",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0018-prompt-strengthening.md",
+  "title": "Prompt strengthening for the 0017 backlog candidates"
+}

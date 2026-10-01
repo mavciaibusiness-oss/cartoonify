@@ -1,0 +1,177 @@
+{
+  "task": "0018",
+  "variants": {
+    "stretched-caricature": {
+      "A": "Bu portreyi kare tuvalde mürekkep çizgili, düz renkli bir karikatüre dönüştür. Baş, yüz ve boyun çok uzun ve ince çizilsin; çene uzasın, omuzlar daralsın. Tuval kırpılmasın, sıkıştırılmasın; fotoğraf dokusu kalmasın.",
+      "B": "Bu portreyi çizgi roman üslubunda bir karikatüre dönüştür. Yüz ve boyun aşırı uzun, dar ve sivri çizilsin; alın yükselsin, çene uzasın. Görüntüyü esnetme, yalnızca çizilen figür uzasın. Kalın kontur ve düz renk kullan."
+    },
+    "mass-caricature": {
+      "A": "Bu fotoğrafı kalın konturlu, canlı renkli bir karikatüre dönüştür. Baş gövdenin iki katı, yanaklar ve burun balon gibi şişkin, gövde minik ve yuvarlak olsun. Renkler düz ve iki tonlu kalsın; hacim gölgesi kullanma.",
+      "B": "Bu fotoğrafı balon gibi şişirilmiş bir karikatüre dönüştür. Kütleler yuvarlak ve abartılı büyüsün: kocaman baş, tombul yanak, iri burun, minik omuz. Kalın kontur ve düz canlı renk kullan; görüntü yassı kalsın."
+    },
+    "newsprint-caricature": {
+      "A": "Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir karikatüre dönüştür. Yüz açıkça abartılsın: burun büyüsün, bir kaş yükselsin, gülüş yana kaysın. Gölgeler iri, seyrek ve kâğıtta yayılmış noktalarla basılsın.",
+      "B": "Bu portreyi gazetedeki bir siyasi karikatüre dönüştür. Baş gövdeye göre büyük, yüzün sağ ve sol yarısı belirgin farklı olsun; burun ve çene büyütülsün. Tek renk siyah mürekkep, iri seyrek tram ve sararmış kâğıt kullan."
+    },
+    "saturday-cartoon": {
+      "A": "Bu fotoğrafı eski bir televizyon çizgi filmi karesine dönüştür. Öndeki konu kalın konturlu, düz ve gölgesiz renkli bir çizim olsun; arka plan ise fırça izleri görünen, mat guaşla ayrıca boyanmış bir resim gibi dursun.",
+      "B": "Bu fotoğrafı bir cumartesi sabahı çizgi filmi sahnesine dönüştür. Konu çizgi film hücresi gibi düz renkli ve konturlu olsun; arka plan lekeli, fırça izli bir guaş tablo gibi dursun ve iki katman açıkça ayrılsın."
+    },
+    "kawaii-pastel": {
+      "A": "Bu fotoğrafı sevimli bir kawaii çizgi film çizimine dönüştür. Biçimler sade ve yuvarlak, gözler iri ve parlak olsun; düz açık pastel renkler, pembe yanak allığı ve minik parıltılar kullan. Fotoğraf dokusu kalmasın.",
+      "B": "Bu fotoğrafı pastel tonlu, sevimli bir çıkartma çizimine dönüştür. İnce yuvarlak konturlar, düz renk alanları, pembe allık, küçük kalp ve parıltı süsleri olsun. Gerçekçi doku ve gölge kullanma; arka plan sadeleşsin."
+    },
+    "continuous-line": {
+      "A": "Bu fotoğrafı kalem kâğıttan hiç kalkmadan çizilmiş tek bir siyah çizgiyle yeniden çiz. Çizgi bir tel gibi bütün biçimleri dolaşsın, kendi üstünden geçebilsin ama hiç kopmasın. Ayrıntı az, zemin düz beyaz olsun.",
+      "B": "Bu fotoğrafı minimalist tek çizgi sanatına dönüştür. Bütün resim, başı ve sonu kenarda olan tek kesintisiz siyah çizgiden oluşsun; ayrı çizgi, nokta, dolgu ve gölge olmasın. Ayrıntılar birkaç geniş kıvrımla verilsin."
+    },
+    "chalk-pastel": {
+      "A": "Bu fotoğrafı koyu lacivert kâğıda toz pastelle yapılmış bir resme dönüştür. Arka plan da pastelle çizilsin ve kâğıdın koyu rengi yer yer görünsün. Renkler tozlu ve harmanlanmış olsun; kenarlarda pastel tozu dağılsın.",
+      "B": "Bu fotoğrafı siyah kâğıda yapılmış bir toz pastel çizime dönüştür. Bütün sahne pastel darbeleriyle yeniden çizilsin; darbelerin arasından siyah kâğıt görünsün. Işıklar açık pastelle sürülsün, yüzey tozlu olsun."
+    },
+    "oil-glaze": {
+      "A": "Bu fotoğrafı eski bir ustanın tuval üzerine yağlı boya tablosuna dönüştür. Boya ince saydam katmanlarla sırlansın; tuval dokusu, sarımsı vernik ve ince çatlaklar görünsün; fotoğraf keskinliği kalmasın.",
+      "B": "Bu fotoğrafı on yedinci yüzyıl ustalarından birinin yağlı boya tablosuna dönüştür. Yüzey sırlı boya olsun: görünür tuval örgüsü, eskimiş vernik, kılcal çatlaklar, yumuşak fırça geçişleri. Işık resmedilmiş dursun."
+    },
+    "airbrush": {
+      "A": "Bu fotoğrafı 1980 tarzı bir püskürtme boya posterine dönüştür. Bütün yüzeyler pürüzsüz geçişlerle püskürtülsün; kenarlarda krom gibi parlak beyaz ışıklar, arkada pembe-mor bir gün batımı olsun. Fırça izi kullanma.",
+      "B": "Bu fotoğrafı seksenler albüm kapağı gibi bir püskürtme boya illüstrasyonuna dönüştür. Bütün yüzeyler yumuşak püskürtme geçişlerinden oluşsun; parlak noktalarda yıldız ışıltıları ve neon renkli bir fon olsun."
+    },
+    "storybook-gouache": {
+      "A": "Bu fotoğrafı bir çocuk kitabı sayfasındaki guaş resme dönüştür. Biçimler sade ve yuvarlak, renkler sıcak ve mat olsun. Her yüzeyde kuru fırçanın pürüzlü izleri ve kâğıt dokusu görünsün; fotoğraf dokusu kalmasın.",
+      "B": "Bu fotoğrafı el yapımı bir masal kitabı resmine dönüştür. Mat guaş, kalın ve kuru fırça darbeleri, sade yuvarlak biçimler ve sınırlı sıcak bir palet kullan. Ayrıntılar tek tek değil, birkaç fırça darbesiyle verilsin."
+    },
+    "thread-work": {
+      "A": "Bu fotoğrafı kasnağa gerilmiş keten üzerine el nakışına dönüştür. Bütün biçimler yakından görünen, yönlü saten dikiş iplikleriyle dolsun; iplik parlaklığı ve kabarıklığı seçilsin. Fotoğraf dokusu kalmasın.",
+      "B": "Bu fotoğrafı yakından çekilmiş bir saten dikiş nakışına dönüştür. Her renk alanı tek tek seçilen parlak iplik sıralarından oluşsun; dikişlerin yönü biçimi izlesin ve kumaş zemin boş kalsın. Kasnağın kenarı görünsün."
+    },
+    "plasticine": {
+      "A": "Bu fotoğraftaki konuyu renkli oyun hamurundan yoğrulmuş bir figür olarak yeniden oluştur. Ayrıntılar hamurdaki çizik ve parmak izleriyle verilsin. Arka plan da hamurdan küçük bir stüdyo dekoru olsun.",
+      "B": "Bu fotoğraftaki konuyu stop-motion filmi için yapılmış bir hamur figüre dönüştür. Yüzeyler mat, yumuşak ve parmak izli olsun; ayrıntılar oyulmuş çizgilerle verilsin. Figür hamurdan minyatür bir setin içinde dursun."
+    },
+    "papier-mache": {
+      "A": "Bu fotoğraftaki bütün nesneleri, arka plan dahil, kâğıt hamurundan heykellere dönüştür. Her yüzey yapıştırılmış pürüzlü gazete şeritlerinden oluşsun; boya düzensiz sürülsün, yer yer altındaki gazete kâğıdı görünsün.",
+      "B": "Bu fotoğraftaki sahneyi baştan sona kâğıt hamuru el işine dönüştür. Her nesne kat kat yapıştırılmış kâğıt şeritlerden kabarık ve pürüzlü olsun; mat boyanın altından şerit kenarları ve gazete kâğıdı görünsün."
+    },
+    "ebru": {
+      "A": "Bu fotoğrafı tamamen ebru tekniğiyle yapılmış bir resme dönüştür. Konu ve arka plan dahil bütün biçimler suda yüzen boya halkalarından, taranmış damarlardan ve akıcı sarmallardan oluşsun; fotoğraf dokusu kalmasın.",
+      "B": "Bu fotoğrafı ebru kâğıdına dönüştür. Konu akıcı boya damarlarından oluşan bir siluet olarak belirsin; ayrıntılar taranmış renk çizgileri ve boya halkalarıyla verilsin. Bütün yüzey damarlı bir ebru deseni olsun."
+    },
+    "ukiyo-e": {
+      "A": "Bu fotoğrafı Edo dönemi bir Japon ukiyo-e tahta baskısına dönüştür. Biçimler sadeleşip kalın siyah konturla çevrilsin; Prusya mavisi, soluk mercan tonlar, bokashi geçişi ve washi kâğıt dokusu kullan. Tarama kullanma.",
+      "B": "Bu fotoğrafı Hokusai ve Hiroshige tarzı bir Japon tahta baskısına dönüştür. Su ve bulutlar üsluplaşmış kıvrımlı çizgilerle, renkler sınırlı ve düz, geçişler yatay şeritlerle verilsin; kâğıdın lifli dokusu görünsün."
+    },
+    "papercraft": {
+      "A": "Bu fotoğraftaki konuyu kesilip katlanmış kartondan düşük poligonlu bir kâğıt maket olarak yeniden oluştur. Ek yerlerinde beyaz yapıştırma dilleri, hafif aralıklar ve kesik kenarlar görünsün; maket bir masada dursun.",
+      "B": "Bu fotoğraftaki konuyu baskılı kâğıt parçalardan yapıştırılmış bir maket olarak yeniden oluştur. Her üçgen yüzey ayrı bir parça olsun; aralarda kalın beyaz birleşim çizgileri, taşan yapıştırma dilleri görünsün."
+    }
+  },
+  "experiment": {
+    "id": "mass-caricature",
+    "variant": "EN",
+    "prompt": "Turn this photo into a bold-outlined, brightly coloured caricature. Make the head twice the size of the body, with balloon-like puffed cheeks and nose, and a tiny round body. Keep colours flat in two tones; no volume shading. Keep the subject recognisable and the composition; change it by exaggerating characteristic features and proportions."
+  },
+  "moves": {
+    "oil-pastel": "E",
+    "knitted": "N",
+    "woven-tapestry": "E",
+    "mid-century": "P",
+    "sand-art": "K"
+  },
+  "batches": [
+    [
+      [
+        "stretched-caricature",
+        "A"
+      ],
+      [
+        "mass-caricature",
+        "A"
+      ],
+      [
+        "mass-caricature",
+        "EN"
+      ],
+      [
+        "newsprint-caricature",
+        "A"
+      ]
+    ],
+    [
+      [
+        "saturday-cartoon",
+        "A"
+      ],
+      [
+        "kawaii-pastel",
+        "A"
+      ],
+      [
+        "continuous-line",
+        "A"
+      ],
+      [
+        "chalk-pastel",
+        "A"
+      ],
+      [
+        "oil-glaze",
+        "A"
+      ],
+      [
+        "airbrush",
+        "A"
+      ],
+      [
+        "storybook-gouache",
+        "A"
+      ],
+      [
+        "thread-work",
+        "A"
+      ],
+      [
+        "plasticine",
+        "A"
+      ],
+      [
+        "papier-mache",
+        "A"
+      ],
+      [
+        "ebru",
+        "A"
+      ]
+    ],
+    [
+      [
+        "ukiyo-e",
+        "A"
+      ],
+      [
+        "papercraft",
+        "A"
+      ],
+      [
+        "oil-pastel",
+        "S"
+      ],
+      [
+        "knitted",
+        "S"
+      ],
+      [
+        "woven-tapestry",
+        "S"
+      ],
+      [
+        "mid-century",
+        "S"
+      ],
+      [
+        "sand-art",
+        "S"
+      ]
+    ]
+  ]
+}

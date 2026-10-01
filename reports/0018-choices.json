@@ -1,0 +1,173 @@
+{
+  "task": "0018",
+  "choices": {
+    "stretched-caricature": {
+      "kind": "prompt",
+      "choice": "B",
+      "subject": "K",
+      "trial": "assets/trials/0018/stretched-caricature.B.webp",
+      "trial_sha256": "ea7afc239d2aeae2e07268d1cd176f52f745c16952ff4072c0c67ea161234e14",
+      "prompt": "Bu portreyi çizgi roman üslubunda bir karikatüre dönüştür. Yüz ve boyun aşırı uzun, dar ve sivri çizilsin; alın yükselsin, çene uzasın. Görüntüyü esnetme, yalnızca çizilen figür uzasın. Kalın kontur ve düz renk kullan. Konunun tanınabilirliğini ve kompozisyonu koru; karakteristik hatları ve oranları abartarak değiştir.",
+      "body": "Bu portreyi çizgi roman üslubunda bir karikatüre dönüştür. Yüz ve boyun aşırı uzun, dar ve sivri çizilsin; alın yükselsin, çene uzasın. Görüntüyü esnetme, yalnızca çizilen figür uzasın. Kalın kontur ve düz renk kullan."
+    },
+    "mass-caricature": {
+      "kind": "prompt",
+      "choice": "B",
+      "subject": "E",
+      "trial": "assets/trials/0018/mass-caricature.B.webp",
+      "trial_sha256": "fb105c70a7f21daa8575abbe6cc22726eddf5f610fc52ced80569762de6143c7",
+      "prompt": "Bu fotoğrafı balon gibi şişirilmiş bir karikatüre dönüştür. Kütleler yuvarlak ve abartılı büyüsün: kocaman baş, tombul yanak, iri burun, minik omuz. Kalın kontur ve düz canlı renk kullan; görüntü yassı kalsın. Konunun tanınabilirliğini ve kompozisyonu koru; karakteristik hatları ve oranları abartarak değiştir.",
+      "body": "Bu fotoğrafı balon gibi şişirilmiş bir karikatüre dönüştür. Kütleler yuvarlak ve abartılı büyüsün: kocaman baş, tombul yanak, iri burun, minik omuz. Kalın kontur ve düz canlı renk kullan; görüntü yassı kalsın."
+    },
+    "newsprint-caricature": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "E",
+      "trial": "assets/trials/0018/newsprint-caricature.A.webp",
+      "trial_sha256": "e2b9b23478a590e5eed7a66de3789a19164b5b5f3f9527ad433f21a1271c0d19",
+      "prompt": "Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir karikatüre dönüştür. Yüz açıkça abartılsın: burun büyüsün, bir kaş yükselsin, gülüş yana kaysın. Gölgeler iri, seyrek ve kâğıtta yayılmış noktalarla basılsın. Konunun tanınabilirliğini ve kompozisyonu koru; karakteristik hatları ve oranları abartarak değiştir.",
+      "body": "Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir karikatüre dönüştür. Yüz açıkça abartılsın: burun büyüsün, bir kaş yükselsin, gülüş yana kaysın. Gölgeler iri, seyrek ve kâğıtta yayılmış noktalarla basılsın."
+    },
+    "saturday-cartoon": {
+      "kind": "prompt",
+      "choice": "keep",
+      "subject": "M"
+    },
+    "kawaii-pastel": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "P",
+      "trial": "assets/trials/0018/kawaii-pastel.A.webp",
+      "trial_sha256": "4ebd65a935d8ea20b2a529c1b351e764bdc516091509270ed3444fd32fe00efc",
+      "prompt": "Bu fotoğrafı sevimli bir kawaii çizgi film çizimine dönüştür. Biçimler sade ve yuvarlak, gözler iri ve parlak olsun; düz açık pastel renkler, pembe yanak allığı ve minik parıltılar kullan. Fotoğraf dokusu kalmasın. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı sevimli bir kawaii çizgi film çizimine dönüştür. Biçimler sade ve yuvarlak, gözler iri ve parlak olsun; düz açık pastel renkler, pembe yanak allığı ve minik parıltılar kullan. Fotoğraf dokusu kalmasın."
+    },
+    "continuous-line": {
+      "kind": "prompt",
+      "choice": "B",
+      "subject": "K",
+      "trial": "assets/trials/0018/continuous-line.B.webp",
+      "trial_sha256": "fe99609c2f3bae932fc683d3c3c2f77c9ee001e2e86c7df83a83e20e3a8f28e7",
+      "prompt": "Bu fotoğrafı minimalist tek çizgi sanatına dönüştür. Bütün resim, başı ve sonu kenarda olan tek kesintisiz siyah çizgiden oluşsun; ayrı çizgi, nokta, dolgu ve gölge olmasın. Ayrıntılar birkaç geniş kıvrımla verilsin. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı minimalist tek çizgi sanatına dönüştür. Bütün resim, başı ve sonu kenarda olan tek kesintisiz siyah çizgiden oluşsun; ayrı çizgi, nokta, dolgu ve gölge olmasın. Ayrıntılar birkaç geniş kıvrımla verilsin."
+    },
+    "chalk-pastel": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "K",
+      "trial": "assets/trials/0018/chalk-pastel.A.webp",
+      "trial_sha256": "48fa033a82509e16e83cef4f765a1dfd468ae83b496f3b79fc2058aaf41f4360",
+      "prompt": "Bu fotoğrafı koyu lacivert kâğıda toz pastelle yapılmış bir resme dönüştür. Arka plan da pastelle çizilsin ve kâğıdın koyu rengi yer yer görünsün. Renkler tozlu ve harmanlanmış olsun; kenarlarda pastel tozu dağılsın. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı koyu lacivert kâğıda toz pastelle yapılmış bir resme dönüştür. Arka plan da pastelle çizilsin ve kâğıdın koyu rengi yer yer görünsün. Renkler tozlu ve harmanlanmış olsun; kenarlarda pastel tozu dağılsın."
+    },
+    "oil-glaze": {
+      "kind": "prompt",
+      "choice": "keep",
+      "subject": "N"
+    },
+    "airbrush": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "K",
+      "trial": "assets/trials/0018/airbrush.A.webp",
+      "trial_sha256": "bc556755e50f3f4be25f78e1a7501c20a90bf0d08e724f6bb4352882565be352",
+      "prompt": "Bu fotoğrafı 1980 tarzı bir püskürtme boya posterine dönüştür. Bütün yüzeyler pürüzsüz geçişlerle püskürtülsün; kenarlarda krom gibi parlak beyaz ışıklar, arkada pembe-mor bir gün batımı olsun. Fırça izi kullanma. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı 1980 tarzı bir püskürtme boya posterine dönüştür. Bütün yüzeyler pürüzsüz geçişlerle püskürtülsün; kenarlarda krom gibi parlak beyaz ışıklar, arkada pembe-mor bir gün batımı olsun. Fırça izi kullanma."
+    },
+    "storybook-gouache": {
+      "kind": "prompt",
+      "choice": "keep",
+      "subject": "P"
+    },
+    "thread-work": {
+      "kind": "prompt",
+      "choice": "B",
+      "subject": "N",
+      "trial": "assets/trials/0018/thread-work.B.webp",
+      "trial_sha256": "af4480c35c24c7486579cf7a87634fff01a70a9771b0f782078dc50774ca9367",
+      "prompt": "Bu fotoğrafı yakından çekilmiş bir saten dikiş nakışına dönüştür. Her renk alanı tek tek seçilen parlak iplik sıralarından oluşsun; dikişlerin yönü biçimi izlesin ve kumaş zemin boş kalsın. Kasnağın kenarı görünsün. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı yakından çekilmiş bir saten dikiş nakışına dönüştür. Her renk alanı tek tek seçilen parlak iplik sıralarından oluşsun; dikişlerin yönü biçimi izlesin ve kumaş zemin boş kalsın. Kasnağın kenarı görünsün."
+    },
+    "plasticine": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "P",
+      "trial": "assets/trials/0018/plasticine.A.webp",
+      "trial_sha256": "8d9393fb88f3e501d97bbf1ed109e8bae785946391dcabb51e1491cc347eee26",
+      "prompt": "Bu fotoğraftaki konuyu renkli oyun hamurundan yoğrulmuş bir figür olarak yeniden oluştur. Ayrıntılar hamurdaki çizik ve parmak izleriyle verilsin. Arka plan da hamurdan küçük bir stüdyo dekoru olsun. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğraftaki konuyu renkli oyun hamurundan yoğrulmuş bir figür olarak yeniden oluştur. Ayrıntılar hamurdaki çizik ve parmak izleriyle verilsin. Arka plan da hamurdan küçük bir stüdyo dekoru olsun."
+    },
+    "papier-mache": {
+      "kind": "prompt",
+      "choice": "keep",
+      "subject": "N"
+    },
+    "ebru": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "P",
+      "trial": "assets/trials/0018/ebru.A.webp",
+      "trial_sha256": "3094e286d1ea1f515ba1973a67f35db6ed77833c1917556536ccf33a5b5392dd",
+      "prompt": "Bu fotoğrafı tamamen ebru tekniğiyle yapılmış bir resme dönüştür. Konu ve arka plan dahil bütün biçimler suda yüzen boya halkalarından, taranmış damarlardan ve akıcı sarmallardan oluşsun; fotoğraf dokusu kalmasın. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı tamamen ebru tekniğiyle yapılmış bir resme dönüştür. Konu ve arka plan dahil bütün biçimler suda yüzen boya halkalarından, taranmış damarlardan ve akıcı sarmallardan oluşsun; fotoğraf dokusu kalmasın."
+    },
+    "ukiyo-e": {
+      "kind": "prompt",
+      "choice": "B",
+      "subject": "M",
+      "trial": "assets/trials/0018/ukiyo-e.B.webp",
+      "trial_sha256": "0c6a7ea402e4ad1a4f8d04fb2b48a2b09f63054bda31ce2e051185da9e1c820b",
+      "prompt": "Bu fotoğrafı Hokusai ve Hiroshige tarzı bir Japon tahta baskısına dönüştür. Su ve bulutlar üsluplaşmış kıvrımlı çizgilerle, renkler sınırlı ve düz, geçişler yatay şeritlerle verilsin; kâğıdın lifli dokusu görünsün. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğrafı Hokusai ve Hiroshige tarzı bir Japon tahta baskısına dönüştür. Su ve bulutlar üsluplaşmış kıvrımlı çizgilerle, renkler sınırlı ve düz, geçişler yatay şeritlerle verilsin; kâğıdın lifli dokusu görünsün."
+    },
+    "papercraft": {
+      "kind": "prompt",
+      "choice": "A",
+      "subject": "P",
+      "trial": "assets/trials/0018/papercraft.A.webp",
+      "trial_sha256": "6977a4a966e24480aef81fbaf3c8a09ac03303ecfd60c14fe2043ce68578c9ed",
+      "prompt": "Bu fotoğraftaki konuyu kesilip katlanmış kartondan düşük poligonlu bir kâğıt maket olarak yeniden oluştur. Ek yerlerinde beyaz yapıştırma dilleri, hafif aralıklar ve kesik kenarlar görünsün; maket bir masada dursun. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.",
+      "body": "Bu fotoğraftaki konuyu kesilip katlanmış kartondan düşük poligonlu bir kâğıt maket olarak yeniden oluştur. Ek yerlerinde beyaz yapıştırma dilleri, hafif aralıklar ve kesik kenarlar görünsün; maket bir masada dursun."
+    },
+    "oil-pastel": {
+      "kind": "move",
+      "choice": "S",
+      "subject": "E",
+      "trial": "assets/trials/0018/oil-pastel.S.webp",
+      "trial_sha256": "f3496161a1fbc20c53aede2288d8278837f7e85465f377550b7cb42bd4c373ee",
+      "prompt": "Bu fotoğrafı yağlı pastelle yapılmış bir resme dönüştür. Renkler doygun olsun ve kalın, mumsu darbelerle üst üste sürülsün; yer yer kazınarak alttaki renk açığa çıksın. Yüzey yağlı ve kabarık görünsün. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir."
+    },
+    "knitted": {
+      "kind": "move",
+      "choice": "keep",
+      "subject": "P"
+    },
+    "woven-tapestry": {
+      "kind": "move",
+      "choice": "S",
+      "subject": "E",
+      "trial": "assets/trials/0018/woven-tapestry.S.webp",
+      "trial_sha256": "50691d7d020063f9793b8439642172cc67a3cf94def33e1c806f741740805038",
+      "prompt": "Bu fotoğrafı tezgâhta dokunmuş bir duvar halısına dönüştür. Yüzey yatay atkı ipliklerinden oluşan düz bir dokuma olsun; renk sınırları hafif basamaklı ilerlesin ve ipliklerin sırası yakından görünsün. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir."
+    },
+    "mid-century": {
+      "kind": "move",
+      "choice": "S",
+      "subject": "P",
+      "trial": "assets/trials/0018/mid-century.S.webp",
+      "trial_sha256": "91b2ee584231432cedafa9fe990a44fb374cb8c91dd37fd4c12cf214c78ad657",
+      "prompt": "Bu fotoğrafı 1950 yapımı bir modern illüstrasyona dönüştür. Biçimler sadeleşmiş, düz ve hafif açılı olsun; aşı boyası ve camgöbeği renk blokları çizgilerden biraz kaymış basılsın ve yüzeyde kuru fırça dokusu olsun. Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir."
+    },
+    "sand-art": {
+      "kind": "move",
+      "choice": "keep",
+      "subject": "M"
+    }
+  },
+  "experiment": {
+    "id": "mass-caricature",
+    "file": "assets/trials/0018/mass-caricature.EN.webp",
+    "sha256": "2e62ace39b42b5563d1f7d96e22ac329437cd8198fa99837d0b3efb294957fc8",
+    "promoted": false
+  }
+}

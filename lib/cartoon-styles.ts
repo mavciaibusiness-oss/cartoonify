@@ -130,7 +130,7 @@ export const STYLE_SOURCE = [
     category: 'caricature',
     closing: 'exaggerate',
     body:
-      'Bu fotoğrafı kalın konturlu, canlı renkli bir karikatüre dönüştür. Baş ve gövde kütleleri şişirilsin, biçimler yuvarlatılsın; renk alanları iki koyuluk kademesine ayrılsın. Hacimlendirme kullanma, görüntü yassı kalsın.',
+      'Bu fotoğrafı balon gibi şişirilmiş bir karikatüre dönüştür. Kütleler yuvarlak ve abartılı büyüsün: kocaman baş, tombul yanak, iri burun, minik omuz. Kalın kontur ve düz canlı renk kullan; görüntü yassı kalsın.',
   },
   {
     id: 'feature-caricature',
@@ -193,7 +193,7 @@ export const STYLE_SOURCE = [
     category: 'caricature',
     closing: 'exaggerate',
     body:
-      'Bu portreyi dikey olarak yaklaşık iki katına uzatılmış bir karikatüre dönüştür. Baş uzun ve dar, boyun ince ve uzun olsun; genişlik daralırken yükseklik belirgin biçimde artsın. Hatlar temiz mürekkep çizgisi olsun.',
+      'Bu portreyi çizgi roman üslubunda bir karikatüre dönüştür. Yüz ve boyun aşırı uzun, dar ve sivri çizilsin; alın yükselsin, çene uzasın. Görüntüyü esnetme, yalnızca çizilen figür uzasın. Kalın kontur ve düz renk kullan.',
   },
   {
     id: 'wet-paper',
@@ -256,7 +256,7 @@ export const STYLE_SOURCE = [
     category: 'caricature',
     closing: 'exaggerate',
     body:
-      'Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir baskıya dönüştür. Çizgiler ince kalsın; ince tram kullanma, nokta iri ve seyrek olsun, emici kâğıtta yayılsın. Yüzdeki sağ-sol farkı büyütülsün.',
+      'Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir karikatüre dönüştür. Yüz açıkça abartılsın: burun büyüsün, bir kaş yükselsin, gülüş yana kaysın. Gölgeler iri, seyrek ve kâğıtta yayılmış noktalarla basılsın.',
   },
   {
     id: 'engraved-plate',
@@ -337,7 +337,7 @@ export const STYLE_SOURCE = [
     category: 'textile',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı ahşap bir kasnağa gerilmiş keten üzerine saten dikiş nakışa dönüştür. Her renk alanı aynı yöne akan parlak ipliklerle dolsun; iplik ışığı yansıtsın. Çarpı dikiş ve ızgara düzeni kullanma.',
+      'Bu fotoğrafı yakından çekilmiş bir saten dikiş nakışına dönüştür. Her renk alanı tek tek seçilen parlak iplik sıralarından oluşsun; dikişlerin yönü biçimi izlesin ve kumaş zemin boş kalsın. Kasnağın kenarı görünsün.',
   },
   {
     id: 'rubber-hose',
@@ -400,7 +400,7 @@ export const STYLE_SOURCE = [
     category: 'cartoon',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı sevimli bir pastel çizgi film çizimine dönüştür. Oranları koru; hatlar yumuşak ve yuvarlak olsun. Açık pastel renkler kullan, yanaklara pembe allık ve çevreye minik parıltı işaretleri ekle.',
+      'Bu fotoğrafı sevimli bir kawaii çizgi film çizimine dönüştür. Biçimler sade ve yuvarlak, gözler iri ve parlak olsun; düz açık pastel renkler, pembe yanak allığı ve minik parıltılar kullan. Fotoğraf dokusu kalmasın.',
   },
   {
     id: 'ballpoint-doodle',
@@ -418,7 +418,7 @@ export const STYLE_SOURCE = [
     category: 'line',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı beyaz kâğıt üzerine hiç kopmadan çizilmiş tek bir siyah çizgiyle yeniden çiz. Çizgi baştan sona kesintisiz aksın ve biçimleri ondan kursun. Dolgu, gölge, renk ve ton kullanma; zemin beyaz kalsın.',
+      'Bu fotoğrafı minimalist tek çizgi sanatına dönüştür. Bütün resim, başı ve sonu kenarda olan tek kesintisiz siyah çizgiden oluşsun; ayrı çizgi, nokta, dolgu ve gölge olmasın. Ayrıntılar birkaç geniş kıvrımla verilsin.',
   },
   {
     id: 'technical-pen',
@@ -481,7 +481,7 @@ export const STYLE_SOURCE = [
     category: 'drawing',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı koyu renkli kâğıt üzerine toz pastelle yapılmış bir resme dönüştür. Renkler tozlu ve yumuşak olsun, parmakla harmanlansın; kenarlarda pastel tozu dağılsın. Parlak ya da mumsu yüzey kullanma.',
+      'Bu fotoğrafı koyu lacivert kâğıda toz pastelle yapılmış bir resme dönüştür. Arka plan da pastelle çizilsin ve kâğıdın koyu rengi yer yer görünsün. Renkler tozlu ve harmanlanmış olsun; kenarlarda pastel tozu dağılsın.',
   },
   {
     id: 'wax-crayon',
@@ -544,7 +544,7 @@ export const STYLE_SOURCE = [
     category: 'paint',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı 1980 tarzı bir püskürtme boya illüstrasyonuna dönüştür. Renkler son derece pürüzsüz, kesintisiz geçişlerle püskürtülsün; parlak yüzeylerde krom gibi keskin ışıklar olsun. Fırça izi kullanma.',
+      'Bu fotoğrafı 1980 tarzı bir püskürtme boya posterine dönüştür. Bütün yüzeyler pürüzsüz geçişlerle püskürtülsün; kenarlarda krom gibi parlak beyaz ışıklar, arkada pembe-mor bir gün batımı olsun. Fırça izi kullanma.',
   },
   {
     id: 'spray-graffiti',
@@ -607,7 +607,7 @@ export const STYLE_SOURCE = [
     category: 'paper',
     closing: 'preserve',
     body:
-      'Bu fotoğraftaki konuyu renkli kâğıt üçgenlerden yapıştırılmış düşük poligonlu bir maket olarak yeniden oluştur. Her yüzey düz bir kâğıt parçası olsun; ek yerlerinde yapıştırma dilleri ve kıvrım izleri görünsün.',
+      'Bu fotoğraftaki konuyu kesilip katlanmış kartondan düşük poligonlu bir kâğıt maket olarak yeniden oluştur. Ek yerlerinde beyaz yapıştırma dilleri, hafif aralıklar ve kesik kenarlar görünsün; maket bir masada dursun.',
   },
   {
     id: 'magazine-collage',
@@ -688,7 +688,7 @@ export const STYLE_SOURCE = [
     category: 'sculpt',
     closing: 'preserve',
     body:
-      'Bu fotoğraftaki konuyu oyun hamurundan yapılmış bir figür olarak yeniden oluştur. Oranlar gerçek kalsın; yüzeyde parmak izleri ve küçük çentikler görünsün. Figür, yumuşak ışıklı küçük bir stüdyo sahnesinde dursun.',
+      'Bu fotoğraftaki konuyu renkli oyun hamurundan yoğrulmuş bir figür olarak yeniden oluştur. Ayrıntılar hamurdaki çizik ve parmak izleriyle verilsin. Arka plan da hamurdan küçük bir stüdyo dekoru olsun.',
   },
   {
     id: 'porcelain',
@@ -868,7 +868,7 @@ export const STYLE_SOURCE = [
     category: 'era',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı bir ukiyo-e tahta baskısına dönüştür. Renk alanları düz olsun, gökyüzünde ve suda yumuşak geçişler bulunsun; bütün biçimler ince siyah konturlarla çevrilsin. Tarama çizgileri kullanma.',
+      'Bu fotoğrafı Hokusai ve Hiroshige tarzı bir Japon tahta baskısına dönüştür. Su ve bulutlar üsluplaşmış kıvrımlı çizgilerle, renkler sınırlı ve düz, geçişler yatay şeritlerle verilsin; kâğıdın lifli dokusu görünsün.',
   },
   {
     id: 'illuminated-manuscript',
@@ -958,7 +958,7 @@ export const STYLE_SOURCE = [
     category: 'surface',
     closing: 'preserve',
     body:
-      'Bu fotoğrafı bir ebru sanatına dönüştür. Konu, su yüzeyinde yüzen boya damlalarının kıvrılıp taranmasıyla oluşmuş desenlerden çıksın; renkler akıcı sarmallar ve ince taranmış damarlar hâlinde kâğıda geçsin.',
+      'Bu fotoğrafı tamamen ebru tekniğiyle yapılmış bir resme dönüştür. Konu ve arka plan dahil bütün biçimler suda yüzen boya halkalarından, taranmış damarlardan ve akıcı sarmallardan oluşsun; fotoğraf dokusu kalmasın.',
   },
   {
     id: 'embossed-copper',
