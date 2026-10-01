@@ -2,16 +2,15 @@
 // acceptance checks, where the "@/" alias and extensionless paths do not resolve.
 // The suppressed diagnostic is only "TS5097: .ts extension"; types still resolve.
 import {
+  CARTOON_STYLES,
   DEFAULT_CARTOON_STYLE_ID,
-  getCartoonStyle,
-  STYLE_GROUPS,
-  STYLE_GROUP_ORDER,
+  STYLE_CATEGORIES,
   // @ts-expect-error TS5097: explicit .ts extension, needed by node's loader
 } from './cartoon-styles.ts'
-import type { CartoonGroup, CartoonStyle } from './cartoon-styles'
+import type { CartoonStyle, StyleCategory } from './cartoon-styles'
 
 export type DisplayGroup = {
-  readonly id: CartoonGroup
+  readonly id: StyleCategory
   readonly styles: readonly CartoonStyle[]
 }
 
@@ -21,14 +20,13 @@ export function isDefaultStyle(id: string): boolean {
 }
 
 /**
- * The groups in display order. The default style belongs to no group in the
- * data; for display it is the first card of the first group.
+ * The groups in display order: one per non-empty category, in STYLE_CATEGORIES
+ * order, each with its styles in CARTOON_STYLES order. The default style is the
+ * first cartoon style, so it is the first card of the first group.
  */
 export function displayGroups(): readonly DisplayGroup[] {
-  const defaultStyle = getCartoonStyle(DEFAULT_CARTOON_STYLE_ID)
-  return STYLE_GROUP_ORDER.map((id, index) => {
-    const group = STYLE_GROUPS.find((candidate) => candidate.id === id)
-    const styles = group ? group.styles : []
-    return { id, styles: index === 0 ? [defaultStyle, ...styles] : styles }
-  })
+  return STYLE_CATEGORIES.map((id) => ({
+    id,
+    styles: CARTOON_STYLES.filter((style) => style.category === id),
+  })).filter((group) => group.styles.length > 0)
 }

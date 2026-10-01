@@ -1,9 +1,9 @@
-import type { CartoonGroup, CartoonStyleId } from '../cartoon-styles'
+import type { CartoonStyleId } from '../cartoon-styles'
 
 /**
- * English names and descriptions for the 29 styles, translated from the
- * Turkish in lib/cartoon-styles.ts. That file stays the source and is not
- * touched: its prompts are pinned, and translating beside them would put them
+ * English names and descriptions for the 99 styles, in style order,
+ * translated from the Turkish in lib/cartoon-styles.ts. That file stays the
+ * source: its prompts are pinned, and translating beside them would put them
  * one careless edit away.
  *
  * Keyed by CartoonStyleId, so a style added there without an entry here is a
@@ -17,7 +17,7 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   },
   'bold-ink': {
     name: 'Bold Ink',
-    description: 'High contrast with thick black outlines and flat colour areas.',
+    description: 'Heavy inking with broad spot blacks and dry-brush edges.',
   },
   'hatched-line': {
     name: 'Hatched Line',
@@ -53,15 +53,15 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   },
   'opaque-paint': {
     name: 'Opaque Paint',
-    description: 'A painting in opaque matt paint with a warm palette.',
+    description: 'Hard-edged, flat, matt poster-paint areas.',
   },
   'thick-paint': {
     name: 'Thick Paint',
-    description: 'A full-bodied piece in thickly applied paint with soft transitions.',
+    description: 'Impasto with raised palette-knife ridges that catch the light.',
   },
   'stretched-caricature': {
     name: 'Stretched Caricature',
-    description: 'A soft caricature with no brush marks, its proportions stretched along one axis.',
+    description: 'A caricature stretched to about twice its height.',
   },
   'wet-paper': {
     name: 'Wet Paper',
@@ -101,11 +101,11 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   },
   'paper-cutout': {
     name: 'Paper Cutout',
-    description: 'A collage effect from layered pieces of coloured paper.',
+    description: 'Stacked paper cutouts casting shadows on each other.',
   },
   'torn-paper': {
     name: 'Torn Paper',
-    description: 'A surface of hand-torn paper layers with fibrous edges.',
+    description: 'Collage of hand-torn kraft and coloured papers with white fibrous edges.',
   },
   'three-tone-panel': {
     name: 'Three-Tone Panel',
@@ -117,22 +117,294 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
   },
   'fabric-applique': {
     name: 'Fabric Appliqué',
-    description: 'A three-step appliqué of cut and stitched pieces of fabric.',
+    description: 'Felt appliqué edged in visible blanket stitches.',
   },
   'modelled-caricature': {
     name: 'Modelled Caricature',
-    description: 'A hand-modelled, full-bodied caricature that exaggerates expression rather than form.',
+    description: 'A clay caricature with an oversized head and pushed expression.',
   },
   'thread-work': {
     name: 'Thread Work',
-    description: 'A brightly coloured embroidery built from directional thread lines.',
+    description: 'Glossy directional satin-stitch embroidery in a hoop.',
   },
-}
-
-/** English labels for the four groups; the Turkish ones are GROUP_LABELS. */
-export const GROUP_LABELS_EN: Record<CartoonGroup, string> = {
-  cizgi: 'Line and Ink',
-  boya: 'Paint and Brush',
-  baski: 'Print',
-  kesme: 'Cut and Collage',
+  'rubber-hose': {
+    name: 'Rubber Hose Cartoon',
+    description: 'A thirties cartoon with bendy tube limbs and pie-cut eyes.',
+  },
+  chibi: {
+    name: 'Chibi Proportions',
+    description: 'Chibi proportions: a head half the body height on a tiny body.',
+  },
+  'saturday-cartoon': {
+    name: 'Saturday Morning Cartoon',
+    description: 'Flat unshaded figures over a separately painted gouache background.',
+  },
+  'toon-3d': {
+    name: 'Toon-Shaded Model',
+    description: 'A smooth three-dimensional model with two hard toon-shading bands.',
+  },
+  'comic-strip': {
+    name: 'Comic Strip Panel',
+    description: 'One framed comic-strip panel with an empty caption box.',
+  },
+  'die-cut-sticker': {
+    name: 'Die-Cut Sticker',
+    description: 'A glossy die-cut sticker with a thick white border.',
+  },
+  'kawaii-pastel': {
+    name: 'Kawaii Pastel',
+    description: 'A cute pastel cartoon with rosy blush and tiny sparkles.',
+  },
+  'ballpoint-doodle': {
+    name: 'Ballpoint Doodle',
+    description: 'A blue ballpoint doodle on lined notebook paper.',
+  },
+  'continuous-line': {
+    name: 'Continuous Line',
+    description: 'One unbroken black line with no fill.',
+  },
+  'technical-pen': {
+    name: 'Stipple Pen',
+    description: 'A fine-pen drawing where all shading is tiny dots.',
+  },
+  blueprint: {
+    name: 'Blueprint',
+    description: 'White construction lines and measurement ticks on cyan-blue paper.',
+  },
+  'graphite-pencil': {
+    name: 'Graphite Pencil',
+    description: 'Soft blended graphite shading with visible paper grain.',
+  },
+  charcoal: {
+    name: 'Charcoal',
+    description: 'Dense matt blacks and eraser-lifted highlights on toned paper.',
+  },
+  'coloured-pencil': {
+    name: 'Coloured Pencil',
+    description: 'Layered directional coloured-pencil strokes with paper showing through.',
+  },
+  'oil-pastel': {
+    name: 'Oil Pastel',
+    description: 'Thick waxy oil-pastel strokes in saturated colour.',
+  },
+  'chalk-pastel': {
+    name: 'Soft Chalk Pastel',
+    description: 'Powdery blended chalk pastel on dark paper.',
+  },
+  'wax-crayon': {
+    name: 'Wax Crayon',
+    description: 'A childlike wax-crayon drawing with uneven coverage.',
+  },
+  sanguine: {
+    name: 'Sanguine Chalk',
+    description: 'A red-brown sanguine study with white highlights on cream paper.',
+  },
+  chalkboard: {
+    name: 'Chalkboard',
+    description: 'Pale chalk lines on a dark green-black chalkboard.',
+  },
+  'oil-glaze': {
+    name: 'Classical Oil',
+    description: 'Classical oil painting in smooth glazed layers with deep shadows.',
+  },
+  'ink-wash': {
+    name: 'Ink Wash',
+    description: 'A loose black ink wash with bleeding gradients and empty paper.',
+  },
+  'storybook-gouache': {
+    name: 'Storybook Gouache',
+    description: 'Storybook gouache with rounded shapes and a cosy muted palette.',
+  },
+  airbrush: {
+    name: 'Airbrush',
+    description: 'An eighties airbrush illustration with ultra-smooth sprayed gradients.',
+  },
+  'spray-graffiti': {
+    name: 'Spray Graffiti',
+    description: 'Hard-edged spray graffiti on a brick wall with drips.',
+  },
+  risograph: {
+    name: 'Risograph',
+    description: 'A two-colour risograph with grainy fluorescent inks.',
+  },
+  linocut: {
+    name: 'Linocut',
+    description: 'A three-colour reduction linocut with white gouge marks.',
+  },
+  cyanotype: {
+    name: 'Cyanotype',
+    description: 'A Prussian-blue sun print with white silhouettes.',
+  },
+  origami: {
+    name: 'Origami',
+    description: 'Origami folded from crisp paper with visible creases.',
+  },
+  quilling: {
+    name: 'Paper Quilling',
+    description: 'Coiled coloured paper strips standing on edge.',
+  },
+  papercraft: {
+    name: 'Low-Poly Papercraft',
+    description: 'A low-poly papercraft model with visible glue tabs.',
+  },
+  'magazine-collage': {
+    name: 'Magazine Collage',
+    description: 'A collage of cut magazine fragments with mismatched print.',
+  },
+  'silhouette-cut': {
+    name: 'Silhouette Cut',
+    description: 'A single black paper silhouette with fine cut details on white.',
+  },
+  knitted: {
+    name: 'Knitted Wool',
+    description: 'Chunky wool knitting in V-stitches with fuzzy fibres.',
+  },
+  'cross-stitch': {
+    name: 'Cross-Stitch',
+    description: 'A visible grid of X stitches on aida cloth.',
+  },
+  'felt-plush': {
+    name: 'Felt Plush',
+    description: 'A stuffed felt plush toy with visible seams and button eyes.',
+  },
+  batik: {
+    name: 'Batik',
+    description: 'Wax-resist batik cloth with crackle veins in indigo and orange.',
+  },
+  'patchwork-quilt': {
+    name: 'Patchwork Quilt',
+    description: 'A patchwork quilt of patterned squares with quilting stitches.',
+  },
+  'woven-tapestry': {
+    name: 'Woven Tapestry',
+    description: 'A woven wall tapestry with flat weft texture and stepped edges.',
+  },
+  plasticine: {
+    name: 'Plasticine Figure',
+    description: 'A plasticine figure with true proportions and fingerprint marks.',
+  },
+  porcelain: {
+    name: 'Porcelain Figurine',
+    description: 'A glossy white porcelain figurine with painted blue details.',
+  },
+  'wood-carving': {
+    name: 'Wood Carving',
+    description: 'A hand-carved wooden figure with gouge facets and wood grain.',
+  },
+  bronze: {
+    name: 'Bronze Statue',
+    description: 'A patinated bronze statue on a stone plinth.',
+  },
+  'marble-bust': {
+    name: 'Marble Bust',
+    description: 'A white veined marble bust with blank eyes, in museum light.',
+  },
+  'vinyl-toy': {
+    name: 'Vinyl Toy',
+    description: 'A matt vinyl figure with smooth forms and rounded edges.',
+  },
+  'papier-mache': {
+    name: 'Papier-Mâché',
+    description: 'A papier-mâché sculpture of layered strips and uneven paint.',
+  },
+  bobblehead: {
+    name: 'Bobblehead',
+    description: 'A glossy resin bobblehead with an oversized detailed head.',
+  },
+  'editorial-cartoon': {
+    name: 'Editorial Cartoon',
+    description: 'An editorial cartoon in pen and ink with grey wash.',
+  },
+  'street-caricature': {
+    name: 'Street Fair Caricature',
+    description: 'A quick marker caricature with a giant head on a tiny body.',
+  },
+  'pop-art': {
+    name: 'Pop Art',
+    description: 'Pop art with primary colours, heavy outlines and big halftone dots.',
+  },
+  'geometric-vector': {
+    name: 'Geometric Vector',
+    description: 'A vector built only from circles, rectangles and triangles.',
+  },
+  'pixel-art': {
+    name: 'Pixel Art',
+    description: 'Pixel art with hard square pixels and a limited palette.',
+  },
+  'low-poly': {
+    name: 'Low Poly',
+    description: 'A low-poly illustration of triangulated facets.',
+  },
+  'line-icon': {
+    name: 'Line Icon',
+    description: 'A minimal line icon with uniform rounded strokes.',
+  },
+  'neon-sign': {
+    name: 'Neon Sign',
+    description: 'A glowing neon tube sign on a dark brick wall.',
+  },
+  'duotone-poster': {
+    name: 'Duotone Poster',
+    description: 'A duotone poster mapped to two bold colours with grain.',
+  },
+  'art-nouveau': {
+    name: 'Art Nouveau',
+    description: 'Art Nouveau with whiplash curves and a floral frame.',
+  },
+  'art-deco': {
+    name: 'Art Deco',
+    description: 'Art Deco with symmetric sunbursts and stepped forms in gold and black.',
+  },
+  'mid-century': {
+    name: 'Mid-Century Modern',
+    description: 'A fifties illustration with offset ochre and teal colour blocks.',
+  },
+  'ukiyo-e': {
+    name: 'Ukiyo-e',
+    description: 'An ukiyo-e print with flat areas, soft gradients and fine contours.',
+  },
+  'illuminated-manuscript': {
+    name: 'Illuminated Manuscript',
+    description: 'A manuscript page with gold leaf and an ornate border on vellum.',
+  },
+  'ottoman-miniature': {
+    name: 'Ottoman Miniature',
+    description: 'An Ottoman miniature with flat perspective and jewel-toned pigments.',
+  },
+  'travel-poster': {
+    name: 'Vintage Travel Poster',
+    description: 'A vintage travel poster with a big sky gradient and a blank title band.',
+  },
+  psychedelic: {
+    name: 'Psychedelic Poster',
+    description: 'A seventies psychedelic poster with melting contours and rainbow bands.',
+  },
+  mosaic: {
+    name: 'Roman Mosaic',
+    description: 'A Roman mosaic of small square stone tesserae with grout lines.',
+  },
+  'stained-glass': {
+    name: 'Stained Glass',
+    description: 'A backlit stained-glass window with thick lead lines.',
+  },
+  'iznik-tile': {
+    name: 'Iznik Tile',
+    description: 'A hand-painted Iznik tile in cobalt, turquoise and tomato red.',
+  },
+  fresco: {
+    name: 'Fresco',
+    description: 'An old fresco with faded mineral pigments on cracked plaster.',
+  },
+  'sand-art': {
+    name: 'Sand Art',
+    description: 'Sand art of coloured grains with soft poured edges.',
+  },
+  ebru: {
+    name: 'Paper Marbling',
+    description: 'Ebru marbling with floating ink swirls and combed veins.',
+  },
+  'embossed-copper': {
+    name: 'Embossed Copper',
+    description: 'A hammered copper repoussé relief with a warm patina.',
+  },
 }

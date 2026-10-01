@@ -10,41 +10,41 @@
     },
     "bold-ink": {
       "from": "public/styles/bold-ink.webp",
-      "from_sha256": "e003c64ddb0346b452d1d181b9326b1a9de473d7e4f62e20949085702636172c",
-      "sha256": "808fbc7a9f36098f8e8d8d8d5280d5bb56ca87fa38f97aa834a0b6e94a7894c2",
-      "bytes": 41604,
+      "from_sha256": "387b218e3bc1bf5f08c0928a250de3b31d5681157eaff70ea7a26af58b6cb80f",
+      "sha256": "a79f62716b31bdf27765d001d22e186ad87ce5f6ea8b22ac22c0c4851ce3224f",
+      "bytes": 24910,
       "width": 480,
       "quality": 72
     },
     "hatched-line": {
       "from": "public/styles/hatched-line.webp",
-      "from_sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
-      "sha256": "f46d2ed99ca0f1b55a6f18d4e2919e1267a57971a3a0c215bfffb6cc05600976",
-      "bytes": 58884,
+      "from_sha256": "ae6eef7bf4c29959c2fdf8c810dee51fe6769915a4224ad13e8ddbc67e78b188",
+      "sha256": "5ee222e0db205171af3f1b40014c25fec217d2c678e3be29ef0d3412297b9a97",
+      "bytes": 54526,
       "width": 480,
       "quality": 72
     },
     "line-wash": {
       "from": "public/styles/line-wash.webp",
-      "from_sha256": "10c1925baba59b95ff9f892d780ef44e210bda0a9f7bf3dd655a3d10ab21fa6d",
-      "sha256": "513fbef7501290d9205847d86126d8f6b89eba16e2dfc4b0ee78417b6a13d4c4",
-      "bytes": 27324,
+      "from_sha256": "e2f138ad88d5ea61a8a7cfa27c59cabdae100036dc96b60db3fc4bad79979097",
+      "sha256": "4891cd78aa664fa6f3f3dd9a6a62061bfde78b5b56d6d3f10dd5a7bdf5e042af",
+      "bytes": 27780,
       "width": 480,
       "quality": 72
     },
     "two-ink": {
       "from": "public/styles/two-ink.webp",
-      "from_sha256": "62e6b3b2959a2c61b7d9b9e377bdc0a5b5ba15870cf12792483ec354766ef3c3",
-      "sha256": "b71b9e65a9cac73a065d444ec7aae993488ac397d44572c3947812da691808f8",
-      "bytes": 28128,
+      "from_sha256": "112d7ccab7e20ec176d18d91bbfc11c443500982c20dc7e21f19a6795cc1b17c",
+      "sha256": "5f6664becab930d7a8309471befa434224e35b4c3709420f59c8174ff2939621",
+      "bytes": 20968,
       "width": 480,
       "quality": 72
     },
     "mass-caricature": {
       "from": "public/styles/mass-caricature.webp",
-      "from_sha256": "91f28d546b4cdf0ec126dda784e334c151b7f28bdda84ce6fedc806cbc73e1bc",
-      "sha256": "f45d48f4af28aba527d5c522ba8c17e242d78758cd170bdc934b60b95a3233e0",
-      "bytes": 21946,
+      "from_sha256": "e94ed42722b6d319816fc8b0bab5cb5ebb4b438abfcbe06dd81fa47c2db9f1a7",
+      "sha256": "8798770ab82dcab0ec2dc53fd25eb15659c87f84b280104be45ca9c7f30b16a9",
+      "bytes": 15622,
       "width": 480,
       "quality": 72
     },
@@ -58,9 +58,9 @@
     },
     "reduced-caricature": {
       "from": "public/styles/reduced-caricature.webp",
-      "from_sha256": "f5560112467193449ba9a332a5f36261930447f6126b5da6b6719008d5af5387",
-      "sha256": "f377686c6e6000267329f62a540d833e488cb4cd19f46de7b04cb71a09454b7b",
-      "bytes": 27570,
+      "from_sha256": "d57f77e132cd2e81262f52ba72952e001f45d67cfc1d95e97f5310b13eb248b0",
+      "sha256": "444656f9bf3eab9f08e9f5a06917535257fb3ff36cd25697b7fc58735c91484e",
+      "bytes": 21136,
       "width": 480,
       "quality": 72
     },
@@ -82,33 +82,33 @@
     },
     "opaque-paint": {
       "from": "public/styles/opaque-paint.webp",
-      "from_sha256": "84535833fca7f4206802322314d4cd727fc37efc5378754c1a6addc3eb7b7462",
-      "sha256": "70955d3398536d9ad92dae4f8a33f2c68599685dfe8ceb7c61a7a9c71b4c6b74",
-      "bytes": 29554,
+      "from_sha256": "630d083cdbcd6df7ec66e1a1114fb64ac7139a2a83e57f2a7808cf344235eadf",
+      "sha256": "5e27790ac50d16ca07f5fcd46aeeda2811e6383dc6dbae6fba711aed6876f6b2",
+      "bytes": 11244,
       "width": 480,
       "quality": 72
     },
     "thick-paint": {
       "from": "public/styles/thick-paint.webp",
-      "from_sha256": "967646e3592c2aa9040a5740842e4b6a2d402b1ba07f7f8d44ff75b02831070f",
-      "sha256": "7e7a266e0b1ca0d9cb66d0db0b69f6e492f9025aea829677cb03cf0a4ae3aee1",
-      "bytes": 26784,
+      "from_sha256": "2b97f6d2df56945284955f629c5517cd9902cb8037b13a83093aec26da4f7b93",
+      "sha256": "ce9286c3466c436eebe0787553c1aa216c861c732cb57e38cb9f95a2c09c0892",
+      "bytes": 62708,
       "width": 480,
       "quality": 72
     },
     "stretched-caricature": {
       "from": "public/styles/stretched-caricature.webp",
-      "from_sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
-      "sha256": "e31a27e90579e39f7a1e45fc93787c0dec3e3838b2ea75c04acd4433c90413e5",
-      "bytes": 16160,
+      "from_sha256": "16c33d178c0f34d5e21777a79af3ecb397bdd37059aac0411adeb1f253931a0f",
+      "sha256": "01d09aad00d9f0a2a880e225981de5ec4354b2bc7ed5decb26464df0feeed3ab",
+      "bytes": 17120,
       "width": 480,
       "quality": 72
     },
     "wet-paper": {
       "from": "public/styles/wet-paper.webp",
-      "from_sha256": "103d40c791919c1442ecd4951c2ce78f850f4c6046964c26f810449cfdce2ad2",
-      "sha256": "41974f7997f5571371745cdbaf04af1a48e41a319d809baeefc38c1bb42664b7",
-      "bytes": 28260,
+      "from_sha256": "af27cc0f2b62fe129fc03da7abb323ae2dfbd1af715e5f037e4444a725f4ae87",
+      "sha256": "243327307e493fc8b8c69f2407f59fe44f46997d8c303f947a3781776f18e51d",
+      "bytes": 39224,
       "width": 480,
       "quality": 72
     },
@@ -130,65 +130,65 @@
     },
     "carved-block": {
       "from": "public/styles/carved-block.webp",
-      "from_sha256": "463c275c9182ec7d02ec8ad8a69496df45ed903ddf98b877aa9d8b7ed4733456",
-      "sha256": "411f59d2b1ab7d4f195bb36125138479cf303db7871dac4d21227fad523ef3fe",
-      "bytes": 58676,
+      "from_sha256": "1f05d2a884c1e700394c135d4006895111acb11577107a146783e0a52b74f630",
+      "sha256": "07add3857d1e6aa8afe5a4f718906a768cf09a0e9c67c7916fe5e9a19b1be9f9",
+      "bytes": 44824,
       "width": 480,
       "quality": 72
     },
     "wood-block": {
       "from": "public/styles/wood-block.webp",
-      "from_sha256": "a7615809b56df69d0fea8b722bf88e86a4527d74cf96f59018e2c9503255b18a",
-      "sha256": "417e795577b04c48b469dfe3a739eb7a43138425c5a36e256b41260d042076dc",
-      "bytes": 78816,
+      "from_sha256": "3ffc4f9e1448614c147b730876b478183d3b1b8e77cdd682af9bbf0b6c698326",
+      "sha256": "e889a25fb0c58b6c43f1fdf56b1772a34c0d3350aa12e8851d6d548ed3147e56",
+      "bytes": 71072,
       "width": 480,
       "quality": 72
     },
     "screen-print": {
       "from": "public/styles/screen-print.webp",
-      "from_sha256": "a477bdcd3759cf011d8e47e16a8b4fdcf4c14cdb9541511630a19d9a84969780",
-      "sha256": "71a48ca3a6daab4947a67151eabead6d7420f1f42268052590052e4986a94096",
-      "bytes": 49464,
+      "from_sha256": "903aa394358cd1d3fb1d523d104d55e45e51a898e2f81f03e331d7e0f7db3390",
+      "sha256": "4620f2429ac9e2fb304614fd248a8a47a28a89be33ed8cd0ebf20fe661275285",
+      "bytes": 20104,
       "width": 480,
       "quality": 72
     },
     "newsprint-caricature": {
       "from": "public/styles/newsprint-caricature.webp",
-      "from_sha256": "de3462109fdf2108ba3c5876536f5210d2a4a10c9d93ba2da94d1b8c2efaba5c",
-      "sha256": "cb271a7830024eb1e4034369899467511d60fbe3fc8b8cc25b000f37d1ff88d1",
-      "bytes": 72636,
+      "from_sha256": "ff48764a92ab2045173e7b3afad4156add61688e0b31d2162f9bd8a8df022e74",
+      "sha256": "f35d0d71f25a338f88d2fe868346e416ca062ef91a5e4ecf6e68a7725d31c129",
+      "bytes": 56884,
       "width": 480,
       "quality": 72
     },
     "engraved-plate": {
       "from": "public/styles/engraved-plate.webp",
-      "from_sha256": "9168ce549970383082ee84901b249a05dd142ce6f18f818742c84951f65dc993",
-      "sha256": "427bde32c215fd64c5fecf25e02e6286874ac79a715630889e7b1bfcac093327",
-      "bytes": 71578,
+      "from_sha256": "4bff52068a7c2cd7a50040d51adad7f8709522ad13989c234b769b4474e557ce",
+      "sha256": "7812b5aecb6107e0ccca89256644aa2ff81da8f879f90525f193dc0cc0c8ba03",
+      "bytes": 51448,
       "width": 480,
       "quality": 72
     },
     "double-pass": {
       "from": "public/styles/double-pass.webp",
-      "from_sha256": "c213814a66379b4d3b1f9ff5ce8fdbf40ec8c41c17eaa9288713987b1786b6bd",
-      "sha256": "4d51f3008b4abd3177067bb906c6e2f44a39b6d8bfbb5757226782c1881b1cc2",
-      "bytes": 62814,
+      "from_sha256": "3076595a17c819718f4db00689baea9c62294b854588166c400eccd4dfc2062d",
+      "sha256": "a842cd7b4e62302bc2499e55ee6033a9b337f9fb4aceadee49d447af5ea6b5d0",
+      "bytes": 63608,
       "width": 480,
       "quality": 72
     },
     "paper-cutout": {
       "from": "public/styles/paper-cutout.webp",
-      "from_sha256": "335087feca6eba5bbf2bfaf5423e6323adc6a7ea3e5c94846fb3f9a82e633117",
-      "sha256": "bf9439cf614849a70a18e53ab9eca1633bda8ef6e1ee5c66f5493033df039b4c",
-      "bytes": 17404,
+      "from_sha256": "ca3703abff38960695c0df2826fb964c9935d447bc12e7908ac4e7b80273e59c",
+      "sha256": "d517513d4f694378112e1d837df40a1ebdd24e85b3cad050c779f628398854bc",
+      "bytes": 22458,
       "width": 480,
       "quality": 72
     },
     "torn-paper": {
       "from": "public/styles/torn-paper.webp",
-      "from_sha256": "6caf6fd8d2b47ab2ec55cda5a8b77a476358e713399f49fcf983099a00871623",
-      "sha256": "1f5e1ee6d3d278f33c1e2f4b8751241c3c5a7acb9ac8a1847bca8aa4e5916032",
-      "bytes": 35608,
+      "from_sha256": "5220afb2e67f03831464463ca5035c01d8f570dabdcfcba7e257e9fb40ff74fc",
+      "sha256": "54d1f1a52fefe077b58a4453044d45c6185b77c6057d08e6375132e2a7995df4",
+      "bytes": 27852,
       "width": 480,
       "quality": 72
     },
@@ -202,33 +202,593 @@
     },
     "wood-inlay": {
       "from": "public/styles/wood-inlay.webp",
-      "from_sha256": "4b00b4f54982fc18873a943a4899cffd51add72d71985879674d99e3226de412",
-      "sha256": "d9340edfe0bfe1dfe65aba761a81740fdc9b444dd498dd449bec12eea7f2c709",
-      "bytes": 27292,
+      "from_sha256": "60e698a1c389de47e496f64f47d35f9e35dcbb35ac2aa3531df473dbb841da23",
+      "sha256": "99241a4c65dc3ab8d0720460ea7aa3d6f702a6e8a5fabc487f8e48f4ca0ecdba",
+      "bytes": 25444,
       "width": 480,
       "quality": 72
     },
     "fabric-applique": {
       "from": "public/styles/fabric-applique.webp",
-      "from_sha256": "59b5bd03025dd2c2121b8e52fa1f8eb92d87e79ab86d07c2b811f39dbbddf3f3",
-      "sha256": "2fd444f0a48e2732d580f7df88041212ff9b3fcc53afe0486715bafe5824d744",
-      "bytes": 35670,
+      "from_sha256": "ebc2c0ed9e0fa1f87ffd06146480a709dbf6e86a73bedc2e1e92adea734cf821",
+      "sha256": "220b258017746e42ea8ff8bd01cc9a4eff6d72c55118abafa8994c7d77e9fcfd",
+      "bytes": 33768,
       "width": 480,
       "quality": 72
     },
     "modelled-caricature": {
       "from": "public/styles/modelled-caricature.webp",
-      "from_sha256": "12c08b8b263fc4655416ef276b9744a7b2d32730b49b61de41a7c1e315359bac",
-      "sha256": "77497cc6b949f10ed274516253f1918f365e679c9dbc73e80ba06e9284197885",
-      "bytes": 17902,
+      "from_sha256": "c8dc9e23a753c4956fc601b282bda4623c7b7e676887b28ca42b0f73b21c012b",
+      "sha256": "efe363821b4b9b3d14fd1ebb2e83ca81127f1bf24eab0988dde76dbb21577718",
+      "bytes": 17116,
       "width": 480,
       "quality": 72
     },
     "thread-work": {
       "from": "public/styles/thread-work.webp",
-      "from_sha256": "108aa211cb27e73d445395420279209dc10f462e72914bedeff6d07dfe29e82a",
-      "sha256": "9ce58049740c643b06ab68658a94b9e538b0e590f71826e05ef2622f8b53e482",
-      "bytes": 72054,
+      "from_sha256": "37f94ce5004a41245899824324f88c74a333814ae446e041a2d0bd21a26dfa92",
+      "sha256": "366998e05699c09639ed8e6b87beda23839a5c47aae0210b6e002547b19aaa23",
+      "bytes": 44190,
+      "width": 480,
+      "quality": 72
+    },
+    "rubber-hose": {
+      "from": "public/styles/rubber-hose.webp",
+      "from_sha256": "b16cf49d8e110925b8922f0db4b972734b364b0f301d694bb3eea04b5b51773f",
+      "sha256": "f0b2bc5b725f66e62e03d944753b08ac9462f24909f01bdbf59e556ada0370f5",
+      "bytes": 30280,
+      "width": 480,
+      "quality": 72
+    },
+    "chibi": {
+      "from": "public/styles/chibi.webp",
+      "from_sha256": "8e909d61f221459ddec3a0c847ad788a24c88279de4cbb23c54bc7c34ef93757",
+      "sha256": "e93ae8d91fa9fbe08f48e3f1e45a75dabde8e321412ca5014934f942845c8115",
+      "bytes": 12338,
+      "width": 480,
+      "quality": 72
+    },
+    "saturday-cartoon": {
+      "from": "public/styles/saturday-cartoon.webp",
+      "from_sha256": "2bb8eaecbbd9f69ae52b30bb98eee62586f67e2963ddfb56af712d069d32e103",
+      "sha256": "545aee31247fec1208383ec2fb21513de8ed63dc61da0ee12f66b5f58d99942f",
+      "bytes": 24528,
+      "width": 480,
+      "quality": 72
+    },
+    "toon-3d": {
+      "from": "public/styles/toon-3d.webp",
+      "from_sha256": "5402faf092b0dd0e857ac1b1d8178768f532e0073d0c62f5ae6429fb3406b9fa",
+      "sha256": "1e03990ccba8809380da23fb27b4fdbad8aa1c48a82a0e877eff6d777e3b6f3c",
+      "bytes": 15200,
+      "width": 480,
+      "quality": 72
+    },
+    "comic-strip": {
+      "from": "public/styles/comic-strip.webp",
+      "from_sha256": "25722cc3a58b3a9597a019c00e71d22d79d270b6a41e18b7a8284a8fcf39817d",
+      "sha256": "35787da677f932924d415f16b3d16c184634a22eb900c563cf33c0c968fe5a0a",
+      "bytes": 30492,
+      "width": 480,
+      "quality": 72
+    },
+    "die-cut-sticker": {
+      "from": "public/styles/die-cut-sticker.webp",
+      "from_sha256": "9e0085183644ed2aa601ab652d85f9126d7f1a8dca6fe715415534697a7cb6b1",
+      "sha256": "f301e873af98a137756667ce99d22dbe55a6d5e5d2ab491ac7ddc9d894132475",
+      "bytes": 25016,
+      "width": 480,
+      "quality": 72
+    },
+    "kawaii-pastel": {
+      "from": "public/styles/kawaii-pastel.webp",
+      "from_sha256": "9d1135634e0f7f9db0c74336246e9e979db37b87117a01f0801ab0bf0d1170ac",
+      "sha256": "3357f032671ed06296f42652df7e35340ead5eafa8e859fa15362539d12fe0fe",
+      "bytes": 19626,
+      "width": 480,
+      "quality": 72
+    },
+    "ballpoint-doodle": {
+      "from": "public/styles/ballpoint-doodle.webp",
+      "from_sha256": "d9a80cd8841a9f527f95b2caf8bac2887f057802efb1acadf857c7956205e9e8",
+      "sha256": "bb885519e59b7076569b2a35c5ac0148d4cb35791732f49048208c82b52ca7e2",
+      "bytes": 42010,
+      "width": 480,
+      "quality": 72
+    },
+    "continuous-line": {
+      "from": "public/styles/continuous-line.webp",
+      "from_sha256": "b0e7d95670f8488fb6840b8d98d6db235de3eb3fac5a2ba7087d5a5d5e2e04e9",
+      "sha256": "92fb6d56a78466b2c5a108a093297d0f8fd69d44aed4c6f99cd2d16295274648",
+      "bytes": 17888,
+      "width": 480,
+      "quality": 72
+    },
+    "technical-pen": {
+      "from": "public/styles/technical-pen.webp",
+      "from_sha256": "b742e47e39a6b4934853a70b9f6b9a94e87ee3d3d01d154dfb9cf909dc757123",
+      "sha256": "a5cfd0e647dda43e55ad2922bf59c98416e6f433997bb058702461af041d1038",
+      "bytes": 87562,
+      "width": 480,
+      "quality": 72
+    },
+    "blueprint": {
+      "from": "public/styles/blueprint.webp",
+      "from_sha256": "1c93b67f71665b7d3d3141f07906da88dc80b95d422ece62196d3daf3a564923",
+      "sha256": "7132dde60adefcc5ddf11ea6421289999e24484d76331ed0042ec7b5de990657",
+      "bytes": 27648,
+      "width": 480,
+      "quality": 72
+    },
+    "graphite-pencil": {
+      "from": "public/styles/graphite-pencil.webp",
+      "from_sha256": "9560518dc3a47b03b9af33a60a149b79eef0a31f60260ee4c43166c43e682721",
+      "sha256": "74c87c537cbb67eeb6503b87a5473b8d2b1bf08c5cc6673543417441429cc7aa",
+      "bytes": 26482,
+      "width": 480,
+      "quality": 72
+    },
+    "charcoal": {
+      "from": "public/styles/charcoal.webp",
+      "from_sha256": "dea729ae5aba6fd392386211fac6d224fa27f9190cd09e961de2d58e98b1d772",
+      "sha256": "947d8e323d0452715d9b3d5556102ba29b39b6740ecd136a72493ac3614f3f7f",
+      "bytes": 40666,
+      "width": 480,
+      "quality": 72
+    },
+    "coloured-pencil": {
+      "from": "public/styles/coloured-pencil.webp",
+      "from_sha256": "83868efd01511f9d261378a8de5498daa65383a9c6fc7f242207d65671621842",
+      "sha256": "452f3de4627bb4d65be2ac5d82c743b0701837f146629104e618172b47f41604",
+      "bytes": 60586,
+      "width": 480,
+      "quality": 72
+    },
+    "oil-pastel": {
+      "from": "public/styles/oil-pastel.webp",
+      "from_sha256": "f7ee55b927e995882d06a945ddbeea5523fd2287a1eb0e8299bbeadee96be0b5",
+      "sha256": "fb92f65b63c9a27fa2410728cd04e241ed3df1e0519fd9303bc5ccdda0046209",
+      "bytes": 73496,
+      "width": 480,
+      "quality": 72
+    },
+    "chalk-pastel": {
+      "from": "public/styles/chalk-pastel.webp",
+      "from_sha256": "2a226ad909b335b0f2cff3b8954dcc30e77db662c9738075184e5ddd74ca89bb",
+      "sha256": "ed2e2853b8865ae32a374f040c241cb43926ba4f1bb817d2d2688ad4fa973177",
+      "bytes": 39522,
+      "width": 480,
+      "quality": 72
+    },
+    "wax-crayon": {
+      "from": "public/styles/wax-crayon.webp",
+      "from_sha256": "704e0d86f440224bb08301845743b76314843606d19e803425ec1dc5d0a59707",
+      "sha256": "51695b2a7a90da9f431f8324aaeabd2915419726c28bc819e797d8798e358de2",
+      "bytes": 55600,
+      "width": 480,
+      "quality": 72
+    },
+    "sanguine": {
+      "from": "public/styles/sanguine.webp",
+      "from_sha256": "cf4a7dff7b195bbfc7862814d05a8813dc9148d75f022a7089a320fe2d1355a8",
+      "sha256": "9dc116fdbed0decb25fe02db861084646ff158f4cd86363a2ab32967dae0f58f",
+      "bytes": 27166,
+      "width": 480,
+      "quality": 72
+    },
+    "chalkboard": {
+      "from": "public/styles/chalkboard.webp",
+      "from_sha256": "de51ab7813984ab747dcde9a2ca19af4546180e762d12206d68e52477375421a",
+      "sha256": "9ac370536a4bfb81362418845ceeb06e6c6e259392430309fa17be14a6b04ea1",
+      "bytes": 42602,
+      "width": 480,
+      "quality": 72
+    },
+    "oil-glaze": {
+      "from": "public/styles/oil-glaze.webp",
+      "from_sha256": "46382b5f3712c19a51214a4446c58a5c776d02b4cfc75c5ecaf8d72b3a88bf11",
+      "sha256": "602372e78fe64066211d6d17b0ede732d099663faadcf109bb0fcd104ae55400",
+      "bytes": 12738,
+      "width": 480,
+      "quality": 72
+    },
+    "ink-wash": {
+      "from": "public/styles/ink-wash.webp",
+      "from_sha256": "b80a5e021a991d626b75b170bde3a78e8594522321dd784e0406f8530c1f393f",
+      "sha256": "7e2661a09a57ffe175c788d13f022e09699cd1df64a2bc0e265420d212f69108",
+      "bytes": 18966,
+      "width": 480,
+      "quality": 72
+    },
+    "storybook-gouache": {
+      "from": "public/styles/storybook-gouache.webp",
+      "from_sha256": "83eebfcd7d89296d2cf76d728575eca2ff218b9141a1c43b309e6073c7f4526c",
+      "sha256": "8b7e397ba78feccc14f7452e352e466f6e5dd43ff3e18196df125994fc5855e0",
+      "bytes": 30730,
+      "width": 480,
+      "quality": 72
+    },
+    "airbrush": {
+      "from": "public/styles/airbrush.webp",
+      "from_sha256": "9026429c74ca3f038f98b456a07075e8c02b2f6ec3de63a600364dff6f061cf8",
+      "sha256": "2c2e41cb836f04e7259a67910115d25d1e0b687a2daaffb436b022a89b2b4c4d",
+      "bytes": 31470,
+      "width": 480,
+      "quality": 72
+    },
+    "spray-graffiti": {
+      "from": "public/styles/spray-graffiti.webp",
+      "from_sha256": "13422c8f5030d751cad824730954963009c65e40061fec3a7147316e6f2a52f0",
+      "sha256": "6e26e9caa39e0513db7cedd7e9637cb5e1bacab9a6c870a82867a2d015ec7b89",
+      "bytes": 57022,
+      "width": 480,
+      "quality": 72
+    },
+    "risograph": {
+      "from": "public/styles/risograph.webp",
+      "from_sha256": "6f835f77dbec572a2cb7fb848236378c6bacc4c914821edff30e34c435c339dd",
+      "sha256": "68f0398ee754e6e8457955ef95e41806bdd531c5bb2a7598a38ef05762319397",
+      "bytes": 80300,
+      "width": 480,
+      "quality": 72
+    },
+    "linocut": {
+      "from": "public/styles/linocut.webp",
+      "from_sha256": "ab39bdd7fb0c71a5915e9c5c3ffecc98372cece39b67e9d806b6fc8dbe0a24cf",
+      "sha256": "ce331c2f722fb2e608e079d12628f7d1f7d7e685eb2b68a13efce61b5ec84051",
+      "bytes": 61758,
+      "width": 480,
+      "quality": 72
+    },
+    "cyanotype": {
+      "from": "public/styles/cyanotype.webp",
+      "from_sha256": "c419bc37f5af39d895e1b282331808be4919469355f58fb2128d20577bff0f29",
+      "sha256": "dc1eaa20de1aa1f404b537540749d530b31b7151fcc1b14dc2d041a457687d14",
+      "bytes": 34818,
+      "width": 480,
+      "quality": 72
+    },
+    "origami": {
+      "from": "public/styles/origami.webp",
+      "from_sha256": "09eec1e5af664f955383534b85c09f4c08435961541c2cf0f27fe5e6def31627",
+      "sha256": "6abda6887e2712750dc91b56576b9ea9034191cacb75377ab4bffe7aad2b3d10",
+      "bytes": 20146,
+      "width": 480,
+      "quality": 72
+    },
+    "quilling": {
+      "from": "public/styles/quilling.webp",
+      "from_sha256": "cb725f6d7e91288658930c1acb795be2d0d845c74302ab24707bacd6a780cf85",
+      "sha256": "a11737777e042a328fe6ca1ffa653d08581ee7f3873f0f66352563589f3ffa8e",
+      "bytes": 35786,
+      "width": 480,
+      "quality": 72
+    },
+    "papercraft": {
+      "from": "public/styles/papercraft.webp",
+      "from_sha256": "7e642b16fbe5f2de53e6e2fa17ae56c43a85d465c3e05ac938ae143c3b4d0f58",
+      "sha256": "7a2920eb78dd4d3d2fc38ba3b64bbce717ad9d6948101a7176ee1e36e09dfbef",
+      "bytes": 23882,
+      "width": 480,
+      "quality": 72
+    },
+    "magazine-collage": {
+      "from": "public/styles/magazine-collage.webp",
+      "from_sha256": "cc94c25397fc8ba8abf51546d30e36bb57585bb81acc6c76404c31907465e30d",
+      "sha256": "339791d997a3aa258b8ab2afcd7ca5a52e161d24c4bcc946bb6501f0a7248a4a",
+      "bytes": 51932,
+      "width": 480,
+      "quality": 72
+    },
+    "silhouette-cut": {
+      "from": "public/styles/silhouette-cut.webp",
+      "from_sha256": "27265786078177ea48254e2b77884ed130096b15a15308b28c610e31f89ddb22",
+      "sha256": "0d86907df341ef987ba28b257372f2aa9bf1b7697d279e598e88360ed857ed0e",
+      "bytes": 15850,
+      "width": 480,
+      "quality": 72
+    },
+    "knitted": {
+      "from": "public/styles/knitted.webp",
+      "from_sha256": "55552834ac127590f72de99fd3b9eebf07e8a5158ec7398d1751e9241aa07a36",
+      "sha256": "d34b3e445fd2b6dc8df974066cdd8f603a63652725fd8889bf03404930322a1e",
+      "bytes": 39998,
+      "width": 480,
+      "quality": 72
+    },
+    "cross-stitch": {
+      "from": "public/styles/cross-stitch.webp",
+      "from_sha256": "10846982f3f8a1e979aeac39e2b301c40c9e813c48223f35201196d11ccb57aa",
+      "sha256": "78a70fa2f66a8c997c7b56a1280002595c5c769a43ff819e6b1b2a7deeb04311",
+      "bytes": 80538,
+      "width": 480,
+      "quality": 72
+    },
+    "felt-plush": {
+      "from": "public/styles/felt-plush.webp",
+      "from_sha256": "9315e676c611ae6d1da13d88a813c1ad35c60ffedf06970a68757c8d83a0b206",
+      "sha256": "448fe6c5133de8d8adec48106c23c1648b85edbb6c00f026131aee11ae12db13",
+      "bytes": 22738,
+      "width": 480,
+      "quality": 72
+    },
+    "batik": {
+      "from": "public/styles/batik.webp",
+      "from_sha256": "05e91b2b5c4cda55acf9aeb80705548c9f133eed5ac032310d4b11dc1725944c",
+      "sha256": "4f3ba87e70232000650a43b750241e36a7b3d24b31ef229d4fdf806ffb3813b8",
+      "bytes": 51850,
+      "width": 480,
+      "quality": 72
+    },
+    "patchwork-quilt": {
+      "from": "public/styles/patchwork-quilt.webp",
+      "from_sha256": "0f107bdb79ce5b64b9fda24333b3043e9e1499b2ae9161eca37a383c40c00054",
+      "sha256": "b9f142edcde4ebca08e56ebb2462352e5f24720b151638049641b343a926c037",
+      "bytes": 58268,
+      "width": 480,
+      "quality": 72
+    },
+    "woven-tapestry": {
+      "from": "public/styles/woven-tapestry.webp",
+      "from_sha256": "fd40ca2cd6367d2ab677d3bae58f0a9844eff595aa155605f03766abcb9f85c1",
+      "sha256": "2deeaffe9357b408f3b8d934511066801d34f6659ca2911aa1b2c86ff527578d",
+      "bytes": 63080,
+      "width": 480,
+      "quality": 72
+    },
+    "plasticine": {
+      "from": "public/styles/plasticine.webp",
+      "from_sha256": "4f8a0737db7b031ddcf9f2b38300dedcef47f7dcadb288dd4f91241de4fc57ba",
+      "sha256": "a730b3966810b724404009219e75bc7a794bfd13d4e8df2458868364231eacec",
+      "bytes": 21258,
+      "width": 480,
+      "quality": 72
+    },
+    "porcelain": {
+      "from": "public/styles/porcelain.webp",
+      "from_sha256": "52362919ec63822c6b285e18c62e161ba8e31a282791cb926b816decb186da28",
+      "sha256": "e564197c8436ab6546bb38ae25827a9aef3514057c9d9c8d031e6b491a8f7bc6",
+      "bytes": 23518,
+      "width": 480,
+      "quality": 72
+    },
+    "wood-carving": {
+      "from": "public/styles/wood-carving.webp",
+      "from_sha256": "43449e838acd1a041fdff7e5d5d5bb0baa8104d19bf87beabe7ddfa927cf3f23",
+      "sha256": "d08477e23eb3cfdbf4056107b313076f7e565087522f712d1c0fc13f9979d940",
+      "bytes": 13892,
+      "width": 480,
+      "quality": 72
+    },
+    "bronze": {
+      "from": "public/styles/bronze.webp",
+      "from_sha256": "70e523cf44ce6468333545fa1fe60dd1e7bf76d413277c4f90fdd88a1bf80eea",
+      "sha256": "e44a17ab143de5e6592dd4a70789b1fecd2dc095a631973a8213be402db6d308",
+      "bytes": 18080,
+      "width": 480,
+      "quality": 72
+    },
+    "marble-bust": {
+      "from": "public/styles/marble-bust.webp",
+      "from_sha256": "0c6b17a01d8df917bce886d3f9a528a06b42eadaf7a7545c0d49ba8db76a5567",
+      "sha256": "956a909be5c5d5ec66fa93549d5d2c6fb5e0d08320a723a63fdca48c40b01880",
+      "bytes": 12524,
+      "width": 480,
+      "quality": 72
+    },
+    "vinyl-toy": {
+      "from": "public/styles/vinyl-toy.webp",
+      "from_sha256": "2fa2b82f7117e9d0bec2cc5a5c0f63cf34cc59429cd8ec41e0b7ee741c8da93a",
+      "sha256": "539ca95dd08b73c903d1d3a8097640c9b841dc394000514f1970851cfbb4d896",
+      "bytes": 9162,
+      "width": 480,
+      "quality": 72
+    },
+    "papier-mache": {
+      "from": "public/styles/papier-mache.webp",
+      "from_sha256": "9fe7f07dec26f46f2b2902e094a4fce8cfce54cd8740151ee4e770339d17db59",
+      "sha256": "6f380ef141a3d104df253c047e3c9c80f9dce254ca97be026221e90da0247bb5",
+      "bytes": 33322,
+      "width": 480,
+      "quality": 72
+    },
+    "bobblehead": {
+      "from": "public/styles/bobblehead.webp",
+      "from_sha256": "9335f0c2c5fdb418ac3285ce1f807e31e0fadddcd246eecde7cbd1c46b47a953",
+      "sha256": "54454aa5dcdd530e3a35a31af0611b745f031feb3adf77044e1673a0027871fc",
+      "bytes": 11456,
+      "width": 480,
+      "quality": 72
+    },
+    "editorial-cartoon": {
+      "from": "public/styles/editorial-cartoon.webp",
+      "from_sha256": "8dffed52a05a17c2d755065d97d6eafe335d6de48455613ec4425ed64d314b07",
+      "sha256": "dd0128854bf6186ff3bc472d5b807e18a3bbf8e0a11ee4a0071b4d152106646d",
+      "bytes": 55506,
+      "width": 480,
+      "quality": 72
+    },
+    "street-caricature": {
+      "from": "public/styles/street-caricature.webp",
+      "from_sha256": "4de090ad657b681e5cb083fe75cf9a16d30b88ad5b31c291bd0e452f35054a50",
+      "sha256": "333940769ba325a239f5e0c93053265afc5a38b5caecd84899041aeb14a34540",
+      "bytes": 34882,
+      "width": 480,
+      "quality": 72
+    },
+    "pop-art": {
+      "from": "public/styles/pop-art.webp",
+      "from_sha256": "1f893c756b8e063de2e5e0fdb80cc4c5bae94e9ab57b559055d4ec9b3bf25771",
+      "sha256": "c058bc44c8d3488ca31d763a8b3bf3ed216d298c6bcc11ab34967c912f4f7748",
+      "bytes": 71640,
+      "width": 480,
+      "quality": 72
+    },
+    "geometric-vector": {
+      "from": "public/styles/geometric-vector.webp",
+      "from_sha256": "955109aba65377bac36516c6fdde84fd1158d872da791d758aa047c034f40031",
+      "sha256": "d13f5bbbb2a243b1137ef6430e11981fdcf939533ae4353bb9cf774becf1401c",
+      "bytes": 8182,
+      "width": 480,
+      "quality": 72
+    },
+    "pixel-art": {
+      "from": "public/styles/pixel-art.webp",
+      "from_sha256": "e9835c15cf8b38bbd07da971847e9a94450a51171b3084a3e6f2c24183d8986f",
+      "sha256": "efc5dbab042b8f287c40c4deec7fda57e82863b18ee5b64fad263632bdcc91a6",
+      "bytes": 27066,
+      "width": 480,
+      "quality": 72
+    },
+    "low-poly": {
+      "from": "public/styles/low-poly.webp",
+      "from_sha256": "50c0c664bf7f93140aae3b5e22e7740d9d0058f7baa65c15208a6fea23e10c6d",
+      "sha256": "f2470ed0db1b7a69255838a7d716f6adb6cdaa2c4972e2e16c88c706139ddc96",
+      "bytes": 18548,
+      "width": 480,
+      "quality": 72
+    },
+    "line-icon": {
+      "from": "public/styles/line-icon.webp",
+      "from_sha256": "32b926b67577db6ff3222096750d9102cbe3ad2caf65f2e9d081eeda10253314",
+      "sha256": "f2b405138ee21a0345301d1eaa4a165e68cd80f68ce175e90aa57cf7390e2847",
+      "bytes": 13726,
+      "width": 480,
+      "quality": 72
+    },
+    "neon-sign": {
+      "from": "public/styles/neon-sign.webp",
+      "from_sha256": "aadd3b310aed9d0eb3d6500312b20013d112666ccd112a56953c7ecc0213a8b5",
+      "sha256": "b4e29749f4e299925229c66df9724091efa4b1be5b28dbd03e076ff5a77d8cd2",
+      "bytes": 33900,
+      "width": 480,
+      "quality": 72
+    },
+    "duotone-poster": {
+      "from": "public/styles/duotone-poster.webp",
+      "from_sha256": "077d9c47b151c1036aeca546118f409e96ac5a95df236c7a10b172e0795b4a44",
+      "sha256": "56e2b484c0bfb8e0c2bd59fd10bdec165c2f44c1dbff3018ba2a6b23db1ff648",
+      "bytes": 48280,
+      "width": 480,
+      "quality": 72
+    },
+    "art-nouveau": {
+      "from": "public/styles/art-nouveau.webp",
+      "from_sha256": "efbd7d3c7004c6cf3d1e56d41f38cceb3578452547d479b5aa53c9aa7e7a7be7",
+      "sha256": "4a49616b6391abceb7d28216dae81e92220f1809cd184dc501b191cde65bdb4d",
+      "bytes": 47110,
+      "width": 480,
+      "quality": 72
+    },
+    "art-deco": {
+      "from": "public/styles/art-deco.webp",
+      "from_sha256": "92eb0968888e2b2bde436c3d8e91c355bdaee098bb8ca416b09f6c8f1bd4a277",
+      "sha256": "95a0ef543bdc35b654ad119dacfdcb89c3a982ec85c4d4eb7f893a6e7676f207",
+      "bytes": 25106,
+      "width": 480,
+      "quality": 72
+    },
+    "mid-century": {
+      "from": "public/styles/mid-century.webp",
+      "from_sha256": "54a44b4e18deb348d558d374b3229fe0c4246caa21aad30792c8434c651ae5ed",
+      "sha256": "e37851cea24e58a03b5294698e3097902dcb9af34ac5a7587872654d31bd9605",
+      "bytes": 42778,
+      "width": 480,
+      "quality": 72
+    },
+    "ukiyo-e": {
+      "from": "public/styles/ukiyo-e.webp",
+      "from_sha256": "d22f452363366397d9b9048e2fbd13a95602b14c7e695c07c840ffb0d30b777a",
+      "sha256": "782d711b557e3ec2c4777226f8cdce9848231a9de2c6cc7499c8130cfd5d01db",
+      "bytes": 26736,
+      "width": 480,
+      "quality": 72
+    },
+    "illuminated-manuscript": {
+      "from": "public/styles/illuminated-manuscript.webp",
+      "from_sha256": "f7a9612ec5399ea48d90c9c64d1664e9b144a8502d7fd4ea1223f61652066461",
+      "sha256": "db098c88f787c3cf1ea4093358454212c14d3ad47f761f94ff574cbff292bb35",
+      "bytes": 58132,
+      "width": 480,
+      "quality": 72
+    },
+    "ottoman-miniature": {
+      "from": "public/styles/ottoman-miniature.webp",
+      "from_sha256": "1365453c4126bc96d57affba78231f99112023da7453857fe7b7e9acad8e9650",
+      "sha256": "f53cd928b9f0b53e9e63996c5052374cb87583480e3901a06bc92db33e1cba3e",
+      "bytes": 43690,
+      "width": 480,
+      "quality": 72
+    },
+    "travel-poster": {
+      "from": "public/styles/travel-poster.webp",
+      "from_sha256": "6b9c5847e29a7f222113beeedc7ea1f6eb3447fe69dfc4d6f1d27810123d8500",
+      "sha256": "4a18300ca158368addc00908e2a52a793e820dc65593f41d87ca3cfda8de0803",
+      "bytes": 18224,
+      "width": 480,
+      "quality": 72
+    },
+    "psychedelic": {
+      "from": "public/styles/psychedelic.webp",
+      "from_sha256": "7abc0a0299d016e415847f35d8372236f407190d8fdf7ea6de9767895554ec7e",
+      "sha256": "6f1b39da3600544dd4ee7131429c106f2c5687767d3d6d4d21bb648527dd95e5",
+      "bytes": 35750,
+      "width": 480,
+      "quality": 72
+    },
+    "mosaic": {
+      "from": "public/styles/mosaic.webp",
+      "from_sha256": "78e77476085f1fdcbfc419a12d0f34080fd450d92a67eed0cbd8c0abad64cb94",
+      "sha256": "27aafc5611f8fd7e2c0752a328be2c198328077644444be02352389c959c3d9c",
+      "bytes": 74492,
+      "width": 480,
+      "quality": 72
+    },
+    "stained-glass": {
+      "from": "public/styles/stained-glass.webp",
+      "from_sha256": "13ca6689bd3f356f297b510bf30ec4c3179d18174333160a8c1b4c7baad44d55",
+      "sha256": "b1d872959677df613780459d501aaf759bb9e01b447ac23c1114c602ece1b312",
+      "bytes": 54492,
+      "width": 480,
+      "quality": 72
+    },
+    "iznik-tile": {
+      "from": "public/styles/iznik-tile.webp",
+      "from_sha256": "eab4972d45ff9c3951dafd3f548d7cab30d0fb4b0e1400d1b4b17a16421b0051",
+      "sha256": "7047943c9500ab6d25f860dade0cd9715632b1d31d4df858c8880a88c4f5a6a6",
+      "bytes": 61414,
+      "width": 480,
+      "quality": 72
+    },
+    "fresco": {
+      "from": "public/styles/fresco.webp",
+      "from_sha256": "0e1a9fc407948109e3dbdb66a90a310fe8bc845882cf0332312d2e7eff729e14",
+      "sha256": "b250ffacbb1fecc995e0f76fb2ac15b42b2df5557751b617a0fc7e944de9b05b",
+      "bytes": 47046,
+      "width": 480,
+      "quality": 72
+    },
+    "sand-art": {
+      "from": "public/styles/sand-art.webp",
+      "from_sha256": "25cfe758cf846a8cc51d864d82f0af36c3913d45408736f6e68408f24c1de68c",
+      "sha256": "9a10a4697790ef0c8387acaa4a9e5f509353d3e3644d1348fdb00ed4408536fb",
+      "bytes": 65664,
+      "width": 480,
+      "quality": 72
+    },
+    "ebru": {
+      "from": "public/styles/ebru.webp",
+      "from_sha256": "027b9d25fa0eefa5dedf73400223f89a18312ff643b9970ef93c1826cf98bba9",
+      "sha256": "0b536479e83b7b705f0e6112f16dd65f41d6d17e1cd3793a83e134f38f418ffe",
+      "bytes": 42696,
+      "width": 480,
+      "quality": 72
+    },
+    "embossed-copper": {
+      "from": "public/styles/embossed-copper.webp",
+      "from_sha256": "173ef58c979a6ae5d7d4960fdb3b2b4b0b8b6cf1815e35e4e7ee210cef4786b0",
+      "sha256": "3670eae79d57ea3ee6b34eabf461e74d5f96bdae0f25df37063b63156b6b0448",
+      "bytes": 41298,
       "width": 480,
       "quality": 72
     }

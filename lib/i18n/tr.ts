@@ -27,7 +27,7 @@ export const tr = {
       'Bir portre yükleyin, stil galerisinden seçin, tek tıkla karikatüre dönüştürün ve indirin.',
     workshopTitle: 'AI Karikatür Atölyesi — ProToolHub',
     workshopDescription:
-      'Fotoğrafınızı yükleyin, 29 stil arasından seçin ve karikatürünüzü oluşturun.',
+      'Fotoğrafınızı yükleyin, 99 stil arasından seçin ve karikatürünüzü oluşturun.',
   },
   header: {
     languageLabel: 'Dil seçimi',

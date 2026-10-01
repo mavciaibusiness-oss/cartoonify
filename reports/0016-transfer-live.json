@@ -1,0 +1,152 @@
+{
+  "task": "0016",
+  "kind": "live measurement (not a criterion)",
+  "site": "https://cartoonify-steel.vercel.app",
+  "deployed_commit": "0da37a8",
+  "measured_at": "2026-09-30T17:49:12.671Z",
+  "limit_bytes": 2600000,
+  "method": "headless Chrome against the live site, cache disabled, sum of encodedDataLength, after load and after scrolling to the bottom; mobile emulation at 375",
+  "response_headers_home": {
+    "x-vercel-cache": "HIT",
+    "age": "121",
+    "content-encoding": "br"
+  },
+  "results": [
+    {
+      "page": "/",
+      "viewport": "1280x624",
+      "dpr": 1,
+      "first_load": 1261861,
+      "after_full_scroll": 2069893,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8940,
+        "Image": 1923237,
+        "Script": 119099,
+        "Stylesheet": 4154,
+        "Other": 3004,
+        "Fetch": 11459
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/en",
+      "viewport": "1280x624",
+      "dpr": 1,
+      "first_load": 1261749,
+      "after_full_scroll": 2069787,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8566,
+        "Script": 119101,
+        "Image": 1923169,
+        "Stylesheet": 4148,
+        "Other": 3004,
+        "Fetch": 11799
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/",
+      "viewport": "1920x984",
+      "dpr": 1,
+      "first_load": 1261852,
+      "after_full_scroll": 2069929,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8939,
+        "Image": 1923353,
+        "Script": 119035,
+        "Stylesheet": 4148,
+        "Other": 3004,
+        "Fetch": 11450
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/en",
+      "viewport": "1920x984",
+      "dpr": 1,
+      "first_load": 1261680,
+      "after_full_scroll": 2069690,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8563,
+        "Script": 119117,
+        "Image": 1923108,
+        "Stylesheet": 4209,
+        "Other": 3004,
+        "Fetch": 11689
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/",
+      "viewport": "375x667",
+      "dpr": 1,
+      "first_load": 802378,
+      "after_full_scroll": 2069741,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8941,
+        "Stylesheet": 4195,
+        "Image": 1923044,
+        "Script": 118969,
+        "Other": 3130,
+        "Fetch": 11462
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/en",
+      "viewport": "375x667",
+      "dpr": 1,
+      "first_load": 802274,
+      "after_full_scroll": 2069543,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8562,
+        "Image": 1922986,
+        "Script": 119036,
+        "Stylesheet": 4156,
+        "Other": 3004,
+        "Fetch": 11799
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/",
+      "viewport": "375x667",
+      "dpr": 3,
+      "first_load": 802386,
+      "after_full_scroll": 2069679,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8941,
+        "Image": 1923072,
+        "Stylesheet": 4173,
+        "Script": 118922,
+        "Other": 3004,
+        "Fetch": 11567
+      },
+      "over_limit": false
+    },
+    {
+      "page": "/en",
+      "viewport": "375x667",
+      "dpr": 3,
+      "first_load": 802273,
+      "after_full_scroll": 2069576,
+      "responses": 57,
+      "by_type_after_scroll": {
+        "Document": 8562,
+        "Stylesheet": 4199,
+        "Script": 119019,
+        "Image": 1922982,
+        "Other": 3130,
+        "Fetch": 11684
+      },
+      "over_limit": false
+    }
+  ]
+}

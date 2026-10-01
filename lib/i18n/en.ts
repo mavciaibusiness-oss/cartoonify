@@ -19,7 +19,7 @@ export const en: Dictionary = {
     homeDescription:
       'Upload a portrait, choose from the style gallery, turn it into a cartoon in one click and download it.',
     workshopTitle: 'AI Cartoon Studio — ProToolHub',
-    workshopDescription: 'Upload your photo, choose from 29 styles and generate your cartoon.',
+    workshopDescription: 'Upload your photo, choose from 99 styles and generate your cartoon.',
   },
   header: {
     brand: 'ProToolHub',

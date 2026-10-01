@@ -13,23 +13,23 @@
  * names, imitates or alludes to a studio, a franchise or a character.
  *
  * WHAT IS STORED AND WHAT IS DERIVED
- * Stored: id, name, description, axis coordinates, the assertion column, and
- * the prompt BODY. Derived: `group` (from the coordinates), which closing
- * constant applies (from the F coordinate), and the full `prompt` (body plus
- * that constant). A style is never written from a name; it is written from a
- * coordinate and named afterwards.
+ * Stored: id, name, description, category, closing and the prompt BODY.
+ * Derived: the full `prompt` (body plus the closing constant). The
+ * coordinate model of task 0004 was retired in task 0017; the catalogue's
+ * separation is kept by the plan's `differs_from` notes and by review of
+ * every batch.
  */
 
 /**
  * The two closing constants, defined once and composed onto every body.
  *
- * They are never retyped into a prompt. At thirty presets a typo in one
- * retyped copy would silently stop that single style preserving composition,
- * and nothing anywhere would check it.
+ * They are never retyped into a prompt. A typo in one retyped copy would
+ * silently stop that single style preserving composition, and nothing
+ * anywhere would check it.
  *
  * `preserve` withholds geometry; `exaggerate` licenses it and steps the
  * preserved object down from the subject to the subject's recognisability.
- * Which one applies follows from the F coordinate and is not a free choice.
+ * Each record states which one applies.
  */
 export const CLOSING = {
   preserve: 'Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.',
@@ -38,44 +38,6 @@ export const CLOSING = {
 } as const
 
 export type ClosingId = keyof typeof CLOSING
-
-/** The six axes. A style is a point in this space; its medium is derived. */
-export type Boundary = 'B1' | 'B2' | 'B3' | 'B4' | 'B5'
-export type Tone = 'T1' | 'T2' | 'T3' | 'T4' | 'T5'
-export type Chroma = 'C1' | 'C2' | 'C3' | 'C4' | 'C5'
-export type Surface = 'S1' | 'S2' | 'S3' | 'S4' | 'S5'
-export type Form = 'F1' | 'F2' | 'F3' | 'F4'
-export type Depth = 'D1' | 'D2' | 'D3' | 'D4'
-
-export type Coords = {
-  readonly B: Boundary; readonly T: Tone; readonly C: Chroma
-  readonly S: Surface; readonly F: Form; readonly D: Depth
-}
-
-/**
- * Where each axis is asserted. `null` is only legal for the one value per
- * axis that means "no instruction given" — B3, C1, S1, D1 — and `constant`
- * only for F1, which Constant A already states. Every other coordinate must
- * name a clause.
- *
- * THIRTEEN COORDINATES WERE ASSERTED BY NOTHING. The set review found eleven
- * by asking the same question of all thirty in a row; they were invisible
- * per-slot and per-group. Writing this column out found TWO MORE that the
- * review had missed — stretched-caricature never said its edges dissolve,
- * torn-paper never said its tone was flat. The column found more while being
- * built than the review found by running, which is the argument for it being
- * a stored column rather than a review pass: a pass is run when someone
- * remembers to, a column is filled every time a style is added.
- *
- * DO NOT MOVE coords/asserts OUT OF THIS FILE. They cost roughly 4.6 KB in
- * the client bundle and a separate file would save that. It would also let
- * them drift from the prompt they describe, which is the single thing keeping
- * them together prevents. The bytes are the price of the guarantee.
- */
-export type AssertSource = 'opening' | 'attr' | 'constant' | 'null'
-export type Asserts = { readonly [K in keyof Coords]: AssertSource }
-
-export type CartoonGroup = 'cizgi' | 'boya' | 'baski' | 'kesme'
 
 /**
  * The twelve medium families of the approved catalogue plan (task 0013 §4.1),
@@ -99,13 +61,13 @@ export const STYLE_CATEGORIES = [
 
 export type StyleCategory = (typeof STYLE_CATEGORIES)[number]
 
+
 type StyleSource = {
   readonly id: string
   readonly name: string
   readonly description: string
   readonly category: StyleCategory
-  readonly coords: Coords | null
-  readonly asserts: Asserts | null
+  readonly closing: ClosingId
   readonly body: string
 }
 
@@ -119,30 +81,27 @@ export const STYLE_SOURCE = [
     // A request with no `style` field routes here, so this string is the
     // pre-styles contract: editing it changes the output every older client
     // gets. This prompt is pinned byte-for-byte by task 0004 criterion 4,
-    // which composes STYLE_SOURCE[0].body + ' ' + CLOSING.preserve and asserts
+    // which composes STYLE_SOURCE[0].body + ' ' + CLOSING.preserve and requires
     // it equal to the frozen literal recorded there. Do not edit.
-    coords: null,
-    asserts: null,
+    closing: 'preserve',
     body:
       'Bu fotoğrafı canlı renkli, temiz hatlı bir karikatür/çizgi film çizimine dönüştür.',
   },
   {
     id: 'bold-ink',
     name: 'Kalın Mürekkep',
-    description: 'Kalın siyah konturlar ve düz renk alanlarıyla yüksek kontrast.',
+    description: 'Kalın mürekkep, geniş siyah gölgeler ve kuru fırça kenarları.',
     category: 'cartoon',
-    coords: { B: 'B1', T: 'T2', C: 'C1', S: 'S1', F: 'F1', D: 'D1' },
-    asserts: { B: 'opening', T: 'opening', C: 'null', S: 'null', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı kalın siyah mürekkep konturları ve düz, gölgesiz renk alanlarıyla yüksek kontrastlı bir çizime dönüştür. Ara tonlar yerine keskin ışık-gölge ayrımı kullan, çizgi kalınlığı belirgin olsun.',
+      'Bu fotoğrafı çizgi roman mürekkeplemesine dönüştür: gölgeler geniş dolu siyah alanlarla ve kenarları tüylenen kuru fırça darbeleriyle kurulsun. Renkler düz ana renkler olsun; renk tonlaması ve yumuşak geçiş kullanma.',
   },
   {
     id: 'hatched-line',
     name: 'Tarama Çizgi',
     description: 'Kâğıt üzerinde çapraz tarama ile kurulmuş tek renkli çizim.',
     category: 'line',
-    coords: { B: 'B2', T: 'T5', C: 'C5', S: 'S2', F: 'F1', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı kâğıt üzerine ince çizgiyle yapılmış tek renkli bir çizime dönüştür. Düz renk alanı yerine tarama çizgileri kullan; koyuluk çizgi sıklığı ve çapraz taramayla kurulsun. Kâğıdın greni görünsün.',
   },
@@ -151,8 +110,7 @@ export const STYLE_SOURCE = [
     name: 'Sulu Çizgi',
     description: 'İnce çizgi ve sulandırılmış boyayla soluk, yumuşak bir çizim.',
     category: 'line',
-    coords: { B: 'B2', T: 'T1', C: 'C4', S: 'S2', F: 'F1', D: 'D1' },
-    asserts: { B: 'opening', T: 'opening', C: 'attr', S: 'attr', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı ince çizgi ve sulandırılmış boyayla yapılmış bir çizime dönüştür. Renk geçişleri yumuşak ve soluk olsun, doygunluk düşük kalsın; kâğıdın dokusu görünsün. Tarama çizgileri ve nokta kullanma.',
   },
@@ -161,8 +119,7 @@ export const STYLE_SOURCE = [
     name: 'İki Mürekkep',
     description: 'Kalın kontur ve iki renkle sınırlı, sadeleştirilmiş çizim.',
     category: 'line',
-    coords: { B: 'B1', T: 'T2', C: 'C2', S: 'S1', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı kalın konturlu, iki mürekkeple sınırlı bir çizime dönüştür. Biçimler sadeleştirilsin, ayrıntı azalsın ama oranlar korunsun; renk alanları düz olsun. Renk geçişi ve kademeli gölge kullanma.',
   },
@@ -171,8 +128,7 @@ export const STYLE_SOURCE = [
     name: 'Şişirilmiş Karikatür',
     description: 'Kütleleri şişirilmiş, yassı ve canlı renkli bir karikatür.',
     category: 'caricature',
-    coords: { B: 'B1', T: 'T3', C: 'C1', S: 'S1', F: 'F3', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'attr' },
+    closing: 'exaggerate',
     body:
       'Bu fotoğrafı kalın konturlu, canlı renkli bir karikatüre dönüştür. Baş ve gövde kütleleri şişirilsin, biçimler yuvarlatılsın; renk alanları iki koyuluk kademesine ayrılsın. Hacimlendirme kullanma, görüntü yassı kalsın.',
   },
@@ -181,8 +137,7 @@ export const STYLE_SOURCE = [
     name: 'Portre Karikatür',
     description: 'Yalnızca en ayırt edici hatları abartan, taramalı portre.',
     category: 'caricature',
-    coords: { B: 'B2', T: 'T5', C: 'C4', S: 'S3', F: 'F3', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'attr', D: 'null' },
+    closing: 'exaggerate',
     body:
       'Bu fotoğrafı kâğıda ince çizgiyle yapılmış bir karikatüre dönüştür. Yalnızca en ayırt edici iki üç hat abartılsın, gerisi gerçeğe yakın kalsın. Koyuluk taramayla kurulsun, kalem basıncı görünsün. Doygun renk kullanma.',
   },
@@ -191,8 +146,7 @@ export const STYLE_SOURCE = [
     name: 'Keskin Karikatür',
     description: 'Her hattı en keskin biçimine indirgeyen iki renkli karikatür.',
     category: 'caricature',
-    coords: { B: 'B2', T: 'T2', C: 'C2', S: 'S1', F: 'F3', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'null', F: 'attr', D: 'null' },
+    closing: 'exaggerate',
     body:
       'Bu fotoğrafı ince kesintili çizgiyle iki renkli bir karikatüre dönüştür. Her hat en keskin biçimine indirgensin; abartı büyüklükte değil, biçimler arasındaki karşıtlıkta olsun. Renk alanları düz, taramasız olsun.',
   },
@@ -201,8 +155,7 @@ export const STYLE_SOURCE = [
     name: 'Yumuşak Suluboya',
     description: 'Suluboya dokusunda, pastel tonlarda yumuşak bir illüstrasyon.',
     category: 'paint',
-    coords: { B: 'B5', T: 'T1', C: 'C4', S: 'S3', F: 'F1', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı yumuşak pastel tonlarda, suluboya dokusunda bir illüstrasyona dönüştür. Kenarlar yumuşak ve dağılan fırça izleri şeklinde olsun, renk geçişleri hafif ve soluk kalsın, koyu kontur kullanma.',
   },
@@ -211,48 +164,43 @@ export const STYLE_SOURCE = [
     name: 'Düz Renk',
     description: 'Kontursuz, düz renk alanlarından oluşan sade bir görsel.',
     category: 'graphic',
-    coords: { B: 'B3', T: 'T2', C: 'C1', S: 'S1', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'null', S: 'attr', F: 'opening', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı kontursuz, düz renk alanlarından oluşan sade bir görsele dönüştür. Her bölge tek renk değeri taşısın; biçimler sadeleştirilsin, ayrıntı azalsın. Gren ve fırça izi kullanma, yüzey temiz olsun.',
   },
   {
     id: 'opaque-paint',
     name: 'Örtücü Boya',
-    description: 'Örtücü mat boyayla, sıcak paletle yapılmış bir tablo.',
+    description: 'Sert kenarlı, düz ve mat afiş boyası alanları.',
     category: 'paint',
-    coords: { B: 'B3', T: 'T2', C: 'C3', S: 'S3', F: 'F1', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı örtücü mat boyayla yapılmış bir tabloya dönüştür. Kontur kullanma, renk renge dayansın. Renkler sıcak palete sınırlı kalsın; fırça darbeleri ve kalın sürülmüş boya görünsün, renk alanları düz olsun.',
+      'Bu fotoğrafı mat afiş boyasıyla yapılmış bir resme dönüştür. Her renk alanı sert kenarlı, tamamen düz ve örtücü olsun; sıcak, sınırlı bir palet kullan. Fırça izi, doku, kabartma ve renk geçişi kullanma.',
   },
   {
     id: 'thick-paint',
     name: 'Kalın Boya',
-    description: 'Kalın sürülmüş boya ve yumuşak geçişlerle hacimli bir çalışma.',
+    description: 'Işığı yakalayan kalın spatula sırtlarıyla kabartmalı boya.',
     category: 'paint',
-    coords: { B: 'B5', T: 'T1', C: 'C1', S: 'S3', F: 'F2', D: 'D4' },
-    asserts: { B: 'attr', T: 'attr', C: 'null', S: 'opening', F: 'attr', D: 'attr' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı kalın sürülmüş boyayla yapılmış bir boya çalışmasına dönüştür. Kenarlar yumuşasın, ton sürekli olsun, hacim geçişle kurulsun; fırça darbeleri belirgin görünsün. Ayrıntı azalsın ama oranları abartma.',
+      'Bu fotoğrafı kalın ve kabartmalı bir yağlı boya resmine dönüştür. Boya spatula ile yığılsın; yükselen sırtlar ve çukurlar ışığı yakalayıp gölge düşürsün. Yüzey düz değil, dokunulur gibi kabarık görünsün.',
   },
   {
     id: 'stretched-caricature',
     name: 'Uzun Karikatür',
-    description: 'Oranları tek eksende uzatılmış, izsiz ve yumuşak bir karikatür.',
+    description: 'Boyu yaklaşık iki katına uzamış, dar başlı karikatür.',
     category: 'caricature',
-    coords: { B: 'B5', T: 'T1', C: 'C1', S: 'S1', F: 'F3', D: 'D4' },
-    asserts: { B: 'attr', T: 'opening', C: 'null', S: 'opening', F: 'attr', D: 'attr' },
+    closing: 'exaggerate',
     body:
-      'Bu fotoğrafı yumuşak geçişli, kontursuz ve izsiz bir karikatüre dönüştür. Oranlar tek bir eksende gerdirilsin; şişirme değil uzatma olsun. Hacim sürekli tonla kurulsun. Fırça izi ve doku kullanma, yüzey temiz kalsın.',
+      'Bu portreyi dikey olarak yaklaşık iki katına uzatılmış bir karikatüre dönüştür. Baş uzun ve dar, boyun ince ve uzun olsun; genişlik daralırken yükseklik belirgin biçimde artsın. Hatlar temiz mürekkep çizgisi olsun.',
   },
   {
     id: 'wet-paper',
     name: 'Islak Kâğıt',
     description: 'Islak kâğıtta iki renkle yayılan yumuşak geçişler.',
     category: 'paint',
-    coords: { B: 'B3', T: 'T1', C: 'C2', S: 'S2', F: 'F1', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı ıslak kâğıda iki renkle yapılmış bir boyamaya dönüştür. Kontur kullanma, renk renge dayansın. Renkler zeminde yayılıp yumuşak geçişler kursun; üçüncü renk kullanma. Kâğıdın greni görünsün.',
   },
@@ -261,8 +209,7 @@ export const STYLE_SOURCE = [
     name: 'Tek Mürekkep',
     description: 'Tek mürekkeple, üç kademeli tonla kurulmuş bir çalışma.',
     category: 'line',
-    coords: { B: 'B5', T: 'T3', C: 'C5', S: 'S2', F: 'F1', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı tek mürekkeple kâğıda yapılmış bir ton çalışmasına dönüştür. Kontur kullanma, kenarlar yumuşasın. Ton üç ayrı koyuluk kademesine ayrılsın, gölge sınırları sert olsun. Fırça izi ve kalın boya kullanma.',
   },
@@ -271,8 +218,7 @@ export const STYLE_SOURCE = [
     name: 'Retro Baskı',
     description: 'Eski matbaa baskısı gibi noktalı doku ve sınırlı sıcak palet.',
     category: 'print',
-    coords: { B: 'B3', T: 'T4', C: 'C2', S: 'S4', F: 'F1', D: 'D1' },
-    asserts: { B: 'null', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı eski matbaa baskısını andıran bir çizime dönüştür: görünür noktalı tram dokusu, hafif kaymış renk katmanları, kirli beyaz kâğıt zemin ve turuncu, hardal, koyu mavi ile sınırlı sıcak bir palet.',
   },
@@ -281,8 +227,7 @@ export const STYLE_SOURCE = [
     name: 'Oyma Baskı',
     description: 'Elle oyulmuş kalıptan basılmış, kalın konturlu tek renkli baskı.',
     category: 'print',
-    coords: { B: 'B1', T: 'T2', C: 'C5', S: 'S4', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'opening', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı elle oyulmuş kalıptan basılmış, kalın konturlu tek renkli bir baskıya dönüştür. Ayrıntı kalıba oyulabilecek kadar azalsın. Siyah alanlar tram değil düz basılmış düzlem olsun; mürekkep eşit örtmesin.',
   },
@@ -291,8 +236,7 @@ export const STYLE_SOURCE = [
     name: 'Ahşap Baskı',
     description: 'Ahşap bloktan basılmış, oyulmuş tarama çizgileriyle kurulmuş baskı.',
     category: 'print',
-    coords: { B: 'B1', T: 'T5', C: 'C5', S: 'S4', F: 'F1', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı ahşap bir bloktan basılmış tek renkli bir baskıya dönüştür. Düz siyah alan kullanma; koyuluk oyulmuş tarama çizgileriyle kurulsun. Konturlar kalın ve uçlarda incelen çizgiler olsun; ahşap damarı görünsün.',
   },
@@ -301,8 +245,7 @@ export const STYLE_SOURCE = [
     name: 'Elek Baskı',
     description: 'Elekten geçirilmiş, birkaç düz biçime indirgenmiş üç renkli baskı.',
     category: 'print',
-    coords: { B: 'B3', T: 'T2', C: 'C2', S: 'S4', F: 'F2', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı elekten geçirilerek basılmış, birkaç düz biçime indirgenmiş bir baskıya dönüştür. Kontur kullanma; biçimler yalnızca renk sınırıyla ayrılsın. Üç renkle sınırlı kal; kenarlar keskin, katmanlar kaymasın.',
   },
@@ -311,8 +254,7 @@ export const STYLE_SOURCE = [
     name: 'Gazete Karikatürü',
     description: 'Ucuz gazete kâğıdında iri tramlı, asimetrisi büyütülmüş karikatür.',
     category: 'caricature',
-    coords: { B: 'B2', T: 'T4', C: 'C5', S: 'S4', F: 'F3', D: 'D1' },
-    asserts: { B: 'attr', T: 'attr', C: 'opening', S: 'opening', F: 'attr', D: 'null' },
+    closing: 'exaggerate',
     body:
       'Bu fotoğrafı ucuz gazete kâğıdına basılmış tek renkli bir baskıya dönüştür. Çizgiler ince kalsın; ince tram kullanma, nokta iri ve seyrek olsun, emici kâğıtta yayılsın. Yüzdeki sağ-sol farkı büyütülsün.',
   },
@@ -321,8 +263,7 @@ export const STYLE_SOURCE = [
     name: 'Kazıma Baskı',
     description: 'Metal plakaya kazınmış, şişip incelen çizgilerle hacim.',
     category: 'print',
-    coords: { B: 'B2', T: 'T5', C: 'C5', S: 'S4', F: 'F1', D: 'D4' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'constant', D: 'attr' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı metal plakaya kazınmış tek renkli, ince çizgili bir baskıya dönüştür. Eşit kalınlıkta çizgi kullanma; çizgiler ortada şişip uçlarda incelsin, hacim çizgi sıklığıyla kurulsun. Kenarda kalıp izi kalsın.',
   },
@@ -331,38 +272,34 @@ export const STYLE_SOURCE = [
     name: 'Çift Geçiş',
     description: 'İki mürekkebin üst üste binmesinden doğan üçüncü koyuluk.',
     category: 'print',
-    coords: { B: 'B3', T: 'T3', C: 'C5', S: 'S4', F: 'F2', D: 'D1' },
-    asserts: { B: 'null', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı iki geçişin taşıyabileceği kadar sadeleşmiş, üst üste basılmış bir baskıya dönüştür. İki mürekkep kullan; üçüncü mürekkep kullanma, üçüncü koyuluk çakışmadan gelsin. Üç koyuluk: zemin, geçiş, çakışma.',
   },
   {
     id: 'paper-cutout',
     name: 'Kâğıt Kesme',
-    description: 'Üst üste yerleştirilmiş renkli kâğıt parçalarından kolaj etkisi.',
+    description: 'Üst üste katmanlı, birbirine gölge düşüren kâğıt kesikler.',
     category: 'paper',
-    coords: { B: 'B4', T: 'T2', C: 'C1', S: 'S5', F: 'F2', D: 'D2' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'attr', D: 'attr' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı elle kesilmiş renkli kâğıt parçalarından yapılmış bir kolaja dönüştür. Biçimler sade ve düz renkli olsun, kenarlar hafif düzensiz kesilmiş görünsün, katmanlar arasında yumuşak gölgeler bulunsun.',
+      'Bu fotoğrafı katmanlı bir kâğıt gölge kutusuna dönüştür. Konu, üst üste dizilmiş renkli kâğıt kesiklerinden oluşsun; her katman altındakine yumuşak bir gölge düşürsün ve derinlik bu gölgelerle kurulsun.',
   },
   {
     id: 'torn-paper',
     name: 'Yırtık Kâğıt',
-    description: 'Elle yırtılmış, lifli kenarlı kâğıt katmanlarından bir yüzey.',
+    description: 'Beyaz lifli kenarları görünen yırtık kraft ve renkli kâğıt kolajı.',
     category: 'paper',
-    coords: { B: 'B4', T: 'T2', C: 'C4', S: 'S2', F: 'F1', D: 'D2' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'attr' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı elle yırtılmış kâğıt katmanlarından oluşan bir yüzeye dönüştür. Kesik kenar kullanma; kenarlar yırtık ve lifli olsun. Renkler soluk ve düz kalsın, kâğıdın greni görünsün; katmanlar gölge bıraksın.',
+      'Bu fotoğrafı elle yırtılmış kraft ve düz renkli kâğıtlardan bir kolaja dönüştür. Her parçanın yırtık kenarında beyaz lifler açıkça görünsün. Baskılı resim, dergi parçası ve yazı kullanma; tonlar düz olsun.',
   },
   {
     id: 'three-tone-panel',
     name: 'Üç Renk Pano',
     description: 'Üç renge indirgenmiş, kesilmiş kâğıtla kurulmuş yassı bir pano.',
     category: 'paper',
-    coords: { B: 'B4', T: 'T3', C: 'C2', S: 'S5', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'opening', S: 'opening', F: 'opening', D: 'attr' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı üç renge indirgenmiş, kesilmiş kâğıtla kurulmuş sade bir panoya dönüştür. Her bölge üç koyuluk kademesine ayrı parçalarla bölünsün. Katmanlar arası gölge kullanma, yüzey tamamen yassı kalsın.',
   },
@@ -371,40 +308,666 @@ export const STYLE_SOURCE = [
     name: 'Ahşap Kaplama',
     description: 'Kesilmiş ahşap parçalarında damarın verdiği ton geçişi.',
     category: 'surface',
-    coords: { B: 'B4', T: 'T1', C: 'C3', S: 'S5', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'null' },
+    closing: 'preserve',
     body:
       'Bu fotoğrafı kesilmiş ahşap parçalarından yapılmış sade bir kaplamaya dönüştür. Düz renk kullanma; ton geçişini malzemenin kendi damarı versin. Renkler sıcak toprak tonlarına sınırlı kalsın, lif ve damar görünsün.',
   },
   {
     id: 'fabric-applique',
     name: 'Kumaş Aplike',
-    description: 'Kesilip dikilmiş kumaş parçalarıyla üç kademeli bir aplike.',
+    description: 'Battaniye dikişiyle çevrili keçe kesiklerle aplike.',
     category: 'textile',
-    coords: { B: 'B4', T: 'T3', C: 'C4', S: 'S5', F: 'F1', D: 'D2' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'constant', D: 'attr' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı kesilmiş kumaş parçalarından dikilmiş bir aplikeye dönüştür. Her bölge üç koyuluk kademesine ayrı parçalarla bölünsün; renkler soluk kalsın. Keskin kenar kullanma; parçalar üst üste binip gölge bıraksın.',
+      'Bu fotoğrafı keçe aplikeye dönüştür. Konu, kalın keçeden kesilmiş şekillerden oluşsun ve her parçanın kenarı iri, görünür battaniye dikişleriyle çevrilsin. Keçenin tüylü, mat dokusu yakından görünsün.',
   },
   {
     id: 'modelled-caricature',
     name: 'Yoğrulmuş Karikatür',
-    description: 'Biçimi değil ifadeyi abartan, elde yoğrulmuş hacimli bir karikatür.',
+    description: 'İri başlı, zorlanmış ifadeli, model izleri görünen kil karikatür.',
     category: 'sculpt',
-    coords: { B: 'B4', T: 'T1', C: 'C4', S: 'S5', F: 'F3', D: 'D4' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'attr', D: 'attr' },
+    closing: 'exaggerate',
     body:
-      'Bu fotoğrafı elde yoğrulmuş malzemeden yapılmış bir karikatüre dönüştür. Biçim değil ifade abartılsın; hatların şekli değil yaptığı hareket uç noktaya taşınsın. Hacim sürekli tonla kurulsun, renkler soluk kalsın.',
+      'Bu portreyi kilden yoğrulmuş bir karikatür heykele dönüştür. Baş gövdeye göre iri, ifade abartılı ve zorlanmış olsun; yüzeyde parmak ve spatula izleri görünsün. Işık, stüdyo aydınlatması gibi yumuşak düşsün.',
   },
   {
     id: 'thread-work',
     name: 'İplik İşleme',
-    description: 'Yönlü iplik çizgileriyle kurulmuş, canlı renkli bir işleme.',
+    description: 'Kasnakta parlak, yönlü saten dikişli nakış.',
     category: 'textile',
-    coords: { B: 'B4', T: 'T5', C: 'C1', S: 'S5', F: 'F2', D: 'D1' },
-    asserts: { B: 'opening', T: 'attr', C: 'attr', S: 'opening', F: 'opening', D: 'attr' },
+    closing: 'preserve',
     body:
-      'Bu fotoğrafı kumaş üzerine iplikle işlenmiş sade bir çalışmaya dönüştür. Düz renk alanı yerine yönlü iplik çizgileri kullan; koyuluk iplik sıklığı ve yönüyle kurulsun. Renkler canlı olsun, katman gölgesi kullanma.',
+      'Bu fotoğrafı ahşap bir kasnağa gerilmiş keten üzerine saten dikiş nakışa dönüştür. Her renk alanı aynı yöne akan parlak ipliklerle dolsun; iplik ışığı yansıtsın. Çarpı dikiş ve ızgara düzeni kullanma.',
+  },
+  {
+    id: 'rubber-hose',
+    name: 'Lastik Hortum Çizgi Film',
+    description: 'Bükülen hortum uzuvlar ve pasta dilimi gözlerle otuzlu yılların çizgi filmi.',
+    category: 'cartoon',
+    closing: 'exaggerate',
+    body:
+      'Bu fotoğrafı 1930 yapımı siyah beyaz bir çizgi filme dönüştür. Uzuvlar kemiksiz, kıvrılan hortumlar gibi olsun; gözler pasta dilimi kesikli siyah benekler olsun. Kalın siyah mürekkep ve hafif film greni kullan.',
+  },
+  {
+    id: 'chibi',
+    name: 'Chibi',
+    description: 'Baş boyun yarısı kadar, küçük yuvarlak gövdeli sevimli oran.',
+    category: 'cartoon',
+    closing: 'exaggerate',
+    body:
+      'Bu fotoğrafı chibi oranlarında bir çizime dönüştür. Baş toplam boyun yaklaşık yarısı kadar büyük, gövde küçük ve yuvarlak olsun; eller ve ayaklar sadeleşsin. Temiz kontur ve düz, canlı çizgi film renkleri kullan.',
+  },
+  {
+    id: 'saturday-cartoon',
+    name: 'Sabah Çizgi Filmi',
+    description: 'Ayrı boyanmış guaş fon üstünde düz, gölgesiz figürler.',
+    category: 'cartoon',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir televizyon çizgi filmi karesine dönüştür. Konu düz renkli, gölgesiz ve ince konturlu olsun; arka plan ise ayrıca guaşla, fırça izleri görünen yumuşak tonlarla boyanmış gibi dursun.',
+  },
+  {
+    id: 'toon-3d',
+    name: 'Toon Gölgeli Model',
+    description: 'İki sert gölge bandı ve ince kontur ışığıyla pürüzsüz üç boyutlu model.',
+    category: 'cartoon',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı pürüzsüz bir 3B modele dönüştür. Gölgeleme yumuşak geçiş yerine yalnızca iki sert ton bandından oluşsun ve siluetin çevresinde ince bir kontur ışığı dursun. Yüzeyler temiz, doku olmadan kalsın.',
+  },
+  {
+    id: 'comic-strip',
+    name: 'Çizgi Roman Karesi',
+    description: 'Siyah çerçeveli, boş açıklama kutulu tek çizgi roman karesi.',
+    category: 'cartoon',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı tek bir çizgi roman karesine dönüştür. Kare kalın siyah bir çerçeveyle sınırlansın; sol üst köşede boş bir açıklama kutusu olsun. Yalnızca dört düz renk ve siyah mürekkep konturu kullan, yazı yazma.',
+  },
+  {
+    id: 'die-cut-sticker',
+    name: 'Çıkartma',
+    description: 'Kalın beyaz kenarlı, parlak, kesilmiş çıkartma.',
+    category: 'cartoon',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı parlak bir kesme çıkartmaya dönüştür. Konu, düz renkli çizgi film üslubunda çizilsin ve çevresinde kalın beyaz bir kesim kenarı olsun. Üstte hafif bir parlama dursun; arka plan düz ve açık renk olsun.',
+  },
+  {
+    id: 'kawaii-pastel',
+    name: 'Sevimli Pastel',
+    description: 'Pembe yanaklar ve minik ışıltılarla sevimli pastel çizim.',
+    category: 'cartoon',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı sevimli bir pastel çizgi film çizimine dönüştür. Oranları koru; hatlar yumuşak ve yuvarlak olsun. Açık pastel renkler kullan, yanaklara pembe allık ve çevreye minik parıltı işaretleri ekle.',
+  },
+  {
+    id: 'ballpoint-doodle',
+    name: 'Tükenmez Karalama',
+    description: 'Çizgili defter kâğıdında mavi tükenmez kalem karalaması.',
+    category: 'line',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı çizgili bir defter sayfasına mavi tükenmez kalemle yapılmış bir karalamaya dönüştür. Gölgeler gevşek, üst üste karalanmış çizgilerle kurulsun; defter çizgileri ve kenar boşluğu çizgisi görünsün.',
+  },
+  {
+    id: 'continuous-line',
+    name: 'Tek Çizgi',
+    description: 'Hiç kopmayan tek siyah çizgiyle, dolgusuz çizim.',
+    category: 'line',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı beyaz kâğıt üzerine hiç kopmadan çizilmiş tek bir siyah çizgiyle yeniden çiz. Çizgi baştan sona kesintisiz aksın ve biçimleri ondan kursun. Dolgu, gölge, renk ve ton kullanma; zemin beyaz kalsın.',
+  },
+  {
+    id: 'technical-pen',
+    name: 'Nokta Tarama',
+    description: 'Tüm tonları minik noktalarla kurulan ince kalem çizimi.',
+    category: 'line',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı ince uçlu bir kalemle yapılmış nokta taramasına dönüştür. Bütün ton ve gölgeler yalnızca sık ya da seyrek dizilmiş minik noktalardan oluşsun. Gölge için çizgi, tarama ve dolu alan kullanma.',
+  },
+  {
+    id: 'blueprint',
+    name: 'Mavi Kopya',
+    description: 'Camgöbeği kâğıtta beyaz yapı çizgileri ve ölçü işaretleri.',
+    category: 'line',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı camgöbeği mavisi bir mimari kopya çizimine dönüştür. Konu ince beyaz yapı çizgileriyle çizilsin; kenarlarda ölçü okları, küçük çentikler ve yardımcı çizgiler olsun. Dolgu ve gölge kullanma.',
+  },
+  {
+    id: 'graphite-pencil',
+    name: 'Kurşun Kalem',
+    description: 'Harmanlanmış, dağıtılmış yumuşak kurşun kalem gölgeleri.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı yumuşak kurşun kalemle yapılmış bir çizime dönüştür. Gölgeler parmakla dağıtılmış gibi harmanlansın; tonlar açık griden koyu griye yumuşakça geçsin ve kâğıdın greni görünsün. Mürekkep kullanma.',
+  },
+  {
+    id: 'charcoal',
+    name: 'Kömür',
+    description: 'Tonlu kâğıtta yoğun mat siyahlar ve silgiyle açılmış ışıklar.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı tonlu kâğıt üzerine bir kömür çizimine dönüştür. Koyu alanlar yoğun ve mat siyah olsun, geniş sürtmelerle yayılsın; ışıklar silgiyle kaldırılmış gibi açılsın. Kömür tozu kenarlarda dağılsın.',
+  },
+  {
+    id: 'coloured-pencil',
+    name: 'Kuru Boya',
+    description: 'Beyaz kâğıdın aralardan göründüğü yönlü kuru boya darbeleri.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı kuru boya kalemlerle yapılmış bir çizime dönüştür. Renkler aynı yöne giden üst üste çizgilerle katmanlansın ve darbelerin arasından beyaz kâğıt görünsün. Düz boya alanı ve sulu geçiş kullanma.',
+  },
+  {
+    id: 'oil-pastel',
+    name: 'Yağlı Pastel',
+    description: 'Kalın, mumsu, doygun yağlı pastel darbeleri ve kazıma dokusu.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı yağlı pastelle yapılmış bir resme dönüştür. Renkler doygun olsun ve kalın, mumsu darbelerle üst üste sürülsün; yer yer kazınarak alttaki renk açığa çıksın. Yüzey yağlı ve kabarık görünsün.',
+  },
+  {
+    id: 'chalk-pastel',
+    name: 'Toz Pastel',
+    description: 'Koyu kâğıtta tozlu, harmanlanmış toz pastel.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı koyu renkli kâğıt üzerine toz pastelle yapılmış bir resme dönüştür. Renkler tozlu ve yumuşak olsun, parmakla harmanlansın; kenarlarda pastel tozu dağılsın. Parlak ya da mumsu yüzey kullanma.',
+  },
+  {
+    id: 'wax-crayon',
+    name: 'Mum Boya',
+    description: 'Düzensiz dolgulu, çocuksu mum boya çizimi.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı çocuk eliyle yapılmış bir mum boya resmine dönüştür. Hatlar basit ve biraz eğri olsun; renkler düzensiz sürülsün, boşluklar kalsın ve kâğıdın pürüzlü dokusu renklerin arasından görünsün.',
+  },
+  {
+    id: 'sanguine',
+    name: 'Kırmızı Tebeşir',
+    description: 'Krem kâğıtta kırmızı-kahve tebeşir ve beyaz ışıklarla etüt.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı krem rengi kâğıt üzerine kırmızı-kahverengi tebeşirle yapılmış klasik bir etüde dönüştür. Tonlar yumuşak tebeşir taramasıyla kurulsun; ışıklar beyaz tebeşirle eklensin. Başka renk kullanma.',
+  },
+  {
+    id: 'chalkboard',
+    name: 'Kara Tahta',
+    description: 'Koyu yeşil kara tahtada soluk tebeşir çizgileri ve silinti izleri.',
+    category: 'drawing',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı koyu yeşil-siyah bir kara tahtaya tebeşirle yapılmış bir çizime dönüştür. Hatlar beyaz ve soluk renkli tebeşirle çizilsin; tahtada eski silintilerin bulanık izleri görünsün. Tahta mat kalsın.',
+  },
+  {
+    id: 'oil-glaze',
+    name: 'Yağlı Boya',
+    description: 'Pürüzsüz sırlanmış katmanlar ve derin gölgelerle klasik yağlı boya.',
+    category: 'paint',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı klasik bir yağlı boya tabloya dönüştür. Boya ince, pürüzsüz ve saydam katmanlar hâlinde sırlansın; gölgeler derin, kenarlar yumuşak olsun. Kabarık doku ve belirgin fırça izleri kullanma.',
+  },
+  {
+    id: 'ink-wash',
+    name: 'Mürekkep Lavi',
+    description: 'Dağılan fırça geçişleri ve geniş boş kâğıtla mürekkep lavi.',
+    category: 'paint',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı gevşek bir siyah mürekkep lavi resmine dönüştür. Biçimler birkaç serbest fırça darbesiyle kurulsun; mürekkep ıslak kâğıtta dağılarak griye açılsın ve resmin büyük bölümü boş kâğıt kalsın.',
+  },
+  {
+    id: 'storybook-gouache',
+    name: 'Masal Guaşı',
+    description: 'Yuvarlak biçimler, kuru fırça dokusu ve sıcak, yumuşak paletli guaş.',
+    category: 'paint',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir çocuk kitabı guaş resmine dönüştür. Biçimler yumuşak ve yuvarlak olsun; renkler sıcak, hafifçe soluk ve sakin bir palette kalsın. Yüzeylerde kuru fırçanın pürüzlü dokusu açıkça görünsün.',
+  },
+  {
+    id: 'airbrush',
+    name: 'Püskürtme Boya',
+    description: 'Kusursuz püskürtme geçişleri ve parlak ışıklarla seksenler illüstrasyonu.',
+    category: 'paint',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı 1980 tarzı bir püskürtme boya illüstrasyonuna dönüştür. Renkler son derece pürüzsüz, kesintisiz geçişlerle püskürtülsün; parlak yüzeylerde krom gibi keskin ışıklar olsun. Fırça izi kullanma.',
+  },
+  {
+    id: 'spray-graffiti',
+    name: 'Sprey Grafiti',
+    description: 'Tuğla duvarda sert kenarlı sprey boya, akıntılar ve püskürtme halesi.',
+    category: 'paint',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir tuğla duvara sprey boyayla yapılmış bir grafitiye dönüştür. Renk alanları sert kenarlı olsun; kenarlarda boya akıntıları ve püskürtme haleleri görünsün. Tuğla dokusu boyanın altından belli olsun.',
+  },
+  {
+    id: 'risograph',
+    name: 'Risograf',
+    description: 'İki renkli, grenli floresan mürekkep ve hafif kayık baskı.',
+    category: 'print',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı iki renkli bir risograf baskıya dönüştür. Floresan pembe ve mavi mürekkep kullan; tonlar grenli bir nokta dokusuyla kurulsun ve iki renk birbirine göre hafifçe kaymış olsun. Siyah kontur kullanma.',
+  },
+  {
+    id: 'linocut',
+    name: 'Linol Baskı',
+    description: 'Üç düz rengin üst üste bindiği, beyaz oyma izli linol baskı.',
+    category: 'print',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı üç renkli bir linol baskıya dönüştür. Üç düz renk katman katman üst üste basılsın; boş alanlarda oyma bıçağının bıraktığı beyaz çizgiler görünsün. Renk geçişi, tonlama ve gölgeleme kullanma.',
+  },
+  {
+    id: 'cyanotype',
+    name: 'Siyanotip',
+    description: 'Prusya mavisi zeminde beyaz siluetlerle güneş baskısı.',
+    category: 'print',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir siyanotip güneş baskısına dönüştür. Zemin koyu Prusya mavisi olsun; konu, güneşte pozlanmış gibi beyaz ve açık mavi siluetlerle belirsin ve kenarları yumuşakça dağılsın. Başka renk kullanma.',
+  },
+  {
+    id: 'origami',
+    name: 'Origami',
+    description: 'Keskin katlanmış kâğıttan, kıvrım izli, yüzeyli origami.',
+    category: 'paper',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu kalın, düz renkli kâğıttan katlanmış bir origamiye dönüştür. Biçim düz yüzeylerden oluşsun; her kıvrım keskin bir çizgi ve ışık-gölge farkıyla görünsün. Kesik ve yapıştırma kullanma.',
+  },
+  {
+    id: 'quilling',
+    name: 'Kâğıt Kıvırma',
+    description: 'Kenarı üstünde duran kıvrılmış renkli kâğıt şeritler.',
+    category: 'paper',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı kâğıt kıvırma sanatına dönüştür. Konu, dar renkli kâğıt şeritlerin sarmal ve damla biçiminde kıvrılıp kenarları üstünde dikilmesiyle kurulsun; şeritlerin arasından beyaz zemin görünsün.',
+  },
+  {
+    id: 'papercraft',
+    name: 'Kâğıt Maket',
+    description: 'Yapıştırma dilleri görünen, renkli üçgenlerden kâğıt maket.',
+    category: 'paper',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu renkli kâğıt üçgenlerden yapıştırılmış düşük poligonlu bir maket olarak yeniden oluştur. Her yüzey düz bir kâğıt parçası olsun; ek yerlerinde yapıştırma dilleri ve kıvrım izleri görünsün.',
+  },
+  {
+    id: 'magazine-collage',
+    name: 'Dergi Kolajı',
+    description: 'Renkleri ve ölçekleri uyuşmayan kesilmiş dergi parçalarından kolaj.',
+    category: 'paper',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı makasla kesilmiş dergi parçalarından bir kolaja dönüştür. Her parça farklı bir basılı fotoğraftan gelsin; renkler, ölçekler ve baskı dokuları birbirini tutmasın ve kesik kenarları keskin olsun.',
+  },
+  {
+    id: 'silhouette-cut',
+    name: 'Siluet Kesim',
+    description: 'Beyaz zeminde ince oyma ayrıntılı tek siyah kâğıt siluet.',
+    category: 'paper',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı beyaz zemin üzerine tek parça siyah kâğıttan kesilmiş bir siluete dönüştür. Biçimin iç ayrıntıları ince kesiklerle açılsın; ton, gri ve renk kullanma, yalnızca siyah kâğıt ve beyaz zemin kalsın.',
+  },
+  {
+    id: 'knitted',
+    name: 'Örgü',
+    description: 'Tüylü liflerle iri V ilmekli yün örgü.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı kalın yün iplikle örülmüş bir örgüye dönüştür. Bütün yüzey sıra sıra dizilmiş iri V biçimli ilmeklerden oluşsun; ipliğin tüylü lifleri ve ilmeklerin gölgesi görünsün. Renkler yünün dokusunda kalsın.',
+  },
+  {
+    id: 'cross-stitch',
+    name: 'Kanaviçe',
+    description: 'Etamin kumaşta görünür X dikişlerden ızgaralı nakış.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı etamin kumaşa işlenmiş bir kanaviçeye dönüştür. Görüntü, düzenli bir ızgara üzerinde yan yana dizilmiş küçük X dikişlerinden oluşsun; dikişlerin arasından kumaşın delikli dokusu görünsün.',
+  },
+  {
+    id: 'felt-plush',
+    name: 'Keçe Oyuncak',
+    description: 'Dikiş yerleri ve düğme gözleri görünen doldurulmuş keçe oyuncak.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu doldurulmuş bir keçe oyuncak olarak yeniden oluştur. Parçalar dikiş yerlerinden birleştirilmiş gibi dursun; gözler düğme olsun ve keçenin yumuşak, tüylü dokusu ile kabarıklığı görünsün.',
+  },
+  {
+    id: 'batik',
+    name: 'Batik',
+    description: 'Çatlak damarlı, çivit ve turuncu mum batik kumaş.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı mumla desenlenip boyanmış bir batik kumaşa dönüştür. Renkler çivit mavisi ve turuncu olsun; boyanın mum çatlaklarına sızdığı ince damarlar bütün yüzeye yayılsın ve kumaş dokusu görünsün.',
+  },
+  {
+    id: 'patchwork-quilt',
+    name: 'Kırkyama',
+    description: 'Kapitone dikişli, desenli kumaş karelerden kırkyama.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı desenli kumaş karelerinden dikilmiş bir kırkyama yorgana dönüştür. Biçimler, farklı desenli kumaş parçalarının birleşmesiyle kurulsun; üzerinden geçen kapitone dikiş sıraları görünsün.',
+  },
+  {
+    id: 'woven-tapestry',
+    name: 'Duvar Halısı',
+    description: 'Düz atkı dokulu, hafif basamaklı kenarlı dokuma duvar halısı.',
+    category: 'textile',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı tezgâhta dokunmuş bir duvar halısına dönüştür. Yüzey yatay atkı ipliklerinden oluşan düz bir dokuma olsun; renk sınırları hafif basamaklı ilerlesin ve ipliklerin sırası yakından görünsün.',
+  },
+  {
+    id: 'plasticine',
+    name: 'Hamur Figür',
+    description: 'Gerçek oranlı, parmak izli, küçük stüdyo sahnesinde hamur figür.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu oyun hamurundan yapılmış bir figür olarak yeniden oluştur. Oranlar gerçek kalsın; yüzeyde parmak izleri ve küçük çentikler görünsün. Figür, yumuşak ışıklı küçük bir stüdyo sahnesinde dursun.',
+  },
+  {
+    id: 'porcelain',
+    name: 'Porselen Biblo',
+    description: 'Mavi boya ayrıntılı, parlak beyaz porselen biblo.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu parlak beyaz bir porselen biblo olarak yeniden oluştur. Sırlı yüzeyde sert, keskin parlama noktaları olsun; ayrıntılar ince kobalt mavisi fırça çizgileriyle boyansın. Başka renk kullanma.',
+  },
+  {
+    id: 'wood-carving',
+    name: 'Ahşap Oyma',
+    description: 'Oyma bıçağı yüzeyleri ve ahşap damarı görünen el oyması figür.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu elle oyulmuş ahşap bir figür olarak yeniden oluştur. Yüzeyde oyma bıçağının bıraktığı düz kesik yüzeyler görünsün ve ahşabın damarları biçim boyunca aksın. Boya ve cila kullanma.',
+  },
+  {
+    id: 'bronze',
+    name: 'Bronz Heykel',
+    description: 'Taş kaide üstünde yeşil-kahve patinalı bronz heykel.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu taş bir kaide üzerinde duran bronz bir heykele dönüştür. Metal yüzeyde yeşil-kahverengi oksit patinası olsun; çıkıntılar parlayıp girintiler koyulaşsın ve heykelin kalıp izleri görünsün.',
+  },
+  {
+    id: 'marble-bust',
+    name: 'Mermer Büst',
+    description: 'Boş bakışlı, damarlı beyaz mermer büst, müze ışığında.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu portreyi beyaz, damarlı mermerden oyulmuş bir büste dönüştür. Gözler bebeksiz ve boş olsun; saç ve giysi yumuşak oyma kıvrımlarla verilsin. Büst koyu bir fonun önünde, yukarıdan gelen müze ışığıyla aydınlansın.',
+  },
+  {
+    id: 'vinyl-toy',
+    name: 'Vinil Figür',
+    description: 'Yuvarlak kenarlı, pürüzsüz, mat vinil koleksiyon figürü.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu mat vinilden yapılmış bir koleksiyon figürü olarak yeniden oluştur. Biçimler pürüzsüz ve sadeleşmiş, kenarlar yuvarlak olsun; figür düz renkli bir stüdyo fonunun önünde dursun.',
+  },
+  {
+    id: 'papier-mache',
+    name: 'Kâğıt Hamuru',
+    description: 'Katmanlı kâğıt şeritler ve düzensiz boyalı kâğıt hamuru heykel.',
+    category: 'sculpt',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu kâğıt hamurundan yapılmış bir heykele dönüştür. Yüzey üst üste yapıştırılmış pürüzlü kâğıt şeritlerinden oluşsun; boya düzensiz sürülsün ve yer yer altındaki gazete kâğıdı görünsün.',
+  },
+  {
+    id: 'bobblehead',
+    name: 'Sallanan Kafa',
+    description: 'Küçük gövde üstünde iri ayrıntılı başlı parlak reçine figür.',
+    category: 'caricature',
+    closing: 'exaggerate',
+    body:
+      'Bu portreyi parlak reçineden bir sallanan kafa figürüne dönüştür. Baş çok büyük ve ayrıntılı, gövde küçük ve basit olsun; figür yuvarlak bir kaide üstünde dursun ve yüzeylerde boyalı plastik parlaması görünsün.',
+  },
+  {
+    id: 'editorial-cartoon',
+    name: 'Editoryal Karikatür',
+    description: 'Gri lavili mürekkep çizimde abartılı burun ve çene.',
+    category: 'caricature',
+    closing: 'exaggerate',
+    body:
+      'Bu portreyi bir gazete editoryal karikatürüne dönüştür. Hatlar dolma kalem mürekkebiyle çizilsin, gölgeler gri lavi ile verilsin; burun ve çene belirgin biçimde büyütülsün. Nokta tramı ve renk kullanma.',
+  },
+  {
+    id: 'street-caricature',
+    name: 'Sokak Karikatürü',
+    description: 'Renkli keçeli kalemle çizilmiş dev başlı, minik gövdeli hızlı karikatür.',
+    category: 'caricature',
+    closing: 'exaggerate',
+    body:
+      'Bu portreyi bir sokak ressamının renkli keçeli kalemlerle hızla çizdiği bir karikatüre dönüştür. Baş devasa, gövde minik olsun; kalem darbeleri hızlı, gevşek ve üst üste binen şeritler hâlinde görünsün.',
+  },
+  {
+    id: 'pop-art',
+    name: 'Pop Art',
+    description: 'Ana renkler, kalın siyah kontur ve iri yarım ton noktalarıyla pop art.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir pop art resmine dönüştür. Kalın siyah konturlar ve düz kırmızı, sarı, mavi alanlar kullan; tonlar iri, açıkça görünen yarım ton noktalarıyla verilsin. Gerçekçi gölgeleme ve geçiş kullanma.',
+  },
+  {
+    id: 'geometric-vector',
+    name: 'Geometrik Vektör',
+    description: 'Yalnızca daire, dikdörtgen ve üçgenlerle beş renkli vektör.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı yalnızca daire, dikdörtgen ve üçgenlerden kurulmuş geometrik bir vektör illüstrasyona dönüştür. Yalnızca en fazla beş düz renk kullan; serbest eğri çizgi, yüzey dokusu ve renk geçişi kullanma.',
+  },
+  {
+    id: 'pixel-art',
+    name: 'Piksel',
+    description: 'Sert kare pikselli, sınırlı paletli eski oyun görüntüsü.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı piksel sanatına dönüştür. Görüntü yaklaşık 64 çarpı 64 sert kenarlı kare pikselden oluşsun ve eski bir oyun gibi sınırlı bir palet kullansın. Yumuşatma, bulanıklık ve renk geçişi kullanma.',
+  },
+  {
+    id: 'low-poly',
+    name: 'Düşük Poligon',
+    description: 'Üçgen yüzeylerden, yumuşak renk geçişli dijital illüstrasyon.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı düşük poligonlu dijital bir illüstrasyona dönüştür. Bütün biçimler farklı boyutlarda üçgen yüzeylerden oluşsun; her üçgen tek renk olsun ve yüzeyler boyunca yumuşak renk geçişleri görünsün.',
+  },
+  {
+    id: 'line-icon',
+    name: 'İkon',
+    description: 'Eşit kalınlıkta yuvarlak uçlu çizgilerle sade ikon.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu sade bir çizgi ikonuna dönüştür. Bütün çizgiler aynı kalınlıkta ve uçları yuvarlak olsun; ayrıntılar en aza insin. Tek renk kullan, zemin düz ve boş kalsın; dolgu ve gölge kullanma.',
+  },
+  {
+    id: 'neon-sign',
+    name: 'Neon Tabela',
+    description: 'Koyu tuğla duvarda ışık halesiyle parlayan neon tüp tabela.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğraftaki konuyu parlayan neon tüplerden yapılmış bir tabelaya dönüştür. Biçimler kıvrılmış ışık tüplerinin konturlarıyla çizilsin; tabela koyu bir tuğla duvarda dursun ve çevresine yumuşak ışık yayılsın.',
+  },
+  {
+    id: 'duotone-poster',
+    name: 'Çift Ton Afiş',
+    description: 'İki cesur renge eşlenmiş, grenli, konturu olmayan afiş.',
+    category: 'graphic',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı iki renkli bir afişe dönüştür. Bütün tonlar koyu lacivert ve canlı turuncu olmak üzere iki cesur renge eşlensin; yüzeyde ince bir gren olsun. Kontur çizgisi, doku deseni ve üçüncü renk kullanma.',
+  },
+  {
+    id: 'art-nouveau',
+    name: 'Art Nouveau',
+    description: 'Kırbaç kıvrımları, çiçekli çerçeve ve soluk altın-yeşil renkler.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı Art Nouveau üslubunda bir resme dönüştür. Hatlar akıcı, kırbaç gibi kıvrılan çizgilerle çizilsin; konu çiçek süslemeli dekoratif bir çerçeveyle çevrilsin ve renkler soluk altın ile yeşil olsun.',
+  },
+  {
+    id: 'art-deco',
+    name: 'Art Deco',
+    description: 'Simetrik güneş ışınları, basamaklı biçimler, altın ve siyah.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı Art Deco üslubunda bir resme dönüştür. Kompozisyon simetrik güneş ışını desenleri ve basamaklı geometrik biçimlerle çevrilsin; yalnızca altın, siyah ve krem renkler kullanılsın, çizgiler keskin olsun.',
+  },
+  {
+    id: 'mid-century',
+    name: 'Orta Yüzyıl Modern',
+    description: 'Kayık aşı boyası ve camgöbeği renk bloklarıyla ellili yıllar illüstrasyonu.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı 1950 yapımı bir modern illüstrasyona dönüştür. Biçimler sadeleşmiş, düz ve hafif açılı olsun; aşı boyası ve camgöbeği renk blokları çizgilerden biraz kaymış basılsın ve yüzeyde kuru fırça dokusu olsun.',
+  },
+  {
+    id: 'ukiyo-e',
+    name: 'Ukiyo-e',
+    description: 'Düz renk alanları, yumuşak geçişler ve ince siyah konturlu tahta baskı.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir ukiyo-e tahta baskısına dönüştür. Renk alanları düz olsun, gökyüzünde ve suda yumuşak geçişler bulunsun; bütün biçimler ince siyah konturlarla çevrilsin. Tarama çizgileri kullanma.',
+  },
+  {
+    id: 'illuminated-manuscript',
+    name: 'Tezhipli El Yazması',
+    description: 'Varak altın, düz perspektif ve süslü bordürlü parşömen sayfası.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı ortaçağ tezhipli el yazması sayfasına dönüştür. Konu düz perspektifle, parlak varak altın ayrıntılarla çizilsin; sayfanın çevresini süslü bir bordür sarsın ve zemin eskimiş parşömen olsun.',
+  },
+  {
+    id: 'ottoman-miniature',
+    name: 'Osmanlı Minyatürü',
+    description: 'Düz perspektif, mücevher tonlu boyalar ve desenli kumaşlarla minyatür.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir Osmanlı minyatürüne dönüştür. Sahne düz perspektifle kurulsun; lal, lacivert ve yeşil gibi mücevher tonlu boyalar ve ince desenli kumaş yüzeyleri kullanılsın. Varak altın bordür kullanma.',
+  },
+  {
+    id: 'travel-poster',
+    name: 'Eski Seyahat Afişi',
+    description: 'Sade sahne, geniş gökyüzü geçişi ve boş başlık bandıyla eski afiş.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı eski bir taş baskı seyahat afişine dönüştür. Sahne birkaç düz renk alanına sadeleşsin; üstte geniş, yumuşak bir gökyüzü geçişi olsun ve altta boş ve yazısız bir başlık bandı bırakılsın.',
+  },
+  {
+    id: 'psychedelic',
+    name: 'Psikedelik Afiş',
+    description: 'Dalgalı, eriyen hatlar ve iç içe gökkuşağı bantlarıyla yetmişler afişi.',
+    category: 'era',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı 1970 yapımı psikedelik bir afişe dönüştür. Hatlar dalgalanıp eriyormuş gibi aksın; konu iç içe geçen doygun turuncu, mor ve yeşil bantlarla çevrilsin ve boşluklar da bu bantlarla dolsun.',
+  },
+  {
+    id: 'mosaic',
+    name: 'Mozaik',
+    description: 'Derz çizgileri görünen küçük kare taş parçalardan Roma mozaiği.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir Roma mozaiğine dönüştür. Görüntü, küçük ve hafifçe düzensiz kare taş parçalarından oluşsun; parçaların arasında açık renkli derz çizgileri görünsün ve taş parçalarının yüzeyi mat kalsın.',
+  },
+  {
+    id: 'stained-glass',
+    name: 'Vitray',
+    description: 'Kalın kurşun çizgilerle ayrılmış, arkadan aydınlanan renkli camlar.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı arkadan ışık alan bir vitray pencereye dönüştür. Konu parlak, ışık geçiren renkli cam parçalarından oluşsun; parçalar kalın, koyu kurşun çizgilerle ayrılsın ve camın dalgalı dokusu görünsün.',
+  },
+  {
+    id: 'iznik-tile',
+    name: 'İznik Çini',
+    description: 'Beyaz sır üstünde kobalt, turkuaz ve domates kırmızısı İznik çinisi.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı elle boyanmış bir İznik çinisine dönüştür. Beyaz sır üzerinde yalnızca kobalt mavisi, turkuaz ve domates kırmızısı kullan; konu çiçekli bir bordürle çevrilsin ve sırın parlaklığı görünsün.',
+  },
+  {
+    id: 'fresco',
+    name: 'Fresk',
+    description: 'Pürüzlü sıva üstünde tebeşirimsi, solmuş mineral boyalı fresk.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı eski bir fresk duvar resmine dönüştür. Renkler tebeşirimsi ve solmuş mineral boyalar olsun; resim pürüzlü sıva üzerinde dursun, yüzeyde ince kılcal çatlaklar ve yer yer dökülmüş boya izleri görünsün.',
+  },
+  {
+    id: 'sand-art',
+    name: 'Kum Resmi',
+    description: 'Yumuşak dökülmüş kenarlı renkli kum tanelerinden resim.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı renkli kum tanelerinden yapılmış bir kum resmine dönüştür. Renk alanları dökülmüş kum katmanlarıyla oluşsun; kenarlar yumuşak ve tanecikli olsun, yakından tek tek kum taneleri seçilsin.',
+  },
+  {
+    id: 'ebru',
+    name: 'Ebru',
+    description: 'Suda yüzen boya kıvrımları ve taranmış damarlarla ebru.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir ebru sanatına dönüştür. Konu, su yüzeyinde yüzen boya damlalarının kıvrılıp taranmasıyla oluşmuş desenlerden çıksın; renkler akıcı sarmallar ve ince taranmış damarlar hâlinde kâğıda geçsin.',
+  },
+  {
+    id: 'embossed-copper',
+    name: 'Kabartma Bakır',
+    description: 'Sıcak patinalı, dövülerek kabartılmış bakır levha.',
+    category: 'surface',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı dövülerek kabartılmış bir bakır levhaya dönüştür. Biçimler levhanın arkasından itilerek yükselsin; yüzeyde çekiç izleri, sıcak kahverengi patina ve kabartmaların parlayan sırtları görünsün.',
   },
 ] as const satisfies readonly StyleSource[]
 
@@ -442,26 +1005,6 @@ const _idsAreAsciiSlugs: [NonSlugIds] extends [never]
   : ['STYLE ID MUST MATCH /^[a-z0-9-]+$/ — offending id:', NonSlugIds] = true
 void _idsAreAsciiSlugs
 
-/**
- * Group membership is DERIVED, never assigned. The ordering is the design
- * decision: a print with a heavy carved line belongs with the prints, because
- * what makes it what it is is the pressing rather than the line.
- * `classic` has no coordinates and therefore no group: it is what happens when
- * no choice is made, not one choice among four.
- */
-export function deriveGroup(coords: Coords | null): CartoonGroup | null {
-  if (coords === null) return null
-  if (coords.S === 'S4') return 'baski'
-  if (coords.B === 'B4') return 'kesme'
-  if (coords.B === 'B1' || coords.B === 'B2') return 'cizgi'
-  return 'boya'
-}
-
-/** Which closing constant applies. Follows from F; not a free choice. */
-export function closingFor(coords: Coords | null): ClosingId {
-  if (coords === null) return 'preserve'
-  return coords.F === 'F1' || coords.F === 'F2' ? 'preserve' : 'exaggerate'
-}
 
 export type CartoonStyle = {
   /** Stable wire value. Sent in FormData and matched against this list. */
@@ -472,10 +1015,8 @@ export type CartoonStyle = {
   readonly description: string
   /** Stored medium family; see STYLE_CATEGORIES. */
   readonly category: StyleCategory
-  /** Derived from the coordinates; null for the default. */
-  readonly group: CartoonGroup | null
-  readonly coords: Coords | null
-  readonly asserts: Asserts | null
+  /** Which closing constant the prompt ends with. */
+  readonly closing: ClosingId
   /** The instruction sent upstream. Never accepted from the client. */
   readonly prompt: string
 }
@@ -485,39 +1026,8 @@ export const CARTOON_STYLES: readonly CartoonStyle[] = STYLE_SOURCE.map((s) => (
   name: s.name,
   description: s.description,
   category: s.category,
-  group: deriveGroup(s.coords),
-  coords: s.coords,
-  asserts: s.asserts,
-  prompt: s.body + ' ' + CLOSING[closingFor(s.coords)],
-}))
-
-/**
- * The Turkish labels shown on the picker, one per group. Proposed in task
- * 0004 §6 and settled by the operator at the plan gate; quoted exactly by
- * task 0004 criterion 9. Nothing under app/ or components/ may restate one —
- * see criterion 7.
- */
-export const GROUP_LABELS: Record<CartoonGroup, string> = {
-  cizgi: 'Çizgi ve Mürekkep',
-  boya: 'Boya ve Fırça',
-  baski: 'Baskı',
-  kesme: 'Kesme ve Kolaj',
-}
-
-/** The order the four groups render in. `classic` sits outside all of them. */
-export const STYLE_GROUP_ORDER: readonly CartoonGroup[] = ['cizgi', 'boya', 'baski', 'kesme']
-
-export type StyleGroup = {
-  readonly id: CartoonGroup
-  readonly label: string
-  readonly styles: readonly CartoonStyle[]
-}
-
-/** Grouping, derived from CARTOON_STYLES; never a second hand-maintained list. */
-export const STYLE_GROUPS: readonly StyleGroup[] = STYLE_GROUP_ORDER.map((id) => ({
-  id,
-  label: GROUP_LABELS[id],
-  styles: CARTOON_STYLES.filter((style) => style.group === id),
+  closing: s.closing,
+  prompt: s.body + ' ' + CLOSING[s.closing],
 }))
 
 /**

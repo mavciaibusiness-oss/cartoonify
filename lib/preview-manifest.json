@@ -144,8 +144,12 @@
     },
     "bold-ink": {
       "file": "public/styles/bold-ink.webp",
-      "sha256": "e003c64ddb0346b452d1d181b9326b1a9de473d7e4f62e20949085702636172c",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "387b218e3bc1bf5f08c0928a250de3b31d5681157eaff70ea7a26af58b6cb80f",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -154,36 +158,22 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
-        "input_tokens": 1121,
+        "input_tokens": 1128,
         "input_tokens_details": {
           "image_tokens": 1024,
-          "text_tokens": 97
+          "text_tokens": 104
         },
         "output_tokens": 439,
         "output_tokens_details": {
           "image_tokens": 439,
           "text_tokens": 0
         },
-        "total_tokens": 1560
+        "total_tokens": 1567
       },
-      "cost_usd": 0.021847,
-      "latency_ms": 21829,
-      "at": "2026-09-29T13:36:28.583Z"
+      "cost_usd": 0.021882,
+      "latency_ms": 20360,
+      "at": "2026-09-30T20:09:38.144Z"
     },
     "cel-frame": {
       "file": "public/styles/cel-frame.webp",
@@ -230,8 +220,12 @@
     },
     "hatched-line": {
       "file": "public/styles/hatched-line.webp",
-      "sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "ae6eef7bf4c29959c2fdf8c810dee51fe6769915a4224ad13e8ddbc67e78b188",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -240,20 +234,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1127,
         "input_tokens_details": {
@@ -268,13 +248,17 @@
         "total_tokens": 1566
       },
       "cost_usd": 0.021877,
-      "latency_ms": 19531,
-      "at": "2026-09-29T13:37:17.172Z"
+      "latency_ms": 23151,
+      "at": "2026-10-01T08:16:57.171Z"
     },
     "line-wash": {
       "file": "public/styles/line-wash.webp",
-      "sha256": "10c1925baba59b95ff9f892d780ef44e210bda0a9f7bf3dd655a3d10ab21fa6d",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "e2f138ad88d5ea61a8a7cfa27c59cabdae100036dc96b60db3fc4bad79979097",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -283,20 +267,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1129,
         "input_tokens_details": {
@@ -311,13 +281,17 @@
         "total_tokens": 1568
       },
       "cost_usd": 0.021887,
-      "latency_ms": 20701,
-      "at": "2026-09-29T13:37:36.705Z"
+      "latency_ms": 21776,
+      "at": "2026-10-01T08:17:20.324Z"
     },
     "two-ink": {
       "file": "public/styles/two-ink.webp",
-      "sha256": "62e6b3b2959a2c61b7d9b9e377bdc0a5b5ba15870cf12792483ec354766ef3c3",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "112d7ccab7e20ec176d18d91bbfc11c443500982c20dc7e21f19a6795cc1b17c",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -326,20 +300,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1128,
         "input_tokens_details": {
@@ -354,13 +314,17 @@
         "total_tokens": 1567
       },
       "cost_usd": 0.021882,
-      "latency_ms": 20960,
-      "at": "2026-09-29T13:37:57.409Z"
+      "latency_ms": 20975,
+      "at": "2026-09-30T19:46:01.069Z"
     },
     "mass-caricature": {
       "file": "public/styles/mass-caricature.webp",
-      "sha256": "91f28d546b4cdf0ec126dda784e334c151b7f28bdda84ce6fedc806cbc73e1bc",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "e94ed42722b6d319816fc8b0bab5cb5ebb4b438abfcbe06dd81fa47c2db9f1a7",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -369,20 +333,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1143,
         "input_tokens_details": {
@@ -397,8 +347,8 @@
         "total_tokens": 1582
       },
       "cost_usd": 0.021957,
-      "latency_ms": 22912,
-      "at": "2026-09-29T13:38:18.373Z"
+      "latency_ms": 21829,
+      "at": "2026-09-30T20:00:01.689Z"
     },
     "feature-caricature": {
       "file": "public/styles/feature-caricature.webp",
@@ -445,8 +395,12 @@
     },
     "reduced-caricature": {
       "file": "public/styles/reduced-caricature.webp",
-      "sha256": "f5560112467193449ba9a332a5f36261930447f6126b5da6b6719008d5af5387",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "d57f77e132cd2e81262f52ba72952e001f45d67cfc1d95e97f5310b13eb248b0",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -455,20 +409,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1131,
         "input_tokens_details": {
@@ -483,8 +423,8 @@
         "total_tokens": 1570
       },
       "cost_usd": 0.021897,
-      "latency_ms": 19388,
-      "at": "2026-09-29T13:39:00.676Z"
+      "latency_ms": 19346,
+      "at": "2026-10-01T09:37:46.730Z"
     },
     "soft-pastel": {
       "file": "public/styles/soft-pastel.webp",
@@ -574,8 +514,12 @@
     },
     "opaque-paint": {
       "file": "public/styles/opaque-paint.webp",
-      "sha256": "84535833fca7f4206802322314d4cd727fc37efc5378754c1a6addc3eb7b7462",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "630d083cdbcd6df7ec66e1a1114fb64ac7139a2a83e57f2a7808cf344235eadf",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -584,41 +528,31 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
-        "input_tokens": 1128,
+        "input_tokens": 1125,
         "input_tokens_details": {
           "image_tokens": 1024,
-          "text_tokens": 104
+          "text_tokens": 101
         },
         "output_tokens": 439,
         "output_tokens_details": {
           "image_tokens": 439,
           "text_tokens": 0
         },
-        "total_tokens": 1567
+        "total_tokens": 1564
       },
-      "cost_usd": 0.021882,
-      "latency_ms": 21506,
-      "at": "2026-09-29T13:39:59.492Z"
+      "cost_usd": 0.021867,
+      "latency_ms": 19886,
+      "at": "2026-10-01T08:48:16.325Z"
     },
     "thick-paint": {
       "file": "public/styles/thick-paint.webp",
-      "sha256": "967646e3592c2aa9040a5740842e4b6a2d402b1ba07f7f8d44ff75b02831070f",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "2b97f6d2df56945284955f629c5517cd9902cb8037b13a83093aec26da4f7b93",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -627,20 +561,39 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
       },
+      "cost_usd": 0.021892,
+      "latency_ms": 25312,
+      "at": "2026-10-01T08:48:36.211Z"
+    },
+    "stretched-caricature": {
+      "file": "public/styles/stretched-caricature.webp",
+      "sha256": "16c33d178c0f34d5e21777a79af3ecb397bdd37059aac0411adeb1f253931a0f",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
       "usage": {
         "input_tokens": 1128,
         "input_tokens_details": {
@@ -655,51 +608,8 @@
         "total_tokens": 1567
       },
       "cost_usd": 0.021882,
-      "latency_ms": 20368,
-      "at": "2026-09-29T13:40:20.999Z"
-    },
-    "stretched-caricature": {
-      "file": "public/styles/stretched-caricature.webp",
-      "sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
-      "usage": {
-        "input_tokens": 1141,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 117
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1580
-      },
-      "cost_usd": 0.021947,
-      "latency_ms": 19756,
-      "at": "2026-09-29T13:40:41.369Z"
+      "latency_ms": 18985,
+      "at": "2026-10-01T09:38:06.077Z"
     },
     "combed-paint": {
       "file": "public/styles/combed-paint.webp",
@@ -746,8 +656,12 @@
     },
     "wet-paper": {
       "file": "public/styles/wet-paper.webp",
-      "sha256": "103d40c791919c1442ecd4951c2ce78f850f4c6046964c26f810449cfdce2ad2",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "af27cc0f2b62fe129fc03da7abb323ae2dfbd1af715e5f037e4444a725f4ae87",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -756,20 +670,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1133,
         "input_tokens_details": {
@@ -784,8 +684,8 @@
         "total_tokens": 1572
       },
       "cost_usd": 0.021907,
-      "latency_ms": 19852,
-      "at": "2026-09-29T13:41:22.614Z"
+      "latency_ms": 21611,
+      "at": "2026-10-01T08:49:01.524Z"
     },
     "single-ink": {
       "file": "public/styles/single-ink.webp",
@@ -875,8 +775,12 @@
     },
     "carved-block": {
       "file": "public/styles/carved-block.webp",
-      "sha256": "463c275c9182ec7d02ec8ad8a69496df45ed903ddf98b877aa9d8b7ed4733456",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "1f05d2a884c1e700394c135d4006895111acb11577107a146783e0a52b74f630",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -885,20 +789,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1127,
         "input_tokens_details": {
@@ -913,13 +803,17 @@
         "total_tokens": 1566
       },
       "cost_usd": 0.021877,
-      "latency_ms": 22572,
-      "at": "2026-09-29T13:42:25.239Z"
+      "latency_ms": 20109,
+      "at": "2026-10-01T08:53:35.917Z"
     },
     "wood-block": {
       "file": "public/styles/wood-block.webp",
-      "sha256": "a7615809b56df69d0fea8b722bf88e86a4527d74cf96f59018e2c9503255b18a",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "3ffc4f9e1448614c147b730876b478183d3b1b8e77cdd682af9bbf0b6c698326",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -928,20 +822,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1129,
         "input_tokens_details": {
@@ -956,13 +836,17 @@
         "total_tokens": 1568
       },
       "cost_usd": 0.021887,
-      "latency_ms": 20471,
-      "at": "2026-09-29T13:42:47.814Z"
+      "latency_ms": 24553,
+      "at": "2026-10-01T08:53:56.027Z"
     },
     "screen-print": {
       "file": "public/styles/screen-print.webp",
-      "sha256": "a477bdcd3759cf011d8e47e16a8b4fdcf4c14cdb9541511630a19d9a84969780",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "903aa394358cd1d3fb1d523d104d55e45e51a898e2f81f03e331d7e0f7db3390",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -971,20 +855,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1124,
         "input_tokens_details": {
@@ -999,13 +869,17 @@
         "total_tokens": 1563
       },
       "cost_usd": 0.021862,
-      "latency_ms": 20330,
-      "at": "2026-09-29T13:43:08.289Z"
+      "latency_ms": 19911,
+      "at": "2026-09-30T19:46:42.567Z"
     },
     "newsprint-caricature": {
       "file": "public/styles/newsprint-caricature.webp",
-      "sha256": "de3462109fdf2108ba3c5876536f5210d2a4a10c9d93ba2da94d1b8c2efaba5c",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "ff48764a92ab2045173e7b3afad4156add61688e0b31d2162f9bd8a8df022e74",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1014,20 +888,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1139,
         "input_tokens_details": {
@@ -1042,13 +902,17 @@
         "total_tokens": 1578
       },
       "cost_usd": 0.021937,
-      "latency_ms": 19763,
-      "at": "2026-09-29T13:43:28.621Z"
+      "latency_ms": 19603,
+      "at": "2026-10-01T09:38:25.063Z"
     },
     "engraved-plate": {
       "file": "public/styles/engraved-plate.webp",
-      "sha256": "9168ce549970383082ee84901b249a05dd142ce6f18f818742c84951f65dc993",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "4bff52068a7c2cd7a50040d51adad7f8709522ad13989c234b769b4474e557ce",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1057,20 +921,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1133,
         "input_tokens_details": {
@@ -1085,13 +935,17 @@
         "total_tokens": 1572
       },
       "cost_usd": 0.021907,
-      "latency_ms": 20897,
-      "at": "2026-09-29T13:43:48.388Z"
+      "latency_ms": 19904,
+      "at": "2026-10-01T08:54:20.581Z"
     },
     "double-pass": {
       "file": "public/styles/double-pass.webp",
-      "sha256": "c213814a66379b4d3b1f9ff5ce8fdbf40ec8c41c17eaa9288713987b1786b6bd",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "3076595a17c819718f4db00689baea9c62294b854588166c400eccd4dfc2062d",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1100,20 +954,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1132,
         "input_tokens_details": {
@@ -1128,13 +968,17 @@
         "total_tokens": 1571
       },
       "cost_usd": 0.021902,
-      "latency_ms": 20855,
-      "at": "2026-09-29T13:44:09.288Z"
+      "latency_ms": 20522,
+      "at": "2026-09-30T19:46:22.045Z"
     },
     "paper-cutout": {
       "file": "public/styles/paper-cutout.webp",
-      "sha256": "335087feca6eba5bbf2bfaf5423e6323adc6a7ea3e5c94846fb3f9a82e633117",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "ca3703abff38960695c0df2826fb964c9935d447bc12e7908ac4e7b80273e59c",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1143,41 +987,31 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
-        "input_tokens": 1124,
+        "input_tokens": 1133,
         "input_tokens_details": {
           "image_tokens": 1024,
-          "text_tokens": 100
+          "text_tokens": 109
         },
         "output_tokens": 439,
         "output_tokens_details": {
           "image_tokens": 439,
           "text_tokens": 0
         },
-        "total_tokens": 1563
+        "total_tokens": 1572
       },
-      "cost_usd": 0.021862,
-      "latency_ms": 22906,
-      "at": "2026-09-29T13:44:30.144Z"
+      "cost_usd": 0.021907,
+      "latency_ms": 22024,
+      "at": "2026-10-01T08:58:05.536Z"
     },
     "torn-paper": {
       "file": "public/styles/torn-paper.webp",
-      "sha256": "6caf6fd8d2b47ab2ec55cda5a8b77a476358e713399f49fcf983099a00871623",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "5220afb2e67f03831464463ca5035c01d8f570dabdcfcba7e257e9fb40ff74fc",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1186,36 +1020,22 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
-        "input_tokens": 1135,
+        "input_tokens": 1127,
         "input_tokens_details": {
           "image_tokens": 1024,
-          "text_tokens": 111
+          "text_tokens": 103
         },
         "output_tokens": 439,
         "output_tokens_details": {
           "image_tokens": 439,
           "text_tokens": 0
         },
-        "total_tokens": 1574
+        "total_tokens": 1566
       },
-      "cost_usd": 0.021917,
-      "latency_ms": 21100,
-      "at": "2026-09-29T13:44:53.051Z"
+      "cost_usd": 0.021877,
+      "latency_ms": 19927,
+      "at": "2026-10-01T08:58:27.561Z"
     },
     "three-tone-panel": {
       "file": "public/styles/three-tone-panel.webp",
@@ -1262,8 +1082,12 @@
     },
     "wood-inlay": {
       "file": "public/styles/wood-inlay.webp",
-      "sha256": "4b00b4f54982fc18873a943a4899cffd51add72d71985879674d99e3226de412",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "60e698a1c389de47e496f64f47d35f9e35dcbb35ac2aa3531df473dbb841da23",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1272,20 +1096,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1126,
         "input_tokens_details": {
@@ -1300,13 +1110,17 @@
         "total_tokens": 1565
       },
       "cost_usd": 0.021872,
-      "latency_ms": 24521,
-      "at": "2026-09-29T13:45:40.717Z"
+      "latency_ms": 21157,
+      "at": "2026-10-01T10:10:48.199Z"
     },
     "fabric-applique": {
       "file": "public/styles/fabric-applique.webp",
-      "sha256": "59b5bd03025dd2c2121b8e52fa1f8eb92d87e79ab86d07c2b811f39dbbddf3f3",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "ebc2c0ed9e0fa1f87ffd06146480a709dbf6e86a73bedc2e1e92adea734cf821",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1315,20 +1129,6 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
         "input_tokens": 1126,
         "input_tokens_details": {
@@ -1343,13 +1143,17 @@
         "total_tokens": 1565
       },
       "cost_usd": 0.021872,
-      "latency_ms": 22297,
-      "at": "2026-09-29T13:46:05.241Z"
+      "latency_ms": 23220,
+      "at": "2026-10-01T09:03:08.473Z"
     },
     "modelled-caricature": {
       "file": "public/styles/modelled-caricature.webp",
-      "sha256": "12c08b8b263fc4655416ef276b9744a7b2d32730b49b61de41a7c1e315359bac",
+      "sha256": "c8dc9e23a753c4956fc601b282bda4623c7b7e676887b28ca42b0f73b21c012b",
       "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1358,41 +1162,31 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
       "usage": {
-        "input_tokens": 1135,
+        "input_tokens": 1141,
         "input_tokens_details": {
           "image_tokens": 1024,
-          "text_tokens": 111
+          "text_tokens": 117
         },
         "output_tokens": 439,
         "output_tokens_details": {
           "image_tokens": 439,
           "text_tokens": 0
         },
-        "total_tokens": 1574
+        "total_tokens": 1580
       },
-      "cost_usd": 0.021917,
-      "latency_ms": 21190,
-      "at": "2026-09-29T13:46:27.541Z"
+      "cost_usd": 0.021947,
+      "latency_ms": 19844,
+      "at": "2026-10-01T09:28:05.576Z"
     },
     "thread-work": {
       "file": "public/styles/thread-work.webp",
-      "sha256": "108aa211cb27e73d445395420279209dc10f462e72914bedeff6d07dfe29e82a",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "sha256": "37f94ce5004a41245899824324f88c74a333814ae446e041a2d0bd21a26dfa92",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
       "request": {
         "size": "1024x1024",
         "quality": "medium",
@@ -1401,20 +1195,501 @@
       },
       "response_quality": "medium",
       "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
       },
+      "cost_usd": 0.021887,
+      "latency_ms": 21472,
+      "at": "2026-10-01T09:03:31.694Z"
+    },
+    "duotone-poster": {
+      "file": "public/styles/duotone-poster.webp",
+      "sha256": "077d9c47b151c1036aeca546118f409e96ac5a95df236c7a10b172e0795b4a44",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 16960,
+      "at": "2026-09-30T19:47:02.478Z"
+    },
+    "risograph": {
+      "file": "public/styles/risograph.webp",
+      "sha256": "6f835f77dbec572a2cb7fb848236378c6bacc4c914821edff30e34c435c339dd",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 20144,
+      "at": "2026-09-30T19:47:19.438Z"
+    },
+    "chibi": {
+      "file": "public/styles/chibi.webp",
+      "sha256": "8e909d61f221459ddec3a0c847ad788a24c88279de4cbb23c54bc7c34ef93757",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 18675,
+      "at": "2026-09-30T19:47:59.410Z"
+    },
+    "bobblehead": {
+      "file": "public/styles/bobblehead.webp",
+      "sha256": "9335f0c2c5fdb418ac3285ce1f807e31e0fadddcd246eecde7cbd1c46b47a953",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 16062,
+      "at": "2026-09-30T19:48:18.085Z"
+    },
+    "street-caricature": {
+      "file": "public/styles/street-caricature.webp",
+      "sha256": "4de090ad657b681e5cb083fe75cf9a16d30b88ad5b31c291bd0e452f35054a50",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 20652,
+      "at": "2026-09-30T19:48:34.150Z"
+    },
+    "rubber-hose": {
+      "file": "public/styles/rubber-hose.webp",
+      "sha256": "b16cf49d8e110925b8922f0db4b972734b364b0f301d694bb3eea04b5b51773f",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 24376,
+      "at": "2026-09-30T20:09:58.506Z"
+    },
+    "saturday-cartoon": {
+      "file": "public/styles/saturday-cartoon.webp",
+      "sha256": "2bb8eaecbbd9f69ae52b30bb98eee62586f67e2963ddfb56af712d069d32e103",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 21221,
+      "at": "2026-09-30T20:10:22.882Z"
+    },
+    "toon-3d": {
+      "file": "public/styles/toon-3d.webp",
+      "sha256": "5402faf092b0dd0e857ac1b1d8178768f532e0073d0c62f5ae6429fb3406b9fa",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 23500,
+      "at": "2026-09-30T20:10:44.104Z"
+    },
+    "comic-strip": {
+      "file": "public/styles/comic-strip.webp",
+      "sha256": "25722cc3a58b3a9597a019c00e71d22d79d270b6a41e18b7a8284a8fcf39817d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22538,
+      "at": "2026-09-30T20:11:07.606Z"
+    },
+    "die-cut-sticker": {
+      "file": "public/styles/die-cut-sticker.webp",
+      "sha256": "9e0085183644ed2aa601ab652d85f9126d7f1a8dca6fe715415534697a7cb6b1",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19777,
+      "at": "2026-09-30T20:11:30.145Z"
+    },
+    "kawaii-pastel": {
+      "file": "public/styles/kawaii-pastel.webp",
+      "sha256": "9d1135634e0f7f9db0c74336246e9e979db37b87117a01f0801ab0bf0d1170ac",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22641,
+      "at": "2026-09-30T20:11:49.923Z"
+    },
+    "ballpoint-doodle": {
+      "file": "public/styles/ballpoint-doodle.webp",
+      "sha256": "d9a80cd8841a9f527f95b2caf8bac2887f057802efb1acadf857c7956205e9e8",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 18525,
+      "at": "2026-10-01T08:17:42.101Z"
+    },
+    "continuous-line": {
+      "file": "public/styles/continuous-line.webp",
+      "sha256": "b0e7d95670f8488fb6840b8d98d6db235de3eb3fac5a2ba7087d5a5d5e2e04e9",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 18611,
+      "at": "2026-10-01T08:18:00.626Z"
+    },
+    "technical-pen": {
+      "file": "public/styles/technical-pen.webp",
+      "sha256": "b742e47e39a6b4934853a70b9f6b9a94e87ee3d3d01d154dfb9cf909dc757123",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 99
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1562
+      },
+      "cost_usd": 0.021857,
+      "latency_ms": 21520,
+      "at": "2026-10-01T08:18:19.238Z"
+    },
+    "blueprint": {
+      "file": "public/styles/blueprint.webp",
+      "sha256": "1c93b67f71665b7d3d3141f07906da88dc80b95d422ece62196d3daf3a564923",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 3,
+      "plan_sha256": "4a3d105a4794d900656f97dee648bbd847a3d8aa06aeb1f73189e643433d4364",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
       "usage": {
         "input_tokens": 1125,
         "input_tokens_details": {
@@ -1429,8 +1704,1823 @@
         "total_tokens": 1564
       },
       "cost_usd": 0.021867,
-      "latency_ms": 23726,
-      "at": "2026-09-29T13:46:48.733Z"
+      "latency_ms": 19517,
+      "at": "2026-10-01T08:18:40.758Z"
+    },
+    "graphite-pencil": {
+      "file": "public/styles/graphite-pencil.webp",
+      "sha256": "9560518dc3a47b03b9af33a60a149b79eef0a31f60260ee4c43166c43e682721",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 19162,
+      "at": "2026-10-01T08:36:11.529Z"
+    },
+    "charcoal": {
+      "file": "public/styles/charcoal.webp",
+      "sha256": "dea729ae5aba6fd392386211fac6d224fa27f9190cd09e961de2d58e98b1d772",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19939,
+      "at": "2026-10-01T08:36:30.692Z"
+    },
+    "coloured-pencil": {
+      "file": "public/styles/coloured-pencil.webp",
+      "sha256": "83868efd01511f9d261378a8de5498daa65383a9c6fc7f242207d65671621842",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 21732,
+      "at": "2026-10-01T08:36:50.632Z"
+    },
+    "oil-pastel": {
+      "file": "public/styles/oil-pastel.webp",
+      "sha256": "f7ee55b927e995882d06a945ddbeea5523fd2287a1eb0e8299bbeadee96be0b5",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 22265,
+      "at": "2026-10-01T08:37:12.365Z"
+    },
+    "chalk-pastel": {
+      "file": "public/styles/chalk-pastel.webp",
+      "sha256": "2a226ad909b335b0f2cff3b8954dcc30e77db662c9738075184e5ddd74ca89bb",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19697,
+      "at": "2026-10-01T08:37:34.631Z"
+    },
+    "wax-crayon": {
+      "file": "public/styles/wax-crayon.webp",
+      "sha256": "704e0d86f440224bb08301845743b76314843606d19e803425ec1dc5d0a59707",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19482,
+      "at": "2026-10-01T08:37:54.329Z"
+    },
+    "sanguine": {
+      "file": "public/styles/sanguine.webp",
+      "sha256": "cf4a7dff7b195bbfc7862814d05a8813dc9148d75f022a7089a320fe2d1355a8",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 23995,
+      "at": "2026-10-01T08:43:53.172Z"
+    },
+    "chalkboard": {
+      "file": "public/styles/chalkboard.webp",
+      "sha256": "de51ab7813984ab747dcde9a2ca19af4546180e762d12206d68e52477375421a",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 23830,
+      "at": "2026-10-01T08:44:17.169Z"
+    },
+    "oil-glaze": {
+      "file": "public/styles/oil-glaze.webp",
+      "sha256": "46382b5f3712c19a51214a4446c58a5c776d02b4cfc75c5ecaf8d72b3a88bf11",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 21443,
+      "at": "2026-10-01T08:49:23.136Z"
+    },
+    "ink-wash": {
+      "file": "public/styles/ink-wash.webp",
+      "sha256": "b80a5e021a991d626b75b170bde3a78e8594522321dd784e0406f8530c1f393f",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 19191,
+      "at": "2026-10-01T08:49:44.580Z"
+    },
+    "storybook-gouache": {
+      "file": "public/styles/storybook-gouache.webp",
+      "sha256": "83eebfcd7d89296d2cf76d728575eca2ff218b9141a1c43b309e6073c7f4526c",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 21812,
+      "at": "2026-10-01T08:50:03.772Z"
+    },
+    "airbrush": {
+      "file": "public/styles/airbrush.webp",
+      "sha256": "9026429c74ca3f038f98b456a07075e8c02b2f6ec3de63a600364dff6f061cf8",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 19856,
+      "at": "2026-10-01T08:50:25.585Z"
+    },
+    "spray-graffiti": {
+      "file": "public/styles/spray-graffiti.webp",
+      "sha256": "13422c8f5030d751cad824730954963009c65e40061fec3a7147316e6f2a52f0",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 18408,
+      "at": "2026-10-01T08:50:45.441Z"
+    },
+    "linocut": {
+      "file": "public/styles/linocut.webp",
+      "sha256": "ab39bdd7fb0c71a5915e9c5c3ffecc98372cece39b67e9d806b6fc8dbe0a24cf",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21830,
+      "at": "2026-10-01T08:54:40.485Z"
+    },
+    "cyanotype": {
+      "file": "public/styles/cyanotype.webp",
+      "sha256": "c419bc37f5af39d895e1b282331808be4919469355f58fb2128d20577bff0f29",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19777,
+      "at": "2026-10-01T08:55:02.316Z"
+    },
+    "origami": {
+      "file": "public/styles/origami.webp",
+      "sha256": "09eec1e5af664f955383534b85c09f4c08435961541c2cf0f27fe5e6def31627",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19709,
+      "at": "2026-10-01T08:58:47.489Z"
+    },
+    "quilling": {
+      "file": "public/styles/quilling.webp",
+      "sha256": "cb725f6d7e91288658930c1acb795be2d0d845c74302ab24707bacd6a780cf85",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 20638,
+      "at": "2026-10-01T08:59:07.199Z"
+    },
+    "papercraft": {
+      "file": "public/styles/papercraft.webp",
+      "sha256": "7e642b16fbe5f2de53e6e2fa17ae56c43a85d465c3e05ac938ae143c3b4d0f58",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 99
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1562
+      },
+      "cost_usd": 0.021857,
+      "latency_ms": 22892,
+      "at": "2026-10-01T08:59:27.838Z"
+    },
+    "magazine-collage": {
+      "file": "public/styles/magazine-collage.webp",
+      "sha256": "cc94c25397fc8ba8abf51546d30e36bb57585bb81acc6c76404c31907465e30d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 24337,
+      "at": "2026-10-01T08:59:50.731Z"
+    },
+    "silhouette-cut": {
+      "file": "public/styles/silhouette-cut.webp",
+      "sha256": "27265786078177ea48254e2b77884ed130096b15a15308b28c610e31f89ddb22",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 16777,
+      "at": "2026-10-01T09:00:15.069Z"
+    },
+    "knitted": {
+      "file": "public/styles/knitted.webp",
+      "sha256": "55552834ac127590f72de99fd3b9eebf07e8a5158ec7398d1751e9241aa07a36",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19563,
+      "at": "2026-10-01T09:03:53.167Z"
+    },
+    "cross-stitch": {
+      "file": "public/styles/cross-stitch.webp",
+      "sha256": "10846982f3f8a1e979aeac39e2b301c40c9e813c48223f35201196d11ccb57aa",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 99
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1562
+      },
+      "cost_usd": 0.021857,
+      "latency_ms": 21507,
+      "at": "2026-10-01T09:04:12.731Z"
+    },
+    "felt-plush": {
+      "file": "public/styles/felt-plush.webp",
+      "sha256": "9315e676c611ae6d1da13d88a813c1ad35c60ffedf06970a68757c8d83a0b206",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22699,
+      "at": "2026-10-01T09:04:34.238Z"
+    },
+    "batik": {
+      "file": "public/styles/batik.webp",
+      "sha256": "05e91b2b5c4cda55acf9aeb80705548c9f133eed5ac032310d4b11dc1725944c",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 19071,
+      "at": "2026-10-01T09:04:56.938Z"
+    },
+    "patchwork-quilt": {
+      "file": "public/styles/patchwork-quilt.webp",
+      "sha256": "0f107bdb79ce5b64b9fda24333b3043e9e1499b2ae9161eca37a383c40c00054",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1116,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 92
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1555
+      },
+      "cost_usd": 0.021822,
+      "latency_ms": 23858,
+      "at": "2026-10-01T09:05:16.010Z"
+    },
+    "woven-tapestry": {
+      "file": "public/styles/woven-tapestry.webp",
+      "sha256": "fd40ca2cd6367d2ab677d3bae58f0a9844eff595aa155605f03766abcb9f85c1",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 20958,
+      "at": "2026-10-01T09:05:39.869Z"
+    },
+    "plasticine": {
+      "file": "public/styles/plasticine.webp",
+      "sha256": "4f8a0737db7b031ddcf9f2b38300dedcef47f7dcadb288dd4f91241de4fc57ba",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19631,
+      "at": "2026-10-01T09:28:25.421Z"
+    },
+    "porcelain": {
+      "file": "public/styles/porcelain.webp",
+      "sha256": "52362919ec63822c6b285e18c62e161ba8e31a282791cb926b816decb186da28",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 18406,
+      "at": "2026-10-01T09:28:45.052Z"
+    },
+    "wood-carving": {
+      "file": "public/styles/wood-carving.webp",
+      "sha256": "43449e838acd1a041fdff7e5d5d5bb0baa8104d19bf87beabe7ddfa927cf3f23",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 20215,
+      "at": "2026-10-01T09:29:03.459Z"
+    },
+    "bronze": {
+      "file": "public/styles/bronze.webp",
+      "sha256": "70e523cf44ce6468333545fa1fe60dd1e7bf76d413277c4f90fdd88a1bf80eea",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19321,
+      "at": "2026-10-01T09:29:23.675Z"
+    },
+    "marble-bust": {
+      "file": "public/styles/marble-bust.webp",
+      "sha256": "0c6b17a01d8df917bce886d3f9a528a06b42eadaf7a7545c0d49ba8db76a5567",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1136,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 112
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1575
+      },
+      "cost_usd": 0.021922,
+      "latency_ms": 20415,
+      "at": "2026-10-01T09:32:51.065Z"
+    },
+    "vinyl-toy": {
+      "file": "public/styles/vinyl-toy.webp",
+      "sha256": "2fa2b82f7117e9d0bec2cc5a5c0f63cf34cc59429cd8ec41e0b7ee741c8da93a",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1119,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 95
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1558
+      },
+      "cost_usd": 0.021837,
+      "latency_ms": 19551,
+      "at": "2026-10-01T09:30:01.701Z"
+    },
+    "papier-mache": {
+      "file": "public/styles/papier-mache.webp",
+      "sha256": "9fe7f07dec26f46f2b2902e094a4fce8cfce54cd8740151ee4e770339d17db59",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 24978,
+      "at": "2026-10-01T09:30:21.253Z"
+    },
+    "editorial-cartoon": {
+      "file": "public/styles/editorial-cartoon.webp",
+      "sha256": "8dffed52a05a17c2d755065d97d6eafe335d6de48455613ec4425ed64d314b07",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 21287,
+      "at": "2026-10-01T09:38:44.667Z"
+    },
+    "pop-art": {
+      "file": "public/styles/pop-art.webp",
+      "sha256": "1f893c756b8e063de2e5e0fdb80cc4c5bae94e9ab57b559055d4ec9b3bf25771",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20148,
+      "at": "2026-10-01T09:39:05.955Z"
+    },
+    "geometric-vector": {
+      "file": "public/styles/geometric-vector.webp",
+      "sha256": "955109aba65377bac36516c6fdde84fd1158d872da791d758aa047c034f40031",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 22692,
+      "at": "2026-10-01T09:39:26.104Z"
+    },
+    "pixel-art": {
+      "file": "public/styles/pixel-art.webp",
+      "sha256": "e9835c15cf8b38bbd07da971847e9a94450a51171b3084a3e6f2c24183d8986f",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20194,
+      "at": "2026-10-01T09:39:48.798Z"
+    },
+    "low-poly": {
+      "file": "public/styles/low-poly.webp",
+      "sha256": "50c0c664bf7f93140aae3b5e22e7740d9d0058f7baa65c15208a6fea23e10c6d",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1120,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 96
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1559
+      },
+      "cost_usd": 0.021842,
+      "latency_ms": 21808,
+      "at": "2026-10-01T09:40:08.994Z"
+    },
+    "line-icon": {
+      "file": "public/styles/line-icon.webp",
+      "sha256": "32b926b67577db6ff3222096750d9102cbe3ad2caf65f2e9d081eeda10253314",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 15947,
+      "at": "2026-10-01T09:40:30.803Z"
+    },
+    "neon-sign": {
+      "file": "public/styles/neon-sign.webp",
+      "sha256": "aadd3b310aed9d0eb3d6500312b20013d112666ccd112a56953c7ecc0213a8b5",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20693,
+      "at": "2026-10-01T09:40:46.751Z"
+    },
+    "art-nouveau": {
+      "file": "public/styles/art-nouveau.webp",
+      "sha256": "efbd7d3c7004c6cf3d1e56d41f38cceb3578452547d479b5aa53c9aa7e7a7be7",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21629,
+      "at": "2026-10-01T09:49:08.122Z"
+    },
+    "art-deco": {
+      "file": "public/styles/art-deco.webp",
+      "sha256": "92eb0968888e2b2bde436c3d8e91c355bdaee098bb8ca416b09f6c8f1bd4a277",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19967,
+      "at": "2026-10-01T09:49:29.752Z"
+    },
+    "mid-century": {
+      "file": "public/styles/mid-century.webp",
+      "sha256": "54a44b4e18deb348d558d374b3229fe0c4246caa21aad30792c8434c651ae5ed",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 22199,
+      "at": "2026-10-01T09:49:49.720Z"
+    },
+    "ukiyo-e": {
+      "file": "public/styles/ukiyo-e.webp",
+      "sha256": "d22f452363366397d9b9048e2fbd13a95602b14c7e695c07c840ffb0d30b777a",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20212,
+      "at": "2026-10-01T09:50:11.920Z"
+    },
+    "illuminated-manuscript": {
+      "file": "public/styles/illuminated-manuscript.webp",
+      "sha256": "f7a9612ec5399ea48d90c9c64d1664e9b144a8502d7fd4ea1223f61652066461",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22048,
+      "at": "2026-10-01T09:50:32.133Z"
+    },
+    "ottoman-miniature": {
+      "file": "public/styles/ottoman-miniature.webp",
+      "sha256": "1365453c4126bc96d57affba78231f99112023da7453857fe7b7e9acad8e9650",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20815,
+      "at": "2026-10-01T09:50:54.182Z"
+    },
+    "travel-poster": {
+      "file": "public/styles/travel-poster.webp",
+      "sha256": "6b9c5847e29a7f222113beeedc7ea1f6eb3447fe69dfc4d6f1d27810123d8500",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19748,
+      "at": "2026-10-01T09:51:14.998Z"
+    },
+    "psychedelic": {
+      "file": "public/styles/psychedelic.webp",
+      "sha256": "7abc0a0299d016e415847f35d8372236f407190d8fdf7ea6de9767895554ec7e",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 21249,
+      "at": "2026-10-01T09:51:34.748Z"
+    },
+    "mosaic": {
+      "file": "public/styles/mosaic.webp",
+      "sha256": "78e77476085f1fdcbfc419a12d0f34080fd450d92a67eed0cbd8c0abad64cb94",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1120,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 96
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1559
+      },
+      "cost_usd": 0.021842,
+      "latency_ms": 23795,
+      "at": "2026-10-01T10:11:09.358Z"
+    },
+    "stained-glass": {
+      "file": "public/styles/stained-glass.webp",
+      "sha256": "13ca6689bd3f356f297b510bf30ec4c3179d18174333160a8c1b4c7baad44d55",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 22110,
+      "at": "2026-10-01T10:11:33.154Z"
+    },
+    "iznik-tile": {
+      "file": "public/styles/iznik-tile.webp",
+      "sha256": "eab4972d45ff9c3951dafd3f548d7cab30d0fb4b0e1400d1b4b17a16421b0051",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20630,
+      "at": "2026-10-01T10:11:55.265Z"
+    },
+    "fresco": {
+      "file": "public/styles/fresco.webp",
+      "sha256": "0e1a9fc407948109e3dbdb66a90a310fe8bc845882cf0332312d2e7eff729e14",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20549,
+      "at": "2026-10-01T10:12:15.896Z"
+    },
+    "sand-art": {
+      "file": "public/styles/sand-art.webp",
+      "sha256": "25cfe758cf846a8cc51d864d82f0af36c3913d45408736f6e68408f24c1de68c",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1121,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 97
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1560
+      },
+      "cost_usd": 0.021847,
+      "latency_ms": 20667,
+      "at": "2026-10-01T10:12:36.446Z"
+    },
+    "ebru": {
+      "file": "public/styles/ebru.webp",
+      "sha256": "027b9d25fa0eefa5dedf73400223f89a18312ff643b9970ef93c1826cf98bba9",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 23060,
+      "at": "2026-10-01T10:12:57.114Z"
+    },
+    "embossed-copper": {
+      "file": "public/styles/embossed-copper.webp",
+      "sha256": "173ef58c979a6ae5d7d4960fdb3b2b4b0b8b6cf1815e35e4e7ee210cef4786b0",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19575,
+      "at": "2026-10-01T10:13:20.175Z"
     }
   },
   "discarded": [
@@ -1478,7 +3568,1129 @@
       "latency_ms": 13510,
       "at": "2026-09-29T13:23:34.294Z",
       "approved": null
+    },
+    {
+      "role": "preview two-ink",
+      "replaced_at": "2026-09-30T19:46:01.069Z",
+      "file": "public/styles/two-ink.webp",
+      "sha256": "62e6b3b2959a2c61b7d9b9e377bdc0a5b5ba15870cf12792483ec354766ef3c3",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20960,
+      "at": "2026-09-29T13:37:57.409Z"
+    },
+    {
+      "role": "preview double-pass",
+      "replaced_at": "2026-09-30T19:46:22.045Z",
+      "file": "public/styles/double-pass.webp",
+      "sha256": "c213814a66379b4d3b1f9ff5ce8fdbf40ec8c41c17eaa9288713987b1786b6bd",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 20855,
+      "at": "2026-09-29T13:44:09.288Z"
+    },
+    {
+      "role": "preview screen-print",
+      "replaced_at": "2026-09-30T19:46:42.567Z",
+      "file": "public/styles/screen-print.webp",
+      "sha256": "a477bdcd3759cf011d8e47e16a8b4fdcf4c14cdb9541511630a19d9a84969780",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 20330,
+      "at": "2026-09-29T13:43:08.289Z"
+    },
+    {
+      "role": "preview mass-caricature",
+      "replaced_at": "2026-09-30T19:47:39.582Z",
+      "file": "public/styles/mass-caricature.webp",
+      "sha256": "91f28d546b4cdf0ec126dda784e334c151b7f28bdda84ce6fedc806cbc73e1bc",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1143,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 119
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1582
+      },
+      "cost_usd": 0.021957,
+      "latency_ms": 22912,
+      "at": "2026-09-29T13:38:18.373Z"
+    },
+    {
+      "role": "preview mass-caricature",
+      "replaced_at": "2026-09-30T20:00:01.689Z",
+      "file": "public/styles/mass-caricature.webp",
+      "sha256": "4ad36f8e4a0302141ba25bcc07929adbf21eef3fb15caa74167b20db368dda1e",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1143,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 119
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1582
+      },
+      "cost_usd": 0.021957,
+      "latency_ms": 19827,
+      "at": "2026-09-30T19:47:39.582Z"
+    },
+    {
+      "role": "preview bold-ink",
+      "replaced_at": "2026-09-30T20:09:38.144Z",
+      "file": "public/styles/bold-ink.webp",
+      "sha256": "e003c64ddb0346b452d1d181b9326b1a9de473d7e4f62e20949085702636172c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1121,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 97
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1560
+      },
+      "cost_usd": 0.021847,
+      "latency_ms": 21829,
+      "at": "2026-09-29T13:36:28.583Z"
+    },
+    {
+      "role": "preview hatched-line",
+      "replaced_at": "2026-10-01T08:16:57.171Z",
+      "file": "public/styles/hatched-line.webp",
+      "sha256": "51739db5b969e326f8b80066cb8b5985071172d8fdb60f6deacd71efc0391811",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19531,
+      "at": "2026-09-29T13:37:17.172Z"
+    },
+    {
+      "role": "preview line-wash",
+      "replaced_at": "2026-10-01T08:17:20.324Z",
+      "file": "public/styles/line-wash.webp",
+      "sha256": "10c1925baba59b95ff9f892d780ef44e210bda0a9f7bf3dd655a3d10ab21fa6d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20701,
+      "at": "2026-09-29T13:37:36.705Z"
+    },
+    {
+      "role": "preview opaque-paint",
+      "replaced_at": "2026-10-01T08:48:16.325Z",
+      "file": "public/styles/opaque-paint.webp",
+      "sha256": "84535833fca7f4206802322314d4cd727fc37efc5378754c1a6addc3eb7b7462",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 21506,
+      "at": "2026-09-29T13:39:59.492Z"
+    },
+    {
+      "role": "preview thick-paint",
+      "replaced_at": "2026-10-01T08:48:36.211Z",
+      "file": "public/styles/thick-paint.webp",
+      "sha256": "967646e3592c2aa9040a5740842e4b6a2d402b1ba07f7f8d44ff75b02831070f",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20368,
+      "at": "2026-09-29T13:40:20.999Z"
+    },
+    {
+      "role": "preview wet-paper",
+      "replaced_at": "2026-10-01T08:49:01.524Z",
+      "file": "public/styles/wet-paper.webp",
+      "sha256": "103d40c791919c1442ecd4951c2ce78f850f4c6046964c26f810449cfdce2ad2",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 19852,
+      "at": "2026-09-29T13:41:22.614Z"
+    },
+    {
+      "role": "preview carved-block",
+      "replaced_at": "2026-10-01T08:53:35.917Z",
+      "file": "public/styles/carved-block.webp",
+      "sha256": "463c275c9182ec7d02ec8ad8a69496df45ed903ddf98b877aa9d8b7ed4733456",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22572,
+      "at": "2026-09-29T13:42:25.239Z"
+    },
+    {
+      "role": "preview wood-block",
+      "replaced_at": "2026-10-01T08:53:56.027Z",
+      "file": "public/styles/wood-block.webp",
+      "sha256": "a7615809b56df69d0fea8b722bf88e86a4527d74cf96f59018e2c9503255b18a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20471,
+      "at": "2026-09-29T13:42:47.814Z"
+    },
+    {
+      "role": "preview engraved-plate",
+      "replaced_at": "2026-10-01T08:54:20.581Z",
+      "file": "public/styles/engraved-plate.webp",
+      "sha256": "9168ce549970383082ee84901b249a05dd142ce6f18f818742c84951f65dc993",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 20897,
+      "at": "2026-09-29T13:43:48.388Z"
+    },
+    {
+      "role": "preview paper-cutout",
+      "replaced_at": "2026-10-01T08:58:05.536Z",
+      "file": "public/styles/paper-cutout.webp",
+      "sha256": "335087feca6eba5bbf2bfaf5423e6323adc6a7ea3e5c94846fb3f9a82e633117",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 22906,
+      "at": "2026-09-29T13:44:30.144Z"
+    },
+    {
+      "role": "preview torn-paper",
+      "replaced_at": "2026-10-01T08:58:27.561Z",
+      "file": "public/styles/torn-paper.webp",
+      "sha256": "6caf6fd8d2b47ab2ec55cda5a8b77a476358e713399f49fcf983099a00871623",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1135,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 111
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1574
+      },
+      "cost_usd": 0.021917,
+      "latency_ms": 21100,
+      "at": "2026-09-29T13:44:53.051Z"
+    },
+    {
+      "role": "preview fabric-applique",
+      "replaced_at": "2026-10-01T09:03:08.473Z",
+      "file": "public/styles/fabric-applique.webp",
+      "sha256": "59b5bd03025dd2c2121b8e52fa1f8eb92d87e79ab86d07c2b811f39dbbddf3f3",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 22297,
+      "at": "2026-09-29T13:46:05.241Z"
+    },
+    {
+      "role": "preview thread-work",
+      "replaced_at": "2026-10-01T09:03:31.694Z",
+      "file": "public/styles/thread-work.webp",
+      "sha256": "108aa211cb27e73d445395420279209dc10f462e72914bedeff6d07dfe29e82a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 23726,
+      "at": "2026-09-29T13:46:48.733Z"
+    },
+    {
+      "role": "preview modelled-caricature",
+      "replaced_at": "2026-10-01T09:28:05.576Z",
+      "file": "public/styles/modelled-caricature.webp",
+      "sha256": "12c08b8b263fc4655416ef276b9744a7b2d32730b49b61de41a7c1e315359bac",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1135,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 111
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1574
+      },
+      "cost_usd": 0.021917,
+      "latency_ms": 21190,
+      "at": "2026-09-29T13:46:27.541Z"
+    },
+    {
+      "role": "preview marble-bust",
+      "replaced_at": "2026-10-01T09:32:51.065Z",
+      "file": "public/styles/marble-bust.webp",
+      "sha256": "b9de8ed1c87d80790b2c4064d7d60813ce955516ac62b42bba11bee2d981fe20",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1136,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 112
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1575
+      },
+      "cost_usd": 0.021922,
+      "latency_ms": 18703,
+      "at": "2026-10-01T09:29:42.997Z"
+    },
+    {
+      "role": "preview reduced-caricature",
+      "replaced_at": "2026-10-01T09:37:46.730Z",
+      "file": "public/styles/reduced-caricature.webp",
+      "sha256": "f5560112467193449ba9a332a5f36261930447f6126b5da6b6719008d5af5387",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 19388,
+      "at": "2026-09-29T13:39:00.676Z"
+    },
+    {
+      "role": "preview stretched-caricature",
+      "replaced_at": "2026-10-01T09:38:06.077Z",
+      "file": "public/styles/stretched-caricature.webp",
+      "sha256": "4c27a8c266b953bd2efd4ab4f521a7f06fb800b3a60e1cc84f6ef0afeaa9d130",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1141,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 117
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1580
+      },
+      "cost_usd": 0.021947,
+      "latency_ms": 19756,
+      "at": "2026-09-29T13:40:41.369Z"
+    },
+    {
+      "role": "preview newsprint-caricature",
+      "replaced_at": "2026-10-01T09:38:25.063Z",
+      "file": "public/styles/newsprint-caricature.webp",
+      "sha256": "de3462109fdf2108ba3c5876536f5210d2a4a10c9d93ba2da94d1b8c2efaba5c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1139,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 115
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1578
+      },
+      "cost_usd": 0.021937,
+      "latency_ms": 19763,
+      "at": "2026-09-29T13:43:28.621Z"
+    },
+    {
+      "role": "preview wood-inlay",
+      "replaced_at": "2026-10-01T10:10:48.199Z",
+      "file": "public/styles/wood-inlay.webp",
+      "sha256": "4b00b4f54982fc18873a943a4899cffd51add72d71985879674d99e3226de412",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 24521,
+      "at": "2026-09-29T13:45:40.717Z"
     }
   ],
-  "last_error": null
+  "last_error": null,
+  "batches": {
+    "1": {
+      "result_sha256": "317fab9507b9fe5c40a19062cf0bfc17b911553ba4915a1b6547fc1f454c877a",
+      "accepted_prefix": "317fab9507b9",
+      "accepted_at": "2026-09-30T20:09:37.998Z"
+    },
+    "2": {
+      "result_sha256": "4607d9c3b464b67f8a7fa27efe2baca520dfde632fafc0f46bad0e3092b17198",
+      "accepted_prefix": "4607d9c3b464",
+      "accepted_at": "2026-10-01T08:12:11.497Z"
+    },
+    "3": {
+      "result_sha256": "c026239fb34ee9c30bca034a6dddbce276a231c83d56a0c7bfe1dbc37a90da2f",
+      "accepted_prefix": "c026239fb34e",
+      "accepted_at": "2026-10-01T08:31:15.498Z"
+    },
+    "4": {
+      "result_sha256": "6e4fb93417a0756636bcd17557fb9c7dfe411bf0f953b53cda0c9a7ffedd2a76",
+      "accepted_prefix": "6e4fb93417a0",
+      "accepted_at": "2026-10-01T08:46:01.777Z"
+    },
+    "5": {
+      "result_sha256": "1d4a6bf4502f45572982572698665c423c5d435c30dccfa2f4b2ba7181ed47ec",
+      "accepted_prefix": "1d4a6bf4502f",
+      "accepted_at": "2026-10-01T08:52:56.726Z"
+    },
+    "6": {
+      "result_sha256": "c10072e99a0dcfb6298e6fa76161b786700dbe575e931309e32cc245d35308a4",
+      "accepted_prefix": "c10072e99a0d",
+      "accepted_at": "2026-10-01T08:57:28.302Z"
+    },
+    "7": {
+      "result_sha256": "394d95d4a5bcc8e44e788605acc2414b482d7aed895049e8024ca3ea38b91b24",
+      "accepted_prefix": "394d95d4a5bc",
+      "accepted_at": "2026-10-01T09:01:57.666Z"
+    },
+    "8": {
+      "result_sha256": "5c6947365574356340bbce3ca1aca619d2b46591c49bed668fab6665d2fae43c",
+      "accepted_prefix": "5c6947365574",
+      "accepted_at": "2026-10-01T09:17:55.994Z"
+    },
+    "9": {
+      "result_sha256": "bbb06cec709d35fb07d9e56510842d25aefdb9b451dc01c8a23e178d3d9629d3",
+      "accepted_prefix": "bbb06cec709d",
+      "accepted_at": "2026-10-01T09:36:21.637Z"
+    },
+    "10": {
+      "result_sha256": "7a9b394830fa316191ae409af33bf60d2b9006369f093215b2363d2d67b7c57a",
+      "accepted_prefix": "7a9b394830fa",
+      "accepted_at": "2026-10-01T09:42:37.018Z"
+    },
+    "11": {
+      "result_sha256": "1c8b83eb8cb747193d34a2936f8518f7697de8330256c7843e08256d3f58939c",
+      "accepted_prefix": "1c8b83eb8cb7",
+      "accepted_at": "2026-10-01T09:53:52.435Z"
+    },
+    "12": {
+      "result_sha256": "f4009c837c6863683edc36d8c52a7567fb0a72adf399f3639d6a1ae085e17cba",
+      "accepted_prefix": "f4009c837c68",
+      "accepted_at": "2026-10-01T11:28:17.782Z"
+    }
+  }
 }

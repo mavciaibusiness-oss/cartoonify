@@ -1,7 +1,7 @@
-import { GROUP_LABELS, type CartoonGroup, type CartoonStyle, type CartoonStyleId } from '@/lib/cartoon-styles'
+import type { CartoonStyle, CartoonStyleId, StyleCategory } from '@/lib/cartoon-styles'
 import { en } from './en'
 import type { Locale } from './paths'
-import { GROUP_LABELS_EN, STYLE_TEXT_EN } from './styles.en'
+import { STYLE_TEXT_EN } from './styles.en'
 import { tr, type Dictionary } from './tr'
 
 export type { Dictionary } from './tr'
@@ -27,8 +27,8 @@ export function styleText(style: CartoonStyle, locale: Locale): { name: string; 
   return { name: style.name, description: style.description }
 }
 
-export function groupLabel(id: CartoonGroup, locale: Locale): string {
-  return locale === 'en' ? GROUP_LABELS_EN[id] : GROUP_LABELS[id]
+export function groupLabel(id: StyleCategory, locale: Locale): string {
+  return (locale === 'en' ? en : tr).styleCategories[id]
 }
 
 /**

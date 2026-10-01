@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Catalogue expansion to 99 active styles, image generation for 92 in twelve operator-gated batches, coordinate model retired, picker grouped by category** (task 0017, Oct 1 2026)
+  - Catalogue grows from 29 active styles to 99: 20 kept (existing prompts byte for byte), 9 fixed (new prompts and descriptions), 70 new (each with subject assignment, closing value, and Turkish/English descriptions)
+  - Every style carries an explicit `closing` field: `'preserve'` or `'exaggerate'`, replacing the retired coordinate model (`coords`, `asserts`, `deriveGroup`, `closingFor`)
+  - Previews per subject: woman (K, 20), man (E, 20), pet (P, 20), landscape (M, 20), still life (N, 19); resemblance clusters share subjects so styles compare side by side
+  - Seven styles not re-rendered: `classic` (hero's after-image, unchanged source) and six keep styles (single-ink, soft-pastel, retro-print, three-tone-panel, feature-caricature, flat-colour) already rendered on the woman source with unchanged prompts
+  - 92 renders in 12 operator-gated batches, each batch requiring plan-hash approval before rendering and result-hash approval before acceptance; total cost 2.057008 USD ($0.50 per-batch ceiling, $3.50 per-task ceiling)
+  - Batch 4: OpenAI returned 429 "no credits remaining" after 6 of 8 renders; operator added credits and completed batch
+  - All source images checked against approved sha256 prefix before every call; prompts sent in Turkish (operator chose to keep Turkish, matching existing styles)
+  - Picker refactored from four coordinate-derived display groups to twelve category-based groups (cartoon, line, drawing, paint, print, paper, textile, sculpt, caricature, graphic, era, surface), each named in both dictionaries via `groupLabel(id, locale)`; non-empty categories only, in `STYLE_CATEGORIES` order; `classic` still first
+  - Category filter and search keep working over the new category-based groups
+  - Meta description updated: "99 stil arasından seçin" / "choose from 99 styles"
+  - Web copies resized to 480 px at q72 (0010's resize script unchanged); each under the 100 000 B cap, largest retro-print 95 946 B
+  - `lib/style-previews.ts` holds `PREVIEW_SUBJECTS` (99 ids to subject), `PREVIEW_SOURCES` (5 subjects with path and approved sha256 prefix), `PREVIEW_BATCHES` (12 batch lists); `STYLE_PREVIEW_IDS` set to 99
+  - `scripts/check-styles.mjs` rewritten: drops coordinate and separation checks (now in catalogue notes), adds closing-value, `PREVIEW_SUBJECTS`, `PREVIEW_SOURCES`, `PREVIEW_BATCHES` integrity checks; keeps prompt length band, classic's frozen prompt, category and merged-id rules, preview parity
+  - `scripts/render-batch.mjs` new: five modes (`--plan` free/no-write, `--render` paid, `--only` paid re-render, `--accept` approval, `--status` free), reads key via `lib/env.ts`, uses `images.edit` with `maxRetries: 0`, refuses a batch without the operator-approved plan hash, any batch before the previous one is accepted, and re-rendering an accepted batch
+  - Homepage transfer with 99 styles measured at 2 304 518 B (largest of the six measurements, after a full scroll), below 2.6 MB limit on all six viewports
+  - 21 prompt enhancement candidates filed to backlog for future prompt refinement (styles whose renders were weak or too close to another style on the same subject)
+
 - **Style picker category filter and search, showcase by category, homepage transfer at most 2.6 MB, one preview-path helper** (task 0016, Sept 30 2026)
   - Picker category filter: buttons for all 10 non-empty categories (drawing and era empty today) plus "Tümü"/"All" default, above the four display groups; filters cards and updates address as `?category=<id>`
   - Picker text search: case-insensitive, matches Turkish and English style names with Turkish letter folding (ı/i, ş/s, ğ/g, ü/u, ö/o, ç/c, and combining marks); empty state with clear-filters button when nothing matches

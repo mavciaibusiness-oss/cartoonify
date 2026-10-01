@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0017",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0017-generate-previews-expand-catalogue.md",
+  "title": "Style image generation and catalogue expansion to 99 styles"
+}

@@ -27,7 +27,7 @@ export default function StyleCard({
   const t = getDictionary(locale)
 
   return (
-    <label className="style-card" data-style-group={style.group ?? undefined}>
+    <label className="style-card" data-category={style.category}>
       <input
         type="radio"
         name="style"
