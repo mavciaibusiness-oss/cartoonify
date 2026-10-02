@@ -3,8 +3,13 @@
 // The suppressed diagnostic is only "TS5097: .ts extension"; types still resolve.
 import {
   STYLE_TEXT_EN,
+  STYLE_KEYWORDS_EN,
   // @ts-expect-error TS5097: explicit .ts extension, needed by node's loader
 } from './i18n/styles.en.ts'
+import {
+  STYLE_KEYWORDS_TR,
+  // @ts-expect-error TS5097: explicit .ts extension, needed by node's loader
+} from './cartoon-styles.ts'
 import type { CartoonStyle } from './cartoon-styles'
 
 /**
@@ -28,7 +33,7 @@ export function foldForSearch(value: string): string {
 
 /**
  * True when the query is blank or is part of the style's Turkish or English
- * name. Descriptions are not searched.
+ * name, or of one of its search words (task 0019). Descriptions are not searched.
  */
 export function styleMatchesQuery(style: Pick<CartoonStyle, 'id' | 'name'>, query: string): boolean {
   const needle = foldForSearch(query.trim())
@@ -36,5 +41,7 @@ export function styleMatchesQuery(style: Pick<CartoonStyle, 'id' | 'name'>, quer
   const table = STYLE_TEXT_EN as Record<string, { name: string } | undefined>
   const en = Object.prototype.hasOwnProperty.call(table, style.id) ? table[style.id] : undefined
   if (foldForSearch(style.name).includes(needle)) return true
-  return en !== undefined && foldForSearch(en.name).includes(needle)
+  if (en !== undefined && foldForSearch(en.name).includes(needle)) return true
+  const words = [...((STYLE_KEYWORDS_TR as Record<string, readonly string[] | undefined>)[style.id] || []), ...((STYLE_KEYWORDS_EN as Record<string, readonly string[] | undefined>)[style.id] || [])]
+  return words.some((w) => foldForSearch(w).includes(needle))
 }

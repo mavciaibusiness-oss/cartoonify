@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import { getCartoonStyle, resolveCartoonStyleId } from '@/lib/cartoon-styles'
+import { getCartoonStyle } from '@/lib/cartoon-styles'
 import { GALLERY, GALLERY_WEB_SIZE, galleryImagePath } from '@/lib/gallery'
 import { format, getDictionary, localizedPath, styleText, type Locale } from '@/lib/i18n'
+import { stylePreviewPath } from '@/lib/style-previews'
 
 /**
  * The landing gallery: each AI-generated source beside its three renders.
  *
- * Every image is a static file under public/gallery/, made once by
- * scripts/render-gallery.mjs. A server component that fetches nothing: nothing here calls
+ * Each source is a web copy under public/gallery/; each tile is the style's own
+ * preview, rendered on that row's subject (task 0019). A server component that fetches nothing: nothing here calls
  * the provider or does any work per request (task 0009 criterion 8). The images
  * are lazy because the hero, not the gallery, is above the fold.
  */
@@ -40,21 +41,17 @@ export default function Gallery({ locale }: { locale: Locale }) {
                 </figure>
               </Link>
               {entry.styles.map((id) => {
-                // A tile's file keeps its id; its caption names the style that id
-                // resolves to today (task 0014, G1).
-                const resolvedId = resolveCartoonStyleId(id)
-                if (resolvedId === null) throw new Error('Unknown gallery style id: ' + id)
-                const name = styleText(getCartoonStyle(resolvedId), locale).name
+                const name = styleText(getCartoonStyle(id), locale).name
                 return (
                   <Link
                     key={id}
-                    href={workshop + '?style=' + resolvedId}
+                    href={workshop + '?style=' + id}
                     prefetch={false}
                     aria-label={format(t.openStyle, { style: name })}
                   >
                     <figure>
                       <img
-                        src={galleryImagePath(entry.id, id)}
+                        src={stylePreviewPath(id, 'web')}
                         alt={format(t.renderAlt, { source: sourceAlt, style: name })}
                         width={GALLERY_WEB_SIZE}
                         height={GALLERY_WEB_SIZE}

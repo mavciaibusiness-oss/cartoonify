@@ -9,6 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **New style goofy-sketch, subject pool 5 → 12, 42 preview moves, featured band, new gallery** (task 0019)
+  - New style "Komik Karalama Karikatür" / "Goofy Sketch Caricature" (caricature, exaggerate, long body band 300–440 for this style only); variant B chosen from A/B trials on the friends group (G) and the man (E). Found by search words çirkin, komik, karalama / goofy, ugly, funny, doodle.
+  - 7 new fictional adult and animal subjects: couple C, friends G, family A, older woman Y, bearded man S, cat T, dog D.
+  - 49 planned subject moves; 42 applied, 7 rejected by the operator and kept on their old subjects (toon-3d, line-wash, technical-pen, oil-glaze, patchwork-quilt, stretched-caricature, reduced-caricature). Prompts of moved styles are unchanged: only their previews change, not user results. The one live prompt change is the new style.
+  - Featured band below the hero on `/` and `/en`: before/after on the friends group, workshop link.
+  - Gallery: 5 rows (friends, couple, pet, maiden-tower, man-portrait), 3 styles each, every tile the style's own web preview; 5 source copies at 480 px; the 15 old tiles and the paris-street and still-life sources removed.
+  - 60 renders in 5 operator-gated batches (plan hash before, result hash after), 1.256196 USD of the 3.00 ceiling; `scripts/render-jobs.mjs` (data-driven, ceilings capped at 0.50 per batch and 3.00 per task).
+  - Homepage transfer at most 2 004 243 B (limit 2 600 000 B).
+  - Criteria: 65 (44 carried, 11 renewed, 3 rewritten, 7 new 67–73); 36, 58, 60, 61, 63–66 retired into 67; 65/65 pass.
+  - Subject distribution after the rejections is unbalanced (A 5, Y 5; E, K, P 11; M, N 12); backlogged for 0020 with stretched-caricature C/D.
+
 - **Prompt refinement for 21 backlog candidates, A/B trial variants per style, three subject moves for picker comparison** (task 0018, Oct 1 2026)
   - Twelve styles' prompts changed: newsprint-caricature, kawaii-pastel, chalk-pastel, airbrush, ebru, papercraft chosen variant A; stretched-caricature, mass-caricature, continuous-line, thread-work, ukiyo-e chosen variant B
   - For each style, variant A tried first (free plan hash approval, paid render); if A rejected, variant B tried in batch 4; chosen trial file copies to preview (no second render)

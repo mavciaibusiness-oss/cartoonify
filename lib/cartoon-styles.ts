@@ -68,6 +68,8 @@ type StyleSource = {
   readonly description: string
   readonly category: StyleCategory
   readonly closing: ClosingId
+  /** Task 0019: the long body band (300-440), allowed for listed styles only (check-styles). */
+  readonly band?: 'long'
   readonly body: string
 }
 
@@ -969,6 +971,16 @@ export const STYLE_SOURCE = [
     body:
       'Bu fotoğrafı dövülerek kabartılmış bir bakır levhaya dönüştür. Biçimler levhanın arkasından itilerek yükselsin; yüzeyde çekiç izleri, sıcak kahverengi patina ve kabartmaların parlayan sırtları görünsün.',
   },
+  {
+    id: 'goofy-sketch',
+    name: 'Komik Karalama Karikatür',
+    description: 'Titrek kalem karalaması, pörtlek gözler ve aralıklı dişlerle sevimli komik karikatür.',
+    category: 'caricature',
+    closing: 'exaggerate',
+    band: 'long',
+    body:
+      'Bu fotoğrafı kasten acemice çizilmiş, sevimli bir karikatür karalamasına dönüştür: krem kâğıt, titrek kurşun kalem çizgileri, soluk sulu boya ve kuru boya dolgu. Herkesin gözleri kocaman ve pörtlek, gülüşü geniş ve dişleri seyrek, burnu yumrulu, yüzü çilli; saçlar karmakarışık bir çizgi yumağı. Bütün kişiler, arka plan ve eşyalar da karalansın; kenarda elle çizilmiş titrek çift çizgi çerçeve olsun. Alaycı değil, sevecen olsun.',
+  },
 ] as const satisfies readonly StyleSource[]
 
 /**
@@ -1086,4 +1098,9 @@ export function getCartoonStyle(id: CartoonStyleId): CartoonStyle {
     throw new Error('Unknown cartoon style id: ' + id)
   }
   return style
+}
+
+/** Task 0019: extra Turkish search words, beside the name. Descriptions are not searched. */
+export const STYLE_KEYWORDS_TR: Readonly<Partial<Record<CartoonStyleId, readonly string[]>>> = {
+  'goofy-sketch': ['çirkin', 'komik', 'karalama'],
 }

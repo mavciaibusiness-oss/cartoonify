@@ -19,7 +19,7 @@ export const en: Dictionary = {
     homeDescription:
       'Upload a portrait, choose from the style gallery, turn it into a cartoon in one click and download it.',
     workshopTitle: 'AI Cartoon Studio — ProToolHub',
-    workshopDescription: 'Upload your photo, choose from 99 styles and generate your cartoon.',
+    workshopDescription: 'Upload your photo, choose from 100 styles and generate your cartoon.',
   },
   header: {
     brand: 'ProToolHub',
@@ -51,6 +51,16 @@ export const en: Dictionary = {
     step1: 'Upload your image by drag and drop or by choosing a file.',
     step2: 'Preview your image and choose a style card.',
     step3: 'Generate, review and download your cartoon.',
+  },
+  featured: {
+    badge: 'New style',
+    title: 'Goofy Sketch Caricature',
+    lede: 'Works on one person or a whole group: everyone is drawn with wobbly pencil lines, googly eyes and wide grins.',
+    beforeAlt: 'An AI-generated photo of four fictional friends',
+    afterAlt: 'The same photo in the Goofy Sketch Caricature style',
+    beforeCaption: 'Source image',
+    afterCaption: 'Goofy Sketch Caricature result',
+    cta: 'Try it in the workshop',
   },
   showcase: {
     title: 'Styles by category',
@@ -128,11 +138,11 @@ export const en: Dictionary = {
     sourceCaption: 'Source',
     renderAlt: '{source} in the {style} style',
     alt: {
+      'friends': 'An AI-generated photo of four friends laughing at a café',
+      'couple': 'An AI-generated photo of a couple standing together in a park',
       'pet': 'AI-generated photo of a cat and a dog sitting side by side on a sofa',
       'maiden-tower': "AI-generated photo of the Maiden's Tower in Istanbul",
-      'paris-street': 'AI-generated photo of a Paris street',
       'man-portrait': 'AI-generated portrait of a fictional adult man',
-      'still-life': 'AI-generated still life of fruit and a jug on a wooden table',
     },
   },
   client: {

@@ -407,4 +407,13 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
     name: 'Embossed Copper',
     description: 'A hammered copper repoussé relief with a warm patina.',
   },
+  'goofy-sketch': {
+    name: 'Goofy Sketch Caricature',
+    description: 'A wobbly pencil scribble caricature with googly eyes and a gap-toothed grin.',
+  },
+}
+
+/** Task 0019: extra English search words, beside the name. */
+export const STYLE_KEYWORDS_EN: Readonly<Partial<Record<CartoonStyleId, readonly string[]>>> = {
+  'goofy-sketch': ['goofy', 'ugly', 'funny', 'doodle'],
 }

@@ -1,5 +1,6 @@
 import { getDictionary, type Locale } from '@/lib/i18n'
 import { stylePreviewPath } from '@/lib/style-previews'
+import FeaturedStyle from './featured-style'
 import Gallery from './gallery'
 import KvkkNotice from './kvkk-notice'
 import StyleShowcase from './style-showcase'
@@ -46,6 +47,8 @@ export default function Landing({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <FeaturedStyle locale={locale} />
 
       <Gallery locale={locale} />
 

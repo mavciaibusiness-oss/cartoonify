@@ -27,7 +27,7 @@ export const tr = {
       'Bir portre yükleyin, stil galerisinden seçin, tek tıkla karikatüre dönüştürün ve indirin.',
     workshopTitle: 'AI Karikatür Atölyesi — ProToolHub',
     workshopDescription:
-      'Fotoğrafınızı yükleyin, 99 stil arasından seçin ve karikatürünüzü oluşturun.',
+      'Fotoğrafınızı yükleyin, 100 stil arasından seçin ve karikatürünüzü oluşturun.',
   },
   header: {
     languageLabel: 'Dil seçimi',
@@ -59,6 +59,16 @@ export const tr = {
     step1: 'Görselinizi sürükleyip bırakarak ya da dosya seçerek yükleyin.',
     step2: 'Görselinizi önizleyin ve bir stil kartı seçin.',
     step3: 'Oluşturun, inceleyin ve karikatürünüzü indirin.',
+  },
+  featured: {
+    badge: 'Yeni stil',
+    title: 'Komik Karalama Karikatür',
+    lede: 'Tek kişide de kalabalık grupta da çalışır: herkes titrek kalem çizgileri, pörtlek gözler ve geniş gülüşlerle çizilir.',
+    beforeAlt: 'Yapay zekâ ile üretilmiş, gerçek olmayan dört arkadaşın fotoğrafı',
+    afterAlt: 'Aynı fotoğraf, Komik Karalama Karikatür stiliyle',
+    beforeCaption: 'Kaynak görsel',
+    afterCaption: 'Komik Karalama Karikatür sonucu',
+    cta: 'Atölyede dene',
   },
   showcase: {
     title: 'Kategorilere göre stiller',
@@ -137,11 +147,11 @@ export const tr = {
     sourceCaption: 'Kaynak',
     renderAlt: '{source}, {style} stiliyle',
     alt: {
+      'friends': 'Kafede gülen dört arkadaşın yapay zekâ ile üretilmiş fotoğrafı',
+      'couple': 'Parkta yan yana duran bir çiftin yapay zekâ ile üretilmiş fotoğrafı',
       'pet': 'Kanepede yan yana oturan bir kedi ve bir köpeğin yapay zekâ ile üretilmiş fotoğrafı',
       'maiden-tower': "Kız Kulesi'nin yapay zekâ ile üretilmiş fotoğrafı",
-      'paris-street': 'Parisli bir sokağın yapay zekâ ile üretilmiş fotoğrafı',
       'man-portrait': 'Gerçek olmayan yetişkin bir erkeğin yapay zekâ ile üretilmiş portresi',
-      'still-life': 'Ahşap masada meyveler ve sürahiden oluşan, yapay zekâ ile üretilmiş bir natürmort',
     },
   },
   client: {

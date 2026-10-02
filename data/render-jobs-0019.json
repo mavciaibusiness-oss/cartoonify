@@ -1,0 +1,432 @@
+{
+  "task": "0019",
+  "ceilings": {
+    "batch": 0.5,
+    "task": 3
+  },
+  "sources": {
+    "C": {
+      "path": "assets/subjects/couple/source.jpg",
+      "prompt": "Photorealistic photograph of a fictional couple in their thirties, a man and a woman standing close together outdoors in a city park, both smiling at the camera, head and upper body, soft daylight, shallow depth of field. Invented people who must not resemble any real person. No children, no text, no logos."
+    },
+    "G": {
+      "path": "assets/subjects/friends/source.jpg",
+      "prompt": "Photorealistic photograph of four fictional adult friends in their twenties and thirties, two women and two men, sitting together at a café table and laughing toward the camera, upper bodies visible, warm natural light, softly blurred café behind them. Invented people who must not resemble any real person. No children, no text, no logos."
+    },
+    "A": {
+      "path": "assets/subjects/family/source.jpg",
+      "prompt": "Photorealistic photograph of a fictional family of three adults at home: a couple in their sixties and their adult daughter in her thirties, sitting together on a living-room sofa and smiling at the camera, warm lamp light, a bookshelf and plants softly blurred behind them. All adults; invented people who must not resemble any real person. No children, no text, no logos."
+    },
+    "Y": {
+      "path": "assets/subjects/older-woman/source.jpg",
+      "prompt": "Photorealistic portrait photograph of a fictional woman in her seventies with short grey hair and reading glasses, head and shoulders, warm smile, wearing a teal cardigan, indoors by a window in soft natural light, plain softly blurred background. Invented adult who must not resemble any real person. No children, no text, no logos."
+    },
+    "S": {
+      "path": "assets/subjects/bearded-man/source.jpg",
+      "prompt": "Photorealistic portrait photograph of a fictional man in his late twenties with a long full dark beard, curly hair and a knitted beanie, head and shoulders, relaxed smile, outdoors on a city street in overcast daylight, softly blurred background. Invented adult who must not resemble any real person. No children, no text, no logos."
+    },
+    "T": {
+      "path": "assets/subjects/cat/source.jpg",
+      "prompt": "Photorealistic photograph of a grey-and-white cat sitting on a wooden windowsill and looking at the camera, soft morning light, plants softly blurred behind it. No people, no text, no logos."
+    },
+    "D": {
+      "path": "assets/subjects/dog/source.jpg",
+      "prompt": "Photorealistic photograph of a black-and-white border collie lying on green grass in a garden and looking at the camera with its tongue out, late-afternoon light, softly blurred garden behind it. No people, no collar tags, no text, no logos."
+    }
+  },
+  "newStyles": {
+    "goofy-sketch": {
+      "closing": "exaggerate",
+      "subject": "G",
+      "variants": {
+        "A": "Bu fotoğrafı krem kâğıda elle çizilmiş komik bir karalama karikatüre dönüştür. Çizgiler titrek, üst üste karalanmış kurşun kalem; renkler soluk sulu boya ve kuru boyayla taşarak dolsun. Gözler kocaman ve pörtlek, gülüş geniş ve dişler aralıklı, burun iri ve yumrulu, yüz çilli, saç bir çizgi yumağı olsun. Kalabalıkta herkes, arka plan ve eşyalar da karalansın; kenarda titrek çift çizgi çerçeve olsun. Sevimli olsun, aşağılayıcı değil.",
+        "B": "Bu fotoğrafı kasten acemice çizilmiş, sevimli bir karikatür karalamasına dönüştür: krem kâğıt, titrek kurşun kalem çizgileri, soluk sulu boya ve kuru boya dolgu. Herkesin gözleri kocaman ve pörtlek, gülüşü geniş ve dişleri seyrek, burnu yumrulu, yüzü çilli; saçlar karmakarışık bir çizgi yumağı. Bütün kişiler, arka plan ve eşyalar da karalansın; kenarda elle çizilmiş titrek çift çizgi çerçeve olsun. Alaycı değil, sevecen olsun."
+      }
+    }
+  },
+  "moves": {
+    "chibi": "C",
+    "toon-3d": "G",
+    "comic-strip": "Y",
+    "die-cut-sticker": "S",
+    "kawaii-pastel": "T",
+    "line-wash": "C",
+    "continuous-line": "G",
+    "technical-pen": "A",
+    "graphite-pencil": "G",
+    "charcoal": "A",
+    "oil-pastel": "S",
+    "chalk-pastel": "T",
+    "wax-crayon": "D",
+    "wet-paper": "C",
+    "oil-glaze": "G",
+    "ink-wash": "A",
+    "airbrush": "Y",
+    "spray-graffiti": "S",
+    "engraved-plate": "C",
+    "double-pass": "G",
+    "risograph": "A",
+    "cyanotype": "S",
+    "origami": "A",
+    "papercraft": "C",
+    "magazine-collage": "T",
+    "knitted": "T",
+    "felt-plush": "S",
+    "batik": "D",
+    "patchwork-quilt": "G",
+    "woven-tapestry": "C",
+    "plasticine": "T",
+    "porcelain": "D",
+    "wood-carving": "G",
+    "bronze": "Y",
+    "feature-caricature": "A",
+    "reduced-caricature": "C",
+    "stretched-caricature": "Y",
+    "newsprint-caricature": "G",
+    "bobblehead": "S",
+    "pop-art": "T",
+    "geometric-vector": "D",
+    "neon-sign": "Y",
+    "duotone-poster": "C",
+    "art-nouveau": "D",
+    "ottoman-miniature": "Y",
+    "travel-poster": "C",
+    "mosaic": "D",
+    "iznik-tile": "C",
+    "embossed-copper": "G"
+  },
+  "webCopies": [
+    {
+      "subject": "G",
+      "path": "public/gallery/friends/source.webp"
+    },
+    {
+      "subject": "C",
+      "path": "public/gallery/couple/source.webp"
+    },
+    {
+      "subject": "P",
+      "path": "public/gallery/pet/source.webp"
+    },
+    {
+      "subject": "M",
+      "path": "public/gallery/maiden-tower/source.webp"
+    },
+    {
+      "subject": "E",
+      "path": "public/gallery/man-portrait/source.webp"
+    }
+  ],
+  "featured": [
+    {
+      "style": "goofy-sketch",
+      "subject": "G",
+      "before": "public/gallery/friends/source.webp"
+    }
+  ],
+  "batches": [
+    [
+      [
+        "src",
+        "C"
+      ],
+      [
+        "src",
+        "G"
+      ],
+      [
+        "src",
+        "A"
+      ],
+      [
+        "src",
+        "Y"
+      ],
+      [
+        "src",
+        "S"
+      ],
+      [
+        "src",
+        "T"
+      ],
+      [
+        "src",
+        "D"
+      ]
+    ],
+    [
+      [
+        "goofy-sketch",
+        "A",
+        "G"
+      ],
+      [
+        "goofy-sketch",
+        "B",
+        "G"
+      ],
+      [
+        "goofy-sketch",
+        "A",
+        "E"
+      ],
+      [
+        "goofy-sketch",
+        "B",
+        "E"
+      ]
+    ],
+    [
+      [
+        "chibi",
+        "S",
+        "C"
+      ],
+      [
+        "toon-3d",
+        "S",
+        "G"
+      ],
+      [
+        "comic-strip",
+        "S",
+        "Y"
+      ],
+      [
+        "die-cut-sticker",
+        "S",
+        "S"
+      ],
+      [
+        "kawaii-pastel",
+        "S",
+        "T"
+      ],
+      [
+        "line-wash",
+        "S",
+        "C"
+      ],
+      [
+        "continuous-line",
+        "S",
+        "G"
+      ],
+      [
+        "technical-pen",
+        "S",
+        "A"
+      ],
+      [
+        "graphite-pencil",
+        "S",
+        "G"
+      ],
+      [
+        "charcoal",
+        "S",
+        "A"
+      ],
+      [
+        "oil-pastel",
+        "S",
+        "S"
+      ],
+      [
+        "chalk-pastel",
+        "S",
+        "T"
+      ],
+      [
+        "wax-crayon",
+        "S",
+        "D"
+      ],
+      [
+        "wet-paper",
+        "S",
+        "C"
+      ],
+      [
+        "oil-glaze",
+        "S",
+        "G"
+      ],
+      [
+        "ink-wash",
+        "S",
+        "A"
+      ],
+      [
+        "airbrush",
+        "S",
+        "Y"
+      ]
+    ],
+    [
+      [
+        "spray-graffiti",
+        "S",
+        "S"
+      ],
+      [
+        "engraved-plate",
+        "S",
+        "C"
+      ],
+      [
+        "double-pass",
+        "S",
+        "G"
+      ],
+      [
+        "risograph",
+        "S",
+        "A"
+      ],
+      [
+        "cyanotype",
+        "S",
+        "S"
+      ],
+      [
+        "origami",
+        "S",
+        "A"
+      ],
+      [
+        "papercraft",
+        "S",
+        "C"
+      ],
+      [
+        "magazine-collage",
+        "S",
+        "T"
+      ],
+      [
+        "knitted",
+        "S",
+        "T"
+      ],
+      [
+        "felt-plush",
+        "S",
+        "S"
+      ],
+      [
+        "batik",
+        "S",
+        "D"
+      ],
+      [
+        "patchwork-quilt",
+        "S",
+        "G"
+      ],
+      [
+        "woven-tapestry",
+        "S",
+        "C"
+      ],
+      [
+        "plasticine",
+        "S",
+        "T"
+      ],
+      [
+        "porcelain",
+        "S",
+        "D"
+      ],
+      [
+        "wood-carving",
+        "S",
+        "G"
+      ],
+      [
+        "bronze",
+        "S",
+        "Y"
+      ]
+    ],
+    [
+      [
+        "feature-caricature",
+        "S",
+        "A"
+      ],
+      [
+        "reduced-caricature",
+        "S",
+        "C"
+      ],
+      [
+        "stretched-caricature",
+        "S",
+        "Y"
+      ],
+      [
+        "newsprint-caricature",
+        "S",
+        "G"
+      ],
+      [
+        "bobblehead",
+        "S",
+        "S"
+      ],
+      [
+        "pop-art",
+        "S",
+        "T"
+      ],
+      [
+        "geometric-vector",
+        "S",
+        "D"
+      ],
+      [
+        "neon-sign",
+        "S",
+        "Y"
+      ],
+      [
+        "duotone-poster",
+        "S",
+        "C"
+      ],
+      [
+        "art-nouveau",
+        "S",
+        "D"
+      ],
+      [
+        "ottoman-miniature",
+        "S",
+        "Y"
+      ],
+      [
+        "travel-poster",
+        "S",
+        "C"
+      ],
+      [
+        "mosaic",
+        "S",
+        "D"
+      ],
+      [
+        "iznik-tile",
+        "S",
+        "C"
+      ],
+      [
+        "embossed-copper",
+        "S",
+        "G"
+      ]
+    ]
+  ]
+}

@@ -15,7 +15,7 @@
 import fs from 'node:fs'
 import {
   STYLE_SOURCE, CARTOON_STYLES, CLOSING,
-  STYLE_CATEGORIES, MERGED_STYLE_IDS,
+  STYLE_CATEGORIES, MERGED_STYLE_IDS, STYLE_KEYWORDS_TR,
 } from '../lib/cartoon-styles.ts'
 import { STYLE_PREVIEW_IDS, stylePreviewPath, PREVIEW_SUBJECTS, PREVIEW_SOURCES, PREVIEW_BATCHES } from '../lib/style-previews.ts'
 
@@ -31,7 +31,10 @@ const FROZEN_CLASSIC =
   'Konuyu ve kompozisyonu koru, yalnızca çizim üslubunu değiştir.'
 
 const BAND = { preserve: [260, 280], exaggerate: [300, 320] }
-const SUBJECTS = ['K', 'E', 'P', 'M', 'N']
+/** Task 0019: a stored long band, for these styles only; it bounds the BODY. */
+const LONG_BAND = [300, 440]
+const LONG_ALLOWED = ['goofy-sketch']
+const SUBJECTS = ['K', 'E', 'P', 'M', 'N', 'C', 'G', 'A', 'Y', 'S', 'T', 'D']
 
 const failures = []
 const fail = (m) => failures.push(m)
@@ -48,6 +51,14 @@ for (const s of CARTOON_STYLES) {
     continue
   }
   if (!s.prompt.endsWith(' ' + CLOSING[s.closing])) fail(`${s.id}: the prompt does not end with its closing constant`)
+  const band = (STYLE_SOURCE.find((r) => r.id === s.id) || {}).band
+  if (band !== undefined && band !== 'long') fail(`${s.id}: band ${JSON.stringify(band)} is not 'long'`)
+  if (band === 'long') {
+    if (LONG_ALLOWED.indexOf(s.id) < 0) fail(`${s.id}: only ${LONG_ALLOWED.join(', ')} may use the long band`)
+    const b = [...s.prompt].length - [...CLOSING[s.closing]].length - 1
+    if (b < LONG_BAND[0] || b > LONG_BAND[1]) fail(`${s.id}: body ${b} chars, long band ${LONG_BAND[0]}-${LONG_BAND[1]}`)
+    continue
+  }
   const n = [...s.prompt].length
   const [lo, hi] = BAND[s.closing]
   if (n < lo || n > hi) fail(`${s.id}: prompt ${n} chars, band ${lo}-${hi}`)
@@ -64,6 +75,12 @@ if (STYLE_CATEGORIES.length !== 12) fail(`categories: ${STYLE_CATEGORIES.length}
 for (const s of STYLE_SOURCE) {
   if (!Object.prototype.hasOwnProperty.call(s, 'category')) fail(`${s.id}: no category`)
   else if (!categories.has(s.category)) fail(`${s.id}: category ${JSON.stringify(s.category)} is not in STYLE_CATEGORIES`)
+}
+
+// Search keywords (task 0019): only active ids, each a list of non-empty words.
+for (const [id, words] of Object.entries(STYLE_KEYWORDS_TR || {})) {
+  if (!CARTOON_STYLES.some((s) => s.id === id)) fail(`keywords: ${id} is not an active style`)
+  if (!Array.isArray(words) || !words.length || words.some((w) => typeof w !== 'string' || !w.trim())) fail(`keywords: ${id} needs a list of non-empty words`)
 }
 
 // Merged ids (task 0014): never active, always landing on an active style.

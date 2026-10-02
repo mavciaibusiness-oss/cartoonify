@@ -1,0 +1,325 @@
+{
+  "task": "0019",
+  "sources": {
+    "C": {
+      "path": "assets/subjects/couple/source.jpg",
+      "sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088"
+    },
+    "G": {
+      "path": "assets/subjects/friends/source.jpg",
+      "sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38"
+    },
+    "A": {
+      "path": "assets/subjects/family/source.jpg",
+      "sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74"
+    },
+    "Y": {
+      "path": "assets/subjects/older-woman/source.jpg",
+      "sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb"
+    },
+    "S": {
+      "path": "assets/subjects/bearded-man/source.jpg",
+      "sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856"
+    },
+    "T": {
+      "path": "assets/subjects/cat/source.jpg",
+      "sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e"
+    },
+    "D": {
+      "path": "assets/subjects/dog/source.jpg",
+      "sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a"
+    }
+  },
+  "newStyles": {
+    "goofy-sketch": {
+      "choice": "B",
+      "subject": "G",
+      "body": "Bu fotoğrafı kasten acemice çizilmiş, sevimli bir karikatür karalamasına dönüştür: krem kâğıt, titrek kurşun kalem çizgileri, soluk sulu boya ve kuru boya dolgu. Herkesin gözleri kocaman ve pörtlek, gülüşü geniş ve dişleri seyrek, burnu yumrulu, yüzü çilli; saçlar karmakarışık bir çizgi yumağı. Bütün kişiler, arka plan ve eşyalar da karalansın; kenarda elle çizilmiş titrek çift çizgi çerçeve olsun. Alaycı değil, sevecen olsun.",
+      "prompt": "Bu fotoğrafı kasten acemice çizilmiş, sevimli bir karikatür karalamasına dönüştür: krem kâğıt, titrek kurşun kalem çizgileri, soluk sulu boya ve kuru boya dolgu. Herkesin gözleri kocaman ve pörtlek, gülüşü geniş ve dişleri seyrek, burnu yumrulu, yüzü çilli; saçlar karmakarışık bir çizgi yumağı. Bütün kişiler, arka plan ve eşyalar da karalansın; kenarda elle çizilmiş titrek çift çizgi çerçeve olsun. Alaycı değil, sevecen olsun. Konunun tanınabilirliğini ve kompozisyonu koru; karakteristik hatları ve oranları abartarak değiştir.",
+      "trial": "assets/trials/0019/goofy-sketch.B.G.webp",
+      "trial_sha256": "9c621c666c5675390e131c469ff2f017acb6ee8cf0445a6f59fbfa78b22b2319"
+    }
+  },
+  "moves": {
+    "chibi": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/chibi.S.C.webp",
+      "trial_sha256": "e9ad7ea05b1fc3a37a9372b3a09338aa659a6682e190a9c9d4a89dc2faebcc7c"
+    },
+    "toon-3d": {
+      "choice": "keep",
+      "subject": "P"
+    },
+    "comic-strip": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0019/comic-strip.S.Y.webp",
+      "trial_sha256": "13f7cbca724721a9e593464ae2f3ba226060870904f58c75091fec010b12ad4f"
+    },
+    "die-cut-sticker": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/die-cut-sticker.S.S.webp",
+      "trial_sha256": "3118affa1f5d4a72d37df201be42dadf8cfde4106203021c35fffa47991eb404"
+    },
+    "kawaii-pastel": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/kawaii-pastel.S.T.webp",
+      "trial_sha256": "f1cb84786392783a9894b81735d5fd9f6ec615ef70f39d0e98dfc58780a04b84"
+    },
+    "line-wash": {
+      "choice": "keep",
+      "subject": "M"
+    },
+    "continuous-line": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/continuous-line.S.G.webp",
+      "trial_sha256": "d4de9a11382f4b0bacd92d28eba015dd59a745cc2441cb346806d2b93eb5d195"
+    },
+    "technical-pen": {
+      "choice": "keep",
+      "subject": "N"
+    },
+    "graphite-pencil": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/graphite-pencil.S.G.webp",
+      "trial_sha256": "95ab1cfb2fc4fbe0d8acdf7c1e7c0e23fc1a1c4f993781148ad73b7ffe1fea2d"
+    },
+    "charcoal": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0019/charcoal.S.A.webp",
+      "trial_sha256": "902859e8ef004492dea3bd3b9091a45a84372de0581760c8112d57240069dfc7"
+    },
+    "oil-pastel": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/oil-pastel.S.S.webp",
+      "trial_sha256": "82c9d8b3e42439206494bec7a98e5a88ae938b40b347f46d3885d6e16fbc114b"
+    },
+    "chalk-pastel": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/chalk-pastel.S.T.webp",
+      "trial_sha256": "a84b048f7f40a2083b581505128d9488087db8123d25fce0a4dc97aea1766f2d"
+    },
+    "wax-crayon": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/wax-crayon.S.D.webp",
+      "trial_sha256": "323bd0664763f00ddb0b8c5ab81eed202826cbf910f419dcb4dded9eb902c08a"
+    },
+    "wet-paper": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/wet-paper.S.C.webp",
+      "trial_sha256": "4b02fa09e799f985458c5845570f2119a4281eaf952de7a679693f4659d1e107"
+    },
+    "oil-glaze": {
+      "choice": "keep",
+      "subject": "N"
+    },
+    "ink-wash": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0019/ink-wash.S.A.webp",
+      "trial_sha256": "f065a5d8bf772600f2b06cb067f53c62cef9607d364934b69aa00f413f990275"
+    },
+    "airbrush": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0019/airbrush.S.Y.webp",
+      "trial_sha256": "b688f9d9c7f2df847a8bdadab28aacf1cf45c900a479ca5d9619b16576b39079"
+    },
+    "spray-graffiti": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/spray-graffiti.S.S.webp",
+      "trial_sha256": "7996515ae7c61ecf324499abd3cc8e040f82a26e7f156396801ad9162e840c73"
+    },
+    "engraved-plate": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/engraved-plate.S.C.webp",
+      "trial_sha256": "1de5b4311880f0bcb0ffa2da6a85d8452c63656e64407ed3a00c55cb6cee49eb"
+    },
+    "double-pass": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/double-pass.S.G.webp",
+      "trial_sha256": "07c7e6a937dfb7eaaade8770fec9d94512e1f55179026c1c9bb501602982ff89"
+    },
+    "risograph": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0019/risograph.S.A.webp",
+      "trial_sha256": "0d6ba73cf79e973b04bd82f723357611266a6600cff924c6e0fbf15ad040be63"
+    },
+    "cyanotype": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/cyanotype.S.S.webp",
+      "trial_sha256": "d793b54e62c935f0d6e9b474a74b09124e083f16ca3ec5c9d2cebc762cc1ae65"
+    },
+    "origami": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0019/origami.S.A.webp",
+      "trial_sha256": "be866a1591fab0d5097293dc264d8d1c2492bb4166a2c5b2ad1b9c39d7acefd3"
+    },
+    "papercraft": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/papercraft.S.C.webp",
+      "trial_sha256": "67eab6e8c0bacfa4c4723212285a87ed9e322abcb8e714b5337bf76241c9094f"
+    },
+    "magazine-collage": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/magazine-collage.S.T.webp",
+      "trial_sha256": "25c304f982a4aaf6842c25b0ae8545bf594a3652f26d8eedbe4685d9a8bad05d"
+    },
+    "knitted": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/knitted.S.T.webp",
+      "trial_sha256": "bfa5abb7673148c9b5610c3c174d4cefc76673ee45debaaa04587f5fe71a9c48"
+    },
+    "felt-plush": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/felt-plush.S.S.webp",
+      "trial_sha256": "5e62c0320d06caa2e5e69088615e1ab83954d5aad80c5e3bf6a1d070345e81ca"
+    },
+    "batik": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/batik.S.D.webp",
+      "trial_sha256": "0c06601c9b6631e31eed332e06d9a28461ea6996cbec5bbf3f5db49a637aff1a"
+    },
+    "patchwork-quilt": {
+      "choice": "keep",
+      "subject": "M"
+    },
+    "woven-tapestry": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/woven-tapestry.S.C.webp",
+      "trial_sha256": "4ee664fcf51b8670e50f6ea425fa13c04950464a76d4ef5eddc1f9db44caf1cb"
+    },
+    "plasticine": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/plasticine.S.T.webp",
+      "trial_sha256": "8d19eff25488cd29cdbc98489e5e595a04853ef3edbf54c8bb4ce0f9b68ddb09"
+    },
+    "porcelain": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/porcelain.S.D.webp",
+      "trial_sha256": "bd9c9131ad7bb651fe8fdb0cc3ff8190fc49c66114ca29a101c1b8dfad3da376"
+    },
+    "wood-carving": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/wood-carving.S.G.webp",
+      "trial_sha256": "b2caf0c076fc9506c7ca33d010da0c9d2234e96a0698aa0bfa2f2f199e486add"
+    },
+    "bronze": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0019/bronze.S.Y.webp",
+      "trial_sha256": "a2e5ae91dc1bf98d7a4f32cfdf97286edd5bea373e505f82c4105030f3736840"
+    },
+    "feature-caricature": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0019/feature-caricature.S.A.webp",
+      "trial_sha256": "f3f858aa2f815ce361fbf78c5cd4a634e4ee87422479e5eff394bc115e4a8b22"
+    },
+    "reduced-caricature": {
+      "choice": "keep",
+      "subject": "E"
+    },
+    "stretched-caricature": {
+      "choice": "keep",
+      "subject": "K"
+    },
+    "newsprint-caricature": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/newsprint-caricature.S.G.webp",
+      "trial_sha256": "19aee8a5bf6ac49592be94d14dc774108528c614229d6cdc8ab6b51424474889"
+    },
+    "bobblehead": {
+      "choice": "S",
+      "subject": "S",
+      "trial": "assets/trials/0019/bobblehead.S.S.webp",
+      "trial_sha256": "6f19e465191b5d3e91e3fcabf9db45d52db7f81fb2a11c1f0f13dc8aa6ca5421"
+    },
+    "pop-art": {
+      "choice": "S",
+      "subject": "T",
+      "trial": "assets/trials/0019/pop-art.S.T.webp",
+      "trial_sha256": "cea1da2d00fa2d97a9c40d10a3ec8281d2d52283b5c6e5068d2a0a04db4f4afa"
+    },
+    "geometric-vector": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/geometric-vector.S.D.webp",
+      "trial_sha256": "11005227ecd362630b990823e9d1f05ef74d3b7e497826d31e0450b4bf441d23"
+    },
+    "neon-sign": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0019/neon-sign.S.Y.webp",
+      "trial_sha256": "fb5481ed2eff11f19545566c79528f97d507c59e8cd916755cfc9a8a2c2ecc6a"
+    },
+    "duotone-poster": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/duotone-poster.S.C.webp",
+      "trial_sha256": "8bc520f8e1d5446c6ccee8d7077274e8b08edea8e3fcaefe68be78fd6d59380c"
+    },
+    "art-nouveau": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/art-nouveau.S.D.webp",
+      "trial_sha256": "057b1fc359e3ac0a8530ca18730a1953a51a1d12360b0672d880f804c16faeae"
+    },
+    "ottoman-miniature": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0019/ottoman-miniature.S.Y.webp",
+      "trial_sha256": "74fdf0e7517e730358130b7c9b869b0bea0765dca88872d2eb1586365dd5e606"
+    },
+    "travel-poster": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/travel-poster.S.C.webp",
+      "trial_sha256": "36fa84bbcdf394a38d5d5e8247ae0fd8a12926dfe017b27b887a9e0e0948451a"
+    },
+    "mosaic": {
+      "choice": "S",
+      "subject": "D",
+      "trial": "assets/trials/0019/mosaic.S.D.webp",
+      "trial_sha256": "5c4bd09f08361ce1ca6a0476eed69344b8fa7905bfbfec818b0ffb7f9fe3d038"
+    },
+    "iznik-tile": {
+      "choice": "S",
+      "subject": "C",
+      "trial": "assets/trials/0019/iznik-tile.S.C.webp",
+      "trial_sha256": "de64b295f6fdfece4ff074db5d7130757f9af0342a609efde0715791344b0739"
+    },
+    "embossed-copper": {
+      "choice": "S",
+      "subject": "G",
+      "trial": "assets/trials/0019/embossed-copper.S.G.webp",
+      "trial_sha256": "b1bc9282f1d9da105a31abc1736b3a8b5ccde1e4901a20195531088d9c146aa6"
+    }
+  }
+}

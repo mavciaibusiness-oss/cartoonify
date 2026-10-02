@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-10-01T13:46:17Z",
+  "id": "0019",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-02T11:32:52Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0019-goofy-sketch-subject-pool.md",
+    "spec_sha256": "ae0de08699604418cf47c3dbccc53263c8e47453671a6778f3d9889474dd9635"
+  },
+  "status": "done",
+  "updated": "2026-10-02T12:46:43Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0019-attempt-01.json"
+  ]
+}

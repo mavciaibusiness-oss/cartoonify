@@ -330,46 +330,14 @@
     },
     "feature-caricature": {
       "file": "public/styles/feature-caricature.webp",
-      "sha256": "11f5febfb01e5660b6ed93b73b293c8e857aee5084938db172d574a1fd75836c",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "response": {
-        "quality": "medium",
-        "size": "1024x1024",
-        "output_format": "webp",
-        "keys": [
-          "background",
-          "created",
-          "data",
-          "output_format",
-          "quality",
-          "size",
-          "usage"
-        ]
-      },
-      "usage": {
-        "input_tokens": 1145,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 121
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1584
-      },
-      "cost_usd": 0.021967,
-      "latency_ms": 19385,
-      "at": "2026-09-29T13:38:41.287Z"
+      "sha256": "f3f858aa2f815ce361fbf78c5cd4a634e4ee87422479e5eff394bc115e4a8b22",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "subject": "A",
+      "task": "0019",
+      "from_trial": "feature-caricature.S.A",
+      "prompt_sha256": "201c536810556a809ae56b9035310b404a7e51e9830bec1eeb7256cb82ccfaac",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.852Z"
     },
     "reduced-caricature": {
       "file": "public/styles/reduced-caricature.webp",
@@ -612,36 +580,14 @@
     },
     "wet-paper": {
       "file": "public/styles/wet-paper.webp",
-      "sha256": "af27cc0f2b62fe129fc03da7abb323ae2dfbd1af715e5f037e4444a725f4ae87",
-      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
-      "subject": "M",
-      "task": "0017",
-      "batch": 5,
-      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1133,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 109
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1572
-      },
-      "cost_usd": 0.021907,
-      "latency_ms": 21611,
-      "at": "2026-10-01T08:49:01.524Z"
+      "sha256": "4b02fa09e799f985458c5845570f2119a4281eaf952de7a679693f4659d1e107",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "wet-paper.S.C",
+      "prompt_sha256": "faaf718b351c5427c8d94596fe60d838eb26e8b3d2b32bac969d676645ca6a75",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.841Z"
     },
     "single-ink": {
       "file": "public/styles/single-ink.webp",
@@ -830,80 +776,36 @@
     },
     "newsprint-caricature": {
       "file": "public/styles/newsprint-caricature.webp",
-      "sha256": "e2b9b23478a590e5eed7a66de3789a19164b5b5f3f9527ad433f21a1271c0d19",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0018",
-      "from_trial": "newsprint-caricature.A",
+      "sha256": "19aee8a5bf6ac49592be94d14dc774108528c614229d6cdc8ab6b51424474889",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "newsprint-caricature.S.G",
       "prompt_sha256": "e44e02534ef325a22267baa21f27c4dc9170d34c1ee70ee2f5530e319e393338",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.401Z"
+      "at": "2026-10-02T11:54:18.853Z"
     },
     "engraved-plate": {
       "file": "public/styles/engraved-plate.webp",
-      "sha256": "4bff52068a7c2cd7a50040d51adad7f8709522ad13989c234b769b4474e557ce",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 6,
-      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1133,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 109
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1572
-      },
-      "cost_usd": 0.021907,
-      "latency_ms": 19904,
-      "at": "2026-10-01T08:54:20.581Z"
+      "sha256": "1de5b4311880f0bcb0ffa2da6a85d8452c63656e64407ed3a00c55cb6cee49eb",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "engraved-plate.S.C",
+      "prompt_sha256": "5e0a6fd55cb2cc5b68478cdf94d98c7a3d2ac4833de17c156fb731b946fd8617",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.845Z"
     },
     "double-pass": {
       "file": "public/styles/double-pass.webp",
-      "sha256": "3076595a17c819718f4db00689baea9c62294b854588166c400eccd4dfc2062d",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 1,
-      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1132,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 108
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1571
-      },
-      "cost_usd": 0.021902,
-      "latency_ms": 20522,
-      "at": "2026-09-30T19:46:22.045Z"
+      "sha256": "07c7e6a937dfb7eaaade8770fec9d94512e1f55179026c1c9bb501602982ff89",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "double-pass.S.G",
+      "prompt_sha256": "3e18bf672427d24f6e74c3d522d877a5f1c44f415b6746be4635cea53d04101d",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.845Z"
     },
     "paper-cutout": {
       "file": "public/styles/paper-cutout.webp",
@@ -1126,135 +1028,47 @@
     },
     "duotone-poster": {
       "file": "public/styles/duotone-poster.webp",
-      "sha256": "077d9c47b151c1036aeca546118f409e96ac5a95df236c7a10b172e0795b4a44",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 1,
-      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1126,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 102
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1565
-      },
-      "cost_usd": 0.021872,
-      "latency_ms": 16960,
-      "at": "2026-09-30T19:47:02.478Z"
+      "sha256": "8bc520f8e1d5446c6ccee8d7077274e8b08edea8e3fcaefe68be78fd6d59380c",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "duotone-poster.S.C",
+      "prompt_sha256": "202f69a3c69b7c4295930c5f5082e6e6cc3e0d581e8c2cf9fe4f88bced03c748",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.855Z"
     },
     "risograph": {
       "file": "public/styles/risograph.webp",
-      "sha256": "6f835f77dbec572a2cb7fb848236378c6bacc4c914821edff30e34c435c339dd",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 1,
-      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1122,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 98
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1561
-      },
-      "cost_usd": 0.021852,
-      "latency_ms": 20144,
-      "at": "2026-09-30T19:47:19.438Z"
+      "sha256": "0d6ba73cf79e973b04bd82f723357611266a6600cff924c6e0fbf15ad040be63",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "subject": "A",
+      "task": "0019",
+      "from_trial": "risograph.S.A",
+      "prompt_sha256": "644f8833019be38d93c79ff363b725738d073b545832bad7f0f5519784813f13",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.846Z"
     },
     "chibi": {
       "file": "public/styles/chibi.webp",
-      "sha256": "8e909d61f221459ddec3a0c847ad788a24c88279de4cbb23c54bc7c34ef93757",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 1,
-      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1127,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 103
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1566
-      },
-      "cost_usd": 0.021877,
-      "latency_ms": 18675,
-      "at": "2026-09-30T19:47:59.410Z"
+      "sha256": "e9ad7ea05b1fc3a37a9372b3a09338aa659a6682e190a9c9d4a89dc2faebcc7c",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "chibi.S.C",
+      "prompt_sha256": "c8b1d372b2b98456274e904a2e46d82521fbfaf4b910f21bdf6fc9afb8d75c4c",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.836Z"
     },
     "bobblehead": {
       "file": "public/styles/bobblehead.webp",
-      "sha256": "9335f0c2c5fdb418ac3285ce1f807e31e0fadddcd246eecde7cbd1c46b47a953",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 1,
-      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1132,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 108
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1571
-      },
-      "cost_usd": 0.021902,
-      "latency_ms": 16062,
-      "at": "2026-09-30T19:48:18.085Z"
+      "sha256": "6f19e465191b5d3e91e3fcabf9db45d52db7f81fb2a11c1f0f13dc8aa6ca5421",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "bobblehead.S.S",
+      "prompt_sha256": "a61e5f2c939bd1d0786a1773a941dd4181d00772f6c66762c5b330c2c3235440",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.853Z"
     },
     "street-caricature": {
       "file": "public/styles/street-caricature.webp",
@@ -1390,80 +1204,36 @@
     },
     "comic-strip": {
       "file": "public/styles/comic-strip.webp",
-      "sha256": "25722cc3a58b3a9597a019c00e71d22d79d270b6a41e18b7a8284a8fcf39817d",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0017",
-      "batch": 2,
-      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1128,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 104
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1567
-      },
-      "cost_usd": 0.021882,
-      "latency_ms": 22538,
-      "at": "2026-09-30T20:11:07.606Z"
+      "sha256": "13f7cbca724721a9e593464ae2f3ba226060870904f58c75091fec010b12ad4f",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0019",
+      "from_trial": "comic-strip.S.Y",
+      "prompt_sha256": "25c0164fd8ea19ec5c5f05e044770b8f45e7832ffd05d48d1efde626738a5fa7",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.836Z"
     },
     "die-cut-sticker": {
       "file": "public/styles/die-cut-sticker.webp",
-      "sha256": "9e0085183644ed2aa601ab652d85f9126d7f1a8dca6fe715415534697a7cb6b1",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 2,
-      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1129,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 105
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1568
-      },
-      "cost_usd": 0.021887,
-      "latency_ms": 19777,
-      "at": "2026-09-30T20:11:30.145Z"
+      "sha256": "3118affa1f5d4a72d37df201be42dadf8cfde4106203021c35fffa47991eb404",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "die-cut-sticker.S.S",
+      "prompt_sha256": "2f898bf634c22d5225acde5ee84b5f8c5b31de479a2172d80fe80b233330c603",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.837Z"
     },
     "kawaii-pastel": {
       "file": "public/styles/kawaii-pastel.webp",
-      "sha256": "4ebd65a935d8ea20b2a529c1b351e764bdc516091509270ed3444fd32fe00efc",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0018",
-      "from_trial": "kawaii-pastel.A",
+      "sha256": "f1cb84786392783a9894b81735d5fd9f6ec615ef70f39d0e98dfc58780a04b84",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "kawaii-pastel.S.T",
       "prompt_sha256": "a2a5d70f56f78349be1a54ef14fea4c5e79393f14037c888d2d08af08ddbdc34",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.401Z"
+      "at": "2026-10-02T11:54:18.837Z"
     },
     "ballpoint-doodle": {
       "file": "public/styles/ballpoint-doodle.webp",
@@ -1500,14 +1270,14 @@
     },
     "continuous-line": {
       "file": "public/styles/continuous-line.webp",
-      "sha256": "fe99609c2f3bae932fc683d3c3c2f77c9ee001e2e86c7df83a83e20e3a8f28e7",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0018",
-      "from_trial": "continuous-line.B",
+      "sha256": "d4de9a11382f4b0bacd92d28eba015dd59a745cc2441cb346806d2b93eb5d195",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "continuous-line.S.G",
       "prompt_sha256": "d1580d3e7ae4d8ea7e6476acc09491b06dccc58e2cce760b9a4340e89a192827",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.401Z"
+      "at": "2026-10-02T11:54:18.838Z"
     },
     "technical-pen": {
       "file": "public/styles/technical-pen.webp",
@@ -1577,69 +1347,25 @@
     },
     "graphite-pencil": {
       "file": "public/styles/graphite-pencil.webp",
-      "sha256": "9560518dc3a47b03b9af33a60a149b79eef0a31f60260ee4c43166c43e682721",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 4,
-      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1134,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 110
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1573
-      },
-      "cost_usd": 0.021912,
-      "latency_ms": 19162,
-      "at": "2026-10-01T08:36:11.529Z"
+      "sha256": "95ab1cfb2fc4fbe0d8acdf7c1e7c0e23fc1a1c4f993781148ad73b7ffe1fea2d",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "graphite-pencil.S.G",
+      "prompt_sha256": "f0f39f4d95f6b89553e2305eeef58029be54b71e643d49cb154d7a57d44c3065",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.838Z"
     },
     "charcoal": {
       "file": "public/styles/charcoal.webp",
-      "sha256": "dea729ae5aba6fd392386211fac6d224fa27f9190cd09e961de2d58e98b1d772",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0017",
-      "batch": 4,
-      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 19939,
-      "at": "2026-10-01T08:36:30.692Z"
+      "sha256": "902859e8ef004492dea3bd3b9091a45a84372de0581760c8112d57240069dfc7",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "subject": "A",
+      "task": "0019",
+      "from_trial": "charcoal.S.A",
+      "prompt_sha256": "4664b27e2f4017f128b1ce4b10cb7fa6152f2d790e45a8fc988b27114c574294",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.839Z"
     },
     "coloured-pencil": {
       "file": "public/styles/coloured-pencil.webp",
@@ -1676,58 +1402,36 @@
     },
     "oil-pastel": {
       "file": "public/styles/oil-pastel.webp",
-      "sha256": "f3496161a1fbc20c53aede2288d8278837f7e85465f377550b7cb42bd4c373ee",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0018",
-      "from_trial": "oil-pastel.S",
+      "sha256": "82c9d8b3e42439206494bec7a98e5a88ae938b40b347f46d3885d6e16fbc114b",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "oil-pastel.S.S",
       "prompt_sha256": "b21acfc7b833d0a7ea5a25d6aef00dad838d60177bf2841c3cb63f0d64b67f41",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.406Z"
+      "at": "2026-10-02T11:54:18.839Z"
     },
     "chalk-pastel": {
       "file": "public/styles/chalk-pastel.webp",
-      "sha256": "48fa033a82509e16e83cef4f765a1dfd468ae83b496f3b79fc2058aaf41f4360",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0018",
-      "from_trial": "chalk-pastel.A",
+      "sha256": "a84b048f7f40a2083b581505128d9488087db8123d25fce0a4dc97aea1766f2d",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "chalk-pastel.S.T",
       "prompt_sha256": "f044e2e4a09c3b34a10308fa0a6f28589575c36c983d89323bc4a4d633ca76f3",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.402Z"
+      "at": "2026-10-02T11:54:18.840Z"
     },
     "wax-crayon": {
       "file": "public/styles/wax-crayon.webp",
-      "sha256": "704e0d86f440224bb08301845743b76314843606d19e803425ec1dc5d0a59707",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 4,
-      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 19482,
-      "at": "2026-10-01T08:37:54.329Z"
+      "sha256": "323bd0664763f00ddb0b8c5ab81eed202826cbf910f419dcb4dded9eb902c08a",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "wax-crayon.S.D",
+      "prompt_sha256": "4a2365e9fc4aebc8680cdd43af76bb9fb2109979fb011ad99718c0a2d121344e",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.841Z"
     },
     "sanguine": {
       "file": "public/styles/sanguine.webp",
@@ -1830,36 +1534,14 @@
     },
     "ink-wash": {
       "file": "public/styles/ink-wash.webp",
-      "sha256": "b80a5e021a991d626b75b170bde3a78e8594522321dd784e0406f8530c1f393f",
-      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
-      "subject": "M",
-      "task": "0017",
-      "batch": 5,
-      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1132,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 108
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1571
-      },
-      "cost_usd": 0.021902,
-      "latency_ms": 19191,
-      "at": "2026-10-01T08:49:44.580Z"
+      "sha256": "f065a5d8bf772600f2b06cb067f53c62cef9607d364934b69aa00f413f990275",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "subject": "A",
+      "task": "0019",
+      "from_trial": "ink-wash.S.A",
+      "prompt_sha256": "432efc14946f26b1c803e7f38793f1a1b046495bc64be8cf5d6253c6b3a1bf3c",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.842Z"
     },
     "storybook-gouache": {
       "file": "public/styles/storybook-gouache.webp",
@@ -1896,47 +1578,25 @@
     },
     "airbrush": {
       "file": "public/styles/airbrush.webp",
-      "sha256": "bc556755e50f3f4be25f78e1a7501c20a90bf0d08e724f6bb4352882565be352",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0018",
-      "from_trial": "airbrush.A",
+      "sha256": "b688f9d9c7f2df847a8bdadab28aacf1cf45c900a479ca5d9619b16576b39079",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0019",
+      "from_trial": "airbrush.S.Y",
       "prompt_sha256": "47b6f2389be036938a6d6fada78dcddaa7145713dd0de637f6eeafb2448f1c56",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.402Z"
+      "at": "2026-10-02T11:54:18.842Z"
     },
     "spray-graffiti": {
       "file": "public/styles/spray-graffiti.webp",
-      "sha256": "13422c8f5030d751cad824730954963009c65e40061fec3a7147316e6f2a52f0",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 5,
-      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 18408,
-      "at": "2026-10-01T08:50:45.441Z"
+      "sha256": "7996515ae7c61ecf324499abd3cc8e040f82a26e7f156396801ad9162e840c73",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "spray-graffiti.S.S",
+      "prompt_sha256": "1174eb476dc340a30cac9d0f1f73a1a87b65fd9bda0edef8ef5b93c8445a050a",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.844Z"
     },
     "linocut": {
       "file": "public/styles/linocut.webp",
@@ -1973,69 +1633,25 @@
     },
     "cyanotype": {
       "file": "public/styles/cyanotype.webp",
-      "sha256": "c419bc37f5af39d895e1b282331808be4919469355f58fb2128d20577bff0f29",
-      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
-      "subject": "M",
-      "task": "0017",
-      "batch": 6,
-      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1129,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 105
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1568
-      },
-      "cost_usd": 0.021887,
-      "latency_ms": 19777,
-      "at": "2026-10-01T08:55:02.316Z"
+      "sha256": "d793b54e62c935f0d6e9b474a74b09124e083f16ca3ec5c9d2cebc762cc1ae65",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "cyanotype.S.S",
+      "prompt_sha256": "8dcb0ddb49fd6b6784aaac3c1ed2fa63b4ee64ad82f4a2177bbe33575f8ae123",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.847Z"
     },
     "origami": {
       "file": "public/styles/origami.webp",
-      "sha256": "09eec1e5af664f955383534b85c09f4c08435961541c2cf0f27fe5e6def31627",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 7,
-      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1130,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 106
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1569
-      },
-      "cost_usd": 0.021892,
-      "latency_ms": 19709,
-      "at": "2026-10-01T08:58:47.489Z"
+      "sha256": "be866a1591fab0d5097293dc264d8d1c2492bb4166a2c5b2ad1b9c39d7acefd3",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "subject": "A",
+      "task": "0019",
+      "from_trial": "origami.S.A",
+      "prompt_sha256": "2986b45ece885bf7f21d5e86df595e504f75ec8b2612c2ce269bc5167f6e2b12",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.847Z"
     },
     "quilling": {
       "file": "public/styles/quilling.webp",
@@ -2072,47 +1688,25 @@
     },
     "papercraft": {
       "file": "public/styles/papercraft.webp",
-      "sha256": "6977a4a966e24480aef81fbaf3c8a09ac03303ecfd60c14fe2043ce68578c9ed",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0018",
-      "from_trial": "papercraft.A",
+      "sha256": "67eab6e8c0bacfa4c4723212285a87ed9e322abcb8e714b5337bf76241c9094f",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "papercraft.S.C",
       "prompt_sha256": "4a4458172f7b89562c7956bb1882e0e0e2c116c4fd9f97af70d35a3ce22f0dd8",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.405Z"
+      "at": "2026-10-02T11:54:18.847Z"
     },
     "magazine-collage": {
       "file": "public/styles/magazine-collage.webp",
-      "sha256": "cc94c25397fc8ba8abf51546d30e36bb57585bb81acc6c76404c31907465e30d",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0017",
-      "batch": 7,
-      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1122,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 98
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1561
-      },
-      "cost_usd": 0.021852,
-      "latency_ms": 24337,
-      "at": "2026-10-01T08:59:50.731Z"
+      "sha256": "25c304f982a4aaf6842c25b0ae8545bf594a3652f26d8eedbe4685d9a8bad05d",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "magazine-collage.S.T",
+      "prompt_sha256": "f9eba3b906e3e6501618183e3ef67d9b3f3c66575b592c20855e72d7d29d79d4",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.848Z"
     },
     "silhouette-cut": {
       "file": "public/styles/silhouette-cut.webp",
@@ -2149,36 +1743,14 @@
     },
     "knitted": {
       "file": "public/styles/knitted.webp",
-      "sha256": "55552834ac127590f72de99fd3b9eebf07e8a5158ec7398d1751e9241aa07a36",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 8,
-      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1130,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 106
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1569
-      },
-      "cost_usd": 0.021892,
-      "latency_ms": 19563,
-      "at": "2026-10-01T09:03:53.167Z"
+      "sha256": "bfa5abb7673148c9b5610c3c174d4cefc76673ee45debaaa04587f5fe71a9c48",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "knitted.S.T",
+      "prompt_sha256": "ea1760393a8b184f4c6ca59115418cb3a8ae8fa4f9bd09e0c27e7c249499daa5",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.848Z"
     },
     "cross-stitch": {
       "file": "public/styles/cross-stitch.webp",
@@ -2215,69 +1787,25 @@
     },
     "felt-plush": {
       "file": "public/styles/felt-plush.webp",
-      "sha256": "9315e676c611ae6d1da13d88a813c1ad35c60ffedf06970a68757c8d83a0b206",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 8,
-      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1127,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 103
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1566
-      },
-      "cost_usd": 0.021877,
-      "latency_ms": 22699,
-      "at": "2026-10-01T09:04:34.238Z"
+      "sha256": "5e62c0320d06caa2e5e69088615e1ab83954d5aad80c5e3bf6a1d070345e81ca",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0019",
+      "from_trial": "felt-plush.S.S",
+      "prompt_sha256": "5835645f0a873d7c2b4cf992608741486611c1f65bbd37c2fa78cd88b9a49227",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.849Z"
     },
     "batik": {
       "file": "public/styles/batik.webp",
-      "sha256": "05e91b2b5c4cda55acf9aeb80705548c9f133eed5ac032310d4b11dc1725944c",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 8,
-      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1122,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 98
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1561
-      },
-      "cost_usd": 0.021852,
-      "latency_ms": 19071,
-      "at": "2026-10-01T09:04:56.938Z"
+      "sha256": "0c06601c9b6631e31eed332e06d9a28461ea6996cbec5bbf3f5db49a637aff1a",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "batik.S.D",
+      "prompt_sha256": "44764dc2c786ebfe84bda4e585d28a2bec17bc96f8a31372d0fa6b5413a20379",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.849Z"
     },
     "patchwork-quilt": {
       "file": "public/styles/patchwork-quilt.webp",
@@ -2314,124 +1842,58 @@
     },
     "woven-tapestry": {
       "file": "public/styles/woven-tapestry.webp",
-      "sha256": "50691d7d020063f9793b8439642172cc67a3cf94def33e1c806f741740805038",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0018",
-      "from_trial": "woven-tapestry.S",
+      "sha256": "4ee664fcf51b8670e50f6ea425fa13c04950464a76d4ef5eddc1f9db44caf1cb",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "woven-tapestry.S.C",
       "prompt_sha256": "db7511d668f1d7a9afad9460c84cb798f19ab4fc96280fd9d404c7d36afd299a",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.406Z"
+      "at": "2026-10-02T11:54:18.850Z"
     },
     "plasticine": {
       "file": "public/styles/plasticine.webp",
-      "sha256": "8d9393fb88f3e501d97bbf1ed109e8bae785946391dcabb51e1491cc347eee26",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0018",
-      "from_trial": "plasticine.A",
+      "sha256": "8d19eff25488cd29cdbc98489e5e595a04853ef3edbf54c8bb4ce0f9b68ddb09",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "plasticine.S.T",
       "prompt_sha256": "7d2702855ccbae6e92dfe8d1f1634c61c8cde0102a3180555034c1725c3b5ea0",
       "cost_usd": 0,
-      "at": "2026-10-01T13:06:12.404Z"
+      "at": "2026-10-02T11:54:18.850Z"
     },
     "porcelain": {
       "file": "public/styles/porcelain.webp",
-      "sha256": "52362919ec63822c6b285e18c62e161ba8e31a282791cb926b816decb186da28",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 9,
-      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1122,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 98
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1561
-      },
-      "cost_usd": 0.021852,
-      "latency_ms": 18406,
-      "at": "2026-10-01T09:28:45.052Z"
+      "sha256": "bd9c9131ad7bb651fe8fdb0cc3ff8190fc49c66114ca29a101c1b8dfad3da376",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "porcelain.S.D",
+      "prompt_sha256": "816d2352bbfca2d43ffd3951eb821b1245cfe74a587b3c58081ad16960301c36",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.851Z"
     },
     "wood-carving": {
       "file": "public/styles/wood-carving.webp",
-      "sha256": "43449e838acd1a041fdff7e5d5d5bb0baa8104d19bf87beabe7ddfa927cf3f23",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 9,
-      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1126,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 102
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1565
-      },
-      "cost_usd": 0.021872,
-      "latency_ms": 20215,
-      "at": "2026-10-01T09:29:03.459Z"
+      "sha256": "b2caf0c076fc9506c7ca33d010da0c9d2234e96a0698aa0bfa2f2f199e486add",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "wood-carving.S.G",
+      "prompt_sha256": "96b6f79fc9d637fd46a5af6aacd8f49b79bdf3ecee536ff1c5cc1c37cf19cf15",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.851Z"
     },
     "bronze": {
       "file": "public/styles/bronze.webp",
-      "sha256": "70e523cf44ce6468333545fa1fe60dd1e7bf76d413277c4f90fdd88a1bf80eea",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 9,
-      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1127,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 103
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1566
-      },
-      "cost_usd": 0.021877,
-      "latency_ms": 19321,
-      "at": "2026-10-01T09:29:23.675Z"
+      "sha256": "a2e5ae91dc1bf98d7a4f32cfdf97286edd5bea373e505f82c4105030f3736840",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0019",
+      "from_trial": "bronze.S.Y",
+      "prompt_sha256": "0e2693de184cf269fb79b1dcc87b7941914731bf47fe83ed6bc12f5b98bb006f",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.851Z"
     },
     "marble-bust": {
       "file": "public/styles/marble-bust.webp",
@@ -2567,69 +2029,25 @@
     },
     "pop-art": {
       "file": "public/styles/pop-art.webp",
-      "sha256": "1f893c756b8e063de2e5e0fdb80cc4c5bae94e9ab57b559055d4ec9b3bf25771",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0017",
-      "batch": 10,
-      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 20148,
-      "at": "2026-10-01T09:39:05.955Z"
+      "sha256": "cea1da2d00fa2d97a9c40d10a3ec8281d2d52283b5c6e5068d2a0a04db4f4afa",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0019",
+      "from_trial": "pop-art.S.T",
+      "prompt_sha256": "8036c92e82aa9e2276c1ca710b1a1b874516c1bb3ef6b9fa593758dd0776028a",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.853Z"
     },
     "geometric-vector": {
       "file": "public/styles/geometric-vector.webp",
-      "sha256": "955109aba65377bac36516c6fdde84fd1158d872da791d758aa047c034f40031",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 10,
-      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1126,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 102
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1565
-      },
-      "cost_usd": 0.021872,
-      "latency_ms": 22692,
-      "at": "2026-10-01T09:39:26.104Z"
+      "sha256": "11005227ecd362630b990823e9d1f05ef74d3b7e497826d31e0450b4bf441d23",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "geometric-vector.S.D",
+      "prompt_sha256": "5939119fa9ba6b0895d8125907b9e3f4102022f6356dbd0b69b06a04e0dbb462",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.854Z"
     },
     "pixel-art": {
       "file": "public/styles/pixel-art.webp",
@@ -2732,69 +2150,25 @@
     },
     "neon-sign": {
       "file": "public/styles/neon-sign.webp",
-      "sha256": "aadd3b310aed9d0eb3d6500312b20013d112666ccd112a56953c7ecc0213a8b5",
-      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
-      "subject": "P",
-      "task": "0017",
-      "batch": 10,
-      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1129,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 105
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1568
-      },
-      "cost_usd": 0.021887,
-      "latency_ms": 20693,
-      "at": "2026-10-01T09:40:46.751Z"
+      "sha256": "fb5481ed2eff11f19545566c79528f97d507c59e8cd916755cfc9a8a2c2ecc6a",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0019",
+      "from_trial": "neon-sign.S.Y",
+      "prompt_sha256": "35f07b10090833c5c6351183e941ce24aad40d75e7bb176ff3e779371eafc588",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.854Z"
     },
     "art-nouveau": {
       "file": "public/styles/art-nouveau.webp",
-      "sha256": "efbd7d3c7004c6cf3d1e56d41f38cceb3578452547d479b5aa53c9aa7e7a7be7",
-      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
-      "subject": "K",
-      "task": "0017",
-      "batch": 11,
-      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1131,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 107
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1570
-      },
-      "cost_usd": 0.021897,
-      "latency_ms": 21629,
-      "at": "2026-10-01T09:49:08.122Z"
+      "sha256": "057b1fc359e3ac0a8530ca18730a1953a51a1d12360b0672d880f804c16faeae",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "art-nouveau.S.D",
+      "prompt_sha256": "d01fa1cf4b0a0a62438bcd7a74fcc287d99cd675bf9c238886caad222b8bb38c",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.855Z"
     },
     "art-deco": {
       "file": "public/styles/art-deco.webp",
@@ -2886,69 +2260,25 @@
     },
     "ottoman-miniature": {
       "file": "public/styles/ottoman-miniature.webp",
-      "sha256": "1365453c4126bc96d57affba78231f99112023da7453857fe7b7e9acad8e9650",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 11,
-      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 20815,
-      "at": "2026-10-01T09:50:54.182Z"
+      "sha256": "74fdf0e7517e730358130b7c9b869b0bea0765dca88872d2eb1586365dd5e606",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0019",
+      "from_trial": "ottoman-miniature.S.Y",
+      "prompt_sha256": "f47d175ce0bd1a4d47e7826cce7168709d70e67a33fe00476bd9b6f997f9f6fb",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.856Z"
     },
     "travel-poster": {
       "file": "public/styles/travel-poster.webp",
-      "sha256": "6b9c5847e29a7f222113beeedc7ea1f6eb3447fe69dfc4d6f1d27810123d8500",
-      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
-      "subject": "M",
-      "task": "0017",
-      "batch": 11,
-      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 19748,
-      "at": "2026-10-01T09:51:14.998Z"
+      "sha256": "36fa84bbcdf394a38d5d5e8247ae0fd8a12926dfe017b27b887a9e0e0948451a",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "travel-poster.S.C",
+      "prompt_sha256": "541324fc67858395675a1249ae46b7de7824f2c60bbffc5e808a910aa330252a",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.856Z"
     },
     "psychedelic": {
       "file": "public/styles/psychedelic.webp",
@@ -2985,36 +2315,14 @@
     },
     "mosaic": {
       "file": "public/styles/mosaic.webp",
-      "sha256": "78e77476085f1fdcbfc419a12d0f34080fd450d92a67eed0cbd8c0abad64cb94",
-      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
-      "subject": "M",
-      "task": "0017",
-      "batch": 12,
-      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1120,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 96
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1559
-      },
-      "cost_usd": 0.021842,
-      "latency_ms": 23795,
-      "at": "2026-10-01T10:11:09.358Z"
+      "sha256": "5c4bd09f08361ce1ca6a0476eed69344b8fa7905bfbfec818b0ffb7f9fe3d038",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0019",
+      "from_trial": "mosaic.S.D",
+      "prompt_sha256": "b4385f4f75d88c25d043a710e575c98da0e00e5a71f6ec56233a9b1166ae42eb",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.857Z"
     },
     "stained-glass": {
       "file": "public/styles/stained-glass.webp",
@@ -3051,36 +2359,14 @@
     },
     "iznik-tile": {
       "file": "public/styles/iznik-tile.webp",
-      "sha256": "eab4972d45ff9c3951dafd3f548d7cab30d0fb4b0e1400d1b4b17a16421b0051",
-      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
-      "subject": "N",
-      "task": "0017",
-      "batch": 12,
-      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1125,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 101
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1564
-      },
-      "cost_usd": 0.021867,
-      "latency_ms": 20630,
-      "at": "2026-10-01T10:11:55.265Z"
+      "sha256": "de64b295f6fdfece4ff074db5d7130757f9af0342a609efde0715791344b0739",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "subject": "C",
+      "task": "0019",
+      "from_trial": "iznik-tile.S.C",
+      "prompt_sha256": "ab6e2e27f520883130bb5288a31aa4742e4bea1fe757db22ec6a47b2d497f0f6",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.857Z"
     },
     "fresco": {
       "file": "public/styles/fresco.webp",
@@ -3161,36 +2447,25 @@
     },
     "embossed-copper": {
       "file": "public/styles/embossed-copper.webp",
-      "sha256": "173ef58c979a6ae5d7d4960fdb3b2b4b0b8b6cf1815e35e4e7ee210cef4786b0",
-      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
-      "subject": "E",
-      "task": "0017",
-      "batch": 12,
-      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
-      "request": {
-        "size": "1024x1024",
-        "quality": "medium",
-        "output_format": "webp",
-        "output_compression": 80
-      },
-      "response_quality": "medium",
-      "response_size": "1024x1024",
-      "usage": {
-        "input_tokens": 1126,
-        "input_tokens_details": {
-          "image_tokens": 1024,
-          "text_tokens": 102
-        },
-        "output_tokens": 439,
-        "output_tokens_details": {
-          "image_tokens": 439,
-          "text_tokens": 0
-        },
-        "total_tokens": 1565
-      },
-      "cost_usd": 0.021872,
-      "latency_ms": 19575,
-      "at": "2026-10-01T10:13:20.175Z"
+      "sha256": "b1bc9282f1d9da105a31abc1736b3a8b5ccde1e4901a20195531088d9c146aa6",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "embossed-copper.S.G",
+      "prompt_sha256": "f4d087a0767057602378321ad643eefcd607d25b347995806241db1577f645f2",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.858Z"
+    },
+    "goofy-sketch": {
+      "file": "public/styles/goofy-sketch.webp",
+      "sha256": "9c621c666c5675390e131c469ff2f017acb6ee8cf0445a6f59fbfa78b22b2319",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "subject": "G",
+      "task": "0019",
+      "from_trial": "goofy-sketch.B.G",
+      "prompt_sha256": "0550046bb4daf98b422a9af997ef19248d931ebec719cd0ab40a29a5b222663c",
+      "cost_usd": 0,
+      "at": "2026-10-02T11:54:18.835Z"
     }
   },
   "discarded": [
@@ -4823,6 +4098,1288 @@
       "cost_usd": 0.021902,
       "latency_ms": 22199,
       "at": "2026-10-01T09:49:49.720Z"
+    },
+    {
+      "role": "preview chibi",
+      "replaced_at": "2026-10-02T11:54:18.836Z",
+      "file": "public/styles/chibi.webp",
+      "sha256": "8e909d61f221459ddec3a0c847ad788a24c88279de4cbb23c54bc7c34ef93757",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 18675,
+      "at": "2026-09-30T19:47:59.410Z"
+    },
+    {
+      "role": "preview comic-strip",
+      "replaced_at": "2026-10-02T11:54:18.836Z",
+      "file": "public/styles/comic-strip.webp",
+      "sha256": "25722cc3a58b3a9597a019c00e71d22d79d270b6a41e18b7a8284a8fcf39817d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22538,
+      "at": "2026-09-30T20:11:07.606Z"
+    },
+    {
+      "role": "preview die-cut-sticker",
+      "replaced_at": "2026-10-02T11:54:18.837Z",
+      "file": "public/styles/die-cut-sticker.webp",
+      "sha256": "9e0085183644ed2aa601ab652d85f9126d7f1a8dca6fe715415534697a7cb6b1",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 2,
+      "plan_sha256": "3e2dc8b675e1e3c1e500a1670f48ced268f7025bb51698c96d9c4f81ed57aaf1",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19777,
+      "at": "2026-09-30T20:11:30.145Z"
+    },
+    {
+      "role": "preview kawaii-pastel",
+      "replaced_at": "2026-10-02T11:54:18.837Z",
+      "file": "public/styles/kawaii-pastel.webp",
+      "sha256": "4ebd65a935d8ea20b2a529c1b351e764bdc516091509270ed3444fd32fe00efc",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0018",
+      "from_trial": "kawaii-pastel.A",
+      "prompt_sha256": "a2a5d70f56f78349be1a54ef14fea4c5e79393f14037c888d2d08af08ddbdc34",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.401Z"
+    },
+    {
+      "role": "preview continuous-line",
+      "replaced_at": "2026-10-02T11:54:18.837Z",
+      "file": "public/styles/continuous-line.webp",
+      "sha256": "fe99609c2f3bae932fc683d3c3c2f77c9ee001e2e86c7df83a83e20e3a8f28e7",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0018",
+      "from_trial": "continuous-line.B",
+      "prompt_sha256": "d1580d3e7ae4d8ea7e6476acc09491b06dccc58e2cce760b9a4340e89a192827",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.401Z"
+    },
+    {
+      "role": "preview graphite-pencil",
+      "replaced_at": "2026-10-02T11:54:18.838Z",
+      "file": "public/styles/graphite-pencil.webp",
+      "sha256": "9560518dc3a47b03b9af33a60a149b79eef0a31f60260ee4c43166c43e682721",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 19162,
+      "at": "2026-10-01T08:36:11.529Z"
+    },
+    {
+      "role": "preview charcoal",
+      "replaced_at": "2026-10-02T11:54:18.838Z",
+      "file": "public/styles/charcoal.webp",
+      "sha256": "dea729ae5aba6fd392386211fac6d224fa27f9190cd09e961de2d58e98b1d772",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19939,
+      "at": "2026-10-01T08:36:30.692Z"
+    },
+    {
+      "role": "preview oil-pastel",
+      "replaced_at": "2026-10-02T11:54:18.839Z",
+      "file": "public/styles/oil-pastel.webp",
+      "sha256": "f3496161a1fbc20c53aede2288d8278837f7e85465f377550b7cb42bd4c373ee",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0018",
+      "from_trial": "oil-pastel.S",
+      "prompt_sha256": "b21acfc7b833d0a7ea5a25d6aef00dad838d60177bf2841c3cb63f0d64b67f41",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.406Z"
+    },
+    {
+      "role": "preview chalk-pastel",
+      "replaced_at": "2026-10-02T11:54:18.840Z",
+      "file": "public/styles/chalk-pastel.webp",
+      "sha256": "48fa033a82509e16e83cef4f765a1dfd468ae83b496f3b79fc2058aaf41f4360",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0018",
+      "from_trial": "chalk-pastel.A",
+      "prompt_sha256": "f044e2e4a09c3b34a10308fa0a6f28589575c36c983d89323bc4a4d633ca76f3",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.402Z"
+    },
+    {
+      "role": "preview wax-crayon",
+      "replaced_at": "2026-10-02T11:54:18.840Z",
+      "file": "public/styles/wax-crayon.webp",
+      "sha256": "704e0d86f440224bb08301845743b76314843606d19e803425ec1dc5d0a59707",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 4,
+      "plan_sha256": "12faefb26228fd737aa933f61bd686a364101c68bfb556a1feebd7860e5a2b5b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19482,
+      "at": "2026-10-01T08:37:54.329Z"
+    },
+    {
+      "role": "preview wet-paper",
+      "replaced_at": "2026-10-02T11:54:18.841Z",
+      "file": "public/styles/wet-paper.webp",
+      "sha256": "af27cc0f2b62fe129fc03da7abb323ae2dfbd1af715e5f037e4444a725f4ae87",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 21611,
+      "at": "2026-10-01T08:49:01.524Z"
+    },
+    {
+      "role": "preview ink-wash",
+      "replaced_at": "2026-10-02T11:54:18.841Z",
+      "file": "public/styles/ink-wash.webp",
+      "sha256": "b80a5e021a991d626b75b170bde3a78e8594522321dd784e0406f8530c1f393f",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 19191,
+      "at": "2026-10-01T08:49:44.580Z"
+    },
+    {
+      "role": "preview airbrush",
+      "replaced_at": "2026-10-02T11:54:18.842Z",
+      "file": "public/styles/airbrush.webp",
+      "sha256": "bc556755e50f3f4be25f78e1a7501c20a90bf0d08e724f6bb4352882565be352",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0018",
+      "from_trial": "airbrush.A",
+      "prompt_sha256": "47b6f2389be036938a6d6fada78dcddaa7145713dd0de637f6eeafb2448f1c56",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.402Z"
+    },
+    {
+      "role": "preview spray-graffiti",
+      "replaced_at": "2026-10-02T11:54:18.843Z",
+      "file": "public/styles/spray-graffiti.webp",
+      "sha256": "13422c8f5030d751cad824730954963009c65e40061fec3a7147316e6f2a52f0",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 5,
+      "plan_sha256": "76263311fedfc1fce03565212f74487929df8ee7a891f7dbfa572682e1f7f29d",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 18408,
+      "at": "2026-10-01T08:50:45.441Z"
+    },
+    {
+      "role": "preview engraved-plate",
+      "replaced_at": "2026-10-02T11:54:18.844Z",
+      "file": "public/styles/engraved-plate.webp",
+      "sha256": "4bff52068a7c2cd7a50040d51adad7f8709522ad13989c234b769b4474e557ce",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 19904,
+      "at": "2026-10-01T08:54:20.581Z"
+    },
+    {
+      "role": "preview double-pass",
+      "replaced_at": "2026-10-02T11:54:18.845Z",
+      "file": "public/styles/double-pass.webp",
+      "sha256": "3076595a17c819718f4db00689baea9c62294b854588166c400eccd4dfc2062d",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 20522,
+      "at": "2026-09-30T19:46:22.045Z"
+    },
+    {
+      "role": "preview risograph",
+      "replaced_at": "2026-10-02T11:54:18.846Z",
+      "file": "public/styles/risograph.webp",
+      "sha256": "6f835f77dbec572a2cb7fb848236378c6bacc4c914821edff30e34c435c339dd",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 20144,
+      "at": "2026-09-30T19:47:19.438Z"
+    },
+    {
+      "role": "preview cyanotype",
+      "replaced_at": "2026-10-02T11:54:18.846Z",
+      "file": "public/styles/cyanotype.webp",
+      "sha256": "c419bc37f5af39d895e1b282331808be4919469355f58fb2128d20577bff0f29",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 6,
+      "plan_sha256": "f0de160f95823fd3445a43d69c266be966f1651dffe4d14e6576b01cbd7c9503",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19777,
+      "at": "2026-10-01T08:55:02.316Z"
+    },
+    {
+      "role": "preview origami",
+      "replaced_at": "2026-10-02T11:54:18.847Z",
+      "file": "public/styles/origami.webp",
+      "sha256": "09eec1e5af664f955383534b85c09f4c08435961541c2cf0f27fe5e6def31627",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19709,
+      "at": "2026-10-01T08:58:47.489Z"
+    },
+    {
+      "role": "preview papercraft",
+      "replaced_at": "2026-10-02T11:54:18.847Z",
+      "file": "public/styles/papercraft.webp",
+      "sha256": "6977a4a966e24480aef81fbaf3c8a09ac03303ecfd60c14fe2043ce68578c9ed",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0018",
+      "from_trial": "papercraft.A",
+      "prompt_sha256": "4a4458172f7b89562c7956bb1882e0e0e2c116c4fd9f97af70d35a3ce22f0dd8",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.405Z"
+    },
+    {
+      "role": "preview magazine-collage",
+      "replaced_at": "2026-10-02T11:54:18.848Z",
+      "file": "public/styles/magazine-collage.webp",
+      "sha256": "cc94c25397fc8ba8abf51546d30e36bb57585bb81acc6c76404c31907465e30d",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 7,
+      "plan_sha256": "21d73f7373bf2299df7c5237625f0634536157ccfe1a4e5dc725d41ebabd8bf6",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 24337,
+      "at": "2026-10-01T08:59:50.731Z"
+    },
+    {
+      "role": "preview knitted",
+      "replaced_at": "2026-10-02T11:54:18.848Z",
+      "file": "public/styles/knitted.webp",
+      "sha256": "55552834ac127590f72de99fd3b9eebf07e8a5158ec7398d1751e9241aa07a36",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19563,
+      "at": "2026-10-01T09:03:53.167Z"
+    },
+    {
+      "role": "preview felt-plush",
+      "replaced_at": "2026-10-02T11:54:18.848Z",
+      "file": "public/styles/felt-plush.webp",
+      "sha256": "9315e676c611ae6d1da13d88a813c1ad35c60ffedf06970a68757c8d83a0b206",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22699,
+      "at": "2026-10-01T09:04:34.238Z"
+    },
+    {
+      "role": "preview batik",
+      "replaced_at": "2026-10-02T11:54:18.849Z",
+      "file": "public/styles/batik.webp",
+      "sha256": "05e91b2b5c4cda55acf9aeb80705548c9f133eed5ac032310d4b11dc1725944c",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 8,
+      "plan_sha256": "19cc6031106a3c8c81f2ec22d4ba2f7354bd0364b08b08063d44eb20c589c2a5",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 19071,
+      "at": "2026-10-01T09:04:56.938Z"
+    },
+    {
+      "role": "preview woven-tapestry",
+      "replaced_at": "2026-10-02T11:54:18.849Z",
+      "file": "public/styles/woven-tapestry.webp",
+      "sha256": "50691d7d020063f9793b8439642172cc67a3cf94def33e1c806f741740805038",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0018",
+      "from_trial": "woven-tapestry.S",
+      "prompt_sha256": "db7511d668f1d7a9afad9460c84cb798f19ab4fc96280fd9d404c7d36afd299a",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.406Z"
+    },
+    {
+      "role": "preview plasticine",
+      "replaced_at": "2026-10-02T11:54:18.850Z",
+      "file": "public/styles/plasticine.webp",
+      "sha256": "8d9393fb88f3e501d97bbf1ed109e8bae785946391dcabb51e1491cc347eee26",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0018",
+      "from_trial": "plasticine.A",
+      "prompt_sha256": "7d2702855ccbae6e92dfe8d1f1634c61c8cde0102a3180555034c1725c3b5ea0",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.404Z"
+    },
+    {
+      "role": "preview porcelain",
+      "replaced_at": "2026-10-02T11:54:18.850Z",
+      "file": "public/styles/porcelain.webp",
+      "sha256": "52362919ec63822c6b285e18c62e161ba8e31a282791cb926b816decb186da28",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 18406,
+      "at": "2026-10-01T09:28:45.052Z"
+    },
+    {
+      "role": "preview wood-carving",
+      "replaced_at": "2026-10-02T11:54:18.851Z",
+      "file": "public/styles/wood-carving.webp",
+      "sha256": "43449e838acd1a041fdff7e5d5d5bb0baa8104d19bf87beabe7ddfa927cf3f23",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 20215,
+      "at": "2026-10-01T09:29:03.459Z"
+    },
+    {
+      "role": "preview bronze",
+      "replaced_at": "2026-10-02T11:54:18.851Z",
+      "file": "public/styles/bronze.webp",
+      "sha256": "70e523cf44ce6468333545fa1fe60dd1e7bf76d413277c4f90fdd88a1bf80eea",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 9,
+      "plan_sha256": "d890e51e4207043a7c28557976acbf5c277cec93129d74b956d3785c043ad015",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19321,
+      "at": "2026-10-01T09:29:23.675Z"
+    },
+    {
+      "role": "preview feature-caricature",
+      "replaced_at": "2026-10-02T11:54:18.852Z",
+      "file": "public/styles/feature-caricature.webp",
+      "sha256": "11f5febfb01e5660b6ed93b73b293c8e857aee5084938db172d574a1fd75836c",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "response": {
+        "quality": "medium",
+        "size": "1024x1024",
+        "output_format": "webp",
+        "keys": [
+          "background",
+          "created",
+          "data",
+          "output_format",
+          "quality",
+          "size",
+          "usage"
+        ]
+      },
+      "usage": {
+        "input_tokens": 1145,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 121
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1584
+      },
+      "cost_usd": 0.021967,
+      "latency_ms": 19385,
+      "at": "2026-09-29T13:38:41.287Z"
+    },
+    {
+      "role": "preview newsprint-caricature",
+      "replaced_at": "2026-10-02T11:54:18.852Z",
+      "file": "public/styles/newsprint-caricature.webp",
+      "sha256": "e2b9b23478a590e5eed7a66de3789a19164b5b5f3f9527ad433f21a1271c0d19",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0018",
+      "from_trial": "newsprint-caricature.A",
+      "prompt_sha256": "e44e02534ef325a22267baa21f27c4dc9170d34c1ee70ee2f5530e319e393338",
+      "cost_usd": 0,
+      "at": "2026-10-01T13:06:12.401Z"
+    },
+    {
+      "role": "preview bobblehead",
+      "replaced_at": "2026-10-02T11:54:18.853Z",
+      "file": "public/styles/bobblehead.webp",
+      "sha256": "9335f0c2c5fdb418ac3285ce1f807e31e0fadddcd246eecde7cbd1c46b47a953",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 16062,
+      "at": "2026-09-30T19:48:18.085Z"
+    },
+    {
+      "role": "preview pop-art",
+      "replaced_at": "2026-10-02T11:54:18.853Z",
+      "file": "public/styles/pop-art.webp",
+      "sha256": "1f893c756b8e063de2e5e0fdb80cc4c5bae94e9ab57b559055d4ec9b3bf25771",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20148,
+      "at": "2026-10-01T09:39:05.955Z"
+    },
+    {
+      "role": "preview geometric-vector",
+      "replaced_at": "2026-10-02T11:54:18.854Z",
+      "file": "public/styles/geometric-vector.webp",
+      "sha256": "955109aba65377bac36516c6fdde84fd1158d872da791d758aa047c034f40031",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 22692,
+      "at": "2026-10-01T09:39:26.104Z"
+    },
+    {
+      "role": "preview neon-sign",
+      "replaced_at": "2026-10-02T11:54:18.854Z",
+      "file": "public/styles/neon-sign.webp",
+      "sha256": "aadd3b310aed9d0eb3d6500312b20013d112666ccd112a56953c7ecc0213a8b5",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0017",
+      "batch": 10,
+      "plan_sha256": "7ea340a3addbb2f87033bd9743813a20c6256f3ae3dde088b6d84fcc1b151552",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 20693,
+      "at": "2026-10-01T09:40:46.751Z"
+    },
+    {
+      "role": "preview duotone-poster",
+      "replaced_at": "2026-10-02T11:54:18.854Z",
+      "file": "public/styles/duotone-poster.webp",
+      "sha256": "077d9c47b151c1036aeca546118f409e96ac5a95df236c7a10b172e0795b4a44",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 1,
+      "plan_sha256": "856955bc3750d1efa5cb48efa45844e820a0830afe83813bd78f5c29a94ac67b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 16960,
+      "at": "2026-09-30T19:47:02.478Z"
+    },
+    {
+      "role": "preview art-nouveau",
+      "replaced_at": "2026-10-02T11:54:18.855Z",
+      "file": "public/styles/art-nouveau.webp",
+      "sha256": "efbd7d3c7004c6cf3d1e56d41f38cceb3578452547d479b5aa53c9aa7e7a7be7",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21629,
+      "at": "2026-10-01T09:49:08.122Z"
+    },
+    {
+      "role": "preview ottoman-miniature",
+      "replaced_at": "2026-10-02T11:54:18.856Z",
+      "file": "public/styles/ottoman-miniature.webp",
+      "sha256": "1365453c4126bc96d57affba78231f99112023da7453857fe7b7e9acad8e9650",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20815,
+      "at": "2026-10-01T09:50:54.182Z"
+    },
+    {
+      "role": "preview travel-poster",
+      "replaced_at": "2026-10-02T11:54:18.856Z",
+      "file": "public/styles/travel-poster.webp",
+      "sha256": "6b9c5847e29a7f222113beeedc7ea1f6eb3447fe69dfc4d6f1d27810123d8500",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 11,
+      "plan_sha256": "6af440137a7264a9c4cdb604c5c83d1ed57e87d89fe9272ffd39f4de536869d9",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19748,
+      "at": "2026-10-01T09:51:14.998Z"
+    },
+    {
+      "role": "preview mosaic",
+      "replaced_at": "2026-10-02T11:54:18.857Z",
+      "file": "public/styles/mosaic.webp",
+      "sha256": "78e77476085f1fdcbfc419a12d0f34080fd450d92a67eed0cbd8c0abad64cb94",
+      "input_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "subject": "M",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1120,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 96
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1559
+      },
+      "cost_usd": 0.021842,
+      "latency_ms": 23795,
+      "at": "2026-10-01T10:11:09.358Z"
+    },
+    {
+      "role": "preview iznik-tile",
+      "replaced_at": "2026-10-02T11:54:18.857Z",
+      "file": "public/styles/iznik-tile.webp",
+      "sha256": "eab4972d45ff9c3951dafd3f548d7cab30d0fb4b0e1400d1b4b17a16421b0051",
+      "input_sha256": "d0ea0b09259c7d836e3f95274701293f51ced6e2f8ecbc222fad53949d638085",
+      "subject": "N",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20630,
+      "at": "2026-10-01T10:11:55.265Z"
+    },
+    {
+      "role": "preview embossed-copper",
+      "replaced_at": "2026-10-02T11:54:18.858Z",
+      "file": "public/styles/embossed-copper.webp",
+      "sha256": "173ef58c979a6ae5d7d4960fdb3b2b4b0b8b6cf1815e35e4e7ee210cef4786b0",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0017",
+      "batch": 12,
+      "plan_sha256": "ebe0682ba625dc8913af41b6ff50ae7e52c5596e4b3ae7e4619166125bf4ff11",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19575,
+      "at": "2026-10-01T10:13:20.175Z"
     }
   ],
   "last_error": null,
@@ -6040,6 +6597,2219 @@
       "cost_usd": 0.021927,
       "latency_ms": 23919,
       "at": "2026-10-01T13:02:30.198Z"
+    },
+    "src.C": {
+      "file": "assets/subjects/couple/source.jpg",
+      "sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "C",
+      "input_sha256": null,
+      "prompt_sha256": "39ab5ae83b028cc32cb04230e1def89ee07dc5fe5b7ae225c3580164534dde7c",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 73,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 73
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 512
+      },
+      "cost_usd": 0.013535,
+      "latency_ms": 18225,
+      "at": "2026-10-01T14:59:59.959Z"
+    },
+    "src.G": {
+      "file": "assets/subjects/friends/source.jpg",
+      "sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "G",
+      "input_sha256": null,
+      "prompt_sha256": "2e50a9df4423d92961ca64e783160bf567ab28869d2d9eea81b92a13d0aeb0a5",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 75,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 75
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 514
+      },
+      "cost_usd": 0.013545,
+      "latency_ms": 17564,
+      "at": "2026-10-01T15:00:18.185Z"
+    },
+    "src.A": {
+      "file": "assets/subjects/family/source.jpg",
+      "sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "A",
+      "input_sha256": null,
+      "prompt_sha256": "79a8cde71136a90168003c8395fb3b3522dde165529554ede406ee2aaf198bc8",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 84,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 84
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 523
+      },
+      "cost_usd": 0.01359,
+      "latency_ms": 16228,
+      "at": "2026-10-01T15:00:35.750Z"
+    },
+    "src.Y": {
+      "file": "assets/subjects/older-woman/source.jpg",
+      "sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "Y",
+      "input_sha256": null,
+      "prompt_sha256": "e2d535f1b683c1960c2b8b864aff3811aaa35bbff9c0bec042445a582143f0cd",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 74,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 74
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 513
+      },
+      "cost_usd": 0.01354,
+      "latency_ms": 15229,
+      "at": "2026-10-01T15:00:51.979Z"
+    },
+    "src.S": {
+      "file": "assets/subjects/bearded-man/source.jpg",
+      "sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "S",
+      "input_sha256": null,
+      "prompt_sha256": "c5669d1c02cd023b7691f0ea197b357951f4c6ac1ff3d4827b57657c0ad2b92e",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 76,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 76
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 515
+      },
+      "cost_usd": 0.01355,
+      "latency_ms": 17173,
+      "at": "2026-10-01T15:01:07.209Z"
+    },
+    "src.T": {
+      "file": "assets/subjects/cat/source.jpg",
+      "sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "T",
+      "input_sha256": null,
+      "prompt_sha256": "eec5f9fa915f3fbb4756e355af2e38a1c8982836bb70d97361d412ebcc769a96",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 48,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 48
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 487
+      },
+      "cost_usd": 0.01341,
+      "latency_ms": 15871,
+      "at": "2026-10-01T15:01:24.384Z"
+    },
+    "src.D": {
+      "file": "assets/subjects/dog/source.jpg",
+      "sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "kind": "source",
+      "id": null,
+      "variant": null,
+      "subject": "D",
+      "input_sha256": null,
+      "prompt_sha256": "7a4e2c2b309e64d1d714ddaa456f81cfa8f997e88177253fb41d04d6b007cf79",
+      "task": "0019",
+      "batch": 1,
+      "plan_sha256": "85cbcb43cda64c35a4ceca056a3f88cfee94d95af19cd1810ca988fac1966c57",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "jpeg"
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 60,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 60
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 499
+      },
+      "cost_usd": 0.01347,
+      "latency_ms": 18406,
+      "at": "2026-10-01T15:01:40.256Z"
+    },
+    "goofy-sketch.A.G": {
+      "file": "assets/trials/0019/goofy-sketch.A.G.webp",
+      "sha256": "343ee6e0eb4e6f70a488c9d9a52a86fd5ba3be498e9c46b10ce9eb4c9e6cf3ed",
+      "kind": "render",
+      "id": "goofy-sketch",
+      "variant": "A",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "ff8d245dfb596d9690244e108134246b4ea31a0ce08f3c2d0bc8f9cc0b281f50",
+      "task": "0019",
+      "batch": 2,
+      "plan_sha256": "4f9509db49e1feafafaf2ed9450d8092d61938adceab8806641084264547bf9b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1214,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 190
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1653
+      },
+      "cost_usd": 0.022312,
+      "latency_ms": 26939,
+      "at": "2026-10-01T15:37:26.552Z"
+    },
+    "goofy-sketch.B.G": {
+      "file": "assets/trials/0019/goofy-sketch.B.G.webp",
+      "sha256": "9c621c666c5675390e131c469ff2f017acb6ee8cf0445a6f59fbfa78b22b2319",
+      "kind": "render",
+      "id": "goofy-sketch",
+      "variant": "B",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "0550046bb4daf98b422a9af997ef19248d931ebec719cd0ab40a29a5b222663c",
+      "task": "0019",
+      "batch": 2,
+      "plan_sha256": "4f9509db49e1feafafaf2ed9450d8092d61938adceab8806641084264547bf9b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1215,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 191
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1654
+      },
+      "cost_usd": 0.022317,
+      "latency_ms": 24543,
+      "at": "2026-10-01T15:37:53.493Z"
+    },
+    "goofy-sketch.A.E": {
+      "file": "assets/trials/0019/goofy-sketch.A.E.webp",
+      "sha256": "02b79db3928ac94b378a7e23e256fd95d73da8feef8dd8c0bfdf63bd5260b087",
+      "kind": "render",
+      "id": "goofy-sketch",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "ff8d245dfb596d9690244e108134246b4ea31a0ce08f3c2d0bc8f9cc0b281f50",
+      "task": "0019",
+      "batch": 2,
+      "plan_sha256": "4f9509db49e1feafafaf2ed9450d8092d61938adceab8806641084264547bf9b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1214,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 190
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1653
+      },
+      "cost_usd": 0.022312,
+      "latency_ms": 23952,
+      "at": "2026-10-01T15:38:18.037Z"
+    },
+    "goofy-sketch.B.E": {
+      "file": "assets/trials/0019/goofy-sketch.B.E.webp",
+      "sha256": "dd7402e7624cac0578110fb3d113c5471783d71f5cf5d676e2eb4a7bb5461a6d",
+      "kind": "render",
+      "id": "goofy-sketch",
+      "variant": "B",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "0550046bb4daf98b422a9af997ef19248d931ebec719cd0ab40a29a5b222663c",
+      "task": "0019",
+      "batch": 2,
+      "plan_sha256": "4f9509db49e1feafafaf2ed9450d8092d61938adceab8806641084264547bf9b",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1215,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 191
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1654
+      },
+      "cost_usd": 0.022317,
+      "latency_ms": 20789,
+      "at": "2026-10-01T15:38:41.991Z"
+    },
+    "chibi.S.C": {
+      "file": "assets/trials/0019/chibi.S.C.webp",
+      "sha256": "e9ad7ea05b1fc3a37a9372b3a09338aa659a6682e190a9c9d4a89dc2faebcc7c",
+      "kind": "render",
+      "id": "chibi",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "c8b1d372b2b98456274e904a2e46d82521fbfaf4b910f21bdf6fc9afb8d75c4c",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 21654,
+      "at": "2026-10-02T08:33:05.552Z"
+    },
+    "toon-3d.S.G": {
+      "file": "assets/trials/0019/toon-3d.S.G.webp",
+      "sha256": "0612e3bb941afb2bef4d35d262333fa7519ea1af5a9ff173321bf87093080ddf",
+      "kind": "render",
+      "id": "toon-3d",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "1a0e1f95bd823068f24d6b883478e0769c900dca64d7719157996176b3eb5d5d",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 22017,
+      "at": "2026-10-02T08:33:27.208Z"
+    },
+    "comic-strip.S.Y": {
+      "file": "assets/trials/0019/comic-strip.S.Y.webp",
+      "sha256": "13f7cbca724721a9e593464ae2f3ba226060870904f58c75091fec010b12ad4f",
+      "kind": "render",
+      "id": "comic-strip",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "25c0164fd8ea19ec5c5f05e044770b8f45e7832ffd05d48d1efde626738a5fa7",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 17441,
+      "at": "2026-10-02T08:33:49.226Z"
+    },
+    "die-cut-sticker.S.S": {
+      "file": "assets/trials/0019/die-cut-sticker.S.S.webp",
+      "sha256": "3118affa1f5d4a72d37df201be42dadf8cfde4106203021c35fffa47991eb404",
+      "kind": "render",
+      "id": "die-cut-sticker",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "2f898bf634c22d5225acde5ee84b5f8c5b31de479a2172d80fe80b233330c603",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 17455,
+      "at": "2026-10-02T08:34:06.669Z"
+    },
+    "kawaii-pastel.S.T": {
+      "file": "assets/trials/0019/kawaii-pastel.S.T.webp",
+      "sha256": "f1cb84786392783a9894b81735d5fd9f6ec615ef70f39d0e98dfc58780a04b84",
+      "kind": "render",
+      "id": "kawaii-pastel",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "a2a5d70f56f78349be1a54ef14fea4c5e79393f14037c888d2d08af08ddbdc34",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19100,
+      "at": "2026-10-02T08:34:24.126Z"
+    },
+    "line-wash.S.C": {
+      "file": "assets/trials/0019/line-wash.S.C.webp",
+      "sha256": "b6ac7715a06647304372d6e7866e0f5ba10efe8b9f5c0a3a70d4940fd807062e",
+      "kind": "render",
+      "id": "line-wash",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "65344652b119ffa9fb919462c5132ca1c8c84db3a22fc540e9beed32455f6f62",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 18263,
+      "at": "2026-10-02T08:34:43.227Z"
+    },
+    "continuous-line.S.G": {
+      "file": "assets/trials/0019/continuous-line.S.G.webp",
+      "sha256": "d4de9a11382f4b0bacd92d28eba015dd59a745cc2441cb346806d2b93eb5d195",
+      "kind": "render",
+      "id": "continuous-line",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "d1580d3e7ae4d8ea7e6476acc09491b06dccc58e2cce760b9a4340e89a192827",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 19563,
+      "at": "2026-10-02T08:35:01.491Z"
+    },
+    "technical-pen.S.A": {
+      "file": "assets/trials/0019/technical-pen.S.A.webp",
+      "sha256": "12007bc3dc0e2f70c407191c7fd0b4bd088b8d5f7a05a62e8fd46b17b99108c1",
+      "kind": "render",
+      "id": "technical-pen",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "2226d1b658557b22f9ea983e68c5f7414a25ea1b124a32620dd5ad9c1d6b9e30",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1123,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 99
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1562
+      },
+      "cost_usd": 0.021857,
+      "latency_ms": 20176,
+      "at": "2026-10-02T08:35:21.055Z"
+    },
+    "graphite-pencil.S.G": {
+      "file": "assets/trials/0019/graphite-pencil.S.G.webp",
+      "sha256": "95ab1cfb2fc4fbe0d8acdf7c1e7c0e23fc1a1c4f993781148ad73b7ffe1fea2d",
+      "kind": "render",
+      "id": "graphite-pencil",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "f0f39f4d95f6b89553e2305eeef58029be54b71e643d49cb154d7a57d44c3065",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 20145,
+      "at": "2026-10-02T08:35:41.232Z"
+    },
+    "charcoal.S.A": {
+      "file": "assets/trials/0019/charcoal.S.A.webp",
+      "sha256": "902859e8ef004492dea3bd3b9091a45a84372de0581760c8112d57240069dfc7",
+      "kind": "render",
+      "id": "charcoal",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "4664b27e2f4017f128b1ce4b10cb7fa6152f2d790e45a8fc988b27114c574294",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21895,
+      "at": "2026-10-02T08:36:01.379Z"
+    },
+    "oil-pastel.S.S": {
+      "file": "assets/trials/0019/oil-pastel.S.S.webp",
+      "sha256": "82c9d8b3e42439206494bec7a98e5a88ae938b40b347f46d3885d6e16fbc114b",
+      "kind": "render",
+      "id": "oil-pastel",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "b21acfc7b833d0a7ea5a25d6aef00dad838d60177bf2841c3cb63f0d64b67f41",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 20559,
+      "at": "2026-10-02T08:36:23.275Z"
+    },
+    "chalk-pastel.S.T": {
+      "file": "assets/trials/0019/chalk-pastel.S.T.webp",
+      "sha256": "a84b048f7f40a2083b581505128d9488087db8123d25fce0a4dc97aea1766f2d",
+      "kind": "render",
+      "id": "chalk-pastel",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "f044e2e4a09c3b34a10308fa0a6f28589575c36c983d89323bc4a4d633ca76f3",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1135,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 111
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1574
+      },
+      "cost_usd": 0.021917,
+      "latency_ms": 19411,
+      "at": "2026-10-02T08:36:43.835Z"
+    },
+    "wax-crayon.S.D": {
+      "file": "assets/trials/0019/wax-crayon.S.D.webp",
+      "sha256": "323bd0664763f00ddb0b8c5ab81eed202826cbf910f419dcb4dded9eb902c08a",
+      "kind": "render",
+      "id": "wax-crayon",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "4a2365e9fc4aebc8680cdd43af76bb9fb2109979fb011ad99718c0a2d121344e",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21104,
+      "at": "2026-10-02T08:37:03.247Z"
+    },
+    "wet-paper.S.C": {
+      "file": "assets/trials/0019/wet-paper.S.C.webp",
+      "sha256": "4b02fa09e799f985458c5845570f2119a4281eaf952de7a679693f4659d1e107",
+      "kind": "render",
+      "id": "wet-paper",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "faaf718b351c5427c8d94596fe60d838eb26e8b3d2b32bac969d676645ca6a75",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 24145,
+      "at": "2026-10-02T08:37:24.352Z"
+    },
+    "oil-glaze.S.G": {
+      "file": "assets/trials/0019/oil-glaze.S.G.webp",
+      "sha256": "2b9570ccec97ea86f18519d2f6bb10c882dcd9328c5da18b21b5449f6a4525e4",
+      "kind": "render",
+      "id": "oil-glaze",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "36da374ee750b34da13d3bfad0747c8d85d2fc774ed533071b5c17adf98419ad",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19969,
+      "at": "2026-10-02T08:37:48.498Z"
+    },
+    "ink-wash.S.A": {
+      "file": "assets/trials/0019/ink-wash.S.A.webp",
+      "sha256": "f065a5d8bf772600f2b06cb067f53c62cef9607d364934b69aa00f413f990275",
+      "kind": "render",
+      "id": "ink-wash",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "432efc14946f26b1c803e7f38793f1a1b046495bc64be8cf5d6253c6b3a1bf3c",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 18995,
+      "at": "2026-10-02T08:38:08.469Z"
+    },
+    "airbrush.S.Y": {
+      "file": "assets/trials/0019/airbrush.S.Y.webp",
+      "sha256": "b688f9d9c7f2df847a8bdadab28aacf1cf45c900a479ca5d9619b16576b39079",
+      "kind": "render",
+      "id": "airbrush",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "47b6f2389be036938a6d6fada78dcddaa7145713dd0de637f6eeafb2448f1c56",
+      "task": "0019",
+      "batch": 3,
+      "plan_sha256": "8b40ef0acef1bb11466a8bc9a80cf39520d4d81be2b07fa4d94ad37c2f817f96",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1134,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 110
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1573
+      },
+      "cost_usd": 0.021912,
+      "latency_ms": 17985,
+      "at": "2026-10-02T08:38:27.465Z"
+    },
+    "spray-graffiti.S.S": {
+      "file": "assets/trials/0019/spray-graffiti.S.S.webp",
+      "sha256": "7996515ae7c61ecf324499abd3cc8e040f82a26e7f156396801ad9162e840c73",
+      "kind": "render",
+      "id": "spray-graffiti",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "1174eb476dc340a30cac9d0f1f73a1a87b65fd9bda0edef8ef5b93c8445a050a",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19845,
+      "at": "2026-10-02T11:34:57.993Z"
+    },
+    "engraved-plate.S.C": {
+      "file": "assets/trials/0019/engraved-plate.S.C.webp",
+      "sha256": "1de5b4311880f0bcb0ffa2da6a85d8452c63656e64407ed3a00c55cb6cee49eb",
+      "kind": "render",
+      "id": "engraved-plate",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "5e0a6fd55cb2cc5b68478cdf94d98c7a3d2ac4833de17c156fb731b946fd8617",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 22151,
+      "at": "2026-10-02T11:35:17.841Z"
+    },
+    "double-pass.S.G": {
+      "file": "assets/trials/0019/double-pass.S.G.webp",
+      "sha256": "07c7e6a937dfb7eaaade8770fec9d94512e1f55179026c1c9bb501602982ff89",
+      "kind": "render",
+      "id": "double-pass",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "3e18bf672427d24f6e74c3d522d877a5f1c44f415b6746be4635cea53d04101d",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 20060,
+      "at": "2026-10-02T11:35:39.993Z"
+    },
+    "risograph.S.A": {
+      "file": "assets/trials/0019/risograph.S.A.webp",
+      "sha256": "0d6ba73cf79e973b04bd82f723357611266a6600cff924c6e0fbf15ad040be63",
+      "kind": "render",
+      "id": "risograph",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "644f8833019be38d93c79ff363b725738d073b545832bad7f0f5519784813f13",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 22239,
+      "at": "2026-10-02T11:36:00.054Z"
+    },
+    "cyanotype.S.S": {
+      "file": "assets/trials/0019/cyanotype.S.S.webp",
+      "sha256": "d793b54e62c935f0d6e9b474a74b09124e083f16ca3ec5c9d2cebc762cc1ae65",
+      "kind": "render",
+      "id": "cyanotype",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "8dcb0ddb49fd6b6784aaac3c1ed2fa63b4ee64ad82f4a2177bbe33575f8ae123",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 17065,
+      "at": "2026-10-02T11:36:22.294Z"
+    },
+    "origami.S.A": {
+      "file": "assets/trials/0019/origami.S.A.webp",
+      "sha256": "be866a1591fab0d5097293dc264d8d1c2492bb4166a2c5b2ad1b9c39d7acefd3",
+      "kind": "render",
+      "id": "origami",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "2986b45ece885bf7f21d5e86df595e504f75ec8b2612c2ce269bc5167f6e2b12",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 22190,
+      "at": "2026-10-02T11:36:39.360Z"
+    },
+    "papercraft.S.C": {
+      "file": "assets/trials/0019/papercraft.S.C.webp",
+      "sha256": "67eab6e8c0bacfa4c4723212285a87ed9e322abcb8e714b5337bf76241c9094f",
+      "kind": "render",
+      "id": "papercraft",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "4a4458172f7b89562c7956bb1882e0e0e2c116c4fd9f97af70d35a3ce22f0dd8",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 24885,
+      "at": "2026-10-02T11:37:01.551Z"
+    },
+    "magazine-collage.S.T": {
+      "file": "assets/trials/0019/magazine-collage.S.T.webp",
+      "sha256": "25c304f982a4aaf6842c25b0ae8545bf594a3652f26d8eedbe4685d9a8bad05d",
+      "kind": "render",
+      "id": "magazine-collage",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "f9eba3b906e3e6501618183e3ef67d9b3f3c66575b592c20855e72d7d29d79d4",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 25690,
+      "at": "2026-10-02T11:37:26.437Z"
+    },
+    "knitted.S.T": {
+      "file": "assets/trials/0019/knitted.S.T.webp",
+      "sha256": "bfa5abb7673148c9b5610c3c174d4cefc76673ee45debaaa04587f5fe71a9c48",
+      "kind": "render",
+      "id": "knitted",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "ea1760393a8b184f4c6ca59115418cb3a8ae8fa4f9bd09e0c27e7c249499daa5",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 20803,
+      "at": "2026-10-02T11:37:52.129Z"
+    },
+    "felt-plush.S.S": {
+      "file": "assets/trials/0019/felt-plush.S.S.webp",
+      "sha256": "5e62c0320d06caa2e5e69088615e1ab83954d5aad80c5e3bf6a1d070345e81ca",
+      "kind": "render",
+      "id": "felt-plush",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "5835645f0a873d7c2b4cf992608741486611c1f65bbd37c2fa78cd88b9a49227",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 19529,
+      "at": "2026-10-02T11:38:12.933Z"
+    },
+    "batik.S.D": {
+      "file": "assets/trials/0019/batik.S.D.webp",
+      "sha256": "0c06601c9b6631e31eed332e06d9a28461ea6996cbec5bbf3f5db49a637aff1a",
+      "kind": "render",
+      "id": "batik",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "44764dc2c786ebfe84bda4e585d28a2bec17bc96f8a31372d0fa6b5413a20379",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 19089,
+      "at": "2026-10-02T11:38:32.464Z"
+    },
+    "patchwork-quilt.S.G": {
+      "file": "assets/trials/0019/patchwork-quilt.S.G.webp",
+      "sha256": "094cd399f09e9d7d2facf03a043e54f77437d494b06dfb25115efda5b2276fa2",
+      "kind": "render",
+      "id": "patchwork-quilt",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "df736937e1b733bc511b1e4bb68d35b7c842510f1f5980fc15ed45deff50816b",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1116,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 92
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1555
+      },
+      "cost_usd": 0.021822,
+      "latency_ms": 24022,
+      "at": "2026-10-02T11:38:51.555Z"
+    },
+    "woven-tapestry.S.C": {
+      "file": "assets/trials/0019/woven-tapestry.S.C.webp",
+      "sha256": "4ee664fcf51b8670e50f6ea425fa13c04950464a76d4ef5eddc1f9db44caf1cb",
+      "kind": "render",
+      "id": "woven-tapestry",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "db7511d668f1d7a9afad9460c84cb798f19ab4fc96280fd9d404c7d36afd299a",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 19327,
+      "at": "2026-10-02T11:39:15.578Z"
+    },
+    "plasticine.S.T": {
+      "file": "assets/trials/0019/plasticine.S.T.webp",
+      "sha256": "8d19eff25488cd29cdbc98489e5e595a04853ef3edbf54c8bb4ce0f9b68ddb09",
+      "kind": "render",
+      "id": "plasticine",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "7d2702855ccbae6e92dfe8d1f1634c61c8cde0102a3180555034c1725c3b5ea0",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1120,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 96
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1559
+      },
+      "cost_usd": 0.021842,
+      "latency_ms": 18812,
+      "at": "2026-10-02T11:39:34.909Z"
+    },
+    "porcelain.S.D": {
+      "file": "assets/trials/0019/porcelain.S.D.webp",
+      "sha256": "bd9c9131ad7bb651fe8fdb0cc3ff8190fc49c66114ca29a101c1b8dfad3da376",
+      "kind": "render",
+      "id": "porcelain",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "816d2352bbfca2d43ffd3951eb821b1245cfe74a587b3c58081ad16960301c36",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 17553,
+      "at": "2026-10-02T11:39:53.723Z"
+    },
+    "wood-carving.S.G": {
+      "file": "assets/trials/0019/wood-carving.S.G.webp",
+      "sha256": "b2caf0c076fc9506c7ca33d010da0c9d2234e96a0698aa0bfa2f2f199e486add",
+      "kind": "render",
+      "id": "wood-carving",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "96b6f79fc9d637fd46a5af6aacd8f49b79bdf3ecee536ff1c5cc1c37cf19cf15",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 20713,
+      "at": "2026-10-02T11:40:11.277Z"
+    },
+    "bronze.S.Y": {
+      "file": "assets/trials/0019/bronze.S.Y.webp",
+      "sha256": "a2e5ae91dc1bf98d7a4f32cfdf97286edd5bea373e505f82c4105030f3736840",
+      "kind": "render",
+      "id": "bronze",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "0e2693de184cf269fb79b1dcc87b7941914731bf47fe83ed6bc12f5b98bb006f",
+      "task": "0019",
+      "batch": 4,
+      "plan_sha256": "6091c0adc11cdb842218b19d671313fe169e1476d9d0f137c6811f1706c55820",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 16974,
+      "at": "2026-10-02T11:40:31.991Z"
+    },
+    "feature-caricature.S.A": {
+      "file": "assets/trials/0019/feature-caricature.S.A.webp",
+      "sha256": "f3f858aa2f815ce361fbf78c5cd4a634e4ee87422479e5eff394bc115e4a8b22",
+      "kind": "render",
+      "id": "feature-caricature",
+      "variant": "S",
+      "subject": "A",
+      "input_sha256": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+      "prompt_sha256": "201c536810556a809ae56b9035310b404a7e51e9830bec1eeb7256cb82ccfaac",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1145,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 121
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1584
+      },
+      "cost_usd": 0.021967,
+      "latency_ms": 22693,
+      "at": "2026-10-02T11:44:52.071Z"
+    },
+    "reduced-caricature.S.C": {
+      "file": "assets/trials/0019/reduced-caricature.S.C.webp",
+      "sha256": "fae80fcf7c511260cceb84f8944f0a0846cd81b32c6b6722add431f824bcee82",
+      "kind": "render",
+      "id": "reduced-caricature",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "f7edd0c3e223228adf2c65f64c5974544ce756cf0f3ef3046dbe44d7e0ea1a86",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21307,
+      "at": "2026-10-02T11:45:14.765Z"
+    },
+    "stretched-caricature.S.Y": {
+      "file": "assets/trials/0019/stretched-caricature.S.Y.webp",
+      "sha256": "8c295c522689f26e53f1969e61f54a15dbf081544901eaccd218f8b27826be93",
+      "kind": "render",
+      "id": "stretched-caricature",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "385f77d83dfd0f1919194a1979a3148934edb2448f138078b7918208f1dd6f58",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1143,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 119
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1582
+      },
+      "cost_usd": 0.021957,
+      "latency_ms": 17102,
+      "at": "2026-10-02T11:45:36.074Z"
+    },
+    "newsprint-caricature.S.G": {
+      "file": "assets/trials/0019/newsprint-caricature.S.G.webp",
+      "sha256": "19aee8a5bf6ac49592be94d14dc774108528c614229d6cdc8ab6b51424474889",
+      "kind": "render",
+      "id": "newsprint-caricature",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "e44e02534ef325a22267baa21f27c4dc9170d34c1ee70ee2f5530e319e393338",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1147,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 123
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1586
+      },
+      "cost_usd": 0.021977,
+      "latency_ms": 19785,
+      "at": "2026-10-02T11:45:53.178Z"
+    },
+    "bobblehead.S.S": {
+      "file": "assets/trials/0019/bobblehead.S.S.webp",
+      "sha256": "6f19e465191b5d3e91e3fcabf9db45d52db7f81fb2a11c1f0f13dc8aa6ca5421",
+      "kind": "render",
+      "id": "bobblehead",
+      "variant": "S",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "a61e5f2c939bd1d0786a1773a941dd4181d00772f6c66762c5b330c2c3235440",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1132,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 108
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1571
+      },
+      "cost_usd": 0.021902,
+      "latency_ms": 19185,
+      "at": "2026-10-02T11:46:12.964Z"
+    },
+    "pop-art.S.T": {
+      "file": "assets/trials/0019/pop-art.S.T.webp",
+      "sha256": "cea1da2d00fa2d97a9c40d10a3ec8281d2d52283b5c6e5068d2a0a04db4f4afa",
+      "kind": "render",
+      "id": "pop-art",
+      "variant": "S",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "8036c92e82aa9e2276c1ca710b1a1b874516c1bb3ef6b9fa593758dd0776028a",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20391,
+      "at": "2026-10-02T11:46:32.151Z"
+    },
+    "geometric-vector.S.D": {
+      "file": "assets/trials/0019/geometric-vector.S.D.webp",
+      "sha256": "11005227ecd362630b990823e9d1f05ef74d3b7e497826d31e0450b4bf441d23",
+      "kind": "render",
+      "id": "geometric-vector",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "5939119fa9ba6b0895d8125907b9e3f4102022f6356dbd0b69b06a04e0dbb462",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 23825,
+      "at": "2026-10-02T11:46:52.543Z"
+    },
+    "neon-sign.S.Y": {
+      "file": "assets/trials/0019/neon-sign.S.Y.webp",
+      "sha256": "fb5481ed2eff11f19545566c79528f97d507c59e8cd916755cfc9a8a2c2ecc6a",
+      "kind": "render",
+      "id": "neon-sign",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "35f07b10090833c5c6351183e941ce24aad40d75e7bb176ff3e779371eafc588",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19469,
+      "at": "2026-10-02T11:47:16.369Z"
+    },
+    "duotone-poster.S.C": {
+      "file": "assets/trials/0019/duotone-poster.S.C.webp",
+      "sha256": "8bc520f8e1d5446c6ccee8d7077274e8b08edea8e3fcaefe68be78fd6d59380c",
+      "kind": "render",
+      "id": "duotone-poster",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "202f69a3c69b7c4295930c5f5082e6e6cc3e0d581e8c2cf9fe4f88bced03c748",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19522,
+      "at": "2026-10-02T11:47:35.840Z"
+    },
+    "art-nouveau.S.D": {
+      "file": "assets/trials/0019/art-nouveau.S.D.webp",
+      "sha256": "057b1fc359e3ac0a8530ca18730a1953a51a1d12360b0672d880f804c16faeae",
+      "kind": "render",
+      "id": "art-nouveau",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "d01fa1cf4b0a0a62438bcd7a74fcc287d99cd675bf9c238886caad222b8bb38c",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 19810,
+      "at": "2026-10-02T11:47:55.363Z"
+    },
+    "ottoman-miniature.S.Y": {
+      "file": "assets/trials/0019/ottoman-miniature.S.Y.webp",
+      "sha256": "74fdf0e7517e730358130b7c9b869b0bea0765dca88872d2eb1586365dd5e606",
+      "kind": "render",
+      "id": "ottoman-miniature",
+      "variant": "S",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "f47d175ce0bd1a4d47e7826cce7168709d70e67a33fe00476bd9b6f997f9f6fb",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21187,
+      "at": "2026-10-02T11:48:15.175Z"
+    },
+    "travel-poster.S.C": {
+      "file": "assets/trials/0019/travel-poster.S.C.webp",
+      "sha256": "36fa84bbcdf394a38d5d5e8247ae0fd8a12926dfe017b27b887a9e0e0948451a",
+      "kind": "render",
+      "id": "travel-poster",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "541324fc67858395675a1249ae46b7de7824f2c60bbffc5e808a910aa330252a",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21551,
+      "at": "2026-10-02T11:48:36.363Z"
+    },
+    "mosaic.S.D": {
+      "file": "assets/trials/0019/mosaic.S.D.webp",
+      "sha256": "5c4bd09f08361ce1ca6a0476eed69344b8fa7905bfbfec818b0ffb7f9fe3d038",
+      "kind": "render",
+      "id": "mosaic",
+      "variant": "S",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "b4385f4f75d88c25d043a710e575c98da0e00e5a71f6ec56233a9b1166ae42eb",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1120,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 96
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1559
+      },
+      "cost_usd": 0.021842,
+      "latency_ms": 20901,
+      "at": "2026-10-02T11:48:57.916Z"
+    },
+    "iznik-tile.S.C": {
+      "file": "assets/trials/0019/iznik-tile.S.C.webp",
+      "sha256": "de64b295f6fdfece4ff074db5d7130757f9af0342a609efde0715791344b0739",
+      "kind": "render",
+      "id": "iznik-tile",
+      "variant": "S",
+      "subject": "C",
+      "input_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "prompt_sha256": "ab6e2e27f520883130bb5288a31aa4742e4bea1fe757db22ec6a47b2d497f0f6",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21516,
+      "at": "2026-10-02T11:49:18.818Z"
+    },
+    "embossed-copper.S.G": {
+      "file": "assets/trials/0019/embossed-copper.S.G.webp",
+      "sha256": "b1bc9282f1d9da105a31abc1736b3a8b5ccde1e4901a20195531088d9c146aa6",
+      "kind": "render",
+      "id": "embossed-copper",
+      "variant": "S",
+      "subject": "G",
+      "input_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "prompt_sha256": "f4d087a0767057602378321ad643eefcd607d25b347995806241db1577f645f2",
+      "task": "0019",
+      "batch": 5,
+      "plan_sha256": "a00a158b8db2af1498c801cff61f1f17bf3e096b02eba783b67128da20bd2b46",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 21884,
+      "at": "2026-10-02T11:49:40.336Z"
     }
   },
   "batches_0018": {
@@ -6101,6 +8871,168 @@
         "papier-mache": "keep",
         "ukiyo-e": "B"
       }
+    }
+  },
+  "batches_0019": {
+    "1": {
+      "result_sha256": "0847fe10e60fdf2fc4fab50a21bc1eb6638425030b9a44288093bac3beb4b58b",
+      "accepted_prefix": "0847fe10e60f",
+      "accepted_at": "2026-10-01T15:25:30.354Z",
+      "decisions": {},
+      "sources": {
+        "C": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+        "G": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+        "A": "1ec1c566e2e8f4e64c05e3c505958cbfc986e28b3b4e2fe907bf91cea8439a74",
+        "Y": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+        "S": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+        "T": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+        "D": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a"
+      }
+    },
+    "2": {
+      "result_sha256": "4a849cdefc94bff43019748f8f5e6ca81a944fd7432f9ff2a01022fe33ca28a5",
+      "accepted_prefix": "4a849cdefc94",
+      "accepted_at": "2026-10-02T08:14:11.997Z",
+      "decisions": {
+        "goofy-sketch": "B"
+      },
+      "sources": {}
+    },
+    "3": {
+      "result_sha256": "09f95b83de82c48a941329d4b08f297313dd2a1dbf1310d36a781692b8a2955c",
+      "accepted_prefix": "09f95b83de82",
+      "accepted_at": "2026-10-02T11:16:29.216Z",
+      "decisions": {
+        "chibi": "accept",
+        "toon-3d": "reject",
+        "comic-strip": "accept",
+        "die-cut-sticker": "accept",
+        "kawaii-pastel": "accept",
+        "line-wash": "reject",
+        "continuous-line": "accept",
+        "technical-pen": "reject",
+        "graphite-pencil": "accept",
+        "charcoal": "accept",
+        "oil-pastel": "accept",
+        "chalk-pastel": "accept",
+        "wax-crayon": "accept",
+        "wet-paper": "accept",
+        "oil-glaze": "reject",
+        "ink-wash": "accept",
+        "airbrush": "accept"
+      },
+      "sources": {}
+    },
+    "4": {
+      "result_sha256": "4773562dc8adca873fbcb79f98f5f45f005a5f1493cda76a6bd51cdf80245c57",
+      "accepted_prefix": "4773562dc8ad",
+      "accepted_at": "2026-10-02T11:43:59.551Z",
+      "decisions": {
+        "spray-graffiti": "accept",
+        "engraved-plate": "accept",
+        "double-pass": "accept",
+        "risograph": "accept",
+        "cyanotype": "accept",
+        "origami": "accept",
+        "papercraft": "accept",
+        "magazine-collage": "accept",
+        "knitted": "accept",
+        "felt-plush": "accept",
+        "batik": "accept",
+        "patchwork-quilt": "reject",
+        "woven-tapestry": "accept",
+        "plasticine": "accept",
+        "porcelain": "accept",
+        "wood-carving": "accept",
+        "bronze": "accept"
+      },
+      "sources": {}
+    },
+    "5": {
+      "result_sha256": "9ffc1d9d13aa9b5237ca65d0e01529125cc7d0027859ccc364b0a1c320c98b89",
+      "accepted_prefix": "9ffc1d9d13aa",
+      "accepted_at": "2026-10-02T11:52:49.872Z",
+      "decisions": {
+        "feature-caricature": "accept",
+        "reduced-caricature": "reject",
+        "stretched-caricature": "reject",
+        "newsprint-caricature": "accept",
+        "bobblehead": "accept",
+        "pop-art": "accept",
+        "geometric-vector": "accept",
+        "neon-sign": "accept",
+        "duotone-poster": "accept",
+        "art-nouveau": "accept",
+        "ottoman-miniature": "accept",
+        "travel-poster": "accept",
+        "mosaic": "accept",
+        "iznik-tile": "accept",
+        "embossed-copper": "accept"
+      },
+      "sources": {}
+    }
+  },
+  "webCopies": {
+    "public/gallery/friends/source.webp": {
+      "subject": "G",
+      "from": "assets/subjects/friends/source.jpg",
+      "from_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "sha256": "430b17fd270ab1c3072cbba954b55d669b59d4ab58469af609be9355ab1f1a81",
+      "bytes": 25706,
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
+    },
+    "public/gallery/couple/source.webp": {
+      "subject": "C",
+      "from": "assets/subjects/couple/source.jpg",
+      "from_sha256": "1e3aec217cd418cacf468dc89606ef8ef467bf1c230d3639c12ee0f36a811088",
+      "sha256": "28459d874dee72990c938a0e6b286f5f17a4f8dd4fa846698c886b5efb45fec7",
+      "bytes": 18904,
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
+    },
+    "public/gallery/pet/source.webp": {
+      "subject": "P",
+      "from": "assets/gallery/pet/source.jpg",
+      "from_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "sha256": "013c1c384747bc21aab6a518fbb5b5c2a106c4b4792b47987cfb324dc3427a51",
+      "bytes": 21328,
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
+    },
+    "public/gallery/maiden-tower/source.webp": {
+      "subject": "M",
+      "from": "assets/gallery/maiden-tower/source.jpg",
+      "from_sha256": "e9cbb3dfc64ef459d6afd8bb76fcc6a8c846bd64adf397a09ada1174000aef0e",
+      "sha256": "8cfc771c45ff939e88179449ed1e45133d586ee8a23602eb5a010c665304455b",
+      "bytes": 26216,
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
+    },
+    "public/gallery/man-portrait/source.webp": {
+      "subject": "E",
+      "from": "assets/gallery/man-portrait/source.jpg",
+      "from_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "sha256": "329b50a48dbeed0641dc7a07cadc2a285adaec92374bece48c7a3a73c5fcf0b4",
+      "bytes": 8162,
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
+    }
+  },
+  "featured": {
+    "goofy-sketch": {
+      "before": "public/gallery/friends/source.webp",
+      "before_sha256": "430b17fd270ab1c3072cbba954b55d669b59d4ab58469af609be9355ab1f1a81",
+      "from": "assets/subjects/friends/source.jpg",
+      "from_sha256": "a43f62a839eba3e738b589cd7dbf94c8186475af19fc27787a4ddfba41837f38",
+      "width": 480,
+      "quality": 72,
+      "task": "0019"
     }
   }
 }

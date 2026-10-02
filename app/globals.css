@@ -1143,3 +1143,57 @@ footer a:hover {
     border-top: 1px solid var(--stroke);
   }
 }
+
+/*
+ * The featured-style band under the landing hero (task 0019): the group photo and
+ * its render side by side, then the link. Tokens only; no numeric track floor.
+ */
+.featured-style {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1.1rem;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.featured-style h2 {
+  margin: 0;
+}
+
+.featured-lede {
+  margin: 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.featured-pair {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.featured-pair figure {
+  margin: 0;
+}
+
+.featured-pair img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.72rem;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.featured-pair figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.45rem;
+}
+
+.featured-cta {
+  justify-self: start;
+  font-weight: 700;
+}
