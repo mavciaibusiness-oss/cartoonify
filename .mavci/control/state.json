@@ -1,11 +1,11 @@
 {
   "active_task": null,
   "baseline_debt": 0,
-  "ci_pinned_plugin_version": "0.1.35",
+  "ci_pinned_plugin_version": "0.1.36",
   "next_task_id": 21,
   "phase": "release",
   "project_id": "cartoonify",
   "schema_version": 1,
-  "updated": "2026-10-02T13:52:51Z",
-  "written_by_plugin_version": "0.1.35"
+  "updated": "2026-10-02T15:15:00Z",
+  "written_by_plugin_version": "0.1.36"
 }
