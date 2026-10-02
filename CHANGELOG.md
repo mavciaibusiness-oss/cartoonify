@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Stretched-caricature prompt variant D on older woman, 6 subject moves, balanced distribution** (task 0020)
+  - Stretched-caricature: C and D variants tested on the older woman (Y); D chosen (ink-outlined newspaper caricature, clearly elongated). The prompt changes for users from this deploy; the preview and its web copy are the chosen trial. Style's category and other attributes unchanged.
+  - Six subject rebalancing moves, each re-rendered on its new subject with unchanged current prompt (prompt not changed, user results unchanged, previews change): hatched-line M→A, torn-paper M→Y, screen-print N→Y, illuminated-manuscript N→A, coloured-pencil P→Y, fresco E→A.
+  - Resulting distribution: K, E, P, M, N 10 each; A 8; Y 9; C 8; G 7; S, T, D 6. Caricature on E still holds 3 styles (mass-, reduced-, street-caricature).
+  - 8 renders in 2 operator-gated batches, 0.175131 USD of the 0.50 ceiling; criterion 74 verifies plan rules, criterion 75 gates the script, criterion 76 verifies trials, criterion 77 verifies applied choices.
+  - Homepage transfer at most 1 999 952 B (limit 2 600 000 B).
+  - Criteria: 65 (57 carried, 4 renewed 22/23/52/67, 4 new 74–77); 68, 69, 70, 73 retired (69's gates now tested by 75; 70's and 73's 0019 provenance carried by 67); 65/65 pass.
+
 - **New style goofy-sketch, subject pool 5 → 12, 42 preview moves, featured band, new gallery** (task 0019)
   - New style "Komik Karalama Karikatür" / "Goofy Sketch Caricature" (caricature, exaggerate, long body band 300–440 for this style only); variant B chosen from A/B trials on the friends group (G) and the man (E). Found by search words çirkin, komik, karalama / goofy, ugly, funny, doodle.
   - 7 new fictional adult and animal subjects: couple C, friends G, family A, older woman Y, bearded man S, cat T, dog D.

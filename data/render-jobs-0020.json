@@ -1,0 +1,75 @@
+{
+  "task": "0020",
+  "ceilings": {
+    "batch": 0.5,
+    "task": 0.5
+  },
+  "sources": {},
+  "newStyles": {},
+  "restyles": {
+    "stretched-caricature": {
+      "closing": "exaggerate",
+      "subject": "Y",
+      "variants": {
+        "C": "Bu portreyi kalın konturlu, düz renkli bir çizgi film karikatürüne dönüştür. Yüz, çene ve boyun aşırı uzun ve ince çizilsin; baş dar bir yumurta gibi uzasın. Gölge yerine düz renk kullan; fotoğraf dokusu kalmasın.",
+        "D": "Bu portreyi mürekkep konturlu, düz renkli bir gazete karikatürüne dönüştür. Yüz ve boyun neredeyse iki kat uzun ve çok ince olsun; çene sivrilsin, gövde küçülsün. Görüntüyü esnetme, yalnızca figürü çiz."
+      }
+    }
+  },
+  "moves": {
+    "hatched-line": "A",
+    "torn-paper": "Y",
+    "screen-print": "Y",
+    "illuminated-manuscript": "A",
+    "coloured-pencil": "Y",
+    "fresco": "A"
+  },
+  "webCopies": [],
+  "featured": [],
+  "batches": [
+    [
+      [
+        "stretched-caricature",
+        "C",
+        "Y"
+      ],
+      [
+        "stretched-caricature",
+        "D",
+        "Y"
+      ]
+    ],
+    [
+      [
+        "hatched-line",
+        "S",
+        "A"
+      ],
+      [
+        "torn-paper",
+        "S",
+        "Y"
+      ],
+      [
+        "screen-print",
+        "S",
+        "Y"
+      ],
+      [
+        "illuminated-manuscript",
+        "S",
+        "A"
+      ],
+      [
+        "coloured-pencil",
+        "S",
+        "Y"
+      ],
+      [
+        "fresco",
+        "S",
+        "A"
+      ]
+    ]
+  ]
+}

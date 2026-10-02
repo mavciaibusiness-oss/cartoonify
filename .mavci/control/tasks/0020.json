@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-10-02T12:49:55Z",
+  "id": "0020",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-02T13:07:17Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0020-stretched-rebalance.md",
+    "spec_sha256": "7b6c649389ccd2cadf815eb60ac9dba16fab7fead9bc1aeb4e60c46c3017e8d9"
+  },
+  "status": "done",
+  "updated": "2026-10-02T13:52:51Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0020-attempt-01.json"
+  ]
+}

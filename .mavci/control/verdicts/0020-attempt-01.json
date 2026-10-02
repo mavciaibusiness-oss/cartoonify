@@ -1,0 +1,458 @@
+{
+  "attempt": 1,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"privacy\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/privacy/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"terms\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/terms/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"cookies\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/cookies/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"contact\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 8,
+      "path": "app/(tr)/contact/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    }
+  ],
+  "criteria": [
+    {
+      "evidence": "exit 0 in 345 ms: G=\"$HOME/.claude/plugins/cache/mavci/mavci-core/0.1.35/scripts/gate.mjs\"; [ -f \"$G\" ] || { echo 'pinned plugin 0.1.35 is not installed'; exit 1; }; node \"$G\" --ci 2>&1 | grep -q \"0 blocking, 5 warning(s)\"",
+      "id": "1",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1556 ms: npm run check",
+      "id": "2",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 9276 ms: npm run build",
+      "id": "3",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 70 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const ri=css.indexOf(':root'); if(ri<0) throw new Error('no :root block'); if(css.indexOf(':root',ri+1)>=0) throw new Error('more than one :root block'); const rb=css.indexOf('{',ri), re=css.indexOf('}',rb); const rootBody=css.slice(rb+1,re); const rest=css.slice(0,ri)+css.slice(re+1); const T={}; for(const d of rootBody.split(';')){ const s=d.trim(); if(s.in...",
+      "id": "4",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 69 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const ri=css.indexOf(':root'); if(ri<0) throw new Error('no :root block'); if(css.indexOf(':root',ri+1)>=0) throw new Error('more than one :root block'); const rb=css.indexOf('{',ri), re=css.indexOf('}',rb); const rootBody=css.slice(rb+1,re); const rest=css.slice(0,ri)+css.slice(re+1); const T={}; for(const d of rootBody.split(';')){ const s=d.trim(); if(s.in...",
+      "id": "5",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 64 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const ri=css.indexOf(':root'); if(ri<0) throw new Error('no :root block'); if(css.indexOf(':root',ri+1)>=0) throw new Error('more than one :root block'); const rb=css.indexOf('{',ri), re=css.indexOf('}',rb); const rootBody=css.slice(rb+1,re); const rest=css.slice(0,ri)+css.slice(re+1); const T={}; for(const d of rootBody.split(';')){ const s=d.trim(); if(s.in...",
+      "id": "6",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "7",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const c=require('fs').readFileSync('app/globals.css','utf8'); const LF=String.fromCharCode(10); let g=-1,pos=0; for(const ln of c.split(LF)){ const t=ln.trim(); if(t.indexOf('.style-grid')===0 && t.slice(11).trim().indexOf('{')===0){ g=pos+ln.indexOf('.style-grid'); break; } pos+=ln.length+1; } if(g<0) throw new Error('no line begins the .style-grid rule'); const body=c.slice(g,c.indexOf('}',g)); const m=body.indexOf('minmax('); const floor=parseInt(body.slice(m+7),1...",
+      "id": "8",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 135 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const dims=b=>{ if(b.toString('latin1',0,4)!=='RIFF'||b.toString('latin1',8,12)!=='WEBP') return null; const c=b.toString('latin1',12,16); if(c==='VP8X') return [1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)]; if(c==='VP8 ') return [b.readUInt16LE(26)&16383,b.readUInt16LE(28)&16383]; if(...",
+      "id": "9",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 60 ms: node -e \"const fs=require('fs'); const f='scripts/resize-style-previews.mjs'; if(!fs.existsSync(f)) throw new Error(f+' does not exist'); const s=fs.readFileSync(f,'utf8'); for(const n of ['CARTOON_STYLES','lib/cartoon-styles.ts','sharp','lib/style-web-manifest.json','stylePreviewPath','lib/style-previews.ts']) if(s.indexOf(n)<0) throw new Error('the script lacks '+n); for(const n of ['openai','process.env','getEnv']) if(s.indexOf(n)>=0) throw new Error('the script mentions '...",
+      "id": "10",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 98 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const vis=f=>fs.readFileSync(f,'utf8').replace(/<script[^]*?<[/]script>/g,' ').replace(/<style[^]*?<[/]style>/g,' ').replace(/<[^>]+>/g,' ').split('&#x27;').join(String.fromCharCode(39)).split('&quot;').join(String.fromCharCode(34)).split('&amp;').join('&').replace(/[ ]+/g,' '); const imgs=h=>h.split('<img').slice(1).map(t=>t.slice(0,t.indexOf('>'))); Promise.all([import('./lib/cartoon-styles.ts')...",
+      "id": "11",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 88 ms: grep -qF 'stylePreviewPath(' components/style-card.tsx && ! grep -qF '/styles-web/' components/style-card.tsx && ! grep -qF '/styles/' components/style-card.tsx && grep -qF 'loading=\"lazy\"' components/style-card.tsx && grep -qF 'width={480}' components/style-card.tsx",
+      "id": "12",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 61 ms: node -e \"const fs=require('fs'); const bad=[]; const Q=String.fromCharCode(34); if(fs.existsSync('app/layout.tsx')) bad.push('app/layout.tsx still exists; there are two root layouts now'); for(const [f,l] of [['app/(tr)/layout.tsx','tr'],['app/(en)/layout.tsx','en']]){ if(!fs.existsSync(f)){ bad.push(f+' does not exist'); continue; } if(fs.readFileSync(f,'utf8').indexOf('<html lang='+Q+l+Q)<0) bad.push(f+' does not render <html lang='+l+'>'); } for(const [p,l] of [['index','t...",
+      "id": "13",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 73 ms: ! grep -qE '(^|[^a-z-])order *:' app/globals.css && node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8'); for(const chunk of css.split('}')){ const k=chunk.lastIndexOf('{'); if(k<0) continue; const sel=chunk.slice(0,k).split('{').pop().split(';').pop(); const body=chunk.slice(k); if(/landing-|kvkk-notice|hero-pair|workshop-upload/.test(sel)&&/grid-row|grid-area|-reverse/.test(body)) throw new Error('a rule reorders the notice or an upload: '+se...",
+      "id": "14",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 104 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const vis=f=>fs.readFileSync(f,'utf8').replace(/<script[^]*?<[/]script>/g,' ').replace(/<style[^]*?<[/]style>/g,' ').replace(/<[^>]+>/g,' ').split('&#x27;').join(String.fromCharCode(39)).split('&quot;').join(String.fromCharCode(34)).split('&amp;').join('&').replace(/[ ]+/g,' '); Promise.all([import('./lib/cartoon-styles.ts'),import('./lib/image-constraints.ts')]).then(([cs,ic])=>{ const allowed=n...",
+      "id": "15",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 61 ms: node -e \"const fs=require('fs'); const imgs=h=>h.split('<img').slice(1).map(t=>t.slice(0,t.indexOf('>'))); const Q=String.fromCharCode(34); const bad=[]; for(const p of ['index','en']){ const h=fs.readFileSync('.next/server/app/'+p+'.html','utf8'); let all=0, eager=0, n=0; for(const t of imgs(h)){ const i=t.indexOf('src='+Q+'/'); if(i<0) continue; const src=t.slice(i+5,t.indexOf(Q,i+5)).split('?')[0]; if(src.indexOf('/_next/')===0){ bad.push(p+': '+src+' is optimised at runti...",
+      "id": "16",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 96 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const LF=String.fromCharCode(10); const dims=b=>{ if(b.toString('latin1',0,4)!=='RIFF'||b.toString('latin1',8,12)!=='WEBP') return null; const c=b.toString('latin1',12,16); if(c==='VP8X') return [1+b.readUIntLE(24,3),1+b.readUIntLE(27,3)]; if(c==='VP8 ') return [b.readUInt16LE(26)&16383,b.readUInt16LE(28)&16383]; if(c==='VP8L'){ const v=b.readUInt32LE(21); return [1+(v&16383),1+((v>>14)&16383)]; }...",
+      "id": "17",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 134 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); Promise.all([import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([a,b])=>{ const tr=a.tr, en=b.en; const bad=[]; const walk=(x,y,p)=>{ for(const k of Object.keys(x)){ const q=p?p+'.'+k:k; if(!y||!(k in y)){ bad.push('en lacks '+q); continue; } if(typeof x[k]==='string'){ if(typeof y[k]!=='string') bad.push(q+' is not a string in en'); else if(!x[k].trim()||!y[k].trim()) bad.push(q+' is ...",
+      "id": "18",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 105 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const {execFileSync}=require('child_process'); const sha=b=>crypto.createHash('sha256').update(b).digest('hex'); const pm=JSON.parse(fs.readFileSync('lib/preview-manifest.json','utf8')); const head=f=>execFileSync('git',['show','HEAD:'+f],{maxBuffer:1<<26}); Promise.all([import('./lib/gallery.ts'),import('./lib/style-previews.ts')]).then(([g,sp])=>{ const bad=[]; c...",
+      "id": "19",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 108 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const dec=s=>s.split('&#x27;').join(String.fromCharCode(39)).split('&quot;').join(Q).split('&amp;').join('&'); const attr=(t,k)=>{ const i=t.indexOf(' '+k+'='+Q); return i<0?null:dec(t.slice(i+k.length+3,t.indexOf(Q,i+k.length+3))); }; Promise.all([import('./lib/gallery.ts'),import('./lib/style-previews.ts'),import('./lib/cartoon-styles.ts'),import('./lib/i18n/sty...",
+      "id": "20",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const Q=String.fromCharCode(34); const l=fs.readFileSync('components/landing.tsx','utf8'); if(l.indexOf('src='+Q+'/hero/before.jpg'+Q)<0) throw new Error('the hero does not show /hero/before.jpg'); if(!/stylePreviewPath[(].classic., .full.[)]/.test(l)) throw new Error('the hero after-image is not stylePreviewPath(classic, full)'); for(const page of ['index','en']){ const h=fs.readFileSync('.next/server/app/'+page+'.html','utf8'); const st=h.in...",
+      "id": "21",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 176 ms: git diff --quiet HEAD -- scripts ':!scripts/render-jobs.mjs' public/hero public/gallery lib/gallery-manifest.json lib/gallery.ts lib/style-search.ts assets components lib/i18n lib/style-display.ts lib/image-constraints.ts lib/env.ts lib/style-query.ts lib/workbench-state.ts app public/brand public/styles/classic.webp public/styles-web/classic.webp next.config.mjs package.json package-lock.json data reports .mavci/tasks/0017-generate-previews-expand-catalogue.md .mavci/tasks/...",
+      "id": "22",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 79 ms: node -e \"const fs=require('fs'); const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10), CR=String.fromCharCode(13); const out=execFileSync('git',['status','--porcelain','--untracked-files=all','--',':!.mavci'],{encoding:'utf8'}); const lines=out.split(LF).map(l=>l.endsWith(CR)?l.slice(0,-1):l).filter(l=>l.length>3); const allowed=['lib/cartoon-styles.ts','lib/style-previews.ts','scripts/render-jobs.mjs','data/render-jobs-0020.json','lib/preview-manif...",
+      "id": "23",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 56 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "24",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "25",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 59 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "26",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 65 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "27",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 102 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const f='lib/workbench-state.ts'; if(!fs.existsSync(f)) throw new Error(f+' does not exist'); const src=fs.readFileSync(f,'utf8'); if(src.indexOf('@/')>=0) throw new Error(f+' uses the app path alias; criteria load it directly'); Promise.all([import('./lib/workbench-state.ts'),import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([w,a,b])=>{ const bad=[]; const p=w.resultPanel; if(typeof ...",
+      "id": "28",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 3417 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3910, DBG=4910; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; const until=async(fn,ms,what)=>{ const end=Date....",
+      "id": "29",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 100 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter...",
+      "id": "30",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1197 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3920, DBG=4920; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; const until=async(fn,ms,what)=>{ const end=Date....",
+      "id": "31",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 1754 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3930, DBG=4930; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; const until=async(fn,ms,what)=>{ const end=Date....",
+      "id": "32",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 64 ms: node -e \"const fs=require('fs'); const Q=String.fromCharCode(34), LF=String.fromCharCode(10); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].split(LF).map(s=>s.trim()).filter(Boolean).join(...",
+      "id": "33",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 116 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const Q=String.fromCharCode(34); Promise.all([import('./lib/cartoon-styles.ts'),import('./lib/style-display.ts').catch(()=>null),import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([cs,sd,a,b])=>{ const bad=[]; const D=cs.DEFAULT_CARTOON_STYLE_ID, O=cs.STYLE_CATEGORIES.filter(c=>cs.CARTOON_STYLES.some(s=>s.category===c)).join(); if(!sd) bad.push('lib/style-display.ts is missing'); else ...",
+      "id": "34",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 104 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); import('./lib/cartoon-styles.ts').then(cs=>{ const bad=[]; const WANT=['cartoon','line','drawing','paint','print','paper','textile','sculpt','caricature','graphic','era','surface']; const L=cs.STYLE_CATEGORIES; if(!Array.isArray(L)||L.join()!==WANT.join()) bad.push('STYLE_CATEGORIES is '+JSON.stringify(L)); const D=JSON.parse(fs.readFileSync('data/style-catalog-draft.json','utf8')); const by={}; ...",
+      "id": "35",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 108 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"import('./lib/cartoon-styles.ts').then(cs=>{ const bad=[]; const r=cs.resolveCartoonStyleId; if(typeof r!=='function') throw new Error('resolveCartoonStyleId is not exported'); for(const s of cs.CARTOON_STYLES) if(r(s.id)!==s.id) bad.push(s.id+' resolves to '+r(s.id)); if(r('cel-frame')!=='classic') bad.push('cel-frame resolves to '+r('cel-frame')); if(r('combed-paint')!=='thick-paint') bad.push('combed-paint resolves t...",
+      "id": "37",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 78 ms: node -e \"const fs=require('fs'); const {execFileSync}=require('child_process'); const F='app/api/cartoonify/route.ts'; const LF=String.fromCharCode(10); const cut=(s,w)=>{ const L=s.split(LF); const e=L.findIndex(l=>l.trim()==='} from '+String.fromCharCode(39)+'@/lib/cartoon-styles'+String.fromCharCode(39)); let b=e; while(b>=0&&L[b].trim()!=='import {') b--; const s6=L.findIndex(l=>l.indexOf(' // 6.')===0); const t6=L.findIndex(l=>l.trim()==='const style = getCartoonStyle(st...",
+      "id": "38",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 71 ms: node -e \"const fs=require('fs'); const vis=f=>fs.readFileSync(f,'utf8').replace(/<script[^]*?<[/]script>/g,' ').replace(/<style[^]*?<[/]style>/g,' ').replace(/<[^>]+>/g,' ').split('&#x27;').join(String.fromCharCode(39)).split('&quot;').join(String.fromCharCode(34)).split('&amp;').join('&').replace(/[ ]+/g,' '); const bad=[]; const seen=[]; for(const p of ['index','en','workshop','en/workshop']){ const f='.next/server/app/'+p+'.html'; if(!fs.existsSync(f)){ bad.push(f+' does n...",
+      "id": "39",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 144 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const {execFileSync}=require('child_process'); const M=['cel-frame','combed-paint']; const head=f=>execFileSync('git',['show','HEAD:'+f]); const bad=[]; for(const m of M) for(const d of ['public/styles/','public/styles-web/']) if(fs.existsSync(d+m+'.webp')) bad.push(d+m+'.webp exists again'); for(const f of ['assets/gallery/pet/cel-frame.webp','lib/gallery-manifest.json']) if(!fs.existsSync(f)||!...",
+      "id": "40",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 127 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const spec=fs.readFileSync('.mavci/tasks/0013-style-catalog-plan.md','utf8'); const a=spec.indexOf('### 4.1 Categories'), z=spec.indexOf('### 4.2',a); if(a<0||z<0) throw new Error('0013 section 4.1 not found'); const T={}; for(const l of spec.slice(a,z).split(LF)){ ...",
+      "id": "41",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 582 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawnSync}=require('child_process'); const Q=String.fromCharCode(39); const S='scripts/check-styles.mjs'; const src=fs.readFileSync('lib/cartoon-styles.ts','utf8'); if(fs.readFileSync(S,'utf8').indexOf('style-catalog-draft')>=0) throw new Error(S+' reads the plan file'); const d=fs.mkdtempSync(path.join(os.tmpdir(),'cks-')); for(const x of ['lib','scripts']) fs.mkdirSync(path.join(d,x...",
+      "id": "42",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 776 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const path=require('path'); const http=require('http'); const {spawn}=require('child_process'); const PORT=3940, STUB=3941; const CRLF=String.fromCharCode(13,10); const PNG='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const got=[]; const kids=[]; let stub=null; const bad=[]; const lines=[]; const ...",
+      "id": "43",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 100 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const LF=String.fromCharCode(10), BT=String.fromCharCode(96); const spec=fs.readFileSync('.mavci/tasks/0015-brand-header-clickable-cards.md','utf8'); const a=spec.indexOf('<!-- brand:start -->'), z=spec.indexOf('<!-- brand:end -->'); if(a<0||z<a) throw new Error('the spec has no brand table'); const rows=[]; for(const l of spec.slice(a,z).split(LF)){ const c=l.split('|').map(x=>x.trim()); if(c.le...",
+      "id": "44",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 109 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'); const Q=String.fromCharCode(34); const bad=[]; for(const [a,b] of [['assets/brand/protoolhub-icon.svg','public/brand/protoolhub-icon.svg'],['assets/brand/protoolhub-icon-badge.svg','app/icon.svg']]){ if(!fs.existsSync(b)) bad.push(b+' does not exist'); else if(sha(a)!==sha(b)) bad.pu...",
+      "id": "45",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 73 ms: node -e \"const fs=require('fs'); const css=fs.readFileSync('app/globals.css','utf8').replace(/[/][*][^]*?[*][/]/g,''); const rules=[]; const rx=/([^{}]+)[{]([^{}]*)[}]/g; let m; while((m=rx.exec(css))){ const d={}; for(const x of m[2].split(';')){ const i=x.indexOf(':'); if(i<0) continue; d[x.slice(0,i).trim().toLowerCase()]=x.slice(i+1).trim(); } rules.push({sel:m[1].trim().split(String.fromCharCode(10)).map(s=>s.trim()).filter(Boolean).join(' '), d, at:m.index}); } const me...",
+      "id": "46",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 102 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const Q=String.fromCharCode(34); Promise.all([import('./lib/gallery.ts'),import('./lib/cartoon-styles.ts'),import('./lib/style-display.ts'),import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts'),import('./lib/i18n/styles.en.ts')]).then(([g,cs,sd,A,B,se])=>{ const bad=[]; const n=[]; const dec=s=>s.split('&amp;').join('&').split('&#x27;').join(String.fromCharCode(39)).split('&quot;').join(Q); for(c...",
+      "id": "47",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 100 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const F='lib/style-query.ts'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); const src=fs.readFileSync(F,'utf8'); if(src.indexOf('@/')>=0) throw new Error(F+' uses the @/ alias; criteria load it directly'); Promise.all([import('./'+F),import('./lib/cartoon-styles.ts')]).then(([q,cs])=>{ const bad=[]; const f=q.styleFromQuery; if(typeof f!=='function') throw new Error('styleFromQuery ...",
+      "id": "48",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 3869 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3950, DBG=4950, Q=String.fromCharCode(34); const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; const until=async(fn,...",
+      "id": "49",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 6857 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3960, DBG=4960; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; const until=async(fn,ms,what)=>{ const end=Date....",
+      "id": "50",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 78 ms: node -e \"const fs=require('fs'); const path=require('path'); const E='https://cartoonify-steel.vercel.app'; const Q=String.fromCharCode(34); const bad=[]; const pick=(s,k)=>{ const i=s.indexOf(k); return i<0?undefined:s.slice(i+k.length,s.indexOf(Q,i+k.length)); }; const env=fs.readFileSync('lib/env.ts','utf8'); if(env.indexOf('process.env.NEXT_PUBLIC_SITE_URL')<0) bad.push('lib/env.ts does not read process.env.NEXT_PUBLIC_SITE_URL'); if(env.split(String.fromCharCode(39)+E+St...",
+      "id": "51",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 52806 ms: node -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn,execFileSync}=require('child_process'); const PORT=3995, DBG=4995, LIMIT=2600000; const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const rows=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join('; ')); process.exit(c); }; cons...",
+      "id": "52",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 121 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const Q=String.fromCharCode(34), A=String.fromCharCode(39); const bad=[]; const src=fs.readFileSync('lib/style-previews.ts','utf8'); if(src.indexOf('@/')>=0) bad.push('lib/style-previews.ts uses the @/ alias'); import('./lib/style-previews.ts').then(p=>{ const f=p.stylePreviewPath; if(typeof f!=='function') throw new Error('stylePreviewPath is not exported'); for(const [a,b,w] of [[['classic'],'/...",
+      "id": "53",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 88 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const LF=String.fromCharCode(10), BT=String.fromCharCode(96); const spec=fs.readFileSync('.mavci/tasks/0016-picker-filter-showcase-budget.md','utf8'); const a=spec.indexOf('<!-- text:start -->'), z=spec.indexOf('<!-- text:end -->'); if(a<0||z<a) throw new Error('the spec has no text table'); const rows=[]; for(const l of spec.slice(a,z).split(LF)){ const c=l.split('|').map(x=>x.trim()); if(c.lengt...",
+      "id": "54",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 106 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const F='lib/style-search.ts'; if(!fs.existsSync(F)) throw new Error(F+' does not exist'); if(fs.readFileSync(F,'utf8').indexOf('@/')>=0) throw new Error(F+' uses the @/ alias; criteria load it directly'); Promise.all([import('./'+F),import('./lib/cartoon-styles.ts'),import('./lib/i18n/styles.en.ts')]).then(([s,cs,se])=>{ const bad=[]; const kw=id=>[...((cs.STYLE_KEYWORDS_TR||{})[id]||[]),...((se...",
+      "id": "55",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 108 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"Promise.all([import('./lib/style-query.ts'),import('./lib/cartoon-styles.ts')]).then(([q,cs])=>{ const bad=[]; const c=q.categoryFromQuery, s=q.searchFromQuery, w=q.withPickerQuery; if(typeof c!=='function'||typeof s!=='function'||typeof w!=='function') throw new Error('categoryFromQuery, searchFromQuery or withPickerQuery is not exported'); const NE=cs.STYLE_CATEGORIES.filter(k=>cs.CARTOON_STYLES.some(st=>st.category==...",
+      "id": "56",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 6757 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawn}=require('child_process'); const PORT=3996, DBG=4996, Q=String.fromCharCode(34); const sleep=ms=>new Promise(r=>setTimeout(r,ms)); const kids=[]; const bad=[]; const lines=[]; const fin=c=>{ for(const k of kids){ try{ k.kill(); }catch(e){} } console.log(lines.join(String.fromCharCode(10))); if(c) console.error('Error: '+bad.join(';...",
+      "id": "57",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 113 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const R=f=>fs.readFileSync(f,'utf8'); Promise.all([import('./lib/cartoon-styles.ts'),import('./lib/i18n/styles.en.ts'),import('./lib/style-display.ts'),import('./lib/i18n/tr.ts'),import('./lib/i18n/en.ts')]).then(([cs,se,sd,A,B])=>{ const bad=[]; const GONE=['GROUP_LABELS','STYLE_GROUPS','STYLE_GROUP_ORDER','deriveGroup','closingFor']; for(const k of GONE) if(k in cs) bad.push('lib/cartoon-styles...",
+      "id": "59",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 782 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawnSync}=require('child_process'); const Q=String.fromCharCode(39); const S='scripts/check-styles.mjs'; const cs0=fs.readFileSync('lib/cartoon-styles.ts','utf8'), sp0=fs.readFileSync('lib/style-previews.ts','utf8'); const d=fs.mkdtempSync(path.join(os.tmpdir(),'cks17-')); for(const x of ['lib','scripts']) fs.mkdirSync(path.join(d,x)); f...",
+      "id": "62",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 178 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const crypto=require('crypto'); const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const sha=b=>crypto.createHash('sha256').update(b).digest('hex'); const J=f=>JSON.parse(fs.readFileSync(f,'utf8')); const t=fs.readFileSync('.mavci/tasks/0017-generate-previews-expand-catalogue.md','utf8'); const a=t.indexOf('<!-- cat...",
+      "id": "67",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 99 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const LF=String.fromCharCode(10), Q=String.fromCharCode(34); const t=fs.readFileSync('.mavci/tasks/0019-goofy-sketch-subject-pool.md','utf8'); const a=t.indexOf('<!-- featured19:start -->'), z=t.indexOf('<!-- featured19:end -->'); if(a<0||z<a) throw new Error('the featured19 markers are missing'); const rows=t.slice(a,z).split(LF).filter(l=>l.indexOf('| ')===0).map(l=>l.split('|').slice(1,-1).map(...",
+      "id": "71",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 748 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {spawnSync}=require('child_process'); const Q=String.fromCharCode(39), LF=String.fromCharCode(10); const S='scripts/check-styles.mjs'; const cs0=fs.readFileSync('lib/cartoon-styles.ts','utf8'), sp0=fs.readFileSync('lib/style-previews.ts','utf8'); const d=fs.mkdtempSync(path.join(os.tmpdir(),'cks19-')); for(const x of ['lib','scripts']) fs....",
+      "id": "72",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 144 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const {execFileSync}=require('child_process'); const LF=String.fromCharCode(10); const t=fs.readFileSync('.mavci/tasks/0020-stretched-rebalance.md','utf8'); const tab=k=>{ const a=t.indexOf('<!-- '+k+':start -->'), z=t.indexOf('<!-- '+k+':end -->'); if(a<0||z<a) throw new Error('the '+k+' markers are missing from the 0020 spec'); return t.slice(...",
+      "id": "74",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 2157 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const crypto=require('crypto'); const {spawnSync}=require('child_process'); const sha=b=>crypto.createHash('sha256').update(b).digest('hex'); const S='scripts/render-jobs.mjs', MF='lib/preview-manifest.json', CF='reports/0020-choices.json', DF='data/render-jobs-0020.json'; const src=fs.readFileSync(S,'utf8'); const bad=[]; const lines=[]; for(const w of ['const MAX_BATCH_CEILING_USD = 0.5','cons...",
+      "id": "75",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 126 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const crypto=require('crypto'); const {execFileSync}=require('child_process'); const sha=b=>crypto.createHash('sha256').update(b).digest('hex'); const pm=JSON.parse(fs.readFileSync('lib/preview-manifest.json','utf8')); const D=JSON.parse(fs.readFileSync('data/render-jobs-0020.json','utf8')); const td=fs.mkdtempSync(path.join(os.tmpdir(),'h20-'))...",
+      "id": "76",
+      "mode": "executed",
+      "status": "pass"
+    },
+    {
+      "evidence": "exit 0 in 149 ms: node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON -e \"const fs=require('fs'); const os=require('os'); const path=require('path'); const crypto=require('crypto'); const {execFileSync}=require('child_process'); const sha=b=>crypto.createHash('sha256').update(b).digest('hex'); const head=f=>execFileSync('git',['show','HEAD:'+f],{maxBuffer:1<<26}); const J=f=>JSON.parse(fs.readFileSync(f,'utf8')); const pm=J('lib/preview-manifest.json'), wm=J('lib/style-web-manifest.json'), D=...",
+      "id": "77",
+      "mode": "executed",
+      "status": "pass"
+    }
+  ],
+  "plugin_version": "0.1.35",
+  "project_id": "cartoonify",
+  "run_at": "2026-10-02T13:49:07Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 0,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 11,
+    "waived": 0
+  },
+  "task_id": "0020",
+  "verdict": "pass"
+}

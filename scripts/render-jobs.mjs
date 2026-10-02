@@ -9,6 +9,7 @@
  *   --task <id> --accept <n> --result <hex>        FREE. The operator's acceptance by RESULT HASH.
  *            [--reject id,id] [--choose id=A|B]       Moves may be rejected (the style keeps its subject);
  *                                                  a new style needs --choose; sources are accepted whole.
+ *                                                  A restyle (task 0020) needs --choose id=<variant>|keep.
  *   --task <id> --finalize                         FREE. Writes reports/<id>-choices.json.
  *   --task <id> --promote                          FREE. Copies chosen trials to previews and writes the
  *                                                  sources' web copies (gallery, featured), refusing unless the code already
@@ -17,7 +18,9 @@
  *
  * Items: ['src', K] generates subject K's source photo (images.generate, JPEG, no input image);
  * [id, 'A'|'B', K] renders a new style's variant on subject K; [id, 'S', K] renders a style's
- * current code prompt on subject K (a subject move). The key is read through lib/env.ts only.
+ * current code prompt on subject K (a subject move); [id, <letter>, K] renders a variant of an
+ * existing style's prompt (DATA.restyles, task 0020), which may also be kept as it is.
+ * The key is read through lib/env.ts only.
  *
  *   node --env-file=.env.local --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/render-jobs.mjs --task 0019 --plan 1
  */
@@ -124,8 +127,16 @@ function promptOf(item) {
     return ns.variants[v] + ' ' + CLOSING[ns.closing]
   }
   if (v === 'S') { if (!isCartoonStyleId(id)) fail(id + ' is not a style'); return getCartoonStyle(id).prompt }
+  const rs = (DATA.restyles || {})[id]
+  if (rs && rs.variants[v]) {
+    if (!isCartoonStyleId(id)) fail(id + ' is not a style')
+    return rs.variants[v] + ' ' + CLOSING[rs.closing]
+  }
   fail('unknown variant ' + v)
 }
+const isRestyle = (id) => Object.prototype.hasOwnProperty.call(DATA.restyles || {}, id)
+/** The values --choose accepts for a new style or a restyle. */
+const choicesFor = (id) => (isRestyle(id) ? [...Object.keys(DATA.restyles[id].variants), 'keep'] : ['A', 'B'])
 
 function planOf(m, n) {
   if (!(n >= 1 && n <= DATA.batches.length)) fail('batch must be 1..' + DATA.batches.length)
@@ -241,10 +252,11 @@ function runAccept(n, result, reject, choose) {
   const decisions = {}
   const srcs = {}
   for (const id of rej) if (!items.some((it) => it[0] === id && it[1] === 'S')) fail('--reject ' + id + ' is not a subject move in batch ' + n)
-  for (const id of Object.keys(ch)) if (!items.some((it) => it[0] === id && (it[1] === 'A' || it[1] === 'B'))) fail('--choose ' + id + ' is not a new style in batch ' + n)
+  for (const id of Object.keys(ch)) if (!items.some((it) => it[0] === id && !isSource(it) && it[1] !== 'S')) fail('--choose ' + id + ' is not a new style or a restyle in batch ' + n)
   for (const it of items) {
     if (isSource(it)) { srcs[it[1]] = m.trials[keyOf(it)].sha256; continue }
     if (it[1] === 'S') decisions[it[0]] = rej.indexOf(it[0]) >= 0 ? 'reject' : 'accept'
+    else if (isRestyle(it[0])) { const ok = choicesFor(it[0]); if (ok.indexOf(ch[it[0]]) < 0) fail('--choose needs ' + it[0] + '=' + ok.join(', ')); decisions[it[0]] = ch[it[0]] }
     else { if (['A', 'B'].indexOf(ch[it[0]]) < 0) fail('--choose needs ' + it[0] + '=A or B'); decisions[it[0]] = ch[it[0]] }
   }
   m[BKEY][n] = { result_sha256: rh, accepted_prefix: prefix, accepted_at: now(), decisions, sources: srcs }
@@ -256,12 +268,20 @@ function runAccept(n, result, reject, choose) {
 function choicesOf(m) {
   for (let n = 1; n <= DATA.batches.length; n++) if (!accepted(m, n)) return null
   const out = { sources: {}, newStyles: {}, moves: {} }
+  if (DATA.restyles) out.restyles = {}
   for (let n = 1; n <= DATA.batches.length; n++) {
     const acc = m[BKEY][n]
     for (const it of DATA.batches[n - 1]) {
       if (isSource(it)) { out.sources[it[1]] = { path: DATA.sources[it[1]].path, sha256: acc.sources[it[1]] }; continue }
       const [id, v, k] = it
-      if (v === 'S') {
+      if (v !== 'S' && isRestyle(id)) {
+        const rs = DATA.restyles[id]
+        if (acc.decisions[id] === 'keep') out.restyles[id] = { choice: 'keep', subject: PREVIEW_SUBJECTS[id] }
+        else if (acc.decisions[id] === v && k === rs.subject) {
+          const t = m.trials[keyOf(it)]
+          out.restyles[id] = { choice: v, subject: k, body: rs.variants[v], prompt: promptOf(it), trial: t.file, trial_sha256: t.sha256 }
+        }
+      } else if (v === 'S') {
         const t = m.trials[keyOf(it)]
         out.moves[id] = acc.decisions[id] === 'accept' ? { choice: 'S', subject: k, trial: t.file, trial_sha256: t.sha256 } : { choice: 'keep', subject: PREVIEW_SUBJECTS[id] }
       } else if (acc.decisions[id] === v && k === DATA.newStyles[id].subject) {
@@ -278,12 +298,14 @@ function runFinalize() {
   const c = choicesOf(m)
   if (!c) fail('not every batch is accepted')
   for (const id of Object.keys(DATA.newStyles || {})) if (!c.newStyles[id]) fail(id + ' has no chosen render on its subject')
+  for (const id of Object.keys(DATA.restyles || {})) if (!c.restyles[id]) fail(id + ' has no decision')
   fs.mkdirSync(abs('reports'), { recursive: true })
   fs.writeFileSync(abs(CHOICES_REL), JSON.stringify({ task: TASK, ...c }, null, 2) + '\n')
   console.log('written ' + CHOICES_REL)
   for (const [k, s] of Object.entries(c.sources)) console.log('  source ' + k + ' ' + s.path + ' ' + s.sha256.slice(0, 12))
   for (const [id, x] of Object.entries(c.newStyles)) console.log('  new    ' + id + ' ' + x.choice + ' on ' + x.subject)
   for (const [id, x] of Object.entries(c.moves)) console.log('  move   ' + id.padEnd(22) + x.choice + ' -> ' + x.subject)
+  for (const [id, x] of Object.entries(c.restyles || {})) console.log('  restyle ' + id.padEnd(21) + x.choice + ' -> ' + x.subject)
 }
 
 async function runPromote() {
@@ -291,7 +313,9 @@ async function runPromote() {
   const c = choicesOf(m)
   if (!c) fail('not every batch is accepted')
   const saved = JSON.parse(fs.readFileSync(abs(CHOICES_REL), 'utf8'))
-  if (JSON.stringify({ sources: saved.sources, newStyles: saved.newStyles, moves: saved.moves }) !== JSON.stringify(c)) fail(CHOICES_REL + ' does not match the accepted batches; run --finalize')
+  const savedC = { sources: saved.sources, newStyles: saved.newStyles, moves: saved.moves }
+  if (c.restyles) savedC.restyles = saved.restyles
+  if (JSON.stringify(savedC) !== JSON.stringify(c)) fail(CHOICES_REL + ' does not match the accepted batches; run --finalize')
   const bad = []
   for (const [k, s] of Object.entries(c.sources)) if (!PREVIEW_SOURCES[k] || PREVIEW_SOURCES[k].path !== s.path || s.sha256.indexOf(PREVIEW_SOURCES[k].sha256_prefix) !== 0) bad.push('PREVIEW_SOURCES.' + k + ' is not ' + s.path + ' at ' + s.sha256.slice(0, 12))
   for (const [id, x] of Object.entries(c.newStyles)) {
@@ -299,6 +323,10 @@ async function runPromote() {
     if (PREVIEW_SUBJECTS[id] !== x.subject) bad.push(id + ': PREVIEW_SUBJECTS is not ' + x.subject)
   }
   for (const [id, x] of Object.entries(c.moves)) if (PREVIEW_SUBJECTS[id] !== x.subject) bad.push(id + ': PREVIEW_SUBJECTS is ' + PREVIEW_SUBJECTS[id] + ', not ' + x.subject)
+  for (const [id, x] of Object.entries(c.restyles || {})) {
+    if (x.choice !== 'keep' && getCartoonStyle(id).prompt !== x.prompt) bad.push(id + ': the code prompt is not the chosen ' + x.choice)
+    if (PREVIEW_SUBJECTS[id] !== x.subject) bad.push(id + ': PREVIEW_SUBJECTS is ' + PREVIEW_SUBJECTS[id] + ', not ' + x.subject)
+  }
   if (bad.length) fail('apply the choices to the code first: ' + bad.join('; '))
   let n = 0
   const promote = (id, x) => {
@@ -315,6 +343,7 @@ async function runPromote() {
   }
   for (const [id, x] of Object.entries(c.newStyles)) promote(id, x)
   for (const [id, x] of Object.entries(c.moves)) if (x.choice === 'S') promote(id, x)
+  for (const [id, x] of Object.entries(c.restyles || {})) if (x.choice !== 'keep') promote(id, x)
   m.webCopies = m.webCopies || {}
   for (const w of DATA.webCopies || []) {
     const s = c.sources[w.subject] ? { path: c.sources[w.subject].path, sha256: c.sources[w.subject].sha256 } : { path: PREVIEW_SOURCES[w.subject].path, sha256: sha256(fs.readFileSync(abs(PREVIEW_SOURCES[w.subject].path))) }

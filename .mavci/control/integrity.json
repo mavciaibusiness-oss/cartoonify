@@ -1,5 +1,5 @@
 {
-  "control_hash": "d8525b623a17c4d3ac96847beafcf735f697b8a68e6b4fcf155b5857321a99d0",
+  "control_hash": "bc813132da45b5ef27535875f087ad811b1e135c3ce23f8ac5b25d8e12c05faf",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -21,6 +21,7 @@
     ".mavci/control/tasks/0017.json",
     ".mavci/control/tasks/0018.json",
     ".mavci/control/tasks/0019.json",
+    ".mavci/control/tasks/0020.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -42,6 +43,7 @@
     ".mavci/control/verdicts/0017-attempt-01.json",
     ".mavci/control/verdicts/0018-attempt-01.json",
     ".mavci/control/verdicts/0019-attempt-01.json",
+    ".mavci/control/verdicts/0020-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -412,17 +414,29 @@
     ".mavci/control/verdicts/adhoc-1790943004786.json",
     ".mavci/control/verdicts/adhoc-1790943104556.json",
     ".mavci/control/verdicts/adhoc-1790943241221.json",
+    ".mavci/control/verdicts/adhoc-1790946191677.json",
+    ".mavci/control/verdicts/adhoc-1790946311514.json",
+    ".mavci/control/verdicts/adhoc-1790946523348.json",
+    ".mavci/control/verdicts/adhoc-1790946738623.json",
+    ".mavci/control/verdicts/adhoc-1790947587949.json",
+    ".mavci/control/verdicts/adhoc-1790947950000.json",
+    ".mavci/control/verdicts/adhoc-1790948661918.json",
+    ".mavci/control/verdicts/adhoc-1790948672255.json",
+    ".mavci/control/verdicts/adhoc-1790948725394.json",
+    ".mavci/control/verdicts/adhoc-1790948847683.json",
+    ".mavci/control/verdicts/adhoc-1790949069143.json",
+    ".mavci/control/verdicts/adhoc-1790949083753.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-10-02T12:14:01Z",
+    "at": "2026-10-02T13:51:23Z",
     "continues": 0,
     "plugin_version": "0.1.35",
-    "prompt_id": "2aaaf03e-252f-402e-900b-5c31ac2eef86",
+    "prompt_id": "8cf4ff7a-27b2-43ba-a274-3b9085ecaef7",
     "session_id": "d736e23a-bf17-4c5a-aed3-7ee0d9214433",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-10-02T12:46:43Z",
+  "sealed_at": "2026-10-02T13:52:51Z",
   "sealed_by_plugin_version": "0.1.35"
 }

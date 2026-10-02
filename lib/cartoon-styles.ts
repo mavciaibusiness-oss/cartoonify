@@ -195,7 +195,7 @@ export const STYLE_SOURCE = [
     category: 'caricature',
     closing: 'exaggerate',
     body:
-      'Bu portreyi çizgi roman üslubunda bir karikatüre dönüştür. Yüz ve boyun aşırı uzun, dar ve sivri çizilsin; alın yükselsin, çene uzasın. Görüntüyü esnetme, yalnızca çizilen figür uzasın. Kalın kontur ve düz renk kullan.',
+      'Bu portreyi mürekkep konturlu, düz renkli bir gazete karikatürüne dönüştür. Yüz ve boyun neredeyse iki kat uzun ve çok ince olsun; çene sivrilsin, gövde küçülsün. Görüntüyü esnetme, yalnızca figürü çiz.',
   },
   {
     id: 'wet-paper',

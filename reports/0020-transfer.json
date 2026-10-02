@@ -1,0 +1,46 @@
+{
+  "task": "0020",
+  "criterion": 52,
+  "build_id": "mcX7wlAnkdQpS2wgs-B0c",
+  "measured_at": "2026-10-02T13:48:55.518Z",
+  "limit_bytes": 2600000,
+  "method": "next start, headless Chrome, cache disabled, DPR 1, sum of encodedDataLength, after load and after scrolling to the bottom",
+  "results": [
+    {
+      "page": "/",
+      "viewport": "1280x624",
+      "first_load": 614520,
+      "after_full_scroll": 1999952
+    },
+    {
+      "page": "/en",
+      "viewport": "1280x624",
+      "first_load": 614185,
+      "after_full_scroll": 1999617
+    },
+    {
+      "page": "/",
+      "viewport": "1920x984",
+      "first_load": 779846,
+      "after_full_scroll": 1999952
+    },
+    {
+      "page": "/en",
+      "viewport": "1920x984",
+      "first_load": 779511,
+      "after_full_scroll": 1999617
+    },
+    {
+      "page": "/",
+      "viewport": "375x667",
+      "first_load": 533008,
+      "after_full_scroll": 1999952
+    },
+    {
+      "page": "/en",
+      "viewport": "375x667",
+      "first_load": 532673,
+      "after_full_scroll": 1999617
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "task": "0020",
+  "sources": {},
+  "newStyles": {},
+  "moves": {
+    "hatched-line": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0020/hatched-line.S.A.webp",
+      "trial_sha256": "37b8bbcd36bdfc97bf9cbd603293908e287c13af29e849c02faed8cc1e0f6fc5"
+    },
+    "torn-paper": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0020/torn-paper.S.Y.webp",
+      "trial_sha256": "9c7c56aba16cd6b13598e8971bc9eb6f146f3869f41bf398cdfe17478639352b"
+    },
+    "screen-print": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0020/screen-print.S.Y.webp",
+      "trial_sha256": "b39ffdd91834f02001e1ad0630df023ec1dfc79fcfc36ea9565135cb425cab15"
+    },
+    "illuminated-manuscript": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0020/illuminated-manuscript.S.A.webp",
+      "trial_sha256": "45e0e8a8b1e182cd90f9849589e63f1dfe54b1a02bf230ca6cf7821edceaa119"
+    },
+    "coloured-pencil": {
+      "choice": "S",
+      "subject": "Y",
+      "trial": "assets/trials/0020/coloured-pencil.S.Y.webp",
+      "trial_sha256": "52014bcaccc333f9b305e73cd33677720ab72223d11a7821413a4eccdb56f045"
+    },
+    "fresco": {
+      "choice": "S",
+      "subject": "A",
+      "trial": "assets/trials/0020/fresco.S.A.webp",
+      "trial_sha256": "323246a3d30424600a4ca765be50af5572a8a4a43f83b7efb39d069a3276e0d6"
+    }
+  },
+  "restyles": {
+    "stretched-caricature": {
+      "choice": "D",
+      "subject": "Y",
+      "body": "Bu portreyi mürekkep konturlu, düz renkli bir gazete karikatürüne dönüştür. Yüz ve boyun neredeyse iki kat uzun ve çok ince olsun; çene sivrilsin, gövde küçülsün. Görüntüyü esnetme, yalnızca figürü çiz.",
+      "prompt": "Bu portreyi mürekkep konturlu, düz renkli bir gazete karikatürüne dönüştür. Yüz ve boyun neredeyse iki kat uzun ve çok ince olsun; çene sivrilsin, gövde küçülsün. Görüntüyü esnetme, yalnızca figürü çiz. Konunun tanınabilirliğini ve kompozisyonu koru; karakteristik hatları ve oranları abartarak değiştir.",
+      "trial": "assets/trials/0020/stretched-caricature.D.Y.webp",
+      "trial_sha256": "34b53791fbbc15a20420dfd0276b099c5af841f53fc73104c6cef86bf8514851"
+    }
+  }
+}
