@@ -17,6 +17,14 @@ export default function Page() {
       <h2>Abonelik ve odeme</h2>
       <p>Abonelikler donemsel olarak yenilenir. Iptal, mevcut donem sonunda
       gecerli olur. Cayma hakki ve iade kosullari yurulukteki mevzuata tabidir.</p>
+      <h2 id="icerik-kurallari">İçerik kuralları</h2>
+      <p>Yüklediğiniz fotoğraf, işlenmek üzere OpenAI (openai.com)
+      hizmetine gönderilir ve tarafımızca saklanmaz. Fotoğraf yüklerken şu kurallara
+      uymayı kabul edersiniz: çıplaklık ve şiddet içeren görseller yüklenemez; 18 yaşın
+      altındaki çocukların fotoğrafları için ebeveyn izni gerekir; telifli ya da ünlülere
+      ait görseller yüklenemez; başkalarını küçük düşürme amacıyla kullanılamaz.
+      Fotoğrafı kullanma hakkınızın olduğunu ve fotoğrafta başkası varsa onun iznini
+      aldığınızı onaylamanız gerekir. Bu kurallara uymayan görseller dönüştürülmez.</p>
       <h2>Fesih</h2>
       <p>Sartlarin ihlali halinde hesap askiya alinabilir veya kapatilabilir.
       Kullanici diledigi zaman hesabini kapatabilir.</p>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Workshop from '@/components/workshop'
+import { turnstileSiteKey } from '@/lib/env'
 import { getDictionary } from '@/lib/i18n'
 
 const t = getDictionary('en')
@@ -21,5 +22,5 @@ export const metadata: Metadata = {
 }
 
 export default function EnglishWorkshopPage() {
-  return <Workshop locale="en" />
+  return <Workshop locale="en" turnstileSiteKey={turnstileSiteKey()} />
 }

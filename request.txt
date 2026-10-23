@@ -1,0 +1,38 @@
+GÖREV (AŞAMA 1): Cartoonify'a kötüye kullanım koruması + içerik kuralları + yükleme onayı. SADECE önizlemede yayınla (vercel, --prod YOK). Canlı site değişmeyecek; ben önizlemeyi görüp "yayına al" diyeceğim.
+
+Bağlam: Senin inceleme raporun (bugün). Canlı: cartoonify-steel.vercel.app, Vercel projesi homeca-lc/cartoonify (CLI ile deploy, git bağlı değil). Repo github.com/mavciaibusiness-oss/cartoonify. Dönüştürme başı maliyet ~0,02 $.
+
+1) HIZ SINIRI VE TAVAN (sunucu tarafında, atlatılamaz)
+- Aynı IP'den saatte en fazla 10 dönüştürme.
+- Tüm site için günlük toplam tavan 300 dönüştürme (UTC gün). Tavan dolunca OpenAI'ye istek GİTMESİN; kullanıcıya sade mesaj: "Bugünlük yoğunluk sınırına ulaştık, yarın tekrar deneyin."
+- Sayaçlar için paylaşımlı kalıcı depo gerekli (serverless'ta bellek yetmez). Projede zaten bir Supabase/Upstash varsa onu kullan; yoksa en basit seçeneği (Upstash Redis, Vercel Marketplace) öner, gereken ortam değişkenlerinin ADINI ve kurulum adımlarını bana yaz, değerleri ben gireceğim.
+- Günlük tavanın %80'i dolunca mavcimavci1983@gmail.com adresine tek uyarı e-postası (gün başına bir kez). Mevcut e-posta altyapısı yoksa bunu atla ve raporda yaz.
+- Sınırlar tek bir ayar dosyasında olsun (saatlik IP limiti, günlük tavan), ben değiştirebileyim.
+
+2) GÖRÜNMEZ DOĞRULAMA (Cloudflare Turnstile)
+- Dönüştürme isteğinden önce Turnstile doğrulaması; token sunucuda doğrulanmadan OpenAI'ye istek gitmesin.
+- Önizlemede Cloudflare'in resmî TEST anahtarlarıyla çalışsın. Canlı için gereken ortam değişkenlerinin ADLARINI ve Cloudflare'de site ekleme adımlarını sade dille yaz (Cloudflare hesabım var).
+
+3) YÜKLEME GÜVENLİĞİ
+- Sunucuda dosya türü (jpg, png, webp) ve boyut (en fazla 10 MB) kontrolü.
+- Dönüştürmeden önce yüklenen görseli OpenAI moderasyon API'siyle kontrol et (görsel destekleyen model). Uygunsuz içerik çıkarsa dönüştürme yapılmasın, sade mesaj gösterilsin.
+- Görseller yine saklanmasın (mevcut yapı korunacak).
+
+4) İÇERİK KURALLARI VE ONAY
+- Yükleme alanında zorunlu onay kutusu: "Bu fotoğrafı kullanma hakkım var. Fotoğrafta başkası varsa iznini aldım." İşaretlenmeden "Dönüştür" düğmesi pasif.
+- Kutunun altında tek satır + bağlantı: kısa içerik kuralları (çıplaklık/şiddet yok, 18 yaş altı çocuk fotoğraflarında ebeveyn izni, telifli/ünlü görseller yok, başkasını küçük düşürme yok).
+- Kullanım koşullarına "İçerik kuralları" bölümü ekle; görselin işlenmek üzere OpenAI'ye gönderildiği ve saklanmadığı açıkça yazsın. Yasal sayfalardaki "REVIEW REQUIRED" uyarıları kalsın.
+- Tüm yeni metinler sitenin mevcut dillerinde.
+
+5) TEST VE YAYIN
+- Testler: saatlik limit (11. istek reddedilir), günlük tavan (tavan dolunca OpenAI çağrılmaz — OpenAI'yi taklit ederek test et, gerçek istek atma), Turnstile doğrulanmadan istek reddedilir, onay kutusu olmadan istek reddedilir (sunucu tarafında da), yanlış dosya türü/boyutu reddedilir.
+- Önizleme: `vercel` (prod değil) ile deploy et, önizleme linkini ver. Önizlemede 1 gerçek dönüştürme yaparak uçtan uca çalıştığını doğrula (en fazla 2 deneme).
+- Lighthouse mobil/masaüstü ölç; mevcut puanın altına düşmesin.
+- Commit at. GitHub'a push mavciaibusiness-oss hesabı gerektiriyorsa ve aktif gh hesabı farklıysa push'u yapma, bana yaz; hesap değiştirme.
+
+BANA RAPOR (sade Türkçe, kısa):
+- Önizleme linki ve neyi nasıl deneyeceğim (3-4 adım).
+- Test sonuçları.
+- Eklemem gereken ortam değişkenleri (sadece adları) ve Cloudflare/Upstash adımları.
+- Canlıya alınca ne değişecek, risk var mı.
+KURALLAR: Anahtar/şifre yazdırma yok; .env git'e gitmez; ortam.ps1 yüklenmez; --prod deploy YOK; canlı site değişmez. Proje notuna ve günlüğe kayıt ekle.

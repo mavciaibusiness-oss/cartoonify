@@ -418,6 +418,39 @@ footer a:hover {
   font-size: 0.9rem;
 }
 
+.workshop-consent {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.workshop-consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text);
+}
+
+.workshop-consent-label input {
+  margin-top: 0.2rem;
+}
+
+.workshop-rules,
+.workshop-verify {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.workshop-rules a {
+  color: var(--accent-text);
+  text-decoration: underline;
+}
+
+.turnstile-slot:empty {
+  display: none;
+}
+
 .workshop-actions {
   display: flex;
   flex-wrap: wrap;

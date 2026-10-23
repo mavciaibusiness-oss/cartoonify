@@ -172,5 +172,20 @@ export const en: Dictionary = {
       'The cartoon service could not process this request. The cause is unknown; trying the same request again may not change the result.',
     UPSTREAM_UNREACHABLE:
       'The cartoon service could not be reached. The problem may be temporary; you can try again after a while.',
+    CONSENT_REQUIRED: 'To continue, confirm that you have the right to use this photo.',
+    CAPTCHA_FAILED: 'The security check could not be completed. Refresh the page and try again.',
+    RATE_LIMITED: 'You have reached the conversion limit for this hour. Please try again in an hour.',
+    DAILY_CAP: 'We have reached the capacity limit for today, please try again tomorrow.',
+    CONTENT_REJECTED: 'This image was not converted because it does not meet our content rules. Please try another photo.',
+    MODERATION_UNAVAILABLE: 'The image could not be checked right now, so it was not converted. Please try again shortly.',
+    SERVICE_UNAVAILABLE: 'The service is unavailable right now. Please try again later.',
+  },
+  safety: {
+    consent: 'I have the right to use this photo. If anyone else is in it, I have their permission.',
+    rulesLead:
+      'No nudity or violence; parental permission is required for children under 18; no copyrighted or celebrity images; no demeaning anyone.',
+    rulesLink: 'Content rules (in Turkish)',
+    verifying: 'Running a security check…',
+    verifyFailed: 'The security check could not load. Refresh the page and try again.',
   },
 }

@@ -90,6 +90,19 @@ export type AllowedMimeType = (typeof ALLOWED_MIME_TYPES)[number]
 export const MAX_FILE_BYTES = 4 * 1024 * 1024 // 4194304
 
 /**
+ * What the browser accepts from a visitor: 10 MiB. The browser re-encodes
+ * anything over MAX_FILE_BYTES (or wider than MAX_UPLOAD_EDGE_PX) before
+ * sending, so the server's own ceiling stays MAX_FILE_BYTES.
+ */
+export const MAX_ACCEPTED_FILE_BYTES = 10 * 1024 * 1024 // 10485760
+
+/** Longest edge, in pixels, of an image the browser sends. */
+export const MAX_UPLOAD_EDGE_PX = 2048
+
+/** The moderation model every upload passes before the image edit. */
+export const MODERATION_MODEL = 'omni-moderation-latest'
+
+/**
  * What the sniffer can RECOGNISE, which is a property of the magic-byte
  * tables below and not of the model. It is deliberately wider than
  * ALLOWED_MIME_TYPES: under a narrower model a JPEG is still correctly

@@ -21,7 +21,9 @@ export default function Page() {
       <p>Kisisel verileriniz, hizmetin sunulabilmesi amaciyla yurt disinda yerlesik
       su hizmet saglayicilara aktarilmaktadir: barindirma icin Vercel, veritabani
       ve kimlik dogrulama icin Supabase, odeme icin Stripe, e-posta gonderimi icin
-      Resend.</p>
+      Resend. Ayrica bot dogrulamasi icin Cloudflare Turnstile (IP adresi ve tarayici
+      sinyalleri) ve kotuye kullanim sayaclari icin Upstash (takma adli IP, yaklasik
+      1 saat icinde silinir; gunluk sayac yaklasik 2 gun tutulur) kullanilmaktadir.</p>
       <h2>Saklama suresi</h2>
       <p>Veriler, uyelik suresince ve uyeligin sona ermesinden itibaren ilgili
       mevzuatta ongorulen zamanasimi sureleri boyunca saklanir.</p>

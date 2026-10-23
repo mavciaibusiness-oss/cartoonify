@@ -41,6 +41,35 @@ export function hasOpenAIKey(): boolean {
   return typeof v === 'string' && v.length > 0
 }
 
+function nonEmpty(v: string | undefined): string | null {
+  return typeof v === 'string' && v.length > 0 ? v : null
+}
+
+export type AbuseEnv = {
+  /** 'production', 'preview', 'development', or 'local' when VERCEL_ENV is unset. */
+  environment: string
+  isProduction: boolean
+  redis: { url: string; token: string } | null
+  turnstileSecret: string | null
+  turnstileSiteKey: string | null
+  turnstileVerifyUrl: string | null
+}
+
+/** Abuse-protection settings. Read per call, never at module scope. */
+export function getAbuseEnv(): AbuseEnv {
+  const vercelEnv = nonEmpty(process.env.VERCEL_ENV)
+  const url = nonEmpty(process.env.UPSTASH_REDIS_REST_URL) ?? nonEmpty(process.env.KV_REST_API_URL)
+  const token = nonEmpty(process.env.UPSTASH_REDIS_REST_TOKEN) ?? nonEmpty(process.env.KV_REST_API_TOKEN)
+  return {
+    environment: vercelEnv ?? 'local',
+    isProduction: vercelEnv === 'production',
+    redis: url && token ? { url: url.endsWith('/') ? url.slice(0, -1) : url, token } : null,
+    turnstileSecret: nonEmpty(process.env.TURNSTILE_SECRET_KEY),
+    turnstileSiteKey: nonEmpty(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY),
+    turnstileVerifyUrl: nonEmpty(process.env.TURNSTILE_SITEVERIFY_URL),
+  }
+}
+
 /** The live site, used when NEXT_PUBLIC_SITE_URL is not set. */
 export const DEFAULT_SITE_URL = 'https://cartoonify-steel.vercel.app'
 
@@ -52,4 +81,15 @@ export function siteUrl(): string {
   const v = process.env.NEXT_PUBLIC_SITE_URL
   const url = typeof v === 'string' && v.length > 0 ? v : DEFAULT_SITE_URL
   return url.endsWith('/') ? url.slice(0, -1) : url
+}
+
+/**
+ * The public Turnstile site key for the workshop page. Outside production a
+ * missing key falls back to Cloudflare's always-pass test key; in production it
+ * stays empty, and the server fails closed anyway.
+ */
+export function turnstileSiteKey(): string {
+  const abuse = getAbuseEnv()
+  if (abuse.turnstileSiteKey) return abuse.turnstileSiteKey
+  return abuse.isProduction ? '' : '1x00000000000000000000AA'
 }

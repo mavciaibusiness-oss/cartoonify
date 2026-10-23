@@ -17,7 +17,10 @@ export default function Page() {
       onlenmesi, yasal yukumluluklerin yerine getirilmesi.</p>
       <h2>Ucuncu taraflar</h2>
       <p>Barindirma icin Vercel, veritabani ve kimlik dogrulama icin Supabase,
-      odeme icin Stripe, e-posta icin Resend hizmetlerinden yararlanilmaktadir.</p>
+      odeme icin Stripe, e-posta icin Resend hizmetlerinden yararlanilmaktadir. Bot dogrulamasi icin
+      Cloudflare Turnstile (IP adresi ve tarayici sinyalleri), kotuye kullanim
+      sayaclari icin Upstash (takma adli IP, yaklasik 1 saat icinde silinir; gunluk
+      sayac yaklasik 2 gun tutulur) kullanilir.</p>
       <h2>Haklariniz</h2>
       <p>KVKK ve GDPR kapsaminda verilerinize erisme, duzeltme, silme ve isleme
       faaliyetine itiraz etme hakkina sahipsiniz. Talepleriniz icin iletisim

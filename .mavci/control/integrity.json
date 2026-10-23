@@ -1,5 +1,5 @@
 {
-  "control_hash": "d08e8ba5cca3faa5d50c9fa9563d9a1f0cb1fa4274fb81b650a2311bbe263411",
+  "control_hash": "9c4afaac48a2111da4075cffe6a603890b8907b0c25c87bc8eef214bfb4070a2",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -22,6 +22,7 @@
     ".mavci/control/tasks/0018.json",
     ".mavci/control/tasks/0019.json",
     ".mavci/control/tasks/0020.json",
+    ".mavci/control/tasks/0021.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -44,6 +45,7 @@
     ".mavci/control/verdicts/0018-attempt-01.json",
     ".mavci/control/verdicts/0019-attempt-01.json",
     ".mavci/control/verdicts/0020-attempt-01.json",
+    ".mavci/control/verdicts/0021-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -426,17 +428,30 @@
     ".mavci/control/verdicts/adhoc-1790948847683.json",
     ".mavci/control/verdicts/adhoc-1790949069143.json",
     ".mavci/control/verdicts/adhoc-1790949083753.json",
+    ".mavci/control/verdicts/adhoc-1792702901917.json",
+    ".mavci/control/verdicts/adhoc-1792704143446.json",
+    ".mavci/control/verdicts/adhoc-1792754606630.json",
+    ".mavci/control/verdicts/adhoc-1792754638589.json",
+    ".mavci/control/verdicts/adhoc-1792754670016.json",
+    ".mavci/control/verdicts/adhoc-1792754703087.json",
+    ".mavci/control/verdicts/adhoc-1792754735010.json",
+    ".mavci/control/verdicts/adhoc-1792754766469.json",
+    ".mavci/control/verdicts/adhoc-1792754800567.json",
+    ".mavci/control/verdicts/adhoc-1792754832269.json",
+    ".mavci/control/verdicts/adhoc-1792754867883.json",
+    ".mavci/control/verdicts/adhoc-1792754884965.json",
+    ".mavci/control/verdicts/adhoc-1792755137580.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-10-02T13:51:23Z",
+    "at": "2026-10-23T11:32:17Z",
     "continues": 0,
-    "plugin_version": "0.1.35",
-    "prompt_id": "8cf4ff7a-27b2-43ba-a274-3b9085ecaef7",
-    "session_id": "d736e23a-bf17-4c5a-aed3-7ee0d9214433",
+    "plugin_version": "0.1.36",
+    "prompt_id": "14081477-3712-4e19-9875-e357f238f02f",
+    "session_id": "447c710f-95f7-4e45-bc3d-b3e2508a3968",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-10-02T15:15:00Z",
+  "sealed_at": "2026-10-23T11:32:51Z",
   "sealed_by_plugin_version": "0.1.36"
 }

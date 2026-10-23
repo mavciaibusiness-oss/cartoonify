@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0021",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0021-abuse-protection.md",
+  "title": "Abuse protection, Turnstile, moderation and upload consent"
+}

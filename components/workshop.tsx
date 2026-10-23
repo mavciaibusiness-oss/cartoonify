@@ -12,7 +12,7 @@ import { useUpload } from './upload-state'
  * chosen it shows the upload control, with the disclosure above it; with one
  * chosen it shows the workbench.
  */
-export default function Workshop({ locale }: { locale: Locale }) {
+export default function Workshop({ locale, turnstileSiteKey }: { locale: Locale; turnstileSiteKey: string }) {
   const { previewUrl } = useUpload()
   const t = getDictionary(locale)
 
@@ -38,7 +38,7 @@ export default function Workshop({ locale }: { locale: Locale }) {
 
   return (
     <main className="workshop-page">
-      <CartoonifyForm locale={locale} />
+      <CartoonifyForm locale={locale} turnstileSiteKey={turnstileSiteKey} />
     </main>
   )
 }

@@ -1,0 +1,219 @@
+import {
+  DEFAULT_CARTOON_STYLE_ID,
+  getCartoonStyle,
+  MAX_STYLES_PER_REQUEST,
+  resolveCartoonStyleId,
+} from '@/lib/cartoon-styles'
+import {
+  ALLOWED_MIME_TYPES,
+  MAX_FILE_BYTES,
+  sniffImageType,
+  type DetectableMimeType,
+} from '@/lib/image-constraints'
+import type { Counters } from '@/lib/rate-limit'
+
+/**
+ * The route's logic, with everything external injected so tests can drive it
+ * with fakes: nothing here touches the network, the file system, process.env or
+ * the OpenAI SDK. The order of the checks is the order in the task 0021 spec;
+ * no money is spent before the moderation step.
+ */
+
+export type ErrorCode =
+  | 'NO_FILE'
+  | 'INVALID_TYPE'
+  | 'FILE_TOO_LARGE'
+  | 'INVALID_STYLE'
+  | 'CONSENT_REQUIRED'
+  | 'MISSING_API_KEY'
+  | 'SERVICE_UNAVAILABLE'
+  | 'CAPTCHA_FAILED'
+  | 'RATE_LIMITED'
+  | 'DAILY_CAP'
+  | 'CONTENT_REJECTED'
+  | 'MODERATION_UNAVAILABLE'
+  | 'UPSTREAM_ERROR'
+  | 'UPSTREAM_UNREACHABLE'
+
+// Fixed Turkish constants, one per code, byte-equal to tr.errors. Never the
+// upstream error text, never a caught exception's detail, never a key name.
+export const ERROR_MESSAGES: Record<ErrorCode, string> = {
+  NO_FILE: 'Bir görsel seçmediniz. Lütfen bir dosya yükleyin.',
+  INVALID_TYPE: 'Bu dosya türü desteklenmiyor. Lütfen PNG, JPEG veya WEBP formatında bir görsel yükleyin.',
+  FILE_TOO_LARGE: 'Görsel çok büyük. Lütfen daha küçük bir dosya seçin.',
+  INVALID_STYLE: 'Seçtiğiniz karikatür stili geçersiz. Lütfen listeden bir stil seçin.',
+  CONSENT_REQUIRED: 'Devam etmek için fotoğrafı kullanma hakkınız olduğunu onaylayın.',
+  MISSING_API_KEY: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+  SERVICE_UNAVAILABLE: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+  CAPTCHA_FAILED: 'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar deneyin.',
+  RATE_LIMITED: 'Bu saat için dönüştürme sınırına ulaştınız. Lütfen bir saat sonra tekrar deneyin.',
+  DAILY_CAP: 'Bugünlük yoğunluk sınırına ulaştık, yarın tekrar deneyin.',
+  CONTENT_REJECTED: 'Bu görsel içerik kurallarımıza uymadığı için dönüştürülmedi. Lütfen başka bir fotoğraf deneyin.',
+  MODERATION_UNAVAILABLE: 'Görsel şu anda kontrol edilemedi, bu yüzden dönüştürülmedi. Lütfen biraz sonra tekrar deneyin.',
+  UPSTREAM_ERROR:
+    'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.',
+  UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
+}
+
+export type EditOutcome = { ok: true; b64: string } | { ok: false; unreachable: boolean }
+
+export type HandlerDeps = {
+  now: () => Date
+  /** Step 7: is the OpenAI key configured? */
+  hasOpenAIKey: () => boolean
+  /** Step 7b: production without Redis or a real Turnstile secret. */
+  failClosed: () => boolean
+  verifyTurnstile: (token: string, ip: string) => Promise<boolean>
+  counters: Counters
+  /** Resolves true when flagged; throws when the moderation call fails. */
+  moderate: (dataUrl: string) => Promise<boolean>
+  editImage: (input: { bytes: Uint8Array; type: DetectableMimeType; prompt: string }) => Promise<EditOutcome>
+  clientIp: (request: Request) => string
+}
+
+const MAX_TOKEN_LENGTH = 2048
+
+function errorResponse(code: ErrorCode, status: number): Response {
+  return Response.json(
+    { ok: false, code, message: ERROR_MESSAGES[code] },
+    { status, headers: { 'Cache-Control': 'no-store' } },
+  )
+}
+
+function toBase64(bytes: Uint8Array): string {
+  return Buffer.from(bytes).toString('base64')
+}
+
+export async function handleCartoonify(request: Request, deps: HandlerDeps): Promise<Response> {
+  // 1. Reject oversized requests before ever touching the body.
+  const contentLength = request.headers.get('content-length')
+  if (contentLength !== null && Number(contentLength) > MAX_FILE_BYTES + 65536) {
+    return errorResponse('FILE_TOO_LARGE', 400)
+  }
+
+  // 2. Parse the form; no `image` field or not a file -> NO_FILE.
+  let form: FormData
+  try {
+    form = await request.formData()
+  } catch {
+    return errorResponse('NO_FILE', 400)
+  }
+  const field = form.get('image')
+  if (!(field instanceof File)) {
+    return errorResponse('NO_FILE', 400)
+  }
+  const file = field
+
+  // 3. Byte ceiling, checked against the real upload.
+  if (file.size > MAX_FILE_BYTES) {
+    return errorResponse('FILE_TOO_LARGE', 400)
+  }
+
+  // 4. MIME allow-list, then magic bytes (the declared type is not evidence).
+  if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(file.type)) {
+    return errorResponse('INVALID_TYPE', 400)
+  }
+  const bytes = new Uint8Array(await file.arrayBuffer())
+  const sniffed = sniffImageType(bytes)
+  if (sniffed === null || sniffed !== file.type) {
+    return errorResponse('INVALID_TYPE', 400)
+  }
+
+  // 5. The style is an id, never prompt text. form.getAll, not form.get, so the
+  //    cap is an enforced decision (ADR 0006).
+  const styleFields = form.getAll('style')
+  if (styleFields.length > MAX_STYLES_PER_REQUEST) {
+    return errorResponse('INVALID_STYLE', 400)
+  }
+  const styleField = styleFields.length > 0 ? styleFields[0] : null
+  let styleId = DEFAULT_CARTOON_STYLE_ID
+  if (styleField !== null) {
+    const resolvedId = resolveCartoonStyleId(styleField)
+    if (resolvedId === null) {
+      return errorResponse('INVALID_STYLE', 400)
+    }
+    styleId = resolvedId
+  }
+  const style = getCartoonStyle(styleId)
+
+  // 6. Consent: exactly one field, equal to "yes".
+  const consent = form.getAll('consent')
+  if (consent.length !== 1 || consent[0] !== 'yes') {
+    return errorResponse('CONSENT_REQUIRED', 400)
+  }
+
+  // 7. Configuration. Every validation failure above is observable with
+  //    nothing configured at all.
+  if (!deps.hasOpenAIKey()) {
+    return errorResponse('MISSING_API_KEY', 503)
+  }
+  if (deps.failClosed()) {
+    return errorResponse('SERVICE_UNAVAILABLE', 503)
+  }
+
+  // 8. Turnstile.
+  const tokens = form.getAll('cf-turnstile-response')
+  const token = tokens.length === 1 ? tokens[0] : null
+  if (typeof token !== 'string' || token.length < 1 || token.length > MAX_TOKEN_LENGTH) {
+    return errorResponse('CAPTCHA_FAILED', 403)
+  }
+  const ip = deps.clientIp(request)
+  if (!(await deps.verifyTurnstile(token, ip))) {
+    return errorResponse('CAPTCHA_FAILED', 403)
+  }
+
+  // 9-10. Reservations. The hourly counter is never refunded; a daily slot is
+  //       refunded when the request does not end in a conversion.
+  const now = deps.now()
+  try {
+    if (!(await deps.counters.reserveIp(ip, now))) {
+      return errorResponse('RATE_LIMITED', 429)
+    }
+    if (!(await deps.counters.reserveDaily(now))) {
+      return errorResponse('DAILY_CAP', 429)
+    }
+  } catch (unknownError) {
+    console.error('cartoonify: counter store failed', unknownError)
+    return errorResponse('SERVICE_UNAVAILABLE', 503)
+  }
+
+  const refund = async () => {
+    try {
+      await deps.counters.refundDaily(now)
+    } catch (unknownError) {
+      console.error('cartoonify: daily refund failed', unknownError)
+    }
+  }
+
+  // 11. Moderation. A failure to check is a refusal to convert.
+  let flagged: boolean
+  try {
+    flagged = await deps.moderate('data:' + sniffed + ';base64,' + toBase64(bytes))
+  } catch (unknownError) {
+    console.error('cartoonify: moderation failed', unknownError)
+    await refund()
+    return errorResponse('MODERATION_UNAVAILABLE', 503)
+  }
+  if (flagged) {
+    await refund()
+    return errorResponse('CONTENT_REJECTED', 422)
+  }
+
+  // 12. The image edit.
+  let outcome: EditOutcome
+  try {
+    outcome = await deps.editImage({ bytes, type: sniffed, prompt: style.prompt })
+  } catch (unknownError) {
+    console.error('cartoonify: image edit failed', unknownError)
+    outcome = { ok: false, unreachable: false }
+  }
+  if (!outcome.ok) {
+    await refund()
+    return errorResponse(outcome.unreachable ? 'UPSTREAM_UNREACHABLE' : 'UPSTREAM_ERROR', 502)
+  }
+
+  return Response.json(
+    { ok: true, image: `data:image/png;base64,${outcome.b64}` },
+    { status: 200, headers: { 'Cache-Control': 'no-store' } },
+  )
+}

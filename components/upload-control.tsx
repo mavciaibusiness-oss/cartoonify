@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import { ALLOWED_MIME_TYPES, MAX_ACCEPTED_FILE_BYTES } from '@/lib/image-constraints'
 import { format, getDictionary, localizedPath, type Dictionary, type Locale } from '@/lib/i18n'
 import { useUpload } from './upload-state'
 
@@ -15,7 +15,7 @@ function validateFile(file: File, t: Dictionary): string | null {
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(file.type)) {
     return t.errors.INVALID_TYPE
   }
-  if (file.size > MAX_FILE_BYTES) {
+  if (file.size > MAX_ACCEPTED_FILE_BYTES) {
     return t.errors.FILE_TOO_LARGE
   }
   return null
@@ -100,7 +100,7 @@ export default function UploadControl({ locale, redirectOnSelect = true }: Uploa
       </label>
 
       <p id="cartoonify-upload-help" className="upload-help">
-        {format(t.upload.help, { n: Math.floor(MAX_FILE_BYTES / (1024 * 1024)) })}
+        {format(t.upload.help, { n: Math.floor(MAX_ACCEPTED_FILE_BYTES / (1024 * 1024)) })}
       </p>
 
       <p id="cartoonify-upload-message" className="upload-message" aria-live="polite" role="status">

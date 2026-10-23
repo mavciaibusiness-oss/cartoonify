@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   DEFAULT_CARTOON_STYLE_ID,
@@ -9,7 +10,8 @@ import {
   type CartoonStyle,
   type CartoonStyleId,
 } from '@/lib/cartoon-styles'
-import { ALLOWED_MIME_TYPES, MAX_FILE_BYTES } from '@/lib/image-constraints'
+import { ALLOWED_MIME_TYPES, MAX_ACCEPTED_FILE_BYTES } from '@/lib/image-constraints'
+import { prepareUpload } from '@/lib/prepare-upload'
 import {
   errorMessage,
   format,
@@ -33,6 +35,7 @@ import {
 import KvkkNotice from './kvkk-notice'
 import { useUpload } from './upload-state'
 import StyleCard from './style-card'
+import TurnstileWidget from './turnstile-widget'
 
 type Status = 'idle' | 'loading' | 'error' | 'success'
 
@@ -44,13 +47,13 @@ function validateFile(file: File, t: Dictionary): string | null {
   if (!(ALLOWED_MIME_TYPES as readonly string[]).includes(file.type)) {
     return t.errors.INVALID_TYPE
   }
-  if (file.size > MAX_FILE_BYTES) {
+  if (file.size > MAX_ACCEPTED_FILE_BYTES) {
     return t.errors.FILE_TOO_LARGE
   }
   return null
 }
 
-export default function CartoonifyForm({ locale }: { locale: Locale }) {
+export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: Locale; turnstileSiteKey: string }) {
   const { file, previewUrl, setUpload } = useUpload()
   const t = getDictionary(locale)
   const searchParams = useSearchParams()
@@ -66,6 +69,11 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
   const [category, setCategory] = useState<CategoryFilter>(() => categoryFromQuery(searchParams.get('category')))
   const [query, setQuery] = useState<string>(() => searchFromQuery(searchParams.get('q')))
   const resultRef = useRef<HTMLElement | null>(null)
+  const [consent, setConsent] = useState(false)
+  const [consentEverTicked, setConsentEverTicked] = useState(false)
+  const [token, setToken] = useState<string | null>(null)
+  const [resetCount, setResetCount] = useState(0)
+  const [verifyFailed, setVerifyFailed] = useState(false)
 
   useEffect(() => {
     if (status !== 'loading') {
@@ -148,6 +156,9 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
       setMessage(t.errors.NO_FILE)
       return
     }
+    if (!consent || !token) {
+      return
+    }
 
     const validationError = validateFile(file, t)
     if (validationError) {
@@ -163,10 +174,20 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     setStatus('loading')
     setMessage(null)
 
+    const sentToken = token
     try {
+      const prepared = await prepareUpload(file)
+      if (!prepared) {
+        setStatus('error')
+        setMessage(t.errors.FILE_TOO_LARGE)
+        return
+      }
+
       const body = new FormData()
-      body.append('image', file)
+      body.append('image', prepared)
       body.append('style', sentStyleId)
+      body.append('consent', 'yes')
+      body.append('cf-turnstile-response', sentToken)
 
       const response = await fetch('/api/cartoonify', { method: 'POST', body })
       const data = (await response.json()) as ApiResponse
@@ -184,10 +205,14 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
     } catch {
       setStatus('error')
       setMessage(t.client.network)
+    } finally {
+      // A Turnstile token is single-use: ask for a fresh one after every answer.
+      setToken(null)
+      setResetCount((n) => n + 1)
     }
   }
 
-  const canSubmit = status !== 'loading' && previewUrl !== null
+  const canSubmit = status !== 'loading' && previewUrl !== null && consent && token !== null
   const selectedText = styleText(getCartoonStyle(styleId), locale)
   const galleryGroups = useMemo<readonly GalleryGroup[]>(
     () => displayGroups().map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
@@ -252,6 +277,38 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
             {t.form.selectedStyle} <strong>{selectedText.name}</strong>
           </p>
 
+          <div className="workshop-consent">
+            <label className="workshop-consent-label">
+              <input
+                type="checkbox"
+                checked={consent}
+                onChange={(event) => {
+                  setConsent(event.target.checked)
+                  if (event.target.checked) setConsentEverTicked(true)
+                }}
+              />
+              <span>{t.safety.consent}</span>
+            </label>
+            <p className="workshop-rules">
+              {t.safety.rulesLead} <Link href="/terms#icerik-kurallari">{t.safety.rulesLink}</Link>
+            </p>
+            <TurnstileWidget
+              siteKey={turnstileSiteKey}
+              active={consentEverTicked}
+              resetCount={resetCount}
+              onToken={(value) => {
+                setToken(value)
+                if (value) setVerifyFailed(false)
+              }}
+              onLoadError={() => setVerifyFailed(true)}
+            />
+            {consentEverTicked && token === null && status !== 'loading' ? (
+              <p className="workshop-verify" role="status">
+                {verifyFailed ? t.safety.verifyFailed : t.safety.verifying}
+              </p>
+            ) : null}
+          </div>
+
           <div className="workshop-actions">
             {panel.showGenerate ? (
               <button type="submit" className="generate-button" disabled={!canSubmit}>
@@ -265,7 +322,7 @@ export default function CartoonifyForm({ locale }: { locale: Locale }) {
                   </a>
                 ) : null}
                 {panel.showRegenerate ? (
-                  <button type="submit" className="regenerate-button ghost-button">
+                  <button type="submit" className="regenerate-button ghost-button" disabled={!canSubmit}>
                     {format(t.form.regenerate, { style: selectedText.name })}
                   </button>
                 ) : null}

@@ -179,6 +179,21 @@ export const tr = {
     MISSING_API_KEY: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
     UPSTREAM_ERROR: 'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.',
     UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
+    CONSENT_REQUIRED: 'Devam etmek için fotoğrafı kullanma hakkınız olduğunu onaylayın.',
+    CAPTCHA_FAILED: 'Güvenlik doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar deneyin.',
+    RATE_LIMITED: 'Bu saat için dönüştürme sınırına ulaştınız. Lütfen bir saat sonra tekrar deneyin.',
+    DAILY_CAP: 'Bugünlük yoğunluk sınırına ulaştık, yarın tekrar deneyin.',
+    CONTENT_REJECTED: 'Bu görsel içerik kurallarımıza uymadığı için dönüştürülmedi. Lütfen başka bir fotoğraf deneyin.',
+    MODERATION_UNAVAILABLE: 'Görsel şu anda kontrol edilemedi, bu yüzden dönüştürülmedi. Lütfen biraz sonra tekrar deneyin.',
+    SERVICE_UNAVAILABLE: 'Hizmet şu anda kullanılamıyor. Lütfen daha sonra tekrar deneyin.',
+  },
+  safety: {
+    consent: 'Bu fotoğrafı kullanma hakkım var. Fotoğrafta başkası varsa iznini aldım.',
+    rulesLead:
+      'Çıplaklık ve şiddet yok; 18 yaş altı çocuklar için ebeveyn izni gerekir; telifli ya da ünlülere ait görsel yok; kimseyi küçük düşürmek yok.',
+    rulesLink: 'İçerik kuralları',
+    verifying: 'Güvenlik doğrulaması yapılıyor…',
+    verifyFailed: 'Güvenlik doğrulaması yüklenemedi. Sayfayı yenileyip tekrar deneyin.',
   },
 } as const
 
