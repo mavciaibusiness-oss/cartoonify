@@ -143,6 +143,11 @@ function trimSlash(v: string): string {
   return v.endsWith('/') ? v.slice(0, -1) : v
 }
 
+/** Like nonEmpty, but ignores leading and trailing whitespace (pasted values often end in a newline). */
+function trimmed(v: string | undefined): string | null {
+  return typeof v === 'string' && v.trim().length > 0 ? v.trim() : null
+}
+
 /**
  * Polar payments settings, read on every call and never cached. Null means
  * payments are off. The environment follows VERCEL_ENV: a preview can only
@@ -152,16 +157,16 @@ function trimSlash(v: string): string {
  */
 export function getPaymentsEnv(): PaymentsEnv | null {
   const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
-  const accessToken = nonEmpty(process.env.POLAR_ACCESS_TOKEN)
-  const webhookSecret = nonEmpty(process.env.POLAR_WEBHOOK_SECRET)
-  const p10 = nonEmpty(process.env.POLAR_PRODUCT_10)
-  const p30 = nonEmpty(process.env.POLAR_PRODUCT_30)
-  const p75 = nonEmpty(process.env.POLAR_PRODUCT_75)
+  const accessToken = trimmed(process.env.POLAR_ACCESS_TOKEN)
+  const webhookSecret = trimmed(process.env.POLAR_WEBHOOK_SECRET)
+  const p10 = trimmed(process.env.POLAR_PRODUCT_10)
+  const p30 = trimmed(process.env.POLAR_PRODUCT_30)
+  const p75 = trimmed(process.env.POLAR_PRODUCT_75)
   if (!accessToken || !webhookSecret || !p10 || !p30 || !p75) return null
   if (new Set([p10, p30, p75]).size !== 3) return null
 
-  const resendKey = nonEmpty(process.env.RESEND_API_KEY)
-  const alertTo = nonEmpty(process.env.OPERATOR_ALERT_EMAIL)
+  const resendKey = trimmed(process.env.RESEND_API_KEY)
+  const alertTo = trimmed(process.env.OPERATOR_ALERT_EMAIL)
   if (isProduction && (!resendKey || !alertTo)) return null
 
   const polarOverride = isProduction ? null : nonEmpty(process.env.POLAR_API_BASE_URL)
@@ -177,4 +182,27 @@ export function getPaymentsEnv(): PaymentsEnv | null {
         ? { apiBase: trimSlash(resendOverride ?? 'https://api.resend.com'), apiKey: resendKey, to: alertTo }
         : null,
   }
+}
+
+/**
+ * Why getPaymentsEnv() is null, naming settings only, never their values.
+ * Empty string when payments are on. Safe to log.
+ */
+export function paymentsEnvProblem(): string {
+  const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
+  const required: Array<[string, string | undefined]> = [
+    ['POLAR_ACCESS_TOKEN', process.env.POLAR_ACCESS_TOKEN],
+    ['POLAR_WEBHOOK_SECRET', process.env.POLAR_WEBHOOK_SECRET],
+    ['POLAR_PRODUCT_10', process.env.POLAR_PRODUCT_10],
+    ['POLAR_PRODUCT_30', process.env.POLAR_PRODUCT_30],
+    ['POLAR_PRODUCT_75', process.env.POLAR_PRODUCT_75],
+  ]
+  if (isProduction) {
+    required.push(['RESEND_API_KEY', process.env.RESEND_API_KEY], ['OPERATOR_ALERT_EMAIL', process.env.OPERATOR_ALERT_EMAIL])
+  }
+  const missing = required.filter(([, v]) => trimmed(v) === null).map(([n]) => n)
+  if (missing.length > 0) return 'missing=' + missing.join(',')
+  const products = [process.env.POLAR_PRODUCT_10, process.env.POLAR_PRODUCT_30, process.env.POLAR_PRODUCT_75].map(trimmed)
+  if (new Set(products).size !== 3) return 'product_ids_not_distinct'
+  return ''
 }

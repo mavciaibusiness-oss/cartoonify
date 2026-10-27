@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
-import { getAccountsEnv, getPaymentsEnv } from '@/lib/env'
+import { getAccountsEnv, getPaymentsEnv, paymentsEnvProblem } from '@/lib/env'
 import {
   WEBHOOK_MAX_BYTES,
   accountOf,
+  checkWebhook,
   mapEvent,
   sendShortfallAlert,
-  verifyWebhook,
 } from '@/lib/polar'
 import { markAlerted, orderPaid, polarRefund } from '@/lib/supabase/server'
 
@@ -25,12 +25,23 @@ function answer(status: number): Response {
  */
 export async function POST(request: Request): Promise<Response> {
   const payments = getPaymentsEnv()
-  if (!payments || !getAccountsEnv()) return answer(503)
+  if (!payments) {
+    console.warn('polar webhook: rejected 503 reason=payments_off ' + paymentsEnvProblem())
+    return answer(503)
+  }
+  if (!getAccountsEnv()) {
+    console.warn('polar webhook: rejected 503 reason=accounts_off')
+    return answer(503)
+  }
 
   const raw = await request.text()
-  if (Buffer.byteLength(raw, 'utf8') > WEBHOOK_MAX_BYTES) return answer(413)
+  const bytes = Buffer.byteLength(raw, 'utf8')
+  if (bytes > WEBHOOK_MAX_BYTES) {
+    console.warn('polar webhook: rejected 413 reason=body_too_large bytes=' + bytes)
+    return answer(413)
+  }
 
-  const verified = verifyWebhook(
+  const check = checkWebhook(
     raw,
     {
       id: request.headers.get('webhook-id'),
@@ -40,17 +51,25 @@ export async function POST(request: Request): Promise<Response> {
     payments.webhookSecret,
     Math.floor(Date.now() / 1000),
   )
-  if (!verified) return answer(403)
+  if (!check.ok) {
+    console.warn('polar webhook: rejected 403 reason=' + check.reason + ' ' + check.detail)
+    return answer(403)
+  }
 
   let event: unknown
   try {
     event = JSON.parse(raw)
   } catch {
+    console.warn('polar webhook: rejected 400 reason=invalid_json bytes=' + bytes)
     return answer(400)
   }
 
   const action = mapEvent(event, payments.environment)
-  if (action.kind === 'ignore') return answer(202)
+  if (action.kind === 'ignore') {
+    const type = typeof (event as { type?: unknown })?.type === 'string' ? String((event as { type: string }).type).slice(0, 60) : 'unknown'
+    console.warn('polar webhook: ignored 202 type=' + type)
+    return answer(202)
+  }
 
   let alertShortfall = 0
   let orderId: string | null = null

@@ -38,49 +38,120 @@ export function parsePack(value: unknown): PackChoice | null {
 
 export type WebhookHeaders = { id: string | null; timestamp: string | null; signature: string | null }
 
+/** Prefixes whose remainder is the base64 of the key (Standard Webhooks). */
+const SECRET_PREFIXES = ['whsec_', 'polar_whs_'] as const
+
 function candidateKeys(secret: string): Buffer[] {
   const keys: Buffer[] = []
-  if (secret.startsWith('whsec_')) {
-    const decoded = Buffer.from(secret.slice(6), 'base64')
+  for (const prefix of SECRET_PREFIXES) {
+    if (!secret.startsWith(prefix)) continue
+    const decoded = Buffer.from(secret.slice(prefix.length), 'base64')
     if (decoded.length >= 16) keys.push(decoded)
   }
+  // Polar's older scheme: the UTF-8 bytes of the whole secret, prefix included.
   keys.push(Buffer.from(secret, 'utf8'))
   return keys
 }
 
+export type WebhookRejection =
+  | 'no_secret'
+  | 'missing_id'
+  | 'bad_id'
+  | 'missing_timestamp'
+  | 'bad_timestamp'
+  | 'stale_timestamp'
+  | 'missing_signature'
+  | 'no_v1_signature'
+  | 'signature_mismatch'
+
+export type WebhookCheck =
+  | { ok: true }
+  | { ok: false; reason: WebhookRejection; detail: string }
+
+/**
+ * Describes a secret without revealing it: which prefix, its length, whether
+ * the prefix part decodes to a usable key. Safe to log.
+ */
+export function describeSecret(secret: string): string {
+  const prefix = SECRET_PREFIXES.find((p) => secret.startsWith(p)) ?? 'none'
+  const decodable = prefix === 'none' ? 'n/a' : String(Buffer.from(secret.slice(prefix.length), 'base64').length >= 16)
+  return 'prefix=' + prefix + ' length=' + secret.length + ' base64_key=' + decodable
+}
+
 /**
  * Standard Webhooks: HMAC-SHA256 over `id.timestamp.body`. The key is the
- * base64-decoded part after `whsec_`, or (Polar's older scheme) the UTF-8
- * bytes of the whole secret. The header holds space-separated `v1,<base64>`
- * entries; anything else is ignored. Comparison is constant-time.
+ * base64-decoded part after `whsec_` (or `polar_whs_`), or (Polar's older
+ * scheme) the UTF-8 bytes of the whole secret. The header holds
+ * space-separated `v1,<base64>` entries; anything else is ignored.
+ * Comparison is constant-time. Leading and trailing whitespace of the secret
+ * is ignored (a pasted value often carries a newline). On rejection the
+ * reason and a detail that holds no secret or signature value are returned.
  */
+export function checkWebhook(
+  rawBody: string,
+  headers: WebhookHeaders,
+  rawSecret: string,
+  nowSeconds: number,
+): WebhookCheck {
+  const { id, timestamp, signature } = headers
+  const secret = typeof rawSecret === 'string' ? rawSecret.trim() : ''
+  if (secret.length === 0) return { ok: false, reason: 'no_secret', detail: 'secret is empty' }
+  if (typeof id !== 'string' || id.length === 0) return { ok: false, reason: 'missing_id', detail: 'no webhook-id header' }
+  if (id.length > 200) return { ok: false, reason: 'bad_id', detail: 'webhook-id length ' + id.length }
+  for (const ch of id) {
+    if (ch === '.' || ch === ' ' || ch === '\t' || ch === '\n' || ch === '\r') {
+      return { ok: false, reason: 'bad_id', detail: 'webhook-id has a dot or whitespace' }
+    }
+  }
+  if (typeof timestamp !== 'string' || timestamp.length === 0) {
+    return { ok: false, reason: 'missing_timestamp', detail: 'no webhook-timestamp header' }
+  }
+  if (!/^[0-9]{1,15}$/.test(timestamp)) {
+    return { ok: false, reason: 'bad_timestamp', detail: 'webhook-timestamp is not whole seconds' }
+  }
+  const skew = nowSeconds - Number(timestamp)
+  if (Math.abs(skew) > WEBHOOK_TOLERANCE_SECONDS) {
+    return { ok: false, reason: 'stale_timestamp', detail: 'skew ' + skew + ' s, tolerance ' + WEBHOOK_TOLERANCE_SECONDS + ' s' }
+  }
+  if (typeof signature !== 'string' || signature.length === 0) {
+    return { ok: false, reason: 'missing_signature', detail: 'no webhook-signature header' }
+  }
+
+  const entries = signature.split(' ').filter((e) => e.startsWith('v1,'))
+  if (entries.length === 0) {
+    return { ok: false, reason: 'no_v1_signature', detail: 'signature header has no v1 entry' }
+  }
+  const content = id + '.' + timestamp + '.' + rawBody
+  const keys = candidateKeys(secret)
+  const expected = keys.map((key) => crypto.createHmac('sha256', key).update(content).digest())
+  let match = false
+  for (const entry of entries) {
+    const given = Buffer.from(entry.slice(3), 'base64')
+    for (const want of expected) {
+      if (given.length === want.length && crypto.timingSafeEqual(given, want)) match = true
+    }
+  }
+  if (match) return { ok: true }
+  return {
+    ok: false,
+    reason: 'signature_mismatch',
+    detail:
+      describeSecret(secret) +
+      ' keys_tried=' + keys.length +
+      ' v1_entries=' + entries.length +
+      ' body_bytes=' + Buffer.byteLength(rawBody, 'utf8') +
+      ' secret_had_whitespace=' + String(rawSecret !== secret),
+  }
+}
+
+/** Boolean form of checkWebhook (D7). */
 export function verifyWebhook(
   rawBody: string,
   headers: WebhookHeaders,
   secret: string,
   nowSeconds: number,
 ): boolean {
-  const { id, timestamp, signature } = headers
-  if (typeof secret !== 'string' || secret.length === 0) return false
-  if (typeof id !== 'string' || id.length === 0 || id.length > 200) return false
-  for (const ch of id) {
-    if (ch === '.' || ch === ' ' || ch === '\t' || ch === '\n' || ch === '\r') return false
-  }
-  if (typeof timestamp !== 'string' || !/^[0-9]{1,15}$/.test(timestamp)) return false
-  if (Math.abs(nowSeconds - Number(timestamp)) > WEBHOOK_TOLERANCE_SECONDS) return false
-  if (typeof signature !== 'string' || signature.length === 0) return false
-
-  const content = id + '.' + timestamp + '.' + rawBody
-  const expected = candidateKeys(secret).map((key) => crypto.createHmac('sha256', key).update(content).digest())
-  let match = false
-  for (const entry of signature.split(' ')) {
-    if (!entry.startsWith('v1,')) continue
-    const given = Buffer.from(entry.slice(3), 'base64')
-    for (const want of expected) {
-      if (given.length === want.length && crypto.timingSafeEqual(given, want)) match = true
-    }
-  }
-  return match
+  return checkWebhook(rawBody, headers, secret, nowSeconds).ok
 }
 
 export type OrderPaidCall = {

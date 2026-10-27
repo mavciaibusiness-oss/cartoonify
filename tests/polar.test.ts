@@ -8,6 +8,8 @@ import {
   buildCheckoutRequest,
   mapEvent,
   parsePack,
+  checkWebhook,
+  describeSecret,
   verifyWebhook,
 } from '@/lib/polar'
 import { tr } from '@/lib/i18n/tr'
@@ -61,6 +63,47 @@ test('accepts both Standard Webhooks and legacy Polar keys', () => {
   const stale = 'v1,' + Buffer.from('nope').toString('base64')
   assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, stale + ' ' + sign(BODY, SECRET, 'msg_1', NOW)), SECRET, NOW), true)
   assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, sign(BODY, OTHER, 'msg_1', NOW, true)), SECRET, NOW), false)
+})
+
+test('accepts the polar_whs_ prefix and a secret pasted with whitespace', () => {
+  const key = crypto.createHash('sha256').update('polar-whs-test').digest()
+  const polarWhs = 'polar_whs_' + key.toString('base64')
+  const hmac = (k: Buffer, id: string, ts: number, body: string) =>
+    'v1,' + crypto.createHmac('sha256', k).update(id + '.' + ts + '.' + body).digest('base64')
+  // Standard Webhooks key: base64 after the prefix.
+  assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, hmac(key, 'msg_1', NOW, BODY)), polarWhs, NOW), true)
+  // Polar SDK key: the UTF-8 bytes of the whole secret.
+  assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, hmac(Buffer.from(polarWhs, 'utf8'), 'msg_1', NOW, BODY)), polarWhs, NOW), true)
+  // A trailing newline or spaces in the stored value do not break either scheme.
+  const good = sign(BODY, SECRET, 'msg_1', NOW)
+  assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, good), SECRET + '\n', NOW), true)
+  assert.equal(verifyWebhook(BODY, headers('msg_1', NOW, sign(BODY, SECRET, 'msg_1', NOW, true)), '  ' + SECRET + ' ', NOW), true)
+})
+
+test('names the reason for every rejection without revealing the secret or signature', () => {
+  const good = sign(BODY, SECRET, 'msg_1', NOW)
+  const reason = (r: ReturnType<typeof checkWebhook>) => (r.ok ? 'ok' : r.reason)
+  assert.equal(reason(checkWebhook(BODY, headers('msg_1', NOW, good), SECRET, NOW)), 'ok')
+  assert.equal(reason(checkWebhook(BODY, headers('msg_1', NOW, good), ' ', NOW)), 'no_secret')
+  assert.equal(reason(checkWebhook(BODY, { id: null, timestamp: String(NOW), signature: good }, SECRET, NOW)), 'missing_id')
+  assert.equal(reason(checkWebhook(BODY, headers('msg.1', NOW, good), SECRET, NOW)), 'bad_id')
+  assert.equal(reason(checkWebhook(BODY, { id: 'msg_1', timestamp: null, signature: good }, SECRET, NOW)), 'missing_timestamp')
+  assert.equal(reason(checkWebhook(BODY, { id: 'msg_1', timestamp: '17e8', signature: good }, SECRET, NOW)), 'bad_timestamp')
+  assert.equal(reason(checkWebhook(BODY, headers('msg_1', NOW - 301, good), SECRET, NOW)), 'stale_timestamp')
+  assert.equal(reason(checkWebhook(BODY, headers('msg_1', NOW, ''), SECRET, NOW)), 'missing_signature')
+  assert.equal(reason(checkWebhook(BODY, headers('msg_1', NOW, 'v2,' + good.slice(3)), SECRET, NOW)), 'no_v1_signature')
+  const bad = checkWebhook(BODY, headers('msg_1', NOW, sign(BODY, OTHER, 'msg_1', NOW)), SECRET, NOW)
+  assert.equal(reason(bad), 'signature_mismatch')
+  for (const r of [bad, checkWebhook(BODY, headers('msg_1', NOW - 301, good), SECRET, NOW)]) {
+    assert.ok(!r.ok)
+    if (!r.ok) {
+      for (const leak of [SECRET, SECRET.slice(6), OTHER.slice(6), good.slice(3)]) {
+        assert.ok(!r.detail.includes(leak), 'detail leaks a value: ' + r.reason)
+      }
+    }
+  }
+  assert.match(describeSecret(SECRET), /^prefix=whsec_ length=\d+ base64_key=true$/)
+  assert.match(describeSecret('plain'), /^prefix=none length=5 base64_key=n\/a$/)
 })
 
 test('credits a paid order once even when the webhook is replayed', async () => {
