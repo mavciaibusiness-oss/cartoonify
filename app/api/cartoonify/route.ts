@@ -1,6 +1,8 @@
 import OpenAI, { toFile } from 'openai'
 import { handleCartoonify, type HandlerDeps } from '@/lib/cartoonify-handler'
-import { getAbuseEnv, getEnv, hasOpenAIKey } from '@/lib/env'
+import { accountsConfigured, getAbuseEnv, getEnv, hasOpenAIKey } from '@/lib/env'
+import { createCredits, getSessionUser } from '@/lib/supabase/server'
+import { watermarkPng } from '@/lib/watermark'
 import {
   IMAGE_MODEL,
   IMAGE_QUALITY,
@@ -63,6 +65,10 @@ function buildDeps(): HandlerDeps {
     hasOpenAIKey,
     failClosed: () => failClosed,
     clientIp: (request) => clientIp(request.headers),
+    accountsConfigured,
+    getUser: () => getSessionUser(),
+    credits: createCredits(),
+    watermark: watermarkPng,
     verifyTurnstile: (token, ip) =>
       secret === null ? Promise.resolve(false) : verifyTurnstileToken({ secret, token, ip, url: verifyUrl }),
     counters: createCounters(

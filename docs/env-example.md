@@ -56,3 +56,15 @@ Or simply open `.env.example` in an editor and paste the block above.
 - `docs/adr/0001-manifest-cannot-describe-this-product.md` — why this project's stack differs
   from the scaffold
 - System finding 2, `.mavci/lessons/pending-system-change.md`
+
+## Task 0022 additions (accounts and the credit wallet)
+
+Four more server-side names, no values, set in Vercel for Preview and Production only
+(never in `.env.local`, see `docs/0022-operator-steps.md`). All are read in `lib/env.ts` only.
+
+```
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+ABUSE_HASH_SECRET=
+```

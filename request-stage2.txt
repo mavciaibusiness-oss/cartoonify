@@ -1,0 +1,46 @@
+=== OPERATOR'S BRIEF (verbatim, 2026-10-26) ===
+
+GÖREV: Cartoonify 2. aşama – giriş, ücretsiz hak, Polar kredileri, yeni kategoriler, cartoon.protoolhub.net. Mavci akışıyla: spec → approve-spec (ben PowerShell'den onaylarım) → build → verifier.
+
+KARARLAR
+1. Giriş zorunlu (ilk dönüşümden önce): Google ile giriş + e-posta link (şifresiz). Supabase Auth.
+2. Veritabanı: Supabase projesi ltjwsmiycijxrqxjsphq (ücretsiz plan dolu, yeni proje yok). Her şey AYRI bir şemada: protoolhub (kullanıcı profili, kredi cüzdanı, kredi hareketleri, dönüşüm kaydı, Polar olayları). public şemasındaki Webtochat/chatbot tablolarına DOKUNMA. Tüm tablolar RLS açık; kredi düşme/ekleme yalnız SECURITY DEFINER fonksiyonlarla, sunucudan. Cüzdan, ileride diğer ProToolHub araçları da kullanacak şekilde araç-bağımsız olsun.
+3. Ücretsiz: her yeni hesaba 2 dönüşüm, sonuç FİLİGRANLI ("ProToolHub" + maskot, köşede). Aynı kişinin çoklu hesapla bedava hak toplamasını zorlaştır (e-posta doğrulama şart, Turnstile, IP/cihaz başına günlük sınır).
+4. Ücretli krediler (Polar, tek seferlik, kredi süresi dolmaz): $3.99 = 10, $9.99 = 30, $19.99 = 75 dönüşüm. Ücretli dönüşümde filigran yok. Polar webhook imzası doğrulanır; aynı olay iki kez işlenmez; kredi ancak webhook'tan sonra eklenir. Dönüşüm başarısız olursa kredi iade edilir.
+5. Yeni kategoriler (önce bu ikisi): Evcil Hayvan Portresi ve Avatar. Her stilin kendi önizleme konusu olsun (mevcut 99 stil korunur).
+6. Adres: cartoon.protoolhub.net. protoolhub.net DNS'inin nerede yönetildiğini kontrol et; Vercel'e domain ekleme ve DNS kaydı için bana adım adım yaz (ben yaparım).
+7. Marka: ProToolHub altında, maskot = sevimli chibi kız (büyük kalem tutan). Ton eğlenceli. Pazarlama metinleri doğal, insan yazısı gibi (humanizer kurallarına uygun).
+8. Zorunlu sayfalar: Gizlilik, Kullanım Koşulları, KVKK, İade politikası, İletişim (AVC LLC, 30 N Gould St Ste 43070, Sheridan, WY 82801, USA). "REVIEW REQUIRED" işareti; yükleme sırasında "bu fotoğrafı kullanma hakkım var" onay kutusu. Google Ads politikalarına uygun (yanıltıcı iddia yok, ünlü/telif karakter yok).
+9. Arayüz: sade, büyük yazı, her ekranda tek net sonraki adım; kalan kredi her zaman görünür. Dil: İngilizce (global), Türkçe seçeneği.
+10. Mevcut koruma kalsın: Upstash rate limit (saatte 10, günde 300), Turnstile.
+
+VERCEL
+- Proje homeca-lc/cartoonify'da kalıyor. Vercel CLI kullanırken mutlaka --scope homeca-lc ve doğru projeye bağlı olduğunu kontrol et (bu bilgisayardaki CLI başka hesaba da bağlı). Gereken değişken adlarını (Preview / Production ayrı) listele; değerleri ben girerim.
+- Önce önizleme. "yayına al" demeden production'a deploy yok.
+
+GÜVENLİK
+- Anahtar/şifre ekrana, loga, commit'e girmez. OpenAI ve Polar anahtarları yalnız sunucuda.
+- Supabase komutlarında her zaman --project-ref ltjwsmiycijxrqxjsphq; migration'ı uygulamadan önce SQL'in tamamını göster, onay bekle (yalnız protoolhub şeması). bptiwxuzscfhuyzpuwip'e dokunma.
+- Görseller kalıcı saklanmaz (mevcut kural); sadece dönüşüm kaydı (tarih, stil, kredi) tutulur.
+- Yetki/güvenlik engelinin etrafından dolaşma; engel çıkarsa dur ve raporla. .mavci state elle düzenlenmez. Özel numaram hiçbir yerde yazılmaz.
+
+Başlamadan önce spec'te belirsiz kalan bir şey varsa bana sor. Spec hazır olunca kısa özet ver.
+
+=== OPERATOR'S ANSWERS IN SESSION (2026-10-26, before planning) ===
+
+A1. Split into 4 sequential tasks, each with its own spec/approval/verify:
+    - 0022: protoolhub schema + Supabase Auth (Google + email magic link) + tool-agnostic wallet + 2 free watermarked conversions + anti-multi-account measures + conversion record. THIS TASK.
+    - 0023: Polar paid credits (packs, checkout, signed idempotent webhook, credit only after webhook).
+    - 0024: new categories Pet Portrait and Avatar, each style with its own preview subject.
+    - 0025: branding (chibi mascot with big pencil), English default language, refund policy page, legal pages update with AVC LLC, cartoon.protoolhub.net domain steps.
+A2. Shared Supabase Auth accepted: Cartoonify users share auth.users with webtochat. The signup bonus is NOT a trigger on auth.users (that would fire for webtochat users too); it is granted in the protoolhub schema the first time a user signs in to Cartoonify. Magic-link email via custom SMTP (Resend, protoolhub.net sender); the operator enters the values. Auth email template text neutral enough for both products.
+A3. Spending order: paid credits first (no watermark); free credits only when paid balance is 0 (watermarked). Wallet keeps two balances (free / paid), unit = credit, cartoon costs 1 credit, costs in a tool_costs table so other ProToolHub tools can use the wallet.
+A4. Language: English at "/", Turkish at "/tr" (old /en and Turkish URLs redirect) — this belongs to task 0025.
+
+=== FACTS FOUND (read-only, 2026-10-26) ===
+- protoolhub.net nameservers: khloe.ns.cloudflare.com, rory.ns.cloudflare.com (DNS managed in Cloudflare). cartoon.protoolhub.net does not exist yet.
+- Supabase ltjwsmiycijxrqxjsphq = "AI-Chatbot-Widget-SaaS" (webtochat), region us-east-1, Postgres 17. No protoolhub schema yet; public has 18 webtochat tables (do not touch).
+- Earlier draft wallet SQL (public schema, Stripe, units) exists at C:\Projelerim\protoolhub-main\supabase\migrations\0001_wallet_core.sql — reference only; this task's design follows A2/A3 and the protoolhub schema.
+
+=== OPERATOR'S FOLLOW-UP (verbatim, 2026-10-26, during planning) ===
+Supabase Auth ayarlarında dikkat: Önce webtochat/chatbot kodunun Supabase Auth'u (auth.users, Site URL, şablonlar) bir yerde kullanıp kullanmadığını kontrol et ve raporla. Site URL'yi değiştirme; sadece Redirect URLs listesine Cartoonify önizleme ve cartoon.protoolhub.net adreslerini ekle. Auth ayarlarındaki her değişikliği uygulamadan önce bana listele. Resend'de protoolhub.net alan adı doğrulaması için gereken DNS kayıtlarını bana adım adım yaz.

@@ -39,6 +39,14 @@ function makeFakes(over: { flagged?: boolean; tokenOk?: (t: string) => boolean }
       calls.edit += 1
       return { ok: true, b64: 'AAAA' }
     },
+    accountsConfigured: () => true,
+    getUser: async () => ({ id: 'user-1', email: 'user@example.com' }),
+    credits: {
+      begin: async () => ({ ok: true, conversionId: 'conv-1', kind: 'paid', free: 0, paid: 1 }),
+      complete: async () => {},
+      refund: async () => true,
+    },
+    watermark: async (b64) => b64,
   }
   return { deps, calls }
 }

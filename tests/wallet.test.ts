@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict'
+import { test } from 'node:test'
+import { addUser, callAsService, claim, openWalletDb, uid } from './wallet-db'
+
+test('spends paid credits before free credits in the database', async () => {
+  const db = await openWalletDb()
+  await addUser(db, 1, 'buyer@example.com')
+  const welcome = await claim(db, 1, 'a', 'a')
+  assert.equal(welcome.outcome, 'granted')
+  await db.query('update protoolhub.wallets set paid_credits = 1 where user_id = $1', [uid(1)])
+  const first = await callAsService(db, 'begin_conversion', [uid(1), 'cartoonify', 'classic'])
+  assert.deepEqual([first.ok, first.credit_kind, first.paid_credits, first.free_credits], [true, 'paid', 0, 2])
+  const second = await callAsService(db, 'begin_conversion', [uid(1), 'cartoonify', 'classic'])
+  assert.deepEqual([second.credit_kind, second.free_credits], ['free', 1])
+  const refund = await callAsService(db, 'refund_conversion', [second.conversion_id, 'upstream_error'])
+  assert.deepEqual([refund.refunded, refund.free_credits], [true, 2])
+  const again = await callAsService(db, 'refund_conversion', [second.conversion_id, 'upstream_error'])
+  assert.equal(again.refunded, false)
+})
+
+test('grants the welcome credits once per normalised email', async () => {
+  const db = await openWalletDb()
+  await addUser(db, 1, 'Jane.Doe+promo@GMail.com')
+  await addUser(db, 2, 'janedoe@googlemail.com')
+  await addUser(db, 3, 'late@example.com', false)
+  assert.equal((await claim(db, 1, 'a', 'a')).outcome, 'granted')
+  assert.equal((await claim(db, 1, 'a', 'a')).outcome, 'already')
+  const used = await claim(db, 2, 'b', 'b')
+  assert.deepEqual([used.outcome, used.free_credits], ['email_used', 0])
+  assert.equal((await claim(db, 3, 'c', 'c')).outcome, 'email_unconfirmed')
+  await db.query('update auth.users set email_confirmed_at = now() where id = $1', [uid(3)])
+  assert.equal((await claim(db, 3, 'c', 'c')).outcome, 'granted')
+  const keys = await db.query<{ email_key: string }>('select email_key from protoolhub.welcome_email_keys')
+  assert.equal(keys.rows.length, 2)
+  assert.ok(keys.rows.every((k) => /^[0-9a-f]{64}$/.test(k.email_key)))
+})
+
+test('refuses the welcome grant past the per-IP daily cap', async () => {
+  const db = await openWalletDb()
+  for (let n = 1; n <= 4; n++) await addUser(db, n, 'p' + n + '@example.com')
+  for (let n = 1; n <= 3; n++) assert.equal((await claim(db, n, 'shared', 'd' + n)).outcome, 'granted')
+  const capped = await claim(db, 4, 'shared', 'd4')
+  assert.deepEqual([capped.outcome, capped.free_credits], ['ip_cap', 0])
+  const device = await claim(db, 4, 'other', 'd1')
+  assert.equal(device.outcome, 'device_cap')
+  assert.equal((await claim(db, 4, 'other', 'd9')).outcome, 'granted')
+})
+
+test('refuses the welcome grant to an email whose account was deleted', async () => {
+  const db = await openWalletDb()
+  await addUser(db, 1, 'Jane.Doe+promo@GMail.com')
+  assert.equal((await claim(db, 1, 'a1', 'a1')).outcome, 'granted')
+  await db.query('delete from auth.users where id = $1', [uid(1)])
+  const left = await db.query('select count(*)::int as n from protoolhub.wallets where user_id = $1', [uid(1)])
+  assert.equal((left.rows[0] as { n: number }).n, 0)
+  await addUser(db, 2, ' JANEDOE@googlemail.com ')
+  const second = await claim(db, 2, 'b2', 'b2')
+  assert.deepEqual([second.outcome, second.free_credits], ['email_used', 0])
+  const keys = await db.query('select count(*)::int as n from protoolhub.welcome_email_keys')
+  assert.equal((keys.rows[0] as { n: number }).n, 1)
+})

@@ -46,7 +46,11 @@
     "local_file": ".env.local",
     "never_read_by_agents": true,
     "required_keys": [
-      "OPENAI_API_KEY"
+      "OPENAI_API_KEY",
+      "SUPABASE_URL",
+      "SUPABASE_ANON_KEY",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "ABUSE_HASH_SECRET"
     ],
     "runtime": "vercel-project-env"
   },
@@ -63,9 +67,9 @@
   "risk_tier": "standard",
   "schema_version": 2,
   "stack": {
-    "auth": "none",
-    "db": "none",
-    "email": "none",
+    "auth": "supabase-auth",
+    "db": "supabase-postgres",
+    "email": "resend",
     "framework": "nextjs-14-app-router",
     "language": "typescript",
     "package_manager": "npm",
@@ -74,11 +78,13 @@
   "standards": {
     "packs": [
       "nextjs-app-router",
-      "legal-tr-kvkk"
+      "legal-tr-kvkk",
+      "supabase-multitenant-rls"
     ]
   },
   "tenancy": {
-    "isolation": "none",
-    "model": "single-tenant"
+    "isolation": "rls",
+    "model": "shared-schema",
+    "tenant_column": "user_id"
   }
 }

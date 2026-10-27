@@ -1230,3 +1230,126 @@ footer a:hover {
   justify-self: start;
   font-weight: 700;
 }
+
+/* Accounts (task 0022): the sign-in panel and the credit badge. Large type, one next step. */
+.account-bar {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 46rem;
+  margin: 0 auto 1.25rem;
+  padding: 0 1rem;
+}
+
+.credit-badge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--stroke-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.credit-badge strong {
+  font-size: 1.4rem;
+  color: var(--accent-text);
+}
+
+.credit-badge .account-sign-out {
+  margin-left: auto;
+}
+
+.account-welcome,
+.account-no-credits,
+.account-watermark-note,
+.account-refunded {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.account-no-credits {
+  color: var(--danger-text);
+  border-color: var(--danger-text);
+}
+
+.account-panel {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  max-width: 32rem;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  text-align: left;
+}
+
+.account-panel h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.25;
+}
+
+.account-lede {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.account-google {
+  display: block;
+  padding: 0.95rem 1.1rem;
+  border-radius: 0.85rem;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: var(--on-accent);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.account-email {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.account-email label {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.account-email input {
+  width: 100%;
+  padding: 0.85rem 0.9rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--stroke-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.account-email .generate-button {
+  font-size: 1.1rem;
+}
+
+.account-sent {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--success-text);
+  color: var(--success-text);
+  font-size: 1.05rem;
+}

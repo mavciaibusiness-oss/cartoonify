@@ -39,7 +39,18 @@ import TurnstileWidget from './turnstile-widget'
 
 type Status = 'idle' | 'loading' | 'error' | 'success'
 
-type ApiResponse = { ok: true; image: string } | { ok: false; code: string; message: string }
+type Balance = { free: number; paid: number }
+
+type ApiResponse =
+  | { ok: true; image: string; credit?: 'free' | 'paid'; watermarked?: boolean; balance?: Balance }
+  | { ok: false; code: string; message: string; refunded?: boolean; balance?: Balance }
+
+/** Present only when accounts are on: the wallet shown by the workshop and how to update it. */
+export type AccountLink = {
+  balance: Balance
+  onBalance: (balance: Balance) => void
+  onSignedOut: () => void
+}
 
 type GalleryGroup = { id: string; label: string; styles: readonly CartoonStyle[] }
 
@@ -53,7 +64,15 @@ function validateFile(file: File, t: Dictionary): string | null {
   return null
 }
 
-export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: Locale; turnstileSiteKey: string }) {
+export default function CartoonifyForm({
+  locale,
+  turnstileSiteKey,
+  account,
+}: {
+  locale: Locale
+  turnstileSiteKey: string
+  account?: AccountLink
+}) {
   const { file, previewUrl, setUpload } = useUpload()
   const t = getDictionary(locale)
   const searchParams = useSearchParams()
@@ -74,6 +93,8 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
   const [token, setToken] = useState<string | null>(null)
   const [resetCount, setResetCount] = useState(0)
   const [verifyFailed, setVerifyFailed] = useState(false)
+  const [marked, setMarked] = useState(false)
+  const [refunded, setRefunded] = useState(false)
 
   useEffect(() => {
     if (status !== 'loading') {
@@ -146,6 +167,8 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
     setMessage(null)
     setStatus('idle')
     setProgress(0)
+    setMarked(false)
+    setRefunded(false)
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -173,6 +196,7 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
 
     setStatus('loading')
     setMessage(null)
+    setRefunded(false)
 
     const sentToken = token
     try {
@@ -193,10 +217,18 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
       const data = (await response.json()) as ApiResponse
 
       if (!data.ok) {
+        if (account) {
+          if (data.code === 'AUTH_REQUIRED') account.onSignedOut()
+          if (data.balance) account.onBalance(data.balance)
+        }
+        setRefunded(data.refunded === true)
         setStatus('error')
         setMessage(errorMessage(t, data.code, data.message))
         return
       }
+
+      if (account && data.balance) account.onBalance(data.balance)
+      setMarked(data.watermarked === true)
 
       setResultUrl(data.image)
       setResultStyleId(sentStyleId)
@@ -212,7 +244,8 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
     }
   }
 
-  const canSubmit = status !== 'loading' && previewUrl !== null && consent && token !== null
+  const hasCredits = account ? account.balance.free + account.balance.paid > 0 : true
+  const canSubmit = status !== 'loading' && previewUrl !== null && consent && token !== null && hasCredits
   const selectedText = styleText(getCartoonStyle(styleId), locale)
   const galleryGroups = useMemo<readonly GalleryGroup[]>(
     () => displayGroups().map((group) => ({ id: group.id, label: groupLabel(group.id, locale), styles: group.styles })),
@@ -338,6 +371,7 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
               {message}
             </p>
           ) : null}
+          {status === 'error' && refunded ? <p className="account-refunded">{t.account.refunded}</p> : null}
         </div>
 
         <div className="workshop-main">
@@ -371,6 +405,8 @@ export default function CartoonifyForm({ locale, turnstileSiteKey }: { locale: L
                   <img src={resultUrl} alt={t.form.resultAlt} className="workspace-stage-image" />
                 ) : null}
               </div>
+
+              {isResultVisible && marked ? <p className="account-watermark-note">{t.account.watermarkNote}</p> : null}
 
               {isResultVisible && panel.labelKind === 'result' ? (
                 <p className="workspace-style-hint">

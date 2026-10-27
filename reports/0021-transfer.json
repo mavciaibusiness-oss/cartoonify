@@ -1,46 +1,46 @@
 {
   "task": "0021",
   "criterion": 52,
-  "build_id": "LVHUxbxzCpLQyeRq_z23o",
-  "measured_at": "2026-10-23T11:29:49.353Z",
+  "build_id": "Q03ZcoN2DuCGGTKMqEWR6",
+  "measured_at": "2026-10-26T21:18:38.556Z",
   "limit_bytes": 2600000,
   "method": "next start, headless Chrome, cache disabled, DPR 1, sum of encodedDataLength, after load and after scrolling to the bottom",
   "results": [
     {
       "page": "/",
       "viewport": "1280x624",
-      "first_load": 616764,
-      "after_full_scroll": 2002196
+      "first_load": 619997,
+      "after_full_scroll": 2005429
     },
     {
       "page": "/en",
       "viewport": "1280x624",
-      "first_load": 616433,
-      "after_full_scroll": 2001865
+      "first_load": 619662,
+      "after_full_scroll": 2005094
     },
     {
       "page": "/",
       "viewport": "1920x984",
-      "first_load": 782090,
-      "after_full_scroll": 2002196
+      "first_load": 785323,
+      "after_full_scroll": 2005429
     },
     {
       "page": "/en",
       "viewport": "1920x984",
-      "first_load": 781759,
-      "after_full_scroll": 2001865
+      "first_load": 784988,
+      "after_full_scroll": 2005094
     },
     {
       "page": "/",
       "viewport": "375x667",
-      "first_load": 535252,
-      "after_full_scroll": 2002196
+      "first_load": 538485,
+      "after_full_scroll": 2005429
     },
     {
       "page": "/en",
       "viewport": "375x667",
-      "first_load": 534921,
-      "after_full_scroll": 2001865
+      "first_load": 538150,
+      "after_full_scroll": 2005094
     }
   ]
 }

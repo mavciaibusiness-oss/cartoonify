@@ -93,3 +93,38 @@ export function turnstileSiteKey(): string {
   if (abuse.turnstileSiteKey) return abuse.turnstileSiteKey
   return abuse.isProduction ? '' : '1x00000000000000000000AA'
 }
+
+export type AccountsEnv = {
+  url: string
+  anonKey: string
+  serviceKey: string
+  /** The keyed-hash secret; a fixed local value outside production. */
+  hashSecret: string
+  isProduction: boolean
+}
+
+/**
+ * Accounts settings, read per call. Null when accounts are not configured:
+ * the URL, the anon key or the service key is missing in any environment, or
+ * ABUSE_HASH_SECRET is missing in production.
+ */
+export function getAccountsEnv(): AccountsEnv | null {
+  const url = nonEmpty(process.env.SUPABASE_URL)
+  const anonKey = nonEmpty(process.env.SUPABASE_ANON_KEY)
+  const serviceKey = nonEmpty(process.env.SUPABASE_SERVICE_ROLE_KEY)
+  const secret = nonEmpty(process.env.ABUSE_HASH_SECRET)
+  const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
+  if (!url || !anonKey || !serviceKey) return null
+  if (isProduction && !secret) return null
+  return {
+    url: url.endsWith('/') ? url.slice(0, -1) : url,
+    anonKey,
+    serviceKey,
+    hashSecret: secret ?? 'local-development-hash-secret',
+    isProduction,
+  }
+}
+
+export function accountsConfigured(): boolean {
+  return getAccountsEnv() !== null
+}

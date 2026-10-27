@@ -21,6 +21,21 @@ export default function Page() {
       Cloudflare Turnstile (IP adresi ve tarayici sinyalleri), kotuye kullanim
       sayaclari icin Upstash (takma adli IP, yaklasik 1 saat icinde silinir; gunluk
       sayac yaklasik 2 gun tutulur) kullanilir.</p>
+      <h2 id="hesap-ve-krediler">Hesap ve krediler</h2>
+      <p>Karikatur atolyesini kullanmak icin Google ile veya e-posta ile gonderilen
+      bir giris baglantisiyla (sifresiz) giris yapilir. Giris icin Google ve
+      Supabase kullanilir; e-posta adresiniz ve hesap kimliginiz Supabase
+      tarafinda tutulur. Giris e-postalari Resend uzerinden gonderilir. Hesabi
+      ProToolHub isletir.</p>
+      <p>Kredi ve donusum kayitlari tutulur: tarih, arac, stil ve kredi turu.
+      Yuklediginiz gorsel bu kayitlara girmez ve saklanmaz. Ucretsiz hesaplarin
+      kotuye kullanimini sinirlamak icin IP adresinizin ve cihaz kimliginizin
+      anahtarli ozeti (hash) yaklasik iki gun tutulur, sonra silinir.</p>
+      <p>Ucretsiz hos geldin kredisini alan her e-posta adresinin normallestirilmis
+      halinin ozeti (hash) kalici olarak saklanir; hesap silinse de bu ozet
+      silinmez. Tek amaci ayni e-posta adresine ikinci kez ucretsiz kredi
+      verilmesini onlemektir; ozet hicbir hesaba bagli degildir ve e-posta adresinin
+      kendisi bu kayitta tutulmaz.</p>
       <h2>Haklariniz</h2>
       <p>KVKK ve GDPR kapsaminda verilerinize erisme, duzeltme, silme ve isleme
       faaliyetine itiraz etme hakkina sahipsiniz. Talepleriniz icin iletisim

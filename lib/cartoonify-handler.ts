@@ -34,6 +34,9 @@ export type ErrorCode =
   | 'MODERATION_UNAVAILABLE'
   | 'UPSTREAM_ERROR'
   | 'UPSTREAM_UNREACHABLE'
+  | 'AUTH_REQUIRED'
+  | 'NO_CREDITS'
+  | 'PROCESSING_FAILED'
 
 // Fixed Turkish constants, one per code, byte-equal to tr.errors. Never the
 // upstream error text, never a caught exception's detail, never a key name.
@@ -53,9 +56,27 @@ export const ERROR_MESSAGES: Record<ErrorCode, string> = {
   UPSTREAM_ERROR:
     'Karikatür servisi bu isteği işleyemedi. Sorunun nedeni bilinmiyor; aynı isteği tekrar denemek sonucu değiştirmeyebilir.',
   UPSTREAM_UNREACHABLE: 'Karikatür servisine ulaşılamadı. Sorun geçici olabilir; bir süre sonra tekrar deneyebilirsiniz.',
+  AUTH_REQUIRED: 'Dönüştürmek için giriş yapın.',
+  NO_CREDITS: 'Krediniz kalmadı.',
+  PROCESSING_FAILED: 'Görsel hazırlanırken bir sorun çıktı. Lütfen tekrar deneyin.',
 }
 
 export type EditOutcome = { ok: true; b64: string } | { ok: false; unreachable: boolean }
+
+export type SessionUser = { id: string; email: string | null }
+
+export type BeginResult =
+  | { ok: true; conversionId: string; kind: 'free' | 'paid'; free: number; paid: number }
+  | { ok: false; free: number; paid: number }
+
+/** The wallet, injected. begin throws on a database error; refund resolves true when the credit went back. */
+export type CreditsDeps = {
+  begin: (userId: string, tool: string, style: string) => Promise<BeginResult>
+  complete: (conversionId: string) => Promise<void>
+  refund: (conversionId: string, reason: string) => Promise<boolean>
+}
+
+export const TOOL_NAME = 'cartoonify'
 
 export type HandlerDeps = {
   now: () => Date
@@ -69,13 +90,20 @@ export type HandlerDeps = {
   moderate: (dataUrl: string) => Promise<boolean>
   editImage: (input: { bytes: Uint8Array; type: DetectableMimeType; prompt: string }) => Promise<EditOutcome>
   clientIp: (request: Request) => string
+  /** Step 7c: Supabase (and, in production, the hash secret) configured? */
+  accountsConfigured: () => boolean
+  /** Null for no or a rejected session; throws when Auth is unreachable. */
+  getUser: (request: Request) => Promise<SessionUser | null>
+  credits: CreditsDeps
+  /** Marks a PNG (base64 in, base64 out); free conversions only. */
+  watermark: (b64: string) => Promise<string>
 }
 
 const MAX_TOKEN_LENGTH = 2048
 
-function errorResponse(code: ErrorCode, status: number): Response {
+function errorResponse(code: ErrorCode, status: number, extra: Record<string, unknown> = {}): Response {
   return Response.json(
-    { ok: false, code, message: ERROR_MESSAGES[code] },
+    { ok: false, code, message: ERROR_MESSAGES[code], ...extra },
     { status, headers: { 'Cache-Control': 'no-store' } },
   )
 }
@@ -151,7 +179,24 @@ export async function handleCartoonify(request: Request, deps: HandlerDeps): Pro
     return errorResponse('SERVICE_UNAVAILABLE', 503)
   }
 
-  // 8. Turnstile.
+  // 7c. Accounts.
+  if (!deps.accountsConfigured()) {
+    return errorResponse('SERVICE_UNAVAILABLE', 503)
+  }
+
+  // 8. Session. Nothing is spent for a request without a signed-in user.
+  let user: SessionUser | null
+  try {
+    user = await deps.getUser(request)
+  } catch (unknownError) {
+    console.error('cartoonify: auth unavailable', unknownError)
+    return errorResponse('SERVICE_UNAVAILABLE', 503)
+  }
+  if (user === null) {
+    return errorResponse('AUTH_REQUIRED', 401)
+  }
+
+  // 9. Turnstile.
   const tokens = form.getAll('cf-turnstile-response')
   const token = tokens.length === 1 ? tokens[0] : null
   if (typeof token !== 'string' || token.length < 1 || token.length > MAX_TOKEN_LENGTH) {
@@ -177,7 +222,7 @@ export async function handleCartoonify(request: Request, deps: HandlerDeps): Pro
     return errorResponse('SERVICE_UNAVAILABLE', 503)
   }
 
-  const refund = async () => {
+  const refundDaily = async () => {
     try {
       await deps.counters.refundDaily(now)
     } catch (unknownError) {
@@ -185,21 +230,46 @@ export async function handleCartoonify(request: Request, deps: HandlerDeps): Pro
     }
   }
 
-  // 11. Moderation. A failure to check is a refusal to convert.
+  // 12. The credit: paid first, then free.
+  let reserved: BeginResult
+  try {
+    reserved = await deps.credits.begin(user.id, TOOL_NAME, style.id)
+  } catch (unknownError) {
+    console.error('cartoonify: credit reservation failed', unknownError)
+    await refundDaily()
+    return errorResponse('SERVICE_UNAVAILABLE', 503)
+  }
+  if (!reserved.ok) {
+    await refundDaily()
+    return errorResponse('NO_CREDITS', 402, { balance: { free: reserved.free, paid: reserved.paid } })
+  }
+  const conversionId = reserved.conversionId
+
+  // Every failure from here on gives back the credit and the daily slot.
+  const failWith = async (code: ErrorCode, status: number, reason: string): Promise<Response> => {
+    let refunded = false
+    try {
+      refunded = await deps.credits.refund(conversionId, reason)
+    } catch (unknownError) {
+      console.error('cartoonify: credit refund failed', unknownError)
+    }
+    await refundDaily()
+    return errorResponse(code, status, { refunded })
+  }
+
+  // 13. Moderation. A failure to check is a refusal to convert.
   let flagged: boolean
   try {
     flagged = await deps.moderate('data:' + sniffed + ';base64,' + toBase64(bytes))
   } catch (unknownError) {
     console.error('cartoonify: moderation failed', unknownError)
-    await refund()
-    return errorResponse('MODERATION_UNAVAILABLE', 503)
+    return failWith('MODERATION_UNAVAILABLE', 503, 'moderation_unavailable')
   }
   if (flagged) {
-    await refund()
-    return errorResponse('CONTENT_REJECTED', 422)
+    return failWith('CONTENT_REJECTED', 422, 'content_rejected')
   }
 
-  // 12. The image edit.
+  // 14. The image edit.
   let outcome: EditOutcome
   try {
     outcome = await deps.editImage({ bytes, type: sniffed, prompt: style.prompt })
@@ -208,12 +278,38 @@ export async function handleCartoonify(request: Request, deps: HandlerDeps): Pro
     outcome = { ok: false, unreachable: false }
   }
   if (!outcome.ok) {
-    await refund()
-    return errorResponse(outcome.unreachable ? 'UPSTREAM_UNREACHABLE' : 'UPSTREAM_ERROR', 502)
+    return outcome.unreachable
+      ? failWith('UPSTREAM_UNREACHABLE', 502, 'upstream_unreachable')
+      : failWith('UPSTREAM_ERROR', 502, 'upstream_error')
+  }
+
+  // 15. The mark, free credits only. A paid result is the edit output unchanged.
+  const watermarked = reserved.kind === 'free'
+  let b64 = outcome.b64
+  if (watermarked) {
+    try {
+      b64 = await deps.watermark(b64)
+    } catch (unknownError) {
+      console.error('cartoonify: watermark failed', unknownError)
+      return failWith('PROCESSING_FAILED', 500, 'processing_failed')
+    }
+  }
+
+  // 16. Settle. A failure here is logged; the image is still delivered.
+  try {
+    await deps.credits.complete(conversionId)
+  } catch (unknownError) {
+    console.error('cartoonify: completing the conversion failed', unknownError)
   }
 
   return Response.json(
-    { ok: true, image: `data:image/png;base64,${outcome.b64}` },
+    {
+      ok: true,
+      image: `data:image/png;base64,${b64}`,
+      credit: reserved.kind,
+      watermarked,
+      balance: { free: reserved.free, paid: reserved.paid },
+    },
     { status: 200, headers: { 'Cache-Control': 'no-store' } },
   )
 }
