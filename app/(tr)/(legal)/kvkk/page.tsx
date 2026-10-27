@@ -39,6 +39,21 @@ export default function Page() {
       silinmez. Tek amaci ayni e-posta adresine ikinci kez ucretsiz kredi
       verilmesini onlemektir; ozet hicbir hesaba bagli degildir ve e-posta adresinin
       kendisi bu kayitta tutulmaz.</p>
+      <h2 id="odeme-ve-krediler">Ödeme ve krediler</h2>
+      <p>Kredi paketlerinin ödemesini <strong>Polar</strong> (polar.sh) alır. Polar,
+      satıcı kaydıdır (<strong>Merchant of Record</strong>): kart ve fatura bilgilerinizi
+      kendi gizlilik politikası uyarınca işler, vergiyi ve faturayı da kendisi düzenler.
+      Kart numaranızı biz görmüyoruz ve saklamıyoruz. Polar'a hesabınızın e-posta
+      adresini ve hesap kimliğinizi iletiriz.</p>
+      <p>Tarafımızda şunlar tutulur: Polar sipariş kimliği, paket, kredi sayısı, net
+      tutar, para birimi, iade tutarları ve tarihleri. Bir iade sonrasında kredilerin
+      bir kısmı geri alınamazsa operatöre bir uyarı e-postası gönderilir; bu e-posta
+      <strong>Resend</strong> üzerinden gider ve yalnızca sipariş ile hesap kimliğini
+      içerir, sizin e-posta adresinizi içermez. Bu kayıtlar hesabınız silindiğinde
+      silinir; yalnızca Polar kimlikleri ve iade tutarlarından oluşan kayıtlar, bir
+      kişiye bağlı olmadan kalır.</p>
+      <p>Polar ve Resend verileri Türkiye dışında (yurt dışı) işlediği için bu veriler
+      yurt dışına aktarılmış olur.</p>
       <h2>Saklama suresi</h2>
       <p>Veriler, uyelik suresince ve uyeligin sona ermesinden itibaren ilgili
       mevzuatta ongorulen zamanasimi sureleri boyunca saklanir.</p>

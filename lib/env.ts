@@ -128,3 +128,53 @@ export function getAccountsEnv(): AccountsEnv | null {
 export function accountsConfigured(): boolean {
   return getAccountsEnv() !== null
 }
+
+export type PaymentsEnv = {
+  /** Derived, never configured: production only on the live Vercel environment. */
+  environment: 'sandbox' | 'production'
+  apiBase: string
+  accessToken: string
+  webhookSecret: string
+  products: { p10: string; p30: string; p75: string }
+  resend: { apiBase: string; apiKey: string; to: string } | null
+}
+
+function trimSlash(v: string): string {
+  return v.endsWith('/') ? v.slice(0, -1) : v
+}
+
+/**
+ * Polar payments settings, read on every call and never cached. Null means
+ * payments are off. The environment follows VERCEL_ENV: a preview can only
+ * reach Polar's sandbox and production can only reach the live service. The
+ * two base-URL overrides are honoured outside production only (tests).
+ * In production the operator alert settings are required.
+ */
+export function getPaymentsEnv(): PaymentsEnv | null {
+  const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
+  const accessToken = nonEmpty(process.env.POLAR_ACCESS_TOKEN)
+  const webhookSecret = nonEmpty(process.env.POLAR_WEBHOOK_SECRET)
+  const p10 = nonEmpty(process.env.POLAR_PRODUCT_10)
+  const p30 = nonEmpty(process.env.POLAR_PRODUCT_30)
+  const p75 = nonEmpty(process.env.POLAR_PRODUCT_75)
+  if (!accessToken || !webhookSecret || !p10 || !p30 || !p75) return null
+  if (new Set([p10, p30, p75]).size !== 3) return null
+
+  const resendKey = nonEmpty(process.env.RESEND_API_KEY)
+  const alertTo = nonEmpty(process.env.OPERATOR_ALERT_EMAIL)
+  if (isProduction && (!resendKey || !alertTo)) return null
+
+  const polarOverride = isProduction ? null : nonEmpty(process.env.POLAR_API_BASE_URL)
+  const resendOverride = isProduction ? null : nonEmpty(process.env.RESEND_API_BASE_URL)
+  return {
+    environment: isProduction ? 'production' : 'sandbox',
+    apiBase: trimSlash(polarOverride ?? (isProduction ? 'https://api.polar.sh' : 'https://sandbox-api.polar.sh')),
+    accessToken,
+    webhookSecret,
+    products: { p10, p30, p75 },
+    resend:
+      resendKey && alertTo
+        ? { apiBase: trimSlash(resendOverride ?? 'https://api.resend.com'), apiKey: resendKey, to: alertTo }
+        : null,
+  }
+}

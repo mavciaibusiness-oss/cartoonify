@@ -25,6 +25,16 @@ export default function Page() {
       ait görseller yüklenemez; başkalarını küçük düşürme amacıyla kullanılamaz.
       Fotoğrafı kullanma hakkınızın olduğunu ve fotoğrafta başkası varsa onun iznini
       aldığınızı onaylamanız gerekir. Bu kurallara uymayan görseller dönüştürülmez.</p>
+      <h2 id="kredi-paketleri">Kredi paketleri</h2>
+      <p>Üç kredi paketi satılır: 10 kredi $3.99, 30 kredi $9.99 ve 75 kredi $19.99.
+      Ödeme tek seferliktir; abonelik yoktur ve kendiliğinden yenilenen bir ödeme alınmaz.
+      Kredilerin süresi dolmaz. Ücretli kredilerle yapılan dönüşümlerde ProToolHub
+      işareti (filigran) bulunmaz; ücretli krediler ücretsiz kredilerden önce harcanır.</p>
+      <p>Ödemeyi Polar alır; Polar satıcı kaydıdır (Merchant of Record) ve vergi ile
+      faturayı düzenler. İadeler Polar üzerinden yapılır. Bir iade yapıldığında, iade
+      edilen tutarla orantılı olarak krediler geri alınır (orantılı, yukarı yuvarlanarak).
+      Krediler harcanmışsa geri alınabilen kısım kadarı düşülür; bakiye sıfırın altına
+      inmez.</p>
       <h2>Fesih</h2>
       <p>Sartlarin ihlali halinde hesap askiya alinabilir veya kapatilabilir.
       Kullanici diledigi zaman hesabini kapatabilir.</p>

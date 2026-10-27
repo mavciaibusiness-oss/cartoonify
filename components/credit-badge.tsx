@@ -8,11 +8,13 @@ export default function CreditBadge({
   free,
   paid,
   onSignOut,
+  onBuy,
 }: {
   locale: Locale
   free: number
   paid: number
   onSignOut: () => void
+  onBuy: () => void
 }) {
   const t = getDictionary(locale)
   return (
@@ -25,6 +27,9 @@ export default function CreditBadge({
       <span className="credit-badge-count">
         <strong>{paid}</strong> {t.account.paidCredits}
       </span>
+      <button type="button" className="credit-buy generate-button" onClick={onBuy}>
+        {t.credits.buy}
+      </button>
       <button type="button" className="account-sign-out ghost-button" onClick={onSignOut}>
         {t.account.signOut}
       </button>

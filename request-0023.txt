@@ -1,0 +1,16 @@
+GÖREV 0023 – operatörün brifi (kelimesi kelimesine, 2026-10-27)
+
+Şimdi GÖREV 0023 – Polar ile kredi satın alma. Mavci akışıyla: spec → onayım → build → verifier.
+Kararlar:
+- Tek seferlik paketler, kredi süresi dolmaz: $3.99 = 10, $9.99 = 30, $19.99 = 75 kredi (paid_credits).
+- Polar (Merchant of Record; vergi/fatura Polar'da). Önizleme Polar SANDBOX ile, canlı gerçek Polar ile çalışsın.
+- Kredi yalnız Polar webhook'u (imza doğrulamalı) geldikten sonra eklensin; external_ref = Polar sipariş id (unique, aynı sipariş iki kez kredilenmez). İade/chargeback gelirse kredi düşülsün (bakiye eksiye düşmesin; düşemiyorsa bana bildirim).
+- Arayüz: kredi bitince ya da "Kredi al" düğmesinde 3 paket sade kartlar halinde; ödemeden dönünce "X kredi eklendi" mesajı. Satın alan kullanıcı filigransız sonuç alır (ücretli kredi önce harcanır, 0022'deki gibi).
+- Polar'da ürünleri ben mi oluşturayım, API ile mi oluşturulsun? Bana adım adım yaz (sandbox ve canlı ayrı). Gereken Vercel değişken adlarını (Preview = sandbox, Production = canlı) listele; değerleri ben girerim.
+Başlamadan belirsiz bir şey varsa sor. Migration gerekiyorsa SQL'i göster, onay bekle (yalnız protoolhub şeması). Production'a deploy yok.
+
+Oturum içi cevaplar (AskUserQuestion, 2026-10-27):
+- B1 Bildirim: "Resend e-postası (Önerilen)" — iade/chargeback'te bakiye yetmezse sunucu Resend API ile operatöre e-posta atar; Vercel'e RESEND_API_KEY ve OPERATOR_ALERT_EMAIL eklenir, adres kodda yazmaz. Bakiye 0'a kadar düşülür, eksik kalan kredi kaydedilir.
+- B2 Kısmi iade: "Orantılı (Önerilen)" — düşülen kredi = paket kredisi × iade tutarı / ödenen tutar, yukarı yuvarlanır; tam iadede paketin tamamı.
+
+Bağlam: 0022 önizleme testi GEÇTİ (https://cartoonify-63laobzpf-homeca-lc.vercel.app): e-posta linki ile giriş (Resend SMTP), hoş geldin +2, 1 dönüşüm 2→1 ücretsiz + filigran, yenilemede oturum korunuyor; DB: profil 1, cüzdan 1/0, conversion succeeded:free, ledger welcome:+2 conversion:-1, welcome_email_keys 1. Google girişi henüz kurulmadı.

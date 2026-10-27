@@ -6,6 +6,8 @@ import { getDictionary, localizedPath, type Locale } from '@/lib/i18n'
 import AccountPanel from './account-panel'
 import CartoonifyForm from './cartoonify-form'
 import CreditBadge from './credit-badge'
+import CreditPacks from './credit-packs'
+import CreditPurchaseStatus from './credit-purchase-status'
 import KvkkNotice from './kvkk-notice'
 import UploadControl from './upload-control'
 import { useUpload } from './upload-state'
@@ -41,6 +43,8 @@ export default function Workshop({ locale, turnstileSiteKey }: { locale: Locale;
   const t = getDictionary(locale)
   const [account, setAccount] = useState<Account>({ kind: 'pending' })
   const [authFailed, setAuthFailed] = useState(false)
+  const [packsOpen, setPacksOpen] = useState(false)
+  const [checkoutId, setCheckoutId] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -57,6 +61,8 @@ export default function Workshop({ locale, turnstileSiteKey }: { locale: Locale;
             balance: { free: data.free ?? 0, paid: data.paid ?? 0 },
             welcome: data.welcome ?? 'already',
           })
+          const returned = new URLSearchParams(window.location.search).get('checkout_id')
+          if (returned !== null && /^[A-Za-z0-9_-]{1,100}$/.test(returned)) setCheckoutId(returned)
         } else if (response.status === 503 && data.unconfigured === true && data.production === false) {
           setAccount({ kind: 'open' })
         } else setAccount({ kind: 'unavailable' })
@@ -109,11 +115,24 @@ export default function Workshop({ locale, turnstileSiteKey }: { locale: Locale;
 
   const ready = account.kind === 'ready' ? account : null
   const welcome = ready ? welcomeText(ready.welcome, t) : null
+  const empty = ready ? ready.balance.free + ready.balance.paid === 0 : false
   const bar = ready ? (
     <div className="account-bar">
-      <CreditBadge locale={locale} free={ready.balance.free} paid={ready.balance.paid} onSignOut={handleSignOut} />
+      <CreditBadge
+        locale={locale}
+        free={ready.balance.free}
+        paid={ready.balance.paid}
+        onSignOut={handleSignOut}
+        onBuy={() => setPacksOpen(true)}
+      />
       {welcome ? <p className="account-welcome">{welcome}</p> : null}
-      {ready.balance.free + ready.balance.paid === 0 ? <p className="account-no-credits">{t.account.noCredits}</p> : null}
+      {checkoutId ? <CreditPurchaseStatus locale={locale} checkoutId={checkoutId} onCredited={(balance) => {
+            setBalance(balance)
+            setPacksOpen(false)
+          }}
+        /> : null}
+      {empty ? <p className="account-no-credits">{t.account.noCredits}</p> : null}
+      {empty || packsOpen ? <CreditPacks locale={locale} onClose={empty ? null : () => setPacksOpen(false)} /> : null}
     </div>
   ) : null
 

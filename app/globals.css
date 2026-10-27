@@ -1353,3 +1353,84 @@ footer a:hover {
   color: var(--success-text);
   font-size: 1.05rem;
 }
+
+.credit-badge .credit-buy {
+  padding: 0.5rem 0.9rem;
+  font-size: 1rem;
+}
+
+.credit-packs {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.credit-packs h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.25;
+}
+
+.credit-packs-lede,
+.credit-merchant {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.credit-pack-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.credit-pack {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  padding: 1rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--stroke-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: center;
+}
+
+.credit-pack p {
+  margin: 0;
+}
+
+.credit-pack-credits {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.credit-pack-price {
+  color: var(--accent-text);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.credit-pack-buy {
+  width: 100%;
+  font-size: 1.05rem;
+}
+
+.credit-packs-close {
+  justify-self: start;
+}
+
+.credit-purchase-status {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  font-size: 1.05rem;
+}

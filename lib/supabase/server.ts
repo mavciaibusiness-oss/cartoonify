@@ -109,3 +109,82 @@ export function createCredits(): CreditsDeps {
     },
   }
 }
+
+/* ------------------------------------------------------ Polar purchases */
+
+export type PurchaseOutcome = { outcome: string; alertShortfall: number }
+
+/** Records a checkout the server just created. The outcome is 'recorded', 'already' or 'sandbox_not_allowed'. */
+export async function recordCheckout(
+  checkoutId: string,
+  userId: string,
+  environment: string,
+  productId: string,
+  pack: string,
+  credits: number,
+): Promise<string> {
+  const r = await rpc('polar_record_checkout', {
+    p_checkout_id: checkoutId,
+    p_user_id: userId,
+    p_environment: environment,
+    p_product_id: productId,
+    p_pack: pack,
+    p_credits: credits,
+  })
+  return String(r.outcome ?? '')
+}
+
+/** order.paid. The database refuses anything that does not match the checkout. */
+export async function orderPaid(args: {
+  environment: string
+  orderId: string | null
+  checkoutId: string | null
+  customerExternalId: string | null
+  productId: string | null
+  netAmount: number | null
+  currency: string | null
+}): Promise<PurchaseOutcome> {
+  const r = await rpc('polar_order_paid', {
+    p_environment: args.environment,
+    p_order_id: args.orderId,
+    p_checkout_id: args.checkoutId,
+    p_customer_external_id: args.customerExternalId,
+    p_product_id: args.productId,
+    p_net_amount: args.netAmount,
+    p_currency: args.currency,
+  })
+  return { outcome: String(r.outcome ?? ''), alertShortfall: num(r.alert_shortfall) }
+}
+
+/** order.refunded, refund.created and refund.updated. Idempotent. */
+export async function polarRefund(args: {
+  environment: string
+  refundKey: string | null
+  orderId: string | null
+  amount: number | null
+  succeeded: boolean
+}): Promise<PurchaseOutcome> {
+  const r = await rpc('polar_refund', {
+    p_environment: args.environment,
+    p_refund_key: args.refundKey,
+    p_order_id: args.orderId,
+    p_amount: args.amount,
+    p_succeeded: args.succeeded,
+  })
+  return { outcome: String(r.outcome ?? ''), alertShortfall: num(r.alert_shortfall) }
+}
+
+/** Marks a shortfall as e-mailed to the operator. */
+export async function markAlerted(orderId: string, shortfall: number): Promise<void> {
+  await rpc('polar_mark_alerted', { p_order_id: orderId, p_shortfall: shortfall })
+}
+
+export type CheckoutStatus = { status: 'pending' | 'credited' | 'refused' | 'unknown'; credits: number; free: number; paid: number }
+
+/** The state of one of the user's own checkouts, with the wallet. */
+export async function checkoutStatus(userId: string, checkoutId: string): Promise<CheckoutStatus> {
+  const r = await rpc('polar_checkout_status', { p_user_id: userId, p_checkout_id: checkoutId })
+  const s = r.status
+  const status = s === 'pending' || s === 'credited' || s === 'refused' ? s : 'unknown'
+  return { status, credits: num(r.credits), free: num(r.free_credits), paid: num(r.paid_credits) }
+}
