@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     description: t.meta.siteDescription,
     locale: 'en_US',
     type: 'website',
-    url: SITE_URL + '/en',
+    url: SITE_URL,
   },
 }
 

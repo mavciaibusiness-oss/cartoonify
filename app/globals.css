@@ -1603,3 +1603,80 @@ footer a:hover {
   outline: 3px solid var(--accent-text);
   outline-offset: 2px;
 }
+
+/* Task 0025: brand, mascot, language hint, 404. Colours only through :root variables. */
+.site-brand-sub {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.brand-mascot {
+  display: block;
+  justify-self: center;
+  width: min(9rem, 40%);
+  height: auto;
+}
+
+.brand-mascot-small {
+  width: 5rem;
+  margin: 0 auto 0.5rem;
+}
+
+.lang-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem;
+  background: var(--surface-2);
+  color: var(--text);
+  border-bottom: 1px solid var(--stroke);
+  font-size: 0.92rem;
+}
+
+.lang-hint-link {
+  color: var(--accent-text);
+  font-weight: 700;
+}
+
+.lang-hint-close {
+  background: transparent;
+  border: 1px solid var(--stroke-strong);
+  border-radius: 0.5rem;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.1rem 0.5rem;
+}
+
+.lang-hint-close:focus-visible,
+.lang-hint-link:focus-visible,
+.not-found-home:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
+}
+
+.not-found {
+  display: grid;
+  justify-items: center;
+  gap: 0.8rem;
+  max-width: 40rem;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.not-found p {
+  color: var(--muted);
+}
+
+.not-found-home {
+  color: var(--accent-text);
+  font-weight: 700;
+}

@@ -323,7 +323,7 @@ export default function CartoonifyForm({
               <span>{t.safety.consent}</span>
             </label>
             <p className="workshop-rules">
-              {t.safety.rulesLead} <Link href="/terms#icerik-kurallari">{t.safety.rulesLink}</Link>
+              {t.safety.rulesLead} <Link href={locale === 'tr' ? '/tr/terms#icerik-kurallari' : '/terms#icerik-kurallari'}>{t.safety.rulesLink}</Link>
             </p>
             <TurnstileWidget
               siteKey={turnstileSiteKey}

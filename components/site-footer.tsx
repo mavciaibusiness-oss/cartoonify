@@ -1,11 +1,11 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { getDictionary, localeOfPath } from '@/lib/i18n'
+import { getDictionary, localeOfPath, localizedPath } from '@/lib/i18n'
 
 /**
- * Legal links in the path's language. The pages themselves exist only in
- * Turkish, and the English labels say so.
+ * Legal links in the path's language. The KVKK notice exists only in Turkish,
+ * so both languages link to /tr/kvkk and the English label says so.
  */
 export default function SiteFooter() {
   const pathname = usePathname() ?? '/'
@@ -14,15 +14,17 @@ export default function SiteFooter() {
 
   return (
     <footer lang={locale} aria-label={t.label}>
-      <a href="/privacy">{t.privacy}</a>
+      <a href={localizedPath(locale, '/privacy')}>{t.privacy}</a>
       {' | '}
-      <a href="/terms">{t.terms}</a>
+      <a href={localizedPath(locale, '/terms')}>{t.terms}</a>
       {' | '}
-      <a href="/kvkk">{t.kvkk}</a>
+      <a href={localizedPath(locale, '/refund')}>{t.refund}</a>
       {' | '}
-      <a href="/cookies">{t.cookies}</a>
+      <a href="/tr/kvkk">{t.kvkk}</a>
       {' | '}
-      <a href="/contact">{t.contact}</a>
+      <a href={localizedPath(locale, '/cookies')}>{t.cookies}</a>
+      {' | '}
+      <a href={localizedPath(locale, '/contact')}>{t.contact}</a>
     </footer>
   )
 }

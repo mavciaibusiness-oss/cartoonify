@@ -1,0 +1,66 @@
+{
+  "attempt": null,
+  "checks": [
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "required page \"privacy\" does not exist",
+      "line": null,
+      "path": "app/(legal)/privacy/page.tsx",
+      "remedy": "Create the page under app/(legal)/<slug>/page.tsx with the actual text. An empty or placeholder legal page is worse than none: it is a public claim that is untrue.",
+      "severity": "blocker",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "required page \"terms\" does not exist",
+      "line": null,
+      "path": "app/(legal)/terms/page.tsx",
+      "remedy": "Create the page under app/(legal)/<slug>/page.tsx with the actual text. An empty or placeholder legal page is worse than none: it is a public claim that is untrue.",
+      "severity": "blocker",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "\"kvkk\" page is still marked REVIEW REQUIRED - no lawyer has reviewed this text",
+      "line": 7,
+      "path": "app/(tr)/(legal)/kvkk/page.tsx",
+      "remedy": "A lawyer reviews the text; the operator then deletes the REVIEW REQUIRED marker. Deleting it yourself would make this page claim a review that never happened. AUTHORITY: not yours to complete - it needs a lawyer, then the operator. Report it and stop.",
+      "severity": "warning",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "required page \"cookies\" does not exist",
+      "line": null,
+      "path": "app/(legal)/cookies/page.tsx",
+      "remedy": "Create the page under app/(legal)/<slug>/page.tsx with the actual text. An empty or placeholder legal page is worse than none: it is a public claim that is untrue.",
+      "severity": "blocker",
+      "status": "fail"
+    },
+    {
+      "check_id": "legal.pages_present",
+      "evidence": "required page \"contact\" does not exist",
+      "line": null,
+      "path": "app/(legal)/contact/page.tsx",
+      "remedy": "Create the page under app/(legal)/<slug>/page.tsx with the actual text. An empty or placeholder legal page is worse than none: it is a public claim that is untrue.",
+      "severity": "blocker",
+      "status": "fail"
+    }
+  ],
+  "plugin_version": "0.1.36",
+  "project_id": "cartoonify",
+  "run_at": "2026-10-27T19:55:48Z",
+  "schema_version": 1,
+  "scope": "full",
+  "summary": {
+    "baselined": 0,
+    "blockers": 4,
+    "error": 0,
+    "fail": 5,
+    "not_checked": 0,
+    "pass": 14,
+    "waived": 0
+  },
+  "task_id": null,
+  "verdict": "fail"
+}

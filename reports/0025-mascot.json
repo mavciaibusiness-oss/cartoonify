@@ -1,0 +1,125 @@
+{
+  "task": "0025",
+  "plan_sha256": "8f572b826b5bdfd86c142cdaa77ae6e6123106dbad041a1a39246f4029c744da",
+  "ceiling_usd": 0.9,
+  "candidates": {
+    "A": {
+      "file": "assets/mascot/0025/A.png",
+      "sha256": "8011a3fbff63258f3644aa28ae11b96d15b7c0264363326dfe20173a038eb58d",
+      "prompt_sha256": "39f137b7dab68f46f4f34984bcce9d4bd31bbf1ed085b599471a7c528743794a",
+      "model": "gpt-image-2.5-sunburst",
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent",
+      "usage": {
+        "input_tokens": 169,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 169
+        },
+        "output_tokens": 1756,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        },
+        "total_tokens": 1925
+      },
+      "cost_usd": 0.053525,
+      "latency_ms": 35861,
+      "at": "2026-10-27T20:31:08.381Z"
+    },
+    "B": {
+      "file": "assets/mascot/0025/B.png",
+      "sha256": "b4cacecfb6041ab0bb55c238bf5262ea9752e571a71c38f755d95c03ff64a473",
+      "prompt_sha256": "4eb371659304e39ba480d665cf3a41776498b08517c73682e444a3d5a274a6fb",
+      "model": "gpt-image-2.5-sunburst",
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent",
+      "usage": {
+        "input_tokens": 158,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 158
+        },
+        "output_tokens": 1756,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        },
+        "total_tokens": 1914
+      },
+      "cost_usd": 0.05347,
+      "latency_ms": 36301,
+      "at": "2026-10-27T20:31:44.683Z"
+    },
+    "C": {
+      "file": "assets/mascot/0025/C.png",
+      "sha256": "4e68ee320aa4ba2c9d2c8e587784ea87be7755674b67e89dbdaecefa38161620",
+      "prompt_sha256": "d752d2e23911d37902932efdd396b521541734087e521d4bf561d334ae2b59fd",
+      "model": "gpt-image-2.5-sunburst",
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent",
+      "usage": {
+        "input_tokens": 154,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 154
+        },
+        "output_tokens": 1756,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        },
+        "total_tokens": 1910
+      },
+      "cost_usd": 0.05345,
+      "latency_ms": 36759,
+      "at": "2026-10-27T20:32:21.443Z"
+    },
+    "D": {
+      "file": "assets/mascot/0025/D.png",
+      "sha256": "fdf452bbe2b23f7c74fe679c231a53108a90306035b9d67da86de137f8bbc407",
+      "prompt_sha256": "6e2f9f657508c987feedb5211b5c33c682fd9f571506ad60ee50fce3a7298e2c",
+      "model": "gpt-image-2.5-sunburst",
+      "size": "1024x1024",
+      "quality": "high",
+      "background": "transparent",
+      "usage": {
+        "input_tokens": 169,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 169
+        },
+        "output_tokens": 1756,
+        "output_tokens_details": {
+          "image_tokens": 1756,
+          "text_tokens": 0
+        },
+        "total_tokens": 1925
+      },
+      "cost_usd": 0.053525,
+      "latency_ms": 35695,
+      "at": "2026-10-27T20:32:57.139Z"
+    }
+  },
+  "discarded": [],
+  "chosen": "D",
+  "promoted": {
+    "from": "D",
+    "files": {
+      "public/brand/mascot-480.webp": {
+        "sha256": "2fc7bfce7fe3c0fe3fe6c80031432ef6b15dd97c9784a0f540c538d288fc8cfa",
+        "bytes": 48322,
+        "size": 480
+      },
+      "public/brand/mascot-240.webp": {
+        "sha256": "6700cc5306848d5ed7313fa534c1b51af8d6079c68918c09fb2fdef38aad63cb",
+        "bytes": 18432,
+        "size": 240
+      }
+    },
+    "at": "2026-10-27T20:45:51.601Z"
+  }
+}

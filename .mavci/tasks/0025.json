@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0025",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0025-launch-readiness.md",
+  "title": "Launch readiness: English default, Turkish at /tr, ProToolHub Cartoon brand and mascot, refund policy, legal fixes, domain and go-live steps"
+}

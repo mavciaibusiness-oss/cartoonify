@@ -17,7 +17,8 @@ export default function SiteHeader() {
   const t = getDictionary(locale).header
   const home = localizedPath(locale, '/')
   const workshop = localizedPath(locale, '/workshop')
-  const isHome = pathname === '/' || pathname === '/en'
+  const contact = localizedPath(locale, '/contact')
+  const isHome = pathname === home
 
   return (
     <div className="site-strip">
@@ -25,6 +26,7 @@ export default function SiteHeader() {
         <Link className="site-brand" href={home}>
           <img src="/brand/protoolhub-icon.svg" alt="" width={32} height={32} />
           <span>{t.brand}</span>
+          <span className="site-brand-sub">{t.brandSub}</span>
         </Link>
         <nav className="site-nav" aria-label={t.navLabel}>
           <Link href={home} aria-current={isHome ? 'page' : undefined}>
@@ -34,7 +36,7 @@ export default function SiteHeader() {
             {t.workshop}
           </Link>
           <Link href={home + '#styles'}>{t.styles}</Link>
-          <Link href="/contact" aria-current={pathname === '/contact' ? 'page' : undefined}>
+          <Link href={contact} aria-current={pathname === contact ? 'page' : undefined}>
             {t.contact}
           </Link>
           <ProfileLink />

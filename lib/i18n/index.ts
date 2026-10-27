@@ -8,6 +8,9 @@ export type { Dictionary } from './tr'
 export type { Locale } from './paths'
 export { counterpartPath, localeOfPath, localizedPath } from './paths'
 
+/** Every page title ends with this; there is no title template (task 0025 D7). */
+export const TITLE_SUFFIX = ' | ProToolHub Cartoon'
+
 /** The switch's labels. Language codes, the same in both languages. */
 export const LOCALE_LABELS: Readonly<Record<Locale, string>> = { tr: 'TR', en: 'EN' }
 

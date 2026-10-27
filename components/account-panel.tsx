@@ -10,7 +10,7 @@ import { errorMessage, getDictionary, type Locale } from '@/lib/i18n'
  */
 export default function AccountPanel({ locale, authFailed }: { locale: Locale; authFailed: boolean }) {
   const t = getDictionary(locale)
-  const next = locale === 'en' ? '/en/workshop' : '/workshop'
+  const next = locale === 'tr' ? '/tr/workshop' : '/workshop'
   const [email, setEmail] = useState('')
   const [busy, setBusy] = useState(false)
   const [sent, setSent] = useState(false)

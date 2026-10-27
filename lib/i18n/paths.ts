@@ -1,37 +1,47 @@
 /**
  * Which language a path is in, and where its counterpart lives.
  *
- * Turkish is the root; English lives under /en. Pure string functions with no
- * runtime imports and no RegExp: task 0007's criteria load this file directly.
+ * English is the base, at the root; Turkish lives under /tr. Pure string
+ * functions with no runtime imports and no pattern matching: task 0007 criteria load
+ * this file directly.
  */
 export type Locale = 'tr' | 'en'
 
-/** Pages that exist in both languages, as [Turkish, English]. */
+/** Pages that exist in both languages, as [English, Turkish]. */
 const PAIRS: ReadonlyArray<readonly [string, string]> = [
-  ['/', '/en'],
-  ['/workshop', '/en/workshop'],
-  ['/account', '/en/account'],
+  ['/', '/tr'],
+  ['/workshop', '/tr/workshop'],
+  ['/account', '/tr/account'],
+  ['/privacy', '/tr/privacy'],
+  ['/terms', '/tr/terms'],
+  ['/refund', '/tr/refund'],
+  ['/cookies', '/tr/cookies'],
+  ['/contact', '/tr/contact'],
 ]
 
+/**
+ * '/kvkk' is the internal path the middleware rewrites /tr/kvkk to, and it is
+ * what the server sees while it prerenders that page.
+ */
 export function localeOfPath(pathname: string): Locale {
-  return pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'tr'
+  return pathname === '/tr' || pathname.startsWith('/tr/') || pathname === '/kvkk' ? 'tr' : 'en'
 }
 
 /**
- * The same page in the other language. A path with no English counterpart
- * (the legal pages, /contact) goes to the other language's home page rather
- * than to nothing.
+ * The same page in the other language. The Turkish-only KVKK notice goes to
+ * the English privacy page; any other path goes to the other language's home.
  */
 export function counterpartPath(pathname: string): string {
-  for (const [trPath, enPath] of PAIRS) {
-    if (pathname === trPath) return enPath
+  if (pathname === '/tr/kvkk' || pathname === '/kvkk') return '/privacy'
+  for (const [enPath, trPath] of PAIRS) {
     if (pathname === enPath) return trPath
+    if (pathname === trPath) return enPath
   }
-  return localeOfPath(pathname) === 'en' ? '/' : '/en'
+  return localeOfPath(pathname) === 'en' ? '/tr' : '/'
 }
 
-/** A Turkish route path, placed in the given language. */
-export function localizedPath(locale: Locale, trPath: string): string {
-  if (locale === 'tr') return trPath
-  return trPath === '/' ? '/en' : '/en' + trPath
+/** An English route path (the base path), placed in the given language. */
+export function localizedPath(locale: Locale, basePath: string): string {
+  if (locale === 'en') return basePath
+  return basePath === '/' ? '/tr' : '/tr' + basePath
 }

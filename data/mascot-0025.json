@@ -1,0 +1,16 @@
+{
+  "task": "0025",
+  "purpose": "ProToolHub Cartoon mascot: four candidates, the operator chooses one",
+  "size": "1024x1024",
+  "quality": "high",
+  "background": "transparent",
+  "estimate_usd_per_image": 0.12,
+  "ceiling_usd": 0.9,
+  "base_prompt": "Mascot illustration for a friendly photo-to-cartoon website. A cute, playful chibi girl with a big head and a small body, holding a big wooden pencil that is almost as tall as she is. Full body, centred, facing the viewer, with clear empty space around her. Clean cartoon style: smooth bold outlines, flat colours with soft cel shading. Wholesome and fully clothed, suitable for all ages. No text, no letters, no logo, no watermark, no scenery, plain transparent background.",
+  "candidates": [
+    { "id": "A", "pose": "hugs the pencil upright", "colours": "teal and pink", "expression": "wink and open smile", "prompt": "Pose: standing and hugging the pencil upright with both arms, head tilted. Colours: teal top and pink skirt, close to #6cc9d1 and #f48fb1, dark brown hair in two short pigtails. Expression: a wink and a wide open smile." },
+    { "id": "B", "pose": "rides the pencil", "colours": "mustard and orange", "expression": "laughing, eyes closed", "prompt": "Pose: sitting astride the pencil as if it were flying, one hand raised in the air. Colours: mustard-yellow overalls over a white shirt, orange hair clips, black bob haircut. Expression: laughing with her eyes closed." },
+    { "id": "C", "pose": "pencil on the shoulder, waving", "colours": "lavender and mint", "expression": "big grin, sparkling eyes", "prompt": "Pose: resting the pencil on her shoulder and waving with the other hand. Colours: lavender hoodie, mint-green shorts, white sneakers, long auburn ponytail. Expression: a big cheerful grin with sparkling eyes." },
+    { "id": "D", "pose": "draws a swirl in the air", "colours": "red and navy", "expression": "focused, tongue out", "prompt": "Pose: leaning forward and drawing a big curly line in the air with the pencil tip, which leaves a small trail of sparkles. Colours: red beret, navy dress with a white collar, red sneakers, short black hair. Expression: concentrating, tongue poking out playfully." }
+  ]
+}

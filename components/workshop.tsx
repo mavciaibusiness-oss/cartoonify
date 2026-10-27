@@ -32,7 +32,7 @@ type WalletAnswer = {
 }
 
 /**
- * The workshop body, shared by /workshop and /en/workshop. It asks the server
+ * The workshop body, shared by /workshop and /tr/workshop. It asks the server
  * for the wallet first. While that is pending, and when accounts are not
  * configured outside production, it is exactly the workshop it always was.
  * Signed out it shows the sign-in panel instead of the upload control; signed

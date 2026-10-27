@@ -24,6 +24,7 @@ export default function Landing({ locale }: { locale: Locale }) {
   return (
     <main className="landing">
       <section className="landing-hero">
+        <img className="brand-mascot" src="/brand/mascot-480.webp" alt="" width={240} height={240} loading="lazy" />
         <p className="workshop-badge">{t.landing.badge}</p>
         <h1>{t.landing.title}</h1>
         <p className="hero-lede">{t.landing.lede}</p>

@@ -265,12 +265,12 @@ test('builds a checkout request from server values only', () => {
   const body = buildCheckoutRequest({ ...base, email: 'buyer@example.com', locale: 'en' })
   assert.deepEqual(body.products, ['prod-10'])
   assert.equal(body.external_customer_id, 'user-1')
-  assert.equal(body.success_url, 'https://site.test/en/workshop?checkout_id={CHECKOUT_ID}')
+  assert.equal(body.success_url, 'https://site.test/workshop?checkout_id={CHECKOUT_ID}')
   assert.equal(body.allow_discount_codes, false)
   assert.deepEqual(body.metadata, { pth_user_id: 'user-1', pth_pack: 'p10', pth_env: 'sandbox' })
   const anonymous = buildCheckoutRequest({ ...base, email: null, locale: 'tr' })
   assert.equal('customer_email' in anonymous, false)
-  assert.equal(anonymous.return_url, 'https://site.test/workshop')
+  assert.equal(anonymous.return_url, 'https://site.test/tr/workshop')
 })
 
 test('accepts only the three pack ids and keeps the packs and texts consistent', () => {

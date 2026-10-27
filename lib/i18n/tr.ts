@@ -19,20 +19,22 @@ import type { StyleCategory } from '../cartoon-styles'
 
 export const tr = {
   meta: {
-    siteTitle: 'ProToolHub — AI Karikatür Atölyesi',
+    siteTitle: 'AI Karikatür Atölyesi | ProToolHub Cartoon',
     siteDescription:
       'Fotoğrafınızı saniyeler içinde karikatüre dönüştürün. Yükleyin, bir stil seçin, oluşturun ve hemen indirin.',
-    homeTitle: 'Yapay Zekâ ile Fotoğraftan Karikatür Atölyesi — ProToolHub',
+    homeTitle: 'Yapay Zekâ ile Fotoğraftan Karikatür | ProToolHub Cartoon',
     homeDescription:
       'Bir portre yükleyin, stil galerisinden seçin, tek tıkla karikatüre dönüştürün ve indirin.',
-    workshopTitle: 'AI Karikatür Atölyesi — ProToolHub',
+    workshopTitle: 'Karikatür Atölyesi | ProToolHub Cartoon',
     workshopDescription:
       'Fotoğrafınızı yükleyin, 120 stil arasından seçin ve karikatürünüzü oluşturun.',
     accountTitle: 'Profilim',
+    notFoundTitle: 'Sayfa bulunamadı | ProToolHub Cartoon',
   },
   header: {
     languageLabel: 'Dil seçimi',
     brand: 'ProToolHub',
+    brandSub: 'Cartoon',
     navLabel: 'Ana menü',
     home: 'Ana sayfa',
     workshop: 'Atölye',
@@ -44,9 +46,20 @@ export const tr = {
     label: 'Yasal bağlantılar',
     privacy: 'Gizlilik',
     terms: 'Kullanım Koşulları',
+    refund: 'İade Politikası',
     kvkk: 'KVKK',
     cookies: 'Çerezler',
     contact: 'İletişim',
+  },
+  langHint: {
+    text: 'Bu sayfanın Türkçesi de var.',
+    link: "Türkçe'ye geç",
+    close: 'Kapat',
+  },
+  notFound: {
+    title: 'Bu sayfa burada değil',
+    lede: 'Adres değişmiş ya da yanlış yazılmış olabilir.',
+    home: 'Ana sayfaya dön',
   },
   landing: {
     badge: 'AI Karikatür Atölyesi',

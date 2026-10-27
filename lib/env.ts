@@ -71,7 +71,7 @@ export function getAbuseEnv(): AbuseEnv {
 }
 
 /** The live site, used when NEXT_PUBLIC_SITE_URL is not set. */
-export const DEFAULT_SITE_URL = 'https://cartoonify-steel.vercel.app'
+export const DEFAULT_SITE_URL = 'https://cartoon.protoolhub.net'
 
 /**
  * The site's address, without a trailing slash. NEXT_PUBLIC_ so Next.js inlines

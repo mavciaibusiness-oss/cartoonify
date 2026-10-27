@@ -245,7 +245,7 @@ export type CheckoutInput = {
 
 /** The one place a checkout request is built: only server-side values go in. */
 export function buildCheckoutRequest(input: CheckoutInput): Record<string, unknown> {
-  const path = input.locale === 'en' ? '/en/workshop' : '/workshop'
+  const path = input.locale === 'en' ? '/workshop' : '/tr/workshop'
   const body: Record<string, unknown> = {
     products: [input.productId],
     external_customer_id: input.userId,

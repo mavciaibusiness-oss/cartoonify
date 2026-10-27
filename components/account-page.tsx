@@ -27,7 +27,7 @@ type AccountAnswer = {
 }
 
 /**
- * The profile, shared by /account and /en/account: credits, purchase history,
+ * The profile, shared by /account and /tr/account: credits, purchase history,
  * conversion history (no images; none are stored), language, sign-out and
  * account deletion. Every value comes from our own routes under /api.
  */
@@ -187,7 +187,17 @@ export default function AccountPage({ locale }: { locale: Locale }) {
       <section className="account-section" aria-labelledby="account-purchases-title">
         <h2 id="account-purchases-title">{p.purchasesTitle}</h2>
         {data.purchases.length === 0 ? (
-          <p className="account-empty">{p.purchasesEmpty}</p>
+          <>
+            <img
+              className="brand-mascot brand-mascot-small"
+              src="/brand/mascot-240.webp"
+              alt=""
+              width={120}
+              height={120}
+              loading="lazy"
+            />
+            <p className="account-empty">{p.purchasesEmpty}</p>
+          </>
         ) : (
           <ul className="account-purchases">
             {data.purchases.map((item, index) => {
@@ -230,10 +240,10 @@ export default function AccountPage({ locale }: { locale: Locale }) {
       <section className="account-section" aria-labelledby="account-language-title">
         <h2 id="account-language-title">{p.languageTitle}</h2>
         <p className="account-languages">
-          <a className="account-lang" hrefLang="tr" href="/account" lang="tr">
+          <a className="account-lang" hrefLang="tr" href="/tr/account" lang="tr">
             {p.langTr}
           </a>
-          <a className="account-lang" hrefLang="en" href="/en/account" lang="en">
+          <a className="account-lang" hrefLang="en" href="/account" lang="en">
             {p.langEn}
           </a>
         </p>

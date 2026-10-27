@@ -12,18 +12,20 @@ import type { Dictionary } from './tr'
  */
 export const en: Dictionary = {
   meta: {
-    siteTitle: 'ProToolHub — AI Cartoon Studio',
+    siteTitle: 'AI Cartoon Studio | ProToolHub Cartoon',
     siteDescription:
       'Turn your photo into a cartoon in seconds. Upload, choose a style, generate and download right away.',
-    homeTitle: 'AI Photo to Cartoon Workshop — ProToolHub',
+    homeTitle: 'Turn a Photo into a Cartoon with AI | ProToolHub Cartoon',
     homeDescription:
       'Upload a portrait, choose from the style gallery, turn it into a cartoon in one click and download it.',
-    workshopTitle: 'AI Cartoon Studio — ProToolHub',
+    workshopTitle: 'Cartoon Studio | ProToolHub Cartoon',
     workshopDescription: 'Upload your photo, choose from 120 styles and generate your cartoon.',
     accountTitle: 'My profile',
+    notFoundTitle: 'Page not found | ProToolHub Cartoon',
   },
   header: {
     brand: 'ProToolHub',
+    brandSub: 'Cartoon',
     navLabel: 'Main menu',
     home: 'Home',
     workshop: 'Studio',
@@ -34,11 +36,22 @@ export const en: Dictionary = {
   },
   footer: {
     label: 'Legal links',
-    privacy: 'Privacy (in Turkish)',
-    terms: 'Terms of Use (in Turkish)',
-    kvkk: 'KVKK (in Turkish)',
-    cookies: 'Cookies (in Turkish)',
-    contact: 'Contact (in Turkish)',
+    privacy: 'Privacy',
+    terms: 'Terms of Use',
+    refund: 'Refund Policy',
+    kvkk: 'KVKK notice (Turkish)',
+    cookies: 'Cookies',
+    contact: 'Contact',
+  },
+  langHint: {
+    text: 'Bu sayfanın Türkçesi de var.',
+    link: "Türkçe'ye geç",
+    close: 'Kapat',
+  },
+  notFound: {
+    title: "This page isn't here",
+    lede: 'The address may have changed, or there may be a typo.',
+    home: 'Back to the home page',
   },
   landing: {
     badge: 'AI Cartoon Studio',

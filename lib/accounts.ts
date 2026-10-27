@@ -4,8 +4,12 @@ import crypto from 'node:crypto'
  * Pure helpers for accounts: no process.env, no network, no file system.
  */
 
-/** The only places a sign-in may send the visitor back to. */
-export const ALLOWED_NEXT = ['/workshop', '/en/workshop'] as const
+/**
+ * The only places a sign-in may send the visitor back to. The last entry is
+ * legacy: sign-in links e-mailed before 0025 still carry it, and it answers 301
+ * to /workshop.
+ */
+export const ALLOWED_NEXT = ['/workshop', '/tr/workshop', '/en/workshop'] as const
 export type NextPath = (typeof ALLOWED_NEXT)[number]
 export const DEFAULT_NEXT: NextPath = '/workshop'
 

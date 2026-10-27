@@ -1,4 +1,11 @@
-export const metadata = { title: 'KVKK Aydinlatma Metni' }
+import type { Metadata } from 'next'
+import { TITLE_SUFFIX } from '@/lib/i18n'
+
+export const metadata: Metadata = {
+  title: 'KVKK Aydınlatma Metni' + TITLE_SUFFIX,
+  alternates: { canonical: '/tr/kvkk', languages: { tr: '/tr/kvkk' } },
+  openGraph: { url: '/tr/kvkk' },
+}
 
 export default function Page() {
   return (
@@ -11,8 +18,8 @@ export default function Page() {
       <h2>Veri sorumlusunun kimligi</h2>
       <p>DRAFT — NOT A REGISTERED ENTITY — REVIEW REQUIRED, DRAFT — REVIEW REQUIRED. MERSIS: DRAFT — NO MERSIS — REVIEW REQUIRED.</p>
       <h2>Isleme amaclari</h2>
-      <p>Hesap olusturma ve yonetimi, abonelik ve faturalama, destek taleplerinin
-      karsilanmasi, guvenlik ve kotuye kullanimin onlenmesi, yasal
+      <p>Hesap olusturma ve yonetimi, kredi paketlerinin satisi ve odemenin
+      alinmasi, destek taleplerinin karsilanmasi, guvenlik ve kotuye kullanimin onlenmesi, yasal
       yukumluluklerin yerine getirilmesi.</p>
       <h2>Hukuki sebep</h2>
       <p>KVKK m.5/2-c uyarinca sozlesmenin kurulmasi ve ifasi, m.5/2-c uyarinca
@@ -20,7 +27,7 @@ export default function Page() {
       <h2>Aktarim</h2>
       <p>Kisisel verileriniz, hizmetin sunulabilmesi amaciyla yurt disinda yerlesik
       su hizmet saglayicilara aktarilmaktadir: barindirma icin Vercel, veritabani
-      ve kimlik dogrulama icin Supabase, odeme icin Stripe, e-posta gonderimi icin
+      ve kimlik dogrulama icin Supabase, odeme icin Polar (satici kaydi, Merchant of Record), e-posta gonderimi icin
       Resend. Ayrica bot dogrulamasi icin Cloudflare Turnstile (IP adresi ve tarayici
       sinyalleri) ve kotuye kullanim sayaclari icin Upstash (takma adli IP, yaklasik
       1 saat icinde silinir; gunluk sayac yaklasik 2 gun tutulur) kullanilmaktadir.</p>
@@ -66,6 +73,10 @@ export default function Page() {
       e-posta adresinizin geri çevrilemez özeti (hash), ve vergi ile muhasebe
       yükümlülükleri nedeniyle Polar sipariş ve iade kayıtları; bu ödeme kayıtları
       bir kişiye bağlı olmadan, yalnızca sipariş kimliği, tutar ve tarihlerle tutulur.</p>
+      <h2 id="ucretsiz-hak-ozetleri">Ücretsiz hakkın özetleri</h2>
+      <p>Ücretsiz hakkın aynı e-posta adresine ikinci kez verilmemesi için e-posta adresinizin SHA-256 özeti saklanır; adresin kendisi bu kayıtta tutulmaz. Bu özet, hesabınızı silseniz de silinmez.</p>
+      <p>IP adresinizin ve cihazınızın gizli bir anahtarla alınmış özetleri (HMAC-SHA-256), ücretsiz hakkın günlük sınırları için 2 gün kullanılır ve sonra silinir. Silme, bu sürenin sonundan sonraki ilk ücretsiz hak talebinde otomatik olarak yapılır.</p>
+      <p>Saatlik dönüşüm sınırı için IP adresinizin anahtarlı özeti Upstash'te en fazla yaklaşık bir saat (3700 saniye) tutulur.</p>
       <h2>Saklama suresi</h2>
       <p>Veriler, uyelik suresince ve uyeligin sona ermesinden itibaren ilgili
       mevzuatta ongorulen zamanasimi sureleri boyunca saklanir.</p>

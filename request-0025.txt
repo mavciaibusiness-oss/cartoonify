@@ -1,0 +1,24 @@
+GÖREV 0025 – operatörün brifi (kelimesi kelimesine, 2026-10-27)
+
+GÖREV 0025 – Yayına hazırlık
+1. İngilizce varsayılan "/", Türkçe "/tr"; eski adresler yönlendirilsin; her sayfada dil seçici.
+2. Marka: ProToolHub + chibi maskot; metinler doğal (humanizer kuralları).
+3. Yasal: İade politikası sayfası (Polar, kredi iadesi kuralları); eski metinlerdeki "abonelik" ifadelerini tek seferlik kredi modeline göre düzelt; KVKK/Gizlilik'e ücretsiz hak için saklanan e-posta özeti ve IP/cihaz özetinin 2 gün tutulması eklensin. "REVIEW REQUIRED" kalsın.
+4. Alan adı cartoon.protoolhub.net: Vercel'e ekleme ve Cloudflare DNS adımlarını bana yaz.
+5. Canlıya geçiş listesi: Production değişkenleri (Supabase, Polar canlı, Resend, OPERATOR_ALERT_EMAIL, ABUSE_HASH_SECRET farklı değer, Turnstile, Upstash/KV kontrolü), Polar canlı ürünler/token/webhook, Google girişi (Client ID/Secret), Supabase Redirect URL'ye canlı adres. Her adımı bana sırayla yaz.
+
+Her iki görev Mavci akışıyla: spec → onayım → build → verifier. Önce soruların varsa sor. Migration gerekirse SQL'i göster, onay bekle (yalnız protoolhub). Production'a deploy yok; "yayına al" diyeceğim.
+
+Önceki oturumdan karar: maskot için "Yeni maskot üret" (mevcut bir maskot yok; public/brand'da yalnız protoolhub-icon.svg var).
+
+Oturum içi cevaplar (AskUserQuestion, 2026-10-27):
+- Adresler ve yasal sayfalar: "EN yasal + TR öneri (Önerilen)" — /en/* → /* (301). Yasal sayfaların İngilizce taslakları /privacy, /terms, /refund, /cookies, /contact'ta; Türkçeleri /tr/... altında. KVKK yalnız Türkçe: /kvkk → /tr/kvkk. Tarayıcısı Türkçe olana zorla yönlendirme yok, tek satırlık "Türkçe'ye geç" çubuğu çıkar.
+- Maskot: "Daha önce karar verdim: elinde büyük bir kalem tutan, sevimli ve eğlenceli chibi kız. Bu karakterden 4 farklı aday üret (poz, renk, ifade farklı), ben seçerim."
+- İade: "14 gün, hiç kullanılmamışsa (Önerilen)" — satın alınan paketten hiç ücretli kredi harcanmadıysa 14 gün içinde tam iade; kredi kullanıldıysa iade yok; teknik hata olan dönüşümün kredisi zaten otomatik geri yükleniyor; dijital içerikte cayma hakkı istisnası açıkça yazılır.
+- Ürün adı: "ProToolHub Cartoon (Önerilen)" — menüde "ProToolHub" + küçük "Cartoon"; sayfa başlıkları "... | ProToolHub Cartoon"; cartoon.protoolhub.net ile uyumlu.
+
+Orkestratörün gözlemleri (2026-10-27, kod okuma):
+- Şu an Türkçe "/" (app/(tr)), İngilizce "/en" (app/(en)/en: home, workshop, account). middleware.ts yok.
+- Yasal sayfalar yalnız Türkçe: app/(tr)/(legal)/{privacy,terms,kvkk,cookies}, app/(tr)/contact. İngilizce karşılık yok.
+- Eski ifadeler: terms "Abonelik ve odeme / Abonelikler donemsel olarak yenilenir", kvkk ve privacy "abonelik", "Stripe" (ödeme Polar ile).
+- Üst menü zaten "ProToolHub" + public/brand/protoolhub-icon.svg; DEFAULT_SITE_URL = https://cartoonify-steel.vercel.app (lib/env.ts).

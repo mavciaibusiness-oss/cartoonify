@@ -17,7 +17,7 @@ export default function LanguageSwitch() {
   const locale = localeOfPath(pathname)
   const t = getDictionary(locale)
   const other = counterpartPath(pathname)
-  const trHref = locale === 'tr' ? pathname : other
+  const trHref = locale === 'tr' ? (pathname === '/kvkk' ? '/tr/kvkk' : pathname) : other
   const enHref = locale === 'en' ? pathname : other
 
   return (
