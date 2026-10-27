@@ -6,7 +6,7 @@
   "id": "0023",
   "max_attempts": 3,
   "owner_agent": null,
-  "phase": "verify",
+  "phase": "release",
   "project_id": "cartoonify",
   "schema_version": 1,
   "spec_approved": {
@@ -15,8 +15,8 @@
     "spec_path": ".mavci/tasks/0023-polar-credits.md",
     "spec_sha256": "9dd6e8298b89ddf09e178eb148d2a81d17fad8969bc648161fb312d157abbe53"
   },
-  "status": "in_progress",
-  "updated": "2026-10-27T13:21:31Z",
+  "status": "done",
+  "updated": "2026-10-27T15:41:43Z",
   "verdicts": [
     ".mavci/control/verdicts/0023-attempt-01.json",
     ".mavci/control/verdicts/0023-attempt-02.json"

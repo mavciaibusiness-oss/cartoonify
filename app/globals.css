@@ -855,11 +855,16 @@ footer a:hover {
 
 .style-filter {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 100%;
   gap: 0.4rem;
+  padding-bottom: 0.3rem;
 }
 
 .style-filter button {
+  flex: 0 0 auto;
+  white-space: nowrap;
   appearance: none;
   border: 1px solid var(--stroke-strong);
   background: var(--surface);
@@ -1433,4 +1438,168 @@ footer a:hover {
   border: 1px solid var(--stroke);
   color: var(--text);
   font-size: 1.05rem;
+}
+
+.site-nav-profile {
+  white-space: nowrap;
+}
+
+/* the profile page: one column, large type */
+.account-page {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.account-page h1,
+.account-page h2,
+.account-page p {
+  margin: 0;
+}
+
+.account-page h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.account-page h2 {
+  font-size: 1.4rem;
+  line-height: 1.25;
+}
+
+.account-credits,
+.account-section,
+.account-signed-out,
+.account-deleted {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.account-email-line,
+.account-note,
+.account-empty {
+  color: var(--muted);
+}
+
+.account-balance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+}
+
+.account-balance p {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.account-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.account-number-label {
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.account-page .generate-button,
+.account-page .ghost-button,
+.account-delete,
+.account-delete-yes {
+  font-size: 1.125rem;
+  padding: 0.8rem 1.1rem;
+}
+
+.account-page .account-buy,
+.account-page .account-signin {
+  justify-self: start;
+}
+
+.account-purchases,
+.account-conversions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.account-purchases li,
+.account-conversions li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--stroke);
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.account-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.account-lang {
+  color: var(--accent-text);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.account-danger {
+  border-color: var(--danger-text);
+}
+
+.account-delete,
+.account-delete-yes {
+  justify-self: start;
+  appearance: none;
+  border: 2px solid var(--danger-text);
+  background: var(--surface);
+  color: var(--danger-text);
+  border-radius: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.account-delete:hover,
+.account-delete-yes:hover {
+  background: var(--surface-2);
+}
+
+.account-delete:disabled,
+.account-delete-yes:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.account-delete-confirm {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.account-delete-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.account-page a:focus-visible,
+.account-page button:focus-visible {
+  outline: 3px solid var(--accent-text);
+  outline-offset: 2px;
 }

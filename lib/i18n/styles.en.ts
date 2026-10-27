@@ -411,6 +411,86 @@ export const STYLE_TEXT_EN: Record<CartoonStyleId, { readonly name: string; read
     name: 'Goofy Sketch Caricature',
     description: 'A wobbly pencil scribble caricature with googly eyes and a gap-toothed grin.',
   },
+  'pet-oil-portrait': {
+    name: 'Oil Pet Portrait',
+    description: 'A classic oil-painting portrait of your pet in warm light.',
+  },
+  'pet-watercolor': {
+    name: 'Watercolour Pet',
+    description: 'Your pet in flowing watercolour washes with white paper showing.',
+  },
+  'pet-cameo': {
+    name: 'Cameo Pet Portrait',
+    description: 'An elegant cameo portrait of your pet in an oval frame on cream.',
+  },
+  'pet-pencil': {
+    name: 'Pencil Pet Sketch',
+    description: 'A detailed graphite drawing of your pet, fur stroke by stroke.',
+  },
+  'pet-pop': {
+    name: 'Pop Art Pet',
+    description: 'Your pet in flat, bright pop-art colour blocks with bold outlines.',
+  },
+  'pet-cartoon': {
+    name: 'Cute Cartoon Pet',
+    description: 'A cute cartoon version of your pet with soft lines and bright colour.',
+  },
+  'pet-one-line': {
+    name: 'One-Line Pet',
+    description: 'Your pet drawn in one unbroken black line on white.',
+  },
+  'pet-pastel': {
+    name: 'Pastel Pet',
+    description: 'A soft, powdery chalk-pastel portrait of your pet on tinted paper.',
+  },
+  'pet-sticker': {
+    name: 'Pet Sticker',
+    description: 'Your pet as a glossy die-cut sticker with a thick white border.',
+  },
+  'pet-stained-glass': {
+    name: 'Stained-Glass Pet',
+    description: 'Your pet in bright glass pieces joined by dark lead lines.',
+  },
+  'avatar-3d': {
+    name: '3D Avatar',
+    description: 'A smooth, softly lit 3D profile avatar.',
+  },
+  'avatar-flat': {
+    name: 'Flat Vector Avatar',
+    description: 'A simple vector avatar in a few flat colours and clean shapes.',
+  },
+  'avatar-anime': {
+    name: 'Anime Avatar',
+    description: 'An anime-style avatar with fine outlines and flat cel shading.',
+  },
+  'avatar-pixel': {
+    name: 'Pixel Avatar',
+    description: 'A retro game-style profile avatar in large, visible pixels.',
+  },
+  'avatar-clay': {
+    name: 'Clay Avatar',
+    description: 'A cute avatar sculpted in soft modelling clay, fingerprints and all.',
+  },
+  'avatar-comic': {
+    name: 'Comic Avatar',
+    description: 'A comic-book avatar with bold ink, halftone dots and vivid colour.',
+  },
+  'avatar-line': {
+    name: 'Minimal Line Avatar',
+    description: 'A minimal portrait avatar in a few fine lines and one accent colour.',
+  },
+  'avatar-neon': {
+    name: 'Neon Avatar',
+    description: 'A profile avatar drawn in glowing neon lines on a dark ground.',
+  },
+  'avatar-sticker': {
+    name: 'Sticker Avatar',
+    description: 'A cute, glossy profile sticker with a thick white border.',
+  },
+  'avatar-gradient': {
+    name: 'Gradient Avatar',
+    description: 'A modern profile avatar in soft colour gradients and simple shapes.',
+  },
 }
 
 /** Task 0019: extra English search words, beside the name. */

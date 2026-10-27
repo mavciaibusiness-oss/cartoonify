@@ -2,6 +2,7 @@ import { cookies } from 'next/headers'
 import { createServerClient } from '@supabase/ssr'
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { getAccountsEnv, type AccountsEnv } from '@/lib/env'
+import type { AccountOverview, RefundState } from '@/lib/account'
 import type { BeginResult, CreditsDeps, SessionUser } from '@/lib/cartoonify-handler'
 
 /**
@@ -187,4 +188,50 @@ export async function checkoutStatus(userId: string, checkoutId: string): Promis
   const s = r.status
   const status = s === 'pending' || s === 'credited' || s === 'refused' ? s : 'unknown'
   return { status, credits: num(r.credits), free: num(r.free_credits), paid: num(r.paid_credits) }
+}
+
+/* ------------------------------------------------------ Profile and deletion */
+
+const REFUNDS: readonly RefundState[] = ['none', 'partial', 'full']
+
+/** The profile page's data for one user. Read only; a user with no profile gets zeros and empty lists. */
+export async function accountOverview(userId: string): Promise<AccountOverview> {
+  const r = await rpc('account_overview', { p_user_id: userId })
+  const rows = (v: unknown): Record<string, unknown>[] =>
+    Array.isArray(v) ? v.filter((x): x is Record<string, unknown> => typeof x === 'object' && x !== null) : []
+  return {
+    free: num(r.free_credits),
+    paid: num(r.paid_credits),
+    purchases: rows(r.purchases).map((p) => ({
+      at: String(p.at ?? ''),
+      pack: String(p.pack ?? ''),
+      credits: num(p.credits),
+      refund: REFUNDS.includes(p.refund as RefundState) ? (p.refund as RefundState) : 'none',
+    })),
+    conversions: rows(r.conversions).map((c) => ({
+      at: String(c.at ?? ''),
+      style: String(c.style ?? ''),
+      kind: c.kind === 'paid' ? 'paid' : 'free',
+    })),
+  }
+}
+
+export type DeleteAccountResult = { outcome: 'deleted' | 'nothing' | 'busy'; keepAuthUser: boolean }
+
+/** One transaction in the database: refuses while a conversion runs, anonymises Polar records, deletes the profile. */
+export async function deleteAccountData(userId: string): Promise<DeleteAccountResult> {
+  const r = await rpc('delete_account', { p_user_id: userId })
+  const o = r.outcome
+  if (o !== 'deleted' && o !== 'nothing' && o !== 'busy') throw new Error('rpc delete_account answered an unknown outcome')
+  return { outcome: o, keepAuthUser: r.keep_auth_user !== false }
+}
+
+/** Hard-deletes the sign-in account through the Supabase Auth Admin API. True on success, false on any failure. */
+export async function deleteAuthUser(userId: string): Promise<boolean> {
+  try {
+    const { error } = await createServiceClient().auth.admin.deleteUser(userId)
+    return !error
+  } catch {
+    return false
+  }
 }

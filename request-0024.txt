@@ -1,0 +1,18 @@
+GÖREV 0024 – operatörün brifi (kelimesi kelimesine, 2026-10-27)
+
+GÖREV 0024 – Profil sayfası + yeni kategoriler
+1. /account (Profil): kalan kredi (ücretsiz/ücretli), "Kredi al", satın alma geçmişi (tarih, paket, tutar, iade durumu), dönüşüm geçmişi (tarih, stil, ücretsiz/ücretli – görsel yok), dil seçimi, çıkış, "Hesabımı sil" (onaylı; protoolhub kayıtları silinir, welcome_email_keys kalır – Q6 kuralı). Üst menüde giriş yapınca "Profil" görünsün. Sade, büyük yazı, tek net adım.
+2. Kategoriler: Evcil Hayvan Portresi ve Avatar. Her stilin kendi önizleme görseli olsun; mevcut 99 stil korunur. Kategori seçimi atölyede tek satır sekme.
+
+Her iki görev Mavci akışıyla: spec → onayım → build → verifier. Önce soruların varsa sor. Migration gerekirse SQL'i göster, onay bekle (yalnız protoolhub). Production'a deploy yok; "yayına al" diyeceğim.
+
+Oturum içi cevaplar (AskUserQuestion, 2026-10-27):
+- Hesap silme / auth: "Auth kullanıcısı da silinsin (KVKK: kişi hesabını silince e-postası da silinmeli). Tek istisna: kullanıcı Firma Bulucu üyesiyse (leadgen.org_members'ta kaydı varsa) yalnız protoolhub kayıtları silinsin, auth kullanıcısı kalsın. welcome_email_keys (sadece hash) her durumda kalır."
+- Sipariş kayıtları: "Anonimleştir (Önerilen)" — polar_orders / polar_refunds / polar_checkouts hesapla bağı (user_id) kaldırılarak kalır (sipariş no, tutar, tarih); silmeden sonra gelen iade yalnız kaydedilir, kredi düşülecek hesap yoktur.
+- Yeni kategoriler: "10 + 10" — Evcil Hayvan Portresi 10 stil, Avatar 10 stil; her birine OpenAI ile bir kez üretilen kendi önizleme görseli (yaklaşık 0,02 USD/görsel). Mevcut stiller korunur (kodda 100 stil, 12 kategori).
+
+Orkestratörün salt okuma bulguları (canlı DB ltjwsmiycijxrqxjsphq, 2026-10-27):
+- auth.users'a başka şemalardan bağlı yabancı anahtarlar: leadgen.org_members.user_id (ON DELETE CASCADE), protoolhub.profiles.user_id (CASCADE), leadgen.messages.approved_by, leadgen.register_checks.checked_by, leadgen.searches.created_by (üçü NO ACTION — auth kullanıcısının silinmesini engeller).
+- leadgen.org_members sütunları: org_id uuid, user_id uuid, role text, created_at timestamptz.
+- leadgen şemasına yalnız OKUMA yapılabilir (üyelik kontrolü); leadgen/public'e yazma, değişiklik, yetki verme yok.
+- Mevcut stil önizlemeleri konu fotoğraflarından üretilir; evcil hayvan konusu (P) zaten var (lib/style-previews.ts, assets/subjects/).

@@ -21,5 +21,12 @@ export async function resolve(specifier, context, nextResolve) {
     const found = findFile(base)
     if (found !== null) return nextResolve(pathToFileURL(found).href, context)
   }
-  return nextResolve(specifier, context)
+  try {
+    return await nextResolve(specifier, context)
+  } catch (error) {
+    // Next's own subpaths (next/server, next/headers) are CommonJS files that
+    // webpack resolves without an extension; Node's ESM resolver needs one.
+    if (specifier.startsWith('next/') && !specifier.endsWith('.js')) return nextResolve(specifier + '.js', context)
+    throw error
+  }
 }

@@ -51,6 +51,18 @@ export default function Page() {
       kişiye bağlı olmadan kalır.</p>
       <p>Polar ve Resend verileri Türkiye dışında (yurt dışı) işlediği için bu veriler
       yurt dışına aktarılmış olur.</p>
+      <h2 id="hesap-silme">Hesabın silinmesi</h2>
+      <p>Hesabınızı istediğiniz zaman Profil sayfasındaki "Hesabımı sil" düğmesiyle
+      silebilirsiniz; işlem bir onay adımından sonra yapılır ve geri alınamaz.
+      Silinenler: profiliniz, kalan tüm kredileriniz (ücretli krediler dahil), kredi ve
+      dönüşüm geçmişiniz ve hoş geldin kaydınız. Giriş hesabınız ve e-posta adresiniz
+      de silinir; ancak aynı giriş başka bir ProToolHub ürününde (Firma Bulucu)
+      kullanılıyorsa yalnızca Karikatür Atölyesi kayıtlarınız silinir, giriş hesabınız
+      o ürün için kalır.</p>
+      <p>Kalanlar: ücretsiz kredinin aynı adrese ikinci kez verilmesini önlemek için
+      e-posta adresinizin geri çevrilemez özeti (hash), ve vergi ile muhasebe
+      yükümlülükleri nedeniyle Polar sipariş ve iade kayıtları; bu ödeme kayıtları
+      bir kişiye bağlı olmadan, yalnızca sipariş kimliği, tutar ve tarihlerle tutulur.</p>
       <h2>Haklariniz</h2>
       <p>KVKK ve GDPR kapsaminda verilerinize erisme, duzeltme, silme ve isleme
       faaliyetine itiraz etme hakkina sahipsiniz. Talepleriniz icin iletisim

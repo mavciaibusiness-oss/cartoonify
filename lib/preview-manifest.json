@@ -2334,6 +2334,226 @@
       "prompt_sha256": "0550046bb4daf98b422a9af997ef19248d931ebec719cd0ab40a29a5b222663c",
       "cost_usd": 0,
       "at": "2026-10-02T11:54:18.835Z"
+    },
+    "pet-oil-portrait": {
+      "file": "public/styles/pet-oil-portrait.webp",
+      "sha256": "0b8232f73ec4481ae3b75014b81a6412147d8c5ec80472a7b22c1b4dff9e8079",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0024",
+      "from_trial": "pet-oil-portrait.A.P",
+      "prompt_sha256": "9414f1fc32ecfb3ab77c059dac0c0ad2ffb467ae17cf29347744116e3ced9ce5",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.745Z"
+    },
+    "pet-watercolor": {
+      "file": "public/styles/pet-watercolor.webp",
+      "sha256": "f8648d9559626fab239f89bc4acae3051f7a47c903c724d8dcd17064484f0b13",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0024",
+      "from_trial": "pet-watercolor.A.T",
+      "prompt_sha256": "496c5c0ab01d423daf2d7b9ddeb1ca7cb9790180c33481001d791575c3b1b423",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.746Z"
+    },
+    "pet-cameo": {
+      "file": "public/styles/pet-cameo.webp",
+      "sha256": "d4150604008f20cfa819f197c1f4ac587e539511898184982ef7843f0ceb21fe",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0024",
+      "from_trial": "pet-cameo.A.D",
+      "prompt_sha256": "9bfabd2932898dec8e23a34f737d77602f8aab10b5c73a8b37c13a8c5d3e21d1",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.747Z"
+    },
+    "pet-pencil": {
+      "file": "public/styles/pet-pencil.webp",
+      "sha256": "44332ad8c957f76aa4bd57ff78d97f6c2b8a0626256f23e81070fbdc65e50e09",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0024",
+      "from_trial": "pet-pencil.A.T",
+      "prompt_sha256": "08a4cd774c80dcb3be58387416d14cb1e7893079485b9d8062ed09846ba65009",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.748Z"
+    },
+    "pet-pop": {
+      "file": "public/styles/pet-pop.webp",
+      "sha256": "c3fa91c596331ba22707ea9c607f3e9e01e816f914c7ccf1d85b7c319d9d8e72",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0024",
+      "from_trial": "pet-pop.A.D",
+      "prompt_sha256": "cafb4cb48fe6404df96de2cdf01ea10fbc9bfcf2355b2cb56b49f767847f6d9b",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.748Z"
+    },
+    "pet-cartoon": {
+      "file": "public/styles/pet-cartoon.webp",
+      "sha256": "32904029015b6f53df3016d2dacfa9bc55504394aa66afc8a5ac2dc17d4ec78a",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0024",
+      "from_trial": "pet-cartoon.A.P",
+      "prompt_sha256": "ef819b6d94436e74c3f9acc9f09bd0c4089c3ef71917cae7c173129e7ffd234d",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.749Z"
+    },
+    "pet-one-line": {
+      "file": "public/styles/pet-one-line.webp",
+      "sha256": "6ade6d324598eab26c2681e394f72892a59fef5886028fb7653ef3ef4cf4cfff",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "subject": "D",
+      "task": "0024",
+      "from_trial": "pet-one-line.A.D",
+      "prompt_sha256": "5b6bfa08797778f337542872464eba319e1e522c49a45bac6603f4928a73fed5",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.749Z"
+    },
+    "pet-pastel": {
+      "file": "public/styles/pet-pastel.webp",
+      "sha256": "fb7dbf6375b911acfa345fd1219fc2c7240fa0f112d94dbdf708e02b436fae8d",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "subject": "T",
+      "task": "0024",
+      "from_trial": "pet-pastel.A.T",
+      "prompt_sha256": "609e4cedbdfa33cab00fded8db20ddcb895c8b8988eb1cd50a5fdc9e01f43607",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.750Z"
+    },
+    "pet-sticker": {
+      "file": "public/styles/pet-sticker.webp",
+      "sha256": "21dfecfcc767a5a0f4d2563a718017a23adabb78aa708c857e697c9b094d53b6",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0024",
+      "from_trial": "pet-sticker.A.P",
+      "prompt_sha256": "da4b6733d5b391a17218d09816c11ddcae898b5e4e3b4b127405fad8e0cc9e2d",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.750Z"
+    },
+    "pet-stained-glass": {
+      "file": "public/styles/pet-stained-glass.webp",
+      "sha256": "99a403f223af040d4f602a102294fa11ab4aa8b0069a60412f0406fff0acb070",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "subject": "P",
+      "task": "0024",
+      "from_trial": "pet-stained-glass.A.P",
+      "prompt_sha256": "7fc9c0287dba422e3b6d0f949ede2b459374bd952712105c597f23b862fbfc1b",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.751Z"
+    },
+    "avatar-3d": {
+      "file": "public/styles/avatar-3d.webp",
+      "sha256": "c10d60465cf45bef6a9f4ba53bf4fdd810f0c00fae450296a1ea496ff1182dd9",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0024",
+      "from_trial": "avatar-3d.A.K",
+      "prompt_sha256": "b60a50bc3976a8496c462a18aa669402b9aa692e31bca5c161e6a83e1492dab1",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.751Z"
+    },
+    "avatar-flat": {
+      "file": "public/styles/avatar-flat.webp",
+      "sha256": "5e07d2173ee14b571869b32b522986062e329e986c369fba1fa560a2af1b7f11",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0024",
+      "from_trial": "avatar-flat.A.E",
+      "prompt_sha256": "6976440ac6d6b6074110b29d10cdf3f302b1d3b120c82ba0765dbd2b7fe8bd34",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.752Z"
+    },
+    "avatar-anime": {
+      "file": "public/styles/avatar-anime.webp",
+      "sha256": "cb4c88768ef3d58614eefeda99fdca1403fc9e2b0c0c0ac46e921e4bac47a5b2",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0024",
+      "from_trial": "avatar-anime.A.K",
+      "prompt_sha256": "7192d262552614224805eca09b8b9413c8d44c03de95351c97b09b78cc6a9e78",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.752Z"
+    },
+    "avatar-pixel": {
+      "file": "public/styles/avatar-pixel.webp",
+      "sha256": "67e34a8ebcce5b45f81055fde4d627c25ae1497f168631831ed6f212c7490052",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0024",
+      "from_trial": "avatar-pixel.A.S",
+      "prompt_sha256": "57aca610960dde45b87d3d9a00afe5e964e257e4f650fc5944b454e5bb47c756",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.752Z"
+    },
+    "avatar-clay": {
+      "file": "public/styles/avatar-clay.webp",
+      "sha256": "2152494b618f567b01ef0c0a9fe39446722afa9a684d37b0533f5cf22625f5ee",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0024",
+      "from_trial": "avatar-clay.A.Y",
+      "prompt_sha256": "9789b83559fc2cecc92b3e647deea766b0aa56b8a2dc726cb0e72a5492cc2439",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.753Z"
+    },
+    "avatar-comic": {
+      "file": "public/styles/avatar-comic.webp",
+      "sha256": "dfd61c83acf5ab430417092072c440cf1f64d7e41af475f8f85786eb2a3b66cf",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0024",
+      "from_trial": "avatar-comic.A.E",
+      "prompt_sha256": "c5886266d86c7fc72d17b13f7c0d1eb592c99901159a4b80d4b2b28d2bf5c3cd",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.753Z"
+    },
+    "avatar-line": {
+      "file": "public/styles/avatar-line.webp",
+      "sha256": "36337b22aab402067f6829dbd73e44da6371145fad870e79599f0d45ef1e46c4",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "subject": "Y",
+      "task": "0024",
+      "from_trial": "avatar-line.A.Y",
+      "prompt_sha256": "856b904c23a4163921e22e52f3188a123f64dfc90311123814652a9daa6a4009",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.754Z"
+    },
+    "avatar-neon": {
+      "file": "public/styles/avatar-neon.webp",
+      "sha256": "797e7eb950d70b4774d7e28688127cd65d3d1ea5ae74a16dd48f36af1aa932b4",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "subject": "S",
+      "task": "0024",
+      "from_trial": "avatar-neon.A.S",
+      "prompt_sha256": "59e891f7c8d48db9132d759ebbd63cec1dbe6d8e1483506a562f75004fa3af93",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.754Z"
+    },
+    "avatar-sticker": {
+      "file": "public/styles/avatar-sticker.webp",
+      "sha256": "23ba6d89ad16025443ac6e3c253d50e04ae9bde6985357afe33c48ceb8dff19a",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "subject": "K",
+      "task": "0024",
+      "from_trial": "avatar-sticker.A.K",
+      "prompt_sha256": "ad448d18923e039e063b6356f3238b2eb36d49527abd473b6b5a027d7854b8a5",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.755Z"
+    },
+    "avatar-gradient": {
+      "file": "public/styles/avatar-gradient.webp",
+      "sha256": "0ba9a9522e8b783c3df9621ffb444079dfcfe747bbef688edf2c6a2f78181bfd",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "subject": "E",
+      "task": "0024",
+      "from_trial": "avatar-gradient.A.E",
+      "prompt_sha256": "78be2b3465bafc03822334cdbe6f47d0c6e124d3addec8cc845dc6ead608a4b7",
+      "cost_usd": 0,
+      "at": "2026-10-27T17:15:57.755Z"
     }
   },
   "discarded": [
@@ -5471,6 +5691,201 @@
       "prompt_sha256": "385f77d83dfd0f1919194a1979a3148934edb2448f138078b7918208f1dd6f58",
       "cost_usd": 0,
       "at": "2026-10-01T13:06:12.399Z"
+    },
+    {
+      "role": "trial avatar-3d.A.K",
+      "replaced_at": "2026-10-27T16:44:56.556Z",
+      "file": "assets/trials/0024/avatar-3d.A.K.webp",
+      "sha256": "0775e14f5ead726b16914e0c6930f7cb0302a31b1e58591ba41e8ee0c0f8ab9e",
+      "kind": "render",
+      "id": "avatar-3d",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "68fd6932b2830844637f315ad8d6c229b2ad16e76fa9569f3d716a7160adc3e5",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20007,
+      "at": "2026-10-27T16:37:12.161Z"
+    },
+    {
+      "role": "trial avatar-anime.A.K",
+      "replaced_at": "2026-10-27T16:45:16.235Z",
+      "file": "assets/trials/0024/avatar-anime.A.K.webp",
+      "sha256": "dc55179991e17271d40d252bc8df1a6bd15e7f66ccacdab92fe7492e1af2d4a1",
+      "kind": "render",
+      "id": "avatar-anime",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "7192d262552614224805eca09b8b9413c8d44c03de95351c97b09b78cc6a9e78",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 20426,
+      "at": "2026-10-27T16:37:52.845Z"
+    },
+    {
+      "role": "trial avatar-gradient.A.E",
+      "replaced_at": "2026-10-27T16:45:38.200Z",
+      "file": "assets/trials/0024/avatar-gradient.A.E.webp",
+      "sha256": "cf77b8a1b5531597d97731fb9a802194fd2298163ce5b947aa3bafdd8eb6a21b",
+      "kind": "render",
+      "id": "avatar-gradient",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "d9e27b2d3bb9f8c07db78f6c2446c1b6f2dc2d72b1d3da9e5f174536898fab18",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 18731,
+      "at": "2026-10-27T16:40:17.688Z"
+    },
+    {
+      "role": "trial avatar-3d.A.K",
+      "replaced_at": "2026-10-27T16:49:32.195Z",
+      "file": "assets/trials/0024/avatar-3d.A.K.webp",
+      "sha256": "4dd01ba3dcc668dfc96a4ae2e2b944ea9468c72bc9423cb2b94f4d7a81f56ce9",
+      "kind": "render",
+      "id": "avatar-3d",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "68fd6932b2830844637f315ad8d6c229b2ad16e76fa9569f3d716a7160adc3e5",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 19418,
+      "at": "2026-10-27T16:44:56.556Z"
+    },
+    {
+      "role": "trial avatar-gradient.A.E",
+      "replaced_at": "2026-10-27T16:49:54.014Z",
+      "file": "assets/trials/0024/avatar-gradient.A.E.webp",
+      "sha256": "6f24c5eb9fcb35cd7f80f6a5405b467e18e832a218fea379d556eb91d43af20c",
+      "kind": "render",
+      "id": "avatar-gradient",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "d9e27b2d3bb9f8c07db78f6c2446c1b6f2dc2d72b1d3da9e5f174536898fab18",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1124,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 100
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1563
+      },
+      "cost_usd": 0.021862,
+      "latency_ms": 20366,
+      "at": "2026-10-27T16:45:38.200Z"
     }
   ],
   "last_error": null,
@@ -9197,6 +9612,746 @@
       "cost_usd": 0.021887,
       "latency_ms": 21925,
       "at": "2026-10-02T13:31:41.934Z"
+    },
+    "pet-oil-portrait.A.P": {
+      "file": "assets/trials/0024/pet-oil-portrait.A.P.webp",
+      "sha256": "0b8232f73ec4481ae3b75014b81a6412147d8c5ec80472a7b22c1b4dff9e8079",
+      "kind": "render",
+      "id": "pet-oil-portrait",
+      "variant": "A",
+      "subject": "P",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "prompt_sha256": "9414f1fc32ecfb3ab77c059dac0c0ad2ffb467ae17cf29347744116e3ced9ce5",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 21413,
+      "at": "2026-10-27T16:31:42.850Z"
+    },
+    "pet-watercolor.A.T": {
+      "file": "assets/trials/0024/pet-watercolor.A.T.webp",
+      "sha256": "f8648d9559626fab239f89bc4acae3051f7a47c903c724d8dcd17064484f0b13",
+      "kind": "render",
+      "id": "pet-watercolor",
+      "variant": "A",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "496c5c0ab01d423daf2d7b9ddeb1ca7cb9790180c33481001d791575c3b1b423",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 22113,
+      "at": "2026-10-27T16:32:04.265Z"
+    },
+    "pet-cameo.A.D": {
+      "file": "assets/trials/0024/pet-cameo.A.D.webp",
+      "sha256": "d4150604008f20cfa819f197c1f4ac587e539511898184982ef7843f0ceb21fe",
+      "kind": "render",
+      "id": "pet-cameo",
+      "variant": "A",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "9bfabd2932898dec8e23a34f737d77602f8aab10b5c73a8b37c13a8c5d3e21d1",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1133,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 109
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1572
+      },
+      "cost_usd": 0.021907,
+      "latency_ms": 17128,
+      "at": "2026-10-27T16:32:26.380Z"
+    },
+    "pet-pencil.A.T": {
+      "file": "assets/trials/0024/pet-pencil.A.T.webp",
+      "sha256": "44332ad8c957f76aa4bd57ff78d97f6c2b8a0626256f23e81070fbdc65e50e09",
+      "kind": "render",
+      "id": "pet-pencil",
+      "variant": "A",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "08a4cd774c80dcb3be58387416d14cb1e7893079485b9d8062ed09846ba65009",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 23943,
+      "at": "2026-10-27T16:32:43.510Z"
+    },
+    "pet-pop.A.D": {
+      "file": "assets/trials/0024/pet-pop.A.D.webp",
+      "sha256": "c3fa91c596331ba22707ea9c607f3e9e01e816f914c7ccf1d85b7c319d9d8e72",
+      "kind": "render",
+      "id": "pet-pop",
+      "variant": "A",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "cafb4cb48fe6404df96de2cdf01ea10fbc9bfcf2355b2cb56b49f767847f6d9b",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 23629,
+      "at": "2026-10-27T16:33:07.455Z"
+    },
+    "pet-cartoon.A.P": {
+      "file": "assets/trials/0024/pet-cartoon.A.P.webp",
+      "sha256": "32904029015b6f53df3016d2dacfa9bc55504394aa66afc8a5ac2dc17d4ec78a",
+      "kind": "render",
+      "id": "pet-cartoon",
+      "variant": "A",
+      "subject": "P",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "prompt_sha256": "ef819b6d94436e74c3f9acc9f09bd0c4089c3ef71917cae7c173129e7ffd234d",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22275,
+      "at": "2026-10-27T16:33:31.086Z"
+    },
+    "pet-one-line.A.D": {
+      "file": "assets/trials/0024/pet-one-line.A.D.webp",
+      "sha256": "6ade6d324598eab26c2681e394f72892a59fef5886028fb7653ef3ef4cf4cfff",
+      "kind": "render",
+      "id": "pet-one-line",
+      "variant": "A",
+      "subject": "D",
+      "input_sha256": "60ec9b08cde90f1d2edb8b39a86c9635a0ba68e2125fedcdba3bdbc86a03ba2a",
+      "prompt_sha256": "5b6bfa08797778f337542872464eba319e1e522c49a45bac6603f4928a73fed5",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1126,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 102
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1565
+      },
+      "cost_usd": 0.021872,
+      "latency_ms": 19939,
+      "at": "2026-10-27T16:33:53.363Z"
+    },
+    "pet-pastel.A.T": {
+      "file": "assets/trials/0024/pet-pastel.A.T.webp",
+      "sha256": "fb7dbf6375b911acfa345fd1219fc2c7240fa0f112d94dbdf708e02b436fae8d",
+      "kind": "render",
+      "id": "pet-pastel",
+      "variant": "A",
+      "subject": "T",
+      "input_sha256": "38df2698eb11ea46f709e02398062bff9f086bd3f591cb9f9afe58acb814b96e",
+      "prompt_sha256": "609e4cedbdfa33cab00fded8db20ddcb895c8b8988eb1cd50a5fdc9e01f43607",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1131,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 107
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1570
+      },
+      "cost_usd": 0.021897,
+      "latency_ms": 21996,
+      "at": "2026-10-27T16:34:13.304Z"
+    },
+    "pet-sticker.A.P": {
+      "file": "assets/trials/0024/pet-sticker.A.P.webp",
+      "sha256": "21dfecfcc767a5a0f4d2563a718017a23adabb78aa708c857e697c9b094d53b6",
+      "kind": "render",
+      "id": "pet-sticker",
+      "variant": "A",
+      "subject": "P",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "prompt_sha256": "da4b6733d5b391a17218d09816c11ddcae898b5e4e3b4b127405fad8e0cc9e2d",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 18002,
+      "at": "2026-10-27T16:34:35.303Z"
+    },
+    "pet-stained-glass.A.P": {
+      "file": "assets/trials/0024/pet-stained-glass.A.P.webp",
+      "sha256": "99a403f223af040d4f602a102294fa11ab4aa8b0069a60412f0406fff0acb070",
+      "kind": "render",
+      "id": "pet-stained-glass",
+      "variant": "A",
+      "subject": "P",
+      "input_sha256": "3bca2f5942799877821875f99fb98d92e8afa689f0f4589fe02d8916423c706e",
+      "prompt_sha256": "7fc9c0287dba422e3b6d0f949ede2b459374bd952712105c597f23b862fbfc1b",
+      "task": "0024",
+      "batch": 1,
+      "plan_sha256": "1f30b568b5275afff4168b597a2a025fbe1a62e9a998b23e74651193260f783a",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 21722,
+      "at": "2026-10-27T16:34:53.307Z"
+    },
+    "avatar-3d.A.K": {
+      "file": "assets/trials/0024/avatar-3d.A.K.webp",
+      "sha256": "c10d60465cf45bef6a9f4ba53bf4fdd810f0c00fae450296a1ea496ff1182dd9",
+      "kind": "render",
+      "id": "avatar-3d",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "b60a50bc3976a8496c462a18aa669402b9aa692e31bca5c161e6a83e1492dab1",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "84db1271e4ba0ea0b6b3fe1d2dd8649822827df42bb035c6d296a527bc950a99",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1130,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 106
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1569
+      },
+      "cost_usd": 0.021892,
+      "latency_ms": 21570,
+      "at": "2026-10-27T16:49:32.195Z"
+    },
+    "avatar-flat.A.E": {
+      "file": "assets/trials/0024/avatar-flat.A.E.webp",
+      "sha256": "5e07d2173ee14b571869b32b522986062e329e986c369fba1fa560a2af1b7f11",
+      "kind": "render",
+      "id": "avatar-flat",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "6976440ac6d6b6074110b29d10cdf3f302b1d3b120c82ba0765dbd2b7fe8bd34",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1127,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 103
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1566
+      },
+      "cost_usd": 0.021877,
+      "latency_ms": 20675,
+      "at": "2026-10-27T16:37:32.169Z"
+    },
+    "avatar-anime.A.K": {
+      "file": "assets/trials/0024/avatar-anime.A.K.webp",
+      "sha256": "cb4c88768ef3d58614eefeda99fdca1403fc9e2b0c0c0ac46e921e4bac47a5b2",
+      "kind": "render",
+      "id": "avatar-anime",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "7192d262552614224805eca09b8b9413c8d44c03de95351c97b09b78cc6a9e78",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 21713,
+      "at": "2026-10-27T16:45:16.235Z"
+    },
+    "avatar-pixel.A.S": {
+      "file": "assets/trials/0024/avatar-pixel.A.S.webp",
+      "sha256": "67e34a8ebcce5b45f81055fde4d627c25ae1497f168631831ed6f212c7490052",
+      "kind": "render",
+      "id": "avatar-pixel",
+      "variant": "A",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "57aca610960dde45b87d3d9a00afe5e964e257e4f650fc5944b454e5bb47c756",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 22164,
+      "at": "2026-10-27T16:38:13.273Z"
+    },
+    "avatar-clay.A.Y": {
+      "file": "assets/trials/0024/avatar-clay.A.Y.webp",
+      "sha256": "2152494b618f567b01ef0c0a9fe39446722afa9a684d37b0533f5cf22625f5ee",
+      "kind": "render",
+      "id": "avatar-clay",
+      "variant": "A",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "9789b83559fc2cecc92b3e647deea766b0aa56b8a2dc726cb0e72a5492cc2439",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1128,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 104
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1567
+      },
+      "cost_usd": 0.021882,
+      "latency_ms": 20867,
+      "at": "2026-10-27T16:38:35.439Z"
+    },
+    "avatar-comic.A.E": {
+      "file": "assets/trials/0024/avatar-comic.A.E.webp",
+      "sha256": "dfd61c83acf5ab430417092072c440cf1f64d7e41af475f8f85786eb2a3b66cf",
+      "kind": "render",
+      "id": "avatar-comic",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "c5886266d86c7fc72d17b13f7c0d1eb592c99901159a4b80d4b2b28d2bf5c3cd",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 20199,
+      "at": "2026-10-27T16:38:56.307Z"
+    },
+    "avatar-line.A.Y": {
+      "file": "assets/trials/0024/avatar-line.A.Y.webp",
+      "sha256": "36337b22aab402067f6829dbd73e44da6371145fad870e79599f0d45ef1e46c4",
+      "kind": "render",
+      "id": "avatar-line",
+      "variant": "A",
+      "subject": "Y",
+      "input_sha256": "c3b315ca98c136db66c0d71ec001038e3a61110093850ce083511f25ac80bbdb",
+      "prompt_sha256": "856b904c23a4163921e22e52f3188a123f64dfc90311123814652a9daa6a4009",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1122,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 98
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1561
+      },
+      "cost_usd": 0.021852,
+      "latency_ms": 19952,
+      "at": "2026-10-27T16:39:16.508Z"
+    },
+    "avatar-neon.A.S": {
+      "file": "assets/trials/0024/avatar-neon.A.S.webp",
+      "sha256": "797e7eb950d70b4774d7e28688127cd65d3d1ea5ae74a16dd48f36af1aa932b4",
+      "kind": "render",
+      "id": "avatar-neon",
+      "variant": "A",
+      "subject": "S",
+      "input_sha256": "2d485434c0d3a9614876b02258155e52ab29af7239080f04f68b17d4ce1bd856",
+      "prompt_sha256": "59e891f7c8d48db9132d759ebbd63cec1dbe6d8e1483506a562f75004fa3af93",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 21262,
+      "at": "2026-10-27T16:39:36.462Z"
+    },
+    "avatar-sticker.A.K": {
+      "file": "assets/trials/0024/avatar-sticker.A.K.webp",
+      "sha256": "23ba6d89ad16025443ac6e3c253d50e04ae9bde6985357afe33c48ceb8dff19a",
+      "kind": "render",
+      "id": "avatar-sticker",
+      "variant": "A",
+      "subject": "K",
+      "input_sha256": "1ff634d7f76413667427e36095c193d28bdc633b2a6e5cad90e19be3fc80e9f3",
+      "prompt_sha256": "ad448d18923e039e063b6356f3238b2eb36d49527abd473b6b5a027d7854b8a5",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "153cfced6128b317db7fea3e3a27d43e6b925a106c7388dae5102b5aedbbde82",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1125,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 101
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1564
+      },
+      "cost_usd": 0.021867,
+      "latency_ms": 19959,
+      "at": "2026-10-27T16:39:57.726Z"
+    },
+    "avatar-gradient.A.E": {
+      "file": "assets/trials/0024/avatar-gradient.A.E.webp",
+      "sha256": "0ba9a9522e8b783c3df9621ffb444079dfcfe747bbef688edf2c6a2f78181bfd",
+      "kind": "render",
+      "id": "avatar-gradient",
+      "variant": "A",
+      "subject": "E",
+      "input_sha256": "ebe1ce07b600e1c53394ee9270f50bc1e463bd16242dac9e13da35c4832e6e52",
+      "prompt_sha256": "78be2b3465bafc03822334cdbe6f47d0c6e124d3addec8cc845dc6ead608a4b7",
+      "task": "0024",
+      "batch": 2,
+      "plan_sha256": "84db1271e4ba0ea0b6b3fe1d2dd8649822827df42bb035c6d296a527bc950a99",
+      "request": {
+        "size": "1024x1024",
+        "quality": "medium",
+        "output_format": "webp",
+        "output_compression": 80
+      },
+      "response_quality": "medium",
+      "response_size": "1024x1024",
+      "usage": {
+        "input_tokens": 1129,
+        "input_tokens_details": {
+          "image_tokens": 1024,
+          "text_tokens": 105
+        },
+        "output_tokens": 439,
+        "output_tokens_details": {
+          "image_tokens": 439,
+          "text_tokens": 0
+        },
+        "total_tokens": 1568
+      },
+      "cost_usd": 0.021887,
+      "latency_ms": 19923,
+      "at": "2026-10-27T16:49:54.014Z"
     }
   },
   "batches_0018": {
@@ -9443,6 +10598,44 @@
         "illuminated-manuscript": "accept",
         "coloured-pencil": "accept",
         "fresco": "accept"
+      },
+      "sources": {}
+    }
+  },
+  "batches_0024": {
+    "1": {
+      "result_sha256": "cafdb5a43820eeaaee37e848ba5f417e960a3cb3ef9ea0792ced82738ede00c2",
+      "accepted_prefix": "cafdb5a43820eeaaee37e848ba5f417e960a3cb3ef9ea0792ced82738ede00c2",
+      "accepted_at": "2026-10-27T16:37:06.306Z",
+      "decisions": {
+        "pet-oil-portrait": "A",
+        "pet-watercolor": "A",
+        "pet-cameo": "A",
+        "pet-pencil": "A",
+        "pet-pop": "A",
+        "pet-cartoon": "A",
+        "pet-one-line": "A",
+        "pet-pastel": "A",
+        "pet-sticker": "A",
+        "pet-stained-glass": "A"
+      },
+      "sources": {}
+    },
+    "2": {
+      "result_sha256": "86b4aee70d5d92d669ef24278bd041c54da1db45954a387681e161c7fb6a72e3",
+      "accepted_prefix": "86b4aee70d5d92d669ef24278bd041c54da1db45954a387681e161c7fb6a72e3",
+      "accepted_at": "2026-10-27T16:52:59.336Z",
+      "decisions": {
+        "avatar-3d": "A",
+        "avatar-flat": "A",
+        "avatar-anime": "A",
+        "avatar-pixel": "A",
+        "avatar-clay": "A",
+        "avatar-comic": "A",
+        "avatar-line": "A",
+        "avatar-neon": "A",
+        "avatar-sticker": "A",
+        "avatar-gradient": "A"
       },
       "sources": {}
     }

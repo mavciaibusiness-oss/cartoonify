@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { getDictionary, localeOfPath, localizedPath } from '@/lib/i18n'
 import LanguageSwitch from './language-switch'
+import ProfileLink from './profile-link'
 
 /**
  * The coloured band on every page: brand, menu, the place for a future sign-in,
@@ -36,6 +37,7 @@ export default function SiteHeader() {
           <Link href="/contact" aria-current={pathname === '/contact' ? 'page' : undefined}>
             {t.contact}
           </Link>
+          <ProfileLink />
         </nav>
         <div className="site-header-end">
           <LanguageSwitch />

@@ -799,6 +799,166 @@
       "bytes": 61532,
       "width": 480,
       "quality": 72
+    },
+    "pet-oil-portrait": {
+      "from": "public/styles/pet-oil-portrait.webp",
+      "from_sha256": "0b8232f73ec4481ae3b75014b81a6412147d8c5ec80472a7b22c1b4dff9e8079",
+      "sha256": "4dc5415f8c08463082453463e5b9a1b6060e9c8a734a85cd7519504761d311a3",
+      "bytes": 26700,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-watercolor": {
+      "from": "public/styles/pet-watercolor.webp",
+      "from_sha256": "f8648d9559626fab239f89bc4acae3051f7a47c903c724d8dcd17064484f0b13",
+      "sha256": "0c6371109ca0b3fb7a67b51f90540fd490225f34d5cd475adc5d4b2b19e17201",
+      "bytes": 29232,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-cameo": {
+      "from": "public/styles/pet-cameo.webp",
+      "from_sha256": "d4150604008f20cfa819f197c1f4ac587e539511898184982ef7843f0ceb21fe",
+      "sha256": "d66bb408e20e720c780694d6c5710eb7b94a59055f35271460ae9254add9ad67",
+      "bytes": 16168,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-pencil": {
+      "from": "public/styles/pet-pencil.webp",
+      "from_sha256": "44332ad8c957f76aa4bd57ff78d97f6c2b8a0626256f23e81070fbdc65e50e09",
+      "sha256": "28946bc74324bd1e6f19c1ce9445a28c878dbe233cb791c54452020d8c4e90e9",
+      "bytes": 40010,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-pop": {
+      "from": "public/styles/pet-pop.webp",
+      "from_sha256": "c3fa91c596331ba22707ea9c607f3e9e01e816f914c7ccf1d85b7c319d9d8e72",
+      "sha256": "fdb78f5d33500647b635b6a0233cb756357be24d94286a3c4b6744c126d8b816",
+      "bytes": 35206,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-cartoon": {
+      "from": "public/styles/pet-cartoon.webp",
+      "from_sha256": "32904029015b6f53df3016d2dacfa9bc55504394aa66afc8a5ac2dc17d4ec78a",
+      "sha256": "10c9f279dd2bff42589b4ba8050468fa641cb3f828b2d8ec860ad0d6095b435e",
+      "bytes": 23256,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-one-line": {
+      "from": "public/styles/pet-one-line.webp",
+      "from_sha256": "6ade6d324598eab26c2681e394f72892a59fef5886028fb7653ef3ef4cf4cfff",
+      "sha256": "8b16ed01848618e8047bb2352d59d6769b04c2ca1a6bebc517111b563718140a",
+      "bytes": 18986,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-pastel": {
+      "from": "public/styles/pet-pastel.webp",
+      "from_sha256": "fb7dbf6375b911acfa345fd1219fc2c7240fa0f112d94dbdf708e02b436fae8d",
+      "sha256": "422ea0d3f7f294263cd47198ae9de62d2c819f916ee2d3075554ddc11610bcf2",
+      "bytes": 42472,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-sticker": {
+      "from": "public/styles/pet-sticker.webp",
+      "from_sha256": "21dfecfcc767a5a0f4d2563a718017a23adabb78aa708c857e697c9b094d53b6",
+      "sha256": "73309d7137093578dd27eaef0665076c08c1f0c8ec5ce2c3121540805bfe60b8",
+      "bytes": 24910,
+      "width": 480,
+      "quality": 72
+    },
+    "pet-stained-glass": {
+      "from": "public/styles/pet-stained-glass.webp",
+      "from_sha256": "99a403f223af040d4f602a102294fa11ab4aa8b0069a60412f0406fff0acb070",
+      "sha256": "1b514421815bf0ce610d63618165de6817472400f753b38ef851e46071f706ae",
+      "bytes": 57330,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-3d": {
+      "from": "public/styles/avatar-3d.webp",
+      "from_sha256": "c10d60465cf45bef6a9f4ba53bf4fdd810f0c00fae450296a1ea496ff1182dd9",
+      "sha256": "f33809d33bd1c7da879d552c6e92e853bbe5c7cc0dbe0822b577560b42cc7259",
+      "bytes": 17728,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-flat": {
+      "from": "public/styles/avatar-flat.webp",
+      "from_sha256": "5e07d2173ee14b571869b32b522986062e329e986c369fba1fa560a2af1b7f11",
+      "sha256": "2a56cc3bb4d6672b204361fefc5ab519524a8ed5e5aabf97fd59a1031c4f2242",
+      "bytes": 10010,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-anime": {
+      "from": "public/styles/avatar-anime.webp",
+      "from_sha256": "cb4c88768ef3d58614eefeda99fdca1403fc9e2b0c0c0ac46e921e4bac47a5b2",
+      "sha256": "d61b9b15d3757eeb7960a7d53cf77585bc3ac3b57bdbab2a131b3c456614dccf",
+      "bytes": 26036,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-pixel": {
+      "from": "public/styles/avatar-pixel.webp",
+      "from_sha256": "67e34a8ebcce5b45f81055fde4d627c25ae1497f168631831ed6f212c7490052",
+      "sha256": "cf0f7761d582096f60fdb3fcd27335a45bccc81bf38cbf568b4e8a758f572daa",
+      "bytes": 14400,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-clay": {
+      "from": "public/styles/avatar-clay.webp",
+      "from_sha256": "2152494b618f567b01ef0c0a9fe39446722afa9a684d37b0533f5cf22625f5ee",
+      "sha256": "aad3c8b463f7342a0394233d8a791df0a55567e649f31f75fa80455429d66b09",
+      "bytes": 14084,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-comic": {
+      "from": "public/styles/avatar-comic.webp",
+      "from_sha256": "dfd61c83acf5ab430417092072c440cf1f64d7e41af475f8f85786eb2a3b66cf",
+      "sha256": "6662ac4c458799592e3c14ef1e49a100fa71ea52eda295ea5aece17c20f4644e",
+      "bytes": 47782,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-line": {
+      "from": "public/styles/avatar-line.webp",
+      "from_sha256": "36337b22aab402067f6829dbd73e44da6371145fad870e79599f0d45ef1e46c4",
+      "sha256": "7f3feed74c13d0380cd2c3c932eb06481a0b541adb6198513b7740f1d8c42eb9",
+      "bytes": 16928,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-neon": {
+      "from": "public/styles/avatar-neon.webp",
+      "from_sha256": "797e7eb950d70b4774d7e28688127cd65d3d1ea5ae74a16dd48f36af1aa932b4",
+      "sha256": "16885225d7c384c91d820fe23b534af2c004decb0da2237692a15e980f3c0a1d",
+      "bytes": 36450,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-sticker": {
+      "from": "public/styles/avatar-sticker.webp",
+      "from_sha256": "23ba6d89ad16025443ac6e3c253d50e04ae9bde6985357afe33c48ceb8dff19a",
+      "sha256": "95d245d23bf4f1646ab3e165b7848a1a0336918e1e34f0403c5ebe6bd2e9368e",
+      "bytes": 16494,
+      "width": 480,
+      "quality": 72
+    },
+    "avatar-gradient": {
+      "from": "public/styles/avatar-gradient.webp",
+      "from_sha256": "0ba9a9522e8b783c3df9621ffb444079dfcfe747bbef688edf2c6a2f78181bfd",
+      "sha256": "17c2a37015d9d4c0ad2bd3022f3399ee87201bfe4485902c1aa06dc33bf678b5",
+      "bytes": 7324,
+      "width": 480,
+      "quality": 72
     }
   }
 }

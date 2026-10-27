@@ -71,7 +71,7 @@ for (const c of STYLE_CATEGORIES) {
   if (categories.has(c)) fail(`categories: ${c} is listed twice`)
   categories.add(c)
 }
-if (STYLE_CATEGORIES.length !== 12) fail(`categories: ${STYLE_CATEGORIES.length} listed, expected 12`)
+if (STYLE_CATEGORIES.length !== 14) fail(`categories: ${STYLE_CATEGORIES.length} listed, expected 14`)
 for (const s of STYLE_SOURCE) {
   if (!Object.prototype.hasOwnProperty.call(s, 'category')) fail(`${s.id}: no category`)
   else if (!categories.has(s.category)) fail(`${s.id}: category ${JSON.stringify(s.category)} is not in STYLE_CATEGORIES`)

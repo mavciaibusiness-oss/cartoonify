@@ -10,6 +10,7 @@ export type Locale = 'tr' | 'en'
 const PAIRS: ReadonlyArray<readonly [string, string]> = [
   ['/', '/en'],
   ['/workshop', '/en/workshop'],
+  ['/account', '/en/account'],
 ]
 
 export function localeOfPath(pathname: string): Locale {

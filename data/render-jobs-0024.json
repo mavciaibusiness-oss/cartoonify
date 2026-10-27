@@ -1,0 +1,259 @@
+{
+  "task": "0024",
+  "ceilings": {
+    "batch": 0.4,
+    "task": 0.8
+  },
+  "sources": {},
+  "newStyles": {
+    "pet-oil-portrait": {
+      "closing": "preserve",
+      "subject": "P",
+      "variants": {
+        "A": "Bu fotoğrafı klasik bir yağlı boya evcil hayvan portresine dönüştür. Hayvanın tüy rengi, desenleri ve göz rengi aynen korunsun; görünür fırça darbeleri, sıcak yandan ışık ve koyu, yumuşak bir arka plan olsun."
+      }
+    },
+    "pet-watercolor": {
+      "closing": "preserve",
+      "subject": "T",
+      "variants": {
+        "A": "Bu fotoğrafı suluboya bir evcil hayvan portresine dönüştür. Tüyler akışkan, iç içe geçen renk lekeleriyle boyansın; kenarlar beyaz kâğıda doğru dağılsın. Hayvanın desenleri ve göz rengi aynen korunsun."
+      }
+    },
+    "pet-cameo": {
+      "closing": "preserve",
+      "subject": "D",
+      "variants": {
+        "A": "Bu fotoğrafı zarif bir madalyon portreye dönüştür: evcil hayvan oval, ince altın çizgili bir çerçevenin içinde, düz krem bir zeminde dursun. Tüy rengi, desenleri ve yüz ifadesi aynen korunsun; yumuşak gölge kullan."
+      }
+    },
+    "pet-pencil": {
+      "closing": "preserve",
+      "subject": "T",
+      "variants": {
+        "A": "Bu fotoğrafı beyaz kâğıt üzerine ayrıntılı bir kurşun kalem evcil hayvan çizimine dönüştür. Tüyler tek tek ince çizgilerle işlensin, koyuluk kalem baskısıyla kurulsun; renk kullanma. Gözler parlak ve canlı kalsın."
+      }
+    },
+    "pet-pop": {
+      "closing": "preserve",
+      "subject": "D",
+      "variants": {
+        "A": "Bu fotoğrafı pop art bir evcil hayvan portresine dönüştür. Tüyler düz, parlak renk alanlarına ayrılsın, kalın siyah konturla çevrilsin; arka plan tek canlı renk olsun. Hayvanın desen düzeni ve yüz hatları korunsun."
+      }
+    },
+    "pet-cartoon": {
+      "closing": "preserve",
+      "subject": "P",
+      "variants": {
+        "A": "Bu fotoğrafı sevimli bir çizgi film evcil hayvan çizimine dönüştür. Hatlar yumuşak ve temiz, renkler canlı ve düz olsun; gözler biraz iri ve parlak çizilsin. Hayvanın tüy rengi ve desenleri tanınır biçimde korunsun."
+      }
+    },
+    "pet-one-line": {
+      "closing": "preserve",
+      "subject": "D",
+      "variants": {
+        "A": "Bu fotoğrafı kâğıttan hiç kalkmadan çizilmiş tek bir siyah çizgiyle yapılmış bir evcil hayvan çizimine dönüştür. Çizgi sade ve akıcı olsun, beyaz zemin boş kalsın; kulaklar, gözler ve burun belirgin olsun."
+      }
+    },
+    "pet-pastel": {
+      "closing": "preserve",
+      "subject": "T",
+      "variants": {
+        "A": "Bu fotoğrafı renkli kâğıt üzerine yapılmış yumuşak bir pastel boya evcil hayvan portresine dönüştür. Tüyler tozlu, katman katman sürülmüş pastel darbeleriyle kurulsun; kâğıdın dokusu görünsün, desenler korunsun."
+      }
+    },
+    "pet-sticker": {
+      "closing": "preserve",
+      "subject": "P",
+      "variants": {
+        "A": "Bu fotoğrafı parlak bir evcil hayvan çıkartmasına dönüştür: hayvan düz renkli, temiz konturlu çizilsin, çevresinde kalın beyaz kesim kenarı ve hafif gölge olsun. Arka plan düz ve sade kalsın, tüy desenleri korunsun."
+      }
+    },
+    "pet-stained-glass": {
+      "closing": "preserve",
+      "subject": "P",
+      "variants": {
+        "A": "Bu fotoğrafı bir vitray pencereye dönüştür: evcil hayvan ve arka plan, koyu kurşun çizgilerle ayrılmış parlak renkli cam parçalarından oluşsun. Tüy renkleri cam tonlarıyla korunsun; arkadan vuran ışık parlasın."
+      }
+    },
+    "avatar-3d": {
+      "closing": "preserve",
+      "subject": "K",
+      "variants": {
+        "A": "Bu fotoğrafı bilgisayarda modellenmiş üç boyutlu bir çizgi film karakteri avatarına dönüştür: yuvarlak hacimler, iri ifadeli gözler, pürüzsüz mat cilt, yumuşak stüdyo ışığı. Saç ve yüz hatları tanınır kalsın."
+      }
+    },
+    "avatar-flat": {
+      "closing": "preserve",
+      "subject": "E",
+      "variants": {
+        "A": "Bu fotoğrafı sade bir düz vektör avatarına dönüştür. Yüz ve saç az sayıda düz renk alanıyla, temiz geometrik şekillerle çizilsin; gölge ve doku kullanma. Yüz hatları tanınır kalsın, arka plan tek renk daire olsun."
+      }
+    },
+    "avatar-anime": {
+      "closing": "preserve",
+      "subject": "K",
+      "variants": {
+        "A": "Bu fotoğrafı anime tarzında bir profil avatarına dönüştür. İnce temiz kontur, düz tonlu gölgeler ve parlak ışıklı gözler kullan. Saç biçimi, saç rengi ve yüz hatları tanınır kalsın; kişi yaşından genç gösterilmesin."
+      }
+    },
+    "avatar-pixel": {
+      "closing": "preserve",
+      "subject": "S",
+      "variants": {
+        "A": "Bu fotoğrafı eski oyunlardaki gibi büyük, belirgin piksellerden oluşan bir profil avatarına dönüştür. Yalnızca baş ve omuzlar kalsın, renk sayısı az olsun. Saç, sakal ve yüz hatları piksellerle tanınır kalsın."
+      }
+    },
+    "avatar-clay": {
+      "closing": "preserve",
+      "subject": "Y",
+      "variants": {
+        "A": "Bu fotoğrafı yumuşak model hamurundan şekillendirilmiş bir profil avatarına dönüştür. Yüzeyde parmak izleri ve hafif pürüzler görünsün, renkler mat olsun. Saç, gözlük ve yüz hatları tanınır biçimde korunsun."
+      }
+    },
+    "avatar-comic": {
+      "closing": "preserve",
+      "subject": "E",
+      "variants": {
+        "A": "Bu fotoğrafı bir çizgi roman profil avatarına dönüştür. Kalın siyah mürekkep konturu, gölgelerde nokta tramı ve canlı düz renkler kullan; arka plan tek renk patlama şekli olsun. Yüz hatları tanınır kalsın."
+      }
+    },
+    "avatar-line": {
+      "closing": "preserve",
+      "subject": "Y",
+      "variants": {
+        "A": "Bu fotoğrafı birkaç ince siyah çizgiyle çizilmiş minimal bir profil avatarına dönüştür. Ayrıntı en aza insin, yüzün arkasında tek bir yumuşak renk lekesi olsun. Saç biçimi ve yüz hatları tanınır kalsın."
+      }
+    },
+    "avatar-neon": {
+      "closing": "preserve",
+      "subject": "S",
+      "variants": {
+        "A": "Bu fotoğrafı koyu lacivert zemin üzerinde parlayan neon çizgilerle çizilmiş bir profil avatarına dönüştür. Çizgiler pembe ve turkuaz ışık saçsın, yüz hatları, saç ve sakal tanınır kalsın; fotoğraf dokusu kalmasın."
+      }
+    },
+    "avatar-sticker": {
+      "closing": "preserve",
+      "subject": "K",
+      "variants": {
+        "A": "Bu fotoğrafı sevimli bir profil çıkartmasına dönüştür: baş ve omuzlar düz renkli, temiz konturlu çizilsin, çevresinde kalın beyaz kesim kenarı ve hafif gölge olsun. Yüz hatları ve saç tanınır kalsın."
+      }
+    },
+    "avatar-gradient": {
+      "closing": "preserve",
+      "subject": "E",
+      "variants": {
+        "A": "Bu fotoğrafı kontursuz düz vektör şekillerle bir degrade avatara dönüştür. Yüz, saç ve kıyafet birkaç büyük renk alanına insin; her alan iki pastel ton arası geçişle dolsun, doku kalmasın. Yüz hatları tanınır kalsın."
+      }
+    }
+  },
+  "moves": {},
+  "webCopies": [],
+  "featured": [],
+  "batches": [
+    [
+      [
+        "pet-oil-portrait",
+        "A",
+        "P"
+      ],
+      [
+        "pet-watercolor",
+        "A",
+        "T"
+      ],
+      [
+        "pet-cameo",
+        "A",
+        "D"
+      ],
+      [
+        "pet-pencil",
+        "A",
+        "T"
+      ],
+      [
+        "pet-pop",
+        "A",
+        "D"
+      ],
+      [
+        "pet-cartoon",
+        "A",
+        "P"
+      ],
+      [
+        "pet-one-line",
+        "A",
+        "D"
+      ],
+      [
+        "pet-pastel",
+        "A",
+        "T"
+      ],
+      [
+        "pet-sticker",
+        "A",
+        "P"
+      ],
+      [
+        "pet-stained-glass",
+        "A",
+        "P"
+      ]
+    ],
+    [
+      [
+        "avatar-3d",
+        "A",
+        "K"
+      ],
+      [
+        "avatar-flat",
+        "A",
+        "E"
+      ],
+      [
+        "avatar-anime",
+        "A",
+        "K"
+      ],
+      [
+        "avatar-pixel",
+        "A",
+        "S"
+      ],
+      [
+        "avatar-clay",
+        "A",
+        "Y"
+      ],
+      [
+        "avatar-comic",
+        "A",
+        "E"
+      ],
+      [
+        "avatar-line",
+        "A",
+        "Y"
+      ],
+      [
+        "avatar-neon",
+        "A",
+        "S"
+      ],
+      [
+        "avatar-sticker",
+        "A",
+        "K"
+      ],
+      [
+        "avatar-gradient",
+        "A",
+        "E"
+      ]
+    ]
+  ]
+}

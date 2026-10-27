@@ -46,6 +46,8 @@ export type ClosingId = keyof typeof CLOSING
  */
 export const STYLE_CATEGORIES = [
   'cartoon',
+  'pet',
+  'avatar',
   'line',
   'drawing',
   'paint',
@@ -980,6 +982,186 @@ export const STYLE_SOURCE = [
     band: 'long',
     body:
       'Bu fotoğrafı kasten acemice çizilmiş, sevimli bir karikatür karalamasına dönüştür: krem kâğıt, titrek kurşun kalem çizgileri, soluk sulu boya ve kuru boya dolgu. Herkesin gözleri kocaman ve pörtlek, gülüşü geniş ve dişleri seyrek, burnu yumrulu, yüzü çilli; saçlar karmakarışık bir çizgi yumağı. Bütün kişiler, arka plan ve eşyalar da karalansın; kenarda elle çizilmiş titrek çift çizgi çerçeve olsun. Alaycı değil, sevecen olsun.',
+  },
+  {
+    id: 'pet-oil-portrait',
+    name: 'Yağlı Boya Evcil Portre',
+    description: 'Klasik yağlı boya tablo gibi, sıcak ışıklı evcil hayvan portresi.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı klasik bir yağlı boya evcil hayvan portresine dönüştür. Hayvanın tüy rengi, desenleri ve göz rengi aynen korunsun; görünür fırça darbeleri, sıcak yandan ışık ve koyu, yumuşak bir arka plan olsun.',
+  },
+  {
+    id: 'pet-watercolor',
+    name: 'Suluboya Evcil Portre',
+    description: 'Akışkan suluboya lekeleri ve beyaz kâğıt boşluklarıyla evcil hayvan.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı suluboya bir evcil hayvan portresine dönüştür. Tüyler akışkan, iç içe geçen renk lekeleriyle boyansın; kenarlar beyaz kâğıda doğru dağılsın. Hayvanın desenleri ve göz rengi aynen korunsun.',
+  },
+  {
+    id: 'pet-cameo',
+    name: 'Madalyon Evcil Portre',
+    description: 'Oval çerçeve içinde, krem zeminde zarif bir madalyon portre.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı zarif bir madalyon portreye dönüştür: evcil hayvan oval, ince altın çizgili bir çerçevenin içinde, düz krem bir zeminde dursun. Tüy rengi, desenleri ve yüz ifadesi aynen korunsun; yumuşak gölge kullan.',
+  },
+  {
+    id: 'pet-pencil',
+    name: 'Kurşun Kalem Pati',
+    description: 'Tüy tüy işlenmiş, ayrıntılı gri kurşun kalem evcil hayvan çizimi.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı beyaz kâğıt üzerine ayrıntılı bir kurşun kalem evcil hayvan çizimine dönüştür. Tüyler tek tek ince çizgilerle işlensin, koyuluk kalem baskısıyla kurulsun; renk kullanma. Gözler parlak ve canlı kalsın.',
+  },
+  {
+    id: 'pet-pop',
+    name: 'Pop Art Pati',
+    description: 'Düz parlak renk alanları ve kalın siyah konturla pop art evcil hayvan.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı pop art bir evcil hayvan portresine dönüştür. Tüyler düz, parlak renk alanlarına ayrılsın, kalın siyah konturla çevrilsin; arka plan tek canlı renk olsun. Hayvanın desen düzeni ve yüz hatları korunsun.',
+  },
+  {
+    id: 'pet-cartoon',
+    name: 'Sevimli Çizgi Pati',
+    description: 'Yumuşak hatlı, canlı renkli, sevimli bir çizgi film evcil hayvan.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı sevimli bir çizgi film evcil hayvan çizimine dönüştür. Hatlar yumuşak ve temiz, renkler canlı ve düz olsun; gözler biraz iri ve parlak çizilsin. Hayvanın tüy rengi ve desenleri tanınır biçimde korunsun.',
+  },
+  {
+    id: 'pet-one-line',
+    name: 'Tek Çizgi Pati',
+    description: 'Kâğıttan kalkmayan tek bir siyah çizgiyle evcil hayvan çizimi.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı kâğıttan hiç kalkmadan çizilmiş tek bir siyah çizgiyle yapılmış bir evcil hayvan çizimine dönüştür. Çizgi sade ve akıcı olsun, beyaz zemin boş kalsın; kulaklar, gözler ve burun belirgin olsun.',
+  },
+  {
+    id: 'pet-pastel',
+    name: 'Pastel Boya Pati',
+    description: 'Renkli kâğıt üzerinde yumuşak, tozlu pastel boya evcil hayvan.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı renkli kâğıt üzerine yapılmış yumuşak bir pastel boya evcil hayvan portresine dönüştür. Tüyler tozlu, katman katman sürülmüş pastel darbeleriyle kurulsun; kâğıdın dokusu görünsün, desenler korunsun.',
+  },
+  {
+    id: 'pet-sticker',
+    name: 'Pati Çıkartma',
+    description: 'Kalın beyaz kenarlı, parlak, kesilmiş bir evcil hayvan çıkartması.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı parlak bir evcil hayvan çıkartmasına dönüştür: hayvan düz renkli, temiz konturlu çizilsin, çevresinde kalın beyaz kesim kenarı ve hafif gölge olsun. Arka plan düz ve sade kalsın, tüy desenleri korunsun.',
+  },
+  {
+    id: 'pet-stained-glass',
+    name: 'Vitray Pati',
+    description: 'Kurşun çizgilerle ayrılmış parlak cam parçalarından evcil hayvan.',
+    category: 'pet',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir vitray pencereye dönüştür: evcil hayvan ve arka plan, koyu kurşun çizgilerle ayrılmış parlak renkli cam parçalarından oluşsun. Tüy renkleri cam tonlarıyla korunsun; arkadan vuran ışık parlasın.',
+  },
+  {
+    id: 'avatar-3d',
+    name: '3B Avatar',
+    description: 'Yumuşak ışıklı, pürüzsüz yüzeyli üç boyutlu profil avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bilgisayarda modellenmiş üç boyutlu bir çizgi film karakteri avatarına dönüştür: yuvarlak hacimler, iri ifadeli gözler, pürüzsüz mat cilt, yumuşak stüdyo ışığı. Saç ve yüz hatları tanınır kalsın.',
+  },
+  {
+    id: 'avatar-flat',
+    name: 'Düz Vektör Avatar',
+    description: 'Az sayıda düz renk ve temiz şekillerle sade vektör avatar.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı sade bir düz vektör avatarına dönüştür. Yüz ve saç az sayıda düz renk alanıyla, temiz geometrik şekillerle çizilsin; gölge ve doku kullanma. Yüz hatları tanınır kalsın, arka plan tek renk daire olsun.',
+  },
+  {
+    id: 'avatar-anime',
+    name: 'Anime Avatar',
+    description: 'İnce konturlu, parlak gözlü, düz gölgeli anime tarzı avatar.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı anime tarzında bir profil avatarına dönüştür. İnce temiz kontur, düz tonlu gölgeler ve parlak ışıklı gözler kullan. Saç biçimi, saç rengi ve yüz hatları tanınır kalsın; kişi yaşından genç gösterilmesin.',
+  },
+  {
+    id: 'avatar-pixel',
+    name: 'Piksel Avatar',
+    description: 'Büyük, belirgin piksellerle eski oyun tarzı küçük profil avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı eski oyunlardaki gibi büyük, belirgin piksellerden oluşan bir profil avatarına dönüştür. Yalnızca baş ve omuzlar kalsın, renk sayısı az olsun. Saç, sakal ve yüz hatları piksellerle tanınır kalsın.',
+  },
+  {
+    id: 'avatar-clay',
+    name: 'Kil Avatar',
+    description: 'Parmak izleri görünen, yumuşak hamurdan yapılmış sevimli avatar.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı yumuşak model hamurundan şekillendirilmiş bir profil avatarına dönüştür. Yüzeyde parmak izleri ve hafif pürüzler görünsün, renkler mat olsun. Saç, gözlük ve yüz hatları tanınır biçimde korunsun.',
+  },
+  {
+    id: 'avatar-comic',
+    name: 'Çizgi Roman Avatar',
+    description: 'Kalın mürekkep, nokta tramı ve canlı renklerle çizgi roman avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı bir çizgi roman profil avatarına dönüştür. Kalın siyah mürekkep konturu, gölgelerde nokta tramı ve canlı düz renkler kullan; arka plan tek renk patlama şekli olsun. Yüz hatları tanınır kalsın.',
+  },
+  {
+    id: 'avatar-line',
+    name: 'Minimal Çizgi Avatar',
+    description: 'Birkaç ince çizgi ve tek vurgu rengiyle minimal portre avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı birkaç ince siyah çizgiyle çizilmiş minimal bir profil avatarına dönüştür. Ayrıntı en aza insin, yüzün arkasında tek bir yumuşak renk lekesi olsun. Saç biçimi ve yüz hatları tanınır kalsın.',
+  },
+  {
+    id: 'avatar-neon',
+    name: 'Neon Avatar',
+    description: 'Koyu zemin üzerinde parlayan neon çizgilerle profil avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı koyu lacivert zemin üzerinde parlayan neon çizgilerle çizilmiş bir profil avatarına dönüştür. Çizgiler pembe ve turkuaz ışık saçsın, yüz hatları, saç ve sakal tanınır kalsın; fotoğraf dokusu kalmasın.',
+  },
+  {
+    id: 'avatar-sticker',
+    name: 'Çıkartma Avatar',
+    description: 'Kalın beyaz kenarlı, sevimli ve parlak bir profil çıkartması.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı sevimli bir profil çıkartmasına dönüştür: baş ve omuzlar düz renkli, temiz konturlu çizilsin, çevresinde kalın beyaz kesim kenarı ve hafif gölge olsun. Yüz hatları ve saç tanınır kalsın.',
+  },
+  {
+    id: 'avatar-gradient',
+    name: 'Degrade Avatar',
+    description: 'Yumuşak renk geçişleri ve sade şekillerle modern profil avatarı.',
+    category: 'avatar',
+    closing: 'preserve',
+    body:
+      'Bu fotoğrafı kontursuz düz vektör şekillerle bir degrade avatara dönüştür. Yüz, saç ve kıyafet birkaç büyük renk alanına insin; her alan iki pastel ton arası geçişle dolsun, doku kalmasın. Yüz hatları tanınır kalsın.',
   },
 ] as const satisfies readonly StyleSource[]
 

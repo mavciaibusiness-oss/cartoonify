@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0024",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0024-profile-categories.md",
+  "title": "Profile page, account deletion, pet portrait and avatar categories"
+}
