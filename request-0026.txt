@@ -1,0 +1,33 @@
+GÖREV 0026 – operatörün brifi (kelimesi kelimesine, 2026-10-28)
+
+Polar, AI görsel üretimini kabul etmediği için hesabı reddetti (itiraz etmeyeceğiz). GÖREV 0026 – Stripe ile kredi satışı. Mavci akışı: spec → onayım → build → verifier. Önce soruların varsa sor.
+
+KARARLAR
+1. Stripe hesabı: mevcut AVC TRADE LLC hesabı (Webtochat ile ortak). Kart ekstresinde "PROTOOLHUB" (statement_descriptor_suffix). Cartoonify için AYRI webhook endpoint ve ayrı secret; tüm Stripe nesnelerine metadata app=protoolhub. Bizim route yalnız app=protoolhub olaylarını işler, diğerlerine sessiz 200. Webtochat'ın Stripe webhook'u da (C:\Projelerim\AI-Chatbot-Widget-SaaS, isOurs) protoolhub olaylarını görmezden geliyor mu kontrol et ve raporla; oraya dokunma.
+2. Paketler aynı: $3.99 = 10, $9.99 = 30, $19.99 = 75 kredi, tek seferlik, süresiz. Stripe Checkout (mode: payment), price_data ile dinamik fiyat (sabit price ID yok), automatic_tax açık, fiyatlar VERGİ DAHİL (tax_behavior inclusive). Apple Pay / Google Pay otomatik.
+3. Kredi yalnız imzası doğrulanmış webhook'tan (checkout.session.completed + payment_status=paid) sonra eklenir; bir ödeme bir kez kredilenir. 0023'teki kurallar aynen: iade orantılı ve yukarı yuvarlanır (charge.refunded / refund olayları, net tutar üzerinden), bakiye 0'ın altına inmez, açık kalırsa OPERATOR_ALERT_EMAIL'e Resend maili; itiraz (charge.dispute.created) gelirse paketin kredisi düşülür ve bana mail gider. Silinmiş hesaplar 0024'teki gibi anonim.
+4. Test/canlı ayrımı: Preview = Stripe TEST anahtarları, Production = CANLI. Ortak veritabanı yüzünden test ödemeleri yalnız sandbox_testers listesindeki hesaplara kredi ekler (0023 kuralı).
+5. Polar kodu silinmez, KAPALI kalır (ör. PAYMENT_PROVIDER=stripe; Polar route'ları 404/503 döner). Polar tabloları ve verisi korunur. Stripe için protoolhub şemasında yeni tablolar/fonksiyonlar; mümkünse sağlayıcıdan bağımsız ortak yapı (ileride başka sağlayıcı eklenebilsin).
+6. Arayüz değişmez: "Kredi al" → 3 paket → Stripe Checkout → dönüşte "X kredi eklendi"; profil sayfasında satın alma geçmişi Stripe siparişlerini de gösterir.
+7. Yasal metinler: Polar geçen yerleri Stripe'a göre güncelle (ödeme işlemcisi Stripe, satıcı AVC LLC; vergi Stripe Tax ile hesaplanır); iade politikası aynı (14 gün, hiç kullanılmamışsa).
+
+BİLGİ: Webtochat (aynı Stripe hesabı) için test webhook'u "dynamic-wonder" Sandbox'ta var; yeni Cartoonify webhook'u ayrı olacak.
+
+ADIMLAR SONUNDA BANA: Vercel değişken adları (Preview test / Production canlı), Stripe'ta webhook kurulumu (olaylar listesi, preview için cartoonify-polar-sandbox.vercel.app + bypass, canlı için https://cartoon.protoolhub.net/api/stripe/webhook), Stripe Tax'ı açma adımları.
+
+Kurallar: migration SQL'ini uygulamadan önce göster (ben Claude sohbetten MCP ile uygularım; yalnız protoolhub şeması). Production'a deploy yok; "yayına al" diyeceğim. Anahtar/şifre ekrana, loga, commit'e girmez. Özel numaram hiçbir yerde yazılmaz. Yetki engelinin etrafından dolaşma.
+
+Oturum içi cevaplar (AskUserQuestion, 2026-10-28):
+- Satıcı adı: "AVC TRADE LLC (Önerilen)" — yasal sayfalarda ve Stripe'ta bu ad; adres yerinde REVIEW REQUIRED işareti kalır, operatör doldurur.
+- İtiraz satıcı lehine kapanırsa (charge.dispute.closed, status=won): "Geri verme, sadece mail" — krediler düşük kalır, operatöre mail gider, gerekirse elle düzeltir.
+- Eski Polar kayıtları: "Polar tablolarında kalsın (Önerilen)" — hiçbir şey kopyalanmaz/taşınmaz; profil geçmişi iki kaynağı birlikte okur.
+- PAYMENT_PROVIDER girilmemişse: "Stripe (Önerilen)" — Polar yalnız PAYMENT_PROVIDER=polar ile açılabilir; bu sürümde Polar route'ları her durumda 503 döner.
+
+Orkestratörün gözlemleri (2026-10-28, kod okuma):
+- Webtochat app/api/webhooks/stripe/route.ts (son değişiklik 461626e, 2026-10-23): yalnız checkout.session.completed, invoice.paid, customer.subscription.deleted işlenir; diğer olaylar default: break → 200.
+  - checkout.session.completed: isOurs() metadata.app === "chatbot" ise kabul; TRANSITIONAL kol (süresi 2026-09-03'te dolmuş ama kodda duruyor) metadata.companyId UUID ise de kabul eder. Ardından session.mode !== "subscription" ise break. Bizim oturumlar mode=payment ve companyId taşımaz → iki ayrı nedenle yok sayılır. Cartoonify metadata'sına asla companyId yazılmamalı.
+  - invoice.paid: subscription id yoksa break; bizim ödemeler abonelik değil → yok sayılır.
+  - customer.subscription.deleted: bizde abonelik yok → etkisiz.
+- Cartoonify: Polar REST'i fetch ile çağrılıyor (stripe paketi yok). lib/polar.ts, lib/packs.ts, app/api/checkout, app/api/purchase (checkout_id ile durum sorgusu), app/api/polar/webhook. lib/env.ts getPaymentsEnv() Polar değişkenlerine bağlı; VERCEL_ENV=production → canlı, değilse sandbox.
+- DB: protoolhub.polar_checkouts / polar_orders / polar_refunds / sandbox_testers (20261028000000_protoolhub_polar.sql); 0024 user_id nullable + on delete set null.
+- Yasal: Polar "Merchant of Record" olarak EN privacy/terms/refund, TR privacy/terms/refund, KVKK'da geçiyor. Stripe'a geçince satıcı (MoR) AVC TRADE LLC olur; vergi hesaplama Stripe Tax, beyan/kayıt satıcıya ait — avukat incelemesi notu.

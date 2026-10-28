@@ -246,7 +246,7 @@ export const tr = {
     added: '{n} kredi eklendi.',
     stillProcessing: 'Ödemeniz hâlâ işleniyor. Krediler birkaç dakika içinde eklenecek; sayfayı sonra yenileyebilirsiniz.',
     refused: 'Bu ödeme hesabınıza eklenemedi. Lütfen bizimle iletişime geçin.',
-    merchant: 'Ödemeyi Polar alır. Polar satıcı kaydıdır (Merchant of Record); vergi ve faturayı Polar düzenler.',
+    merchant: 'Ödemeler Stripe üzerinden alınır. Satıcı: AVC TRADE LLC. Vergi ödeme sırasında hesaplanır ve fiyata dahildir.',
     unavailable: 'Kredi satışı şu anda kullanılamıyor. Lütfen biraz sonra tekrar deneyin.',
     close: 'Kapat',
   },

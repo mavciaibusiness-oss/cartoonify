@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server'
 import { ERROR_MESSAGES } from '@/lib/cartoonify-handler'
-import { getAccountsEnv, getPaymentsEnv } from '@/lib/env'
+import { getAccountsEnv, getStripeEnv, paymentProvider } from '@/lib/env'
 import {
   PACK_CREDITS,
+  PACK_PRICE_CENTS,
   PAYMENT_ERROR_MESSAGES,
-  buildCheckoutRequest,
-  createPolarCheckout,
+  buildStripeCheckoutParams,
+  createStripeCheckout,
   parsePack,
-} from '@/lib/polar'
-import { getSessionUser, recordCheckout } from '@/lib/supabase/server'
+} from '@/lib/stripe'
+import { getSessionUser, recordPaymentCheckout } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -23,13 +24,13 @@ function fail(code: Code, status: number): Response {
 }
 
 /**
- * Starts a Polar checkout for the signed-in user. The browser names only a
- * pack; the product, the user and the credits all come from the server.
+ * Starts a Checkout Session for the signed-in user. The browser names only a
+ * pack and a language; the price, the user and the credits all come from the server.
  */
 export async function POST(request: Request): Promise<Response> {
   const accounts = getAccountsEnv()
-  const payments = getPaymentsEnv()
-  if (!accounts || !payments) return fail('SERVICE_UNAVAILABLE', 503)
+  const payments = getStripeEnv()
+  if (!accounts || paymentProvider() !== 'stripe' || !payments) return fail('SERVICE_UNAVAILABLE', 503)
 
   let user
   try {
@@ -51,11 +52,10 @@ export async function POST(request: Request): Promise<Response> {
   if (pack === null) return fail('INVALID_PACK', 400)
   const locale = body.locale === 'en' ? 'en' : 'tr'
 
-  const checkout = await createPolarCheckout(
+  const session = await createStripeCheckout(
     payments.apiBase,
-    payments.accessToken,
-    buildCheckoutRequest({
-      productId: payments.products[pack],
+    payments.secretKey,
+    buildStripeCheckoutParams({
       userId: user.id,
       email: user.email,
       origin: new URL(request.url).origin,
@@ -64,23 +64,25 @@ export async function POST(request: Request): Promise<Response> {
       environment: payments.environment,
     }),
   )
-  if (!checkout) return fail('SERVICE_UNAVAILABLE', 503)
+  if (!session) return fail('SERVICE_UNAVAILABLE', 503)
 
   let outcome: string
   try {
-    outcome = await recordCheckout(
-      checkout.id,
-      user.id,
-      payments.environment,
-      payments.products[pack],
+    outcome = await recordPaymentCheckout({
+      provider: 'stripe',
+      checkoutRef: session.id,
+      userId: user.id,
+      environment: payments.environment,
       pack,
-      PACK_CREDITS[pack],
-    )
+      credits: PACK_CREDITS[pack],
+      amount: PACK_PRICE_CENTS[pack],
+      currency: 'usd',
+    })
   } catch (unknownError) {
     console.error('checkout: recording failed', unknownError)
     return fail('SERVICE_UNAVAILABLE', 503)
   }
   if (outcome === 'sandbox_not_allowed') return fail('SANDBOX_TESTERS_ONLY', 403)
 
-  return NextResponse.json({ ok: true, url: checkout.url }, { status: 200, headers: NO_STORE })
+  return NextResponse.json({ ok: true, url: session.url }, { status: 200, headers: NO_STORE })
 }

@@ -206,3 +206,96 @@ export function paymentsEnvProblem(): string {
   if (new Set(products).size !== 3) return 'product_ids_not_distinct'
   return ''
 }
+
+/* ------------------------------------------------------------ card payments */
+
+export type StripeEnv = {
+  /** Derived, never configured: production only on the live Vercel environment. */
+  environment: 'sandbox' | 'production'
+  livemode: boolean
+  apiBase: string
+  secretKey: string
+  webhookSecret: string
+  resend: { apiBase: string; apiKey: string; to: string } | null
+}
+
+/** Which payment provider the checkout speaks. Unset or empty means Stripe; an unknown value means none. */
+export function paymentProvider(): 'stripe' | 'polar' | null {
+  const v = (process.env.PAYMENT_PROVIDER ?? '').trim().toLowerCase()
+  if (v === '' || v === 'stripe') return 'stripe'
+  if (v === 'polar') return 'polar'
+  return null
+}
+
+/** The Polar routes are switched off in this version, whatever the setting says. */
+export function polarEnabled(): boolean {
+  return false
+}
+
+type KeyVerdict = { ok: true } | { ok: false; problem: string }
+
+function judgeKey(secretKey: string | null, isProduction: boolean): KeyVerdict {
+  if (secretKey === null) return { ok: false, problem: 'missing=STRIPE_SECRET_KEY' }
+  const live = secretKey.startsWith('sk_live_') || secretKey.startsWith('rk_live_')
+  const test = secretKey.startsWith('sk_test_') || secretKey.startsWith('rk_test_')
+  if (isProduction) {
+    if (live) return { ok: true }
+    return { ok: false, problem: test ? 'test_key_in_production' : 'key_not_recognised' }
+  }
+  if (test) return { ok: true }
+  return { ok: false, problem: live ? 'live_key_outside_production' : 'key_not_recognised' }
+}
+
+/**
+ * Stripe settings, read on every call and never cached. Null means card
+ * payments are off. A live key works only in production and a test key only
+ * elsewhere. The base-URL overrides are honoured outside production only
+ * (tests). In production the operator alert settings are required.
+ * Independent of PAYMENT_PROVIDER: refunds and disputes keep arriving.
+ */
+export function getStripeEnv(): StripeEnv | null {
+  const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
+  const secretKey = trimmed(process.env.STRIPE_SECRET_KEY)
+  const webhookSecret = trimmed(process.env.STRIPE_WEBHOOK_SECRET)
+  if (!judgeKey(secretKey, isProduction).ok || secretKey === null) return null
+  if (webhookSecret === null || !webhookSecret.startsWith('whsec_')) return null
+
+  const resendKey = trimmed(process.env.RESEND_API_KEY)
+  const alertTo = trimmed(process.env.OPERATOR_ALERT_EMAIL)
+  if (isProduction && (!resendKey || !alertTo)) return null
+
+  const stripeOverride = isProduction ? null : nonEmpty(process.env.STRIPE_API_BASE_URL)
+  const resendOverride = isProduction ? null : nonEmpty(process.env.RESEND_API_BASE_URL)
+  return {
+    environment: isProduction ? 'production' : 'sandbox',
+    livemode: isProduction,
+    apiBase: trimSlash(stripeOverride ?? 'https://api.stripe.com'),
+    secretKey,
+    webhookSecret,
+    resend:
+      resendKey && alertTo
+        ? { apiBase: trimSlash(resendOverride ?? 'https://api.resend.com'), apiKey: resendKey, to: alertTo }
+        : null,
+  }
+}
+
+/** Why getStripeEnv() is null, naming settings only, never their values. Empty when Stripe is on. Safe to log. */
+export function stripeEnvProblem(): string {
+  const isProduction = nonEmpty(process.env.VERCEL_ENV) === 'production'
+  const problems: string[] = []
+  const missing: string[] = []
+  const verdict = judgeKey(trimmed(process.env.STRIPE_SECRET_KEY), isProduction)
+  if (!verdict.ok) {
+    if (verdict.problem.startsWith('missing=')) missing.push('STRIPE_SECRET_KEY')
+    else problems.push(verdict.problem)
+  }
+  const hook = trimmed(process.env.STRIPE_WEBHOOK_SECRET)
+  if (hook === null) missing.push('STRIPE_WEBHOOK_SECRET')
+  else if (!hook.startsWith('whsec_')) problems.push('webhook_secret_not_recognised')
+  if (isProduction) {
+    if (trimmed(process.env.RESEND_API_KEY) === null) missing.push('RESEND_API_KEY')
+    if (trimmed(process.env.OPERATOR_ALERT_EMAIL) === null) missing.push('OPERATOR_ALERT_EMAIL')
+  }
+  if (missing.length > 0) problems.unshift('missing=' + missing.join(','))
+  return problems.join(' ')
+}

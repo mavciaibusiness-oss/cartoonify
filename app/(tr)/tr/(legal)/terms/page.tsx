@@ -37,11 +37,10 @@ export default function Page() {
       Ödeme tek seferliktir; abonelik yoktur ve kendiliğinden yenilenen bir ödeme alınmaz.
       Kredilerin süresi dolmaz. Ücretli kredilerle yapılan dönüşümlerde ProToolHub
       işareti (filigran) bulunmaz; ücretli krediler ücretsiz kredilerden önce harcanır.</p>
-      <p>Ödemeyi Polar alır; Polar satıcı kaydıdır (Merchant of Record) ve vergi ile
-      faturayı düzenler. İadeler Polar üzerinden yapılır. Bir iade yapıldığında, iade
+      <p>Ödemeyi Stripe alır. Satıcı AVC TRADE LLC'dir. Vergi Stripe Tax ile ödeme sırasında hesaplanır ve fiyata dahildir. İadeler Stripe üzerinden yapılır. Bir iade yapıldığında, iade
       edilen tutarla orantılı olarak krediler geri alınır (orantılı, yukarı yuvarlanarak).
       Krediler harcanmışsa geri alınabilen kısım kadarı düşülür; bakiye sıfırın altına
-      inmez.</p>
+      inmez. Ödemeye itiraz edilirse (chargeback) paketin kredileri geri alınır. Satıcı adresi: REVIEW REQUIRED</p>
       <h2>Fesih</h2>
       <p>Sartlarin ihlali halinde hesap askiya alinabilir veya kapatilabilir.
       Kullanici diledigi zaman hesabini kapatabilir.</p>

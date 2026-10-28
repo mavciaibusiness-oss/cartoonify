@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0026",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0026-stripe-credits.md",
+  "title": "Stripe credit purchases (replace Polar)"
+}

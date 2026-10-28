@@ -190,6 +190,141 @@ export async function checkoutStatus(userId: string, checkoutId: string): Promis
   return { status, credits: num(r.credits), free: num(r.free_credits), paid: num(r.paid_credits) }
 }
 
+/* ------------------------------------------------------ Card payments (Stripe) */
+
+export type PaymentResult = {
+  outcome: string
+  alertShortfall: number
+  alertDispute: string | null
+  accountId: string | null
+}
+
+function paymentResult(r: RpcRow): PaymentResult {
+  return {
+    outcome: String(r.outcome ?? ''),
+    alertShortfall: num(r.alert_shortfall),
+    alertDispute: typeof r.alert_dispute === 'string' ? r.alert_dispute : null,
+    accountId: typeof r.account_id === 'string' ? r.account_id : null,
+  }
+}
+
+/** Records a checkout session the server just created. The outcome is 'recorded', 'already' or 'sandbox_not_allowed'. */
+export async function recordPaymentCheckout(args: {
+  provider: string
+  checkoutRef: string
+  userId: string
+  environment: string
+  pack: string
+  credits: number
+  amount: number
+  currency: string
+}): Promise<string> {
+  const r = await rpc('payment_record_checkout', {
+    p_provider: args.provider,
+    p_checkout_ref: args.checkoutRef,
+    p_user_id: args.userId,
+    p_environment: args.environment,
+    p_pack: args.pack,
+    p_credits: args.credits,
+    p_amount: args.amount,
+    p_currency: args.currency,
+  })
+  return String(r.outcome ?? '')
+}
+
+/** A paid checkout. The database refuses anything that does not match the recorded checkout. */
+export async function paymentCheckoutPaid(args: {
+  provider: string
+  environment: string
+  checkoutRef: string
+  paymentRef: string
+  userRef: string | null
+  pack: string | null
+  amountPaid: number
+  amountTax: number
+  currency: string
+}): Promise<PaymentResult> {
+  const r = await rpc('payment_checkout_paid', {
+    p_provider: args.provider,
+    p_environment: args.environment,
+    p_checkout_ref: args.checkoutRef,
+    p_payment_ref: args.paymentRef,
+    p_user_ref: args.userRef,
+    p_pack: args.pack,
+    p_amount_paid: args.amountPaid,
+    p_amount_tax: args.amountTax,
+    p_currency: args.currency,
+  })
+  return paymentResult(r)
+}
+
+/** A refund, with the charge's cumulative refunded amount. Idempotent. */
+export async function paymentRefund(args: {
+  provider: string
+  environment: string
+  paymentRef: string
+  chargeAmount: number
+  refundedAmount: number
+}): Promise<PaymentResult> {
+  const r = await rpc('payment_refund', {
+    p_provider: args.provider,
+    p_environment: args.environment,
+    p_payment_ref: args.paymentRef,
+    p_charge_amount: args.chargeAmount,
+    p_refunded_amount: args.refundedAmount,
+  })
+  return paymentResult(r)
+}
+
+/** A dispute opened or closed. Idempotent. */
+export async function paymentDispute(args: {
+  provider: string
+  environment: string
+  paymentRef: string
+  disputeRef: string
+  status: string
+}): Promise<PaymentResult> {
+  const r = await rpc('payment_dispute', {
+    p_provider: args.provider,
+    p_environment: args.environment,
+    p_payment_ref: args.paymentRef,
+    p_dispute_ref: args.disputeRef,
+    p_status: args.status,
+  })
+  return paymentResult(r)
+}
+
+/** Marks a shortfall and a dispute status as e-mailed to the operator. */
+export async function markPaymentAlerted(
+  provider: string,
+  paymentRef: string,
+  shortfall: number,
+  disputeStatus: string | null,
+): Promise<void> {
+  await rpc('payment_mark_alerted', {
+    p_provider: provider,
+    p_payment_ref: paymentRef,
+    p_shortfall: shortfall,
+    p_dispute_status: disputeStatus,
+  })
+}
+
+/** The state of one of the user's own payment checkouts, with the wallet. */
+export async function paymentCheckoutStatus(
+  userId: string,
+  provider: string,
+  checkoutRef: string,
+): Promise<CheckoutStatus> {
+  const r = await rpc('payment_checkout_status', {
+    p_user_id: userId,
+    p_provider: provider,
+    p_checkout_ref: checkoutRef,
+  })
+  const s = r.status
+  const status = s === 'pending' || s === 'credited' || s === 'refused' ? s : 'unknown'
+  return { status, credits: num(r.credits), free: num(r.free_credits), paid: num(r.paid_credits) }
+}
+
 /* ------------------------------------------------------ Profile and deletion */
 
 const REFUNDS: readonly RefundState[] = ['none', 'partial', 'full']

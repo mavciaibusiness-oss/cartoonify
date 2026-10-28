@@ -61,8 +61,8 @@ export default function Workshop({ locale, turnstileSiteKey }: { locale: Locale;
             balance: { free: data.free ?? 0, paid: data.paid ?? 0 },
             welcome: data.welcome ?? 'already',
           })
-          const returned = new URLSearchParams(window.location.search).get('checkout_id')
-          if (returned !== null && /^[A-Za-z0-9_-]{1,100}$/.test(returned)) setCheckoutId(returned)
+          const returned = new URLSearchParams(window.location.search).get('session_id')
+          if (returned !== null && /^cs_(test|live)_[A-Za-z0-9]{1,200}$/.test(returned)) setCheckoutId(returned)
         } else if (response.status === 503 && data.unconfigured === true && data.production === false) {
           setAccount({ kind: 'open' })
         } else setAccount({ kind: 'unavailable' })

@@ -21,9 +21,9 @@ export default function Page() {
       <p>Paketten en az bir ücretli kredi kullanıldıysa o paket için iade yapılmaz.</p>
       <p>Teknik bir hata nedeniyle tamamlanamayan dönüşümün kredisi hesabınıza otomatik olarak geri yüklenir; bunun için başvurmanız gerekmez.</p>
       <p>Krediler dijital içeriktir ve ödeme yapıldığı anda hesabınıza tanımlanır. Bu nedenle Mesafeli Sözleşmeler Yönetmeliği'nin 15. maddesi uyarınca cayma hakkı bulunmaz; yukarıdaki 14 günlük iade, size ayrıca tanıdığımız bir haktır.</p>
-      <p>Ödemeleri satıcı sıfatıyla (Merchant of Record) Polar alır; iadeler de Polar üzerinden yapılır.</p>
+      <p>Satıcı AVC TRADE LLC olup ödemeler Stripe aracılığıyla alınır; iadeler de Stripe üzerinden, ödemenin yapıldığı karta yapılır.</p>
       <h2 id="nasil-basvurulur">Nasıl başvurulur</h2>
-      <p>İade istemek için <Link href="/tr/contact">iletişim sayfasındaki</Link> e-posta adresine, satın alma tarihini ve hesabınızın e-posta adresini yazarak ulaşın. Başvurunuzu inceleyip yanıtlarız; onaylanan iade Polar üzerinden ödeme yönteminize yapılır ve iade edilen tutarla orantılı olarak kredileriniz hesabınızdan düşülür.</p>
+      <p>İade istemek için <Link href="/tr/contact">iletişim sayfasındaki</Link> e-posta adresine, satın alma tarihini ve hesabınızın e-posta adresini yazarak ulaşın. Başvurunuzu inceleyip yanıtlarız; onaylanan iade Stripe üzerinden ödeme yönteminize yapılır ve iade edilen tutarla orantılı olarak kredileriniz hesabınızdan düşülür.</p>
       <p>Kredi paketleri tek seferliktir; abonelik yoktur. Ayrıntılar için <Link href="/tr/terms">Kullanım Şartları</Link> sayfasına bakın.</p>
     </main>
   )

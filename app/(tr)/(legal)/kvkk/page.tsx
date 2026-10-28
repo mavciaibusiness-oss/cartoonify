@@ -27,7 +27,7 @@ export default function Page() {
       <h2>Aktarim</h2>
       <p>Kisisel verileriniz, hizmetin sunulabilmesi amaciyla yurt disinda yerlesik
       su hizmet saglayicilara aktarilmaktadir: barindirma icin Vercel, veritabani
-      ve kimlik dogrulama icin Supabase, odeme icin Polar (satici kaydi, Merchant of Record), e-posta gonderimi icin
+      ve kimlik dogrulama icin Supabase, odeme icin Stripe, e-posta gonderimi icin
       Resend. Ayrica bot dogrulamasi icin Cloudflare Turnstile (IP adresi ve tarayici
       sinyalleri) ve kotuye kullanim sayaclari icin Upstash (takma adli IP, yaklasik
       1 saat icinde silinir; gunluk sayac yaklasik 2 gun tutulur) kullanilmaktadir.</p>
@@ -47,20 +47,9 @@ export default function Page() {
       verilmesini onlemektir; ozet hicbir hesaba bagli degildir ve e-posta adresinin
       kendisi bu kayitta tutulmaz.</p>
       <h2 id="odeme-ve-krediler">Ödeme ve krediler</h2>
-      <p>Kredi paketlerinin ödemesini <strong>Polar</strong> (polar.sh) alır. Polar,
-      satıcı kaydıdır (<strong>Merchant of Record</strong>): kart ve fatura bilgilerinizi
-      kendi gizlilik politikası uyarınca işler, vergiyi ve faturayı da kendisi düzenler.
-      Kart numaranızı biz görmüyoruz ve saklamıyoruz. Polar'a hesabınızın e-posta
-      adresini ve hesap kimliğinizi iletiriz.</p>
-      <p>Tarafımızda şunlar tutulur: Polar sipariş kimliği, paket, kredi sayısı, net
-      tutar, para birimi, iade tutarları ve tarihleri. Bir iade sonrasında kredilerin
-      bir kısmı geri alınamazsa operatöre bir uyarı e-postası gönderilir; bu e-posta
-      <strong>Resend</strong> üzerinden gider ve yalnızca sipariş ile hesap kimliğini
-      içerir, sizin e-posta adresinizi içermez. Bu kayıtlar hesabınız silindiğinde
-      silinir; yalnızca Polar kimlikleri ve iade tutarlarından oluşan kayıtlar, bir
-      kişiye bağlı olmadan kalır.</p>
-      <p>Polar ve Resend verileri Türkiye dışında (yurt dışı) işlediği için bu veriler
-      yurt dışına aktarılmış olur.</p>
+      <p>Kredi paketlerinin ödemesini <strong>Stripe</strong> alır. Satıcı AVC TRADE LLC'dir; Stripe ödeme aracısıdır ve kart bilgilerinizi kendi gizlilik politikası uyarınca işler. Vergiyi <strong>Stripe Tax</strong> hesaplar ve fiyata dahildir. Biz kart numaranızı görmüyoruz ve saklamıyoruz. Stripe'a hesabınızın e-posta adresini ve hesap kimliğinizi iletiriz.</p>
+      <p>Tarafımızda şunlar tutulur: Stripe sipariş (ödeme oturumu) ve ödeme kimlikleri, paket, kredi sayısı, ödenen tutar, vergi, para birimi, iade ve itiraz (chargeback) durumu ile tarihleri. Bir iade veya itiraz sonrasında kredilerin bir kısmı geri alınamazsa operatöre bir uyarı e-postası gönderilir; bu e-posta <strong>Resend</strong> üzerinden gider ve yalnızca ödeme ile hesap kimliğini içerir, sizin e-posta adresinizi içermez. Bu kayıtlar hesabınız silindiğinde silinir; yalnızca Stripe kimlikleri, tutarlar ve iade tutarlarından oluşan kayıtlar, bir kişiye bağlı olmadan kalır.</p>
+      <p>Stripe ve Resend verileri Türkiye dışında (yurt dışı) işlediği için bu veriler yurt dışına aktarılmış olur.</p>
       <h2 id="hesap-silme">Hesabın silinmesi</h2>
       <p>Hesabınızı istediğiniz zaman Profil sayfasındaki "Hesabımı sil" düğmesiyle
       silebilirsiniz; işlem bir onay adımından sonra yapılır ve geri alınamaz.
@@ -71,8 +60,8 @@ export default function Page() {
       o ürün için kalır.</p>
       <p>Kalanlar: ücretsiz kredinin aynı adrese ikinci kez verilmesini önlemek için
       e-posta adresinizin geri çevrilemez özeti (hash), ve vergi ile muhasebe
-      yükümlülükleri nedeniyle Polar sipariş ve iade kayıtları; bu ödeme kayıtları
-      bir kişiye bağlı olmadan, yalnızca sipariş kimliği, tutar ve tarihlerle tutulur.</p>
+      yükümlülükleri nedeniyle Stripe ödeme ve iade kayıtları ile daha önceki Polar sipariş ve iade kayıtları; bu ödeme kayıtları
+      bir kişiye bağlı olmadan, yalnızca ödeme kimliği, tutar ve tarihlerle tutulur.</p>
       <h2 id="ucretsiz-hak-ozetleri">Ücretsiz hakkın özetleri</h2>
       <p>Ücretsiz hakkın aynı e-posta adresine ikinci kez verilmemesi için e-posta adresinizin SHA-256 özeti saklanır; adresin kendisi bu kayıtta tutulmaz. Bu özet, hesabınızı silseniz de silinmez.</p>
       <p>IP adresinizin ve cihazınızın gizli bir anahtarla alınmış özetleri (HMAC-SHA-256), ücretsiz hakkın günlük sınırları için 2 gün kullanılır ve sonra silinir. Silme, bu sürenin sonundan sonraki ilk ücretsiz hak talebinde otomatik olarak yapılır.</p>

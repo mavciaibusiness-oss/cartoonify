@@ -240,7 +240,7 @@ export const en: Dictionary = {
     stillProcessing:
       'Your payment is still processing. Your credits will arrive within a few minutes; you can refresh this page later.',
     refused: "This payment couldn't be added to your account. Please contact us.",
-    merchant: 'Payments are handled by Polar, the merchant of record, which also takes care of tax and invoices.',
+    merchant: 'Payments are processed by Stripe. Seller: AVC TRADE LLC. Tax is calculated at checkout and is included in the price.',
     unavailable: "Buying credits isn't available right now. Please try again shortly.",
     close: 'Close',
   },

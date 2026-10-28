@@ -37,7 +37,7 @@ export default function CreditPurchaseStatus({
       calls += 1
       let data: PurchaseAnswer = {}
       try {
-        const response = await fetch('/api/purchase?checkout_id=' + encodeURIComponent(checkoutId))
+        const response = await fetch('/api/purchase?session_id=' + encodeURIComponent(checkoutId))
         if (response.status === 200) data = (await response.json()) as PurchaseAnswer
       } catch {
         data = {}

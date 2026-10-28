@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import { ERROR_MESSAGES } from '@/lib/cartoonify-handler'
 import { getAccountsEnv } from '@/lib/env'
-import { PAYMENT_ERROR_MESSAGES, validPolarId } from '@/lib/polar'
-import { checkoutStatus, getSessionUser } from '@/lib/supabase/server'
+import { PAYMENT_ERROR_MESSAGES, validSessionId } from '@/lib/stripe'
+import { getSessionUser, paymentCheckoutStatus } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -27,11 +27,11 @@ export async function GET(request: Request): Promise<Response> {
   }
   if (!user) return fail('AUTH_REQUIRED', 401)
 
-  const checkoutId = new URL(request.url).searchParams.get('checkout_id')
-  if (!validPolarId(checkoutId)) return fail('INVALID_CHECKOUT', 400)
+  const sessionId = new URL(request.url).searchParams.get('session_id')
+  if (!validSessionId(sessionId)) return fail('INVALID_CHECKOUT', 400)
 
   try {
-    const s = await checkoutStatus(user.id, checkoutId)
+    const s = await paymentCheckoutStatus(user.id, 'stripe', sessionId)
     return NextResponse.json(
       { ok: true, status: s.status, credits: s.credits, free: s.free, paid: s.paid },
       { status: 200, headers: NO_STORE },

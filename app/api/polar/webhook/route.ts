@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getAccountsEnv, getPaymentsEnv, paymentsEnvProblem } from '@/lib/env'
+import { polarEnabled } from '@/lib/env'
 import {
   WEBHOOK_MAX_BYTES,
   accountOf,
@@ -24,6 +25,7 @@ function answer(status: number): Response {
  * so a failure answers 500 and Polar's retry is safe.
  */
 export async function POST(request: Request): Promise<Response> {
+  if (!polarEnabled()) return answer(503)
   const payments = getPaymentsEnv()
   if (!payments) {
     console.warn('polar webhook: rejected 503 reason=payments_off ' + paymentsEnvProblem())
