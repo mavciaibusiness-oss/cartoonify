@@ -298,4 +298,12 @@ export const en: Dictionary = {
     verifying: 'Running a security check…',
     verifyFailed: 'The security check could not load. Refresh the page and try again.',
   },
+  consent: {
+    label: 'Cookie choice',
+    text: 'We use cookies to measure visits and how well our ads work (Google Analytics, Google Ads, Meta). They load only if you accept. You can change your choice at any time with “Cookie settings” at the bottom of the page.',
+    link: 'Cookie Policy',
+    accept: 'Accept',
+    reject: 'Reject',
+    settings: 'Cookie settings',
+  },
 }

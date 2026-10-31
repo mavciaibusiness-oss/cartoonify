@@ -22,12 +22,27 @@ export default function Page() {
       <p>Zorunlu çerezler: oturum yönetimi ve güvenlik için gereklidir, devre
       dışı bırakılamaz. Analitik ve pazarlama çerezleri yalnızca açık rızanız
       ile çalıştırılır.</p>
+      <h2>Ölçüm ve reklam çerezleri</h2>
+      <p>Açık rızanızla Google Analytics (ziyaret istatistikleri), Google Ads (reklamlarımızın işe yarayıp yaramadığının ölçümü) ve Meta (Meta pikseli, Meta reklamlarının ölçümü) kullanırız. Bunlar yalnızca bandda Kabul et düğmesine bastıktan sonra yüklenir. Öncesinde ve Reddet düğmesine bastıktan sonra hiçbiri yüklenmez ve onlara hiçbir şey gönderilmez. Ayarladıkları çerezler şunlardır:</p>
+      <ul>
+        <li><code>_ga</code> ve <code>_ga_&lt;id&gt;</code> - Google Analytics - ziyaretleri ve ziyaretçileri ayırt eder - 2 yıl.</li>
+        <li><code>_gcl_au</code> - Google Ads - bir reklam tıklamasını sonraki kayıt veya satın alma ile eşleştirir - 90 gün.</li>
+        <li><code>_fbp</code> - Meta - Meta reklam ölçümü için ziyaretleri ayırt eder - 90 gün.</li>
+      </ul>
+      <p>Bu araçlara gönderilen olaylar: yeni hesap açıldı, kredi paketi ödemesi başlatıldı ve ödeme tamamlandı (tutar, para birimi ve aynı ödemenin iki kez sayılmaması için bir sipariş kimliğiyle). Ad, e-posta adresi veya telefon numarası gönderilmez.</p>
+      <p>Seçiminizin kendi kaydı çerezde değil, tarayıcınızın localStorage alanında tutulur:</p>
+      <ul>
+        <li><code>pth-consent</code> - seçiminiz (kabul veya ret).</li>
+        <li><code>pth-consent-at</code> - seçimi yaptığınız an. Seçim 12 ay geçerlidir; sonrasında bant yeniden sorar ve siz seçene kadar hiçbir şey yüklenmez.</li>
+        <li><code>pth-tracked</code> - yalnızca rıza ile yazılır: aynı ödeme iki kez sayılmasın diye sayılmış son ödeme kimlikleri.</li>
+      </ul>
       <h2>Tarayıcı deposu</h2>
       <p>İngilizce bir sayfada Türkçe tarayıcı dili algılanırsa, Türkçe sürüme geçiş
       önerisi gösterilir. Öneriyi kapattığınızda bu tercih tarayıcının sessionStorage
       alanına, pth-lang-hint anahtarıyla yalnızca o sekme oturumu için yazılır. Bu bir
       çerez değildir, sunucuya gönderilmez ve sekme kapanınca silinir.</p>
       <h2>Yönetimi</h2>
+      <p>Seçiminizi her sayfanın altındaki Çerez ayarları düğmesiyle istediğiniz zaman değiştirebilirsiniz. Orada Reddet derseniz araçlar bir sonraki sayfadan itibaren durur; açık sayfada yüklenmiş olan araçlar geri alınamaz, siz sonraki sayfaya geçince durur.</p>
       <p>Tarayıcı ayarlarınızdan çerezleri silebilir veya engelleyebilirsiniz.
       Zorunlu çerezlerin engellenmesi hizmetin çalışmasını etkileyebilir.</p>
       <h2>Üçüncü taraf çerezleri</h2>

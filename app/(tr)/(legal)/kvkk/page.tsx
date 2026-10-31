@@ -21,10 +21,10 @@ export default function Page() {
       <h2>İşleme amaçları</h2>
       <p>Hesap oluşturma ve yönetimi, kredi paketlerinin satışı ve ödemenin
       alınması, destek taleplerinin karşılanması, güvenlik ve kötüye kullanımın önlenmesi, yasal
-      yükümlülüklerin yerine getirilmesi.</p>
+      yükümlülüklerin yerine getirilmesi. Yalnızca açık rızanızla ayrıca ziyaret ölçümü ve reklam performansı ölçümü yapılır.</p>
       <h2>Hukuki sebep</h2>
       <p>KVKK m.5/2-c uyarınca sözleşmenin kurulması ve ifası, m.5/2-ç uyarınca
-      hukuki yükümlülüğün yerine getirilmesi ve m.5/2-f uyarınca meşru menfaat.</p>
+      hukuki yükümlülüğün yerine getirilmesi ve m.5/2-f uyarınca meşru menfaat. Ölçüm ve reklam çerezleri için dayanak, KVKK m.5/1 uyarınca açık rızanızdır; rızanız olmadan bu çerezler yüklenmez.</p>
       <h2>Aktarım</h2>
       <p>Kişisel verileriniz, hizmetin sunulabilmesi amacıyla yurt dışında yerleşik
       şu hizmet sağlayıcılara aktarılmaktadır: barındırma için Vercel, veritabanı
@@ -32,7 +32,7 @@ export default function Page() {
       Resend. Yüklediğiniz fotoğraf, karikatürü üretmek için ABD&apos;de yerleşik
       OpenAI&apos;a aktarılır; fotoğraf bizde saklanmaz. Ayrıca bot doğrulaması için Cloudflare Turnstile (IP adresi ve tarayıcı
       sinyalleri) ve kötüye kullanım sayaçları için Upstash (takma adlı IP, yaklaşık
-      1 saat içinde silinir; günlük sayaç yaklaşık 2 gün tutulur) kullanılmaktadır.</p>
+      1 saat içinde silinir; günlük sayaç yaklaşık 2 gün tutulur) kullanılmaktadır. Yalnızca açık rıza vermeniz halinde ziyaret ölçümü için Google (Google Analytics ve Google Ads) ve Meta (Meta pikseli) araçları yüklenir ve bu araçların verileri ABD&apos;de yerleşik Google ve Meta tarafından işlenir; rıza vermezseniz bu aktarım yapılmaz.</p>
       <h2 id="hesap-ve-krediler">Hesap ve krediler</h2>
       <p>Karikatür atölyesini kullanmak için Google ile veya e-posta ile gönderilen
       bir giriş bağlantısıyla (şifresiz) giriş yapılır. Giriş için Google ve

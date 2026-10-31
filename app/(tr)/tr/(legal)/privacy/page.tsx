@@ -29,6 +29,8 @@ export default function Page() {
       Cloudflare Turnstile (IP adresi ve tarayıcı sinyalleri), kötüye kullanım
       sayaçları için Upstash (takma adlı IP, yaklaşık 1 saat içinde silinir; günlük
       sayaç yaklaşık 2 gün tutulur) kullanılır.</p>
+      <h2 id="olcum">Ölçüm ve reklam</h2>
+      <p>Yalnızca çerez bandında Kabul et derseniz, ziyaretleri ve reklamlarımızın işe yarayıp yaramadığını ölçmek için Google Analytics, Google Ads ve Meta (Meta pikseli) kullanılır. Rızanız olmadan hiçbiri yüklenmez. Bu araçlar verileri ABD&apos;de işler. Gönderilenler: ziyaret ettiğiniz sayfalar, cihaz ve tarayıcı bilgileri ile çerezlerinin ayarladığı çevrimiçi tanımlayıcılar; satın almada ayrıca tutar, para birimi ve sipariş kimliği. Adınız, e-posta adresiniz veya telefon numaranız gönderilmez. Rıza seçiminiz tarayıcınızda 12 ay boyunca saklanır, sonrasında bant yeniden sorar. Seçiminizi her sayfanın altındaki Çerez ayarları ile istediğiniz zaman değiştirebilirsiniz. Ayrıntılar için Çerez Politikası&apos;na bakın.</p>
       <h2 id="hesap-ve-krediler">Hesap ve krediler</h2>
       <p>Karikatür atölyesini kullanmak için Google ile veya e-posta ile gönderilen
       bir giriş bağlantısıyla (şifresiz) giriş yapılır. Giriş için Google ve

@@ -304,6 +304,14 @@ export const tr = {
     verifying: 'Güvenlik doğrulaması yapılıyor…',
     verifyFailed: 'Güvenlik doğrulaması yüklenemedi. Sayfayı yenileyip tekrar deneyin.',
   },
+  consent: {
+    label: 'Çerez tercihi',
+    text: 'Ziyaretleri ve reklamlarımızın işe yarayıp yaramadığını ölçmek için çerez kullanıyoruz (Google Analytics, Google Ads, Meta). Bunlar yalnızca kabul ederseniz yüklenir. Seçiminizi sayfanın altındaki “Çerez ayarları” ile istediğiniz zaman değiştirebilirsiniz.',
+    link: 'Çerez Politikası',
+    accept: 'Kabul et',
+    reject: 'Reddet',
+    settings: 'Çerez ayarları',
+  },
 } as const
 
 /** Every string literal widened to `string`; the shape stays Turkish's. */

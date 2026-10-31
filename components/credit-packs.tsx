@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { track } from '@/lib/analytics'
 import { errorMessage, format, getDictionary, type Locale } from '@/lib/i18n'
 import { PACKS, type PackId } from '@/lib/packs'
 
@@ -18,6 +19,7 @@ export default function CreditPacks({ locale, onClose }: { locale: Locale; onClo
     if (busy) return
     setBusy(pack)
     setError(null)
+    track('begin_checkout', { pack })
     try {
       const response = await fetch('/api/checkout', {
         method: 'POST',

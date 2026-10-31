@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-10-31T12:42:46Z",
+  "id": "0032",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-31T13:08:32Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0032-measurement-consent.md",
+    "spec_sha256": "842148e26c80f43626bb50e0be5de9a2b5ae183ac76344f7adef131172a16dac"
+  },
+  "status": "done",
+  "updated": "2026-10-31T13:25:47Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0032-attempt-01.json"
+  ]
+}

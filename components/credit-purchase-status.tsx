@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { track } from '@/lib/analytics'
 import { format, getDictionary, type Locale } from '@/lib/i18n'
 
 const POLL_MS = 1500
@@ -44,6 +45,7 @@ export default function CreditPurchaseStatus({
       }
       if (cancelled) return
       if (data.ok === true && data.status === 'credited') {
+        track('purchase', { checkoutId, credits: data.credits })
         credited.current({ free: data.free ?? 0, paid: data.paid ?? 0 })
         setView({ kind: 'added', credits: data.credits ?? 0 })
         return

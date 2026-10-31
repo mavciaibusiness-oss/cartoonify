@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Measurement tags (GA4, Google Ads, Meta pixel) behind a cookie banner: nothing loads and no event is sent without Accept; purchase counted only on the verified Stripe payment, with the amount in USD** (task 0032, Oct 31 2026)
+  - Not committed, not pushed, not deployed. Commit, the Vercel values, a preview redeploy and the preview tests are the operator's next steps (spec section 7; `docs/olcum-kurulumu.md`).
+  - Inert until configured: with none of the five `NEXT_PUBLIC_*` values set, the banner shows and no tag loads. The values are read at build time, so setting them needs a redeploy.
+  - Base for this change: commit `2be5c23` (task 0031). Spec: `.mavci/tasks/0032-measurement-consent.md`, approved by the operator 2026-10-31T13:08:32Z (recorded in `.mavci/control/tasks/0032.json`, `spec_sha256` `842148e26c80`). Operator answers on 2026-10-31 are recorded in spec section 0b. One correction: a consent choice is valid for 12 months (the spec's earlier default was no expiry).
+  - Environment: `lib/env.ts` exports `measurementIds()`, which reads `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_GOOGLE_ADS_ID`, `NEXT_PUBLIC_GADS_LABEL_SIGNUP`, `NEXT_PUBLIC_GADS_LABEL_PURCHASE` and `NEXT_PUBLIC_META_PIXEL_ID`. Blank or malformed values count as missing. No value is recorded in the repository.
+  - Consent: a bottom bar (`components/consent.tsx`) with equal **Accept** / **Reject** buttons (EN and TR). A footer **Cookie settings** button reopens it, also after Reject. Choice stored in the browser: `pth-consent` and `pth-consent-at`. A choice older than 12 months, or one with no valid time, shows the banner again. Choosing Reject after Accept stops tags on the next page load; tags already loaded in an open page stop on the next page.
+  - Tags: `lib/analytics.ts` is the one file that calls `gtag`, `fbq` or touches `dataLayer`. Google Consent Mode v2 defaults to denied, and updates to granted only after Accept.
+  - Events, all sent only after Accept: `sign_up` (GA4, Google Ads sign-up conversion, Meta `CompleteRegistration`) when the wallet answers a welcome grant for a new account; `begin_checkout` (GA4, Meta `InitiateCheckout`, USD) when a pack's buy button is pressed; `purchase` (GA4, Google Ads purchase conversion, Meta `Purchase`, USD) only when `/api/purchase` answers `credited`, which only the signature-verified Stripe webhook writes. The purchase value comes from the pack's price in `lib/stripe.ts`, not from the URL or the browser. Dedup uses the Checkout Session id, plus a browser-local record of the last 20 ids (`pth-tracked`).
+  - No name, e-mail, phone or user id is sent in any event or config parameter. Meta advanced matching is off.
+  - Legal text: cookies, privacy and KVKK pages (EN and TR) name Google Analytics, Google Ads and Meta, the choice and its 12-month validity, the USA (ABD) transfer, and the açık rıza basis in the Turkish KVKK page. The sections the earlier tasks wrote stay. **The legal text has not been reviewed by a lawyer.** All 11 `REVIEW REQUIRED` markers remain in source.
+  - Setup guide for the operator: `docs/olcum-kurulumu.md` (Turkish; no test id and no personal address in it).
+  - Not changed: `/api/*`, `middleware.ts`, `next.config.mjs`, `package.json`, `package-lock.json`, the database, and `scripts/**`. No new npm package.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0032-attempt-01.json`, run 2026-10-31T13:23:29Z): 9 of 9 criteria executed and passed (typecheck, build with harness IDs, `npm test`, module checks, built legal pages, guide, scope, browser banner, browser events). 14 checks passed, 0 blocking, 5 warnings.
+  - Verdict warnings: `legal.pages_present` reports the `REVIEW REQUIRED` marker on the EN privacy, EN terms, TR kvkk, EN cookies and EN contact pages. The verdict lists 5 of the 11 files that carry the marker. The reason the other six are not listed is not recorded in the verdict or the spec. Not investigated (same observation as the 0029 to 0031 entries).
+  - The verdict records each criterion's command and exit code, not the harness output. This is the first green run of these criteria; the spec was approved on a red proof only, and no red variant of the final tree was run, so the pass does not by itself show that each criterion can fail.
+  - Evidence: `reports/0032-consent-en.png`, `reports/0032-consent-tr.png`.
+
 ### Changed
 
 - **Pre-ads readiness, parts 1 to 4: return addresses and 308 to the live domain on production, intro button text, token colours and one play button under reduced motion, KVKK and privacy text name OpenAI** (task 0031, Oct 31 2026)

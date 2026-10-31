@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { requestReopen } from '@/lib/analytics'
 import { getDictionary, localeOfPath, localizedPath } from '@/lib/i18n'
 
 /**
@@ -25,6 +26,10 @@ export default function SiteFooter() {
       <a href={localizedPath(locale, '/cookies')}>{t.cookies}</a>
       {' | '}
       <a href={localizedPath(locale, '/contact')}>{t.contact}</a>
+      {' | '}
+      <button type="button" className="consent-settings" onClick={requestReopen}>
+        {getDictionary(locale).consent.settings}
+      </button>
     </footer>
   )
 }

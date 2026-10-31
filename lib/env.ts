@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { MeasurementIds } from './analytics'
 
 /**
  * The only file in this project that reads process.env.
@@ -309,4 +310,27 @@ export function stripeEnvProblem(): string {
   }
   if (missing.length > 0) problems.unshift('missing=' + missing.join(','))
   return problems.join(' ')
+}
+
+function pick(v: string | undefined, pattern: RegExp): string | null {
+  if (typeof v !== 'string') return null
+  const t = v.trim()
+  return pattern.test(t) ? t : null
+}
+
+/**
+ * Public measurement settings (task 0032). NEXT_PUBLIC_ so Next.js inlines them
+ * at build: after a change in Vercel the site must be redeployed. A missing or
+ * malformed value is null, which means that tag is not loaded and nothing throws.
+ * Read per call, never at module scope.
+ */
+export function measurementIds(): MeasurementIds {
+  const ads = pick(process.env.NEXT_PUBLIC_GOOGLE_ADS_ID, /^AW-[0-9]+$/)
+  return {
+    ga4: pick(process.env.NEXT_PUBLIC_GA4_ID, /^G-[A-Z0-9]+$/),
+    ads,
+    adsSignupLabel: pick(process.env.NEXT_PUBLIC_GADS_LABEL_SIGNUP, /^[A-Za-z0-9_-]+$/),
+    adsPurchaseLabel: pick(process.env.NEXT_PUBLIC_GADS_LABEL_PURCHASE, /^[A-Za-z0-9_-]+$/),
+    metaPixel: pick(process.env.NEXT_PUBLIC_META_PIXEL_ID, /^[0-9]+$/),
+  }
 }

@@ -1,5 +1,7 @@
 import SiteHeader from './site-header'
 import SiteFooter from './site-footer'
+import Consent from './consent'
+import { measurementIds } from '@/lib/env'
 import LangHint from './lang-hint'
 import { UploadProvider } from './upload-state'
 
@@ -15,6 +17,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <LangHint />
       <UploadProvider>{children}</UploadProvider>
       <SiteFooter />
+      <Consent ids={measurementIds()} />
     </>
   )
 }
