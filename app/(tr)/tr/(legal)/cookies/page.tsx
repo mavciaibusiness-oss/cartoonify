@@ -10,29 +10,29 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="prose mx-auto p-8">
-      <h1>Cerez Politikasi</h1>
+      <h1>Çerez Politikası</h1>
       {/* REVIEW REQUIRED - draft text. A lawyer must review this before launch.
           Only the operator removes this marker, and only after that review: deleting it
           asserts a review that did not happen. It is a warning while you build and a
           blocker before you ship. */}
-      <h2>Cerez nedir</h2>
-      <p>Cerezler, ziyaret ettiginiz siteler tarafindan cihaziniza kaydedilen
-      kucuk metin dosyalaridir.</p>
-      <h2>Kullandigimiz cerezler</h2>
-      <p>Zorunlu cerezler: oturum yonetimi ve guvenlik icin gereklidir, devre
-      disi birakilamaz. Analitik ve pazarlama cerezleri yalnizca acik rizaniz
-      ile calistirilir.</p>
-      <h2>Tarayici deposu</h2>
-      <p>Ingilizce bir sayfada Turkce tarayici dili algilanirsa, Turkce surume gecis
-      onerisi gosterilir. Oneriyi kapattiginizda bu tercih tarayicinin sessionStorage
-      alanina, pth-lang-hint anahtariyla yalnizca o sekme oturumu icin yazilir. Bu bir
-      cerez degildir, sunucuya gonderilmez ve sekme kapaninca silinir.</p>
-      <h2>Yonetimi</h2>
-      <p>Tarayici ayarlarinizdan cerezleri silebilir veya engelleyebilirsiniz.
-      Zorunlu cerezlerin engellenmesi hizmetin calismasini etkileyebilir.</p>
-      <h2>Ucuncu taraf cerezleri</h2>
-      <p>Reklam veya analitik saglayicilar kendi cerezlerini kullanabilir. Bu
-      cerezler yalnizca riza verildikten sonra yuklenir.</p>
+      <h2>Çerez nedir</h2>
+      <p>Çerezler, ziyaret ettiğiniz siteler tarafından cihazınıza kaydedilen
+      küçük metin dosyalarıdır.</p>
+      <h2>Kullandığımız çerezler</h2>
+      <p>Zorunlu çerezler: oturum yönetimi ve güvenlik için gereklidir, devre
+      dışı bırakılamaz. Analitik ve pazarlama çerezleri yalnızca açık rızanız
+      ile çalıştırılır.</p>
+      <h2>Tarayıcı deposu</h2>
+      <p>İngilizce bir sayfada Türkçe tarayıcı dili algılanırsa, Türkçe sürüme geçiş
+      önerisi gösterilir. Öneriyi kapattığınızda bu tercih tarayıcının sessionStorage
+      alanına, pth-lang-hint anahtarıyla yalnızca o sekme oturumu için yazılır. Bu bir
+      çerez değildir, sunucuya gönderilmez ve sekme kapanınca silinir.</p>
+      <h2>Yönetimi</h2>
+      <p>Tarayıcı ayarlarınızdan çerezleri silebilir veya engelleyebilirsiniz.
+      Zorunlu çerezlerin engellenmesi hizmetin çalışmasını etkileyebilir.</p>
+      <h2>Üçüncü taraf çerezleri</h2>
+      <p>Reklam veya analitik sağlayıcılar kendi çerezlerini kullanabilir. Bu
+      çerezler yalnızca rıza verildikten sonra yüklenir.</p>
     </main>
   )
 }

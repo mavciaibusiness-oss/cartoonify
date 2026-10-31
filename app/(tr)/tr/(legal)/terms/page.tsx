@@ -12,18 +12,18 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <main className="prose mx-auto p-8">
-      <h1>Kullanim Sartlari</h1>
+      <h1>Kullanım Şartları</h1>
       {/* REVIEW REQUIRED - draft text. A lawyer must review this before launch.
           Only the operator removes this marker, and only after that review: deleting it
           asserts a review that did not happen. It is a warning while you build and a
           blocker before you ship. */}
-      <h2>Hizmetin kapsami</h2>
-      <p>Bu sozlesme, Cartoonify hizmetinin kullanimina iliskin sartlari
-      duzenler. Hizmeti kullanarak bu sartlari kabul etmis sayilirsiniz.</p>
+      <h2>Hizmetin kapsamı</h2>
+      <p>Bu sözleşme, ProToolHub Cartoon hizmetinin kullanımına ilişkin şartları
+      düzenler. Hizmeti kullanarak bu şartları kabul etmiş sayılırsınız.</p>
       <h2>Hesap ve sorumluluk</h2>
-      <p>Hesap guvenliginden kullanici sorumludur. Hesap bilgilerinin ucuncu
-      kisilerle paylasilmasi durumunda dogacak zararlardan kullanici sorumludur.</p>
-      <h2>Odeme</h2>
+      <p>Hesap güvenliğinden kullanıcı sorumludur. Hesap bilgilerinin üçüncü
+      kişilerle paylaşılması durumunda doğacak zararlardan kullanıcı sorumludur.</p>
+      <h2>Ödeme</h2>
       <p>Krediler tek seferlik paketler halinde satılır. Abonelik yoktur ve hiçbir ödeme kendiliğinden yenilenmez. İade koşulları için <Link href="/tr/refund">İade Politikası</Link> sayfasına bakın.</p>
       <h2 id="icerik-kurallari">İçerik kuralları</h2>
       <p>Yüklediğiniz fotoğraf, işlenmek üzere OpenAI (openai.com)
@@ -43,10 +43,10 @@ export default function Page() {
       Krediler harcanmışsa geri alınabilen kısım kadarı düşülür; bakiye sıfırın altına
       inmez. Ödemeye itiraz edilirse (chargeback) paketin kredileri geri alınır. Satıcı adresi: {LEGAL_ENTITY.address}</p>
       <h2>Fesih</h2>
-      <p>Sartlarin ihlali halinde hesap askiya alinabilir veya kapatilabilir.
-      Kullanici diledigi zaman hesabini kapatabilir.</p>
+      <p>Şartların ihlali halinde hesap askıya alınabilir veya kapatılabilir.
+      Kullanıcı dilediği zaman hesabını kapatabilir.</p>
       <h2>Uygulanacak hukuk</h2>
-      <p>Bu sozlesmeye Turkiye Cumhuriyeti hukuku uygulanir.</p>
+      <p>Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.</p>
     </main>
   )
 }

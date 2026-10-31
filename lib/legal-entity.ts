@@ -3,4 +3,5 @@
 export const LEGAL_ENTITY = {
   name: 'AVC TRADE LLC',
   address: '30 N Gould St Ste 43070, Sheridan, WY 82801, USA',
+  email: 'info@protoolhub.net',
 } as const

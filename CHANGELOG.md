@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **TR legal and contact pages: Turkish characters in visible text, ProToolHub Cartoon name, contact e-mail from one shared setting, personal address off every visible page** (task 0030, Oct 31 2026)
+  - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
+  - Base for this change: commit `02c2327` (task 0029).
+  - **The legal text has not been reviewed by a lawyer.** Correcting spelling does not make the text reviewed. Every legal and contact page keeps its `REVIEW REQUIRED` marker as a JSX comment, which does not render. The `legal.pages_present` check still warns on five files (see the verdict line below).
+  - `lib/legal-entity.ts` gains `email: 'info@protoolhub.net'`. `name` and `address` are unchanged. The EN contact, TR contact and TR KVKK pages show the address from `LEGAL_ENTITY.email`. The address is plain text, not a `mailto:` link. No file under `app/`, `components/`, `lib/` or `public/` contains the personal Gmail address any more (criterion 3).
+  - Spelling: in the visible body text of the TR terms, privacy, cookies, KVKK and contact pages, ASCII-only Turkish words are replaced with their Turkish-letter forms, using the whole-word map in the spec. Anchor ids such as `odeme-ve-krediler` and `ucretsiz-hak-ozetleri` stay ASCII by spec design. The TR refund page had no ASCII-only words and is unchanged.
+  - Governing law, TR terms (operator decision on question Q1, 2026-10-31): spelling only. The sentence reads `Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır.` The TR heading `Uygulanacak hukuk` and the whole EN governing-law block are unchanged.
+  - Brand: TR terms `Cartoonify hizmetinin` becomes `ProToolHub Cartoon hizmetinin`. No visible page shows `Cartoonify` (criterion 6). Code identifiers, the domain `cartoonify-steel.vercel.app`, comments and the alert sender in `lib/polar.ts` are not visible to visitors and are unchanged.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0030-attempt-01.json`, run 2026-10-31T11:04:56Z): 7 of 7 criteria executed and passed (typecheck, build, source and marker checks, spelling and governing law, scope, all-pages scan, screenshots). 14 checks passed, 0 blocking. 5 warning-level `legal.pages_present` results: the `REVIEW REQUIRED` markers on the EN privacy, EN terms, TR kvkk, EN cookies and EN contact pages. These markers stay on purpose.
+  - Verifier observation, not investigated: the verdict lists five of the eleven files that carry the marker. The reason the other six are not listed is not recorded in the verdict or the spec.
+  - Evidence: `reports/0030-terms-en.png`, `reports/0030-terms-tr.png`, `reports/0030-kvkk-tr.png`, `reports/0030-contact-en.png`, `reports/0030-contact-tr.png`.
+
 - **Legal and contact pages: seller address from one shared constant, draft "REVIEW REQUIRED" text hidden from visitors, markers kept in source** (task 0029, Oct 31 2026)
   - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
   - **The legal text has not been reviewed by a lawyer.** Hiding the visible warning does not mean a review happened. Every legal and contact page keeps a `REVIEW REQUIRED` marker as a JSX comment, which does not render. The `legal.pages_present` check still warns on five files (see the verdict line below).

@@ -19,7 +19,7 @@ export default function Contact() {
       <h2>Company details</h2>
       <p>Legal name: {LEGAL_ENTITY.name}</p>
       <p>Address: {LEGAL_ENTITY.address}</p>
-      <p>E-mail: mavcimavci1983@gmail.com</p>
+      <p>E-mail: {LEGAL_ENTITY.email}</p>
       <h2>Support</h2>
       <p>For support requests, write to the e-mail address above. We reply within two business days. For requests under KVKK, use the methods described in the KVKK notice, which is available in Turkish.</p>
     </main>

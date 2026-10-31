@@ -11,20 +11,20 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <main className="prose mx-auto p-8">
-      <h1>Iletisim</h1>
+      <h1>İletişim</h1>
       {/* REVIEW REQUIRED - draft text. A lawyer must review this before launch.
           Only the operator removes this marker, and only after that review: deleting it
           asserts a review that did not happen. It is a warning while you build and a
           blocker before you ship. */}
-      <h2>Sirket bilgileri</h2>
+      <h2>Şirket bilgileri</h2>
       <p>Unvan: {LEGAL_ENTITY.name}</p>
       <p>Adres: {LEGAL_ENTITY.address}</p>
-      <p>E-posta: mavcimavci1983@gmail.com</p>
+      <p>E-posta: {LEGAL_ENTITY.email}</p>
       <h2>Destek</h2>
-      <p>Destek talepleriniz icin yukaridaki e-posta adresini kullanabilirsiniz.
-      Talepler mesai gunlerinde en gec iki is gunu icinde yanitlanir. KVKK
-      kapsamindaki basvurular icin KVKK sayfamizda belirtilen yontemleri
-      kullaniniz.</p>
+      <p>Destek talepleriniz için yukarıdaki e-posta adresini kullanabilirsiniz.
+      Talepler mesai günlerinde en geç iki iş günü içinde yanıtlanır. KVKK
+      kapsamındaki başvurular için KVKK sayfamızda belirtilen yöntemleri
+      kullanınız.</p>
     </main>
   )
 }
