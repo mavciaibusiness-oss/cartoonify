@@ -75,6 +75,7 @@ export const en: Dictionary = {
     step3: 'Download',
     soundOn: 'Turn sound on',
     soundOff: 'Turn sound off',
+    play: 'Play video',
     videoLabel: 'ProToolHub Cartoon intro video',
   },
   featured: {
@@ -85,7 +86,7 @@ export const en: Dictionary = {
     afterAlt: 'The same photo in the Goofy Sketch Caricature style',
     beforeCaption: 'Source image',
     afterCaption: 'Goofy Sketch Caricature result',
-    cta: 'Try it in the workshop',
+    cta: 'Try it in the Studio',
   },
   showcase: {
     title: 'Styles by category',

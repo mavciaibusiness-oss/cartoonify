@@ -7,13 +7,15 @@ import { getDictionary, localizedPath, type Locale } from '@/lib/i18n'
 /**
  * Home page intro video (task 0027). The <video> is in the server HTML with
  * preload="none" and a poster, so nothing downloads until it is at least half
- * on screen. Reduced motion: never auto-plays, native controls are shown.
+ * on screen. Reduced motion: never auto-plays, one centred play button starts it and a click on the
+ * video pauses it. No native controls in either mode.
  */
 export default function IntroVideo({ locale }: { locale: Locale }) {
   const t = getDictionary(locale)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [soundOn, setSoundOn] = useState(false)
   const [reduced, setReduced] = useState(false)
+  const [playing, setPlaying] = useState(false)
 
   useEffect(() => {
     const video = videoRef.current
@@ -37,6 +39,13 @@ export default function IntroVideo({ locale }: { locale: Locale }) {
     observer.observe(video)
     return () => observer.disconnect()
   }, [])
+
+  function togglePlay() {
+    const video = videoRef.current
+    if (!video) return
+    if (video.paused) video.play().catch(() => {})
+    else video.pause()
+  }
 
   function toggleSound() {
     const video = videoRef.current
@@ -62,12 +71,21 @@ export default function IntroVideo({ locale }: { locale: Locale }) {
           preload="none"
           width={720}
           height={1280}
-          controls={reduced}
           aria-label={t.introVideo.videoLabel}
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          onClick={reduced ? togglePlay : undefined}
         />
+        {reduced && !playing ? (
+          <button type="button" className="intro-video-play" aria-label={t.introVideo.play} onClick={togglePlay}>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+        ) : null}
         <button
           type="button"
-          className={reduced ? 'intro-video-sound intro-video-sound-lifted' : 'intro-video-sound'}
+          className="intro-video-sound"
           aria-label={soundOn ? t.introVideo.soundOff : t.introVideo.soundOn}
           onClick={toggleSound}
         >

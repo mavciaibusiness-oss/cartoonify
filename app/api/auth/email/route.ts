@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { EMAIL_RATE_LIMITED_MESSAGE, INVALID_EMAIL_MESSAGE, safeNext, validEmail } from '@/lib/accounts'
 import { ERROR_MESSAGES } from '@/lib/cartoonify-handler'
-import { getAccountsEnv } from '@/lib/env'
+import { getAccountsEnv, publicOrigin } from '@/lib/env'
 import { createAuthClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
@@ -33,13 +33,13 @@ export async function POST(request: Request): Promise<Response> {
     )
   }
   const next = safeNext(body.next)
-  const origin = new URL(request.url).origin
+  const base = publicOrigin(request.url)
 
   try {
     const { error } = await createAuthClient().auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: origin + '/api/auth/callback?next=' + encodeURIComponent(next),
+        emailRedirectTo: base +'/api/auth/callback?next=' + encodeURIComponent(next),
         shouldCreateUser: true,
       },
     })

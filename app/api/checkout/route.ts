@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { ERROR_MESSAGES } from '@/lib/cartoonify-handler'
-import { getAccountsEnv, getStripeEnv, paymentProvider } from '@/lib/env'
+import { getAccountsEnv, getStripeEnv, paymentProvider, publicOrigin } from '@/lib/env'
 import {
   PACK_CREDITS,
   PACK_PRICE_CENTS,
@@ -58,7 +58,7 @@ export async function POST(request: Request): Promise<Response> {
     buildStripeCheckoutParams({
       userId: user.id,
       email: user.email,
-      origin: new URL(request.url).origin,
+      origin: publicOrigin(request.url),
       locale,
       pack,
       environment: payments.environment,

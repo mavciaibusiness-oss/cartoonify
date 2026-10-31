@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-10-31T11:16:34Z",
+  "id": "0031",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-31T12:14:07Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0031-pre-ads-readiness.md",
+    "spec_sha256": "894cc43f415d5cb9aaad4f5c49d783df9ac4a48c37f622c1bf79e2e861fe6259"
+  },
+  "status": "done",
+  "updated": "2026-10-31T12:26:37Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0031-attempt-01.json"
+  ]
+}

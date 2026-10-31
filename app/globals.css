@@ -1312,8 +1312,8 @@ footer a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+  background: var(--accent);
+  color: var(--on-accent);
   cursor: pointer;
 }
 
@@ -1323,9 +1323,30 @@ footer a:hover {
   display: block;
 }
 
-/* Reduced motion shows the native controls bar at the bottom: lift the button above it. */
-.intro-video-sound-lifted {
-  bottom: 4rem;
+/* Reduced motion: one play button, centred on the video, in place of native controls. */
+.intro-video-play {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+
+.intro-video-play svg {
+  width: 2rem;
+  height: 2rem;
+  display: block;
 }
 
 @media (min-width: 700px) {

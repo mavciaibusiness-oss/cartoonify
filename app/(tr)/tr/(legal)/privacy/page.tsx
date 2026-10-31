@@ -24,7 +24,8 @@ export default function Page() {
       önlenmesi, yasal yükümlülüklerin yerine getirilmesi.</p>
       <h2>Üçüncü taraflar</h2>
       <p>Barındırma için Vercel, veritabanı ve kimlik doğrulama için Supabase,
-      ödeme için Stripe, e-posta için Resend hizmetlerinden yararlanılmaktadır. Bot doğrulaması için
+      ödeme için Stripe, e-posta için Resend hizmetlerinden yararlanılmaktadır. Yüklediğiniz fotoğraf,
+      karikatürü üretmek için ABD&apos;de yerleşik OpenAI tarafından işlenir. Bot doğrulaması için
       Cloudflare Turnstile (IP adresi ve tarayıcı sinyalleri), kötüye kullanım
       sayaçları için Upstash (takma adlı IP, yaklaşık 1 saat içinde silinir; günlük
       sayaç yaklaşık 2 gün tutulur) kullanılır.</p>

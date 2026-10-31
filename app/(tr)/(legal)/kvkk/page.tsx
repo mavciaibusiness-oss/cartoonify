@@ -23,13 +23,14 @@ export default function Page() {
       alınması, destek taleplerinin karşılanması, güvenlik ve kötüye kullanımın önlenmesi, yasal
       yükümlülüklerin yerine getirilmesi.</p>
       <h2>Hukuki sebep</h2>
-      <p>KVKK m.5/2-c uyarınca sözleşmenin kurulması ve ifası, m.5/2-c uyarınca
+      <p>KVKK m.5/2-c uyarınca sözleşmenin kurulması ve ifası, m.5/2-ç uyarınca
       hukuki yükümlülüğün yerine getirilmesi ve m.5/2-f uyarınca meşru menfaat.</p>
       <h2>Aktarım</h2>
       <p>Kişisel verileriniz, hizmetin sunulabilmesi amacıyla yurt dışında yerleşik
       şu hizmet sağlayıcılara aktarılmaktadır: barındırma için Vercel, veritabanı
       ve kimlik doğrulama için Supabase, ödeme için Stripe, e-posta gönderimi için
-      Resend. Ayrıca bot doğrulaması için Cloudflare Turnstile (IP adresi ve tarayıcı
+      Resend. Yüklediğiniz fotoğraf, karikatürü üretmek için ABD&apos;de yerleşik
+      OpenAI&apos;a aktarılır; fotoğraf bizde saklanmaz. Ayrıca bot doğrulaması için Cloudflare Turnstile (IP adresi ve tarayıcı
       sinyalleri) ve kötüye kullanım sayaçları için Upstash (takma adlı IP, yaklaşık
       1 saat içinde silinir; günlük sayaç yaklaşık 2 gün tutulur) kullanılmaktadır.</p>
       <h2 id="hesap-ve-krediler">Hesap ve krediler</h2>

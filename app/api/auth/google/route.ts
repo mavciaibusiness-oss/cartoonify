@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { safeNext } from '@/lib/accounts'
-import { getAccountsEnv } from '@/lib/env'
+import { getAccountsEnv, publicOrigin } from '@/lib/env'
 import { createAuthClient } from '@/lib/supabase/server'
 
 export const dynamic = 'force-dynamic'
@@ -15,7 +15,7 @@ export async function GET(request: Request): Promise<Response> {
     const { data, error } = await createAuthClient().auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: url.origin + '/api/auth/callback?next=' + encodeURIComponent(next),
+        redirectTo: publicOrigin(request.url) + '/api/auth/callback?next=' + encodeURIComponent(next),
         skipBrowserRedirect: true,
       },
     })

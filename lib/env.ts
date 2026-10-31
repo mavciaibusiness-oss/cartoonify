@@ -84,6 +84,17 @@ export function siteUrl(): string {
 }
 
 /**
+ * The address return links (Stripe success/cancel, sign-in callback) are built
+ * from. In production it is the live site, so the request's Host cannot steer
+ * it; elsewhere it is the request's own origin, so previews come back to
+ * themselves. VERCEL_ENV is read per call.
+ */
+export function publicOrigin(requestUrl: string): string {
+  if (nonEmpty(process.env.VERCEL_ENV) === 'production') return siteUrl()
+  return new URL(requestUrl).origin
+}
+
+/**
  * The public Turnstile site key for the workshop page. Outside production a
  * missing key falls back to Cloudflare's always-pass test key; in production it
  * stays empty, and the server fails closed anyway.

@@ -83,6 +83,7 @@ export const tr = {
     step3: 'İndir',
     soundOn: 'Sesi aç',
     soundOff: 'Sesi kapat',
+    play: 'Videoyu oynat',
     videoLabel: 'ProToolHub Cartoon tanıtım videosu',
   },
   featured: {
