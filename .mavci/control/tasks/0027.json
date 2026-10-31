@@ -1,0 +1,23 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": null,
+  "created": "2026-10-31T08:32:16Z",
+  "id": "0027",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "release",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-31T08:49:06Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0027-intro-video.md",
+    "spec_sha256": "57ea82ade61519f767ec140d28eb89ee946fd3e8d36b6750fe37d3852f93ad8f"
+  },
+  "status": "done",
+  "updated": "2026-10-31T08:57:03Z",
+  "verdicts": [
+    ".mavci/control/verdicts/0027-attempt-01.json"
+  ]
+}

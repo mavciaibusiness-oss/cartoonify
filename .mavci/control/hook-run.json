@@ -1,10 +1,10 @@
 {
-  "at": "2026-10-27T22:17:16Z",
-  "env_session_id": "609f623f-c9e9-4d5e-bea2-534b2c4f6413",
+  "at": "2026-10-31T08:31:07Z",
+  "env_session_id": "cfc7920e-f1bd-429d-9ad7-962321f713d5",
   "event": "SessionStart",
-  "parent_pid": 16684,
+  "parent_pid": 23588,
   "plugin_version": "0.1.36",
   "project_id": "cartoonify",
   "schema_version": 1,
-  "session_id": "609f623f-c9e9-4d5e-bea2-534b2c4f6413"
+  "session_id": "cfc7920e-f1bd-429d-9ad7-962321f713d5"
 }

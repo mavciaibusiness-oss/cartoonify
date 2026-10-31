@@ -67,6 +67,12 @@ export const en: Dictionary = {
     step2: 'Preview your image and choose a style card.',
     step3: 'Generate, review and download your cartoon.',
   },
+  introVideo: {
+    title: 'One photo, 120 styles',
+    soundOn: 'Turn sound on',
+    soundOff: 'Turn sound off',
+    videoLabel: 'ProToolHub Cartoon intro video',
+  },
   featured: {
     badge: 'New style',
     title: 'Goofy Sketch Caricature',

@@ -75,6 +75,12 @@ export const tr = {
     step2: 'Görselinizi önizleyin ve bir stil kartı seçin.',
     step3: 'Oluşturun, inceleyin ve karikatürünüzü indirin.',
   },
+  introVideo: {
+    title: 'Bir fotoğraf, 120 stil',
+    soundOn: 'Sesi aç',
+    soundOff: 'Sesi kapat',
+    videoLabel: 'ProToolHub Cartoon tanıtım videosu',
+  },
   featured: {
     badge: 'Yeni stil',
     title: 'Komik Karalama Karikatür',

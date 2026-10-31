@@ -2,6 +2,7 @@ import { getDictionary, type Locale } from '@/lib/i18n'
 import { stylePreviewPath } from '@/lib/style-previews'
 import FeaturedStyle from './featured-style'
 import Gallery from './gallery'
+import IntroVideo from './intro-video'
 import KvkkNotice from './kvkk-notice'
 import StyleShowcase from './style-showcase'
 import UploadControl from './upload-control'
@@ -48,6 +49,8 @@ export default function Landing({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
+
+      <IntroVideo locale={locale} />
 
       <FeaturedStyle locale={locale} />
 

@@ -1231,9 +1231,62 @@ footer a:hover {
   margin-top: 0.45rem;
 }
 
-.featured-cta {
+.featured-cta,
+.intro-video-cta {
   justify-self: start;
   font-weight: 700;
+}
+
+/* Home page intro video (task 0027): full width on phones, 360px from 700px up. */
+.intro-video {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1.1rem;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.intro-video h2 {
+  margin: 0;
+}
+
+.intro-video-body {
+  display: grid;
+  gap: 1rem;
+  justify-items: stretch;
+}
+
+.intro-video-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 0.72rem;
+  background: var(--surface);
+}
+
+.intro-video-actions {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  justify-items: start;
+  font-size: 1.125rem;
+}
+
+.intro-video-sound {
+  font-size: 1.125rem;
+  min-height: 2.75rem;
+}
+
+@media (min-width: 700px) {
+  .intro-video-body {
+    grid-template-columns: 360px auto;
+    justify-content: start;
+    align-items: start;
+    gap: 1.5rem;
+  }
 }
 
 /* Accounts (task 0022): the sign-in panel and the credit badge. Large type, one next step. */

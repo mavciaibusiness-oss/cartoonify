@@ -115,6 +115,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Home page intro video on `/` and `/tr`: a 9:16 clip under the hero, loaded only when it is on screen** (task 0027, Oct 31 2026)
+  - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
+  - New section `intro-video` between the hero and the featured band, in both languages. Heading "One photo, 120 styles" / "Bir fotoğraf, 120 stil". The spec records 120 as an operator decision on 2026-10-31; the verbatim request said 99, and the rest of the site says 120 (`lib/i18n/en.ts:22`, `lib/i18n/tr.ts:30`).
+  - Files: `public/videos/cartoon-intro.mp4` and `public/videos/cartoon-intro-poster.jpg`, byte copies of the sources in `C:\Projelerim\_reklam-videolari\web\` (sha256 pinned in the spec; criterion 3 passed).
+  - Behaviour, as the spec and `components/intro-video.tsx` state it: `preload="none"` with a poster; muted playback while at least half of the video is on screen, paused otherwise; full width below 700 px and 360 px from 700 px. With `prefers-reduced-motion: reduce` there is no auto-play and native controls are shown.
+  - Sound button ("Sesi aç" / "Turn sound on") toggles sound. The try button links to the plain workshop (`/workshop`, `/tr/workshop`) with the existing featured-band text.
+  - All visible and accessible strings are in `introVideo` in `lib/i18n/tr.ts` and `lib/i18n/en.ts`. No new npm package.
+  - Network evidence (`reports/0027-network.json`): no request for the mp4 on first load at 390×844 and 1280×800 (EN and TR) or 1920×1080 (EN); one request after the video was scrolled into view. Screenshots: `reports/0027-en-390.png`, `reports/0027-tr-390.png`, `reports/0027-en-1280.png`, `reports/0027-tr-1280.png`.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0027-attempt-01.json`): 8 of 8 criteria executed and passed. The same verdict records 5 warning-level `legal.pages_present` failures, the `REVIEW REQUIRED` markers on the EN privacy, terms, cookies and contact pages and the TR kvkk page. This task did not change those files, and the legal text was not reviewed.
+
 - **Accounts and a ProToolHub credit wallet: sign-in before conversion, 2 free watermarked conversions per new account, paid credits spent first** (task 0022, Oct 26 2026)
   - Not deployed, not committed, not pushed. The migration `supabase/migrations/20261027000000_protoolhub_wallet.sql` is in the working tree and has **not been applied to any database**. Until it is applied and the operator steps in `docs/0022-operator-steps.md` are done, the feature cannot run.
   - Live effect (from the next deploy): `/api/cartoonify` refuses a request without a signed-in session with `AUTH_REQUIRED` (401) and makes no OpenAI call. A conversion that spends a free credit returns the image with a "ProToolHub" mark in the bottom-right corner; a paid conversion returns the edit output unchanged.
