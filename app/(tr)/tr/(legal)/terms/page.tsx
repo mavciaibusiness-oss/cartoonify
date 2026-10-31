@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TITLE_SUFFIX } from '@/lib/i18n'
+import { LEGAL_ENTITY } from '@/lib/legal-entity'
 
 export const metadata: Metadata = {
   title: 'Kullanım Şartları' + TITLE_SUFFIX,
@@ -40,7 +41,7 @@ export default function Page() {
       <p>Ödemeyi Stripe alır. Satıcı AVC TRADE LLC'dir. Vergi Stripe Tax ile ödeme sırasında hesaplanır ve fiyata dahildir. İadeler Stripe üzerinden yapılır. Bir iade yapıldığında, iade
       edilen tutarla orantılı olarak krediler geri alınır (orantılı, yukarı yuvarlanarak).
       Krediler harcanmışsa geri alınabilen kısım kadarı düşülür; bakiye sıfırın altına
-      inmez. Ödemeye itiraz edilirse (chargeback) paketin kredileri geri alınır. Satıcı adresi: REVIEW REQUIRED</p>
+      inmez. Ödemeye itiraz edilirse (chargeback) paketin kredileri geri alınır. Satıcı adresi: {LEGAL_ENTITY.address}</p>
       <h2>Fesih</h2>
       <p>Sartlarin ihlali halinde hesap askiya alinabilir veya kapatilabilir.
       Kullanici diledigi zaman hesabini kapatabilir.</p>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { TITLE_SUFFIX } from '@/lib/i18n'
+import { LEGAL_ENTITY } from '@/lib/legal-entity'
 
 export const metadata: Metadata = {
   title: 'KVKK Aydınlatma Metni' + TITLE_SUFFIX,
@@ -16,7 +17,7 @@ export default function Page() {
           asserts a review that did not happen. It is a warning while you build and a
           blocker before you ship. */}
       <h2>Veri sorumlusunun kimligi</h2>
-      <p>DRAFT — NOT A REGISTERED ENTITY — REVIEW REQUIRED, DRAFT — REVIEW REQUIRED. MERSIS: DRAFT — NO MERSIS — REVIEW REQUIRED.</p>
+      <p>{LEGAL_ENTITY.name}, {LEGAL_ENTITY.address}.</p>
       <h2>Isleme amaclari</h2>
       <p>Hesap olusturma ve yonetimi, kredi paketlerinin satisi ve odemenin
       alinmasi, destek taleplerinin karsilanmasi, guvenlik ve kotuye kullanimin onlenmesi, yasal
@@ -75,7 +76,7 @@ export default function Page() {
       aktarildigi ucuncu kisileri bilme ve zararin giderilmesini talep etme
       haklarina sahipsiniz.</p>
       <h2>Basvuru yontemi</h2>
-      <p>Taleplerinizi DRAFT — NO KEP — REVIEW REQUIRED adresine KEP uzerinden veya mavcimavci1983@gmail.com adresine
+      <p>Taleplerinizi {LEGAL_ENTITY.address} adresine posta yoluyla veya mavcimavci1983@gmail.com adresine
       e-posta ile iletebilirsiniz. Basvurunuz en gec otuz gun icinde
       sonuclandirilir.</p>
     </main>

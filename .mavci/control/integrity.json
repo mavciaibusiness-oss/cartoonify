@@ -1,5 +1,5 @@
 {
-  "control_hash": "8f50f9d6b096a87ef3b7a23f4c316fc71f0a70860a442ce0ac33bf31cf74ff26",
+  "control_hash": "a7e60edcaaa3fdccac0becc87cf3edbfd03588f0bbed9cbaedc542e89b0a8677",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -30,6 +30,7 @@
     ".mavci/control/tasks/0026.json",
     ".mavci/control/tasks/0027.json",
     ".mavci/control/tasks/0028.json",
+    ".mavci/control/tasks/0029.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -62,6 +63,7 @@
     ".mavci/control/verdicts/0026-attempt-01.json",
     ".mavci/control/verdicts/0027-attempt-01.json",
     ".mavci/control/verdicts/0028-attempt-01.json",
+    ".mavci/control/verdicts/0029-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -656,17 +658,23 @@
     ".mavci/control/verdicts/adhoc-1793438699379.json",
     ".mavci/control/verdicts/adhoc-1793438805939.json",
     ".mavci/control/verdicts/adhoc-1793438993023.json",
+    ".mavci/control/verdicts/adhoc-1793439021642.json",
+    ".mavci/control/verdicts/adhoc-1793440069751.json",
+    ".mavci/control/verdicts/adhoc-1793440503607.json",
+    ".mavci/control/verdicts/adhoc-1793440538682.json",
+    ".mavci/control/verdicts/adhoc-1793440588154.json",
+    ".mavci/control/verdicts/adhoc-1793440699747.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-10-31T09:29:53Z",
+    "at": "2026-10-31T09:58:19Z",
     "continues": 0,
     "plugin_version": "0.1.36",
-    "prompt_id": "47257c76-17b0-4aa5-888a-acf66fd2239d",
+    "prompt_id": "e120284a-85af-451b-8e13-449dd3b02fd0",
     "session_id": "cfc7920e-f1bd-429d-9ad7-962321f713d5",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-10-31T09:30:00Z",
+  "sealed_at": "2026-10-31T09:58:26Z",
   "sealed_by_plugin_version": "0.1.36"
 }

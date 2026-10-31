@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Legal and contact pages: seller address from one shared constant, draft "REVIEW REQUIRED" text hidden from visitors, markers kept in source** (task 0029, Oct 31 2026)
+  - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
+  - **The legal text has not been reviewed by a lawyer.** Hiding the visible warning does not mean a review happened. Every legal and contact page keeps a `REVIEW REQUIRED` marker as a JSX comment, which does not render. The `legal.pages_present` check still warns on five files (see the verdict line below).
+  - New `lib/legal-entity.ts` exports `LEGAL_ENTITY`: `name` `AVC TRADE LLC` and `address` `30 N Gould St Ste 43070, Sheridan, WY 82801, USA`. The EN and TR terms pages, the EN and TR contact pages and the TR KVKK page read from it. Criterion 3 checks that no other file under `app/`, `components/` or `lib/` holds the address.
+  - Visible changes, as the spec's change table states them: EN terms `Seller address: <address>.` and TR terms `Satıcı adresi: <address>`; contact pages show the legal name (`Legal name` / `Unvan`) and the address (`Address` / `Adres`) from the constant; the MERSIS and KEP lines are removed from both contact pages (operator decision 4); KVKK controller paragraph reads `AVC TRADE LLC, <address>.`; KVKK application method changes from "KEP üzerinden" to "posta yoluyla" (postal application).
+  - Company name is `AVC TRADE LLC` (operator decision 5, 2026-10-31). It supersedes an earlier "AVC LLC" answer given in the same session.
+  - The TR contact page gains the same JSX comment marker that the EN contact page already had. It was the only one of the 11 legal and contact files without one.
+  - No other text changed. Privacy, cookies and refund text are untouched; the existing "AVC TRADE LLC" sentences stay as they were.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0029-attempt-01.json`): 6 of 6 criteria executed and passed (typecheck, build, source and marker checks, scope, all-pages scan, EN and TR screenshots). 14 checks passed, 0 blocking. 5 warning-level `legal.pages_present` results: the `REVIEW REQUIRED` markers on the EN privacy, terms, cookies and contact pages and the TR kvkk page. These markers stay on purpose.
+  - Verifier observation, not investigated: `legal.pages_present` reported 5 of the 11 files that carry the marker. Not reported: EN refund, TR contact, TR terms, TR privacy, TR cookies and TR refund. The reason is not recorded.
+  - The control plane still names task 0029 "Ses butonu renkleri CSS degiskenlerine". The task spec says that title is stale and that the sound-button colour job moved to `.mavci/backlog.md`.
+  - Evidence: `reports/0029-terms-en.png`, `reports/0029-terms-tr.png`.
+
 - **Home page intro video layout: video left and text right on desktop, one column on phones, three steps, a large workshop button, a round sound button on the video** (task 0028, Oct 31 2026)
   - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
   - Changes the layout and button look of the `intro-video` section described in the task 0027 entry under Added. The try button still links to the plain workshop (`/workshop`, `/tr/workshop`), and the sound and playback behaviour is required unchanged by the spec.
