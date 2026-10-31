@@ -1,0 +1,424 @@
+[
+  {
+    "page": "/",
+    "viewport": "390x844",
+    "firstLoadRequests": [
+      "http://127.0.0.1:3929/",
+      "http://127.0.0.1:3929/brand/protoolhub-icon.svg",
+      "http://127.0.0.1:3929/hero/before.jpg",
+      "http://127.0.0.1:3929/styles/classic.webp",
+      "http://127.0.0.1:3929/_next/static/css/f167e557e914085f.css",
+      "http://127.0.0.1:3929/_next/static/chunks/webpack-c81f7fd28659d64f.js",
+      "http://127.0.0.1:3929/_next/static/chunks/fd9d1056-c57e591c5cbfd6d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/117-10018df3a4cc8dae.js",
+      "http://127.0.0.1:3929/_next/static/chunks/main-app-6819d24f70b9bae1.js",
+      "http://127.0.0.1:3929/_next/static/chunks/972-e0848868629c4079.js",
+      "http://127.0.0.1:3929/_next/static/chunks/919-4b5eb4159c8c57b7.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/page-56fa314ecdd3f73a.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/layout-0d4874f3ce6abf25.js",
+      "http://127.0.0.1:3929/videos/cartoon-intro-poster.jpg",
+      "http://127.0.0.1:3929/brand/mascot-480.webp",
+      "http://127.0.0.1:3929/api/session",
+      "http://127.0.0.1:3929/icon.svg?25fa0154ac4f77b2",
+      "http://127.0.0.1:3929/workshop?_rsc=1bhmo",
+      "http://127.0.0.1:3929/contact?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr?_rsc=1bhmo",
+      "http://127.0.0.1:3929/kvkk?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr/kvkk",
+      "http://127.0.0.1:3929/_next/static/chunks/197-b44014abf0eb67cd.js",
+      "http://127.0.0.1:3929/_next/static/chunks/949-eb053de6c583abaf.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/workshop/page-bb9cbac2334ada25.js"
+    ],
+    "videoRequestsOnFirstLoad": 0,
+    "layout": {
+      "video": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 136.734375,
+        "b": 707.0625,
+        "w": 320.8125,
+        "h": 570.328125,
+        "vis": true,
+        "fs": 16,
+        "fw": "400"
+      },
+      "h2": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 93.46875,
+        "b": 120.734375,
+        "w": 320.8125,
+        "h": 27.265625,
+        "vis": true,
+        "fs": 17.6,
+        "fw": "700"
+      },
+      "lede": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 723.0625,
+        "b": 778.84375,
+        "w": 320.8125,
+        "h": 55.78125,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "steps": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 794.84375,
+        "b": 889.703125,
+        "w": 320.8125,
+        "h": 94.859375,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "cta": {
+        "l": 34.59375,
+        "t": 905.703125,
+        "w": 320.8125,
+        "h": 53.484375
+      },
+      "btn": {
+        "l": 297.8125,
+        "t": 649.46875,
+        "w": 48,
+        "h": 48,
+        "rgba": [
+          0,
+          0,
+          0,
+          0.55
+        ]
+      }
+    },
+    "videoRequestsAfterScroll": 1
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "firstLoadRequests": [
+      "http://127.0.0.1:3929/tr",
+      "http://127.0.0.1:3929/brand/protoolhub-icon.svg",
+      "http://127.0.0.1:3929/hero/before.jpg",
+      "http://127.0.0.1:3929/styles/classic.webp",
+      "http://127.0.0.1:3929/_next/static/css/f167e557e914085f.css",
+      "http://127.0.0.1:3929/_next/static/chunks/webpack-c81f7fd28659d64f.js",
+      "http://127.0.0.1:3929/_next/static/chunks/fd9d1056-c57e591c5cbfd6d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/117-10018df3a4cc8dae.js",
+      "http://127.0.0.1:3929/_next/static/chunks/main-app-6819d24f70b9bae1.js",
+      "http://127.0.0.1:3929/_next/static/chunks/972-e0848868629c4079.js",
+      "http://127.0.0.1:3929/_next/static/chunks/919-4b5eb4159c8c57b7.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(tr)/tr/page-e126da035e7428d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/layout-0d4874f3ce6abf25.js",
+      "http://127.0.0.1:3929/videos/cartoon-intro-poster.jpg",
+      "http://127.0.0.1:3929/brand/mascot-480.webp",
+      "http://127.0.0.1:3929/api/session",
+      "http://127.0.0.1:3929/tr/workshop?_rsc=7gofi",
+      "http://127.0.0.1:3929/tr/contact?_rsc=7gofi",
+      "http://127.0.0.1:3929/?_rsc=7gofi",
+      "http://127.0.0.1:3929/kvkk?_rsc=7gofi",
+      "http://127.0.0.1:3929/tr/kvkk",
+      "http://127.0.0.1:3929/_next/static/chunks/197-b44014abf0eb67cd.js",
+      "http://127.0.0.1:3929/_next/static/chunks/949-eb053de6c583abaf.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(tr)/tr/workshop/page-d650db901bbd76fa.js"
+    ],
+    "videoRequestsOnFirstLoad": 0,
+    "layout": {
+      "video": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 136.90625,
+        "b": 707.234375,
+        "w": 320.8125,
+        "h": 570.328125,
+        "vis": true,
+        "fs": 16,
+        "fw": "400"
+      },
+      "h2": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 93.640625,
+        "b": 120.90625,
+        "w": 320.8125,
+        "h": 27.265625,
+        "vis": true,
+        "fs": 17.6,
+        "fw": "700"
+      },
+      "lede": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 723.234375,
+        "b": 779.015625,
+        "w": 320.8125,
+        "h": 55.78125,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "steps": {
+        "l": 34.59375,
+        "r": 355.40625,
+        "t": 795.015625,
+        "b": 889.875,
+        "w": 320.8125,
+        "h": 94.859375,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "cta": {
+        "l": 34.59375,
+        "t": 905.875,
+        "w": 320.8125,
+        "h": 53.484375
+      },
+      "btn": {
+        "l": 297.8125,
+        "t": 649.640625,
+        "w": 48,
+        "h": 48,
+        "rgba": [
+          0,
+          0,
+          0,
+          0.55
+        ]
+      }
+    },
+    "videoRequestsAfterScroll": 1
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "firstLoadRequests": [
+      "http://127.0.0.1:3929/",
+      "http://127.0.0.1:3929/brand/protoolhub-icon.svg",
+      "http://127.0.0.1:3929/hero/before.jpg",
+      "http://127.0.0.1:3929/styles/classic.webp",
+      "http://127.0.0.1:3929/_next/static/css/f167e557e914085f.css",
+      "http://127.0.0.1:3929/_next/static/chunks/webpack-c81f7fd28659d64f.js",
+      "http://127.0.0.1:3929/_next/static/chunks/fd9d1056-c57e591c5cbfd6d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/117-10018df3a4cc8dae.js",
+      "http://127.0.0.1:3929/_next/static/chunks/main-app-6819d24f70b9bae1.js",
+      "http://127.0.0.1:3929/_next/static/chunks/972-e0848868629c4079.js",
+      "http://127.0.0.1:3929/_next/static/chunks/919-4b5eb4159c8c57b7.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/page-56fa314ecdd3f73a.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/layout-0d4874f3ce6abf25.js",
+      "http://127.0.0.1:3929/videos/cartoon-intro-poster.jpg",
+      "http://127.0.0.1:3929/brand/mascot-480.webp",
+      "http://127.0.0.1:3929/gallery/friends/source.webp",
+      "http://127.0.0.1:3929/styles-web/goofy-sketch.webp",
+      "http://127.0.0.1:3929/api/session",
+      "http://127.0.0.1:3929/workshop?_rsc=1bhmo",
+      "http://127.0.0.1:3929/contact?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr?_rsc=1bhmo",
+      "http://127.0.0.1:3929/kvkk?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr/kvkk",
+      "http://127.0.0.1:3929/_next/static/chunks/197-b44014abf0eb67cd.js",
+      "http://127.0.0.1:3929/_next/static/chunks/949-eb053de6c583abaf.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/workshop/page-bb9cbac2334ada25.js"
+    ],
+    "videoRequestsOnFirstLoad": 0,
+    "layout": {
+      "video": {
+        "l": 40.1875,
+        "r": 400.1875,
+        "t": 79.515625,
+        "b": 719.515625,
+        "w": 360,
+        "h": 640,
+        "vis": true,
+        "fs": 16,
+        "fw": "400"
+      },
+      "h2": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 270.03125,
+        "b": 304.75,
+        "w": 800.625,
+        "h": 34.71875,
+        "vis": true,
+        "fs": 22.4,
+        "fw": "700"
+      },
+      "lede": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 320.75,
+        "b": 348.640625,
+        "w": 800.625,
+        "h": 27.890625,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "steps": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 364.640625,
+        "b": 459.5,
+        "w": 800.625,
+        "h": 94.859375,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "cta": {
+        "l": 424.1875,
+        "t": 475.5,
+        "w": 236.9375,
+        "h": 53.484375
+      },
+      "btn": {
+        "l": 342.59375,
+        "t": 661.921875,
+        "w": 48,
+        "h": 48,
+        "rgba": [
+          0,
+          0,
+          0,
+          0.55
+        ]
+      }
+    },
+    "videoRequestsAfterScroll": 1
+  },
+  {
+    "page": "/tr",
+    "viewport": "1280x800",
+    "firstLoadRequests": [
+      "http://127.0.0.1:3929/tr",
+      "http://127.0.0.1:3929/brand/protoolhub-icon.svg",
+      "http://127.0.0.1:3929/hero/before.jpg",
+      "http://127.0.0.1:3929/styles/classic.webp",
+      "http://127.0.0.1:3929/_next/static/css/f167e557e914085f.css",
+      "http://127.0.0.1:3929/_next/static/chunks/webpack-c81f7fd28659d64f.js",
+      "http://127.0.0.1:3929/_next/static/chunks/fd9d1056-c57e591c5cbfd6d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/117-10018df3a4cc8dae.js",
+      "http://127.0.0.1:3929/_next/static/chunks/main-app-6819d24f70b9bae1.js",
+      "http://127.0.0.1:3929/_next/static/chunks/972-e0848868629c4079.js",
+      "http://127.0.0.1:3929/_next/static/chunks/919-4b5eb4159c8c57b7.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(tr)/tr/page-e126da035e7428d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/layout-0d4874f3ce6abf25.js",
+      "http://127.0.0.1:3929/videos/cartoon-intro-poster.jpg",
+      "http://127.0.0.1:3929/brand/mascot-480.webp",
+      "http://127.0.0.1:3929/gallery/friends/source.webp",
+      "http://127.0.0.1:3929/styles-web/goofy-sketch.webp",
+      "http://127.0.0.1:3929/api/session",
+      "http://127.0.0.1:3929/tr/workshop?_rsc=7gofi",
+      "http://127.0.0.1:3929/tr/contact?_rsc=7gofi",
+      "http://127.0.0.1:3929/?_rsc=7gofi",
+      "http://127.0.0.1:3929/kvkk?_rsc=7gofi",
+      "http://127.0.0.1:3929/tr/kvkk",
+      "http://127.0.0.1:3929/_next/static/chunks/197-b44014abf0eb67cd.js",
+      "http://127.0.0.1:3929/_next/static/chunks/949-eb053de6c583abaf.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(tr)/tr/workshop/page-d650db901bbd76fa.js"
+    ],
+    "videoRequestsOnFirstLoad": 0,
+    "layout": {
+      "video": {
+        "l": 40.1875,
+        "r": 400.1875,
+        "t": 79.921875,
+        "b": 719.921875,
+        "w": 360,
+        "h": 640,
+        "vis": true,
+        "fs": 16,
+        "fw": "400"
+      },
+      "h2": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 270.4375,
+        "b": 305.15625,
+        "w": 800.625,
+        "h": 34.71875,
+        "vis": true,
+        "fs": 22.4,
+        "fw": "700"
+      },
+      "lede": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 321.15625,
+        "b": 349.046875,
+        "w": 800.625,
+        "h": 27.890625,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "steps": {
+        "l": 424.1875,
+        "r": 1224.8125,
+        "t": 365.046875,
+        "b": 459.90625,
+        "w": 800.625,
+        "h": 94.859375,
+        "vis": true,
+        "fs": 18,
+        "fw": "400"
+      },
+      "cta": {
+        "l": 424.1875,
+        "t": 475.90625,
+        "w": 173.140625,
+        "h": 53.484375
+      },
+      "btn": {
+        "l": 342.59375,
+        "t": 662.328125,
+        "w": 48,
+        "h": 48,
+        "rgba": [
+          0,
+          0,
+          0,
+          0.55
+        ]
+      }
+    },
+    "videoRequestsAfterScroll": 1
+  },
+  {
+    "page": "/",
+    "viewport": "1920x1080",
+    "firstLoadRequests": [
+      "http://127.0.0.1:3929/",
+      "http://127.0.0.1:3929/brand/protoolhub-icon.svg",
+      "http://127.0.0.1:3929/hero/before.jpg",
+      "http://127.0.0.1:3929/styles/classic.webp",
+      "http://127.0.0.1:3929/_next/static/css/f167e557e914085f.css",
+      "http://127.0.0.1:3929/_next/static/chunks/webpack-c81f7fd28659d64f.js",
+      "http://127.0.0.1:3929/_next/static/chunks/fd9d1056-c57e591c5cbfd6d8.js",
+      "http://127.0.0.1:3929/_next/static/chunks/117-10018df3a4cc8dae.js",
+      "http://127.0.0.1:3929/_next/static/chunks/main-app-6819d24f70b9bae1.js",
+      "http://127.0.0.1:3929/_next/static/chunks/972-e0848868629c4079.js",
+      "http://127.0.0.1:3929/_next/static/chunks/919-4b5eb4159c8c57b7.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/page-56fa314ecdd3f73a.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/layout-0d4874f3ce6abf25.js",
+      "http://127.0.0.1:3929/videos/cartoon-intro-poster.jpg",
+      "http://127.0.0.1:3929/brand/mascot-480.webp",
+      "http://127.0.0.1:3929/gallery/friends/source.webp",
+      "http://127.0.0.1:3929/styles-web/goofy-sketch.webp",
+      "http://127.0.0.1:3929/api/session",
+      "http://127.0.0.1:3929/workshop?_rsc=1bhmo",
+      "http://127.0.0.1:3929/contact?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr?_rsc=1bhmo",
+      "http://127.0.0.1:3929/kvkk?_rsc=1bhmo",
+      "http://127.0.0.1:3929/tr/kvkk",
+      "http://127.0.0.1:3929/_next/static/chunks/197-b44014abf0eb67cd.js",
+      "http://127.0.0.1:3929/_next/static/chunks/949-eb053de6c583abaf.js",
+      "http://127.0.0.1:3929/_next/static/chunks/app/(en)/workshop/page-bb9cbac2334ada25.js"
+    ],
+    "videoRequestsOnFirstLoad": 0
+  }
+]

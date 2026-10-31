@@ -577,7 +577,8 @@ footer a:hover {
 }
 
 .generate-button,
-.primary-download {
+.primary-download,
+.intro-video-cta {
   appearance: none;
   border: 0;
   text-decoration: none;
@@ -597,7 +598,8 @@ footer a:hover {
 }
 
 .generate-button:not(:disabled):hover,
-.primary-download:hover {
+.primary-download:hover,
+.intro-video-cta:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
@@ -1231,16 +1233,22 @@ footer a:hover {
   margin-top: 0.45rem;
 }
 
-.featured-cta,
-.intro-video-cta {
+.featured-cta {
   justify-self: start;
   font-weight: 700;
 }
 
-/* Home page intro video (task 0027): full width on phones, 360px from 700px up. */
+/* Home page intro video (tasks 0027, 0028): one column on phones, video left and text right from 700px. */
 .intro-video {
   display: grid;
-  gap: 0.75rem;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "title"
+    "video"
+    "lede"
+    "steps"
+    "cta";
+  gap: 1rem;
   margin-top: 2rem;
   padding: 1.1rem;
   border: 1px solid var(--stroke);
@@ -1249,13 +1257,13 @@ footer a:hover {
 }
 
 .intro-video h2 {
+  grid-area: title;
   margin: 0;
 }
 
-.intro-video-body {
-  display: grid;
-  gap: 1rem;
-  justify-items: stretch;
+.intro-video-media {
+  grid-area: video;
+  position: relative;
 }
 
 .intro-video-player {
@@ -1267,25 +1275,77 @@ footer a:hover {
   background: var(--surface);
 }
 
-.intro-video-actions {
+.intro-video-lede {
+  grid-area: lede;
+  font-size: 1.125rem;
+}
+
+.intro-video-steps {
+  grid-area: steps;
+  margin: 0;
+  padding-left: 1.6rem;
   display: grid;
-  gap: 0.75rem;
-  align-content: start;
-  justify-items: start;
+  gap: 0.35rem;
+  font-size: 1.125rem;
+  list-style: decimal;
+}
+
+.intro-video-cta {
+  grid-area: cta;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
   font-size: 1.125rem;
 }
 
 .intro-video-sound {
-  font-size: 1.125rem;
-  min-height: 2.75rem;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  position: absolute;
+  right: 0.6rem;
+  bottom: 0.6rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+}
+
+.intro-video-sound svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+/* Reduced motion shows the native controls bar at the bottom: lift the button above it. */
+.intro-video-sound-lifted {
+  bottom: 4rem;
 }
 
 @media (min-width: 700px) {
-  .intro-video-body {
-    grid-template-columns: 360px auto;
-    justify-content: start;
-    align-items: start;
-    gap: 1.5rem;
+  .intro-video {
+    grid-template-columns: 360px minmax(0, 1fr);
+    grid-template-areas:
+      "video ."
+      "video title"
+      "video lede"
+      "video steps"
+      "video cta"
+      "video .";
+    grid-template-rows: 1fr auto auto auto auto 1fr;
+    column-gap: 1.5rem;
+  }
+
+  .intro-video-cta {
+    justify-self: start;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
   }
 }
 

@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Home page intro video layout: video left and text right on desktop, one column on phones, three steps, a large workshop button, a round sound button on the video** (task 0028, Oct 31 2026)
+  - Not committed, not pushed, not deployed. Commit and preview are the operator's next steps.
+  - Changes the layout and button look of the `intro-video` section described in the task 0027 entry under Added. The try button still links to the plain workshop (`/workshop`, `/tr/workshop`), and the sound and playback behaviour is required unchanged by the spec.
+  - From 700 px: the video is 360 px wide on the left; the heading, sentence, three steps and button are stacked on the right and centred vertically on the video. Below 700 px: heading, video (full width), sentence, steps, button (full width).
+  - Heading uses the same size and weight as the other section headings. The sentence and the steps are at least 18 px. The steps are numbered 1, 2, 3 and are shown on phones too.
+  - Sound button: moved onto the video's bottom-right corner, round, 48 px, semi-transparent dark background, speaker icon as inline SVG, no text. The browser's grey default is removed. Its label is unchanged ("Sesi aç" / "Turn sound on").
+  - Try button: uses the same look as the main `.generate-button` (accent gradient, same radius, weight and text colour), text `featured.cta`.
+  - Strings: `introVideo` in `lib/i18n/tr.ts` and `lib/i18n/en.ts` gains `lede`, `step1`, `step2`, `step3`; the four existing keys are unchanged. No new npm package.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0028-attempt-01.json`): 7 of 7 criteria executed and passed (typecheck, build, strings, built-page markup, live layout and video behaviour at 390 and 1280 px, live video behaviour at 1920 px, reduced motion, scope). The same verdict records 5 warning-level `legal.pages_present` failures: the `REVIEW REQUIRED` markers on the EN privacy, terms, cookies and contact pages and the TR kvkk page. This task did not change those pages, and the legal text was not reviewed.
+  - Open, recorded by the verifier and not ruled on by the operator: the sound button's background and icon colour are new literals (`app/globals.css:1315-1316`, `rgba(0, 0, 0, 0.55)` and `#fff`), although the spec says no new colour values. No existing variable gives the dark translucent background the spec requires.
+  - Evidence: `reports/0028-en-390.png`, `reports/0028-tr-390.png`, `reports/0028-en-1280.png`, `reports/0028-tr-1280.png`, `reports/0028-network.json`. Layout measurements were taken at 390 and 1280 px only; the 1920 px run checks video behaviour only.
+
 - **Abuse protection on `/api/cartoonify`: consent, Turnstile, per-IP hourly and site-wide daily limits, moderation before every conversion; uploads up to 10 MB downscaled in the browser** (task 0021, Oct 23 2026)
   - Live effect (from the next deploy, not yet deployed): a request without exactly one `consent=yes` field, or without a valid Turnstile token, is refused and makes no OpenAI call. Any caller of the API is affected, not only the workshop page.
   - Order of checks, each before any paid call: file size, form and MIME and magic-byte checks, style, consent, configuration, Turnstile (Cloudflare siteverify), IP-hour reservation, daily reservation, moderation (`omni-moderation-latest`, image as data URL), then the unchanged image edit. Moderation is the first OpenAI call; a flagged image gets no edit call.

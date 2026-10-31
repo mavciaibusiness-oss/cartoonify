@@ -77,6 +77,10 @@ export const tr = {
   },
   introVideo: {
     title: 'Bir fotoğraf, 120 stil',
+    lede: 'Bir fotoğraf yükleyin, 120 stilden birini seçin, sonucu indirin.',
+    step1: 'Yükle',
+    step2: 'Stil seç',
+    step3: 'İndir',
     soundOn: 'Sesi aç',
     soundOff: 'Sesi kapat',
     videoLabel: 'ProToolHub Cartoon tanıtım videosu',

@@ -69,6 +69,10 @@ export const en: Dictionary = {
   },
   introVideo: {
     title: 'One photo, 120 styles',
+    lede: 'Upload a photo, pick one of 120 styles and download the result.',
+    step1: 'Upload',
+    step2: 'Pick a style',
+    step3: 'Download',
     soundOn: 'Turn sound on',
     soundOff: 'Turn sound off',
     videoLabel: 'ProToolHub Cartoon intro video',

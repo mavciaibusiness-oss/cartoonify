@@ -1,5 +1,5 @@
 {
-  "control_hash": "e329bcd9f2dc1a8f4be2ce88a0a520b3bedadd623d7008469f90596cc121d539",
+  "control_hash": "8f50f9d6b096a87ef3b7a23f4c316fc71f0a70860a442ce0ac33bf31cf74ff26",
   "files": [
     ".mavci/control/state.json",
     ".mavci/control/tasks/0001.json",
@@ -29,6 +29,7 @@
     ".mavci/control/tasks/0025.json",
     ".mavci/control/tasks/0026.json",
     ".mavci/control/tasks/0027.json",
+    ".mavci/control/tasks/0028.json",
     ".mavci/control/verdicts/0001-attempt-01.json",
     ".mavci/control/verdicts/0002-attempt-01.json",
     ".mavci/control/verdicts/0003-attempt-01.json",
@@ -60,6 +61,7 @@
     ".mavci/control/verdicts/0025-attempt-02.json",
     ".mavci/control/verdicts/0026-attempt-01.json",
     ".mavci/control/verdicts/0027-attempt-01.json",
+    ".mavci/control/verdicts/0028-attempt-01.json",
     ".mavci/control/verdicts/adhoc-1788598840191.json",
     ".mavci/control/verdicts/adhoc-1788599209546.json",
     ".mavci/control/verdicts/adhoc-1788599240886.json",
@@ -649,17 +651,22 @@
     ".mavci/control/verdicts/adhoc-1793436731251.json",
     ".mavci/control/verdicts/adhoc-1793436791149.json",
     ".mavci/control/verdicts/adhoc-1793437012613.json",
+    ".mavci/control/verdicts/adhoc-1793437907833.json",
+    ".mavci/control/verdicts/adhoc-1793438667676.json",
+    ".mavci/control/verdicts/adhoc-1793438699379.json",
+    ".mavci/control/verdicts/adhoc-1793438805939.json",
+    ".mavci/control/verdicts/adhoc-1793438993023.json",
     ".mavci/control/waivers.json"
   ],
   "last_gate": {
-    "at": "2026-10-31T08:56:52Z",
+    "at": "2026-10-31T09:29:53Z",
     "continues": 0,
     "plugin_version": "0.1.36",
-    "prompt_id": "bfb4d751-5a29-41a7-89ed-a4d814c4ae51",
+    "prompt_id": "47257c76-17b0-4aa5-888a-acf66fd2239d",
     "session_id": "cfc7920e-f1bd-429d-9ad7-962321f713d5",
     "verdict": "pass"
   },
   "schema_version": 1,
-  "sealed_at": "2026-10-31T08:57:03Z",
+  "sealed_at": "2026-10-31T09:30:00Z",
   "sealed_by_plugin_version": "0.1.36"
 }
