@@ -1,0 +1,86 @@
+[
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "before a choice",
+    "tagRequests": []
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "after Reject",
+    "tagRequests": []
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "visit after Reject",
+    "tagRequests": []
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "after Accept",
+    "tagRequests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-TEST0036",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    ]
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "visit after Accept",
+    "tagRequests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-TEST0036",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    ]
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "step": "expired acceptance",
+    "tagRequests": []
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "before a choice",
+    "tagRequests": []
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "after Reject",
+    "tagRequests": []
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "visit after Reject",
+    "tagRequests": []
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "after Accept",
+    "tagRequests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-TEST0036",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    ]
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "visit after Accept",
+    "tagRequests": [
+      "https://www.googletagmanager.com/gtag/js?id=G-TEST0036",
+      "https://connect.facebook.net/en_US/fbevents.js"
+    ]
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "step": "expired acceptance",
+    "tagRequests": []
+  }
+]

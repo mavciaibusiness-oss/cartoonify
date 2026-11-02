@@ -1,0 +1,92 @@
+{
+  "tool": "lighthouse@13.6.0",
+  "method": "local next start build, mobile, simulated throttling, fresh profile per run, NO consent preset (banner shows on a first visit), browser language per page {\"/\":\"en-US\",\"/tr\":\"tr-TR\"}, 3 runs per page, pass: median >= baseline - 2",
+  "baseline": {
+    "/": 100,
+    "/tr": 100
+  },
+  "runs": [
+    {
+      "page": "/",
+      "run": 1,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 98,
+      "seo": 100,
+      "lcp": 2475,
+      "si": 788,
+      "tbt": 1,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "page": "/",
+      "run": 2,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 98,
+      "seo": 100,
+      "lcp": 2459,
+      "si": 796,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "page": "/",
+      "run": 3,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 98,
+      "seo": 100,
+      "lcp": 2461,
+      "si": 764,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "page": "/tr",
+      "run": 1,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 99,
+      "seo": 100,
+      "lcp": 2265,
+      "si": 866,
+      "tbt": 28,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "page": "/tr",
+      "run": 2,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 98,
+      "seo": 100,
+      "lcp": 2319,
+      "si": 783,
+      "tbt": 3,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "page": "/tr",
+      "run": 3,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 98,
+      "seo": 100,
+      "lcp": 2459,
+      "si": 800,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    }
+  ],
+  "result": {
+    "/": {
+      "medianPerf": 98,
+      "threshold": 98
+    },
+    "/tr": {
+      "medianPerf": 98,
+      "threshold": 98
+    }
+  }
+}

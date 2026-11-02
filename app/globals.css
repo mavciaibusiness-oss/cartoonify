@@ -1084,6 +1084,27 @@ footer a:hover {
     grid-column: 1 / -1;
   }
 
+  /* Task 0036 (D12): the copy is centred on the video row only; the notice sits below it in column 1. */
+  .hero-media {
+    display: contents;
+  }
+
+  .landing-hero .intro-video-media {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .landing-hero .kvkk-notice {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .landing-hero .hero-copy {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+  }
+
   .site-strip {
     position: sticky;
     top: 0;

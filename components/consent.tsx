@@ -1,9 +1,10 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import Script from 'next/script'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { getDictionary, localeOfPath, localizedPath } from '@/lib/i18n'
+import { getDictionary, localeOfPath } from '@/lib/i18n'
 import {
   REOPEN_EVENT,
   readChoice,
@@ -14,6 +15,9 @@ import {
   type Choice,
   type MeasurementIds,
 } from '@/lib/analytics'
+
+// The banner markup is a separate, lazily loaded chunk (task 0036).
+const Banner = dynamic(() => import('./consent-banner'), { ssr: false })
 
 /**
  * The cookie banner and the measurement libraries behind it (task 0032).
@@ -32,12 +36,34 @@ export default function Consent({ ids }: { ids: MeasurementIds }) {
     const stored = readChoice()
     if (stored === 'granted') startTags(ids)
     setChoice(stored ?? 'none')
-    setOpen(stored === null)
+    // First visit: show the banner 0.5 s after the load event, when the browser is idle (3 s at the latest).
+    let timer = 0
+    let idle = 0
+    let cancelled = false
+    function schedule() {
+      timer = window.setTimeout(() => {
+        const show = () => {
+          if (!cancelled) setOpen(true)
+        }
+        if (typeof window.requestIdleCallback === 'function') idle = window.requestIdleCallback(show, { timeout: 2000 })
+        else idle = window.setTimeout(show, 1500)
+      }, 500)
+    }
+    if (stored === null) {
+      if (document.readyState === 'complete') schedule()
+      else window.addEventListener('load', schedule, { once: true })
+    }
     function reopen() {
       setOpen(true)
     }
     window.addEventListener(REOPEN_EVENT, reopen)
-    return () => window.removeEventListener(REOPEN_EVENT, reopen)
+    return () => {
+      cancelled = true
+      window.clearTimeout(timer)
+      if (idle && typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(idle)
+      window.removeEventListener('load', schedule)
+      window.removeEventListener(REOPEN_EVENT, reopen)
+    }
   }, [ids])
 
   function choose(next: Choice) {
@@ -53,21 +79,7 @@ export default function Consent({ ids }: { ids: MeasurementIds }) {
       {choice === 'granted'
         ? tagScripts(ids).map((s) => <Script key={s.id} id={s.id} src={s.src} strategy="afterInteractive" />)
         : null}
-      {open ? (
-        <section className="consent-banner" aria-label={t.label} lang={locale}>
-          <p>
-            {t.text} <a href={localizedPath(locale, '/cookies')}>{t.link}</a>
-          </p>
-          <div className="consent-actions">
-            <button type="button" className="consent-accept" onClick={() => choose('granted')}>
-              {t.accept}
-            </button>
-            <button type="button" className="consent-reject" onClick={() => choose('denied')}>
-              {t.reject}
-            </button>
-          </div>
-        </section>
-      ) : null}
+      {open ? <Banner locale={locale} t={t} onAccept={() => choose('granted')} onReject={() => choose('denied')} /> : null}
     </>
   )
 }

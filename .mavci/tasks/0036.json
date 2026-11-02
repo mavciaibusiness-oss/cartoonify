@@ -1,0 +1,9 @@
+{
+  "artifacts": [],
+  "id": "0036",
+  "notes": [],
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec": ".mavci/tasks/0036-consent-banner-speed-hero-centre.md",
+  "title": "Mobile speed: deferred consent banner, hero centring"
+}

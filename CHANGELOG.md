@@ -28,6 +28,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Cookie banner appears 0.5 to 3 s after the page loads, from a lazily loaded chunk, so it no longer delays the first screen; desktop hero copy centred on the video** (task 0036, Nov 2 2026)
+  - Not committed, not pushed, not deployed. Commit by name, the preview and production are the operator's next steps (spec section "Out of build scope").
+  - Base for this change: commit `2d4cd20` (task 0035). Spec: `.mavci/tasks/0036-consent-banner-speed-hero-centre.md`, approved by the operator 2026-11-02T14:30:03Z (`spec_sha256` `8afbb5ba9db1...`, recorded in `.mavci/control/tasks/0036.json`). Operator answers are recorded in the spec; the timing answer (Q4) was changed by the operator.
+  - Banner: the markup moved to `components/consent-banner.tsx` (new), loaded with `next/dynamic` only when it is about to show. `components/consent.tsx` shows it 0.5 s after `load` when the browser is idle, and at 3 s at the latest (idle timeout 2000 ms, fallback 1500 ms). Texts, buttons, the Cookies link, the footer "Cookie settings" link, the stored choice `pth-consent`, the 12-month rule and the tags are unchanged; `lib/analytics.ts` is not changed.
+  - Hero: on desktop, the right column (heading to step strip) is centred on the 360 px video, within 8 px of its centre; the notice stays directly under the video. The centring rules are in the 900 px query in `app/globals.css`; the spec keeps the phone layout unchanged.
+  - Lighthouse 13.6.0, mobile, banner showing, median of 3 runs per page, each page in its own browser language: performance 98 on `/` and 98 on `/tr`, against a baseline of 100 (pass at 98 or more). The margin is zero. The banner is not the LCP element in any run. Evidence: `reports/0036-lighthouse.json`.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0036-attempt-01.json`, run 2026-11-02T14:39:48Z): 11 of 11 criteria executed and passed. 14 checks passed, 0 blocking, 5 warnings.
+  - Verdict warnings: `legal.pages_present` reports the `REVIEW REQUIRED` marker on the EN privacy, EN terms, TR kvkk, EN cookies and EN contact pages. The legal text has not been reviewed by a lawyer; the markers stay until a lawyer has reviewed the text and the operator removes them.
+  - Not changed: `package.json` and `package-lock.json` (no new npm package), `lib/**`, `scripts/**`.
+  - Evidence: `reports/0036-en-390.png`, `reports/0036-tr-390.png`, `reports/0036-en-1280.png`, `reports/0036-tr-1280.png`, `reports/0036-banner.json`, `reports/0036-tags.json`, `reports/0036-network.json`, `reports/0036-lighthouse.json`.
+
 - **Home hero on `/` and `/tr`: video first on desktop and phones, a light 9:16 poster preloaded at high priority, the two sample images and the "One photo, 120 styles" block removed** (task 0035, Nov 2 2026)
   - Not committed, not pushed, not deployed. Commit by name, the preview and production are the operator's next steps (spec section "Out of build scope").
   - Base for this change: commit `f5747f2` (task 0032), plus the uncommitted hero code from task 0033 and the poster and preload from task 0034. Task 0033 was blocked after its criterion 8 failed; task 0034 was blocked at verify because criterion 8's timeout was over the runner's limit. Both are recorded in the spec's History sections and in `.mavci/tasks/0035.summary.md`.

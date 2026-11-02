@@ -1,0 +1,66 @@
+[
+  {
+    "page": "/",
+    "viewport": "390x844",
+    "loadEventEnd": 105,
+    "bannerAt": 931,
+    "lcp": [
+      {
+        "t": 92,
+        "inBanner": false,
+        "el": "VIDEO.intro-video-player"
+      }
+    ],
+    "shiftAfterBanner": 0,
+    "shifts": [],
+    "earlyScriptsWithBannerCode": [],
+    "position": "fixed"
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "loadEventEnd": 90,
+    "bannerAt": 919,
+    "lcp": [
+      {
+        "t": 108,
+        "inBanner": false,
+        "el": "VIDEO.intro-video-player"
+      }
+    ],
+    "shiftAfterBanner": 0,
+    "shifts": [],
+    "earlyScriptsWithBannerCode": [],
+    "position": "fixed"
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "loadEventEnd": 110,
+    "bannerAt": 930,
+    "lcp": [
+      {
+        "t": 116,
+        "inBanner": false,
+        "el": "VIDEO.intro-video-player"
+      }
+    ],
+    "shiftAfterBanner": 0,
+    "shifts": [
+      {
+        "t": 112,
+        "v": 0.026866755187747036,
+        "src": [
+          {
+            "el": "MAIN.landing",
+            "banner": false,
+            "dy": 37,
+            "dh": -37
+          }
+        ]
+      }
+    ],
+    "earlyScriptsWithBannerCode": [],
+    "position": "fixed"
+  }
+]
