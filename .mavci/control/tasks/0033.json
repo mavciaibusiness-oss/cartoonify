@@ -1,0 +1,21 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": "onayli spec degisikligi gerekti (kucuk kapak resmi), is 0034 olarak yeniden planlaniyor",
+  "created": "2026-10-31T17:23:14Z",
+  "id": "0033",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "plan",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-10-31T18:08:21Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0033-video-hero.md",
+    "spec_sha256": "9ce2befa307180bde622cb3fec7e8cd83af61961fe0758c5b74d6dc515b1807e"
+  },
+  "status": "blocked",
+  "updated": "2026-11-02T12:21:50Z",
+  "verdicts": []
+}

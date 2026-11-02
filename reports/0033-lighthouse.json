@@ -1,0 +1,177 @@
+{
+  "tool": "lighthouse@13.6.0",
+  "method": "mobile, simulated throttling; fresh profile per run; consent preset to denied; 3 rounds live then local; pass: local median perf >= live median - 2, local median SEO >= live median",
+  "live": "https://cartoon.protoolhub.net",
+  "runs": [
+    {
+      "side": "live",
+      "page": "/",
+      "round": 1,
+      "url": "https://cartoon.protoolhub.net/",
+      "perf": 99,
+      "seo": 100,
+      "lcp": 1418,
+      "si": 1418,
+      "tbt": 0,
+      "cls": 0.04,
+      "lcpElement": "section.landing-hero > div.landing-stage > div.landing-upload > p.kvkk-notice"
+    },
+    {
+      "side": "local",
+      "page": "/",
+      "round": 1,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 95,
+      "seo": 100,
+      "lcp": 2872,
+      "si": 772,
+      "tbt": 0,
+      "cls": 0.04,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "side": "live",
+      "page": "/",
+      "round": 2,
+      "url": "https://cartoon.protoolhub.net/",
+      "perf": 100,
+      "seo": 100,
+      "lcp": 999,
+      "si": 1221,
+      "tbt": 60,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.landing-stage > div.landing-upload > p.kvkk-notice"
+    },
+    {
+      "side": "local",
+      "page": "/",
+      "round": 2,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 89,
+      "seo": 100,
+      "lcp": 3687,
+      "si": 762,
+      "tbt": 1,
+      "cls": 0.04,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "side": "live",
+      "page": "/",
+      "round": 3,
+      "url": "https://cartoon.protoolhub.net/",
+      "perf": 100,
+      "seo": 100,
+      "lcp": 996,
+      "si": 996,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.landing-stage > div.landing-upload > p.kvkk-notice"
+    },
+    {
+      "side": "local",
+      "page": "/",
+      "round": 3,
+      "url": "http://127.0.0.1:3936/",
+      "perf": 91,
+      "seo": 100,
+      "lcp": 3459,
+      "si": 759,
+      "tbt": 0,
+      "cls": 0.04,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "side": "live",
+      "page": "/tr",
+      "round": 1,
+      "url": "https://cartoon.protoolhub.net/tr",
+      "perf": 100,
+      "seo": 100,
+      "lcp": 1016,
+      "si": 1016,
+      "tbt": 75,
+      "cls": 0,
+      "lcpElement": "body > main.landing > section.landing-hero > h1"
+    },
+    {
+      "side": "local",
+      "page": "/tr",
+      "round": 1,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 90,
+      "seo": 100,
+      "lcp": 3612,
+      "si": 762,
+      "tbt": 3,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "side": "live",
+      "page": "/tr",
+      "round": 2,
+      "url": "https://cartoon.protoolhub.net/tr",
+      "perf": 100,
+      "seo": 100,
+      "lcp": 1016,
+      "si": 1016,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "body > main.landing > section.landing-hero > h1"
+    },
+    {
+      "side": "local",
+      "page": "/tr",
+      "round": 2,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 92,
+      "seo": 100,
+      "lcp": 3315,
+      "si": 765,
+      "tbt": 2,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    },
+    {
+      "side": "live",
+      "page": "/tr",
+      "round": 3,
+      "url": "https://cartoon.protoolhub.net/tr",
+      "perf": 100,
+      "seo": 100,
+      "lcp": 1229,
+      "si": 1229,
+      "tbt": 0,
+      "cls": 0,
+      "lcpElement": "body > main.landing > section.landing-hero > h1"
+    },
+    {
+      "side": "local",
+      "page": "/tr",
+      "round": 3,
+      "url": "http://127.0.0.1:3936/tr",
+      "perf": 92,
+      "seo": 100,
+      "lcp": 3313,
+      "si": 763,
+      "tbt": 63,
+      "cls": 0,
+      "lcpElement": "section.landing-hero > div.hero-media > div.intro-video-media > video.intro-video-player"
+    }
+  ],
+  "result": {
+    "/": {
+      "livePerf": 100,
+      "localPerf": 91,
+      "liveSeo": 100,
+      "localSeo": 100
+    },
+    "/tr": {
+      "livePerf": 100,
+      "localPerf": 92,
+      "liveSeo": 100,
+      "localSeo": 100
+    }
+  }
+}

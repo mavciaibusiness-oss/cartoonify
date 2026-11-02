@@ -1,5 +1,4 @@
 import { getDictionary, type Locale } from '@/lib/i18n'
-import { stylePreviewPath } from '@/lib/style-previews'
 import FeaturedStyle from './featured-style'
 import Gallery from './gallery'
 import IntroVideo from './intro-video'
@@ -8,16 +7,12 @@ import StyleShowcase from './style-showcase'
 import UploadControl from './upload-control'
 
 /**
- * The landing body, shared by / and /en.
+ * The landing body, shared by / and /tr.
  *
- * The before/after pair is true: the left image is the source portrait itself,
- * the exact bytes sent to the provider, and the right image is its classic
- * render at the model a visitor's request uses (task 0008).
- *
- * On wide screens the stage is two columns: the pair on the left, the upload
- * column on the right (task 0009). Inside that column the disclosure comes
- * before the file input, and no CSS reorders either, so the DOM order is the
- * order everyone meets them in, at every width.
+ * Task 0033: the hero is video-led. DOM order is the mobile order: mascot,
+ * video, disclosure, H1, sentence, upload box, step strip. From 900px the
+ * video and its notice sit in the left column and the copy in the right one;
+ * no CSS reorders anything.
  */
 export default function Landing({ locale }: { locale: Locale }) {
   const t = getDictionary(locale)
@@ -25,32 +20,26 @@ export default function Landing({ locale }: { locale: Locale }) {
   return (
     <main className="landing">
       <section className="landing-hero">
-        <img className="brand-mascot" src="/brand/mascot-480.webp" alt="" width={240} height={240} loading="lazy" />
-        <p className="workshop-badge">{t.landing.badge}</p>
-        <h1>{t.landing.title}</h1>
-        <p className="hero-lede">{t.landing.lede}</p>
+        <img className="brand-mascot" src="/brand/mascot-480.webp" alt="" width={240} height={240} loading="eager" />
 
-        <div className="landing-stage">
-          <div className="hero-pair">
-            <figure>
-              <img src="/hero/before.jpg" alt={t.landing.heroBeforeAlt} width={1024} height={1024} />
-              <figcaption>{t.landing.heroBeforeCaption}</figcaption>
-            </figure>
-            <figure>
-              <img src={stylePreviewPath('classic', 'full')} alt={t.landing.heroAfterAlt} width={1024} height={1024} />
-              <figcaption>{t.landing.heroAfterCaption}</figcaption>
-            </figure>
-          </div>
+        <div className="hero-media">
+          <IntroVideo locale={locale} />
+          <KvkkNotice locale={locale} />
+        </div>
 
-          <div className="landing-upload">
-            <KvkkNotice locale={locale} />
+        <div className="hero-copy">
+          <h1>{t.landing.title}</h1>
+          <p className="hero-lede">{t.introVideo.lede}</p>
 
-            <UploadControl locale={locale} />
-          </div>
+          <UploadControl locale={locale} />
+
+          <ol className="hero-steps">
+            <li>{t.introVideo.step1}</li>
+            <li>{t.introVideo.step2}</li>
+            <li>{t.introVideo.step3}</li>
+          </ol>
         </div>
       </section>
-
-      <IntroVideo locale={locale} />
 
       <FeaturedStyle locale={locale} />
 

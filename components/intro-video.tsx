@@ -1,17 +1,18 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { getDictionary, localizedPath, type Locale } from '@/lib/i18n'
+import ReactDOM from 'react-dom'
+import { getDictionary, type Locale } from '@/lib/i18n'
 
 /**
- * Home page intro video (task 0027). The <video> is in the server HTML with
+ * Home page hero video (tasks 0027, 0033). The <video> is in the server HTML with
  * preload="none" and a poster, so nothing downloads until it is at least half
  * on screen. Reduced motion: never auto-plays, one centred play button starts it and a click on the
  * video pauses it. No native controls in either mode.
  */
 export default function IntroVideo({ locale }: { locale: Locale }) {
   const t = getDictionary(locale)
+  ReactDOM.preload('/videos/cartoon-intro-poster.webp', { as: 'image', fetchPriority: 'high' })
   const videoRef = useRef<HTMLVideoElement>(null)
   const [soundOn, setSoundOn] = useState(false)
   const [reduced, setReduced] = useState(false)
@@ -24,20 +25,30 @@ export default function IntroVideo({ locale }: { locale: Locale }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     setReduced(reduce)
     if (reduce) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            video.play().catch(() => {})
-          } else {
-            video.pause()
+    let observer: IntersectionObserver | null = null
+    const start = () => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              video.play().catch(() => {})
+            } else {
+              video.pause()
+            }
           }
-        }
-      },
-      { threshold: 0.5 },
-    )
-    observer.observe(video)
-    return () => observer.disconnect()
+        },
+        { threshold: 0.5 },
+      )
+      observer.observe(video)
+    }
+    // Task 0033: watch only after the window load event, so the first load
+    // fetches the poster and the mp4 starts right after it.
+    if (document.readyState === 'complete') start()
+    else window.addEventListener('load', start, { once: true })
+    return () => {
+      window.removeEventListener('load', start)
+      if (observer) observer.disconnect()
+    }
   }, [])
 
   function togglePlay() {
@@ -57,14 +68,12 @@ export default function IntroVideo({ locale }: { locale: Locale }) {
   }
 
   return (
-    <section className="intro-video" aria-labelledby="intro-video-title">
-      <h2 id="intro-video-title">{t.introVideo.title}</h2>
-      <div className="intro-video-media">
+    <div className="intro-video-media">
         <video
           ref={videoRef}
           className="intro-video-player"
           src="/videos/cartoon-intro.mp4"
-          poster="/videos/cartoon-intro-poster.jpg"
+          poster="/videos/cartoon-intro-poster.webp"
           muted
           loop
           playsInline
@@ -98,16 +107,6 @@ export default function IntroVideo({ locale }: { locale: Locale }) {
             )}
           </svg>
         </button>
-      </div>
-      <p className="intro-video-lede">{t.introVideo.lede}</p>
-      <ol className="intro-video-steps">
-        <li>{t.introVideo.step1}</li>
-        <li>{t.introVideo.step2}</li>
-        <li>{t.introVideo.step3}</li>
-      </ol>
-      <Link className="intro-video-cta" href={localizedPath(locale, '/workshop')} prefetch={false}>
-        {t.featured.cta}
-      </Link>
-    </section>
+    </div>
   )
 }

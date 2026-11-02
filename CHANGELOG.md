@@ -28,6 +28,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Home hero on `/` and `/tr`: video first on desktop and phones, a light 9:16 poster preloaded at high priority, the two sample images and the "One photo, 120 styles" block removed** (task 0035, Nov 2 2026)
+  - Not committed, not pushed, not deployed. Commit by name, the preview and production are the operator's next steps (spec section "Out of build scope").
+  - Base for this change: commit `f5747f2` (task 0032), plus the uncommitted hero code from task 0033 and the poster and preload from task 0034. Task 0033 was blocked after its criterion 8 failed; task 0034 was blocked at verify because criterion 8's timeout was over the runner's limit. Both are recorded in the spec's History sections and in `.mavci/tasks/0035.summary.md`.
+  - Spec: `.mavci/tasks/0035-video-hero-poster.md`, approved by the operator 2026-11-02T12:45:28Z (`spec_sha256` `19735087c98d...`, recorded in `.mavci/control/tasks/0035.json`). The operator's request text is kept in the spec.
+  - Layout: mascot at the top. On desktop, below it, the 9:16 video (360 px wide) with the OpenAI notice under it on the left, and the H1, one sentence, the upload box and a one-row three-step strip on the right. On phones, one column in the same order. Same layout in EN and TR. The H1 and the KVKK notice texts are unchanged.
+  - Removed from the hero: the two sample images (Source image and Classic Cartoon result), the workshop badge, and the separate "One photo, 120 styles" section with its "Try it in the Studio" button. The featured band keeps its own button.
+  - Poster: `public/videos/cartoon-intro-poster.webp` (new, 432×768, 28 436 bytes, made from the existing `cartoon-intro-poster.jpg`, which stays on disk). Each home page has one high-priority preload for it. The video's poster is the webp.
+  - Video behaviour unchanged except for the start: the mp4 is not requested before the page's `load` event; after that it plays muted while at least half is visible and pauses below that.
+  - Lighthouse 13.6.0, mobile, median of 3 rounds against the live site: performance 98 local against 100 live on `/` and on `/tr`; SEO 100 on both. The pass rule is local performance at least live minus 2. The local LCP element is still the hero video. Evidence: `reports/0035-lighthouse.json`.
+  - Verdict `pass` at attempt 1 of 3 (`.mavci/control/verdicts/0035-attempt-01.json`, run 2026-11-02T12:51:57Z): 9 of 9 criteria executed and passed. 14 checks passed, 0 blocking, 5 warnings.
+  - Verdict warnings: `legal.pages_present` reports the `REVIEW REQUIRED` marker on the EN privacy, EN terms, TR kvkk, EN cookies and EN contact pages. The legal text has not been reviewed by a lawyer; the markers stay until a lawyer has reviewed the text and the operator removes them.
+  - Not changed: `package.json` and `package-lock.json` (no new npm package).
+  - Evidence: `reports/0035-en-390.png`, `reports/0035-tr-390.png`, `reports/0035-en-1280.png`, `reports/0035-tr-1280.png`, `reports/0035-network.json`, `reports/0035-lighthouse.json`.
+
 - **Pre-ads readiness, parts 1 to 4: return addresses and 308 to the live domain on production, intro button text, token colours and one play button under reduced motion, KVKK and privacy text name OpenAI** (task 0031, Oct 31 2026)
   - Not committed, not pushed, not deployed. Commit, preview and production are the operator's next steps (spec section 7).
   - Base for this change: commit `9038329` (task 0030). Spec: `.mavci/tasks/0031-pre-ads-readiness.md`, approved by the operator 2026-10-31T12:14:07Z.

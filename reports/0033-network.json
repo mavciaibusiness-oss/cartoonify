@@ -1,0 +1,42 @@
+[
+  {
+    "page": "/",
+    "viewport": "390x844",
+    "ratioAtTop": 0.95,
+    "playedAtTop": true,
+    "mp4SecondsAfterLoad": [
+      0.008
+    ],
+    "posterRequested": true
+  },
+  {
+    "page": "/tr",
+    "viewport": "390x844",
+    "ratioAtTop": 1,
+    "playedAtTop": true,
+    "mp4SecondsAfterLoad": [
+      0.011
+    ],
+    "posterRequested": true
+  },
+  {
+    "page": "/",
+    "viewport": "1280x800",
+    "ratioAtTop": 0.77,
+    "playedAtTop": true,
+    "mp4SecondsAfterLoad": [
+      0.011
+    ],
+    "posterRequested": true
+  },
+  {
+    "page": "/tr",
+    "viewport": "1280x800",
+    "ratioAtTop": 0.82,
+    "playedAtTop": true,
+    "mp4SecondsAfterLoad": [
+      0.011
+    ],
+    "posterRequested": true
+  }
+]

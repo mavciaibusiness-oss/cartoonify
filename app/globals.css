@@ -577,8 +577,7 @@ footer a:hover {
 }
 
 .generate-button,
-.primary-download,
-.intro-video-cta {
+.primary-download {
   appearance: none;
   border: 0;
   text-decoration: none;
@@ -598,8 +597,7 @@ footer a:hover {
 }
 
 .generate-button:not(:disabled):hover,
-.primary-download:hover,
-.intro-video-cta:hover {
+.primary-download:hover {
   transform: translateY(-1px);
   filter: brightness(1.05);
 }
@@ -658,52 +656,56 @@ footer a:hover {
  */
 
 /*
- * The landing hero pair: the source portrait and its classic render.
+ * The video-led hero (task 0033): one column on phones, video and notice left
+ * and copy right from 900px. DOM order is the visual order at every width.
  */
-.hero-pair {
+.hero-media {
   display: grid;
   gap: 0.9rem;
-  grid-template-columns: 1fr 1fr;
   align-content: start;
+  min-width: 0;
 }
 
-.hero-pair figure {
+.hero-copy {
+  display: grid;
+  gap: 0.9rem;
+  align-content: center;
+  min-width: 0;
+}
+
+.landing-hero .hero-copy h1 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.2;
   margin: 0;
-  border: 1px solid var(--stroke);
-  background: var(--surface);
-  border-radius: var(--radius-md);
-  padding: 0.5rem;
 }
 
-.hero-pair img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 0.72rem;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+.landing-hero .hero-lede {
+  font-size: 1.125rem;
+  margin: 0;
 }
 
-.hero-pair figcaption {
+.hero-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  counter-reset: hero-step;
+  font-size: 1.125rem;
+  line-height: 1.2;
   color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 0.45rem;
 }
 
-/*
- * The landing stage (task 0009): the pair, then the upload column holding the
- * disclosure and then the file input. Two columns from 900px, set in the media
- * query below. Nothing here or there reorders a child.
- */
-.landing-stage {
-  display: grid;
-  gap: 1rem;
+.hero-steps li {
+  counter-increment: hero-step;
+  white-space: nowrap;
 }
 
-.landing-upload {
-  display: grid;
-  gap: 0.9rem;
-  align-content: start;
+.hero-steps li::before {
+  content: counter(hero-step) '. ';
+  color: var(--accent-text);
+  font-weight: 700;
 }
 
 /* The landing gallery: one row per source, the source then its three renders. */
@@ -1073,13 +1075,13 @@ footer a:hover {
     padding: 2rem 1.35rem 2.4rem;
   }
 
-  .hero-pair {
-    grid-template-columns: 1fr 1fr;
+  .landing-hero {
+    grid-template-columns: 360px minmax(0, 1fr);
+    column-gap: 1.5rem;
   }
 
-  .landing-stage {
-    grid-template-columns: 1.25fr 1fr;
-    align-items: start;
+  .landing-hero .brand-mascot {
+    grid-column: 1 / -1;
   }
 
   .site-strip {
@@ -1093,11 +1095,6 @@ footer a:hover {
     padding-block: 0;
     grid-template-columns: auto minmax(0, 1fr) auto;
     grid-template-areas: 'brand nav end';
-  }
-
-  .landing-upload {
-    position: sticky;
-    top: calc(var(--header-h) + 1rem);
   }
 
   .workshop-result {
@@ -1238,31 +1235,8 @@ footer a:hover {
   font-weight: 700;
 }
 
-/* Home page intro video (tasks 0027, 0028): one column on phones, video left and text right from 700px. */
-.intro-video {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-areas:
-    "title"
-    "video"
-    "lede"
-    "steps"
-    "cta";
-  gap: 1rem;
-  margin-top: 2rem;
-  padding: 1.1rem;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-}
-
-.intro-video h2 {
-  grid-area: title;
-  margin: 0;
-}
-
+/* Hero video (tasks 0027, 0028, 0033). */
 .intro-video-media {
-  grid-area: video;
   position: relative;
 }
 
@@ -1273,30 +1247,6 @@ footer a:hover {
   aspect-ratio: 9 / 16;
   border-radius: 0.72rem;
   background: var(--surface);
-}
-
-.intro-video-lede {
-  grid-area: lede;
-  font-size: 1.125rem;
-}
-
-.intro-video-steps {
-  grid-area: steps;
-  margin: 0;
-  padding-left: 1.6rem;
-  display: grid;
-  gap: 0.35rem;
-  font-size: 1.125rem;
-  list-style: decimal;
-}
-
-.intro-video-cta {
-  grid-area: cta;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  font-size: 1.125rem;
 }
 
 .intro-video-sound {
@@ -1347,27 +1297,6 @@ footer a:hover {
   width: 2rem;
   height: 2rem;
   display: block;
-}
-
-@media (min-width: 700px) {
-  .intro-video {
-    grid-template-columns: 360px minmax(0, 1fr);
-    grid-template-areas:
-      "video ."
-      "video title"
-      "video lede"
-      "video steps"
-      "video cta"
-      "video .";
-    grid-template-rows: 1fr auto auto auto auto 1fr;
-    column-gap: 1.5rem;
-  }
-
-  .intro-video-cta {
-    justify-self: start;
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-  }
 }
 
 /* Accounts (task 0022): the sign-in panel and the credit badge. Large type, one next step. */

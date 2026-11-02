@@ -1,0 +1,21 @@
+{
+  "attempts": 1,
+  "attempts_total": 1,
+  "blocked_by": "onayli spec dogrulamada okunamadi (kriter 8 timeout 1200000 > 600000), is 0035 olarak yeniden planlaniyor",
+  "created": "2026-11-02T12:21:53Z",
+  "id": "0034",
+  "max_attempts": 3,
+  "owner_agent": null,
+  "phase": "plan",
+  "project_id": "cartoonify",
+  "schema_version": 1,
+  "spec_approved": {
+    "at": "2026-11-02T12:27:10Z",
+    "by": "operator",
+    "spec_path": ".mavci/tasks/0034-video-hero-poster.md",
+    "spec_sha256": "fe36c1ec7762904adefae1f1eb55e3ebb0801e3571df2115b6a90a2c069e80c1"
+  },
+  "status": "blocked",
+  "updated": "2026-11-02T12:42:57Z",
+  "verdicts": []
+}

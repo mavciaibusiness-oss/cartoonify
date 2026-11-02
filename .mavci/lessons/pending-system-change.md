@@ -38,3 +38,35 @@ Task 0025 moves Turkish pages to the /tr address prefix with a real folder: app/
 ### The assertion, and the broken build it must catch
 
 Fixture tree with app/(en)/(legal)/privacy/page.tsx (real content) and app/(tr)/tr/(legal)/privacy/page.tsx (empty placeholder), and app/(tr)/tr/(legal)/kvkk/page.tsx with the seven KVKK sections: legal.pages_present must find kvkk (no 'does not exist'), must check EVERY match per slug, and must flag the empty Turkish privacy page. Broken build it catches: the current findPage, which reports kvkk missing and passes the bilingual pair because it only looks at the first match. Also assert app/tr/privacy/page.tsx (plain locale folder, no groups) and app/[locale]/privacy/page.tsx are found.
+
+---
+
+# Finding 3 - No exit to revise an approved spec on an intended change
+
+Filed: 2026-11-02T12:20:38Z, plugin 0.1.36.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs (approval lifecycle) and scripts/risk-guard.mjs (approved-spec edit rule)`
+
+Task 0033: the builder escalated in build because criterion 8 (Lighthouse) failed: the hero poster was the LCP element, local perf 91 vs live 100. The operator chose a spec change, a smaller webp poster. The operator ran state.mjs --set-phase plan. The architect's Edit of .mavci/tasks/0033-video-hero.md was then denied by the risk-guard PreToolUse hook: approved spec sha256 9ce2befa3071, 'only the operator can re-approve'. state.mjs has no command that withdraws or releases a spec_approved record (commands: --approve-spec, --restore-spec, --advance-phase, --block, --set-phase, ...). An operator-intended revision therefore cannot be written to the approved file. Remaining exits: (a) write a new spec file and repoint the surface task's spec field, which works around what the guard protects; (b) --block the task and re-plan it as a new task. The operator chose (b): 0033 blocked, re-planned as 0034, costing a task id and a full re-plan.
+
+### The assertion, and the broken build it must catch
+
+Add an operator-only state.mjs --revise-spec <id> --reason <r>. It requires phase plan, keeps the approved snapshot under .mavci/control/specs/, clears spec_approved and records the reason with a timestamp. Test: approve a spec, --set-phase plan, --revise-spec; an architect Edit of the spec is then allowed, --advance-phase plan->build is refused until --approve-spec runs again, and risk-guard still refuses --revise-spec to an agent caller. The broken build it catches is the current one: after approval no sequence of operator commands makes the spec editable again without changing the task id or the spec path.
+
+---
+
+# Finding 4 - Approval accepts a criteria block that verify cannot parse
+
+Filed: 2026-11-02T12:39:05Z, plugin 0.1.36.
+
+Filed by: not recorded. Either the main session, or an agent that did not declare itself - the queue cannot tell. Treat it as unattributed.
+
+Target: `scripts/state.mjs approveSpec (and the architect's spec-writing guidance)`
+
+Task 0034: the operator approved .mavci/tasks/0034-video-hero-poster.md with state.mjs --approve-spec 0034 (sha fe36c1ec7762), and it moved plan->build->verify. In verify, verify.mjs refused the spec: 'task 0034: the acceptance criteria in .mavci/tasks/0034-video-hero-poster.md could not be read - criterion 8: timeout_ms must be an integer in 1..600000'. Criterion 8 declared timeout_ms 1200000. The same value was in the approved 0033 spec. The architect wrote it, its own proof runs (run outside verify.mjs) never hit the cap, --approve-spec did not parse the block, and --advance-phase did not either. The defect surfaced only after build, when fixing it means changing approved bytes. With no revise path (finding 3), the only exit is --block and a new task id.
+
+### The assertion, and the broken build it must catch
+
+NOT SUPPLIED. Whoever applies this must write one before building the fix: name the broken build the assertion catches, and confirm the assertion FAILS against it first. A check that passes on its first run against the broken build is matching the wrong thing.
